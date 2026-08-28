@@ -14,7 +14,7 @@ COPY dub ./dub
 # CPU-only torch+torchaudio keep the image small; local engines included.
 # Both must come from the CPU index or TTS pulls a CUDA torchaudio that
 # crashes on machines without CUDA.
-RUN pip install --no-cache-dir torch torchaudio --index-url https://download.pytorch.org/whl/cpu \
+RUN pip install --no-cache-dir "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu \
  && pip install --no-cache-dir -e '.[whisper,demucs,xtts,google]'
 
 WORKDIR /work

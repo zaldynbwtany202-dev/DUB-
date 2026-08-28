@@ -51,6 +51,20 @@
 
 وworkflow ثانٍ (`ci.yml`) يفحص الكود ويشغّل الاختبارات تلقائيًا عند كل push — أي خطأ يظهر فورًا بعلامة حمراء على المستودع.
 
+## المفاتيح (API Keys)
+
+> ⚠️ **لا تضع أي مفتاح داخل المستودع أبدًا** — المفاتيح المنشورة في GitHub تُلتقط آليًا خلال دقائق وتُسرَق حصتها. الطريقة الصحيحة الوحيدة هي المتغيرات البيئية / GitHub Secrets.
+
+| المفتاح | للمحرك | من أين تحصل عليه |
+|---|---|---|
+| `ELEVENLABS_API_KEY` | `elevenlabs` | [elevenlabs.io](https://elevenlabs.io) ← Profile ← API Keys |
+| `FAL_KEY` | `minimax` | [fal.ai/dashboard/keys](https://fal.ai/dashboard/keys) |
+| — | `xtts` | **لا يحتاج أي مفتاح** — يعمل محليًا مجانًا |
+
+**للتشغيل المحلي:** انسخ `.env.example` إلى `.env` واملأه، ثم `set -a; source .env; set +a` قبل `dub run`.
+
+**للتشغيل على GitHub Actions:** `bash scripts/set_secrets.sh` يرفع مفاتيحك من `.env` إلى Secrets المستودع بأمر واحد (أو يدويًا: Settings ← Secrets and variables ← Actions).
+
 ## ٢. التشغيل بـ Docker
 
 ```bash

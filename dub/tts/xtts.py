@@ -19,6 +19,14 @@ class XTTSEngine(TTSEngine):
                  device: str = "auto"):
         from TTS.api import TTS  # optional dependency (pip install TTS)
         import torch
+        # torch>=2.6 loads checkpoints with weights_only=True and rejects the
+        # XTTS config class — allowlist it (belt) in addition to the
+        # torch<2.6 pin in the package extras (suspenders).
+        try:
+            from TTS.tts.configs.xtts_config import XttsConfig
+            torch.serialization.add_safe_globals([XttsConfig])
+        except Exception:
+            pass
         if device == "auto":
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.tts = TTS(model).to(device)

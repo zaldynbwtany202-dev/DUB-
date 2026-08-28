@@ -19,7 +19,7 @@ echo "==> Installing dub-forge with local engine (whisper + demucs + xtts + goog
 # pip does not pull the CUDA torchaudio build (which crashes without CUDA).
 # GPU users: skip this line and install the CUDA wheels from pytorch.org instead.
 if ! command -v nvidia-smi >/dev/null; then
-    pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+    pip install "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu
 fi
 pip install -e '.[whisper,demucs,xtts,google,dev]'
 

@@ -25,7 +25,9 @@ demucs = ["demucs>=4.0"]
 # Local voice cloning TTS (17 languages incl. Arabic)
 # transformers pinned: BeamSearchScorer (needed by TTS 0.22) was removed in 4.46+
 # numpy pinned: TTS/trainer 0.22 break on numpy 2
-xtts = ["TTS>=0.22", "transformers==4.45.2", "numpy<2"]
+# torch pinned: torch>=2.6 loads checkpoints with weights_only=True which
+# rejects the XTTS config class — stay on 2.5.x
+xtts = ["TTS>=0.22", "transformers==4.45.2", "numpy<2", "torch<2.6", "torchaudio<2.6"]
 # Offline translation
 argos = ["argostranslate>=1.9"]
 # Free online translation (maintained Google Translate client)

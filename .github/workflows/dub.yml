@@ -50,7 +50,7 @@ jobs:
           # torch AND torchaudio must both come from the CPU index — otherwise
           # pip grabs the CUDA build of torchaudio and XTTS crashes with
           # "libcudart.so.13: cannot open shared object file".
-          pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu
           pip install -e '.[whisper,demucs,xtts,google]'
           pip install fal-client
 
