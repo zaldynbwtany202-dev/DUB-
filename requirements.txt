@@ -8,5 +8,5 @@ requests>=2.31
 faster-whisper>=1.0        # transcription with word timestamps
 # demucs>=4.0              # local vocals/background separation (pip install demucs)
 # TTS>=0.22                # Coqui XTTS v2 — local voice cloning (pip install TTS)
-# googletrans==4.0.0-rc1   # free online translation
+# deep-translator>=1.11    # free online translation (googletrans is broken with modern httpcore)
 # argostranslate>=1.9      # offline translation

@@ -54,6 +54,9 @@ jobs:
         env:
           FAL_KEY: ${{ secrets.FAL_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # XTTS v2 ships under the Coqui Public Model License; this env var
+          # records acceptance so the first run does not block on a prompt.
+          COQUI_TOS_AGREED: "1"
         run: |
           dub run input.mp4 \
             --src "${{ inputs.src }}" \

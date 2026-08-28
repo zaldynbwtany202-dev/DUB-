@@ -26,8 +26,8 @@ demucs = ["demucs>=4.0"]
 xtts = ["TTS>=0.22"]
 # Offline translation
 argos = ["argostranslate>=1.9"]
-# Free online translation
-google = ["googletrans==4.0.0-rc1"]
+# Free online translation (maintained Google Translate client)
+google = ["deep-translator>=1.11"]
 dev = ["pytest>=8.0"]
 
 [project.scripts]
