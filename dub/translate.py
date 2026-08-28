@@ -23,7 +23,8 @@ def translate_batch(texts: list[str], src: str, tgt: str,
     if backend == "google":
         from googletrans import Translator  # optional dependency
         tr = Translator()
-        results = tr.translate(texts, src=src, dest=tgt)
+        # empty src means "auto-detect"
+        results = tr.translate(texts, src=src or "auto", dest=tgt)
         return [r.text for r in results]
 
     if backend == "argos":

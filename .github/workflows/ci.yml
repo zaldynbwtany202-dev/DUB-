@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install (light deps only — no ML models)
+        run: pip install -e '.[dev]'
+
+      - name: Compile check
+        run: python -m compileall -q dub tests
+
+      - name: Unit tests
+        run: python -m pytest tests/ -q
+
+      - name: CLI smoke test
+        run: |
+          python -m dub --help
+          python -m dub engines
+          python -m dub run --help

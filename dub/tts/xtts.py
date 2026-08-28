@@ -33,11 +33,11 @@ class XTTSEngine(TTSEngine):
     def synthesize(self, text: str, voice: str, out_path: str | Path,
                    language: str, speed: float = 1.0) -> Path:
         out_path = Path(out_path)
-        self.tts.tts_to_file(
-            text=text,
-            speaker_wav=voice,
-            language=language,
-            speed=speed,
-            file_path=str(out_path),
-        )
+        kwargs = dict(text=text, speaker_wav=voice, language=language,
+                      file_path=str(out_path))
+        # `speed` exists only on newer Coqui releases — degrade gracefully
+        try:
+            self.tts.tts_to_file(**kwargs, speed=speed)
+        except TypeError:
+            self.tts.tts_to_file(**kwargs)
         return out_path

@@ -1,0 +1,11 @@
+.git
+.github
+tests
+examples
+*.wav
+*.mp3
+*.mp4
+dub_work
+work_*
+__pycache__
+*.egg-info

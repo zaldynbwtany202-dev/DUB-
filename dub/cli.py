@@ -80,9 +80,18 @@ def engines() -> None:
 def run(video, src, tgt, engine, out, workdir, max_stretch, bg_volume,
         no_separate, translate_backend, translations_file, speaker_map,
         whisper_model) -> None:
-    """Dub VIDEO into another language end-to-end."""
-    project = Project(src_video=str(Path(video).resolve()),
-                      src_lang=src, tgt_lang=tgt)
+    """Dub VIDEO into another language end-to-end.
+
+    Re-running with the same --workdir resumes from the saved state
+    (finished stages are skipped automatically).
+    """
+    state = Path(workdir) / "project.json"
+    if state.exists():
+        project = Project.load(state)
+        console.print(f"[cyan]Resuming from {state}[/cyan]")
+    else:
+        project = Project(src_video=str(Path(video).resolve()),
+                          src_lang=src, tgt_lang=tgt)
     pipe = DubPipeline(
         project, workdir,
         tts_engine=engine,

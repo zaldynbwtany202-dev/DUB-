@@ -1,0 +1,69 @@
+name: Dub a video (GitHub is the runner)
+
+# Trigger from the GitHub UI: Actions → "Dub a video" → Run workflow.
+# Paste a direct video URL, pick languages, and download the dubbed
+# result from the run's Artifacts. No local install needed at all.
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: "Direct URL of the source video (mp4)"
+        required: true
+      src:
+        description: "Source language code (empty = auto-detect)"
+        default: "en"
+      tgt:
+        description: "Target language code"
+        default: "ar"
+      engine:
+        description: "TTS engine"
+        type: choice
+        options: [xtts, minimax, elevenlabs]
+        default: xtts
+      whisper_model:
+        description: "Whisper model size (tiny is fastest)"
+        type: choice
+        options: [tiny, base, small, medium]
+        default: small
+
+jobs:
+  dub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Install dub-forge (CPU torch first, keeps the runner small)
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -e '.[whisper,demucs,xtts,google]'
+          pip install fal-client
+
+      - name: Download source video
+        run: curl -fL "${{ inputs.video_url }}" -o input.mp4
+
+      - name: Dub
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          dub run input.mp4 \
+            --src "${{ inputs.src }}" \
+            --tgt "${{ inputs.tgt }}" \
+            --engine "${{ inputs.engine }}" \
+            --whisper-model "${{ inputs.whisper_model }}" \
+            --out dubbed.mp4
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dubbed-${{ inputs.tgt }}
+          path: dubbed.mp4
+          retention-days: 14
