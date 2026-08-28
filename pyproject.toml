@@ -23,7 +23,9 @@ whisper = ["faster-whisper>=1.0"]
 # Local stem separation (vocals / background)
 demucs = ["demucs>=4.0"]
 # Local voice cloning TTS (17 languages incl. Arabic)
-xtts = ["TTS>=0.22"]
+# transformers pinned: BeamSearchScorer (needed by TTS 0.22) was removed in 4.46+
+# numpy pinned: TTS/trainer 0.22 break on numpy 2
+xtts = ["TTS>=0.22", "transformers==4.45.2", "numpy<2"]
 # Offline translation
 argos = ["argostranslate>=1.9"]
 # Free online translation (maintained Google Translate client)
