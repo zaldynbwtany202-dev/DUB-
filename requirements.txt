@@ -1,0 +1,12 @@
+# Core
+click>=8.1
+rich>=13.0
+pyyaml>=6.0
+requests>=2.31
+
+# Pipeline backends — install what you use:
+faster-whisper>=1.0        # transcription with word timestamps
+# demucs>=4.0              # local vocals/background separation (pip install demucs)
+# TTS>=0.22                # Coqui XTTS v2 — local voice cloning (pip install TTS)
+# googletrans==4.0.0-rc1   # free online translation
+# argostranslate>=1.9      # offline translation

@@ -1,0 +1,24 @@
+# dub-forge default configuration
+# (all values can be overridden from the CLI)
+
+src_lang: ""            # empty = auto-detect
+tgt_lang: ar
+engine: xtts            # xtts | elevenlabs | minimax
+
+sync:
+  max_stretch: 1.25     # max atempo before re-synthesizing at a faster speed
+  max_resynth_speed: 1.8
+  gap: 0.08             # seconds of silence kept before the next line
+
+mix:
+  bg_volume: 0.5        # background stem level vs. dubbed voice
+  voice_volume: 1.35
+  target_lufs: -16      # loudness normalization target
+
+transcribe:
+  whisper_model: small  # tiny | base | small | medium | large-v3
+  min_segment_gap: 1.2  # pause (s) that splits two dialogue lines
+
+separate:
+  enabled: true
+  model: htdemucs

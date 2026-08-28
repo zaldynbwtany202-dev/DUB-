@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dub-forge"
+version = "1.0.0"
+description = "Professional AI video dubbing pipeline: transcribe → separate → translate → voice-clone TTS → lip-window sync → mix"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "zaldynbwtany202-dev" }]
+dependencies = [
+    "click>=8.1",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+# Local transcription (word-level timestamps)
+whisper = ["faster-whisper>=1.0"]
+# Local stem separation (vocals / background)
+demucs = ["demucs>=4.0"]
+# Local voice cloning TTS (17 languages incl. Arabic)
+xtts = ["TTS>=0.22"]
+# Offline translation
+argos = ["argostranslate>=1.9"]
+# Free online translation
+google = ["googletrans==4.0.0-rc1"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+dub = "dub.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["dub*"]

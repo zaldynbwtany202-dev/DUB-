@@ -1,0 +1,133 @@
+# DUB- 🎙️ أداة دبلجة احترافية بالذكاء الاصطناعي
+
+أداة سطر أوامر تدبلج أي فيديو إلى لغة أخرى **بأصوات مستنسخة من المتحدثين الأصليين**، مع مزامنة دقيقة على نوافذ حركة الشفاه، والحفاظ على خلفية الفيديو الأصلية (موسيقى / جمهور / مؤثرات).
+
+**English summary below ↓**
+
+---
+
+## خط المعالجة
+
+```
+فيديو أصلي
+   │
+   ├─ 1. استخراج الصوت .................. ffmpeg
+   ├─ 2. فصل الحوار عن الخلفية ......... demucs (أو تخفيض الصوت الأصلي)
+   ├─ 3. تفريغ نصي بتوقيتات الكلمات .... faster-whisper
+   ├─ 4. عينة صوتية نقية لكل متحدث ..... تُقصّ تلقائيًا من مسار الحوار
+   ├─ 5. ترجمة الجمل ................... google / argos / ملف بشري
+   ├─ 6. استنساخ الأصوات + توليد ....... XTTS (محلي) أو ElevenLabs / Minimax (سحابي)
+   ├─ 7. مزامنة احترافية ............... مجدول ذكي (انظر أدناه)
+   └─ 8. دمج + معايرة جهارة + تركيب .... ffmpeg (loudnorm -16 LUFS)
+```
+
+## خوارزمية المزامنة (سرّ الجودة)
+
+كل جملة في الأصل لها **نافذة شفاه** (متى يتحرك فم المتحدث) يليها **فاصل صامت** قبل الجملة التالية. المجدول لكل جملة مدبلجة:
+
+1. يضعها في توقيت بدايتها الأصلي بالضبط (تطابق حركة الشفاه عند الدخول).
+2. إن كانت أطول من نافذتها، يسرّعها بـ `atempo` حتى حد أقصى طبيعي (افتراضي **1.25×** فقط — فوقه يتشوه الصوت).
+3. يسمح لها بأن تمتد داخل الفاصل الصامت التالي (الشفاه لا تظهر حينها).
+4. إن لم تكفِ كل هذه الحيل، يعيد توليد الجملة من المحرك **بسرعة تحدث أعلى** (حتى 1.8×) ثم يعيد القياس — بدل تمديد مفرط يفسد النبرة.
+5. يمنع أي تداخل بين جملة والتي تليها.
+
+## التثبيت
+
+```bash
+# متطلب نظامي وحيد: ffmpeg
+sudo apt-get install -y ffmpeg      # Ubuntu/Debian
+# brew install ffmpeg               # macOS
+
+git clone https://github.com/zaldynbwtany202-dev/DUB-.git
+cd DUB-
+
+# التثبيت الكامل بالمحرك المحلي (موصى به — مجاني ويعمل دون إنترنت بعد تنزيل النماذج)
+pip install -e '.[whisper,demucs,xtts,google]'
+```
+
+## الاستخدام
+
+```bash
+# دبلجة إنجليزي → عربي باستنساخ أصوات محلي
+dub run clip.mp4 --src en --tgt ar --engine xtts --out dubbed_ar.mp4
+
+# بمحرك سحابي
+export FAL_KEY=...                   # Minimax
+dub run clip.mp4 --src en --tgt ar --engine minimax
+
+export ELEVENLABS_API_KEY=...        # ElevenLabs
+dub run clip.mp4 --src en --tgt ar --engine elevenlabs
+
+# بترجمة بشرية جاهزة بدل الترجمة الآلية
+dub run clip.mp4 --src en --tgt ar --translate-backend file --translations-file my_lines.json
+```
+
+أهم الخيارات:
+
+| الخيار | الافتراضي | الوظيفة |
+|---|---|---|
+| `--engine` | `xtts` | محرك الصوت: `xtts` محلي · `elevenlabs` · `minimax` |
+| `--max-stretch` | `1.25` | أقصى تسريع للمقطع قبل إعادة التوليد بسرعة أعلى |
+| `--bg-volume` | `0.5` | مستوى الخلفية الأصلية تحت صوت الدبلجة |
+| `--no-separate` | — | تخطي فصل الخلفية (أسلوب تعليق صوتي فوق الأصل المخفّض) |
+| `--speaker-map` | تناوب تلقائي | تعيين المتحدثين يدويًا: `'0:S2,1:S1'` |
+| `--whisper-model` | `small` | حجم نموذج التفريغ (`large-v3` أدق وأبطأ) |
+
+كل مرحلة تُحفظ في `workdir/project.json` — إذا توقفت الأداة لأي سبب، أعد نفس الأمر وستكمل من حيث توقفت.
+
+## مقارنة المحركات
+
+| المحرك | استنساخ الصوت | العربية | يعمل محليًا | المتطلبات |
+|---|---|---|---|---|
+| **xtts** (Coqui XTTS v2) | ✅ من 10 ثوانٍ | ✅ ضمن 17 لغة | ✅ | `pip install TTS` (GPU يُفضَّل) |
+| **minimax** (Speech 2.8 HD) | ✅ | ✅ جيدة بلمسة لكنة | ❌ | `FAL_KEY` + `pip install fal-client` |
+| **elevenlabs** | ✅ Instant Clone | ✅ ممتازة | ❌ | `ELEVENLABS_API_KEY` |
+
+## الاختبارات
+
+```bash
+pip install -e '.[dev]'
+pytest tests/
+```
+
+## البنية
+
+```
+dub/
+├── cli.py          # واجهة سطر الأوامر
+├── pipeline.py     # تنسيق المراحل مع حفظ الحالة والاستئناف
+├── transcribe.py   # تفريغ بتوقيتات الكلمات + تجميع الجمل
+├── separate.py     # فصل الحوار عن الخلفية (demucs)
+├── translate.py    # الترجمة (google / argos / ملف بشري)
+├── sync.py         # مجدول المزامنة الاحترافي
+├── mix.py          # دمج المقاطع مع الخلفية وتركيب الفيديو
+└── tts/            # محركات الصوت القابلة للتبديل
+    ├── xtts.py     # محلي (Coqui)
+    ├── elevenlabs.py
+    └── minimax.py
+```
+
+## حدود معروفة
+
+- تعيين المتحدثين الافتراضي تناوبي (مناسب للحوارات الثنائية)؛ للمقاطع متعددة المتحدثين استخدم `--speaker-map`.
+- الاستنساخ عبر اللغات (صوت إنجليزي ينطق العربية) يحمل لمسة لكنة أجنبية — طبيعي في كل محركات اليوم.
+- يلزم **ffmpeg** مثبتًا على النظام.
+
+## الرخصة
+
+MIT — استخدمها كما تشاء.
+
+---
+
+# English
+
+**DUB-** is a CLI that dubs any video into another language with **voices cloned from the original speakers**, precise lip-window sync, and the original background (music/crowd/SFX) preserved.
+
+Pipeline: ffmpeg extract → demucs stem separation → faster-whisper word timestamps → per-speaker reference samples → translation (google/argos/manual file) → voice-clone TTS (local **XTTS v2**, or cloud **ElevenLabs** / **Minimax**) → a dialogue-aware scheduler (≤1.25× atempo, gap-aware overflow, faster re-synthesis fallback) → loudness-normalized mix (−16 LUFS) → mux.
+
+```bash
+pip install -e '.[whisper,demucs,xtts,google]'   # needs ffmpeg on the system
+dub run clip.mp4 --src en --tgt ar --engine xtts --out dubbed.mp4
+```
+
+State is cached per stage in the workdir — reruns resume where they stopped. See the Arabic section above for the full option reference. MIT licensed.
