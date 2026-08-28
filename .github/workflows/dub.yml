@@ -26,6 +26,10 @@ on:
         type: choice
         options: [tiny, base, small, medium]
         default: small
+      translations_file:
+        description: "Optional: repo-relative path to a human translations JSON (bypasses machine translation)"
+        required: false
+        default: ""
 
 jobs:
   dub:
@@ -58,11 +62,16 @@ jobs:
           # records acceptance so the first run does not block on a prompt.
           COQUI_TOS_AGREED: "1"
         run: |
+          EXTRA=""
+          if [ -n "${{ inputs.translations_file }}" ]; then
+            EXTRA="--translate-backend file --translations-file ${{ inputs.translations_file }}"
+          fi
           dub run input.mp4 \
             --src "${{ inputs.src }}" \
             --tgt "${{ inputs.tgt }}" \
             --engine "${{ inputs.engine }}" \
             --whisper-model "${{ inputs.whisper_model }}" \
+            $EXTRA \
             --out dubbed.mp4
 
       - uses: actions/upload-artifact@v4
