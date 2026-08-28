@@ -11,8 +11,10 @@ WORKDIR /app
 COPY pyproject.toml requirements.txt README.md ./
 COPY dub ./dub
 
-# CPU-only torch keeps the image small; local engines (whisper/xtts/demucs) included
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu \
+# CPU-only torch+torchaudio keep the image small; local engines included.
+# Both must come from the CPU index or TTS pulls a CUDA torchaudio that
+# crashes on machines without CUDA.
+RUN pip install --no-cache-dir torch torchaudio --index-url https://download.pytorch.org/whl/cpu \
  && pip install --no-cache-dir -e '.[whisper,demucs,xtts,google]'
 
 WORKDIR /work

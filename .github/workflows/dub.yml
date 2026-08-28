@@ -47,7 +47,10 @@ jobs:
 
       - name: Install dub-forge (CPU torch first, keeps the runner small)
         run: |
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          # torch AND torchaudio must both come from the CPU index — otherwise
+          # pip grabs the CUDA build of torchaudio and XTTS crashes with
+          # "libcudart.so.13: cannot open shared object file".
+          pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
           pip install -e '.[whisper,demucs,xtts,google]'
           pip install fal-client
 
