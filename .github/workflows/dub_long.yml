@@ -1,0 +1,125 @@
+name: Dub long video (parallel chunks)
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: "Direct URL of the source video (mp4)"
+        required: true
+      src: { default: "en" }
+      tgt: { default: "ar" }
+      engine:
+        type: choice
+        options: [xtts, minimax, elevenlabs]
+        default: xtts
+      whisper_model:
+        type: choice
+        options: [tiny, base, small, medium]
+        default: small
+      emotion:
+        type: choice
+        options: [neutral, happy, sad, excited, angry]
+        default: neutral
+      translations_file: { default: "" }
+      chunk_seconds:
+        description: "Target chunk length in seconds"
+        default: "180"
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    outputs:
+      indices: ${{ steps.gen.outputs.indices }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Download source
+        run: curl -fL "${{ inputs.video_url }}" -o input.mp4
+      - name: Split into chunks
+        run: python scripts/split_video.py input.mp4 chunks ${{ inputs.chunk_seconds }}
+      - id: gen
+        name: Emit matrix
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import glob, json
+          xs = sorted(glob.glob("chunks/part_*.mp4"))
+          print("indices=" + json.dumps(list(range(len(xs)))))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chunks
+          path: chunks/part_*.mp4
+
+  dub:
+    needs: split
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        idx: ${{ fromJSON(needs.split.outputs.indices) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: chunks, path: chunks }
+      - name: Install
+        run: |
+          pip install "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu
+          pip install -e '.[whisper,demucs,xtts,google]'
+          [ "${{ inputs.engine }}" = "minimax" ] && pip install fal-client || true
+      - name: Dub chunk
+        env:
+          COQUI_TOS_AGREED: "1"
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: |
+          IDX=$(printf '%03d' ${{ matrix.idx }})
+          EXTRA=""
+          if [ -n "${{ inputs.translations_file }}" ]; then
+            EXTRA="--translate-backend file --translations-file ${{ inputs.translations_file }}"
+          fi
+          dub run "chunks/part_$IDX.mp4" \
+            --src "${{ inputs.src }}" --tgt "${{ inputs.tgt }}" \
+            --engine "${{ inputs.engine }}" \
+            --whisper-model "${{ inputs.whisper_model }}" \
+            --emotion "${{ inputs.emotion }}" \
+            $EXTRA \
+            --out "dubbed_$IDX.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dubbed-part-${{ matrix.idx }}
+          path: dubbed_*.mp4
+
+  merge:
+    needs: dub
+    runs-on: ubuntu-latest
+    steps:
+      - name: ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dubbed-part-*
+          path: parts
+          merge-multiple: true
+      - name: Concat
+        run: |
+          ls -la parts/
+          for f in $(ls parts/dubbed_*.mp4 | sort); do echo "file '$PWD/$f'"; done > list.txt
+          cat list.txt
+          # re-encode on concat to guarantee glitch-free joins
+          ffmpeg -y -f concat -safe 0 -i list.txt \
+            -c:v libx264 -preset veryfast -crf 22 -c:a aac -b:a 192k \
+            dubbed_final.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dubbed-${{ inputs.tgt }}-final
+          path: dubbed_final.mp4
+          retention-days: 14

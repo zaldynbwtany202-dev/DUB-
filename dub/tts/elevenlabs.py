@@ -46,20 +46,35 @@ class ElevenLabsEngine(TTSEngine):
         self._voices[speaker] = voice_id
         return voice_id
 
+    # Style values that push the voice toward each emotion.
+    # Higher style = more dramatic delivery; lower stability = more variance.
+    _EMOTION = {
+        "neutral": (0.55, 0.35, ""),
+        "happy":   (0.35, 0.75, "[happy] "),
+        "excited": (0.30, 0.85, "[excited] "),
+        "sad":     (0.65, 0.45, "[sadly] "),
+        "angry":   (0.40, 0.85, "[angry] "),
+        "fearful": (0.55, 0.60, "[nervously] "),
+    }
+
     def synthesize(self, text: str, voice: str, out_path: str | Path,
-                   language: str, speed: float = 1.0) -> Path:
+                   language: str, speed: float = 1.0,
+                   emotion: str = "neutral") -> Path:
         out_path = Path(out_path)
+        stab, style, tag = self._EMOTION.get(emotion, self._EMOTION["neutral"])
+        # v3 understands inline audio tags; v2 ignores them harmlessly
+        prompt = f"{tag}{text}" if tag else text
         resp = requests.post(
             f"{API}/text-to-speech/{voice}",
             headers={**self._headers(), "Content-Type": "application/json"},
             params={"output_format": "mp3_44100_128"},
             json={
-                "text": text,
+                "text": prompt,
                 "model_id": self.model,
                 "voice_settings": {
-                    "stability": 0.5,
+                    "stability": stab,
                     "similarity_boost": 0.8,
-                    "style": 0.45,
+                    "style": style,
                     "use_speaker_boost": True,
                     "speed": max(0.7, min(speed, 1.2)),
                 },

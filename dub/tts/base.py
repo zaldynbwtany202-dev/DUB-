@@ -23,5 +23,12 @@ class TTSEngine(ABC):
 
     @abstractmethod
     def synthesize(self, text: str, voice: str, out_path: str | Path,
-                   language: str, speed: float = 1.0) -> Path:
-        """Render ``text`` to ``out_path`` (wav/mp3). Returns the file path."""
+                   language: str, speed: float = 1.0,
+                   emotion: str = "neutral") -> Path:
+        """Render ``text`` to ``out_path`` (wav/mp3). Returns the file path.
+
+        ``emotion`` is one of: neutral, happy, sad, excited, angry, fearful.
+        Engines that don't natively support emotion map it as best they can
+        (ElevenLabs bumps ``style``; XTTS wraps the text in a marker; Minimax
+        forwards ``voice_emotion``).
+        """

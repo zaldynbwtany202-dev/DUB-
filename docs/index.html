@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUB- • دبلجة احترافية بالذكاء الاصطناعي</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;--muted:#94a3b8;--accent:#22d3ee;--ok:#22c55e;--err:#ef4444;--warn:#f59e0b}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Tahoma,'Noto Sans Arabic',sans-serif;background:linear-gradient(135deg,#0f172a,#1e293b);color:var(--text);min-height:100vh;padding:24px}
+.wrap{max-width:860px;margin:0 auto}
+h1{margin:0 0 6px;font-size:28px}
+.sub{color:var(--muted);margin-bottom:22px}
+.card{background:var(--card);border:1px solid #334155;border-radius:12px;padding:20px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:17px;color:var(--accent)}
+label{display:block;font-size:13px;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;background:#0f172a;border:1px solid #334155;color:var(--text);padding:9px 12px;border-radius:8px;font-family:inherit;font-size:14px}
+input:focus,select:focus{outline:none;border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+button{background:var(--accent);color:#0f172a;border:0;padding:12px 22px;border-radius:8px;font-weight:600;cursor:pointer;font-size:15px;font-family:inherit}
+button:hover{filter:brightness(1.1)}
+button:disabled{opacity:.5;cursor:not-allowed}
+button.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.log{background:#020617;border-radius:8px;padding:14px;font-family:ui-monospace,'Consolas',monospace;font-size:12.5px;max-height:320px;overflow:auto;white-space:pre-wrap;direction:ltr;text-align:left}
+.log .info{color:var(--accent)}.log .ok{color:var(--ok)}.log .err{color:var(--err)}.log .warn{color:var(--warn)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;background:#334155;color:var(--muted);font-size:11px;margin-inline-start:6px}
+a{color:var(--accent)}
+.note{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}
+.progress{height:6px;background:#334155;border-radius:3px;overflow:hidden;margin-top:8px}
+.progress>div{height:100%;background:var(--accent);width:0;transition:width .3s}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>DUB- <span class="badge">دبلجة احترافية</span></h1>
+  <p class="sub">ارفع فيديو، اختر اللغة والصوت والمشاعر، ودع GitHub Actions يخرج لك الدبلجة. لا مفاتيح مبيتة، لا كود يعمل على متصفحك — الحسابات كلها في المستودع الخاص بك.</p>
+
+  <div class="card">
+    <h2>1) الإعداد (مرة واحدة)</h2>
+    <div class="row">
+      <div><label>مالك المستودع</label><input id="owner" placeholder="zaldynbwtany202-dev"></div>
+      <div><label>اسم المستودع</label><input id="repo" placeholder="DUB-"></div>
+    </div>
+    <label>GitHub Personal Access Token</label>
+    <input id="token" type="password" placeholder="github_pat_...">
+    <p class="note">أنشئ توكن <b>Fine-grained</b> من <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">هذا الرابط</a> بصلاحيات <b>Contents: Read &amp; Write</b> و<b>Actions: Read &amp; Write</b> على مستودعك فقط. يُحفظ في متصفحك (sessionStorage) — ولا يُرسل إلا إلى api.github.com مباشرة.</p>
+  </div>
+
+  <div class="card">
+    <h2>2) الفيديو</h2>
+    <label>رابط فيديو مباشر (mp4)</label>
+    <input id="videoUrl" placeholder="https://...">
+    <p class="note">أو ارفع من جهازك (يُحمَّل مؤقتًا 72 ساعة على Catbox، حد ~1GB):</p>
+    <input id="videoFile" type="file" accept="video/*">
+    <div class="progress"><div id="upBar"></div></div>
+  </div>
+
+  <div class="card">
+    <h2>3) خيارات الدبلجة</h2>
+    <div class="row3">
+      <div><label>من لغة</label><input id="src" value="en"></div>
+      <div><label>إلى لغة</label><input id="tgt" value="ar"></div>
+      <div><label>المحرك</label><select id="engine">
+        <option value="xtts">xtts — محلي مجاني</option>
+        <option value="minimax">minimax — يحتاج FAL_KEY في Secrets</option>
+        <option value="elevenlabs">elevenlabs — يحتاج ELEVENLABS_API_KEY</option>
+      </select></div>
+    </div>
+    <div class="row3">
+      <div><label>المشاعر</label><select id="emotion">
+        <option value="neutral">محايد</option>
+        <option value="happy">سعيد</option>
+        <option value="sad">حزين</option>
+        <option value="excited">متحمس</option>
+        <option value="angry">غاضب</option>
+      </select></div>
+      <div><label>نموذج whisper</label><select id="wm">
+        <option>tiny</option><option>base</option><option selected>small</option><option>medium</option>
+      </select></div>
+      <div><label>ملف ترجمة (اختياري)</label><input id="tf" placeholder="examples/wwe/translations_ar.json"></div>
+    </div>
+    <label style="margin-top:14px;display:flex;align-items:center;gap:8px;color:var(--text);font-size:14px">
+      <input type="checkbox" id="longMode"> فيديو طويل (&gt;3 دقائق) — استخدم التقسيم المتوازي (matrix)
+    </label>
+    <div style="margin-top:16px;display:flex;gap:10px">
+      <button id="go">ابدأ الدبلجة</button>
+      <button class="ghost" id="clear">مسح السجل</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>4) التقدم</h2>
+    <div class="log" id="log"></div>
+    <div id="result" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const logEl=$('log');
+function log(m,cls='info'){logEl.innerHTML+=`<span class="${cls}">${new Date().toISOString().slice(11,19)}  ${m}</span>\n`;logEl.scrollTop=logEl.scrollHeight;}
+
+for(const k of ['owner','repo','token','src','tgt','engine','emotion','wm','tf']){
+  const v=sessionStorage.getItem('dub_'+k); if(v)$(k).value=v;
+  $(k).addEventListener('change',()=>sessionStorage.setItem('dub_'+k,$(k).value));
+}
+if(!$('owner').value){
+  const m=location.hostname.match(/([^.]+)\.github\.io/);
+  if(m){$('owner').value=m[1];const p=location.pathname.split('/').filter(Boolean)[0]; if(p)$('repo').value=p;}
+}
+$('clear').onclick=()=>{logEl.textContent='';$('result').innerHTML='';};
+
+$('videoFile').addEventListener('change', async ()=>{
+  const f=$('videoFile').files[0]; if(!f)return;
+  log(`رفع ${f.name} (${(f.size/1048576).toFixed(1)}MB) إلى Catbox المؤقت...`);
+  const fd=new FormData();
+  fd.append('reqtype','fileupload');fd.append('time','72h');fd.append('fileToUpload',f);
+  try{
+    const r=await fetch('https://litterbox.catbox.moe/resources/internals/api.php',{method:'POST',body:fd});
+    const url=(await r.text()).trim();
+    if(!url.startsWith('http'))throw new Error('unexpected response: '+url);
+    $('videoUrl').value=url;
+    $('upBar').style.width='100%';
+    log('تم الرفع → '+url,'ok');
+  }catch(e){log('فشل الرفع ('+e.message+') — الصق الرابط يدويًا','err');}
+});
+
+async function gh(path, method='GET', body){
+  const r=await fetch(`https://api.github.com/repos/${$('owner').value}/${$('repo').value}${path}`,{
+    method,
+    headers:{Authorization:`Bearer ${$('token').value}`,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+    body:body?JSON.stringify(body):undefined
+  });
+  if(!r.ok){const t=await r.text(); throw new Error(`${r.status} ${t.slice(0,200)}`);}
+  return r.status===204?null:r.json();
+}
+
+$('go').onclick=async()=>{
+  const url=$('videoUrl').value.trim();
+  if(!url){log('ألصق رابط فيديو أو ارفع ملفًا أولًا','err');return;}
+  if(!$('token').value){log('أدخل GitHub PAT','err');return;}
+  $('go').disabled=true;$('result').innerHTML='';
+  const wf=$('longMode').checked?'dub_long.yml':'dub.yml';
+  const inputs={
+    video_url:url,src:$('src').value,tgt:$('tgt').value,
+    engine:$('engine').value,whisper_model:$('wm').value,
+    emotion:$('emotion').value,translations_file:$('tf').value
+  };
+  log(`إطلاق workflow: ${wf}`);
+  try{
+    const startTime=new Date(Date.now()-3000).toISOString();
+    await gh(`/actions/workflows/${wf}/dispatches`,'POST',{ref:'main',inputs});
+    log('تم الإطلاق — أنتظر ظهور التشغيل...','ok');
+    let runId=null;
+    for(let i=0;i<25 && !runId;i++){
+      await new Promise(r=>setTimeout(r,3000));
+      const runs=await gh('/actions/runs?per_page=10');
+      const match=runs.workflow_runs.find(r=>r.path.endsWith(wf) && r.created_at>=startTime);
+      if(match)runId=match.id;
+    }
+    if(!runId)throw new Error('لم يظهر التشغيل خلال 75 ثانية — تأكد أن الـ workflow موجود في المستودع');
+    const runUrl=`https://github.com/${$('owner').value}/${$('repo').value}/actions/runs/${runId}`;
+    log(`التشغيل #${runId} — ${runUrl}`,'ok');
+    while(true){
+      await new Promise(r=>setTimeout(r,12000));
+      const run=await gh(`/actions/runs/${runId}`);
+      const jobs=await gh(`/actions/runs/${runId}/jobs`);
+      const active=jobs.jobs.filter(j=>j.status!=='completed');
+      const cur=active.map(j=>{const s=(j.steps||[]).find(x=>x.status==='in_progress');return j.name+(s?' → '+s.name:'')}).join(' | ');
+      log(`${run.status}${run.conclusion?' ('+run.conclusion+')':''}${cur?' · '+cur:''}`);
+      if(run.status==='completed'){
+        if(run.conclusion==='success'){
+          const arts=await gh(`/actions/runs/${runId}/artifacts`);
+          const finalArt=arts.artifacts.find(a=>a.name.includes('final')) || arts.artifacts.find(a=>a.name.startsWith('dubbed'));
+          if(!finalArt){log('لم أجد ملف الناتج','err');break;}
+          log('انتهت الدبلجة بنجاح — أنزّل الآن...','ok');
+          try{
+            const dr=await fetch(finalArt.archive_download_url,{headers:{Authorization:'Bearer '+$('token').value}});
+            const blob=await dr.blob();
+            const durl=URL.createObjectURL(blob);
+            $('result').innerHTML=`<a href="${durl}" download="${finalArt.name}.zip"><button>تنزيل ${finalArt.name}.zip</button></a><p class="note">افتح الأرشيف لتجد ملف mp4 الناتج. <a href="${runUrl}" target="_blank">صفحة التشغيل</a></p>`;
+          }catch(e){
+            $('result').innerHTML=`<a href="${runUrl}" target="_blank"><button>افتح صفحة التشغيل ونزّل ${finalArt.name}</button></a><p class="note">تعذّر التنزيل المباشر من المتصفح: ${e.message}</p>`;
+          }
+        }else{
+          log('فشل التشغيل — راجع صفحة التشغيل','err');
+          $('result').innerHTML=`<a href="${runUrl}" target="_blank"><button class="ghost">فتح سجل الأخطاء</button></a>`;
+        }
+        break;
+      }
+    }
+  }catch(e){log('خطأ: '+e.message,'err');}
+  $('go').disabled=false;
+};
+</script>
+</body>
+</html>

@@ -38,9 +38,24 @@ class XTTSEngine(TTSEngine):
         self._refs[speaker] = str(reference_wav)
         return str(reference_wav)  # the handle IS the reference path
 
+    # XTTS doesn't take an emotion param, but its prosody responds well to
+    # explicit punctuation/framing. Nudge the text so happy lines sound
+    # lighter and excited ones sharper — subtle but audible.
+    _EMOTION_WRAP = {
+        "happy":    ("", " :)"),
+        "excited":  ("", "!"),
+        "sad":      ("... ", "..."),
+        "angry":    ("", "!"),
+        "fearful":  ("... ", "..."),
+        "neutral":  ("", ""),
+    }
+
     def synthesize(self, text: str, voice: str, out_path: str | Path,
-                   language: str, speed: float = 1.0) -> Path:
+                   language: str, speed: float = 1.0,
+                   emotion: str = "neutral") -> Path:
         out_path = Path(out_path)
+        pre, post = self._EMOTION_WRAP.get(emotion, ("", ""))
+        text = f"{pre}{text}{post}" if (pre or post) else text
         kwargs = dict(text=text, speaker_wav=voice, language=language,
                       file_path=str(out_path))
         # `speed` exists only on newer Coqui releases — degrade gracefully

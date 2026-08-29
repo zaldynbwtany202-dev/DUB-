@@ -39,6 +39,8 @@ def build_audio(
         chain = []
         if abs(s.stretch - 1.0) > 1e-3:
             chain.append(media.atempo_chain(s.stretch))
+        # short fade in/out keeps line transitions smooth — no clicks
+        chain.append("afade=t=in:st=0:d=0.03,afade=t=out:st=0:d=0.03:curve=exp")
         delay_ms = int(round(s.placed_at * 1000))
         chain.append(f"adelay={delay_ms}|{delay_ms}")
         filters.append(f"[{i}:a]{','.join(chain)}[a{i}]")

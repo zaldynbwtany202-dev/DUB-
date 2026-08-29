@@ -30,6 +30,11 @@ on:
         description: "Optional: repo-relative path to a human translations JSON (bypasses machine translation)"
         required: false
         default: ""
+      emotion:
+        description: "Emotional colour for the dubbed voice"
+        type: choice
+        options: [neutral, happy, sad, excited, angry, fearful]
+        default: neutral
 
 jobs:
   dub:
@@ -74,6 +79,7 @@ jobs:
             --tgt "${{ inputs.tgt }}" \
             --engine "${{ inputs.engine }}" \
             --whisper-model "${{ inputs.whisper_model }}" \
+            --emotion "${{ inputs.emotion }}" \
             $EXTRA \
             --out dubbed.mp4
 

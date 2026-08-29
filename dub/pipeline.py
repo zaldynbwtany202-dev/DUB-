@@ -30,7 +30,8 @@ class DubPipeline:
                  translate_backend: str = "google",
                  translations_file: str | None = None,
                  speaker_map: dict[str, str] | None = None,
-                 whisper_model: str = "small"):
+                 whisper_model: str = "small",
+                 emotion: str = "neutral"):
         self.p = project
         self.workdir = Path(workdir)
         self.workdir.mkdir(parents=True, exist_ok=True)
@@ -42,6 +43,7 @@ class DubPipeline:
         self.translations_file = translations_file
         self.speaker_map = speaker_map or {}
         self.whisper_model = whisper_model
+        self.emotion = emotion
 
     @property
     def state_file(self) -> Path:
@@ -139,9 +141,11 @@ class DubPipeline:
                 # re-synthesize if missing OR a new faster speed was requested
                 if out.exists() and seg.id not in speed_map:
                     continue
-                log.info("synthesizing line %d (speed %.2f) …", seg.id, speed)
+                log.info("synthesizing line %d (speed %.2f, %s) …",
+                         seg.id, speed, self.emotion)
                 engine.synthesize(seg.text_tgt, self.p.voice_ids[seg.speaker],
-                                  out, self.p.tgt_lang, speed=speed)
+                                  out, self.p.tgt_lang, speed=speed,
+                                  emotion=self.emotion)
                 trimmed = media.trim_silence(out, self.workdir / f"line_{seg.id:03d}_t.wav")
                 seg.audio_path = str(trimmed)
                 seg.speech_dur = media.probe_duration(trimmed)

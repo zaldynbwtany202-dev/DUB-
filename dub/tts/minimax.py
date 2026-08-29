@@ -43,17 +43,17 @@ class MinimaxEngine(TTSEngine):
         return voice_id
 
     def synthesize(self, text: str, voice: str, out_path: str | Path,
-                   language: str, speed: float = 1.0) -> Path:
+                   language: str, speed: float = 1.0,
+                   emotion: str = "neutral") -> Path:
         out_path = Path(out_path)
+        voice_setting = {"voice_id": voice, "speed": max(0.5, min(speed, 2.0))}
+        if emotion and emotion != "neutral":
+            # Minimax's supported labels: happy, sad, angry, fearful,
+            # disgusted, surprised, neutral. Map "excited" → happy.
+            voice_setting["emotion"] = "happy" if emotion == "excited" else emotion
         result = self.fal.subscribe(
             "fal-ai/minimax/speech-2.8-hd",
-            arguments={
-                "text": text,
-                "voice_setting": {
-                    "voice_id": voice,
-                    "speed": max(0.5, min(speed, 2.0)),
-                },
-            },
+            arguments={"text": text, "voice_setting": voice_setting},
         )
         audio_url = result["audio"]["url"]
         import requests

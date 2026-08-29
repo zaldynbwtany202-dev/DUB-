@@ -77,9 +77,12 @@ def engines() -> None:
 @click.option("--speaker-map", default=None,
               help="force speakers, e.g. '0:S2,1:S1' (default: alternating turns)")
 @click.option("--whisper-model", default="small", show_default=True)
+@click.option("--emotion", default="neutral", show_default=True,
+              type=click.Choice(["neutral", "happy", "sad", "excited", "angry", "fearful"]),
+              help="emotional colour for the synthesized voice")
 def run(video, src, tgt, engine, out, workdir, max_stretch, bg_volume,
         no_separate, translate_backend, translations_file, speaker_map,
-        whisper_model) -> None:
+        whisper_model, emotion) -> None:
     """Dub VIDEO into another language end-to-end.
 
     Re-running with the same --workdir resumes from the saved state
@@ -102,6 +105,7 @@ def run(video, src, tgt, engine, out, workdir, max_stretch, bg_volume,
         translations_file=translations_file,
         speaker_map=_parse_speaker_map(speaker_map),
         whisper_model=whisper_model,
+        emotion=emotion,
     )
     result = pipe.run(out)
     console.print(f"[bold green]Done →[/bold green] {result}")
