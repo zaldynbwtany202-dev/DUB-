@@ -62,9 +62,16 @@ a{color:var(--accent)}
       <div><label>من لغة</label><input id="src" value="en"></div>
       <div><label>إلى لغة</label><input id="tgt" value="ar"></div>
       <div><label>المحرك</label><select id="engine">
-        <option value="xtts">xtts — محلي مجاني</option>
-        <option value="minimax">minimax — يحتاج FAL_KEY في Secrets</option>
-        <option value="elevenlabs">elevenlabs — يحتاج ELEVENLABS_API_KEY</option>
+        <optgroup label="محلي • مجاني">
+          <option value="xtts">xtts — استنساخ (غير تجاري)</option>
+          <option value="chatterbox">chatterbox — استنساخ MIT (تجاري OK)</option>
+          <option value="f5">f5 — استنساخ SOTA (غير تجاري)</option>
+          <option value="piper">piper — سريع، أصوات جاهزة (Apache)</option>
+        </optgroup>
+        <optgroup label="سحابي • يحتاج مفتاح">
+          <option value="minimax">minimax — FAL_KEY</option>
+          <option value="elevenlabs">elevenlabs — ELEVENLABS_API_KEY</option>
+        </optgroup>
       </select></div>
     </div>
     <div class="row3">

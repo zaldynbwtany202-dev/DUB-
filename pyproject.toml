@@ -32,6 +32,10 @@ xtts = ["TTS>=0.22", "transformers==4.45.2", "numpy<2", "torch<2.6", "torchaudio
 argos = ["argostranslate>=1.9"]
 # Free online translation (maintained Google Translate client)
 google = ["deep-translator>=1.11"]
+# Additional free / open-source TTS engines
+piper = ["piper-tts>=1.2"]                          # Apache 2.0, presets, real-time
+chatterbox = ["chatterbox-tts>=0.1", "torchaudio"]  # MIT, voice cloning
+f5 = ["f5-tts>=0.3", "soundfile"]                   # CC-BY-NC, SOTA cloning
 dev = ["pytest>=8.0"]
 
 [project.scripts]

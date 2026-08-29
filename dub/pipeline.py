@@ -128,10 +128,13 @@ class DubPipeline:
 
     def stage_synth(self) -> None:
         engine = get_engine(self.tts_engine_name)
+        # engines that don't clone (e.g. Piper) don't need per-speaker refs
+        is_cloning = self.tts_engine_name not in ("piper",)
         for speaker, ref in self.p.speaker_refs.items():
             if speaker not in self.p.voice_ids:
-                log.info("preparing cloned voice for %s …", speaker)
-                self.p.voice_ids[speaker] = engine.prepare_voice(speaker, ref)
+                log.info("preparing voice for %s …", speaker)
+                self.p.voice_ids[speaker] = engine.prepare_voice(
+                    speaker, ref if is_cloning else None)
                 self._save()
 
         def synth_all(speed_map: dict[int, float]) -> None:

@@ -9,10 +9,22 @@
 | 1 | التفريغ الصوتي بتوقيتات الكلمات | **faster-whisper** (`small` افتراضيًا، حتى `large-v3`) | ~0.5–3 GB | تلقائي عند أول `dub run` |
 | 2 | فصل الحوار عن الخلفية | **demucs `htdemucs`** | ~80 MB | تلقائي عند أول تشغيل |
 | 3 | الترجمة | **Google Translate / MyMemory** (عبر deep-translator، مع تراجع تلقائي) | — | خدمة مجانية بلا مفتاح |
-| 4 | استنساخ الصوت + TTS (محلي) | **Coqui XTTS v2** (`tts_models/multilingual/multi-dataset/xtts_v2`) — 17 لغة منها العربية | ~2 GB | تلقائي (يتطلب `COQUI_TOS_AGREED=1` لقبول الرخصة) |
-| 5 | استنساخ الصوت + TTS (سحابي) | **Minimax** `fal-ai/minimax/voice-clone` + `fal-ai/minimax/speech-2.8-hd` | — | `FAL_KEY` |
-| 6 | بديل سحابي | **ElevenLabs** Instant Voice Clone + Multilingual v2 | — | `ELEVENLABS_API_KEY` |
-| 7 | الدمج والمعايرة | **ffmpeg** (atempo / amix / loudnorm −16 LUFS) | — | حزمة نظام |
+| 4 | TTS محلي — سريع بأصوات جاهزة | **Piper** (Apache 2.0، عربي + 30 لغة) | ~30–80 MB لكل صوت | تلقائي |
+| 5 | TTS محلي — استنساخ تجاري | **Chatterbox** (Resemble AI، رخصة MIT) | ~1.5 GB | تلقائي |
+| 6 | TTS محلي — استنساخ SOTA | **F5-TTS** (CC-BY-NC، غير تجاري) | ~1.2 GB | تلقائي |
+| 7 | TTS محلي — Coqui | **XTTS v2** — 17 لغة منها العربية | ~2 GB | تلقائي (يتطلب `COQUI_TOS_AGREED=1`) |
+| 8 | TTS سحابي | **Minimax** `fal-ai/minimax/voice-clone` + `speech-2.8-hd` | — | `FAL_KEY` |
+| 9 | TTS سحابي | **ElevenLabs** Instant Voice Clone + Multilingual v2/v3 | — | `ELEVENLABS_API_KEY` |
+| 10 | الدمج والمعايرة | **ffmpeg** (atempo / amix / loudnorm −16 LUFS + crossfade) | — | حزمة نظام |
+
+## مقارنة سريعة بين محركات الاستنساخ المجانية
+
+| المحرك | الرخصة | استنساخ | جودة عربية | استخدام تجاري |
+|---|---|---|---|---|
+| **Piper** | Apache 2.0 | ❌ (أصوات جاهزة) | ممتاز | ✅ |
+| **Chatterbox** | MIT | ✅ من ~6ث | جيد | ✅ |
+| **F5-TTS** | CC-BY-NC | ✅ SOTA من ~10ث | الأفضل بين المحلية | ❌ |
+| **XTTS v2** | CPML | ✅ من ~10ث | جيد جدًا | ❌ |
 
 ## ملاحظات تشغيلية مهمة
 

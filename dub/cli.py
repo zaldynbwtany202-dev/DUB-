@@ -48,9 +48,12 @@ def engines() -> None:
     table.add_column("engine")
     table.add_column("notes")
     notes = {
-        "xtts": "local, free, offline — Coqui XTTS v2 (pip install TTS)",
+        "xtts":       "local, free, non-commercial — Coqui XTTS v2 (pip install '.[xtts]')",
+        "piper":      "local, Apache 2.0 — fast preset voices, incl. Arabic (pip install '.[piper]')",
+        "chatterbox": "local, MIT — voice cloning, commercial-safe (pip install '.[chatterbox]')",
+        "f5":         "local, CC-BY-NC — SOTA cloning, non-commercial (pip install '.[f5]')",
         "elevenlabs": "cloud — needs ELEVENLABS_API_KEY",
-        "minimax": "cloud — needs FAL_KEY and pip install fal-client",
+        "minimax":    "cloud — needs FAL_KEY and pip install fal-client",
     }
     for name in available():
         table.add_row(name, notes.get(name, ""))

@@ -19,7 +19,7 @@ on:
       engine:
         description: "TTS engine"
         type: choice
-        options: [xtts, minimax, elevenlabs]
+        options: [xtts, piper, chatterbox, f5, minimax, elevenlabs]
         default: xtts
       whisper_model:
         description: "Whisper model size (tiny is fastest)"
@@ -56,7 +56,14 @@ jobs:
           # pip grabs the CUDA build of torchaudio and XTTS crashes with
           # "libcudart.so.13: cannot open shared object file".
           pip install "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu
-          pip install -e '.[whisper,demucs,xtts,google]'
+          pip install -e '.[whisper,demucs,google]'
+          case "${{ inputs.engine }}" in
+            xtts)       pip install -e '.[xtts]' ;;
+            piper)      pip install -e '.[piper]' ;;
+            chatterbox) pip install -e '.[chatterbox]' ;;
+            f5)         pip install -e '.[f5]' ;;
+            minimax)    pip install fal-client ;;
+          esac
           pip install fal-client
 
       - name: Download source video
