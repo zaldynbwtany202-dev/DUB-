@@ -1,0 +1,2 @@
+# CPU transcription only; no Torch, translation or TTS dependency.
+faster-whisper>=1.2.1,<2

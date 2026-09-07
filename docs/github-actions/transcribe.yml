@@ -1,0 +1,75 @@
+name: Transcribe source video (ASR only)
+run-name: ASR only · ${{ inputs.model || 'medium' }} · ${{ github.ref_name }}
+
+on:
+  # Allows this session to run without merging a PR or touching main.
+  push:
+    branches: [arena/01a07c92-dub]
+    paths:
+      - .github/workflows/transcribe.yml
+      - scripts/transcribe_video.py
+      - requirements-asr.txt
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Repository-relative source media path
+        required: true
+        default: library/snaptik-7614635067838598423-v3/source.mp4
+        type: string
+      model:
+        description: Multilingual Whisper model
+        type: choice
+        options: [small, medium, large-v3]
+        default: medium
+      language:
+        description: Source language (empty = auto-detect; not target dub language)
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: asr-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      SOURCE: ${{ inputs.source || 'library/snaptik-7614635067838598423-v3/source.mp4' }}
+      MODEL: ${{ inputs.model || 'medium' }}
+      LANGUAGE: ${{ inputs.language || '' }}
+      PYTHONUNBUFFERED: "1"
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-asr.txt
+      - uses: actions/cache@v4
+        with:
+          path: .cache/models/whisper
+          key: asr-ct2-${{ runner.os }}-${{ env.MODEL }}-v1
+      - name: Install CPU ASR dependencies only
+        run: python -m pip install -r requirements-asr.txt
+      - name: Transcribe the uploaded video; do not generate speech
+        run: |
+          python scripts/transcribe_video.py \
+            --source "$SOURCE" --model "$MODEL" --language "$LANGUAGE" \
+            --cpu-threads 4 --output-dir output/asr
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-transcript-${{ github.run_id }}
+          path: |
+            output/asr/source.segments.json
+            output/asr/source.srt
+            output/asr/source.txt
+          if-no-files-found: error
+          retention-days: 30
