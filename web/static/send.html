@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>إرسال ملف — ProStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#07080c;--ink:#f4efe4;--muted:#b7b0a3;--line:rgba(244,239,228,.12);
+        --card:rgba(16,17,23,.78);--gold:#e8b86d;--ok:#7dcea0}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+       font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+       background-image:radial-gradient(circle at 12% 6%,rgba(232,184,109,.15),transparent 38%),
+                        radial-gradient(circle at 90% 88%,rgba(90,140,255,.10),transparent 34%)}
+  header{padding:24px 6vw 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+        background:linear-gradient(160deg,var(--gold),#9a6a2c);color:#1a1208;font-weight:700}
+  .brand strong{display:block}.brand small{color:var(--muted)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14.5px;margin-inline-start:16px}
+  nav a:hover,nav a.on{color:var(--gold)}
+  main{max-width:620px;margin:0 auto;padding:44px 6vw 60px;text-align:center}
+  h1{font-size:clamp(26px,4.6vw,38px);margin:0 0 12px}
+  .lede{color:var(--muted);margin:0 0 32px;font-size:16.5px;line-height:1.85}
+
+  .big{display:block;border:2px dashed var(--line);border-radius:22px;
+       padding:70px 30px;background:var(--card);text-decoration:none;color:var(--ink);
+       transition:.18s}
+  .big:hover{border-color:var(--gold);background:rgba(232,184,109,.08);transform:translateY(-2px)}
+  .icon{font-size:52px;line-height:1;margin-bottom:18px;opacity:.9}
+  .big strong{display:block;font-size:21px;margin-bottom:10px}
+  .big em{color:var(--muted);font-style:normal;font-size:15px;line-height:1.9;display:block}
+
+  .steps{margin:30px 0 0;text-align:start;background:var(--card);
+         border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .steps h2{font-size:16px;margin:0 0 14px}
+  .steps ol{margin:0;padding-inline-start:22px;line-height:2.15;color:var(--muted);font-size:15px}
+  .steps b{color:var(--ink)}
+
+  .note{border-inline-start:3px solid var(--ok);padding:14px 18px;margin-top:18px;
+        background:rgba(125,206,160,.08);border-radius:0 12px 12px 0;font-size:14.5px;
+        color:var(--muted);line-height:1.9;text-align:start}
+  .note b{color:var(--ok)}
+  footer{color:var(--muted);font-size:13.5px;text-align:center;padding:0 6vw 40px}
+  .drop{display:block;border:2px dashed var(--line);border-radius:22px;
+       padding:56px 30px;background:var(--card);cursor:pointer;transition:.18s;text-align:center}
+  .drop:hover,.drop.over{border-color:var(--gold);background:rgba(232,184,109,.08);transform:translateY(-2px)}
+  .drop strong{display:block;font-size:21px;margin-bottom:10px}
+  .drop em{color:var(--muted);font-style:normal;font-size:15px;line-height:1.9;display:block}
+  .status{margin:18px 0 0;font-size:15px;line-height:1.9;color:var(--muted);min-height:24px}
+  .status.ok{color:var(--ink)}
+  .status.err{color:#e88d8d}
+  .dl{display:inline-block;margin-top:12px;padding:12px 22px;border-radius:11px;
+      background:linear-gradient(160deg,var(--gold),#c98f3f);color:#1a1208;
+      text-decoration:none;font-weight:600;font-size:15px;border:none;
+      font-family:inherit;cursor:pointer}
+  .alt{display:inline-block;margin-top:12px;padding:12px 22px;border-radius:11px;
+       background:transparent;color:var(--ink);border:1px solid var(--line);
+       font-family:inherit;font-weight:600;font-size:15px;cursor:pointer}
+  .alt:hover{border-color:var(--gold);color:var(--gold)}
+  .choices{display:flex;gap:10px;flex-wrap:wrap}
+  .warn{color:#e8c97d}
+  .cmd{display:block;background:rgba(0,0,0,.45);border:1px solid var(--line);
+       border-radius:9px;padding:12px 14px;margin:10px 0;font-size:12.5px;
+       direction:ltr;text-align:left;line-height:1.8;color:var(--gold);
+       white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark">PS</span>
+    <div><strong>ProStudio</strong><small>إرسال ملف</small></div>
+  </div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="preview.html">المعاينة</a>
+    <a href="voices.html">الأصوات</a>
+    <a href="studio.html">المصمّم</a>
+    <a href="send.html" class="on">إرسال</a>
+  </nav>
+</header>
+
+<main>
+  <h1>أرسل ملفك</h1>
+  <p class="lede">
+    فيديو أو صوت، أي حجم. اختر الملف — يُقسَّم ويُرفع تلقائياً،
+    <b>بلا حفظ وبلا إعادة رفع</b>.
+  </p>
+
+  <div class="drop" id="drop">
+    <div class="icon">⬆</div>
+    <strong>اختر ملفك</strong>
+    <em>
+      اسحبه هنا أو اضغط<br>
+      MP4 · MKV · MOV · MP3 · WAV · M4A
+    </em>
+    <input type="file" id="file" accept="audio/*,video/*" hidden />
+  </div>
+
+  <div class="bar" id="bar" hidden><div id="fill"></div></div>
+  <div id="status" class="status"></div>
+  <div id="files" class="files"></div>
+
+  <a class="big" id="up"
+     href="https://github.com/dhiyaddineb-hue/prostudio/upload/arena/01a03969-prostudio/inbox"
+     target="_blank" rel="noopener" style="display:none">
+    <div class="icon">✓</div>
+    <strong>افتح صندوق الرفع</strong>
+    <em>اسحب <b>كل</b> الملفات المحفوظة دفعة واحدة ثم اضغط Commit changes</em>
+  </a>
+
+  <div class="note" id="modeNote"></div>
+
+  <div class="note">
+    <b>هل هذا يُخرّب الملف؟</b> لا. القطع تُقصّ على حدود البايتات وتُلصَق
+    كما هي — بلا إعادة ترميز. الملف المُعاد <b>مطابق للأصل بايتاً ببايت</b>،
+    ومع كل قطعة بصمة SHA‑256 تُفحَص قبل الكتابة، فلو تلف بايت واحد تُرفض
+    القطعة وتُعاد.
+  </div>
+</main>
+
+<footer>ProStudio · رخصة MIT</footer>
+
+<script type="module">
+// Two paths, decided by whether a studio answers. Direct upload is the one
+// worth having; the GitHub form is the fallback for when this page is being
+// read on its own, with no backend behind it.
+import { uploadToStudio, studioReachable, formatMB } from './upload.js';
+import { splitFile, needsSplit, partCount } from './split.js';
+
+const drop = document.getElementById('drop');
+const input = document.getElementById('file');
+const status = document.getElementById('status');
+const list = document.getElementById('files');
+const upload = document.getElementById('up');
+const bar = document.getElementById('bar');
+const fill = document.getElementById('fill');
+const modeNote = document.getElementById('modeNote');
+
+(function pointAtPublishingBranch(){
+  const REPO = 'https://github.com/dhiyaddineb-hue/prostudio';
+  const BRANCH = 'arena/01a03969-prostudio';
+  upload.href = `${REPO}/upload/${BRANCH}/inbox`;
+})();
+
+const say = (html, kind) => {
+  status.className = 'status ' + (kind || '');
+  status.innerHTML = html;
+};
+const progress = pct => {
+  bar.hidden = pct == null;
+  if (pct != null) fill.style.width = `${pct}%`;
+};
+
+let direct = false;
+studioReachable().then(ok => {
+  direct = ok;
+  modeNote.innerHTML = ok
+    ? '<b>الوضع:</b> رفع مباشر — الملف يُرسَل إليّ فور اختياره، مهما كان حجمه.'
+    : '<b>الوضع:</b> الاستوديو غير متاح الآن، فسأجهّز القطع لترفعها على GitHub ' +
+      '(حد المتصفح هناك 25 م.ب لكل ملف، لذلك التقسيم).';
+});
+
+async function sendDirect(file) {
+  const t0 = Date.now();
+  say(`يرفع <b>${file.name}</b> — ${formatMB(file.size)} م.ب…`);
+  try {
+    const r = await uploadToStudio(file, p => {
+      progress(p.percent);
+      const secs = (Date.now() - t0) / 1000;
+      const rate = p.sent / Math.max(secs, 0.1) / 1048576;
+      const left = rate > 0 ? Math.round((p.total - p.sent) / 1048576 / rate) : 0;
+      say(`يرفع… <b>${p.percent}%</b> — القطعة ${p.part} من ${p.parts}` +
+          (left > 2 ? ` · بقي ${left} ثانية تقريباً` : ''));
+    });
+    progress(100);
+    say(`<b>وصل الملف كاملاً</b> — ${formatMB(r.size)} م.ب في <code>${r.path}</code>. ` +
+        'قل لي أن أبدأ الدبلجة.', 'ok');
+  } catch (err) {
+    progress(null);
+    say('تعذّر الرفع: ' + err.message + '<br>جرّب مرة أخرى — ما وصل من قطع لن يُعاد إرساله.', 'err');
+  }
+}
+
+// Fallback: prepare downloads for GitHub's form.
+function row(file, label) {
+  const a = document.createElement('a');
+  a.className = 'part';
+  a.href = URL.createObjectURL(file);
+  a.download = file.name;
+  a.innerHTML = `<span class="pn"></span><span class="ps">${formatMB(file.size)} م.ب</span><span class="pd">⬇ احفظ</span>`;
+  a.querySelector('.pn').textContent = label || file.name;
+  list.appendChild(a);
+  return a;
+}
+
+async function prepareForGitHub(file) {
+  if (!needsSplit(file)) {
+    say(`<b>${file.name}</b> — ${formatMB(file.size)} م.ب. أصغر من الحد، ارفعه كما هو.`, 'ok');
+    upload.style.display = '';
+    return;
+  }
+  const total = partCount(file.size);
+  say(`<b>${file.name}</b> — ${formatMB(file.size)} م.ب، يُقسَّم إلى ${total} قطعة…`);
+  try {
+    const r = await splitFile(file, m => say(m));
+    say(`جاهز: <b>${total} قطعة</b> + ملف بصمات. احفظها كلها ثم ارفعها معاً.`, 'ok');
+    const all = document.createElement('button');
+    all.className = 'dl';
+    all.textContent = `⬇ احفظ الكل (${total + 1} ملفات)`;
+    all.onclick = () => list.querySelectorAll('a.part')
+      .forEach((a, i) => setTimeout(() => a.click(), i * 400));
+    list.appendChild(all);
+    r.parts.forEach((p, i) => row(p, `القطعة ${i + 1} من ${total}`));
+    row(r.manifest, 'ملف البصمات (مهم — للتحقق)');
+    upload.style.display = '';
+  } catch (err) {
+    say('تعذّر التقسيم: ' + err.message, 'err');
+  }
+}
+
+async function handle(file) {
+  if (!file) return;
+  list.innerHTML = '';
+  upload.style.display = 'none';
+  progress(null);
+  if (direct) await sendDirect(file);
+  else await prepareForGitHub(file);
+}
+
+drop.onclick = () => input.click();
+drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+drop.ondragleave = () => drop.classList.remove('over');
+drop.ondrop = e => {
+  e.preventDefault();
+  drop.classList.remove('over');
+  handle(e.dataTransfer.files[0]);
+};
+input.onchange = () => handle(input.files[0]);
+</script>
+
+</body>
+</html>

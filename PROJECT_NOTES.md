@@ -1,0 +1,422 @@
+# مذكرة المشروع — ProStudio
+
+> ## ⚠️ قواعد ثابتة من المستخدم — اقرأها أولاً في كل جلسة
+> 1. **الفرع الأساسي للمستخدم هو `arena/01a03969-prostudio` دائماً** — كل العمل يجب أن يصل إليه في النهاية.
+> 2. **GitHub Pages يعمل من هذا الفرع تحديداً** (المسار `/docs`) — أي تعديل على الموقع يجب أن يصل لهذا الفرع حتى يظهر.
+> 3. **حقيقة تقنية لا يمكن تجاوزها**: كل جلسة أرينا تُنشئ **فرع جلسة** مرتبطاً بالمنصة نفسها
+>    (الجلسة الحالية مربوطة بـ `arena/01a04ec9-prostudio`)، ولا يستطيع الوكيل تحويل
+>    الجلسة إلى فرع آخر أو الدفع إلى فرع غير فرع جلسته. هذا قيد من المنصة وليس تفضيلاً.
+> 4. **سير العمل الإلزامي** (وهو الطريقة الوحيدة للوصول لفرع المستخدم):
+>    `git fetch` ← `git merge --ff-only origin/arena/01a03969-prostudio` ← العمل ← الدفع لفرع الجلسة
+>    ← فتح PR إلى `arena/01a03969-prostudio` ← الدمج ← Pages يعيد البناء تلقائياً.
+>    مثال سابق: **PR #4** من `arena/01a04ec2-prostudio` دُمج في 2026-08-29 18:24.
+> 5. المستخدم يعتبر GitHub هو المشغّل والبيئة، والوكيل هو العقل الذي يصدر الأوامر له.
+
+## الفرع: arena/01a03969-prostudio (فرع المستخدم الدائم)
+
+### حالة التحقق الأخيرة — 2026-08-29
+
+| البند | القيمة المُخرَجة |
+|---|---|
+| المستودع | `https://github.com/dhiyaddineb-hue/prostudio` |
+| فرع الجلسة (مربوط بالمنصة) | `arena/01a04ec9-prostudio` |
+| فرع المستخدم | `origin/arena/01a03969-prostudio` |
+| رأس فرع المستخدم | **`ea677a7`** — «ci: تثبيت Whisper وتشغيل الدبلجة داخل GitHub» (2026-08-29 18:31:50) |
+| الكوميت السابق | `0025771` — «fix: لا تستخدم التفريغ الإنجليزي للكشف التلقائي» |
+| `main` | `f63835f` — «Create dub.yml» |
+| علاقة فرع الجلسة بفرع المستخدم | **متطابقان** — فرع الجلسة مُمرَّر fast-forward إلى `ea677a7` (`git rev-list --left-right --count` = `0  0` بعد الدمج) |
+| GitHub Pages | `https://dhiyaddineb-hue.github.io/prostudio/` — الحالة `built` |
+| مصدر Pages | الفرع `arena/01a03969-prostudio`، المسار `/docs`، `build_type: legacy`، HTTPS مفروض |
+| آخر بناء Pages | من `ea677a7` في `2026-08-29T18:32:34Z` — ناجح، مدته 41 ثانية في البناء السابق |
+| صفحة الإرسال | `https://dhiyaddineb-hue.github.io/prostudio/send.html` |
+
+> ⚠️ **تحقّق دائماً بـ `git ls-remote --heads origin`** — فرع المستخدم يتحرك بين
+> الجلسات. في مراجعة 2026-08-29 تبيّن أنه تقدّم من `0025771` إلى `ea677a7` أثناء
+> الجلسة نفسها، فدُمج fast-forward قبل أي تعديل.
+
+- ملاحظة: المشروع الحالي **ProStudio للدبلجة والترجمة** وليس مشروع لعبة؛ لا يوجد وصف لعبة محدد في الطلب الحالي، لذلك لم تُنشأ لعبة أو بنية Babylon/WebDev اعتباطية.
+
+### ✅ نتيجة الفحص الفعلي — 2026-08-29
+
+```
+$ .venv/bin/python -m pytest -q
+171 passed, 3 skipped, 0 failed        (5.29s)
+
+$ for f in tests/browser/*.mjs; do node "$f"; done
+github-upload 32 · shrink 12 · split 26 · voice-design 36  → 106 تأكيداً، 0 فشل
+```
+
+- اختبارات `.mjs` سكربتات قائمة بذاتها: `node tests/browser/shrink.test.mjs`
+  (وليس `node --test tests/browser/` — هذا يفشل).
+- الاختبارات تحتاج بيئة افتراضية: بايثون النظام هنا محكوم بـ PEP 668.
+  ```
+  python3 -m venv .venv
+  .venv/bin/python -m pip install pytest pytest-asyncio numpy fastapi uvicorn \
+      python-multipart aiofiles httpx rich pydub beautifulsoup4 yt-dlp soundfile \
+      imageio-ffmpeg requests edge-tts librosa praat-parselmouth espeakng-loader
+  ```
+  بدون `edge-tts` و`librosa` و`praat-parselmouth` يفشل **جمع** 5 ملفات اختبار.
+- **عُيِّن وإصلاح**: `tests/test_pipeline_args.py::test_build_args_arabic_source_english_dub`
+  كان فاشلاً لأنه يتوقع `args.lang_dub == "en"` بينما `build_args` يبقيه `None`
+  عمداً؛ الحسم يحدث في `core.py:53` بـ `dub_lang = args.lang_dub or base_lang`،
+  و`core.py:310` يعتمد على كونه `None` لإضافة لاحقة `_D-<lang>` لاسم الناتج.
+  عُدِّل الاختبار ليصف العقد الحقيقي، وأُضيف `test_build_args_explicit_dub_lang_is_kept`.
+
+---
+
+## 📁 هيكل المشروع الكامل
+
+### 1. النواة البرمجية (`youtube_auto_dub/`)
+| الملف | الوظيفة |
+|---|---|
+| `__init__.py` | إصدار المشروع |
+| `__main__.py` | نقطة تشغيل `python -m youtube_auto_dub` |
+| `cli.py` | واجهة سطر الأوامر — argparse + تشغيل `core.run()` |
+| `core.py` | **الخط الأنبوبي الرئيسي**: تنزيل → تفريغ → ترجمة → TTS → مزج → تصدير |
+| `models.py` | **كل الإعدادات والثوابت**: مسارات، عينات الصوت، إعدادات Whisper/VAD/TTS/FFmpeg، شخصيات صوتية |
+| `speech.py` | تفريغ الصوت بـ Faster-Whisper + VAD |
+| `speech_windows.py` | **نوافذ الكلام الفعلية** — يقيس متى يتكلم الممثل من القناة المركزية بدل الاعتماد على مدة الترجمة الظاهرة (كانت أوسع من حركة الفم: 1.50s مقابل 1.14s في مقطع Vikings) |
+| `vosk_asr.py` | تفريغ بـ Vosk (أوفلاين، إنجليزي) — يحمل الموديل من GitHub |
+| `offline_asr.py` | تفريغ بـ PocketSphinx (أوفلاين، إنجليزي، دقيقته ضعيفة) |
+| `voice.py` | **محرك TTS متعدد**: Edge-TTS (أساسي) + Qwen3-TTS (Chatterbox) + استنساخ صوتي |
+| `local_tts.py` | بديل أوفلاين: eSpeak NG (روبوتي) |
+| `studio_tts.py` | بنك أصوات جاهزة في `samples/voices/` |
+| `clone_tts.py` | استنساخ عصبي بـ F5-TTS (إنجليزي/صيني فقط) |
+| `xtts_clone.py` | **XTTS-v2** — استنساخ يدعم العربية! يحتاج تحميل من HuggingFace |
+| `voice_profile.py` | قياس بصمة صوتية (F0 + Formants) بـ Praat + تحويل أكوستيكي |
+| `voice_design.py` | **مصمم الأصوات**: 6 عوامل تحكم (pitch, rate, body, warmth, clarity, air) + وصف عربي + presets |
+| `diarize.py` | تحديد المتحدثين (MFCC + LDA) |
+| `stem_split.py` | فصل الحوار عن الموسيقى (معالجة إشارة DSP — بلا موديل) |
+| `audio.py` | معالجة الصوت: تقسيم، مزامنة tempo، تطبيع loudness، مزج خلفية، تصدير فيديو |
+| `googlev4.py` | ترجمة Google |
+| `local_translate.py` | ترجمة محلية (أوفلاين) |
+| `arabic_text.py` | تجهيز النص العربي (تشكيل) |
+| `align_text.py` | محاذاة النص مع الصوت |
+| `subs.py` | قراءة/كتابة SRT |
+| `youtube.py` | تنزيل من يوتيوب بـ yt-dlp |
+| `ffmpeg_bin.py` | إيجاد FFmpeg (imageio-ffmpeg مضمّن) |
+| `runtime.py` | كشف القدرات (GPU, Whisper, Edge-TTS, eSpeak) |
+| `project_dirs.py` | إدارة مشاريع الدبلجة |
+| `pipeline_args.py` | بناء معاملات الخط الأنبوبي |
+| `ui.py` | واجهة طرفية (Rich) |
+| `language_map.json` | خريطة اللغات + الأصوات المتاحة لكل لغة |
+
+### 2. واجهة الويب (`web/`)
+| الملف | الوظيفة |
+|---|---|
+| `server.py` | تشغيل uvicorn على المنفذ 8080 |
+| `app.py` | **FastAPI الرئيسي**: API كامل + SSE للأحداث + رفع ملفات + مصمم أصوات |
+| `static/index.html` | الصفحة الرئيسية |
+| `static/send.html` | صفحة الرفع |
+| `static/projects.html` | صفحة المشاريع |
+| `static/studio.html` | مصمم الأصوات |
+| `static/app.js` | JavaScript الرئيسي |
+| `static/styles.css` | التنسيقات |
+| `static/upload.js` | رفع الملفات |
+| `static/split.js` | تقسيم الملفات الكبيرة |
+
+### 3. صفحة GitHub Pages (`docs/`)
+| الملف | الوظيفة |
+|---|---|
+| `index.html` | الرئيسية — عرض الدبلجات الجاهزة |
+| `send.html` | **إرسال ملف** — رفع مباشر عبر GitHub API |
+| `preview.html` | معاينة الفيديو |
+| `voices.html` | عرض الأصوات |
+| `studio.html` | مصمم الأصوات |
+| `github-upload.js` | **محرك الرفع**: تقسيم ملفات كبيرة → blobs → commit واحد |
+| `upload.js` | رفع بسيط للملفات |
+| `split.js` | تقسيم الملفات الكبيرة في المتصفح |
+| `shrink.js` | ضغط الملفات قبل الرفع |
+| `voice-design.js` | منطق مصمم الأصوات |
+| `github-actions/` | قوالب workflows — **يوجد `ci.yml` و`dub.yml` فقط** |
+| `projects.json` | بيانات المشاريع |
+| `samples.json` | بيانات العينات الصوتية |
+| `samples/` | عينات صوتية (F1-F5, R1-R5) |
+| `vendor/` | مكتبات خارجية (lamejs) |
+| `*.mp4, *.srt, *.vtt` | الدبلجات الجاهزة |
+
+### 4. المشاريع (`projects/`)
+كل مشروع له مجلد مستقل:
+```
+projects/<اسم>/
+├── project.json     ← النص، التوقيتات، الأصوات، الإعدادات
+├── source/          ← الفيديو الأصلي
+├── voices/          ← تسجيلات لكل شريحة
+├── output/          ← الناتج النهائي (mp4 + srt)
+└── work/            ← ملفات مؤقتة
+```
+
+المشاريع الموجودة:
+- `Bob-Proctor-5min-2v` — 52 جملة، 310 ثانية
+- `Bob-Proctor-Sample` — 3 جمل، 13 ثانية
+- `Phantom-Thread` — 24 جملة، 59 ثانية (دبلجة مصرية)
+- `Vikings-Ragnar-Floki` — 5 جمل، 25 ثانية
+
+### 5. السكربتات (`scripts/`)
+| الملف | الوظيفة |
+|---|---|
+| `audition.py` | اختيار الأصوات بقياس F0 |
+| `build_demo.py` | بناء عرض تجريبي |
+| `build_dub.py` | بناء دبلجة |
+| `build_phantom_dub.py` | بناء دبلجة Phantom Thread |
+| `build_pro_demo.py` | بناء عرض تجريبي احترافي |
+| `clone_project.py` | استنساخ أصوات مشروع |
+| `fetch_asr_model.py` | **تحميل موديل Vosk من GitHub** |
+| `fetch_inbox.py` | جلب ملفات من inbox |
+| `join_parts.py` | **لصق أجزاء الملفات المقسمة** |
+| `publish_docs.py` | نشر الدبلجات على GitHub Pages |
+| `restore.py` | استعادة نسخة سابقة |
+| `retime_from_audio.py` | إعادة توقيت من الصوت |
+| `transcribe.py` | تفريغ مستقل |
+
+### 6. الاختبارات (`tests/`)
+**31 ملفاً** (مُخرج من `git ls-files tests`): 26 وحدة اختبار Python + `__init__.py`
++ 4 ملفات `.mjs` تحت `tests/browser/` تختبر منطق `docs/` مباشرة.
+
+### 7. ملفات أخرى
+| الملف | الوظيفة |
+|---|---|
+| `main.py` | نقطة دخول قديمة → `youtube_auto_dub.cli:main` |
+| `run_studio.py` | تشغيل الاستوديو → `web.server:main` |
+| `pyproject.toml` | إعدادات المشروع + التبعيات |
+| `requirements.txt` | المتطلبات |
+| `latest_langmap_generate.py` | توليد خريطة اللغات |
+| `كيف-أشغل-الاستنساخ.md` | دليل الاستنساخ بالعربية |
+
+---
+
+## 🔗 الروابط المهمة
+- **المستودع**: https://github.com/dhiyaddineb-hue/prostudio
+- **GitHub Pages**: https://dhiyaddineb-hue.github.io/prostudio/
+- **صفحة الإرسال (رفع ملف)**: https://dhiyaddineb-hue.github.io/prostudio/send.html
+- **فرع المستخدم على GitHub**: https://github.com/dhiyaddineb-hue/prostudio/tree/arena/01a03969-prostudio
+- **الفرع**: `arena/01a03969-prostudio` (المصدر الرسمي لـ Pages من مسار `/docs`)
+
+## ⚙️ القدرات الحالية في البيئة
+
+> **تصحيح مهم (2026-08-29)**: الجدول القديم في هذا القسم كان يصف **صندوق رمل سابقاً**
+> وقد تحقّق أنه لم يعد صحيحاً هنا. بايثون النظام كان فيه 3 حزم فقط (`pip`,
+> `setuptools`, `wheel`) ولا `.venv` قبل هذه الجلسة. الأرقام أدناه هي **مُخرج فعلي**
+> من مسبار المشروع نفسه `youtube_auto_dub.runtime.capabilities()` في هذا الصندوق:
+
+```json
+{"ffmpeg": true, "device": "cpu", "torch": false, "whisper": false,
+ "whisper_installed": false, "whisper_models_cached": [], "model_hub": false,
+ "offline_asr": false, "edge_tts": false, "espeak": true, "studio_voices": 5,
+ "can_dub": true, "needs_transcript": true}
+```
+
+| المكوّن | الحالة هنا | الدليل |
+|---|---|---|
+| Python | 3.11.2 | `python3 -V` |
+| FFmpeg | ✅ متاح | `ffmpeg_bin.ffmpeg_exe()` عبر `imageio-ffmpeg` |
+| GPU | ❌ CPU فقط | `pick_device() == "cpu"` |
+| `torch` | ❌ **غير مثبّت** | `have_module("torch") → False` |
+| Faster-Whisper | ❌ **غير مثبّت** | `whisper_installed: false` |
+| Vosk / PocketSphinx | ❌ **غير مثبّتة** | `have_module → False`، لذا `offline_asr: false` |
+| Piper / Coqui (XTTS-v2) | ❌ **غير مثبّتة** | `have_module("piper"/"TTS") → False` |
+| Edge-TTS | ⚠️ الحزمة مثبّتة **لكن الخادم محجوب** | `speech.platform.bing.com` يفشل مصافحة TLS |
+| eSpeak NG | ✅ يعمل أوفلاين (صوت روبوتي) | `espeak: true` |
+| أصوات الاستوديو الجاهزة | ✅ **5 مقاطع** في `samples/voices/` | `studio_takes() == 5` |
+| librosa / praat-parselmouth | ✅ مثبّتان (ثبّتهما الوكيل للتشغيل) | `have_module → True` |
+
+**قواعد الاستدلال في `runtime.capabilities()`** (مقروءة من الشيفرة، لا مُخمَّنة):
+- `whisper` = الحزمة مثبّتة **و** (أوزان مخزّنة محلياً **أو** `huggingface.co` قابل للوصول).
+- `edge_tts` = **قابلية وصول** `speech.platform.bing.com`، لا مجرد تثبيت الحزمة.
+- `can_dub = ffmpeg and (edge_tts or espeak or studio_voices > 0)` → `true` هنا.
+- `needs_transcript = not (whisper or offline_asr)` → `true` هنا، أي أن **الصق النص مطلوب**.
+
+**فحص الشبكة** (`host_reachable` يُكمل مصافحة TLS حقيقية):
+
+| المضيف | النتيجة |
+|---|---|
+| `github.com:443` | ✅ متاح |
+| `pypi.org:443` | ✅ متاح (لذلك أمكن `pip install`) |
+| `huggingface.co:443` | ❌ محجوب → لا Whisper ولا XTTS ولا F5 |
+| `speech.platform.bing.com:443` | ❌ محجوب → Edge-TTS لا يعمل |
+| `dhiyaddineb-hue.github.io:443` | ❌ محجوب من الصندوق (`curl` يفشل بـ `SSL_ERROR_SYSCALL`) — **الموقع نفسه سليم**؛ تحقّق من خارج الصندوق أرجع HTTP 200 ومحتوى الصفحة |
+
+> **النتيجة العملية**: كل تفريغ آلي معطّل هنا، فالدبلجة تحتاج نصاً ملصوقاً،
+> والصوت يُولَّد محلياً بـ eSpeak أو من مقاطع `samples/voices/`. أما الاستنساخ
+> العصبي (F5/XTTS) فيحتاج أوزاناً من HuggingFace → يُشغَّل على **مشغّلات GitHub**
+> عبر `.github/workflows/dub.yml`، وهذا هو سبب وجوده أصلاً.
+
+## 📥 الملفات في inbox/
+1. `3dde7ebc7c_Instagram.mp4` (6.0 MB)
+2. `AQMowxUBqW4_...mp4` (5.0 MB)
+3. `AQPHPkqUueg_...mp4` (2.9 MB)
+4. `AQPHPkqUueg_...(1).mp4` (2.9 MB) — نسخة مكررة
+5. `Phantom Thread...mp4` (3.1 MB)
+6. `Do You Know who You Are_ _ Bob Proctor` (4 أجزاء، 61.8 MB)
+
+كلها **متتبَّعة في Git** (`git ls-files inbox` = 10 مدخلات مع `.gitkeep`)، أي أن
+المستودع يحمل ~85 ميغابايت من الفيديو الخام. هذا مقصود في التصميم الحالي لأن
+`scripts/fetch_inbox.py` و`scripts/join_parts.py` يعتمدان على وصولها من GitHub.
+
+---
+
+## 🔎 ملاحظات مفتوحة اكتُشفت في مراجعة 2026-08-29
+
+1. **`README.md:92-93` يشير إلى ملف غير موجود**: يأمر بـ
+   `cp docs/github-actions/clone.yml .github/workflows/clone.yml`، بينما المجلد
+   يحتوي `ci.yml` و`dub.yml` فقط. النسخ **سيفشل**. لكن `dub.yml` نفسه يضم مهمة
+   `clone` داخله (`inputs.task: clone`)، فالأمر الصحيح هو تشغيل
+   **Actions → Run YouTube Auto Dub → task: clone** لا نسخ ملف مستقل.
+   لم يُعدَّل الـREADME لأنه توثيق سلوك، ويحتاج قراراً من المستخدم.
+2. **`docs/github-actions/dub.yml` نسخة قديمة** — التعديلات التي أضافها المستخدم في
+   `ea677a7` (مدخلات `source_path` و`source_lang` وتحميل أوزان Whisper) طُبِّقت على
+   `.github/workflows/dub.yml` **فقط**، لا على القالب في `docs/`. أي مستخدم ينسخ
+   القالب من `docs/` سيحصل على النسخة القديمة.
+3. **`web/app.py:317` يستخدم `@app.on_event("startup")`** المهجور في FastAPI؛
+   يظهر كتحذير `DeprecationWarning` عند كل تشغيل للاختبارات.
+4. **`ci.yml` يثبّت `.[dev]` فقط، و`librosa` ناقص من `pyproject.toml`** —
+   تحقّق تجريبي (2026-08-29): بإزالة `librosa` فعلياً من البيئة (وليس مجرد
+   `pip uninstall` الذي يخلّف مجلد `librosa` بمسار namespace فارغ) يفشل اختباران:
+   ```
+   FAILED tests/test_diarize.py::test_training_separates_two_distinct_voices - ModuleNotFoundError
+   FAILED tests/test_diarize.py::test_too_few_seeds_is_refused              - ModuleNotFoundError
+   2 failed, 169 passed, 3 skipped
+   ```
+   `librosa` يُستورد بتأخير داخل `youtube_auto_dub/diarize.py:57` و`audio.py:304`،
+   وهو **غير مذكور** في `[project.dependencies]` (المذكور فيها: faster-whisper,
+   torch, yt-dlp, pydub, edge-tts, httpx, beautifulsoup4, numpy, rich, soundfile,
+   imageio-ffmpeg, fastapi, uvicorn, python-multipart, aiofiles, espeakng-loader,
+   praat-parselmouth, pocketsphinx, piper-tts). لذا `pip install .[dev]` في CI
+   **سيفشل بهذين الاختبارين**. الإصلاح: إضافة `librosa>=0.10` إلى `dependencies`
+   أو `pip install -r requirements.txt` في `ci.yml`.
+   (تصحيح لنسخة سابقة من هذه المذكرة: `edge-tts` **موجود** في التبعيات، فلم يكن هو المشكلة.)
+
+
+## 🌐 الترجمة بنموذج لغوي (اختياري) + تحسينات التوقيت — 2026-09-06
+
+**الدافع**: أول فيلم كامل (Napoleon، التشغيلة #154) أظهر أن الترجمة تُنفَّذ مقطعاً مقطعاً (≤10 ث، 124 من 156 قطعاً وسط الجملة)
+عبر Google Translate غير الرسمي بلا سياق، فظهرت أخطاء أسماء ("Al-Namsa" بدل Austria، "Tanerand" بدل Talleyrand) وجُمل بلا معنى،
+كما ظهرت فراغات صامتة داخل الكلام المتصل، وحواف باهتة عند كل وصلة، ومقطع واحد وُلِّد بطول 29.5 ث لنافذة 7.8 ث ثم ضُغِط 3.8x.
+
+### 1) المترجم الجديد `youtube_auto_dub/llm_translate.py`
+- يعمل **فقط** عند وجود السرّ `TRANSLATE_API_KEY` في المستودع (Settings → Secrets and variables → Actions). بدونه لا يتغير شيء
+  ويبقى `GoogleTranslator` كما هو.
+- الإعدادات غير السرّية عبر **Variables** في المستودع: `TRANSLATE_PROVIDER` (openai | deepseek | groq | openrouter | gemini |
+  mistral | together | xai | anthropic | custom)، `TRANSLATE_MODEL`، `TRANSLATE_API_BASE` (لـ custom أو للتجاوز)،
+  `TRANSLATE_STYLE` (مثل "documentary narration")، `TRANSLATE_GLOSSARY` ("نابليون=>Napoleon; النمسا=>Austria" أو مسار ملف JSON)،
+  `TRANSLATE_FALLBACK` (الافتراضي `fail` = توقّف قابل للاستئناف بدل خلط محرّكين؛ `google` = إكمال الباقي بالمترجم القديم).
+- يترجم النص بترتيبه الكامل في نوافذ من 40 مقطعاً مع سياق المقاطع السابقة، ويعطي كل مقطع **ميزانية كلمات** من نافذته الزمنية
+  (2.7 كلمة/ث افتراضياً)، ويعلّم المقاطع المقطوعة وسط الجملة (`continues`) لتُقرأ متصلة، ويثبّت الأسماء ويصلح أخطاء التفريغ من السياق.
+- تحقق صارم: عدد المعرّفات، لا نص فارغ، لا حروف من لغة المصدر في الهدف؛ إعادة طلب عند الرفض؛ محاولات مع تراجع أسّي عند 429/5xx؛
+  الأخطاء الدائمة (401/403/404) تفشل فوراً؛ تمريرة تقصير واحدة للمقاطع التي تتجاوز ميزانيتها بـ35%+.
+- التقدّم يُحفَظ ويُرفَع للـ Release بعد كل نافذة (استئناف آمن). المحرّك يُسجَّل لكل مقطع في `translation_engine`،
+  وملخص الإعداد والاستهلاك في المفتاح `translation` بالـ manifest. **ليس جزءاً من `config_hash`** → المشاريع القديمة تستأنف كما هي.
+- فحص أولي في الـ workflow (`python -m youtube_auto_dub.llm_translate --preflight`) يترجم جملة واحدة قبل بدء العمل؛ مفتاح خاطئ
+  يُفشِل التشغيلة في أول دقيقة بدل آخر ساعة. التقرير في `output/translation-preflight.json` وداخل `preflight.json`.
+
+### 2) التوقيت (في `scripts/resumable_smart_dub.py`)
+- `match_duration_bounded`: مطابقة ثنائية الاتجاه مع **حدّ إبطاء 0.85x** (`SLOW_TEMPO_FLOOR`). في مسار VoxCPM فقط (بدون Seed-VC)
+  أضيفت خطوة `window-fill` بعد `pre-render`: الكلام الأقصر من نافذته يُبطَّأ ليملأها (حتى 0.85x) وما يبقى يظل صامتاً؛ لا تسريع إضافي
+  (`max_tempo=1.0`). المسارات التي كانت تُبطئ بلا حدّ (مزامنة Seed-VC لكل مقطع، وإعادة المحاولة بعد فحص المحتوى) صارت محدودة بنفس الحدّ.
+- الحواف: 15 ms تبقى عند الوقفات الطبيعية، أما القطع وسط الجملة (`word_boundary`/`hard_limit_guard`) فتحصل على حارس نقرة 3 ms فقط
+  (`boundary_fades`)؛ قيم التلاشي تُسجَّل في `mix-report.json`.
+- **لا إعادة بناء قسرية** للمقاطع المكتملة: التحسينات تنطبق على ما يُصيَّر من الآن (فيديوهات قادمة أو مقاطع غير مكتملة).
+
+### 3) معقولية طول التوليد (`youtube_auto_dub/voxcpm_tts.py`)
+- `speak_voxcpm(..., max_seconds)`: الحدّ المعقول = 1.7 × (الكلمات ÷ 2.7) + 0.8 ث (`plausible_tts_seconds`). الأخذة الأطول تُحفَظ باسم
+  `generated.long-take-N.wav` للمراجعة ويُعاد التوليد حتى 3 أخذات (`YAD_TTS_LONG_TAKE_ATTEMPTS`)، وإن بقيت كلها طويلة تُستخدم الأقصر
+  بدل توقف الخط. `tts_duration_warning` يُسجَّل في بيانات المقطع.
+
+### الاختبارات
+- `tests/test_translation_and_timing_quality.py` (26 اختباراً، بلا شبكة: `httpx.MockTransport`). المجموعة الكاملة محلياً: 249 ناجحاً،
+  4 متجاوَزة، 14 فشلاً بيئياً معروفاً (librosa/pytest-asyncio/espeak-ng/docs/dashboard.html/studio tts) — لا تراجعات.
+
+### الإعداد الفعلي — 2026-09-06 (بوابة agentrouter.org)
+- السرّ `TRANSLATE_API_KEY` والمتغيّران `TRANSLATE_PROVIDER=agentrouter` و`TRANSLATE_MODEL=deepseek-v4-flash` أُنشئا في المستودع عبر API.
+- إعداد مسبق `agentrouter`: القاعدة `https://agentrouter.org/v1`، وترويسات العميل التي يطلبها الـ WAF (`User-Agent: codex_cli_rs/0.146.0`،
+  `originator: codex_cli_rs`) تُرسل تلقائياً؛ يمكن إضافة/تجاوز ترويسات عبر `TRANSLATE_EXTRA_HEADERS`. `max_tokens` الافتراضي 8192
+  (نماذج التفكير مثل glm-5.3 تُرجع فراغاً مع قيم صغيرة). النماذج المتاحة على المفتاح: claude-opus-4-8, claude-opus-5, deepseek-v4-flash,
+  glm-5.3, gpt-5.6-sol.
+- workflow يدوي جديد `translation-preflight.yml` يترجم جملة واحدة من داخل GitHub للتأكد من المفتاح دون لمس أي مشروع أو release.
+- تنبيه أمني: المفتاح لُصق في محادثة؛ يُستحسن تدويره لاحقاً وتحديث السرّ فقط.
+- **نتيجة الفحص من داخل GitHub (تشغيلتا preflight 34029523068 و34029636171)**: كل المحاولات — بما فيها نفس أمر curl الذي نجح من جهاز
+  المستخدم — تُرجع صفحة تحدّي JavaScript من Aliyun WAF (status 200, text/html) بدل JSON. أي أن الحجب على مستوى عناوين IP لخوادم
+  GitHub/Azure وليس على الترويسات. الحلول: عنوان API بديل من الخدمة بلا WAF، أو مزوّد يقبل الخوادم (DeepSeek الرسمي / Gemini / Groq /
+  OpenRouter)، أو runner ذاتي. إلى أن يُحل، يتوقف dub.yml عند preflight مبكراً (وضع `fail`)؛ ضبط `TRANSLATE_FALLBACK=google` يسمح بالمتابعة
+  بالمترجم القديم مع تحذير.
+
+### نتيجة البحث عن بديل يعمل من خوادم GitHub — 2026-09-06
+- **agentrouter.org**: خلف Aliyun WAF يسمح فقط لعملاء محددين (Claude Code / Codex CLI / Gemini CLI / Qwen Code / SDK أنثروبيك بايثون
+  المتزامن) ويقدّم صفحة تحدّي JavaScript لغيرها؛ من GitHub-hosted runners تُحجب حتى نسخة curl التي تنجح من الجهاز الشخصي (اختُبر في
+  التشغيلتين 34029523068 و34029636171). غير قابل للاستخدام من Actions بلا وسيط على IP غير سحابي.
+- **GitHub Models** (كان مجانياً بتوكن الـ workflow): **أُوقف نهائياً في 2026-07-30**؛ الـ endpoint يُرجع 410 برسالة "brownout" مضللة
+  (اختُبر في التشغيلة 34030124823). أُضيف 410 إلى الأخطاء الدائمة كي لا يُعاد المحاولة أبداً، وحُذف الإعداد المسبق.
+- **الخيارات المجانية التي تعمل من الخوادم** (بحسب مقارنات 2026): Google AI Studio / Gemini API (مجاني لنماذج Flash، ≈10 طلبات/دقيقة
+  و≈1500/يوم للمشروع، بلا بطاقة)، Groq (مفتاح مجاني، llama-3.3-70b-versatile أو openai/gpt-oss-120b)، Mistral free mode، OpenRouter
+  (نماذج `:free` بحدود صغيرة). التوصية للعربية: **Gemini** (`TRANSLATE_PROVIDER=gemini`, `TRANSLATE_MODEL=gemini-2.5-flash`؛
+  `max_tokens` الافتراضي 16384 لأن تفكير النموذج يُحسب من الميزانية).
+- المتغيّرات الآن: `TRANSLATE_PROVIDER=gemini`، `TRANSLATE_MODEL=gemini-2.5-flash`. السرّ `TRANSLATE_API_KEY` ما زال يحمل مفتاح
+  agentrouter (لم يُحذف) ويجب استبداله بمفتاح AI Studio؛ إلى ذلك الحين يتوقف dub.yml عند preflight مبكراً.
+- إعادة المحاولة تحترم `Retry-After` عند 429 (تراجع 3/6/12/24/48 ث، حتى 90 ث بحسب الترويسة)، `TRANSLATE_MAX_RETRIES` الافتراضي 5.
+
+## 🕳️ اختفاء الصوت = كلام لم يُفرَّغ (تشغيلة #155، الفيديو القصير) — 2026-09-06
+- **التشخيص**: في الناتج صمت كامل من 25.7 إلى 29.7 ث بينما مسار الصوت البشري (stem) في المصدر بنفس ارتفاع الكلام (وسيط −17 dB).
+  Whisper (مع VAD) لم يُخرج أي كلمة بين 25.74 و29.71 ث، والفجوة 3.97 ث أقل بقليل من حدّ إعادة المحاولة الكامل (4.0 ث)، وبوابة الجودة
+  كانت تقيس التغطية على المزيج الكامل (الموسيقى تجعل نسبة النشاط 1.0) فلم ترَ شيئاً. الشيء نفسه في Napoleon: 6 فترات كلام غير مفرَّغة
+  (1.3–2.6 ث، مجموعها ~11 ث) وهي جزء من "التقطعات" التي سُمعت.
+- **الإصلاح** (`scripts/resumable_smart_dub.py`): `find_uncovered_speech` يقارن طاقة مسار الكلام بخط زمن الكلمات (عتبة تكيفية = مستوى
+  الكلام المفرَّغ − 12 dB، فترات ≥ 0.8 ث)، ثم `recover_uncovered_speech` يعيد تفريغ كل فترة وحدها بلا VAD (قص مع هامش 0.35 ث دون ملامسة
+  الكلمات المجاورة) ويدمج الكلمات بعلامة `recovered`. يعمل فقط عند إنشاء `asr.json` لأول مرة (المشاريع القديمة لا تُعاد خططها).
+  النتيجة تُحفظ في `analysis.json → speech_coverage` وفي `segments-report.json → asr_timeline.uncovered_speech`.
+- **بوابة الجودة** (`validate_dub_quality.py`): فحص جديد `speech_covered_by_transcript` — أطول فترة كلام غير مفرَّغة بعد الاستعادة
+  ≤ 1.0 (strict) / 2.0 (balanced) / 3.5 (safe) ث؛ يُتجاوز عندما لا يوجد قياس (مشاريع قديمة).
+- اختبارات: `tests/test_speech_coverage_recovery.py` (9). الكاشف على بيانات #155 الحقيقية يجد 25.9–29.56 ث تماماً، وعلى Napoleon 6 فترات
+  في 0.7 ث.
+- **تشغيلة #156 (نفس المقطع، مشروع جديد)**: هذه المرة لم يُسقط Whisper الفترة بل أخرج رمزاً واحداً "بي" ممتداً على 3.98 ث (25.74–29.72)،
+  فاعتبرها الكاشف الأول "مغطاة" ونُشر ناتج بلا صمت لكن بمحتوى مفقود (الكلام مُدِّد فوق الفجوة). أُضيف `untrusted_word_spans`: كلمة أطول
+  من 1.5 ث أو مقطع بكثافة < 0.7 كلمة/ث لمدة ≥ 2 ث لا تُعدّ تغطية، وتُعاد الفترة للتفريغ، وتُستبدل الرموز المهملة بالكلمات المستعادة
+  (تبقى كما هي إن لم يُستعد شيء). على بيانات #156 الحقيقية: الفترة 25.9–29.56 مكشوفة؛ Napoleon: رمز ممتد واحد (222.45–226.11) و7 فترات.
+
+
+## 🧹 تنظيف المستودع بموافقة صريحة («نعم») — 2026-09-06
+- حُذفت من الفرع `arena/01a03969-prostudio` ملفات التجارب القديمة (الكوميت اللاحق لهذا السجل):
+  - `docs/`: 38 ملفاً، 194.9 MB
+  - `inbox/`: 19 ملفاً، 101.6 MB
+  - `output/`: 35 ملفاً، 118.2 MB
+  - `projects/`: 121 ملفاً، 200.5 MB
+  - `samples/`: 24 ملفاً، 112.8 MB
+  - `transcripts/`: 1 ملفاً، 0.4 MB
+  منها `samples/napoleon.part0` و`samples/napoleon.part1` وكل الدبلجات المنشورة السابقة (docs/*.mp4|srt|vtt) ونسخها في projects/
+  ومشاريع الاستنساخ الأربعة (Phantom-Thread, Vikings-Ragnar-Floki, Bob-Proctor-*) و`output/` و`inbox/` و`transcripts/`.
+- أُبقي على: الكود والاختبارات وصفحات docs، `samples/ProStudio_Arabic_Demo.mp4` (+srt)، `samples/shorts-test.mp4`، `samples/voices/*`.
+- نُقلت من الجذر: أبحاث → `docs/research/`، دليل الاستنساخ → `docs/guides/`، `speaker_voice_audit.py` و`latest_langmap_generate.py` → `scripts/`.
+- `docs/projects.json` أُعيد فارغاً؛ `.gitignore` يمنع `checkpoints/` و`voice-audit/`؛ `dub.yml`: القيمة الافتراضية لـ `project` فارغة مع
+  خطوة تحقق من وجود المشروع؛ `voice-audit.yml` يشير إلى العينة الافتراضية والمسار الجديد للسكربت.
+- Releases المحذوفة (مسودّات checkpoint): 383579396 (shorts-test-v2-4a99eab1c1b4-en-d0e8defb), 383572470 (shorts-test-v2-4a99eab1c1b4-en-10682ce9), 383564807 (shorts-test-4a99eab1c1b4-en-10682ce9), 383216365 (napoleon-29aee5f74783-en-10682ce9), 383036926 (1156866-3fafd0dff2d0-en-10682ce9) — مجموعها ~988 MB.
+- لم يُمسّ: تاريخ git (591 MB)، الفروع الأخرى، الفرع `main`.
+
+
+## 🎛️ الاستوديو الكامل على GitHub Pages + مجلد لكل فيديو — 2026-09-06
+- `docs/index.html` + `docs/studio.js` + `docs/studio.css`: مكتبة (library/) ومدبلجة (dubs/) وتشغيلات حيّة وإعدادات. تقرأ شجرة الفرع
+  بطلب واحد (ETag) وتعرض كل مجلد كبطاقة مع معاينة من raw.githubusercontent.com؛ الرفع = blobs + commit واحد إلى `library/<slug>/`
+  (تقسيم ≤ 18 MB بأسماء `source.mp4.partNNofMM`) مع `meta.json` (العنوان، الحجم، SHA-256، المدة، لغة المصدر)؛ الدبلجة = dispatch
+  لـ dub.yml بـ `source_path=library/<slug>/source.mp4`؛ المتابعة = runs/jobs API + manifest نقاط الاستئناف (تقدّم المقاطع)؛ الحذف =
+  commit واحد يزيل المجلد بعد كتابة اسمه (`confirmTyped`)؛ إلغاء تشغيل بنفس التأكيد. الرمز في localStorage (كما في dashboard.html).
+- الخلفية: `scripts/publish_to_library.py` ينشر إلى `dubs/<slug>/final-dub-<run>.mp4` + `.quality/.segments/.language.json` + `meta.json`
+  (نسخ متعددة، الأحدث أولاً) ويحدّث `library/<slug>/meta.json` إلى `dubbed`. `dub.yml`: `run-name` يحمل مسار المصدر ليقرأه الاستوديو؛
+  إعادة تجميع أجزاء `.partNNofMM` (مع دعم `.part0/.part1` القديم)؛ معرّف المشروع يأخذ اسم مجلد المكتبة؛ خطوة النشر تستخدم السكربت
+  الجديد و`git add -f library dubs` (لم تُعد تنسخ الفيديوهات إلى docs/). `cleanup-dub-checkpoints.yml` يقبل `dubs/*/*.mp4`.
+- `.gitignore`: `!library/**` و`!dubs/**`. الصفحات القديمة (dashboard.html, voices.html) ما زالت متاحة من التبويبات.
+- Gemini: السرّ `TRANSLATE_API_KEY` حُدِّث بمفتاح AI Studio الذي أرسله المستخدم (في المحادثة — يُستحسن تدويره لاحقاً)، و`TRANSLATE_FALLBACK=fail`.
+- الاختبارات: `tests/test_studio_library.py` (7).
+- فحص Gemini الأول: المفتاح صحيح لكن `gemini-2.5-flash` لم يعد متاحاً للمستخدمين الجدد (404 يقترح `gemini-3.6-flash`) → حُدِّث المتغيّر والإعداد المسبق.
+- تحسينات الاستوديو (جولة 2): العيّنتان انتقلتا إلى المكتبة (`library/prostudio-arabic-demo/`, `library/shorts-test/`) مع meta.json حتى لا تبدو
+  المكتبة فارغة؛ دبلجة من رابط يوتيوب مباشرة؛ نافذة «التفاصيل والترجمة» لكل نسخة (مقارنة الأصل/المدبلج، فحوصات الجودة، جدول
+  الأصل/الترجمة، تصدير SRT للهدف والمصدر)؛ شبكة حالة المقاطع لكل تشغيل نشط؛ رسائل تحميل/قراءة فقط أوضح. اختُبرت الصفحة في jsdom
+  بمحاكاة GitHub API (بطاقات، تشغيل، حذف بتأكيد، تفاصيل، يوتيوب) بلا أخطاء. القيمة الافتراضية لـ source_path صارت
+  `library/prostudio-arabic-demo/source.mp4`.
+- جولة 3 (عيّنات صوتية + كل الإضافات): نافذة «الأصوات والشخصيات» لكل فيديو تكتب `library/<slug>/voices.json` بنفس عقد
+  `youtube_auto_dub/voice_profiles.py` (reference_mode/reference_path/tts_engine/voice/voice_conversion/style/gender/approved) وترفع عيّنة كل
+  متحدث إلى `library/<slug>/voices/<SPEAKER>.<ext>` (مسار نسبي يُحل من مجلد voices.json) أو تختار صوتاً من البنك العام `voices/` عبر
+  `../../voices/<اسم>`؛ الحفظ يرفض متحدثاً غير معتمَد لأن التشغيل يستعمل `require_approval=True` مع `--speaker-voices`. المتحدثون
+  المكتشفون تُقرأ من manifest آخر نقطة استئناف (`voice_profiles` أو `chunks[].speaker`)، والافتراضي بدون تمييز هو `SPEAKER_00` فقط
+  (إضافة متحدث غير مكتشف تُرفض من `load_voice_profiles`). نافذة الدبلجة فيها خيار «استخدام خريطة الأصوات» يمرّر
+  `speaker_voices_path=library/<slug>/voices.json`. تبويب «بنك الأصوات» (رفع/حذف في `voices/`). نافذة «نقاط الاستئناف» لكل فيديو:
+  جدول مراحل كل مقطع من manifest إصدار المسودة، استماع لكل مقطع (الأصل/قبل التحويل/بعد التحويل/النهائي من أصول الإصدار)، وحذف
+  الإصدار بكتابة اسمه. الاختبارات: `tests/test_studio_library.py` (8) بما فيها اختبار يحمّل `voices.json` مكتوباً بصيغة الصفحة عبر
+  `load_voice_profiles` فعلاً.

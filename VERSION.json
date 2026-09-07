@@ -1,0 +1,22 @@
+{
+  "name": "ProStudio Dubbing System",
+  "version": "2026.09.07-latest",
+  "source_repository": "dhiyaddineb-hue/prostudio",
+  "source_branch": "arena/01a03969-prostudio",
+  "source_commit": "b2d2f7f350f13d6da85d9b056ad9a8f764801d3f",
+  "portable_branch": "main",
+  "pages_path": "docs",
+  "voice_policy": {
+    "default": "VoxCPM + Seed-VC",
+    "explicit_only": "XTTS v2",
+    "removed": [
+      "Edge-TTS",
+      "Qwen"
+    ],
+    "references": [
+      "source",
+      "custom"
+    ]
+  },
+  "created_at": "2026-09-07T00:00:00Z"
+}

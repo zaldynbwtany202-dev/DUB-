@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>إرسال ملف — ProStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#07080c;--ink:#f4efe4;--muted:#b7b0a3;--line:rgba(244,239,228,.12);
+        --card:rgba(16,17,23,.78);--gold:#e8b86d;--ok:#7dcea0}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+       font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+       background-image:radial-gradient(circle at 12% 6%,rgba(232,184,109,.15),transparent 38%),
+                        radial-gradient(circle at 90% 88%,rgba(90,140,255,.10),transparent 34%)}
+  header{padding:24px 6vw 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+        background:linear-gradient(160deg,var(--gold),#9a6a2c);color:#1a1208;font-weight:700}
+  .brand strong{display:block}.brand small{color:var(--muted)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14.5px;margin-inline-start:16px}
+  nav a:hover,nav a.on{color:var(--gold)}
+  main{max-width:620px;margin:0 auto;padding:44px 6vw 60px;text-align:center}
+  h1{font-size:clamp(26px,4.6vw,38px);margin:0 0 12px}
+  .lede{color:var(--muted);margin:0 0 32px;font-size:16.5px;line-height:1.85}
+
+  .big{display:block;border:2px dashed var(--line);border-radius:22px;
+       padding:70px 30px;background:var(--card);text-decoration:none;color:var(--ink);
+       transition:.18s}
+  .big:hover{border-color:var(--gold);background:rgba(232,184,109,.08);transform:translateY(-2px)}
+  .icon{font-size:52px;line-height:1;margin-bottom:18px;opacity:.9}
+  .big strong{display:block;font-size:21px;margin-bottom:10px}
+  .big em{color:var(--muted);font-style:normal;font-size:15px;line-height:1.9;display:block}
+
+  .steps{margin:30px 0 0;text-align:start;background:var(--card);
+         border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+  .steps h2{font-size:16px;margin:0 0 14px}
+  .steps ol{margin:0;padding-inline-start:22px;line-height:2.15;color:var(--muted);font-size:15px}
+  .steps b{color:var(--ink)}
+
+  .note{border-inline-start:3px solid var(--ok);padding:14px 18px;margin-top:18px;
+        background:rgba(125,206,160,.08);border-radius:0 12px 12px 0;font-size:14.5px;
+        color:var(--muted);line-height:1.9;text-align:start}
+  .note b{color:var(--ok)}
+  footer{color:var(--muted);font-size:13.5px;text-align:center;padding:0 6vw 40px}
+  .drop{display:block;border:2px dashed var(--line);border-radius:22px;
+       padding:56px 30px;background:var(--card);cursor:pointer;transition:.18s;text-align:center}
+  .drop:hover,.drop.over{border-color:var(--gold);background:rgba(232,184,109,.08);transform:translateY(-2px)}
+  .drop strong{display:block;font-size:21px;margin-bottom:10px}
+  .drop em{color:var(--muted);font-style:normal;font-size:15px;line-height:1.9;display:block}
+  .status{margin:18px 0 0;font-size:15px;line-height:1.9;color:var(--muted);min-height:24px}
+  .status.ok{color:var(--ink)}
+  .status.err{color:#e88d8d}
+  .dl{display:inline-block;margin-top:12px;padding:12px 22px;border-radius:11px;
+      background:linear-gradient(160deg,var(--gold),#c98f3f);color:#1a1208;
+      text-decoration:none;font-weight:600;font-size:15px;border:none;
+      font-family:inherit;cursor:pointer}
+  .alt{display:inline-block;margin-top:12px;padding:12px 22px;border-radius:11px;
+       background:transparent;color:var(--ink);border:1px solid var(--line);
+       font-family:inherit;font-weight:600;font-size:15px;cursor:pointer}
+  .alt:hover{border-color:var(--gold);color:var(--gold)}
+  .choices{display:flex;gap:10px;flex-wrap:wrap}
+  .warn{color:#e8c97d}
+  .cmd{display:block;background:rgba(0,0,0,.45);border:1px solid var(--line);
+       border-radius:9px;padding:12px 14px;margin:10px 0;font-size:12.5px;
+       direction:ltr;text-align:left;line-height:1.8;color:var(--gold);
+       white-space:pre-wrap;word-break:break-all}
+  /* ── Token field ── */
+  .tok{margin:0 0 24px;text-align:start}
+  .tok .saved{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ok);
+              background:rgba(125,206,160,.08);border:1px solid rgba(125,206,160,.25);
+              border-radius:12px;padding:12px 18px}
+  .tok .saved .linkbtn{background:none;border:none;color:var(--gold);cursor:pointer;
+                       font:inherit;text-decoration:underline;padding:0;margin-inline-start:6px}
+  .tok .fld{display:flex;flex-direction:column;gap:6px}
+  .tok .fld span{font-size:14px;color:var(--muted)}
+  .tok .fld span a{color:var(--gold)}
+  .tok .fld input{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:10px;
+                  padding:12px 16px;color:var(--ink);font:inherit;font-size:15px;
+                  direction:ltr;text-align:start;outline:none;transition:.18s}
+  .tok .fld input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,109,.15)}
+  .tok .help{text-align:start;background:var(--card);border:1px solid var(--line);
+             border-radius:14px;padding:18px 22px;margin-top:10px;font-size:14.5px;
+             color:var(--muted);line-height:2}
+  .tok .help ol{margin:0;padding-inline-start:20px}
+  .tok .help a{color:var(--gold)}
+  .tok .help code{background:rgba(232,184,109,.12);padding:2px 6px;border-radius:5px;
+                  font-size:13px}
+  /* ── Progress bar ── */
+  .bar{height:6px;border-radius:3px;background:rgba(244,239,228,.1);margin:16px 0 0;overflow:hidden}
+  .bar #fill{height:100%;width:0;border-radius:3px;
+             background:linear-gradient(90deg,var(--gold),#c98f3f);
+             transition:width .3s ease}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark">PS</span>
+    <div><strong>ProStudio</strong><small>إرسال ملف</small></div>
+  </div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="preview.html">المعاينة</a>
+    <a href="voices.html">الأصوات</a>
+    <a href="studio.html">المصمّم</a>
+    <a href="send.html" class="on">إرسال</a>
+  </nav>
+</header>
+
+<main>
+  <h1>أرسل ملفك</h1>
+  <p class="lede">
+    فيديو أو صوت، أي حجم. اختر الملف ويُرفع مباشرة إلى GitHub —
+    <b>بلا حفظ وبلا إعادة رفع</b>.
+  </p>
+
+  <div class="tok" id="tokBox">
+    <div id="tokSaved" class="saved" hidden>
+      <span>✓ الرمز محفوظ في هذا المتصفح — لن تحتاج إدخاله مرة أخرى.</span>
+      <button type="button" id="tokForget" class="linkbtn">انسَ الرمز</button>
+    </div>
+    <label class="fld" id="tokField">
+      <span>رمز GitHub <a href="#" id="tokHelp">(كيف أحصل عليه؟)</a></span>
+      <input type="password" id="token" placeholder="ghp_..." autocomplete="off" />
+    </label>
+    <div id="tokHelpBody" class="help" hidden>
+      <ol>
+        <li>افتح <a id="tokLink" target="_blank" rel="noopener">صفحة إنشاء الرمز</a></li>
+        <li>في <b>Select scopes</b> ضع علامة على <code>public_repo</code> وحدها</li>
+        <li>انزل لأسفل واضغط <b>Generate token</b></li>
+        <li>انسخ السلسلة التي تبدأ بـ <code>ghp_</code> والصقها هنا</li>
+      </ol>
+      <p><b>يُحفظ في متصفحك وحده</b> — لا خادم لي يستقبله، ولا يُرسَل إلا إلى
+         GitHub نفسه. اضغط «انسَ الرمز» لمسحه، أو احذفه من إعدادات GitHub.</p>
+    </div>
+  </div>
+
+  <div class="drop" id="drop">
+    <div class="icon">⬆</div>
+    <strong>اختر ملفك</strong>
+    <em>
+      اسحبه هنا أو اضغط<br>
+      MP4 · MKV · MOV · MP3 · WAV · M4A
+    </em>
+    <input type="file" id="file" accept="audio/*,video/*" hidden />
+  </div>
+
+  <div class="bar" id="bar" hidden><div id="fill"></div></div>
+  <div id="status" class="status"></div>
+
+  <div class="note">
+    <b>هل هذا يُخرّب الملف؟</b> لا. الملفات الكبيرة تُقصّ على حدود البايتات
+    وتُلصَق عندي كما هي — بلا إعادة ترميز. مُختبَر: فيديو 74.5 م.ب رُفع
+    وأُعيد جمعه بنفس بصمة SHA‑256 تماماً.
+  </div>
+
+  <div class="note">
+    <b>لماذا يلزم رمز؟</b> نموذج الرفع في GitHub يرفض أي ملف فوق 25 م.ب،
+    وهذه صفحة ساكنة بلا خادم. واجهة GitHub البرمجية تقبل حتى 40 م.ب لكل قطعة،
+    لكنها تحتاج رمزاً — لا سبيل لتجاوز ذلك.
+  </div>
+</main>
+
+<footer>ProStudio · رخصة MIT</footer>
+
+<script type="module">
+// Everything runs in the browser: these pages are static, so the file is
+// committed straight to the repository through GitHub's own API.
+import {
+  commitFile, checkToken, partCount, formatMB, TOKEN_URL,
+  loadToken, saveToken, forgetToken,
+} from './github-upload.js';
+
+const $ = id => document.getElementById(id);
+const drop = $('drop'), input = $('file'), status = $('status');
+const bar = $('bar'), fill = $('fill'), token = $('token');
+
+$('tokLink').href = TOKEN_URL;
+$('tokHelp').onclick = e => {
+  e.preventDefault();
+  $('tokHelpBody').hidden = !$('tokHelpBody').hidden;
+};
+
+const say = (html, kind) => {
+  status.className = 'status ' + (kind || '');
+  status.innerHTML = html;
+};
+const progress = pct => {
+  bar.hidden = pct == null;
+  if (pct != null) fill.style.width = `${pct}%`;
+};
+
+// A remembered token collapses the field out of the way; the page should not
+// keep asking for something it already has.
+function showTokenState() {
+  const saved = !!loadToken();
+  $('tokSaved').hidden = !saved;
+  $('tokField').hidden = saved;
+  if (saved) $('tokHelpBody').hidden = true;
+}
+$('tokForget').onclick = () => {
+  forgetToken();
+  token.value = '';
+  showTokenState();
+  say('نُسي الرمز من هذا المتصفح.', 'ok');
+};
+showTokenState();
+
+let busy = false;
+
+async function handle(file) {
+  if (!file || busy) return;
+  const key = (token.value.trim() || loadToken()).trim();
+  if (!key) {
+    say('الصق رمز GitHub أولاً — اضغط «كيف أحصل عليه؟» بالأعلى.', 'err');
+    $('tokField').hidden = false;
+    token.focus();
+    return;
+  }
+
+  busy = true;
+  progress(null);
+  const parts = partCount(file.size);
+  say(`يتحقق من الرمز…`);
+
+  try {
+    // Verify before uploading: failing after several minutes of transfer is
+    // far worse than failing in one second. Only remember a token that has
+    // just proved it works, so a typo is never stored.
+    await checkToken(key);
+    if (saveToken(key)) { token.value = ''; showTokenState(); }
+
+    const t0 = Date.now();
+    say(`يرفع <b>${file.name}</b> — ${formatMB(file.size)} م.ب` +
+        (parts > 1 ? ` في ${parts} قطع…` : '…'));
+
+    const r = await commitFile(file, key, p => {
+      progress(p.percent);
+      if (p.phase === 'commit') { say('يثبّت الملف في المستودع…'); return; }
+      const secs = (Date.now() - t0) / 1000;
+      const done = (p.part - 1) / p.parts;
+      const left = done > 0.02 ? Math.round(secs / done - secs) : 0;
+      say(`يرفع… <b>${p.percent}%</b> — القطعة ${p.part} من ${p.parts}` +
+          (left > 3 ? ` · بقي ${left} ثانية تقريباً` : ''));
+    });
+
+    progress(100);
+    say(`<b>وصل الملف كاملاً</b> — ${formatMB(r.size)} م.ب` +
+        (r.parts > 1 ? ` في ${r.parts} قطع` : '') +
+        `.<br><a href="${r.url}" target="_blank" rel="noopener">شاهد الالتزام على GitHub ↗</a>` +
+        '<br>قل لي أن أبدأ الدبلجة.', 'ok');
+  } catch (err) {
+    progress(null);
+    // A rejected token is worth clearing: leaving a dead one saved would make
+    // every later upload fail with no obvious cause.
+    if (/الرمز غير صالح|صلاحية/.test(err.message)) {
+      forgetToken();
+      showTokenState();
+      $('tokField').hidden = false;
+    }
+    say('تعذّر الرفع: ' + err.message, 'err');
+  } finally {
+    busy = false;
+  }
+}
+
+drop.onclick = () => input.click();
+drop.ondragover = e => { e.preventDefault(); drop.classList.add('over'); };
+drop.ondragleave = () => drop.classList.remove('over');
+drop.ondrop = e => {
+  e.preventDefault();
+  drop.classList.remove('over');
+  handle(e.dataTransfer.files[0]);
+};
+input.onchange = () => handle(input.files[0]);
+</script>
+
+</body>
+</html>
