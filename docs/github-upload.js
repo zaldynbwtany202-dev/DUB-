@@ -28,9 +28,9 @@ const API = 'https://api.github.com';
 const PAGE_HOST = typeof location !== 'undefined' ? location.hostname : '';
 const PAGE_PATH = typeof location !== 'undefined' ? location.pathname.split('/').filter(Boolean) : [];
 const ON_GITHUB_PAGES = PAGE_HOST.endsWith('.github.io');
-export const OWNER = ON_GITHUB_PAGES ? PAGE_HOST.split('.')[0] : 'dhiyaddineb-hue';
-export const REPO = ON_GITHUB_PAGES ? (PAGE_PATH[0] || `${OWNER}.github.io`) : 'prostudio';
-export const BRANCH = 'main';
+export const OWNER = ON_GITHUB_PAGES ? PAGE_HOST.split('.')[0] : 'zaldynbwtany202-dev';
+export const REPO = ON_GITHUB_PAGES ? (PAGE_PATH[0] || `${OWNER}.github.io`) : 'DUB-';
+export const BRANCH = 'arena/01a07c69-dub';
 export const TOKEN_URL =
   'https://github.com/settings/tokens/new?scopes=public_repo&description=ProStudio%20upload';
 
@@ -145,6 +145,11 @@ export async function checkToken(token) {
  * String.fromCharCode(...bytes) throws on anything large — an 18 MB part is
  * millions of arguments — so the conversion runs in fixed-size chunks.
  */
+async function sha256Hex(bytes) {
+  const digest = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 async function toBase64(blob) {
   const bytes = new Uint8Array(await blob.arrayBuffer());
   const CHUNK = 0x8000;
@@ -168,6 +173,7 @@ export async function commitFile(file, token, onProgress) {
   // Blobs first — the slow part. Committing only at the end means the branch
   // never shows half a file.
   const blobs = [];
+  const partHashes = [];
   for (let i = 1; i <= total; i++) {
     const start = (i - 1) * PART_BYTES;
     const slice = file.slice(start, Math.min(start + PART_BYTES, file.size));
@@ -177,12 +183,33 @@ export async function commitFile(file, token, onProgress) {
       parts: total,
       percent: Math.round(((i - 1) / total) * 100),
     });
+    const bytes = new Uint8Array(await slice.arrayBuffer());
+    partHashes.push(await sha256Hex(bytes));
     const { sha } = await api(`/repos/${OWNER}/${REPO}/git/blobs`, token, {
       method: 'POST',
       body: JSON.stringify({ encoding: 'base64', content: await toBase64(slice) }),
     });
     blobs.push({
       path: `inbox/${total === 1 ? name : partName(name, i, total)}`,
+      mode: '100644',
+      type: 'blob',
+      sha,
+    });
+  }
+  if (total > 1) {
+    const manifest = JSON.stringify({
+      original: name,
+      size: file.size,
+      parts: total,
+      part_bytes: PART_BYTES,
+      sha256: partHashes,
+    });
+    const { sha } = await api(`/repos/${OWNER}/${REPO}/git/blobs`, token, {
+      method: 'POST',
+      body: JSON.stringify({ encoding: 'utf-8', content: manifest }),
+    });
+    blobs.push({
+      path: `inbox/${name}.parts.json`,
       mode: '100644',
       type: 'blob',
       sha,

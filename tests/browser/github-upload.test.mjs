@@ -56,8 +56,8 @@ for (const bad of ['', '.', '..', '...', '.hidden', '   ']) {
   ok(threw, `refuses ${JSON.stringify(bad)}`);
 }
 
-ok(BRANCH === 'main', 'commits land on the portable main branch');
-ok(OWNER === 'dhiyaddineb-hue' && REPO === 'prostudio', 'points at the right repo');
+ok(BRANCH === 'arena/01a07c69-dub', 'commits land on the session branch');
+ok(OWNER === 'zaldynbwtany202-dev' && REPO === 'DUB-', 'points at the DUB- repo');
 ok(formatMB(74.5 * MB) === '74.5', 'formats sizes for display');
 
 // ── remembering the token ───────────────────────────────────────────────
