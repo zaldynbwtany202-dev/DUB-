@@ -7,8 +7,9 @@ languages:
   translation_style: conversational
   preserve_meaning: true
 tts:
-  backend: voxcpm_seedvc
-  fallback_backend: edge
+  backend: agent
+  fallback_backend: none
+  note: "Speech is synthesized by the Arena agent (generate_speech). The repo only syncs and muxes."
   seed_vc_space: phuoc2005/seed-vc
   diffusion_steps: 40
   voice_reference_policy: speaker_then_global
