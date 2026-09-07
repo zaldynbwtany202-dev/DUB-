@@ -1,747 +1,97 @@
-name: Run YouTube Auto Dub
+name: Dub a video (GitHub is the runner)
 
-# The studio page maps a run to its video through this title (the runs API does
-# not expose dispatch inputs).
-run-name: "${{ inputs.task }} · ${{ inputs.source_path || inputs.youtube_url || inputs.project }} · run ${{ github.run_number }}"
-
-permissions:
-  contents: write
-
-concurrency:
-  group: prostudio-dub-${{ github.ref }}
-  cancel-in-progress: false
-
-# Two jobs, pick one from the "Run workflow" dropdown:
-#   clone  — re-record a project's lines in the original actor's voice (F5-TTS)
-#   dub    — dub a YouTube URL from scratch
-#
-# Cloning needs model weights from HuggingFace. That host is blocked in the dev
-# sandbox but reachable from GitHub's runners, which is the whole reason this
-# workflow exists.
+# Trigger from the GitHub UI: Actions → "Dub a video" → Run workflow.
+# Paste a direct video URL, pick languages, and download the dubbed
+# result from the run's Artifacts. No local install needed at all.
 
 on:
   workflow_dispatch:
     inputs:
-      task:
-        description: "What to run"
+      video_url:
+        description: "Direct URL of the source video (mp4)"
         required: true
-        default: "dub"
-        type: choice
-        options:
-          - clone
-          - dub
-      project:
-        description: "clone: project folder under projects/ (create it first; see README)"
-        required: false
-        default: ""
-        type: string
-      ref_seconds:
-        description: "clone: seconds of the actor to clone from (3-12)"
-        required: false
-        default: "8"
-        type: string
-      max_cues:
-        description: "clone: 0 = all lines, or e.g. 3 for a quick voice preview"
-        required: false
-        default: "0"
-        type: string
-      youtube_url:
-        description: "dub: video URL (leave empty when using source_path)"
-        required: false
-        default: ""
-        type: string
-      source_path:
-        description: "dub: path to a video already in this repository"
-        required: false
-        default: "library/prostudio-arabic-demo/source.mp4"
-        type: string
-      source_lang:
-        description: "dub: original audio language"
-        required: false
-        default: "ar"
-        type: string
-      tts_engine:
-        description: "dub: production speech engine; VoxCPM is default and XTTS v2 is explicit-only"
-        required: false
-        default: "voxcpm"
-        type: choice
-        options: [voxcpm, xtts]
-      allow_xtts:
-        description: "explicit authorization to use XTTS v2; keep false unless the user requested XTTS"
-        required: false
-        default: false
-        type: boolean
-      target_lang:
-        description: "dub: target language"
-        required: false
+      src:
+        description: "Source language code (empty = auto-detect)"
         default: "en"
-        type: string
-      gender:
-        description: "dub: voice gender"
-        required: false
-        default: "male"
+      tgt:
+        description: "Target language code"
+        default: "ar"
+      engine:
+        description: "TTS engine"
         type: choice
-        options: [male, female]
-      model:
-        description: "dub: Whisper model"
-        required: false
-        default: "medium"
+        options: [xtts, piper, chatterbox, f5, minimax, elevenlabs]
+        default: xtts
+      whisper_model:
+        description: "Whisper model size (tiny is fastest)"
         type: choice
         options: [tiny, base, small, medium]
-      bg_music:
-        description: "dub: keep background music and effects when separation is reliable"
-        required: false
-        default: false
-        type: boolean
-      diarize:
-        description: "dub: identify speakers automatically when HF_TOKEN is configured"
-        required: false
-        default: false
-        type: boolean
-      separate_sources:
-        description: "dub: neural separation of dialogue from music/effects"
-        required: false
-        default: true
-        type: boolean
-      no_vad:
-        description: "dub: disable VAD only for continuous speech that VAD wrongly drops"
-        required: false
-        default: false
-        type: boolean
-      seed_vc:
-        description: "apply Seed-VC independently to every spoken smart chunk"
-        required: false
-        default: true
-        type: boolean
-      profile:
-        description: "dub: pipeline profile"
-        required: false
-        default: "safe"
-        type: choice
-        options: [safe, high_quality_single, multi_speaker_cinematic, seed_quota_voxcpm, experiment]
-      quality:
-        description: "dub: quality policy"
-        required: false
-        default: "balanced"
-        type: choice
-        options: [safe, balanced, strict]
-      chunk_seconds:
-        description: "dub: speech-aware hard maximum per resumable chunk (max 10)"
-        required: false
-        default: "10"
-        type: string
-      speaker_voices_path:
-        description: "optional JSON file assigning every option independently per detected character"
+        default: small
+      translations_file:
+        description: "Optional: repo-relative path to a human translations JSON (bypasses machine translation)"
         required: false
         default: ""
-        type: string
-      validate_content:
-        description: "re-transcribe each generated phrase and reject missing speech"
-        required: false
-        default: true
-        type: boolean
-      analysis_only:
-        description: "analyze speech and speakers, save checkpoints, then stop before translation and voice generation"
-        required: false
-        default: false
-        type: boolean
+      emotion:
+        description: "Emotional colour for the dubbed voice"
+        type: choice
+        options: [neutral, happy, sad, excited, angry, fearful]
+        default: neutral
+
 jobs:
-  clone:
-    if: inputs.task == 'clone'
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-    steps:
-      - name: Check out this branch
-        uses: actions/checkout@v4
-
-      - name: Require an existing project folder
-        env:
-          PROJECT: ${{ inputs.project }}
-        run: |
-          set -euo pipefail
-          if [ -z "$PROJECT" ]; then
-            echo "clone needs the 'project' input: a folder under projects/ with project.json" >&2
-            exit 1
-          fi
-          test -f "projects/$PROJECT/project.json" || {
-            echo "projects/$PROJECT/project.json is missing; create the project before cloning" >&2
-            exit 1
-          }
-
-      - name: Ensure FFmpeg is available
-        timeout-minutes: 10
-        run: |
-          set -euo pipefail
-          if command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null; then
-            ffmpeg -version | head -1
-            exit 0
-          fi
-          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=20 update
-          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=20 install -y ffmpeg
-          ffmpeg -version | head -1
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
-
-      # The weights are the slow part of the run; keep them between runs.
-      - name: Cache model weights
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-f5tts-v1
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          # One resolve, so pip picks a consistent set. coqui-tts (XTTS-v2)
-          # needs transformers >=4.57 but breaks on 5.x, which removed
-          # isin_mps_friendly — installing them separately picks 5.x and fails.
-          pip install "transformers>=4.57,<5" coqui-tts f5-tts
-
-      - name: Confirm the weights downloaded
-        env:
-          COQUI_TOS_AGREED: "1"
-        run: |
-          python - <<'PY'
-          from youtube_auto_dub.xtts_clone import available, MODEL_NAME
-          if available():
-              print(f"XTTS-v2 ready ({MODEL_NAME})")
-          else:
-              from f5_tts.api import F5TTS
-              F5TTS()
-              print("XTTS unavailable; F5-TTS ready")
-          PY
-
-      - name: Clone each line in the original actor's voice
-        env:
-          PROJECT: ${{ inputs.project }}
-          REF_SECONDS: ${{ inputs.ref_seconds }}
-          MAX_CUES: ${{ inputs.max_cues }}
-          COQUI_TOS_AGREED: "1"
-        run: python scripts/clone_project.py
-
-      # Upload the voices before rendering. Cloning costs about an hour, and a
-      # later failure used to throw all of it away.
-      - name: Upload the cloned voices
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cloned-voices-${{ inputs.project }}
-          path: |
-            projects/${{ inputs.project }}/voices/*.wav
-            projects/${{ inputs.project }}/work/ref_*.wav
-          if-no-files-found: warn
-          retention-days: 30
-
-      - name: Render the dub
-        if: inputs.max_cues == '0'
-        env:
-          PROJECT: ${{ inputs.project }}
-        run: python scripts/build_phantom_dub.py
-
-      - name: Upload the finished dub
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cloned-dub-${{ inputs.project }}
-          path: |
-            projects/${{ inputs.project }}/output/*.mp4
-            projects/${{ inputs.project }}/output/*.srt
-          if-no-files-found: warn
-          retention-days: 30
-
   dub:
-    if: inputs.task == 'dub'
     runs-on: ubuntu-latest
-    timeout-minutes: 360
+    timeout-minutes: 120
     steps:
-      - name: Check out this branch
-        uses: actions/checkout@v4
-
-      - name: Ensure FFmpeg is available
-        timeout-minutes: 10
-        run: |
-          set -euo pipefail
-          if command -v ffmpeg >/dev/null && command -v ffprobe >/dev/null; then
-            ffmpeg -version | head -1
-            exit 0
-          fi
-          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=20 update
-          sudo apt-get -o Acquire::Retries=3 -o Acquire::http::Timeout=20 install -y ffmpeg
-          ffmpeg -version | head -1
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: pip
 
-      - name: Restore dubbing Python environment
-        id: dub_venv
-        uses: actions/cache/restore@v4
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Install dub-forge (CPU torch first, keeps the runner small)
+        run: |
+          # torch AND torchaudio must both come from the CPU index — otherwise
+          # pip grabs the CUDA build of torchaudio and XTTS crashes with
+          # "libcudart.so.13: cannot open shared object file".
+          pip install "torch<2.6" "torchaudio<2.6" --index-url https://download.pytorch.org/whl/cpu
+          pip install -e '.[whisper,demucs,google]'
+          case "${{ inputs.engine }}" in
+            xtts)       pip install -e '.[xtts]' ;;
+            piper)      pip install -e '.[piper]' ;;
+            chatterbox) pip install -e '.[chatterbox]' ;;
+            f5)         pip install -e '.[f5]' ;;
+            minimax)    pip install fal-client ;;
+          esac
+          pip install fal-client
+
+      - name: Download source video
+        run: curl -fL "${{ inputs.video_url }}" -o input.mp4
+
+      - name: Dub
+        env:
+          FAL_KEY: ${{ secrets.FAL_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # XTTS v2 ships under the Coqui Public Model License; this env var
+          # records acceptance so the first run does not block on a prompt.
+          COQUI_TOS_AGREED: "1"
+        run: |
+          EXTRA=""
+          if [ -n "${{ inputs.translations_file }}" ]; then
+            EXTRA="--translate-backend file --translations-file ${{ inputs.translations_file }}"
+          fi
+          dub run input.mp4 \
+            --src "${{ inputs.src }}" \
+            --tgt "${{ inputs.tgt }}" \
+            --engine "${{ inputs.engine }}" \
+            --whisper-model "${{ inputs.whisper_model }}" \
+            --emotion "${{ inputs.emotion }}" \
+            $EXTRA \
+            --out dubbed.mp4
+
+      - uses: actions/upload-artifact@v4
         with:
-          path: .venv
-          key: dub-venv-${{ runner.os }}-py311-${{ hashFiles('requirements.txt') }}-v1
-
-      - name: Install dependencies
-        run: |
-          set -euo pipefail
-          if [ ! -x .venv/bin/python ]; then
-            python -m venv .venv
-            . .venv/bin/activate
-            python -m pip install --upgrade pip
-            pip install -U yt-dlp
-            pip install -r requirements.txt
-            pip install faster-whisper gradio_client
-          else
-            . .venv/bin/activate
-            python - <<'PY'
-          import faster_whisper, gradio_client
-          print("Cached dubbing environment is ready")
-          PY
-          fi
-          echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
-
-      - name: Save dubbing Python environment immediately
-        if: steps.dub_venv.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: .venv
-          key: dub-venv-${{ runner.os }}-py311-${{ hashFiles('requirements.txt') }}-v1
-
-      # Download the selected Whisper weights on the GitHub runner. The cache
-      # makes later runs fast while keeping all model files inside GitHub.
-      - name: Cache Whisper model weights
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: hf-faster-whisper-${{ inputs.model }}-v1
-
-      - name: Download and verify Whisper model
-        env:
-          WHISPER_MODEL: ${{ inputs.model }}
-        run: |
-          python - <<'PY'
-          import os
-          from faster_whisper import WhisperModel
-          model_name = os.environ["WHISPER_MODEL"]
-          WhisperModel(model_name, device="cpu", compute_type="int8")
-          print(f"Whisper model ready: {model_name}")
-          PY
-
-      - name: Enforce production voice policy
-        env:
-          TTS_ENGINE: ${{ inputs.tts_engine }}
-          ALLOW_XTTS: ${{ inputs.allow_xtts }}
-          SPEAKER_VOICES: ${{ inputs.speaker_voices_path }}
-        run: |
-          python - <<'PY'
-          import json, os
-          allowed = {"voxcpm", "xtts"}
-          engines = {os.environ["TTS_ENGINE"]}
-          path = os.environ.get("SPEAKER_VOICES", "").strip()
-          if path:
-              document = json.load(open(path, encoding="utf-8"))
-              profiles = document.get("speakers", document)
-              engines.update(str(profile.get("tts_engine", "voxcpm")) for profile in profiles.values())
-          unsupported = sorted(engines - allowed)
-          if unsupported:
-              raise SystemExit("Unsupported production TTS engine(s): " + ", ".join(unsupported))
-          if "xtts" in engines and os.environ.get("ALLOW_XTTS") != "true":
-              raise SystemExit("XTTS v2 is locked. Set allow_xtts=true only after an explicit user request.")
-          print("Production voice policy accepted: " + ", ".join(sorted(engines)))
-          PY
-
-      - name: Cache XTTS-v2 model
-        if: inputs.allow_xtts == true
-        uses: actions/cache@v4
-        with:
-          path: ~/.local/share/tts
-          key: coqui-xtts-v2-v1
-
-      - name: Download and verify XTTS-v2
-        if: inputs.allow_xtts == true
-        run: |
-          pip install torchaudio "transformers>=4.57,<5" "coqui-tts[codec]"
-          COQUI_TOS_AGREED=1 python - <<'PY'
-          from TTS.api import TTS
-          TTS("tts_models/multilingual/multi-dataset/xtts_v2")
-          print("XTTS-v2 ready")
-          PY
-
-      - name: Install optional speaker diarization
-        if: inputs.diarize == true
-        run: python -m pip install pyannote.audio
-      - name: Install optional neural source separation
-        if: inputs.separate_sources == true
-        run: python -m pip install demucs
-      - name: Write YouTube cookies
-        if: inputs.youtube_url != ''
-        env:
-          YT_COOKIES: ${{ secrets.YT_COOKIES }}
-        run: |
-          if [ -n "${YT_COOKIES}" ]; then
-            printf '%s\n' "$YT_COOKIES" > cookies.txt
-            echo "cookies.txt ready"
-          else
-            echo "No YT_COOKIES secret set; continuing without it"
-          fi
-
-      - name: Preflight environment and credentials
-        env:
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          YT_COOKIES: ${{ secrets.YT_COOKIES }}
-          TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
-          TRANSLATE_PROVIDER: ${{ vars.TRANSLATE_PROVIDER }}
-          TRANSLATE_API_BASE: ${{ vars.TRANSLATE_API_BASE }}
-          TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL }}
-          TRANSLATE_STYLE: ${{ vars.TRANSLATE_STYLE }}
-          TRANSLATE_GLOSSARY: ${{ vars.TRANSLATE_GLOSSARY }}
-          TRANSLATE_FALLBACK: ${{ vars.TRANSLATE_FALLBACK }}
-          TRANSLATE_EXTRA_HEADERS: ${{ vars.TRANSLATE_EXTRA_HEADERS }}
-          TRANSLATE_MAX_TOKENS: ${{ vars.TRANSLATE_MAX_TOKENS }}
-          TRANSLATE_JSON_MODE: ${{ vars.TRANSLATE_JSON_MODE }}
-        run: |
-          set -euo pipefail
-          mkdir -p output
-          ffmpeg -version >/dev/null
-          # Same-language re-voicing needs no translation provider.
-          if [ "${{ inputs.source_lang }}" = "${{ inputs.target_lang }}" ] && [ "${{ inputs.source_lang }}" != "auto" ]; then
-            python - <<'PY'
-          import json
-          json.dump({"ok": True, "engine": "same_language_passthrough", "skipped": True}, open("output/translation-preflight.json", "w", encoding="utf-8"), ensure_ascii=False, indent=2)
-          PY
-          else
-            python -m youtube_auto_dub.llm_translate --preflight \
-              --source-lang "${{ inputs.source_lang }}" --target-lang "${{ inputs.target_lang }}" \
-              --report output/translation-preflight.json
-          fi
-          python - <<'PY'
-          import json, os, shutil
-          translation = json.load(open("output/translation-preflight.json", encoding="utf-8"))
-          report = {
-            "ffmpeg": bool(shutil.which("ffmpeg")),
-            "ffprobe": bool(shutil.which("ffprobe")),
-            "source_lang": "${{ inputs.source_lang }}",
-            "target_lang": "${{ inputs.target_lang }}",
-            "tts_engine": "${{ inputs.tts_engine }}",
-            "seed_vc_requested": "${{ inputs.seed_vc }}" == "true",
-            "diarization_requested": "${{ inputs.diarize }}" == "true",
-            "demucs_requested": "${{ inputs.separate_sources }}" == "true",
-            "seed_vc_script": os.path.exists("scripts/seed_vc_enhance.py"),
-            "hf_token_present": bool(os.environ.get("HF_TOKEN")),
-            "youtube_cookies_present": bool(os.environ.get("YT_COOKIES")),
-            "translation": translation,
-            "lip_sync": "disabled",
-            "status": "ready_with_warnings",
-          }
-          if report["diarization_requested"] and not report["hf_token_present"]:
-            report["status"] = "blocked_missing_hf_token"
-            report["error"] = "HF_TOKEN is required when diarize=true"
-          if report["seed_vc_requested"] and not report["seed_vc_script"]:
-            report["status"] = "blocked_missing_seed_vc"
-            report["error"] = "Seed-VC integration script is missing"
-          with open("output/preflight.json", "w", encoding="utf-8") as f:
-            json.dump(report, f, ensure_ascii=False, indent=2)
-          print(json.dumps(report, ensure_ascii=False))
-          if report["status"].startswith("blocked_"):
-            raise SystemExit(report["error"])
-          PY
-
-      - name: Upload preflight diagnostic
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: preflight-${{ github.run_id }}
-          path: output/preflight.json
-          if-no-files-found: warn
-          retention-days: 14
-
-      - name: Reassemble split source parts
-        if: inputs.source_path != ''
-        run: |
-          set -euo pipefail
-          sp="${{ inputs.source_path }}"
-          if [[ "$sp" == *.part0 ]]; then
-            # legacy two-part layout: name.part0 + name.part1 -> name.mp4
-            base="${sp%.part0}"
-            full="${base}.mp4"
-            if [ -f "${base}.part0" ] && [ -f "${base}.part1" ]; then
-              cat "${base}.part0" "${base}.part1" > "$full"
-              echo "Reassembled ${base}.part0 + ${base}.part1 -> $full ($(wc -c < "$full") bytes)"
-              echo "REASSEMBLED_SOURCE=${full}" >> "$GITHUB_ENV"
-            else
-              echo "parts missing; continuing with $sp" >&2
-            fi
-          elif [ ! -f "$sp" ]; then
-            # studio layout: name.mp4.part01of03 ... written by docs/studio.js
-            parts=$(ls "${sp}".part*of* 2>/dev/null | sort || true)
-            if [ -n "$parts" ]; then
-              expected=$(echo "$parts" | head -1 | sed -E 's/.*\.part[0-9]+of([0-9]+)$/\1/')
-              count=$(echo "$parts" | wc -l | tr -d ' ')
-              [ "$count" = "$expected" ] || { echo "expected $expected parts for $sp, found $count" >&2; exit 1; }
-              cat $parts > "$sp"
-              echo "Reassembled $count parts -> $sp ($(wc -c < "$sp") bytes)"
-            else
-              echo "source not found: $sp" >&2
-              exit 1
-            fi
-          fi
-
-      - name: Prepare resumable smart-chunk project
-        id: smart_project
-        run: |
-          set -euo pipefail
-          source="${REASSEMBLED_SOURCE:-}"
-          if [ -z "$source" ]; then source="${{ inputs.youtube_url }}"; fi
-          if [ -z "$source" ]; then source="${{ inputs.source_path }}"; fi
-          test -n "$source"
-          if [[ "$source" == http://* || "$source" == https://* ]]; then
-            digest=$(printf '%s' "$source" | sha256sum | cut -c1-12)
-            base="youtube"
-          else
-            test -f "$source"
-            digest=$(sha256sum "$source" | cut -c1-12)
-            if [[ "$source" == library/*/* ]]; then
-              # one folder per video: the folder name is the video's identity
-              base=$(printf '%s' "$source" | cut -d/ -f2)
-            else
-              base=$(basename "$source")
-              base="${base%.*}"
-            fi
-            base=$(printf '%s' "$base" | tr -cs '[:alnum:]._-' '-' | sed 's/^-//;s/-$//' | cut -c1-40)
-          fi
-          config=$(printf '%s' "${{ inputs.source_lang }}|${{ inputs.target_lang }}|${{ inputs.tts_engine }}|${{ inputs.allow_xtts }}|${{ inputs.gender }}|${{ inputs.model }}|${{ inputs.separate_sources }}|${{ inputs.bg_music }}|${{ inputs.diarize }}|${{ inputs.no_vad }}|${{ inputs.seed_vc }}|${{ inputs.chunk_seconds }}" | sha256sum | cut -c1-8)
-          project_id="${base}-${digest}-${{ inputs.target_lang }}-${config}"
-          echo "source=$source" >> "$GITHUB_OUTPUT"
-          echo "id=$project_id" >> "$GITHUB_OUTPUT"
-          echo "release_tag=checkpoint-$project_id" >> "$GITHUB_OUTPUT"
-          echo "Smart project: $project_id"
-
-      - name: Run resumable speech-aware smart chunks
-        id: smart_dub
-        env:
-          GH_TOKEN: ${{ github.token }}
-          YAD_OUTPUT_DIR: output
-          YAD_VOXCPM_BACKEND: ${{ vars.VOXCPM_BACKEND || 'space' }}
-          YAD_VOXCPM_SPACE: ${{ vars.VOXCPM_SPACE || 'openbmb/VoxCPM-Demo' }}
-          YAD_VOXCPM_MODEL: ${{ vars.VOXCPM_MODEL || 'openbmb/VoxCPM2' }}
-          YAD_VOXCPM_ATTEMPTS: "1"
-          YAD_TEMP_DIR: temp
-          YAD_CACHE_DIR: .cache
-          YAD_COOKIES_FILE: cookies.txt
-          HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          TRANSLATE_API_KEY: ${{ secrets.TRANSLATE_API_KEY }}
-          TRANSLATE_PROVIDER: ${{ vars.TRANSLATE_PROVIDER }}
-          TRANSLATE_API_BASE: ${{ vars.TRANSLATE_API_BASE }}
-          TRANSLATE_MODEL: ${{ vars.TRANSLATE_MODEL }}
-          TRANSLATE_STYLE: ${{ vars.TRANSLATE_STYLE }}
-          TRANSLATE_GLOSSARY: ${{ vars.TRANSLATE_GLOSSARY }}
-          TRANSLATE_FALLBACK: ${{ vars.TRANSLATE_FALLBACK }}
-          TRANSLATE_EXTRA_HEADERS: ${{ vars.TRANSLATE_EXTRA_HEADERS }}
-          TRANSLATE_MAX_TOKENS: ${{ vars.TRANSLATE_MAX_TOKENS }}
-          TRANSLATE_JSON_MODE: ${{ vars.TRANSLATE_JSON_MODE }}
-        run: |
-          set -euo pipefail
-          chunk_max="${{ inputs.chunk_seconds }}"
-          chunk_min=$(python - <<PY
-          value=float("$chunk_max")
-          assert 1.0 <= value <= 10.0, "chunk_seconds must be between 1 and 10"
-          print(max(1.0, min(3.5, value * 0.35)))
-          PY
-          )
-          echo "Speech-aware chunk target: ${chunk_max}s; minimum: ${chunk_min}s"
-          extra=()
-          if [ "${{ inputs.separate_sources }}" = "true" ]; then extra+=(--separate-sources); fi
-          if [ "${{ inputs.bg_music }}" = "true" ]; then extra+=(--preserve-background); fi
-          if [ "${{ inputs.diarize }}" = "true" ]; then extra+=(--diarize); fi
-          if [ "${{ inputs.no_vad }}" = "true" ]; then extra+=(--no-vad); fi
-          if [ "${{ inputs.seed_vc }}" = "true" ]; then extra+=(--seed-vc); fi
-          if [ "${{ inputs.validate_content }}" = "true" ]; then extra+=(--validate-content); fi
-          if [ "${{ inputs.analysis_only }}" = "true" ]; then extra+=(--analysis-only); fi
-          if [ "${{ inputs.allow_xtts }}" = "true" ]; then extra+=(--allow-xtts); fi
-          if [ "${{ inputs.profile }}" = "seed_quota_voxcpm" ]; then extra+=(--seed-quota-policy voxcpm); fi
-          profile_args=()
-          if [ -n "${{ inputs.speaker_voices_path }}" ]; then
-            test -f "${{ inputs.speaker_voices_path }}" || { echo "speaker voice profile file is missing" >&2; exit 1; }
-            profile_args+=(--speaker-voices "${{ inputs.speaker_voices_path }}")
-          fi
-          run_smart_dub() {
-            python scripts/resumable_smart_dub.py \
-              --source "${{ steps.smart_project.outputs.source }}" \
-              --project-id "${{ steps.smart_project.outputs.id }}" \
-              --release-tag "${{ steps.smart_project.outputs.release_tag }}" \
-              --checkpoint-root checkpoints \
-              --output-dir output \
-              --source-lang "${{ inputs.source_lang }}" \
-              --target-lang "${{ inputs.target_lang }}" \
-              --tts-engine "${{ inputs.tts_engine }}" \
-              --gender "${{ inputs.gender }}" \
-              --model "${{ inputs.model }}" \
-              --max-seconds "$chunk_max" \
-              --target-seconds "$chunk_max" \
-              --min-seconds "$chunk_min" \
-              "${profile_args[@]}" "${extra[@]}"
-          }
-          last_status=1
-          for pass in 1 2; do
-            echo "Smart dubbing pass $pass/2"
-            if run_smart_dub; then
-              last_status=0
-              break
-            else
-              last_status=$?
-            fi
-            if [ "$pass" -lt 2 ]; then
-              echo "::warning::A resumable chunk failed; retrying once on the same runner with preserved checkpoints"
-              sleep 15
-            fi
-          done
-          if [ "$last_status" -ne 0 ]; then
-            exit "$last_status"
-          fi
-
-      - name: Confirm complete resumable delivery
-        if: inputs.analysis_only == false
-        run: |
-          set -euo pipefail
-          test -s output/final-dub.mp4
-          test -s output/segments-report.json
-          test -s output/progress-report.json
-          test -s output/checkpoint-manifest.json
-          python - <<'PY'
-          import json
-          p=json.load(open("output/progress-report.json",encoding="utf-8"))
-          assert p["state"] == "completed_waiting_for_cleanup_approval", p
-          assert p["by_status"].get("completed",0) == p["total"], p
-          assert p["cleanup_authorized"] is False, p
-          print(json.dumps(p,ensure_ascii=False,indent=2))
-          PY
-
-      - name: Validate final target language
-        if: inputs.analysis_only == false
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          set -euo pipefail
-          python scripts/validate_dub_language.py \
-            --video output/final-dub.mp4 \
-            --expected "${{ inputs.target_lang }}" \
-            --model "${{ inputs.model }}" \
-            --manifest output/checkpoint-manifest.json \
-            --report output/language-integrity.json
-
-      - name: Enforce professional quality gate
-        if: inputs.analysis_only == false
-        env:
-          SOURCE_PATH: ${{ inputs.source_path }}
-        run: |
-          set -euo pipefail
-          quality_source="$SOURCE_PATH"
-          if [ -s output/source-path.txt ]; then quality_source=$(cat output/source-path.txt); fi
-          if [ ! -f "$quality_source" ]; then
-            quality_source=$(find .cache temp -type f \( -name '*.mp4' -o -name '*.mkv' -o -name '*.webm' -o -name '*.wav' \) | head -1)
-          fi
-          test -n "$quality_source" && test -f "$quality_source"
-          python scripts/validate_dub_quality.py \
-            --source "$quality_source" \
-            --video output/final-dub.mp4 \
-            --segments output/segments-report.json \
-            --language-report output/language-integrity.json \
-            --policy "${{ inputs.quality }}" \
-            --report output/quality-report.json
-
-      - name: Publish project, report, and Pages index
-        if: success() && inputs.analysis_only == false
-        env:
-          SOURCE_PATH: ${{ inputs.source_path }}
-          RUN_ID: ${{ github.run_id }}
-        run: |
-          set -euo pipefail
-          cp output/final-dub.mp4 /tmp/final-dub.mp4
-          cp output/quality-report.json /tmp/quality-report.json
-          cp output/segments-report.json /tmp/segments-report.json
-          cp output/language-integrity.json /tmp/language-integrity.json
-          cp output/source-path.txt /tmp/source-path.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for attempt in 1 2 3; do
-            git fetch origin "${{ github.ref_name }}"
-            git reset --hard "origin/${{ github.ref_name }}"
-            mkdir -p output
-            cp /tmp/final-dub.mp4 output/final-dub.mp4
-            cp /tmp/quality-report.json output/quality-report.json
-            cp /tmp/segments-report.json output/segments-report.json
-            cp /tmp/language-integrity.json output/language-integrity.json
-            source_for_publish="${SOURCE_PATH:-$(cat /tmp/source-path.txt)}"
-            # One folder per video: dubs/<slug>/final-dub-<run>.mp4 (+ reports, meta.json);
-            # the studio page (docs/index.html) lists library/ and dubs/ straight from the branch.
-            python scripts/publish_to_library.py --video output/final-dub.mp4 --source "$source_for_publish" \
-              --run-id "$RUN_ID" --output-dir output \
-              --setting "source_lang=${{ inputs.source_lang }}" --setting "target_lang=${{ inputs.target_lang }}" \
-              --setting "tts_engine=${{ inputs.tts_engine }}" --setting "seed_vc=${{ inputs.seed_vc }}" \
-              --setting "profile=${{ inputs.profile }}" --setting "quality=${{ inputs.quality }}" \
-              --setting "model=${{ inputs.model }}" --setting "bg_music=${{ inputs.bg_music }}" \
-              --setting "chunk_seconds=${{ inputs.chunk_seconds }}"
-            git add -f library dubs
-            git diff --cached --quiet || git commit -m "Publish verified dub $RUN_ID"
-            if git push origin HEAD:"${{ github.ref_name }}"; then exit 0; fi
-            echo "Concurrent update detected; rebuilding publication from the latest branch ($attempt/3)"
-            sleep $((attempt * 3))
-          done
-          echo "The verified artifact is safe, but Pages publication could not be updated after 3 attempts" >&2
-          exit 1
-
-      - name: Conditional lip synchronization
-        if: false
-        env:
-          WAV2LIP_CHECKPOINT: ${{ secrets.WAV2LIP_CHECKPOINT }}
-          WAV2LIP_CHECKPOINT_URL: ${{ secrets.WAV2LIP_CHECKPOINT_URL }}
-        run: |
-          set -euo pipefail
-          if [ -n "$WAV2LIP_CHECKPOINT_URL" ]; then
-            echo "Wav2Lip checkpoint download remains disabled until a verified checksum is configured in code" >&2
-            exit 1
-            WAV2LIP_CHECKPOINT=/tmp/wav2lip.pth
-          fi
-          if [ -z "$WAV2LIP_CHECKPOINT" ]; then
-            echo "WAV2LIP_CHECKPOINT is not configured; preserving the validated Seed-VC audio dub."
-            printf '%s\n' '{"requested":true,"applied":false,"reason":"missing_verified_checkpoint","quality":"unvalidated"}' > output/lip-sync-report.json
-            exit 0
-          fi
-          if [ ! -f "$WAV2LIP_CHECKPOINT" ]; then
-            echo "WAV2LIP_CHECKPOINT does not exist on this runner; preserving the validated Seed-VC audio dub."
-            printf '%s\n' '{"requested":true,"applied":false,"reason":"checkpoint_path_missing","quality":"unvalidated"}' > output/lip-sync-report.json
-            exit 0
-          fi
-          python -m pip install opencv-python-headless
-          git clone --depth 1 https://github.com/Rudrabha/Wav2Lip.git /tmp/Wav2Lip
-          python lip_sync/run.py \
-            --video output/seedvc-enhanced.mp4 \
-            --audio output/seedvc-enhanced.seed-work/final-mixed.wav \
-            --wav2lip-repo /tmp/Wav2Lip \
-            --checkpoint "$WAV2LIP_CHECKPOINT" \
-            --output output/lipsynced.mp4 \
-            --min-coverage 0.20 \
-            --min-face-ratio 0.008
-          rm -f output/seedvc-enhanced.mp4
-          mv output/lipsynced.mp4 output/seedvc-enhanced.mp4
-
-      - name: Upload final delivery and diagnostics
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: final-dubbed-video
-          path: |
-            output/final-dub.mp4
-            output/quality-report.json
-            output/segments-report.json
-            output/language-integrity.json
-            output/preflight.json
-            output/progress-report.json
-            output/checkpoint-manifest.json
-            output/speaker-analysis.json
-          if-no-files-found: error
+          name: dubbed-${{ inputs.tgt }}
+          path: dubbed.mp4
           retention-days: 14
