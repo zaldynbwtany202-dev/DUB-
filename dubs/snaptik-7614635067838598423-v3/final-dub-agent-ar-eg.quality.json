@@ -1,0 +1,62 @@
+{
+  "status": "complete",
+  "technical_checks_passed": true,
+  "dub_complete": true,
+  "validation_scope": "Container, complete unchanged picture, all recorded takes present/placed, timing, loudness and decoding. Not a human listening or lip-sync certification.",
+  "source_duration": 108.9,
+  "output_duration": 108.9,
+  "source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+  "final_sha256": "229a93bd58e931203d45d497beebd8d5a0deb42fddb1aeb75e32b77d129eebed",
+  "picture_packets_unchanged": true,
+  "picture_packet_count": 3267,
+  "source_picture_packet_count": 3267,
+  "decode_errors": 0,
+  "streams": {
+    "container_seconds": 108.9,
+    "video_codec": "h264",
+    "width": 576,
+    "height": 768,
+    "fps": "30",
+    "audio_streams": 1,
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "audio_channels": 1,
+    "audio_language": "ara"
+  },
+  "measured_lufs": -16.15,
+  "measured_true_peak_db": -1.32,
+  "voice_backend": "agent",
+  "voice_id": "voice-00",
+  "language": "ar-EG",
+  "takes": 9,
+  "timeline_placements": 10,
+  "pending_takes": [],
+  "tempo_min": 0.8953634085213028,
+  "tempo_max": 1.320135746606335,
+  "speech_truncated": false,
+  "original_audio_mixed": false,
+  "music_included": false,
+  "source_burned_in_captions_preserved": true,
+  "lip_animation_modified": false,
+  "language_checks": {
+    "valid": true,
+    "expected": "ar",
+    "detected": "ar",
+    "engine": "whisper.cpp small",
+    "checks": [
+      {
+        "scope": "first detection window of the final video",
+        "detected": "ar",
+        "confidence": 0.999168
+      },
+      {
+        "scope": "final video from 89 seconds to the end",
+        "detected": "ar",
+        "confidence": 0.996686
+      }
+    ],
+    "is_full_content_accuracy_score": false
+  },
+  "targeted_tests_passed": 42,
+  "validated_at": "2026-09-07T17:10:25+00:00"
+}

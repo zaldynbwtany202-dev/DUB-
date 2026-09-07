@@ -1,10 +1,46 @@
 {
   "slug": "snaptik-7614635067838598423-v3",
-  "title": "معاينة الدبلجة المصرية — غير مكتملة",
+  "title": "الدبلجة المصرية الكاملة",
   "source": "library/snaptik-7614635067838598423-v3/source.mp4",
-  "status": "partial_pending_one_take",
-  "updated_at": "2026-09-07T16:41:44+00:00",
+  "status": "complete",
+  "updated_at": "2026-09-07T17:10:25+00:00",
   "versions": [
+    {
+      "run_id": "agent-ar-eg-20260907",
+      "file": "final-dub-agent-ar-eg.mp4",
+      "kind": "final",
+      "status": "complete",
+      "size": 9266265,
+      "sha256": "229a93bd58e931203d45d497beebd8d5a0deb42fddb1aeb75e32b77d129eebed",
+      "duration": 108.9,
+      "source_duration": 108.9,
+      "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+      "published_at": "2026-09-07T17:10:25+00:00",
+      "execution": "local",
+      "settings": {
+        "source_lang": "ar",
+        "target_lang": "ar-EG",
+        "tts_engine": "agent",
+        "voice_id": "voice-00",
+        "gender": "masculine",
+        "use_case": "narration",
+        "user_selected": true,
+        "bg_music": false
+      },
+      "technical_checks_passed": true,
+      "dub_complete": true,
+      "quality_ok": true,
+      "quality_scope": "technical checks; no lip animation or human listening certification",
+      "takes": 9,
+      "segments": 10,
+      "audio": "final-dub-agent-ar-eg.mp3",
+      "subtitles": "final-dub-agent-ar-eg.srt",
+      "reports": {
+        "quality": "final-dub-agent-ar-eg.quality.json",
+        "language": "final-dub-agent-ar-eg.language.json",
+        "agent": "final-dub-agent-ar-eg.agent.json"
+      }
+    },
     {
       "run_id": "agent-preview-20260907",
       "file": "preview-agent-ar-eg.mp4",

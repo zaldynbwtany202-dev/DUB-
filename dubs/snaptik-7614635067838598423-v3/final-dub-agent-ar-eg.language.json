@@ -1,0 +1,19 @@
+{
+  "valid": true,
+  "expected": "ar",
+  "detected": "ar",
+  "engine": "whisper.cpp small",
+  "checks": [
+    {
+      "scope": "first detection window of the final video",
+      "detected": "ar",
+      "confidence": 0.999168
+    },
+    {
+      "scope": "final video from 89 seconds to the end",
+      "detected": "ar",
+      "confidence": 0.996686
+    }
+  ],
+  "is_full_content_accuracy_score": false
+}

@@ -27,13 +27,18 @@
     "review": "source.review.md"
   },
   "dubbing": {
-    "status": "partial_pending_one_take",
+    "status": "complete",
     "voice_backend": "agent",
     "voice_id": "voice-00",
     "language": "ar-EG",
     "preview": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
     "preview_duration": 91.2,
     "state": "dubs/snaptik-7614635067838598423-v3/state.json",
-    "final": null
+    "final": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg.mp4",
+    "audio": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg.mp3",
+    "subtitles": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg.srt",
+    "duration": 108.9,
+    "pending_takes": [],
+    "completed_at": "2026-09-07T17:10:25+00:00"
   }
 }

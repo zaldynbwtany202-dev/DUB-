@@ -55,8 +55,8 @@
       "index": 7,
       "text": "وبعد ما أهلها يودعوا حبيبها، تمشي وراه للبيت. ليزا فرحانة بحريتها، وبإنها هتكون معاه من جديد.",
       "audio": "agent_voice/seg-0007.mp3",
-      "status": "pending_retry_after_turn_limit",
-      "sha256": null
+      "status": "generated",
+      "sha256": "944017ed6cbcc41443816bdb1a1b63003f9647db1ea00796eb385c02c5c24d8d"
     },
     {
       "index": 8,

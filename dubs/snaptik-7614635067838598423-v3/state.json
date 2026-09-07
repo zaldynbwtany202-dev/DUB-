@@ -1,5 +1,5 @@
 {
-  "status": "partial_pending_one_take",
+  "status": "complete",
   "source": "library/snaptik-7614635067838598423-v3/source.mp4",
   "voice_id": "voice-00",
   "language": "ar-EG",
@@ -11,21 +11,22 @@
     4,
     5,
     6,
+    7,
     8
   ],
-  "pending_take_indices": [
-    7
-  ],
-  "pending_interval_seconds": [
-    91.12,
-    99.56
-  ],
-  "reason": "One speech generation failed; retry hit the per-turn generation limit. No substitute voice or source speech used.",
+  "pending_take_indices": [],
+  "pending_interval_seconds": null,
+  "reason": "Take 7 was successfully generated with the same selected voice; all nine takes were synchronized and the complete video passed technical checks.",
   "preview_end": 91.12,
   "preview_file": "preview-agent-ar-eg.mp4",
-  "final_file": null,
-  "next_step": "Generate only agent_voice/seg-0007.mp3 from script.ar-EG.json using the selected voice, then sync the full cues without --until.",
+  "final_file": "final-dub-agent-ar-eg.mp4",
+  "next_step": null,
   "preview_duration": 91.2,
   "technical_checks_passed": true,
-  "updated_at": "2026-09-07T16:41:44+00:00"
+  "updated_at": "2026-09-07T17:10:25+00:00",
+  "final_audio": "final-dub-agent-ar-eg.mp3",
+  "final_subtitles": "final-dub-agent-ar-eg.srt",
+  "final_duration": 108.9,
+  "dub_complete": true,
+  "completed_at": "2026-09-07T17:10:25+00:00"
 }
