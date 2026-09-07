@@ -25,5 +25,15 @@
     "srt": "source.srt",
     "timed_json": "source.segments.json",
     "review": "source.review.md"
+  },
+  "dubbing": {
+    "status": "partial_pending_one_take",
+    "voice_backend": "agent",
+    "voice_id": "voice-00",
+    "language": "ar-EG",
+    "preview": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+    "preview_duration": 91.2,
+    "state": "dubs/snaptik-7614635067838598423-v3/state.json",
+    "final": null
   }
 }

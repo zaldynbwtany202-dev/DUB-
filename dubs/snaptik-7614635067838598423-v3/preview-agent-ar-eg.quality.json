@@ -1,0 +1,35 @@
+{
+  "status": "preview_incomplete",
+  "technical_checks_passed": true,
+  "dub_complete": false,
+  "preview_end": 91.12,
+  "source_duration": 108.9,
+  "pending_take": 7,
+  "source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+  "preview_sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+  "picture_packets_unchanged": true,
+  "picture_packet_count": 2736,
+  "decode_errors": 0,
+  "streams": {
+    "container_seconds": 91.2,
+    "video_codec": "h264",
+    "width": 576,
+    "height": 768,
+    "fps": "30",
+    "audio_codec": "aac",
+    "sample_rate": 48000,
+    "audio_channels": 1
+  },
+  "measured_lufs": -16.14,
+  "measured_true_peak_db": -1.32,
+  "tempo_min": 0.8953634085213028,
+  "tempo_max": 1.320135746606335,
+  "speech_truncated": false,
+  "language_check": {
+    "detected": "ar",
+    "confidence": 0.999168,
+    "scope": "preview first-window language identification only",
+    "is_full_content_accuracy_score": false,
+    "engine": "whisper.cpp small"
+  }
+}

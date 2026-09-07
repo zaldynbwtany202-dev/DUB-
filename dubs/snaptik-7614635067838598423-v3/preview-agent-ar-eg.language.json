@@ -1,0 +1,7 @@
+{
+  "detected": "ar",
+  "confidence": 0.999168,
+  "scope": "preview first-window language identification only",
+  "is_full_content_accuracy_score": false,
+  "engine": "whisper.cpp small"
+}

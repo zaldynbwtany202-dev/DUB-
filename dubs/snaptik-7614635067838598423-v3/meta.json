@@ -1,0 +1,41 @@
+{
+  "slug": "snaptik-7614635067838598423-v3",
+  "title": "معاينة الدبلجة المصرية — غير مكتملة",
+  "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+  "status": "partial_pending_one_take",
+  "updated_at": "2026-09-07T16:41:44+00:00",
+  "versions": [
+    {
+      "run_id": "agent-preview-20260907",
+      "file": "preview-agent-ar-eg.mp4",
+      "kind": "preview",
+      "status": "preview_incomplete",
+      "size": 7028575,
+      "sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+      "duration": 91.2,
+      "source_duration": 108.9,
+      "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+      "published_at": "2026-09-07T16:41:44+00:00",
+      "settings": {
+        "source_lang": "ar",
+        "target_lang": "ar-EG",
+        "tts_engine": "agent",
+        "voice_id": "voice-00",
+        "gender": "masculine",
+        "use_case": "narration",
+        "user_selected": true,
+        "bg_music": false
+      },
+      "technical_checks_passed": true,
+      "dub_complete": false,
+      "quality_ok": false,
+      "quality_note": "Preview is technically valid but the complete dub is waiting for take 7.",
+      "segments": 8,
+      "reports": {
+        "quality": "preview-agent-ar-eg.quality.json",
+        "language": "preview-agent-ar-eg.language.json",
+        "agent": "preview-agent-ar-eg.agent.json"
+      }
+    }
+  ]
+}
