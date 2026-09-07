@@ -219,3 +219,12 @@ MIT. نواة الخط الأنبوبي من youtube-auto-dub © Nguyen Cong Thu
 والـ fallback، راجع [دليل الاستخدام العربي الشامل](docs/USAGE_AR.md). كما يتوفر
 [مخطط مراحل خط الإنتاج](docs/pipeline-flow-ar.png) وملف Mermaid القابل للتعديل
 `docs/pipeline-flow-ar.mmd`.
+
+## التفريغ فقط — تشغيل محلي أو GitHub
+
+المسار الذي نجح مع فيديو 7.6 م.ب في جلسة DUB- الحالية موثّق في
+[دليل التفريغ المحلي وGitHub](docs/ASR_LOCAL_AND_GITHUB_AR.md).
+يجهّز `scripts/bootstrap_local_whisper.py` نموذج Whisper Small متعدد اللغات
+بأوزان متحقق من بصمتها، ثم يشغّل `scripts/transcribe_video.py --backend whisper-cpp`
+التفريغ محلياً. النتائج TXT وSRT وJSON فقط؛ لا يستدعي هذا المسار أي مولّد صوت.
+قالب Actions في `docs/github-actions/transcribe.yml` غير نشط إلى أن تتوفر صلاحية workflows.

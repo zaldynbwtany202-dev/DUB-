@@ -1,0 +1,3699 @@
+{
+  "schema_version": 1,
+  "status": "transcribed",
+  "review_required": true,
+  "source": {
+    "path": "library/snaptik-7614635067838598423-v3/source.mp4",
+    "bytes": 7967406,
+    "sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16"
+  },
+  "asr": {
+    "engine": "whisper.cpp",
+    "model": "small",
+    "multilingual": true,
+    "device": "cpu",
+    "requested_language": "auto",
+    "detected_language": "ar",
+    "language_probability": 0.99583,
+    "runner": "local",
+    "word_timing_method": "grouped native token boundaries; DTW points retained when present",
+    "version": "1.7.6",
+    "dtw_model": "small",
+    "model_sha256": "1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b",
+    "model_sha1": "55356645c2b361a969dfd0ef2c5a50d530afd8d5",
+    "weights_manifest": "config/whisper-small-ggml.json",
+    "model_source": "verified split GitHub objects (not Hugging Face or Actions)"
+  },
+  "duration": 108.8798125,
+  "elapsed_seconds": 129.026,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 2.0,
+      "text": "تدرك هذه المرأة فجأة أنها ميت",
+      "words": [
+        {
+          "word": "تدرك",
+          "start": 0.04,
+          "end": 0.32,
+          "probability": 0.351864,
+          "dtw_points": [
+            0.22,
+            0.3,
+            0.4
+          ]
+        },
+        {
+          "word": "هذه",
+          "start": 0.32,
+          "end": 0.57,
+          "probability": 0.984388,
+          "dtw_points": [
+            0.58
+          ]
+        },
+        {
+          "word": "المرأة",
+          "start": 0.57,
+          "end": 1.06,
+          "probability": 0.93607,
+          "dtw_points": [
+            0.76,
+            0.82,
+            0.86,
+            0.92
+          ]
+        },
+        {
+          "word": "فجأة",
+          "start": 1.06,
+          "end": 1.38,
+          "probability": 0.865131,
+          "dtw_points": [
+            1.04,
+            1.14,
+            1.2,
+            1.3
+          ]
+        },
+        {
+          "word": "أنها",
+          "start": 1.38,
+          "end": 1.7,
+          "probability": 0.783844,
+          "dtw_points": [
+            1.48,
+            1.6
+          ]
+        },
+        {
+          "word": "ميت",
+          "start": 1.7,
+          "end": 1.93,
+          "probability": 0.944008,
+          "dtw_points": [
+            1.72,
+            1.9
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 2.0,
+      "end": 4.38,
+      "text": "لكنها لا تستطيع تذكر ما حدث قبل وفاتها",
+      "words": [
+        {
+          "word": "لكنها",
+          "start": 2.2,
+          "end": 2.37,
+          "probability": 0.975444,
+          "dtw_points": [
+            2.2,
+            2.42
+          ]
+        },
+        {
+          "word": "لا",
+          "start": 2.42,
+          "end": 2.53,
+          "probability": 0.97148,
+          "dtw_points": [
+            2.5
+          ]
+        },
+        {
+          "word": "تستطيع",
+          "start": 2.53,
+          "end": 2.97,
+          "probability": 0.981983,
+          "dtw_points": [
+            2.6,
+            2.68,
+            2.8,
+            2.88
+          ]
+        },
+        {
+          "word": "تذكر",
+          "start": 2.97,
+          "end": 3.26,
+          "probability": 0.872766,
+          "dtw_points": [
+            3.0,
+            3.12,
+            3.22
+          ]
+        },
+        {
+          "word": "ما",
+          "start": 3.26,
+          "end": 3.41,
+          "probability": 0.642328,
+          "dtw_points": [
+            3.42
+          ]
+        },
+        {
+          "word": "حدث",
+          "start": 3.41,
+          "end": 3.62,
+          "probability": 0.912673,
+          "dtw_points": [
+            3.58,
+            3.58,
+            3.7
+          ]
+        },
+        {
+          "word": "قبل",
+          "start": 3.62,
+          "end": 3.84,
+          "probability": 0.979174,
+          "dtw_points": [
+            3.82,
+            3.92
+          ]
+        },
+        {
+          "word": "وفاتها",
+          "start": 3.84,
+          "end": 4.38,
+          "probability": 0.966053,
+          "dtw_points": [
+            4.04,
+            4.14,
+            4.22,
+            4.38
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 4.38,
+      "end": 6.3,
+      "text": "روحها محاصرة دافلة محطة مترو",
+      "words": [
+        {
+          "word": "روحها",
+          "start": 4.42,
+          "end": 4.75,
+          "probability": 0.941496,
+          "dtw_points": [
+            4.54,
+            4.6,
+            4.64,
+            4.8
+          ]
+        },
+        {
+          "word": "محاصرة",
+          "start": 4.75,
+          "end": 5.2,
+          "probability": 0.850856,
+          "dtw_points": [
+            4.9,
+            5.0,
+            5.1,
+            5.2
+          ]
+        },
+        {
+          "word": "دافلة",
+          "start": 5.2,
+          "end": 5.58,
+          "probability": 0.202776,
+          "dtw_points": [
+            5.44,
+            5.52,
+            5.6
+          ]
+        },
+        {
+          "word": "محطة",
+          "start": 5.58,
+          "end": 5.87,
+          "probability": 0.803424,
+          "dtw_points": [
+            5.72,
+            5.78,
+            5.86,
+            5.98
+          ]
+        },
+        {
+          "word": "مترو",
+          "start": 5.87,
+          "end": 6.22,
+          "probability": 0.82637,
+          "dtw_points": [
+            6.16,
+            6.3
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 6.3,
+      "end": 8.76,
+      "text": "أين محاولة الذهاب يصدها جدار غير مرئي",
+      "words": [
+        {
+          "word": "أين",
+          "start": 6.32,
+          "end": 6.51,
+          "probability": 0.637012,
+          "dtw_points": [
+            6.42,
+            6.5
+          ]
+        },
+        {
+          "word": "محاولة",
+          "start": 6.51,
+          "end": 6.93,
+          "probability": 0.563814,
+          "dtw_points": [
+            6.62,
+            6.72,
+            6.8,
+            6.86,
+            6.98
+          ]
+        },
+        {
+          "word": "الذهاب",
+          "start": 6.93,
+          "end": 7.37,
+          "probability": 0.67623,
+          "dtw_points": [
+            7.1,
+            7.28,
+            7.38
+          ]
+        },
+        {
+          "word": "يصدها",
+          "start": 7.38,
+          "end": 7.79,
+          "probability": 0.593665,
+          "dtw_points": [
+            7.52,
+            7.62,
+            7.7,
+            7.86
+          ]
+        },
+        {
+          "word": "جدار",
+          "start": 7.79,
+          "end": 8.12,
+          "probability": 0.954143,
+          "dtw_points": [
+            7.98,
+            8.04,
+            8.14
+          ]
+        },
+        {
+          "word": "غير",
+          "start": 8.12,
+          "end": 8.37,
+          "probability": 0.932542,
+          "dtw_points": [
+            8.3,
+            8.4
+          ]
+        },
+        {
+          "word": "مرئي",
+          "start": 8.37,
+          "end": 8.76,
+          "probability": 0.352309,
+          "dtw_points": [
+            8.52,
+            8.58,
+            8.68,
+            8.78
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 8.76,
+      "end": 9.86,
+      "text": "بلا مكان تذهب إليه",
+      "words": [
+        {
+          "word": "بلا",
+          "start": 8.78,
+          "end": 8.97,
+          "probability": 0.657145,
+          "dtw_points": [
+            8.9,
+            9.02
+          ]
+        },
+        {
+          "word": "مكان",
+          "start": 8.97,
+          "end": 9.25,
+          "probability": 0.986798,
+          "dtw_points": [
+            9.08,
+            9.22
+          ]
+        },
+        {
+          "word": "تذهب",
+          "start": 9.25,
+          "end": 9.53,
+          "probability": 0.892513,
+          "dtw_points": [
+            9.38,
+            9.5,
+            9.6
+          ]
+        },
+        {
+          "word": "إليه",
+          "start": 9.53,
+          "end": 9.85,
+          "probability": 0.687793,
+          "dtw_points": [
+            9.72,
+            9.82,
+            9.94
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 9.86,
+      "end": 11.64,
+      "text": "تقضي كل يوم تتجاول في المحطة",
+      "words": [
+        {
+          "word": "تقضي",
+          "start": 9.88,
+          "end": 10.14,
+          "probability": 0.922678,
+          "dtw_points": [
+            10.02,
+            10.12,
+            10.16,
+            10.22
+          ]
+        },
+        {
+          "word": "كل",
+          "start": 10.14,
+          "end": 10.29,
+          "probability": 0.992581,
+          "dtw_points": [
+            10.32
+          ]
+        },
+        {
+          "word": "يوم",
+          "start": 10.29,
+          "end": 10.51,
+          "probability": 0.982311,
+          "dtw_points": [
+            10.48,
+            10.58
+          ]
+        },
+        {
+          "word": "تتجاول",
+          "start": 10.51,
+          "end": 10.93,
+          "probability": 0.457838,
+          "dtw_points": [
+            10.74,
+            10.84,
+            10.96,
+            10.96,
+            11.1
+          ]
+        },
+        {
+          "word": "في",
+          "start": 10.94,
+          "end": 11.06,
+          "probability": 0.976805,
+          "dtw_points": [
+            11.2
+          ]
+        },
+        {
+          "word": "المحطة",
+          "start": 11.11,
+          "end": 11.64,
+          "probability": 0.994687,
+          "dtw_points": [
+            11.32,
+            11.4,
+            11.52,
+            11.66
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 11.64,
+      "end": 13.6,
+      "text": "في الليل تستريح على مقعد عندما تتعب",
+      "words": [
+        {
+          "word": "في",
+          "start": 11.77,
+          "end": 11.77,
+          "probability": 0.965223,
+          "dtw_points": [
+            11.8
+          ]
+        },
+        {
+          "word": "الليل",
+          "start": 11.84,
+          "end": 12.1,
+          "probability": 0.970739,
+          "dtw_points": [
+            11.88,
+            12.06
+          ]
+        },
+        {
+          "word": "تستريح",
+          "start": 12.1,
+          "end": 12.48,
+          "probability": 0.400522,
+          "dtw_points": [
+            12.18,
+            12.3,
+            12.38,
+            12.48
+          ]
+        },
+        {
+          "word": "على",
+          "start": 12.48,
+          "end": 12.68,
+          "probability": 0.955804,
+          "dtw_points": [
+            12.64
+          ]
+        },
+        {
+          "word": "مقعد",
+          "start": 12.68,
+          "end": 12.93,
+          "probability": 0.964777,
+          "dtw_points": [
+            12.78,
+            12.84,
+            12.96
+          ]
+        },
+        {
+          "word": "عندما",
+          "start": 12.93,
+          "end": 13.26,
+          "probability": 0.942942,
+          "dtw_points": [
+            13.14,
+            13.3
+          ]
+        },
+        {
+          "word": "تتعب",
+          "start": 13.26,
+          "end": 13.59,
+          "probability": 0.716534,
+          "dtw_points": [
+            13.38,
+            13.48,
+            13.54,
+            13.66
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 13.6,
+      "end": 16.68,
+      "text": "حتى بعد عام ذات يوم كانت تجلس في مطعم بلا شيء تفعله",
+      "words": [
+        {
+          "word": "حتى",
+          "start": 13.64,
+          "end": 13.85,
+          "probability": 0.9838,
+          "dtw_points": [
+            13.8,
+            13.88
+          ]
+        },
+        {
+          "word": "بعد",
+          "start": 13.85,
+          "end": 14.11,
+          "probability": 0.991964,
+          "dtw_points": [
+            14.06
+          ]
+        },
+        {
+          "word": "عام",
+          "start": 14.11,
+          "end": 14.37,
+          "probability": 0.996212,
+          "dtw_points": [
+            14.26,
+            14.38
+          ]
+        },
+        {
+          "word": "ذات",
+          "start": 14.37,
+          "end": 14.6,
+          "probability": 0.387702,
+          "dtw_points": [
+            14.54,
+            14.6
+          ]
+        },
+        {
+          "word": "يوم",
+          "start": 14.61,
+          "end": 14.86,
+          "probability": 0.933935,
+          "dtw_points": [
+            14.74,
+            14.88
+          ]
+        },
+        {
+          "word": "كانت",
+          "start": 14.86,
+          "end": 15.11,
+          "probability": 0.699628,
+          "dtw_points": [
+            15.02,
+            15.14
+          ]
+        },
+        {
+          "word": "تجلس",
+          "start": 15.11,
+          "end": 15.35,
+          "probability": 0.780447,
+          "dtw_points": [
+            15.22,
+            15.28,
+            15.32,
+            15.44
+          ]
+        },
+        {
+          "word": "في",
+          "start": 15.35,
+          "end": 15.44,
+          "probability": 0.973214,
+          "dtw_points": [
+            15.56
+          ]
+        },
+        {
+          "word": "مطعم",
+          "start": 15.51,
+          "end": 15.76,
+          "probability": 0.947063,
+          "dtw_points": [
+            15.66,
+            15.74,
+            15.82
+          ]
+        },
+        {
+          "word": "بلا",
+          "start": 15.76,
+          "end": 16.03,
+          "probability": 0.586915,
+          "dtw_points": [
+            15.98,
+            16.1
+          ]
+        },
+        {
+          "word": "شيء",
+          "start": 16.03,
+          "end": 16.3,
+          "probability": 0.857104,
+          "dtw_points": [
+            16.22,
+            16.32
+          ]
+        },
+        {
+          "word": "تفعله",
+          "start": 16.3,
+          "end": 16.68,
+          "probability": 0.880307,
+          "dtw_points": [
+            16.38,
+            16.5,
+            16.64,
+            16.74
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 16.68,
+      "end": 18.8,
+      "text": "حينها لفتة انتباهها مرأة مدعورة",
+      "words": [
+        {
+          "word": "حينها",
+          "start": 16.7,
+          "end": 17.05,
+          "probability": 0.965191,
+          "dtw_points": [
+            16.82,
+            16.92,
+            17.06
+          ]
+        },
+        {
+          "word": "لفتة",
+          "start": 17.05,
+          "end": 17.33,
+          "probability": 0.734233,
+          "dtw_points": [
+            17.2,
+            17.3,
+            17.36,
+            17.42
+          ]
+        },
+        {
+          "word": "انتباهها",
+          "start": 17.33,
+          "end": 17.88,
+          "probability": 0.454544,
+          "dtw_points": [
+            17.56,
+            17.56,
+            17.66,
+            17.74,
+            17.9
+          ]
+        },
+        {
+          "word": "مرأة",
+          "start": 17.93,
+          "end": 18.2,
+          "probability": 0.857331,
+          "dtw_points": [
+            17.98,
+            18.04,
+            18.1,
+            18.18
+          ]
+        },
+        {
+          "word": "مدعورة",
+          "start": 18.2,
+          "end": 18.8,
+          "probability": 0.814892,
+          "dtw_points": [
+            18.32,
+            18.38,
+            18.46,
+            18.56,
+            18.86
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 18.8,
+      "end": 20.56,
+      "text": "جلست ليزا بالفضول قبالتها",
+      "words": [
+        {
+          "word": "جلست",
+          "start": 18.84,
+          "end": 19.09,
+          "probability": 0.925445,
+          "dtw_points": [
+            19.02,
+            19.1,
+            19.22,
+            19.32
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 19.09,
+          "end": 19.39,
+          "probability": 0.619908,
+          "dtw_points": [
+            19.38,
+            19.46,
+            19.5
+          ]
+        },
+        {
+          "word": "بالفضول",
+          "start": 19.39,
+          "end": 19.92,
+          "probability": 0.422109,
+          "dtw_points": [
+            19.62,
+            19.72,
+            19.8,
+            19.9
+          ]
+        },
+        {
+          "word": "قبالتها",
+          "start": 19.92,
+          "end": 20.56,
+          "probability": 0.886596,
+          "dtw_points": [
+            20.06,
+            20.14,
+            20.24,
+            20.36,
+            20.54
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 20.56,
+      "end": 34.28,
+      "text": "استمعت للمكالمة فعلمت أنها تمر بنهيار بسبب ضغط العمل عندما رأتها تبكي مدت يدها",
+      "words": [
+        {
+          "word": "استمعت",
+          "start": 20.76,
+          "end": 21.82,
+          "probability": 0.690738,
+          "dtw_points": [
+            20.78,
+            20.88,
+            21.0
+          ]
+        },
+        {
+          "word": "للمكالمة",
+          "start": 21.82,
+          "end": 23.5,
+          "probability": 0.736503,
+          "dtw_points": [
+            21.12,
+            21.24,
+            21.34,
+            21.46,
+            21.66
+          ]
+        },
+        {
+          "word": "فعلمت",
+          "start": 23.5,
+          "end": 24.55,
+          "probability": 0.705693,
+          "dtw_points": [
+            21.78,
+            21.9,
+            21.94,
+            22.1
+          ]
+        },
+        {
+          "word": "أنها",
+          "start": 24.55,
+          "end": 25.39,
+          "probability": 0.736852,
+          "dtw_points": [
+            22.2,
+            22.36
+          ]
+        },
+        {
+          "word": "تمر",
+          "start": 25.39,
+          "end": 26.02,
+          "probability": 0.60694,
+          "dtw_points": [
+            22.46,
+            22.58
+          ]
+        },
+        {
+          "word": "بنهيار",
+          "start": 26.02,
+          "end": 27.26,
+          "probability": 0.665119,
+          "dtw_points": [
+            22.8,
+            22.94,
+            22.98,
+            23.08
+          ]
+        },
+        {
+          "word": "بسبب",
+          "start": 27.28,
+          "end": 28.09,
+          "probability": 0.90077,
+          "dtw_points": [
+            23.22,
+            23.38,
+            23.52
+          ]
+        },
+        {
+          "word": "ضغط",
+          "start": 28.15,
+          "end": 28.75,
+          "probability": 0.752326,
+          "dtw_points": [
+            23.66,
+            23.68,
+            23.78
+          ]
+        },
+        {
+          "word": "العمل",
+          "start": 28.75,
+          "end": 29.8,
+          "probability": 0.991093,
+          "dtw_points": [
+            23.92,
+            24.12
+          ]
+        },
+        {
+          "word": "عندما",
+          "start": 29.8,
+          "end": 30.85,
+          "probability": 0.96453,
+          "dtw_points": [
+            24.36,
+            24.48
+          ]
+        },
+        {
+          "word": "رأتها",
+          "start": 30.85,
+          "end": 31.87,
+          "probability": 0.944172,
+          "dtw_points": [
+            24.6,
+            24.62,
+            24.7,
+            24.8
+          ]
+        },
+        {
+          "word": "تبكي",
+          "start": 31.9,
+          "end": 32.74,
+          "probability": 0.950889,
+          "dtw_points": [
+            24.92,
+            25.0,
+            25.08,
+            25.16
+          ]
+        },
+        {
+          "word": "مدت",
+          "start": 32.74,
+          "end": 33.37,
+          "probability": 0.642079,
+          "dtw_points": [
+            25.28,
+            25.36,
+            25.46
+          ]
+        },
+        {
+          "word": "يدها",
+          "start": 33.37,
+          "end": 34.16,
+          "probability": 0.561855,
+          "dtw_points": [
+            25.56,
+            25.58,
+            25.74
+          ]
+        }
+      ],
+      "review_warnings": [
+        "long_segment_check_timing"
+      ]
+    },
+    {
+      "start": 34.28,
+      "end": 38.97,
+      "text": "غريزيا لمواساتها في اللحظة التي سقطت فيها الدموع على أصابعها عادت بذاكرتها",
+      "words": [
+        {
+          "word": "غريزيا",
+          "start": 34.28,
+          "end": 35.44,
+          "probability": 0.921176,
+          "dtw_points": [
+            25.88,
+            25.96,
+            26.08,
+            26.22
+          ]
+        },
+        {
+          "word": "لمواساتها",
+          "start": 35.51,
+          "end": 37.52,
+          "probability": 0.449651,
+          "dtw_points": [
+            26.38,
+            26.5,
+            26.62,
+            26.78,
+            26.94
+          ]
+        },
+        {
+          "word": "في",
+          "start": 37.52,
+          "end": 37.58,
+          "probability": 0.852003,
+          "dtw_points": [
+            27.12
+          ]
+        },
+        {
+          "word": "اللحظة",
+          "start": 37.58,
+          "end": 37.76,
+          "probability": 0.885814,
+          "dtw_points": [
+            27.24,
+            27.3,
+            27.36,
+            27.46
+          ]
+        },
+        {
+          "word": "التي",
+          "start": 37.76,
+          "end": 37.89,
+          "probability": 0.948661,
+          "dtw_points": [
+            27.64
+          ]
+        },
+        {
+          "word": "سقطت",
+          "start": 37.89,
+          "end": 38.01,
+          "probability": 0.675526,
+          "dtw_points": [
+            27.9,
+            28.0,
+            28.16
+          ]
+        },
+        {
+          "word": "فيها",
+          "start": 38.01,
+          "end": 38.13,
+          "probability": 0.992084,
+          "dtw_points": [
+            28.3,
+            28.4
+          ]
+        },
+        {
+          "word": "الدموع",
+          "start": 38.13,
+          "end": 38.31,
+          "probability": 0.921154,
+          "dtw_points": [
+            28.5,
+            28.62,
+            28.74
+          ]
+        },
+        {
+          "word": "على",
+          "start": 38.31,
+          "end": 38.39,
+          "probability": 0.867798,
+          "dtw_points": [
+            28.96
+          ]
+        },
+        {
+          "word": "أصابعها",
+          "start": 38.4,
+          "end": 38.61,
+          "probability": 0.88831,
+          "dtw_points": [
+            29.06,
+            29.2,
+            29.28,
+            29.4,
+            29.62
+          ]
+        },
+        {
+          "word": "عادت",
+          "start": 38.61,
+          "end": 38.73,
+          "probability": 0.649558,
+          "dtw_points": [
+            29.8,
+            29.86,
+            29.94
+          ]
+        },
+        {
+          "word": "بذاكرتها",
+          "start": 38.73,
+          "end": 38.97,
+          "probability": 0.563595,
+          "dtw_points": [
+            30.02,
+            30.16,
+            30.16,
+            30.28,
+            30.44,
+            30.6
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 38.97,
+      "end": 39.8,
+      "text": "إلى ذكريات لا تحصم حياتها",
+      "words": [
+        {
+          "word": "إلى",
+          "start": 38.97,
+          "end": 39.06,
+          "probability": 0.939598,
+          "dtw_points": [
+            30.74
+          ]
+        },
+        {
+          "word": "ذكريات",
+          "start": 39.06,
+          "end": 39.19,
+          "probability": 0.736728,
+          "dtw_points": [
+            30.88,
+            30.9,
+            31.02,
+            31.18
+          ]
+        },
+        {
+          "word": "لا",
+          "start": 39.3,
+          "end": 39.3,
+          "probability": 0.979015,
+          "dtw_points": [
+            31.36
+          ]
+        },
+        {
+          "word": "تحصم",
+          "start": 39.3,
+          "end": 39.42,
+          "probability": 0.510993,
+          "dtw_points": [
+            31.48,
+            31.54,
+            31.62,
+            31.72
+          ]
+        },
+        {
+          "word": "حياتها",
+          "start": 39.45,
+          "end": 39.8,
+          "probability": 0.501724,
+          "dtw_points": [
+            31.88,
+            31.98,
+            32.08,
+            32.32
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 39.8,
+      "end": 43.16,
+      "text": "مذهولة تهرع للخارج وتبدأ بالحديث مع نفسها تتذكر أن اسمها ليزا",
+      "words": [
+        {
+          "word": "مذهولة",
+          "start": 39.82,
+          "end": 40.15,
+          "probability": 0.580998,
+          "dtw_points": [
+            35.14,
+            39.8,
+            39.88,
+            39.94,
+            40.02
+          ]
+        },
+        {
+          "word": "تهرع",
+          "start": 40.16,
+          "end": 40.4,
+          "probability": 0.666438,
+          "dtw_points": [
+            40.14,
+            40.18,
+            40.2,
+            40.28
+          ]
+        },
+        {
+          "word": "للخارج",
+          "start": 40.4,
+          "end": 40.75,
+          "probability": 0.755609,
+          "dtw_points": [
+            40.4,
+            40.52,
+            40.62,
+            40.7
+          ]
+        },
+        {
+          "word": "وتبدأ",
+          "start": 40.75,
+          "end": 41.06,
+          "probability": 0.92717,
+          "dtw_points": [
+            40.82,
+            40.98,
+            41.06
+          ]
+        },
+        {
+          "word": "بالحديث",
+          "start": 41.06,
+          "end": 41.48,
+          "probability": 0.881417,
+          "dtw_points": [
+            41.18,
+            41.32,
+            41.38,
+            41.48
+          ]
+        },
+        {
+          "word": "مع",
+          "start": 41.48,
+          "end": 41.6,
+          "probability": 0.967656,
+          "dtw_points": [
+            41.6
+          ]
+        },
+        {
+          "word": "نفسها",
+          "start": 41.6,
+          "end": 41.96,
+          "probability": 0.975703,
+          "dtw_points": [
+            41.74,
+            41.82,
+            41.96
+          ]
+        },
+        {
+          "word": "تتذكر",
+          "start": 42.01,
+          "end": 42.3,
+          "probability": 0.527264,
+          "dtw_points": [
+            42.08,
+            42.2,
+            42.26,
+            42.36
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 42.36,
+          "end": 42.49,
+          "probability": 0.820331,
+          "dtw_points": [
+            42.56
+          ]
+        },
+        {
+          "word": "اسمها",
+          "start": 42.49,
+          "end": 42.83,
+          "probability": 0.229644,
+          "dtw_points": [
+            42.66,
+            42.74,
+            42.82
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 42.84,
+          "end": 43.16,
+          "probability": 0.927132,
+          "dtw_points": [
+            42.94,
+            43.02,
+            43.1
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 43.16,
+      "end": 47.0,
+      "text": "وأنها كانت معلمة في المرحلة الإعدادية تتذكر ليزا كم كانت حياتها سعيدة",
+      "words": [
+        {
+          "word": "وأنها",
+          "start": 43.18,
+          "end": 43.46,
+          "probability": 0.843996,
+          "dtw_points": [
+            43.22,
+            43.34,
+            43.44
+          ]
+        },
+        {
+          "word": "كانت",
+          "start": 43.46,
+          "end": 43.7,
+          "probability": 0.994266,
+          "dtw_points": [
+            43.62,
+            43.7
+          ]
+        },
+        {
+          "word": "معلمة",
+          "start": 43.7,
+          "end": 44.0,
+          "probability": 0.880787,
+          "dtw_points": [
+            43.82,
+            43.96,
+            44.14
+          ]
+        },
+        {
+          "word": "في",
+          "start": 44.0,
+          "end": 44.11,
+          "probability": 0.978155,
+          "dtw_points": [
+            44.26
+          ]
+        },
+        {
+          "word": "المرحلة",
+          "start": 44.11,
+          "end": 44.54,
+          "probability": 0.959937,
+          "dtw_points": [
+            44.38,
+            44.44,
+            44.48,
+            44.58
+          ]
+        },
+        {
+          "word": "الإعدادية",
+          "start": 44.54,
+          "end": 45.09,
+          "probability": 0.834902,
+          "dtw_points": [
+            44.76,
+            44.86,
+            44.94,
+            45.14
+          ]
+        },
+        {
+          "word": "تتذكر",
+          "start": 45.22,
+          "end": 45.52,
+          "probability": 0.666236,
+          "dtw_points": [
+            45.24,
+            45.32,
+            45.4,
+            45.52
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 45.52,
+          "end": 45.86,
+          "probability": 0.943545,
+          "dtw_points": [
+            45.7,
+            45.76,
+            45.86
+          ]
+        },
+        {
+          "word": "كم",
+          "start": 45.86,
+          "end": 45.98,
+          "probability": 0.717234,
+          "dtw_points": [
+            45.92,
+            45.96
+          ]
+        },
+        {
+          "word": "كانت",
+          "start": 45.98,
+          "end": 46.24,
+          "probability": 0.85741,
+          "dtw_points": [
+            46.12,
+            46.2
+          ]
+        },
+        {
+          "word": "حياتها",
+          "start": 46.24,
+          "end": 46.58,
+          "probability": 0.804765,
+          "dtw_points": [
+            46.3,
+            46.36,
+            46.46,
+            46.6
+          ]
+        },
+        {
+          "word": "سعيدة",
+          "start": 46.67,
+          "end": 47.0,
+          "probability": 0.882157,
+          "dtw_points": [
+            46.74,
+            46.8,
+            46.9,
+            46.98
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 47.0,
+      "end": 51.24,
+      "text": "ولا تستطيع فهم السبب موتها هناك في تلك اللحظة رأت فجأة ثلاثة وجوه مألوفة على",
+      "words": [
+        {
+          "word": "ولا",
+          "start": 47.2,
+          "end": 47.2,
+          "probability": 0.825876,
+          "dtw_points": [
+            47.2
+          ]
+        },
+        {
+          "word": "تستطيع",
+          "start": 47.2,
+          "end": 47.58,
+          "probability": 0.950525,
+          "dtw_points": [
+            47.32,
+            47.42,
+            47.5,
+            47.6
+          ]
+        },
+        {
+          "word": "فهم",
+          "start": 47.58,
+          "end": 47.77,
+          "probability": 0.717973,
+          "dtw_points": [
+            47.74,
+            47.82
+          ]
+        },
+        {
+          "word": "السبب",
+          "start": 47.77,
+          "end": 48.08,
+          "probability": 0.556756,
+          "dtw_points": [
+            47.98,
+            48.04,
+            48.12
+          ]
+        },
+        {
+          "word": "موتها",
+          "start": 48.09,
+          "end": 48.41,
+          "probability": 0.926116,
+          "dtw_points": [
+            48.22,
+            48.34,
+            48.48
+          ]
+        },
+        {
+          "word": "هناك",
+          "start": 48.41,
+          "end": 48.67,
+          "probability": 0.855708,
+          "dtw_points": [
+            48.66,
+            48.82
+          ]
+        },
+        {
+          "word": "في",
+          "start": 48.67,
+          "end": 48.8,
+          "probability": 0.845864,
+          "dtw_points": [
+            48.94
+          ]
+        },
+        {
+          "word": "تلك",
+          "start": 48.8,
+          "end": 48.95,
+          "probability": 0.899095,
+          "dtw_points": [
+            48.96,
+            49.08
+          ]
+        },
+        {
+          "word": "اللحظة",
+          "start": 49.06,
+          "end": 49.48,
+          "probability": 0.934941,
+          "dtw_points": [
+            49.24,
+            49.3,
+            49.38,
+            49.46
+          ]
+        },
+        {
+          "word": "رأت",
+          "start": 49.48,
+          "end": 49.69,
+          "probability": 0.772288,
+          "dtw_points": [
+            49.58,
+            49.6,
+            49.68
+          ]
+        },
+        {
+          "word": "فجأة",
+          "start": 49.69,
+          "end": 49.97,
+          "probability": 0.880086,
+          "dtw_points": [
+            49.76,
+            49.86,
+            49.92,
+            50.0
+          ]
+        },
+        {
+          "word": "ثلاثة",
+          "start": 49.97,
+          "end": 50.32,
+          "probability": 0.634555,
+          "dtw_points": [
+            50.12,
+            50.22,
+            50.28,
+            50.28,
+            50.4
+          ]
+        },
+        {
+          "word": "وجوه",
+          "start": 50.32,
+          "end": 50.6,
+          "probability": 0.970254,
+          "dtw_points": [
+            50.54,
+            50.62,
+            50.7
+          ]
+        },
+        {
+          "word": "مألوفة",
+          "start": 50.6,
+          "end": 51.02,
+          "probability": 0.630899,
+          "dtw_points": [
+            50.82,
+            50.86,
+            50.94,
+            51.02,
+            51.16
+          ]
+        },
+        {
+          "word": "على",
+          "start": 51.02,
+          "end": 51.24,
+          "probability": 0.974332,
+          "dtw_points": [
+            51.34
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 51.24,
+      "end": 53.0,
+      "text": "المنصة كانوا والديها وصديقها",
+      "words": [
+        {
+          "word": "المنصة",
+          "start": 51.24,
+          "end": 51.76,
+          "probability": 0.964965,
+          "dtw_points": [
+            51.48,
+            51.56,
+            51.68,
+            51.78
+          ]
+        },
+        {
+          "word": "كانوا",
+          "start": 51.76,
+          "end": 52.05,
+          "probability": 0.669393,
+          "dtw_points": [
+            51.96,
+            52.06
+          ]
+        },
+        {
+          "word": "والديها",
+          "start": 52.09,
+          "end": 52.51,
+          "probability": 0.477554,
+          "dtw_points": [
+            52.18,
+            52.3,
+            52.46
+          ]
+        },
+        {
+          "word": "وصديقها",
+          "start": 52.53,
+          "end": 53.0,
+          "probability": 0.797876,
+          "dtw_points": [
+            52.56,
+            52.68,
+            52.78,
+            52.86,
+            53.02
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 53.0,
+      "end": 55.08,
+      "text": "اليوم هو الذكرة السنوية الأولى لوفاتها",
+      "words": [
+        {
+          "word": "اليوم",
+          "start": 53.18,
+          "end": 53.3,
+          "probability": 0.978911,
+          "dtw_points": [
+            53.2,
+            53.34
+          ]
+        },
+        {
+          "word": "هو",
+          "start": 53.3,
+          "end": 53.36,
+          "probability": 0.962726,
+          "dtw_points": [
+            53.44
+          ]
+        },
+        {
+          "word": "الذكرة",
+          "start": 53.42,
+          "end": 53.78,
+          "probability": 0.518211,
+          "dtw_points": [
+            53.58,
+            53.64,
+            53.72
+          ]
+        },
+        {
+          "word": "السنوية",
+          "start": 53.78,
+          "end": 54.2,
+          "probability": 0.738351,
+          "dtw_points": [
+            53.84,
+            53.9,
+            53.98,
+            54.1
+          ]
+        },
+        {
+          "word": "الأولى",
+          "start": 54.2,
+          "end": 54.56,
+          "probability": 0.805404,
+          "dtw_points": [
+            54.28,
+            54.38,
+            54.46
+          ]
+        },
+        {
+          "word": "لوفاتها",
+          "start": 54.56,
+          "end": 55.08,
+          "probability": 0.510982,
+          "dtw_points": [
+            54.5,
+            54.66,
+            54.78,
+            54.96
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 55.08,
+      "end": 59.6,
+      "text": "جاء والدها وصديقها لوضع الزهور تكريم لها لكن هذا غير مسموح بهي في المحطة",
+      "words": [
+        {
+          "word": "جاء",
+          "start": 55.1,
+          "end": 55.29,
+          "probability": 0.944809,
+          "dtw_points": [
+            55.26,
+            55.34
+          ]
+        },
+        {
+          "word": "والدها",
+          "start": 55.29,
+          "end": 55.72,
+          "probability": 0.265752,
+          "dtw_points": [
+            55.48,
+            55.6,
+            55.74
+          ]
+        },
+        {
+          "word": "وصديقها",
+          "start": 55.72,
+          "end": 56.21,
+          "probability": 0.920908,
+          "dtw_points": [
+            55.88,
+            56.0,
+            56.1,
+            56.18,
+            56.32
+          ]
+        },
+        {
+          "word": "لوضع",
+          "start": 56.21,
+          "end": 56.49,
+          "probability": 0.627705,
+          "dtw_points": [
+            56.4,
+            56.52,
+            56.56,
+            56.6
+          ]
+        },
+        {
+          "word": "الزهور",
+          "start": 56.49,
+          "end": 56.91,
+          "probability": 0.560571,
+          "dtw_points": [
+            56.76,
+            56.76,
+            56.84,
+            56.86
+          ]
+        },
+        {
+          "word": "تكريم",
+          "start": 56.91,
+          "end": 57.24,
+          "probability": 0.818579,
+          "dtw_points": [
+            57.02,
+            57.08,
+            57.16,
+            57.24
+          ]
+        },
+        {
+          "word": "لها",
+          "start": 57.29,
+          "end": 57.58,
+          "probability": 0.744277,
+          "dtw_points": [
+            57.38,
+            57.56
+          ]
+        },
+        {
+          "word": "لكن",
+          "start": 57.64,
+          "end": 57.83,
+          "probability": 0.459568,
+          "dtw_points": [
+            57.8
+          ]
+        },
+        {
+          "word": "هذا",
+          "start": 57.84,
+          "end": 58.08,
+          "probability": 0.534725,
+          "dtw_points": [
+            58.08
+          ]
+        },
+        {
+          "word": "غير",
+          "start": 58.08,
+          "end": 58.31,
+          "probability": 0.994759,
+          "dtw_points": [
+            58.24,
+            58.32
+          ]
+        },
+        {
+          "word": "مسموح",
+          "start": 58.31,
+          "end": 58.68,
+          "probability": 0.734196,
+          "dtw_points": [
+            58.52,
+            58.62,
+            58.68,
+            58.7
+          ]
+        },
+        {
+          "word": "بهي",
+          "start": 58.68,
+          "end": 58.9,
+          "probability": 0.513461,
+          "dtw_points": [
+            58.86,
+            58.98,
+            59.02
+          ]
+        },
+        {
+          "word": "في",
+          "start": 58.9,
+          "end": 59.06,
+          "probability": 0.861426,
+          "dtw_points": [
+            59.1
+          ]
+        },
+        {
+          "word": "المحطة",
+          "start": 59.06,
+          "end": 59.6,
+          "probability": 0.879452,
+          "dtw_points": [
+            59.22,
+            59.34,
+            59.44,
+            59.6
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 59.6,
+      "end": 62.76,
+      "text": "وللحفاظ على النظام يستحيبهم الحراس إلى مكتب المدير",
+      "words": [
+        {
+          "word": "وللحفاظ",
+          "start": 59.74,
+          "end": 60.09,
+          "probability": 0.409315,
+          "dtw_points": [
+            59.74,
+            59.82,
+            59.92,
+            60.04,
+            60.08,
+            60.08
+          ]
+        },
+        {
+          "word": "على",
+          "start": 60.09,
+          "end": 60.31,
+          "probability": 0.510889,
+          "dtw_points": [
+            60.26
+          ]
+        },
+        {
+          "word": "النظام",
+          "start": 60.31,
+          "end": 60.74,
+          "probability": 0.975906,
+          "dtw_points": [
+            60.4,
+            60.56,
+            60.68
+          ]
+        },
+        {
+          "word": "يستحيبهم",
+          "start": 60.74,
+          "end": 61.3,
+          "probability": 0.901617,
+          "dtw_points": [
+            60.84,
+            60.94,
+            61.06,
+            61.1,
+            61.16,
+            61.28
+          ]
+        },
+        {
+          "word": "الحراس",
+          "start": 61.3,
+          "end": 61.73,
+          "probability": 0.129949,
+          "dtw_points": [
+            61.46,
+            61.64,
+            61.74
+          ]
+        },
+        {
+          "word": "إلى",
+          "start": 61.73,
+          "end": 61.95,
+          "probability": 0.979903,
+          "dtw_points": [
+            61.9
+          ]
+        },
+        {
+          "word": "مكتب",
+          "start": 61.95,
+          "end": 62.23,
+          "probability": 0.951796,
+          "dtw_points": [
+            62.0,
+            62.06,
+            62.12,
+            62.18
+          ]
+        },
+        {
+          "word": "المدير",
+          "start": 62.23,
+          "end": 62.75,
+          "probability": 0.976535,
+          "dtw_points": [
+            62.32,
+            62.4,
+            62.78
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 62.76,
+      "end": 66.93,
+      "text": "بعد معرفة الحقيقة أبدأ المدير تعاطفة لكنهم لم يتمكنوا من خرق قواعد المحطة من",
+      "words": [
+        {
+          "word": "بعد",
+          "start": 62.96,
+          "end": 62.98,
+          "probability": 0.983519,
+          "dtw_points": [
+            62.98
+          ]
+        },
+        {
+          "word": "معرفة",
+          "start": 62.98,
+          "end": 63.33,
+          "probability": 0.971386,
+          "dtw_points": [
+            63.14,
+            63.22,
+            63.34
+          ]
+        },
+        {
+          "word": "الحقيقة",
+          "start": 63.33,
+          "end": 63.88,
+          "probability": 0.993481,
+          "dtw_points": [
+            63.52,
+            63.66,
+            63.86
+          ]
+        },
+        {
+          "word": "أبدأ",
+          "start": 63.88,
+          "end": 64.09,
+          "probability": 0.327948,
+          "dtw_points": [
+            63.94,
+            64.02,
+            64.08
+          ]
+        },
+        {
+          "word": "المدير",
+          "start": 64.09,
+          "end": 64.42,
+          "probability": 0.993942,
+          "dtw_points": [
+            64.18,
+            64.24,
+            64.28
+          ]
+        },
+        {
+          "word": "تعاطفة",
+          "start": 64.42,
+          "end": 64.69,
+          "probability": 0.417873,
+          "dtw_points": [
+            64.46,
+            64.58,
+            64.7,
+            64.82
+          ]
+        },
+        {
+          "word": "لكنهم",
+          "start": 64.83,
+          "end": 65.13,
+          "probability": 0.488135,
+          "dtw_points": [
+            65.0,
+            65.18
+          ]
+        },
+        {
+          "word": "لم",
+          "start": 65.13,
+          "end": 65.26,
+          "probability": 0.976096,
+          "dtw_points": [
+            65.28
+          ]
+        },
+        {
+          "word": "يتمكنوا",
+          "start": 65.26,
+          "end": 65.71,
+          "probability": 0.831825,
+          "dtw_points": [
+            65.36,
+            65.48,
+            65.64,
+            65.74
+          ]
+        },
+        {
+          "word": "من",
+          "start": 65.71,
+          "end": 65.84,
+          "probability": 0.991612,
+          "dtw_points": [
+            65.84
+          ]
+        },
+        {
+          "word": "خرق",
+          "start": 65.84,
+          "end": 66.02,
+          "probability": 0.89137,
+          "dtw_points": [
+            65.94,
+            66.0,
+            66.08
+          ]
+        },
+        {
+          "word": "قواعد",
+          "start": 66.02,
+          "end": 66.34,
+          "probability": 0.916324,
+          "dtw_points": [
+            66.22,
+            66.3,
+            66.4
+          ]
+        },
+        {
+          "word": "المحطة",
+          "start": 66.34,
+          "end": 66.79,
+          "probability": 0.996685,
+          "dtw_points": [
+            66.54,
+            66.64,
+            66.7,
+            66.82
+          ]
+        },
+        {
+          "word": "من",
+          "start": 66.85,
+          "end": 66.93,
+          "probability": 0.792501,
+          "dtw_points": [
+            66.94
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 66.93,
+      "end": 68.08,
+      "text": "أجل مشاعرهم الشخصية",
+      "words": [
+        {
+          "word": "أجل",
+          "start": 66.93,
+          "end": 67.11,
+          "probability": 0.799981,
+          "dtw_points": [
+            67.06,
+            67.1,
+            67.16
+          ]
+        },
+        {
+          "word": "مشاعرهم",
+          "start": 67.11,
+          "end": 67.55,
+          "probability": 0.64988,
+          "dtw_points": [
+            67.3,
+            67.42,
+            67.52,
+            67.62
+          ]
+        },
+        {
+          "word": "الشخصية",
+          "start": 67.56,
+          "end": 68.08,
+          "probability": 0.912712,
+          "dtw_points": [
+            67.78,
+            67.82,
+            67.9,
+            68.06
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 68.08,
+      "end": 71.96,
+      "text": "وهي تنظر إلى والديها وصديقها أمامها لم تتملك ليزا دموعها بعد إقناع حتيث من",
+      "words": [
+        {
+          "word": "وهي",
+          "start": 68.21,
+          "end": 68.27,
+          "probability": 0.786282,
+          "dtw_points": [
+            68.22,
+            68.3
+          ]
+        },
+        {
+          "word": "تنظر",
+          "start": 68.28,
+          "end": 68.51,
+          "probability": 0.898022,
+          "dtw_points": [
+            68.42,
+            68.48,
+            68.52,
+            68.6
+          ]
+        },
+        {
+          "word": "إلى",
+          "start": 68.51,
+          "end": 68.71,
+          "probability": 0.893482,
+          "dtw_points": [
+            68.74
+          ]
+        },
+        {
+          "word": "والديها",
+          "start": 68.71,
+          "end": 69.16,
+          "probability": 0.813295,
+          "dtw_points": [
+            68.9,
+            69.04,
+            69.2
+          ]
+        },
+        {
+          "word": "وصديقها",
+          "start": 69.17,
+          "end": 69.61,
+          "probability": 0.829066,
+          "dtw_points": [
+            69.3,
+            69.42,
+            69.52,
+            69.6,
+            69.72
+          ]
+        },
+        {
+          "word": "أمامها",
+          "start": 69.61,
+          "end": 69.92,
+          "probability": 0.970495,
+          "dtw_points": [
+            69.84,
+            69.88,
+            69.96,
+            70.14
+          ]
+        },
+        {
+          "word": "لم",
+          "start": 70.0,
+          "end": 70.01,
+          "probability": 0.947488,
+          "dtw_points": [
+            70.32
+          ]
+        },
+        {
+          "word": "تتملك",
+          "start": 70.14,
+          "end": 70.44,
+          "probability": 0.828961,
+          "dtw_points": [
+            70.42,
+            70.54,
+            70.68
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 70.44,
+          "end": 70.69,
+          "probability": 0.907862,
+          "dtw_points": [
+            70.8,
+            70.88,
+            70.92
+          ]
+        },
+        {
+          "word": "دموعها",
+          "start": 70.69,
+          "end": 71.07,
+          "probability": 0.520831,
+          "dtw_points": [
+            70.98,
+            71.06,
+            71.18,
+            71.36
+          ]
+        },
+        {
+          "word": "بعد",
+          "start": 71.07,
+          "end": 71.23,
+          "probability": 0.969174,
+          "dtw_points": [
+            71.54
+          ]
+        },
+        {
+          "word": "إقناع",
+          "start": 71.28,
+          "end": 71.58,
+          "probability": 0.526087,
+          "dtw_points": [
+            71.66,
+            71.7,
+            71.76,
+            71.86
+          ]
+        },
+        {
+          "word": "حتيث",
+          "start": 71.59,
+          "end": 71.81,
+          "probability": 0.257037,
+          "dtw_points": [
+            72.02,
+            72.14,
+            72.22
+          ]
+        },
+        {
+          "word": "من",
+          "start": 71.87,
+          "end": 71.96,
+          "probability": 0.91436,
+          "dtw_points": [
+            72.34
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 71.96,
+      "end": 75.08,
+      "text": "الموظفين قرر الولدان في النهاية التنازل عن هذا التكريم",
+      "words": [
+        {
+          "word": "الموظفين",
+          "start": 71.96,
+          "end": 72.46,
+          "probability": 0.833085,
+          "dtw_points": [
+            72.52,
+            72.58,
+            72.64,
+            72.74,
+            72.9
+          ]
+        },
+        {
+          "word": "قرر",
+          "start": 72.47,
+          "end": 72.64,
+          "probability": 0.943068,
+          "dtw_points": [
+            73.04,
+            73.12,
+            73.2
+          ]
+        },
+        {
+          "word": "الولدان",
+          "start": 72.65,
+          "end": 73.09,
+          "probability": 0.804591,
+          "dtw_points": [
+            73.28,
+            73.38,
+            73.46,
+            73.56
+          ]
+        },
+        {
+          "word": "في",
+          "start": 73.09,
+          "end": 73.23,
+          "probability": 0.958793,
+          "dtw_points": [
+            73.66
+          ]
+        },
+        {
+          "word": "النهاية",
+          "start": 73.23,
+          "end": 74.08,
+          "probability": 0.857372,
+          "dtw_points": [
+            73.76,
+            73.88,
+            74.0
+          ]
+        },
+        {
+          "word": "التنازل",
+          "start": 74.08,
+          "end": 74.38,
+          "probability": 0.562489,
+          "dtw_points": [
+            74.18,
+            74.26,
+            74.34,
+            74.4
+          ]
+        },
+        {
+          "word": "عن",
+          "start": 74.47,
+          "end": 74.53,
+          "probability": 0.979718,
+          "dtw_points": [
+            74.54
+          ]
+        },
+        {
+          "word": "هذا",
+          "start": 74.53,
+          "end": 74.68,
+          "probability": 0.956174,
+          "dtw_points": [
+            74.68
+          ]
+        },
+        {
+          "word": "التكريم",
+          "start": 74.68,
+          "end": 75.08,
+          "probability": 0.783343,
+          "dtw_points": [
+            74.82,
+            74.88,
+            74.96,
+            75.08
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 75.08,
+      "end": 79.55,
+      "text": "عندما رأت أن حباءها على وشك مغادرتها لم تتملك ليزا نفسها إلا أن ركضت إليهم وحاولت",
+      "words": [
+        {
+          "word": "عندما",
+          "start": 75.28,
+          "end": 75.43,
+          "probability": 0.419074,
+          "dtw_points": [
+            75.24,
+            75.38
+          ]
+        },
+        {
+          "word": "رأت",
+          "start": 75.43,
+          "end": 75.63,
+          "probability": 0.671765,
+          "dtw_points": [
+            75.48,
+            75.48,
+            75.56
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 75.64,
+          "end": 75.78,
+          "probability": 0.87987,
+          "dtw_points": [
+            75.66
+          ]
+        },
+        {
+          "word": "حباءها",
+          "start": 75.78,
+          "end": 76.2,
+          "probability": 0.334399,
+          "dtw_points": [
+            75.78,
+            75.9,
+            76.0,
+            76.14
+          ]
+        },
+        {
+          "word": "على",
+          "start": 76.2,
+          "end": 76.41,
+          "probability": 0.915685,
+          "dtw_points": [
+            76.28
+          ]
+        },
+        {
+          "word": "وشك",
+          "start": 76.41,
+          "end": 76.62,
+          "probability": 0.878808,
+          "dtw_points": [
+            76.38,
+            76.46,
+            76.5
+          ]
+        },
+        {
+          "word": "مغادرتها",
+          "start": 76.62,
+          "end": 77.2,
+          "probability": 0.866551,
+          "dtw_points": [
+            76.62,
+            76.72,
+            76.8,
+            76.9,
+            77.12
+          ]
+        },
+        {
+          "word": "لم",
+          "start": 77.2,
+          "end": 77.33,
+          "probability": 0.892209,
+          "dtw_points": [
+            77.3
+          ]
+        },
+        {
+          "word": "تتملك",
+          "start": 77.33,
+          "end": 77.65,
+          "probability": 0.982465,
+          "dtw_points": [
+            77.38,
+            77.52,
+            77.66
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 77.65,
+          "end": 77.9,
+          "probability": 0.976761,
+          "dtw_points": [
+            77.8,
+            77.86,
+            77.88
+          ]
+        },
+        {
+          "word": "نفسها",
+          "start": 77.9,
+          "end": 78.23,
+          "probability": 0.972227,
+          "dtw_points": [
+            77.96,
+            78.08,
+            78.22
+          ]
+        },
+        {
+          "word": "إلا",
+          "start": 78.28,
+          "end": 78.45,
+          "probability": 0.884556,
+          "dtw_points": [
+            78.34,
+            78.42
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 78.45,
+          "end": 78.5,
+          "probability": 0.929833,
+          "dtw_points": [
+            78.5
+          ]
+        },
+        {
+          "word": "ركضت",
+          "start": 78.59,
+          "end": 78.78,
+          "probability": 0.64751,
+          "dtw_points": [
+            78.62,
+            78.64,
+            78.74,
+            78.84
+          ]
+        },
+        {
+          "word": "إليهم",
+          "start": 78.78,
+          "end": 79.11,
+          "probability": 0.781956,
+          "dtw_points": [
+            78.92,
+            78.98,
+            79.14
+          ]
+        },
+        {
+          "word": "وحاولت",
+          "start": 79.17,
+          "end": 79.53,
+          "probability": 0.836933,
+          "dtw_points": [
+            79.3,
+            79.36,
+            79.42,
+            79.46,
+            79.58
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 79.55,
+      "end": 80.6,
+      "text": "منعهم من المغادرة",
+      "words": [
+        {
+          "word": "منعهم",
+          "start": 79.55,
+          "end": 79.88,
+          "probability": 0.866946,
+          "dtw_points": [
+            79.66,
+            79.76,
+            79.88
+          ]
+        },
+        {
+          "word": "من",
+          "start": 79.88,
+          "end": 80.01,
+          "probability": 0.963766,
+          "dtw_points": [
+            80.0
+          ]
+        },
+        {
+          "word": "المغادرة",
+          "start": 80.03,
+          "end": 80.59,
+          "probability": 0.98407,
+          "dtw_points": [
+            80.12,
+            80.2,
+            80.28,
+            80.46
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 80.6,
+      "end": 83.96,
+      "text": "هنا حدثت المعجزة تمكنت من عبور الجدار الهوائي بسهولة",
+      "words": [
+        {
+          "word": "هنا",
+          "start": 80.8,
+          "end": 80.82,
+          "probability": 0.977497,
+          "dtw_points": [
+            80.82
+          ]
+        },
+        {
+          "word": "حدثت",
+          "start": 80.82,
+          "end": 81.1,
+          "probability": 0.675311,
+          "dtw_points": [
+            81.0,
+            81.06,
+            81.14,
+            81.22
+          ]
+        },
+        {
+          "word": "المعجزة",
+          "start": 81.1,
+          "end": 81.58,
+          "probability": 0.926127,
+          "dtw_points": [
+            81.34,
+            81.44,
+            81.5,
+            81.6,
+            81.72
+          ]
+        },
+        {
+          "word": "تمكنت",
+          "start": 81.6,
+          "end": 81.95,
+          "probability": 0.483834,
+          "dtw_points": [
+            81.78,
+            82.0,
+            82.18
+          ]
+        },
+        {
+          "word": "من",
+          "start": 81.97,
+          "end": 82.11,
+          "probability": 0.690584,
+          "dtw_points": [
+            82.28
+          ]
+        },
+        {
+          "word": "عبور",
+          "start": 82.11,
+          "end": 82.4,
+          "probability": 0.951368,
+          "dtw_points": [
+            82.4,
+            82.46,
+            82.56
+          ]
+        },
+        {
+          "word": "الجدار",
+          "start": 82.4,
+          "end": 82.84,
+          "probability": 0.971966,
+          "dtw_points": [
+            82.76,
+            82.84,
+            82.94
+          ]
+        },
+        {
+          "word": "الهوائي",
+          "start": 82.84,
+          "end": 83.34,
+          "probability": 0.767846,
+          "dtw_points": [
+            83.06,
+            83.14,
+            83.2,
+            83.28,
+            83.4
+          ]
+        },
+        {
+          "word": "بسهولة",
+          "start": 83.35,
+          "end": 83.96,
+          "probability": 0.969533,
+          "dtw_points": [
+            83.52,
+            83.64,
+            83.72,
+            83.84,
+            83.98
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 83.96,
+      "end": 88.97,
+      "text": "مما يعني أنها تستطيع أخيرا مغادرة المحطة تشك في أن اختفاء الجدار الهوائي له",
+      "words": [
+        {
+          "word": "مما",
+          "start": 83.98,
+          "end": 84.18,
+          "probability": 0.785008,
+          "dtw_points": [
+            84.06,
+            84.24
+          ]
+        },
+        {
+          "word": "يعني",
+          "start": 84.18,
+          "end": 84.48,
+          "probability": 0.995142,
+          "dtw_points": [
+            84.4,
+            84.52
+          ]
+        },
+        {
+          "word": "أنها",
+          "start": 84.48,
+          "end": 84.78,
+          "probability": 0.977344,
+          "dtw_points": [
+            84.66,
+            84.82
+          ]
+        },
+        {
+          "word": "تستطيع",
+          "start": 84.78,
+          "end": 85.22,
+          "probability": 0.990541,
+          "dtw_points": [
+            84.9,
+            85.04,
+            85.16,
+            85.24
+          ]
+        },
+        {
+          "word": "أخيرا",
+          "start": 85.22,
+          "end": 85.58,
+          "probability": 0.75505,
+          "dtw_points": [
+            85.4,
+            85.46,
+            85.6,
+            85.68
+          ]
+        },
+        {
+          "word": "مغادرة",
+          "start": 85.58,
+          "end": 85.89,
+          "probability": 0.849643,
+          "dtw_points": [
+            85.78,
+            85.88,
+            85.98,
+            86.1
+          ]
+        },
+        {
+          "word": "المحطة",
+          "start": 86.03,
+          "end": 86.59,
+          "probability": 0.932855,
+          "dtw_points": [
+            86.26,
+            86.38,
+            86.46,
+            86.64
+          ]
+        },
+        {
+          "word": "تشك",
+          "start": 86.64,
+          "end": 86.87,
+          "probability": 0.904739,
+          "dtw_points": [
+            86.74,
+            86.84,
+            86.94
+          ]
+        },
+        {
+          "word": "في",
+          "start": 86.88,
+          "end": 87.05,
+          "probability": 0.505266,
+          "dtw_points": [
+            87.12
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 87.05,
+          "end": 87.22,
+          "probability": 0.991232,
+          "dtw_points": [
+            87.26
+          ]
+        },
+        {
+          "word": "اختفاء",
+          "start": 87.22,
+          "end": 87.69,
+          "probability": 0.959382,
+          "dtw_points": [
+            87.4,
+            87.4,
+            87.54,
+            87.66
+          ]
+        },
+        {
+          "word": "الجدار",
+          "start": 87.75,
+          "end": 88.22,
+          "probability": 0.996101,
+          "dtw_points": [
+            87.84,
+            87.94,
+            88.0
+          ]
+        },
+        {
+          "word": "الهوائي",
+          "start": 88.22,
+          "end": 88.8,
+          "probability": 0.980525,
+          "dtw_points": [
+            88.12,
+            88.22,
+            88.3,
+            88.34,
+            88.48
+          ]
+        },
+        {
+          "word": "له",
+          "start": 88.8,
+          "end": 88.97,
+          "probability": 0.597568,
+          "dtw_points": [
+            88.62
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 88.97,
+      "end": 91.12,
+      "text": "علاقة بظهور والديها وصديقها",
+      "words": [
+        {
+          "word": "علاقة",
+          "start": 88.97,
+          "end": 89.39,
+          "probability": 0.976565,
+          "dtw_points": [
+            88.88,
+            89.0,
+            89.12
+          ]
+        },
+        {
+          "word": "بظهور",
+          "start": 89.39,
+          "end": 89.78,
+          "probability": 0.876808,
+          "dtw_points": [
+            89.36,
+            89.46,
+            89.54,
+            89.66
+          ]
+        },
+        {
+          "word": "والديها",
+          "start": 89.84,
+          "end": 90.39,
+          "probability": 0.878389,
+          "dtw_points": [
+            89.82,
+            90.0,
+            90.2
+          ]
+        },
+        {
+          "word": "وصديقها",
+          "start": 90.39,
+          "end": 91.11,
+          "probability": 0.956842,
+          "dtw_points": [
+            90.3,
+            90.42,
+            90.52,
+            90.62,
+            90.8
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 91.12,
+      "end": 94.92,
+      "text": "بعد أن شاهدت وارديها يدعاني صديقها اخترت أولا أن تتبعه إلى المنزل في طريق",
+      "words": [
+        {
+          "word": "بعد",
+          "start": 91.32,
+          "end": 91.32,
+          "probability": 0.977799,
+          "dtw_points": [
+            91.3
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 91.32,
+          "end": 91.45,
+          "probability": 0.968476,
+          "dtw_points": [
+            91.46
+          ]
+        },
+        {
+          "word": "شاهدت",
+          "start": 91.45,
+          "end": 91.76,
+          "probability": 0.896032,
+          "dtw_points": [
+            91.58,
+            91.64,
+            91.7,
+            91.8
+          ]
+        },
+        {
+          "word": "وارديها",
+          "start": 91.76,
+          "end": 92.2,
+          "probability": 0.610838,
+          "dtw_points": [
+            91.9,
+            91.96,
+            92.06,
+            92.2
+          ]
+        },
+        {
+          "word": "يدعاني",
+          "start": 92.21,
+          "end": 92.58,
+          "probability": 0.418076,
+          "dtw_points": [
+            92.3,
+            92.4,
+            92.5,
+            92.6,
+            92.66
+          ]
+        },
+        {
+          "word": "صديقها",
+          "start": 92.58,
+          "end": 92.96,
+          "probability": 0.982922,
+          "dtw_points": [
+            92.78,
+            92.88,
+            92.96,
+            93.08
+          ]
+        },
+        {
+          "word": "اخترت",
+          "start": 92.96,
+          "end": 93.28,
+          "probability": 0.570507,
+          "dtw_points": [
+            93.28,
+            93.3,
+            93.46
+          ]
+        },
+        {
+          "word": "أولا",
+          "start": 93.28,
+          "end": 93.53,
+          "probability": 0.942968,
+          "dtw_points": [
+            93.6,
+            93.7,
+            93.8
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 93.53,
+          "end": 93.62,
+          "probability": 0.943577,
+          "dtw_points": [
+            93.94
+          ]
+        },
+        {
+          "word": "تتبعه",
+          "start": 93.68,
+          "end": 93.96,
+          "probability": 0.844486,
+          "dtw_points": [
+            94.02,
+            94.1,
+            94.16,
+            94.2,
+            94.32
+          ]
+        },
+        {
+          "word": "إلى",
+          "start": 93.96,
+          "end": 94.15,
+          "probability": 0.937662,
+          "dtw_points": [
+            94.46
+          ]
+        },
+        {
+          "word": "المنزل",
+          "start": 94.16,
+          "end": 94.53,
+          "probability": 0.987709,
+          "dtw_points": [
+            94.58,
+            94.66,
+            94.72,
+            94.8
+          ]
+        },
+        {
+          "word": "في",
+          "start": 94.54,
+          "end": 94.67,
+          "probability": 0.92542,
+          "dtw_points": [
+            94.92
+          ]
+        },
+        {
+          "word": "طريق",
+          "start": 94.67,
+          "end": 94.92,
+          "probability": 0.984089,
+          "dtw_points": [
+            95.08,
+            95.1,
+            95.2
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 94.92,
+      "end": 99.56,
+      "text": "العودة كانت ليزا مليئة بالحماس لأنها حرة ويمكنها أن تكون مع حبيبها مرة أخرى",
+      "words": [
+        {
+          "word": "العودة",
+          "start": 94.92,
+          "end": 95.29,
+          "probability": 0.962595,
+          "dtw_points": [
+            95.34,
+            95.46,
+            95.56
+          ]
+        },
+        {
+          "word": "كانت",
+          "start": 95.35,
+          "end": 95.57,
+          "probability": 0.870521,
+          "dtw_points": [
+            95.72,
+            95.86
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 95.59,
+          "end": 95.82,
+          "probability": 0.950365,
+          "dtw_points": [
+            95.94,
+            95.98,
+            96.08
+          ]
+        },
+        {
+          "word": "مليئة",
+          "start": 95.82,
+          "end": 96.13,
+          "probability": 0.877261,
+          "dtw_points": [
+            96.12,
+            96.22,
+            96.32,
+            96.4
+          ]
+        },
+        {
+          "word": "بالحماس",
+          "start": 96.13,
+          "end": 96.58,
+          "probability": 0.804363,
+          "dtw_points": [
+            96.54,
+            96.68,
+            96.76,
+            96.9
+          ]
+        },
+        {
+          "word": "لأنها",
+          "start": 96.58,
+          "end": 96.9,
+          "probability": 0.92122,
+          "dtw_points": [
+            97.0,
+            97.12,
+            97.24
+          ]
+        },
+        {
+          "word": "حرة",
+          "start": 96.9,
+          "end": 97.52,
+          "probability": 0.337156,
+          "dtw_points": [
+            97.38,
+            97.5
+          ]
+        },
+        {
+          "word": "ويمكنها",
+          "start": 97.52,
+          "end": 98.01,
+          "probability": 0.684846,
+          "dtw_points": [
+            97.68,
+            97.78,
+            97.86,
+            98.04
+          ]
+        },
+        {
+          "word": "أن",
+          "start": 98.01,
+          "end": 98.15,
+          "probability": 0.950646,
+          "dtw_points": [
+            98.12
+          ]
+        },
+        {
+          "word": "تكون",
+          "start": 98.15,
+          "end": 98.43,
+          "probability": 0.96259,
+          "dtw_points": [
+            98.18,
+            98.36
+          ]
+        },
+        {
+          "word": "مع",
+          "start": 98.43,
+          "end": 98.45,
+          "probability": 0.921672,
+          "dtw_points": [
+            98.52
+          ]
+        },
+        {
+          "word": "حبيبها",
+          "start": 98.57,
+          "end": 98.99,
+          "probability": 0.967761,
+          "dtw_points": [
+            98.68,
+            98.76,
+            98.84,
+            98.96
+          ]
+        },
+        {
+          "word": "مرة",
+          "start": 98.99,
+          "end": 99.2,
+          "probability": 0.877488,
+          "dtw_points": [
+            99.06,
+            99.16
+          ]
+        },
+        {
+          "word": "أخرى",
+          "start": 99.2,
+          "end": 99.56,
+          "probability": 0.687996,
+          "dtw_points": [
+            99.36,
+            99.46,
+            99.6
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 99.56,
+      "end": 103.48,
+      "text": "يعوداني إلى الشقة التي اشترتها ليزا عندما كانت على قيد الحياة لكن بينما يدخلان",
+      "words": [
+        {
+          "word": "يعوداني",
+          "start": 99.67,
+          "end": 99.92,
+          "probability": 0.593726,
+          "dtw_points": [
+            99.76,
+            99.84,
+            99.96,
+            100.02
+          ]
+        },
+        {
+          "word": "إلى",
+          "start": 99.98,
+          "end": 100.11,
+          "probability": 0.831952,
+          "dtw_points": [
+            100.12
+          ]
+        },
+        {
+          "word": "الشقة",
+          "start": 100.12,
+          "end": 100.39,
+          "probability": 0.862732,
+          "dtw_points": [
+            100.26,
+            100.38
+          ]
+        },
+        {
+          "word": "التي",
+          "start": 100.39,
+          "end": 100.61,
+          "probability": 0.97789,
+          "dtw_points": [
+            100.6
+          ]
+        },
+        {
+          "word": "اشترتها",
+          "start": 100.61,
+          "end": 100.98,
+          "probability": 0.80083,
+          "dtw_points": [
+            100.8,
+            100.8,
+            100.8,
+            100.9,
+            101.06
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 100.98,
+          "end": 101.19,
+          "probability": 0.971791,
+          "dtw_points": [
+            101.18,
+            101.22,
+            101.28
+          ]
+        },
+        {
+          "word": "عندما",
+          "start": 101.19,
+          "end": 101.4,
+          "probability": 0.983385,
+          "dtw_points": [
+            101.42,
+            101.58
+          ]
+        },
+        {
+          "word": "كانت",
+          "start": 101.48,
+          "end": 101.69,
+          "probability": 0.990195,
+          "dtw_points": [
+            101.74,
+            101.84
+          ]
+        },
+        {
+          "word": "على",
+          "start": 101.69,
+          "end": 101.86,
+          "probability": 0.929216,
+          "dtw_points": [
+            101.96
+          ]
+        },
+        {
+          "word": "قيد",
+          "start": 101.86,
+          "end": 102.02,
+          "probability": 0.926998,
+          "dtw_points": [
+            102.08,
+            102.16
+          ]
+        },
+        {
+          "word": "الحياة",
+          "start": 102.02,
+          "end": 102.47,
+          "probability": 0.953775,
+          "dtw_points": [
+            102.32,
+            102.42,
+            102.54
+          ]
+        },
+        {
+          "word": "لكن",
+          "start": 102.48,
+          "end": 102.69,
+          "probability": 0.752351,
+          "dtw_points": [
+            102.7
+          ]
+        },
+        {
+          "word": "بينما",
+          "start": 102.71,
+          "end": 102.98,
+          "probability": 0.883278,
+          "dtw_points": [
+            102.9,
+            103.04
+          ]
+        },
+        {
+          "word": "يدخلان",
+          "start": 103.07,
+          "end": 103.48,
+          "probability": 0.906221,
+          "dtw_points": [
+            103.14,
+            103.22,
+            103.24,
+            103.3,
+            103.4
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 103.48,
+      "end": 106.8,
+      "text": "الفناء يحلث شيء غريب جارة ترمق صديقها بنظرة المرعبة",
+      "words": [
+        {
+          "word": "الفناء",
+          "start": 103.48,
+          "end": 103.91,
+          "probability": 0.45455,
+          "dtw_points": [
+            103.56,
+            103.64,
+            103.76
+          ]
+        },
+        {
+          "word": "يحلث",
+          "start": 103.91,
+          "end": 104.19,
+          "probability": 0.598082,
+          "dtw_points": [
+            103.92,
+            104.0,
+            104.02,
+            104.1
+          ]
+        },
+        {
+          "word": "شيء",
+          "start": 104.19,
+          "end": 104.4,
+          "probability": 0.95367,
+          "dtw_points": [
+            104.28,
+            104.36
+          ]
+        },
+        {
+          "word": "غريب",
+          "start": 104.4,
+          "end": 104.76,
+          "probability": 0.957903,
+          "dtw_points": [
+            104.52,
+            104.6,
+            104.82
+          ]
+        },
+        {
+          "word": "جارة",
+          "start": 104.82,
+          "end": 105.07,
+          "probability": 0.471768,
+          "dtw_points": [
+            105.02,
+            105.08,
+            105.18
+          ]
+        },
+        {
+          "word": "ترمق",
+          "start": 105.09,
+          "end": 105.37,
+          "probability": 0.478676,
+          "dtw_points": [
+            105.3,
+            105.34,
+            105.44,
+            105.5
+          ]
+        },
+        {
+          "word": "صديقها",
+          "start": 105.37,
+          "end": 105.81,
+          "probability": 0.823097,
+          "dtw_points": [
+            105.66,
+            105.78,
+            105.84,
+            105.98
+          ]
+        },
+        {
+          "word": "بنظرة",
+          "start": 105.81,
+          "end": 106.18,
+          "probability": 0.70263,
+          "dtw_points": [
+            106.12,
+            106.22,
+            106.3
+          ]
+        },
+        {
+          "word": "المرعبة",
+          "start": 106.18,
+          "end": 106.8,
+          "probability": 0.552868,
+          "dtw_points": [
+            106.5,
+            106.56,
+            106.62,
+            106.78
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 106.8,
+      "end": 108.8,
+      "text": "بلا تفكير ليزا تلحقه من الباب",
+      "words": [
+        {
+          "word": "بلا",
+          "start": 106.84,
+          "end": 107.04,
+          "probability": 0.864214,
+          "dtw_points": [
+            106.96,
+            107.08
+          ]
+        },
+        {
+          "word": "تفكير",
+          "start": 107.04,
+          "end": 107.44,
+          "probability": 0.977349,
+          "dtw_points": [
+            107.16,
+            107.22,
+            107.32,
+            107.44
+          ]
+        },
+        {
+          "word": "ليزا",
+          "start": 107.44,
+          "end": 107.75,
+          "probability": 0.932455,
+          "dtw_points": [
+            107.74,
+            107.82,
+            107.9
+          ]
+        },
+        {
+          "word": "تلحقه",
+          "start": 107.75,
+          "end": 108.15,
+          "probability": 0.964518,
+          "dtw_points": [
+            107.94,
+            108.02,
+            108.1,
+            108.18,
+            108.3
+          ]
+        },
+        {
+          "word": "من",
+          "start": 108.17,
+          "end": 108.32,
+          "probability": 0.997659,
+          "dtw_points": [
+            108.44
+          ]
+        },
+        {
+          "word": "الباب",
+          "start": 108.32,
+          "end": 108.73,
+          "probability": 0.815778,
+          "dtw_points": [
+            108.6,
+            108.72
+          ]
+        }
+      ],
+      "review_warnings": []
+    }
+  ]
+}

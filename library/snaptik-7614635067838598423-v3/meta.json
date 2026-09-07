@@ -10,5 +10,20 @@
   "source_lang": "ar",
   "uploaded_at": "2026-09-07T12:51:08Z",
   "status": "uploaded",
-  "uploaded_with": "ana"
+  "uploaded_with": "ana",
+  "transcription": {
+    "status": "draft_needs_review",
+    "engine": "whisper.cpp",
+    "model": "small",
+    "detected_language": "ar",
+    "language_probability": 0.99583,
+    "segments": 34,
+    "words": 308,
+    "source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+    "run_date": "2026-09-07",
+    "text": "source.txt",
+    "srt": "source.srt",
+    "timed_json": "source.segments.json",
+    "review": "source.review.md"
+  }
 }

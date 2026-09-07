@@ -1,0 +1,61 @@
+{
+  "model": "whisper-small",
+  "format": "ggml",
+  "multilingual": true,
+  "bytes": 487601967,
+  "sha1": "55356645c2b361a969dfd0ef2c5a50d530afd8d5",
+  "sha256": "1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b",
+  "mirror_repo": "fmyIo/whisper-models",
+  "mirror_commit": "4ee4840a46e7596b0e5714069648a9d0034f4a91",
+  "canonical_checksum_source": "https://github.com/ggml-org/whisper.cpp/blob/v1.7.6/models/README.md",
+  "parts": [
+    {
+      "path": "partaa",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "444e452d8080292c69a58714228370e8e8ea75c3",
+      "size": 94371840,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/444e452d8080292c69a58714228370e8e8ea75c3"
+    },
+    {
+      "path": "partab",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "262bde41b1ac0765c4f64a51fa72b6f517189e6b",
+      "size": 94371840,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/262bde41b1ac0765c4f64a51fa72b6f517189e6b"
+    },
+    {
+      "path": "partac",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8581e23ff4d076a56ec14fbed1cb52f6b2860c45",
+      "size": 94371840,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/8581e23ff4d076a56ec14fbed1cb52f6b2860c45"
+    },
+    {
+      "path": "partad",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "be4064c8616fc30c4b2f99f679b660311df772b8",
+      "size": 94371840,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/be4064c8616fc30c4b2f99f679b660311df772b8"
+    },
+    {
+      "path": "partae",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6bd1537adf07a1b742699996a30e87256a3cd38f",
+      "size": 94371840,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/6bd1537adf07a1b742699996a30e87256a3cd38f"
+    },
+    {
+      "path": "partaf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "52391a041e65aa37c5a2d0f1aaa790c5c2a8aa6e",
+      "size": 15742767,
+      "url": "https://api.github.com/repos/fmyIo/whisper-models/git/blobs/52391a041e65aa37c5a2d0f1aaa790c5c2a8aa6e"
+    }
+  ]
+}

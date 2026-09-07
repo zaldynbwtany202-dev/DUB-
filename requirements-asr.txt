@@ -1,2 +1,4 @@
 # CPU transcription only; no Torch, translation or TTS dependency.
 faster-whisper>=1.2.1,<2
+# Used to decode media before the optional local whisper.cpp backend.
+imageio-ffmpeg>=0.5,<1
