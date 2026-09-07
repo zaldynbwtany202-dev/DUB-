@@ -1,0 +1,6 @@
+# CPU neural background extraction only. No TTS and no Torch/CUDA needed.
+numpy>=1.26,<3
+scipy>=1.11,<2
+onnxruntime>=1.18,<2
+soundfile>=0.12,<1
+imageio-ffmpeg>=0.5,<1

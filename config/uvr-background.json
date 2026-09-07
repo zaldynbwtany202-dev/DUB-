@@ -1,0 +1,25 @@
+{
+  "model": "UVR four-band instrumental estimator (ONNX FP16)",
+  "model_repo": "lovemefan/ultimate-vocal-remover-onnx",
+  "model_revision": "2b0bf32189e2e0da2b1402b4f6ea90ff2f0a98c9",
+  "model_path": "uvronnx/onnx/uvr-fp16-sim.onnx",
+  "model_bytes": 63846557,
+  "model_git_blob": "96191ba6a1434417c5cb73f7588a563278a02583",
+  "model_sha256": "84e57b4685dfa0042e04b33266b650ee7785604ac472414bef6dea90e810448f",
+  "interface_reference": "https://github.com/lovemefan/ultimate-vocal-remover-onnx/blob/2b0bf32189e2e0da2b1402b4f6ea90ff2f0a98c9/uvronnx/src/config.py",
+  "weights_storage": "Ignored local cache only; model weights are not redistributed in this repository.",
+  "sample_rate": 44100,
+  "bins": 672,
+  "window_frames": 512,
+  "context_frames": 128,
+  "reference_fft": 4096,
+  "reference_hop": 480,
+  "prefilter_start": 668,
+  "prefilter_stop": 672,
+  "bands": [
+    {"sr": 7350, "hop": 80, "fft": 640, "crop": [0, 85], "lowpass": [25, 53]},
+    {"sr": 7350, "hop": 80, "fft": 320, "crop": [4, 87], "highpass": [12, 25], "lowpass": [31, 62]},
+    {"sr": 14700, "hop": 160, "fft": 512, "crop": [17, 216], "highpass": [24, 48], "lowpass": [139, 210]},
+    {"sr": 44100, "hop": 480, "fft": 960, "crop": [78, 383], "highpass": [86, 130]}
+  ]
+}

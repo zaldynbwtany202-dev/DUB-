@@ -1,0 +1,19 @@
+{
+  "voice_video": "final-dub-agent-ar-eg.mp4",
+  "background": "background/separated-original-background.flac",
+  "output": "final-dub-agent-ar-eg-original-bg.mp4",
+  "duration": 108.9,
+  "background_gain_db": 2.5,
+  "ducking": {
+    "threshold": 0.05,
+    "ratio": 3,
+    "attack_ms": 20,
+    "release_ms": 500,
+    "detection": "rms"
+  },
+  "mask_power": 1.35,
+  "model_config": "../../config/uvr-background.json",
+  "original_source": "../../library/snaptik-7614635067838598423-v3/source.mp4",
+  "voice_regenerated": false,
+  "do_not_feed_an_already_mixed_video_back_into_this_recipe": true
+}
