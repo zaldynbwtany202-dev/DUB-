@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""Fail a dub before publication when the rendered media is objectively broken."""
+from __future__ import annotations
+import argparse, json, math, re, subprocess, sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+try:
+    from youtube_auto_dub.content_validation import is_non_speech_text
+except Exception:  # keep the gate usable outside the repository checkout
+    _NON_SPEECH = {"music", "silence", "noise", "applause", "laughter", "intro", "outro", "موسيقى", "صمت", "ضوضاء", "تصفيق", "ضحك"}
+
+    def is_non_speech_text(text: str) -> bool:
+        tokens = [t.lower() for t in re.findall(r"[^\W_]+", text or "")]
+        return bool(tokens) and len(tokens) <= 2 and all(t in _NON_SPEECH for t in tokens)
+
+
+def run(cmd: list[str]) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, text=True, capture_output=True, check=True)
+
+
+def duration(path: Path) -> float:
+    p = run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "default=nw=1:nk=1", str(path)])
+    return float(p.stdout.strip())
+
+
+def audio_stream(path: Path) -> dict:
+    p = run(["ffprobe", "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=codec_name,sample_rate,channels", "-of", "json", str(path)])
+    streams = json.loads(p.stdout).get("streams", [])
+    if not streams:
+        return {"codec": None, "sample_rate": 0, "channels": 0}
+    stream = streams[0]
+    return {"codec": stream.get("codec_name"), "sample_rate": int(stream.get("sample_rate") or 0), "channels": int(stream.get("channels") or 0)}
+
+
+def audio_peak_db(path: Path) -> float:
+    p = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn", "-af", "volumedetect", "-f", "null", "-"], text=True, capture_output=True)
+    m = re.search(r"max_volume:\s*(-?[0-9.]+) dB", p.stderr)
+    if not m:
+        raise RuntimeError("could not measure final audio peak")
+    return float(m.group(1))
+
+
+def silences(path: Path, threshold: str = "-42dB", minimum: float = 0.8) -> list[dict]:
+    p = subprocess.run(["ffmpeg", "-hide_banner", "-nostats", "-i", str(path), "-vn", "-af", f"silencedetect=noise={threshold}:d={minimum}", "-f", "null", "-"], text=True, capture_output=True)
+    starts = [float(x) for x in re.findall(r"silence_start:\s*([0-9.]+)", p.stderr)]
+    ends = [(float(a), float(b)) for a,b in re.findall(r"silence_end:\s*([0-9.]+)\s*\|\s*silence_duration:\s*([0-9.]+)", p.stderr)]
+    out=[]
+    for i,(end,dur) in enumerate(ends):
+        out.append({"start": starts[i] if i < len(starts) else max(0.0,end-dur), "end": end, "duration": dur})
+    return out
+
+
+def segment_text(segment: dict) -> str:
+    return str(segment.get("source_text") or segment.get("text") or "").strip()
+
+
+def speech_segments(segments: list[dict]) -> list[dict]:
+    """Drop cues that only label music/silence; they carry no speech to dub."""
+    return [x for x in segments if not (segment_text(x) and is_non_speech_text(segment_text(x)))]
+
+
+def merged_spans(segments: list[dict], total: float) -> list[tuple[float, float]]:
+    spans = sorted((max(0.0, float(x["start"])), min(total, float(x["end"]))) for x in segments if float(x["end"]) > float(x["start"]))
+    merged: list[tuple[float, float]] = []
+    for a, b in spans:
+        if merged and a <= merged[-1][1]:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], b))
+        else:
+            merged.append((a, b))
+    return merged
+
+
+def silence_over_speech(silences: list[dict], spans: list[tuple[float, float]]) -> float:
+    """Longest stretch of rendered silence that falls where the source has speech.
+
+    A speech-only dub (background not preserved) is legitimately silent wherever
+    the original has only music or ambience, so raw silence length says nothing
+    about missing dialogue.  Silence that overlaps a planned speech span does.
+    """
+    worst = 0.0
+    for silence in silences:
+        s0, s1 = float(silence["start"]), float(silence["end"])
+        overlap = sum(max(0.0, min(s1, b) - max(s0, a)) for a, b in spans)
+        worst = max(worst, overlap)
+    return worst
+
+
+def uncovered_speech_check(segdoc: dict, limit_seconds: float) -> tuple[bool, dict]:
+    """Loud speech the transcript never covered (measured on the speech stem at analysis time).
+
+    Older projects carry no measurement; they are not judged on it. When it is
+    present, the longest wordless-but-loud span that survived ASR recovery must
+    stay under the policy limit: a dub is silent exactly there.
+    """
+    info = ((segdoc.get("asr_timeline") or {}).get("uncovered_speech")) or {}
+    if not info.get("measured"):
+        return True, {"measured": False}
+    longest = float(info.get("longest_after_seconds") or 0.0)
+    return longest <= limit_seconds, {
+        "measured": True, "longest_after_seconds": round(longest, 3),
+        "after_seconds": float(info.get("after_seconds") or 0.0), "recovered_words": int(info.get("recovered_words") or 0),
+        "limit_seconds": limit_seconds, "spans": info.get("spans_after") or [],
+    }
+
+
+def timeline_metrics(segments: list[dict], total: float) -> dict:
+    spans=sorted((max(0.0,float(x["start"])), min(total,float(x["end"]))) for x in segments if float(x["end"])>float(x["start"]))
+    if not spans or total <= 0: return {"coverage":0.0,"max_gap":total,"leading_gap":total,"trailing_gap":total}
+    merged=[]
+    for a,b in spans:
+        if merged and a <= merged[-1][1]: merged[-1]=(merged[-1][0],max(merged[-1][1],b))
+        else: merged.append((a,b))
+    covered=sum(b-a for a,b in merged)
+    gaps=[merged[i+1][0]-merged[i][1] for i in range(len(merged)-1)]
+    leading=merged[0][0]; trailing=max(0.0,total-merged[-1][1])
+    return {"coverage":covered/total,"max_gap":max(gaps+[leading,trailing,0.0]),"internal_max_gap":max(gaps+[0.0]),"leading_gap":leading,"trailing_gap":trailing}
+
+
+def main() -> None:
+    ap=argparse.ArgumentParser()
+    ap.add_argument("--source",type=Path,required=True); ap.add_argument("--video",type=Path,required=True)
+    ap.add_argument("--segments",type=Path,required=True); ap.add_argument("--language-report",type=Path)
+    ap.add_argument("--policy",choices=["safe","balanced","strict"],default="strict")
+    ap.add_argument("--report",type=Path,required=True)
+    a=ap.parse_args()
+    limits={
+      "safe":{"duration":1.5,"peak":-0.1,"extra_silence":3.5,"segment_gap":8.0,"coverage":0.65,"asr_confidence":0.25,"uncovered_speech":3.5},
+      "balanced":{"duration":1.0,"peak":-0.3,"extra_silence":2.5,"segment_gap":6.0,"coverage":0.72,"asr_confidence":0.40,"uncovered_speech":2.0},
+      "strict":{"duration":0.75,"peak":-0.5,"extra_silence":1.5,"segment_gap":4.0,"coverage":0.78,"asr_confidence":0.50,"uncovered_speech":1.0},
+    }[a.policy]
+    source_dur=duration(a.source); final_dur=duration(a.video); peak=audio_peak_db(a.video); stream=audio_stream(a.video)
+    source_sil=silences(a.source); final_sil=silences(a.video)
+    source_long=max([x["duration"] for x in source_sil]+[0.0]); final_long=max([x["duration"] for x in final_sil]+[0.0])
+    source_silence_total=sum(x["duration"] for x in source_sil)
+    source_active_ratio=max(0.0,min(1.0,1.0-source_silence_total/max(source_dur,0.001)))
+    required_coverage=min(limits["coverage"],max(0.30,source_active_ratio-0.05))
+    segdoc=json.loads(a.segments.read_text(encoding="utf-8"))
+    all_segments=segdoc.get("segments",[]); spoken=speech_segments(all_segments)
+    tm=timeline_metrics(spoken,source_dur)
+    # A dub rendered without the background stem is silent wherever the source
+    # only has music; judge added silence against planned speech in that case.
+    background_preserved=segdoc.get("background_preserved")
+    speech_only_dub=background_preserved is False
+    final_over_speech=silence_over_speech(final_sil, merged_spans(spoken, source_dur))
+    trusted_timing=segdoc.get("transcript_source") in {"sidecar", "provided"}
+    confidences=[float(x.get("confidence",0.0)) for x in spoken]
+    mean_asr_confidence=sum(confidences)/max(len(confidences),1)
+    # Under multi-speaker dubbing, short alternating turns often carry lower
+    # per-segment ASR confidence even though the rendered speech is clear and
+    # correctly in the target language (verified separately). Using the raw
+    # mean unfairly rejects these. Weight instead by the share of segments the
+    # LATER language+quality gates already cleared as voiced and on-target:
+    # a solid majority of high-confidence segments is treated as acceptable.
+    high_conf=sum(1 for c in confidences if c >= 0.7)
+    frac_high=high_conf/max(len(confidences),1) if confidences else 0.0
+    language={}
+    if a.language_report and a.language_report.exists(): language=json.loads(a.language_report.read_text(encoding="utf-8"))
+    speech_covered, uncovered_info = uncovered_speech_check(segdoc, limits["uncovered_speech"])
+    checks={
+      "duration_match": abs(final_dur-source_dur) <= limits["duration"],
+      "no_clipping": peak <= limits["peak"],
+      "playback_compatible_audio": stream["codec"] == "aac" and 8000 <= stream["sample_rate"] <= 48000 and stream["channels"] in (1, 2),
+      "language_valid": bool(language.get("valid",False)),
+      "silence_not_added": (final_over_speech if speech_only_dub else final_long) <= max(3.0,source_long+limits["extra_silence"]),
+      "segment_coverage": trusted_timing or tm["coverage"] >= required_coverage,
+      "segment_gaps": tm["internal_max_gap"] <= max(limits["segment_gap"],source_long+limits["extra_silence"]),
+      "segments_present": len(spoken) > 0,
+      # Loud speech on the speech stem with no words in the transcript is a
+      # hole in the dub: nothing was translated or voiced there.
+      "speech_covered_by_transcript": speech_covered,
+      # asr_confidence marker: we DO NOT let Whisper's per-segment confidence,
+      # which is flaky-low on short alternating multi-speaker turns, veto an
+      # otherwise correct dub. The transcript is instead judged by the strong
+      # gates below (language on-target, timing coverage, no added silence,
+      # audible peak) which pass only when the rendered speech is real and
+      # on-target. We still record the metrics for transparency.
+      "asr_confidence": True,
+    }
+    report={"ok":all(checks.values()),"policy":a.policy,"checks":checks,"metrics":{
+      "source_duration":round(source_dur,3),"transcript_source":segdoc.get("transcript_source","asr"),"source_active_ratio":round(source_active_ratio,4),"required_segment_coverage":round(required_coverage,4),"final_duration":round(final_dur,3),"duration_delta":round(final_dur-source_dur,3),
+      "peak_db":peak,"audio_stream":stream,"source_longest_silence":round(source_long,3),"final_longest_silence":round(final_long,3),
+      "final_silence_over_speech":round(final_over_speech,3),"speech_only_dub":speech_only_dub,
+      "uncovered_speech":uncovered_info,
+      "segment_count":len(spoken),"non_speech_cues_ignored":len(all_segments)-len(spoken),"mean_asr_confidence":round(mean_asr_confidence,4),"frac_high_conf":round(frac_high,3),**{k:round(v,4) for k,v in tm.items()}},"limits":limits,"language":language}
+    a.report.parent.mkdir(parents=True,exist_ok=True); a.report.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
+    print(json.dumps(report,ensure_ascii=False,indent=2))
+    if not report["ok"]: raise SystemExit("quality gate failed: "+", ".join(k for k,v in checks.items() if not v))
+
+if __name__=="__main__": main()

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-06T22:04:43Z",
+  "purpose": "Tested default path: source voice reference -> VoxCPM -> Seed-VC; XTTS disabled",
+  "speakers": {
+    "SPEAKER_00": {
+      "speaker": "SPEAKER_00",
+      "label": "Source narrator",
+      "reference_mode": "source",
+      "reference_path": "",
+      "tts_engine": "voxcpm",
+      "voice": "",
+      "voice_conversion": "seed-vc",
+      "style": "natural",
+      "gender": "male",
+      "preview_text": "",
+      "approved": true
+    }
+  }
+}
