@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "kind": "verified_github_sendbox_split_upload",
+  "repository": "zaldynbwtany202-dev/DUB-",
+  "upload_branch": "arena/01a07c69-dub",
+  "upload_commit": "2108415357eb076ec7404036baa6d81bb04995f3",
+  "uploaded_at": "2026-09-07T20:35:04Z",
+  "original_name": "رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4",
+  "size": 39320203,
+  "sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+  "manifest_blob_sha": "0b1963ea6a3a03a85012a9dd6a0a03864c66e1f2",
+  "parts": [
+    {
+      "index": 1,
+      "path": "inbox/رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4.part01of03",
+      "bytes": 18874368,
+      "git_blob_sha": "9231963858ba719ba4781864e80d16071151df79",
+      "sha256": "51a6ee551b440a15dad2dd571ad75fd7fb4f7c8e452beb2dbebcd01a9ba53192"
+    },
+    {
+      "index": 2,
+      "path": "inbox/رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4.part02of03",
+      "bytes": 18874368,
+      "git_blob_sha": "6048992e8f0afccafcd66977579083879ad9af85",
+      "sha256": "781fe9c731c1ae79b7ca9a68baf3dbfa268b1f3d23f679279d80d17767aa7df9"
+    },
+    {
+      "index": 3,
+      "path": "inbox/رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4.part03of03",
+      "bytes": 1571467,
+      "git_blob_sha": "64573303ce3ac9ca989daa5ed0a9ae226ae8ae9b",
+      "sha256": "366cfc98275282187c47847c1bdcd37ef574be3b0d3f61b10733f10fc9441f19"
+    }
+  ],
+  "verification": "All three Git blob IDs, all three uploader SHA-256 checksums, ordered concatenation and total size verified. No transcoding.",
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "media_info": {
+    "duration": 676.327619,
+    "width": 854,
+    "height": 480,
+    "fps": "30",
+    "video_codec": "h264",
+    "video_frames": 20288,
+    "audio_streams": 1,
+    "audio_codec": "aac",
+    "audio_sample_rate": 44100,
+    "audio_channels": 2
+  },
+  "full_decode_errors": 0
+}
