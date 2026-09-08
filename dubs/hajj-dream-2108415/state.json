@@ -1,5 +1,5 @@
 {
-  "status": "complete_pending_publication",
+  "status": "complete",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -32,11 +32,16 @@
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.266667,
   "publication": {
-    "status": "pending_upload"
+    "status": "published_verified",
+    "branch": "arena/01a07c92-dub",
+    "video_commit": "139e51f",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+    "verified_at": "2026-09-08T21:03:13+00:00"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
-  "completed_at": "2026-09-08T20:05:53+00:00",
+  "completed_at": "2026-09-08T21:03:13+00:00",
   "next_step": null,
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
