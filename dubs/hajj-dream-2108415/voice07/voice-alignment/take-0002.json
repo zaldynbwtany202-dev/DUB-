@@ -1,0 +1,946 @@
+{
+  "audio_sha256": "eebdb117a9553a071eb90a46ec53237a4f106aed32edcb49e653df21460ac203",
+  "model_sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+  "method": "Approximate tiny-q5_1 DTW; diagnostic text is not the script",
+  "duration": 65.916125,
+  "words": [
+    {
+      "word": "بعد",
+      "start": 0.14,
+      "end": 0.22000000000000003,
+      "probability": 0.758375
+    },
+    {
+      "word": "كدا",
+      "start": 0.54,
+      "end": 0.8999999999999999,
+      "probability": 0.346986
+    },
+    {
+      "word": "يرحل",
+      "start": 1.1,
+      "end": 1.4000000000000001,
+      "probability": 0.361936
+    },
+    {
+      "word": "الشخم",
+      "start": 1.5,
+      "end": 1.76,
+      "probability": 0.32338
+    },
+    {
+      "word": "بروك،",
+      "start": 2.0,
+      "end": 2.42,
+      "probability": 0.367076
+    },
+    {
+      "word": "اللي",
+      "start": 2.48,
+      "end": 2.56,
+      "probability": 0.347885
+    },
+    {
+      "word": "كان",
+      "start": 2.66,
+      "end": 2.74,
+      "probability": 0.953185
+    },
+    {
+      "word": "من",
+      "start": 2.84,
+      "end": 2.92,
+      "probability": 0.742676
+    },
+    {
+      "word": "شغل",
+      "start": 3.02,
+      "end": 3.24,
+      "probability": 0.753903
+    },
+    {
+      "word": "بهموم",
+      "start": 3.38,
+      "end": 3.68,
+      "probability": 0.224388
+    },
+    {
+      "word": "الناس",
+      "start": 3.8,
+      "end": 4.22,
+      "probability": 0.455314
+    },
+    {
+      "word": "يطلق",
+      "start": 4.64,
+      "end": 4.94,
+      "probability": 0.346429
+    },
+    {
+      "word": "من",
+      "start": 5.06,
+      "end": 5.14,
+      "probability": 0.932923
+    },
+    {
+      "word": "نوي",
+      "start": 5.22,
+      "end": 5.36,
+      "probability": 0.217346
+    },
+    {
+      "word": "سعدوا",
+      "start": 5.46,
+      "end": 5.76,
+      "probability": 0.306948
+    },
+    {
+      "word": "عشان",
+      "start": 5.82,
+      "end": 6.0200000000000005,
+      "probability": 0.521015
+    },
+    {
+      "word": "يرحل",
+      "start": 6.12,
+      "end": 6.46,
+      "probability": 0.602775
+    },
+    {
+      "word": "حجه",
+      "start": 6.6,
+      "end": 6.9,
+      "probability": 0.509812
+    },
+    {
+      "word": "وعائشة",
+      "start": 7.02,
+      "end": 7.86,
+      "probability": 0.325042
+    },
+    {
+      "word": "الشخط",
+      "start": 8.26,
+      "end": 8.66,
+      "probability": 0.815431
+    },
+    {
+      "word": "منه،",
+      "start": 8.84,
+      "end": 9.4,
+      "probability": 0.589334
+    },
+    {
+      "word": "انت",
+      "start": 9.5,
+      "end": 9.68,
+      "probability": 0.606779
+    },
+    {
+      "word": "أسع",
+      "start": 9.82,
+      "end": 10.08,
+      "probability": 0.184765
+    },
+    {
+      "word": "وربناها",
+      "start": 10.3,
+      "end": 10.92,
+      "probability": 0.357398
+    },
+    {
+      "word": "سهلها",
+      "start": 11.02,
+      "end": 11.58,
+      "probability": 0.444713
+    },
+    {
+      "word": "رجل",
+      "start": 12.16,
+      "end": 12.48,
+      "probability": 0.413577
+    },
+    {
+      "word": "يديل",
+      "start": 12.6,
+      "end": 12.92,
+      "probability": 0.526887
+    },
+    {
+      "word": "عشاب",
+      "start": 12.98,
+      "end": 13.4,
+      "probability": 0.429503
+    },
+    {
+      "word": "جبها",
+      "start": 13.52,
+      "end": 13.88,
+      "probability": 0.260352
+    },
+    {
+      "word": "من",
+      "start": 13.8,
+      "end": 13.88,
+      "probability": 0.96532
+    },
+    {
+      "word": "صفروا",
+      "start": 14.0,
+      "end": 14.7,
+      "probability": 0.24846
+    },
+    {
+      "word": "الشخص",
+      "start": 14.86,
+      "end": 15.48,
+      "probability": 0.371089
+    },
+    {
+      "word": "عليها",
+      "start": 15.4,
+      "end": 15.92,
+      "probability": 0.185509
+    },
+    {
+      "word": "ويرجعهلوا",
+      "start": 15.94,
+      "end": 16.919999999999998,
+      "probability": 0.432347
+    },
+    {
+      "word": "وبعدها",
+      "start": 17.18,
+      "end": 17.74,
+      "probability": 0.763735
+    },
+    {
+      "word": "ينشغل",
+      "start": 17.86,
+      "end": 18.34,
+      "probability": 0.600359
+    },
+    {
+      "word": "بضيوف",
+      "start": 18.28,
+      "end": 18.68,
+      "probability": 0.211559
+    },
+    {
+      "word": "جيين",
+      "start": 18.84,
+      "end": 19.06,
+      "probability": 0.354939
+    },
+    {
+      "word": "من",
+      "start": 19.28,
+      "end": 19.36,
+      "probability": 0.98355
+    },
+    {
+      "word": "الجنوب",
+      "start": 19.32,
+      "end": 19.74,
+      "probability": 0.824787
+    },
+    {
+      "word": "ويدعيه",
+      "start": 20.16,
+      "end": 20.7,
+      "probability": 0.51423
+    },
+    {
+      "word": "رحماعه",
+      "start": 20.98,
+      "end": 21.7,
+      "probability": 0.456284
+    },
+    {
+      "word": "يرجع",
+      "start": 21.62,
+      "end": 22.08,
+      "probability": 0.594672
+    },
+    {
+      "word": "البيت",
+      "start": 22.12,
+      "end": 22.2,
+      "probability": 0.6759
+    },
+    {
+      "word": "إلى",
+      "start": 22.72,
+      "end": 22.799999999999997,
+      "probability": 0.72983
+    },
+    {
+      "word": "إعائشم",
+      "start": 23.26,
+      "end": 23.459999999999997,
+      "probability": 0.293367
+    },
+    {
+      "word": "جهز",
+      "start": 23.64,
+      "end": 23.88,
+      "probability": 0.38431
+    },
+    {
+      "word": "الأكل",
+      "start": 24.08,
+      "end": 24.7,
+      "probability": 0.458764
+    },
+    {
+      "word": "يحكلها",
+      "start": 24.84,
+      "end": 25.939999999999998,
+      "probability": 0.231447
+    },
+    {
+      "word": "الدائه",
+      "start": 25.86,
+      "end": 25.939999999999998,
+      "probability": 0.147187
+    },
+    {
+      "word": "المدينة",
+      "start": 25.86,
+      "end": 26.459999999999997,
+      "probability": 0.765906
+    },
+    {
+      "word": "غيرت",
+      "start": 26.38,
+      "end": 26.779999999999998,
+      "probability": 0.190265
+    },
+    {
+      "word": "وعن",
+      "start": 28.2,
+      "end": 28.279999999999998,
+      "probability": 0.53654
+    },
+    {
+      "word": "شركة",
+      "start": 28.2,
+      "end": 28.279999999999998,
+      "probability": 0.510697
+    },
+    {
+      "word": "صفروا",
+      "start": 28.22,
+      "end": 28.299999999999997,
+      "probability": 0.563001
+    },
+    {
+      "word": "موزفينها",
+      "start": 28.28,
+      "end": 29.0,
+      "probability": 0.235115
+    },
+    {
+      "word": "ويحكلها",
+      "start": 29.2,
+      "end": 30.02,
+      "probability": 0.362446
+    },
+    {
+      "word": "عن",
+      "start": 30.12,
+      "end": 30.2,
+      "probability": 0.667584
+    },
+    {
+      "word": "الشيخ",
+      "start": 30.36,
+      "end": 30.759999999999998,
+      "probability": 0.774821
+    },
+    {
+      "word": "وعن",
+      "start": 31.0,
+      "end": 31.099999999999998,
+      "probability": 0.618909
+    },
+    {
+      "word": "المساعدة",
+      "start": 31.28,
+      "end": 31.72,
+      "probability": 0.395224
+    },
+    {
+      "word": "في",
+      "start": 31.78,
+      "end": 31.86,
+      "probability": 0.781649
+    },
+    {
+      "word": "الشهدات",
+      "start": 31.96,
+      "end": 32.379999999999995,
+      "probability": 0.677816
+    },
+    {
+      "word": "وورائص",
+      "start": 32.5,
+      "end": 32.9,
+      "probability": 0.147401
+    },
+    {
+      "word": "الصفر",
+      "start": 33.02,
+      "end": 33.239999999999995,
+      "probability": 0.327092
+    },
+    {
+      "word": "عائشة",
+      "start": 33.76,
+      "end": 34.22,
+      "probability": 0.521181
+    },
+    {
+      "word": "سالب",
+      "start": 34.32,
+      "end": 34.58,
+      "probability": 0.476489
+    },
+    {
+      "word": "الى",
+      "start": 34.82,
+      "end": 34.9,
+      "probability": 0.152994
+    },
+    {
+      "word": "تبمصاري",
+      "start": 35.26,
+      "end": 35.8,
+      "probability": 0.259496
+    },
+    {
+      "word": "في",
+      "start": 35.8,
+      "end": 35.879999999999995,
+      "probability": 0.904809
+    },
+    {
+      "word": "الحجك",
+      "start": 36.06,
+      "end": 36.26,
+      "probability": 0.373861
+    },
+    {
+      "word": "الله",
+      "start": 36.48,
+      "end": 36.559999999999995,
+      "probability": 0.227534
+    },
+    {
+      "word": "هن",
+      "start": 37.04,
+      "end": 37.12,
+      "probability": 0.246722
+    },
+    {
+      "word": "جبهم",
+      "start": 37.2,
+      "end": 37.5,
+      "probability": 0.344455
+    },
+    {
+      "word": "نين",
+      "start": 37.66,
+      "end": 37.98,
+      "probability": 0.373979
+    },
+    {
+      "word": "يطب",
+      "start": 38.3,
+      "end": 38.519999999999996,
+      "probability": 0.595087
+    },
+    {
+      "word": "منها",
+      "start": 38.58,
+      "end": 39.08,
+      "probability": 0.41325
+    },
+    {
+      "word": "نجمع",
+      "start": 39.32,
+      "end": 39.62,
+      "probability": 0.326112
+    },
+    {
+      "word": "على",
+      "start": 39.72,
+      "end": 39.8,
+      "probability": 0.469814
+    },
+    {
+      "word": "أدمن",
+      "start": 39.96,
+      "end": 40.16,
+      "probability": 0.394517
+    },
+    {
+      "word": "إضر",
+      "start": 40.32,
+      "end": 40.519999999999996,
+      "probability": 0.139984
+    },
+    {
+      "word": "والبي",
+      "start": 40.8,
+      "end": 41.14,
+      "probability": 0.59414
+    },
+    {
+      "word": "ربنا",
+      "start": 41.46,
+      "end": 41.82,
+      "probability": 0.278561
+    },
+    {
+      "word": "يدبره",
+      "start": 41.82,
+      "end": 42.62,
+      "probability": 0.356799
+    },
+    {
+      "word": "تانيوم",
+      "start": 42.86,
+      "end": 43.4,
+      "probability": 0.336532
+    },
+    {
+      "word": "يروح",
+      "start": 43.52,
+      "end": 43.76,
+      "probability": 0.481375
+    },
+    {
+      "word": "يتصور",
+      "start": 43.86,
+      "end": 44.28,
+      "probability": 0.231827
+    },
+    {
+      "word": "وصور",
+      "start": 44.42,
+      "end": 44.66,
+      "probability": 0.224041
+    },
+    {
+      "word": "غوز",
+      "start": 44.76,
+      "end": 45.059999999999995,
+      "probability": 0.189132
+    },
+    {
+      "word": "الصفر",
+      "start": 45.18,
+      "end": 45.5,
+      "probability": 0.944228
+    },
+    {
+      "word": "وبعديني",
+      "start": 45.88,
+      "end": 46.5,
+      "probability": 0.65248
+    },
+    {
+      "word": "أبل",
+      "start": 46.52,
+      "end": 46.739999999999995,
+      "probability": 0.554321
+    },
+    {
+      "word": "أشرف",
+      "start": 46.84,
+      "end": 47.1,
+      "probability": 0.497884
+    },
+    {
+      "word": "المكتب",
+      "start": 47.28,
+      "end": 47.879999999999995,
+      "probability": 0.471847
+    },
+    {
+      "word": "يتمنلهم",
+      "start": 48.14,
+      "end": 48.8,
+      "probability": 0.435485
+    },
+    {
+      "word": "يروح",
+      "start": 48.82,
+      "end": 49.18,
+      "probability": 0.901679
+    },
+    {
+      "word": "ويرجعوا",
+      "start": 49.36,
+      "end": 49.92,
+      "probability": 0.252368
+    },
+    {
+      "word": "بالسلامة",
+      "start": 49.84,
+      "end": 50.8,
+      "probability": 0.253296
+    },
+    {
+      "word": "ويدل",
+      "start": 50.72,
+      "end": 51.26,
+      "probability": 0.353239
+    },
+    {
+      "word": "الرجل",
+      "start": 51.36,
+      "end": 51.559999999999995,
+      "probability": 0.29864
+    },
+    {
+      "word": "كرت",
+      "start": 51.78,
+      "end": 51.86,
+      "probability": 0.677779
+    },
+    {
+      "word": "الشركة",
+      "start": 52.08,
+      "end": 52.68,
+      "probability": 0.727579
+    },
+    {
+      "word": "عشان",
+      "start": 52.6,
+      "end": 52.68,
+      "probability": 0.84717
+    },
+    {
+      "word": "يتواصل",
+      "start": 52.76,
+      "end": 53.339999999999996,
+      "probability": 0.423386
+    },
+    {
+      "word": "معها",
+      "start": 53.34,
+      "end": 53.86,
+      "probability": 0.459694
+    },
+    {
+      "word": "واعت",
+      "start": 53.78,
+      "end": 53.94,
+      "probability": 0.270463
+    },
+    {
+      "word": "الحاجة",
+      "start": 54.0,
+      "end": 54.339999999999996,
+      "probability": 0.490776
+    },
+    {
+      "word": "وهم",
+      "start": 54.82,
+      "end": 55.059999999999995,
+      "probability": 0.557507
+    },
+    {
+      "word": "رجعين",
+      "start": 55.22,
+      "end": 55.6,
+      "probability": 0.438582
+    },
+    {
+      "word": "عائشة",
+      "start": 56.16,
+      "end": 56.5,
+      "probability": 0.582333
+    },
+    {
+      "word": "أول",
+      "start": 56.56,
+      "end": 56.64,
+      "probability": 0.251111
+    },
+    {
+      "word": "ان",
+      "start": 57.14,
+      "end": 57.22,
+      "probability": 0.283795
+    },
+    {
+      "word": "أشرف",
+      "start": 57.14,
+      "end": 57.559999999999995,
+      "probability": 0.872214
+    },
+    {
+      "word": "شبه",
+      "start": 57.48,
+      "end": 57.8,
+      "probability": 0.599997
+    },
+    {
+      "word": "ابنهم",
+      "start": 57.86,
+      "end": 58.18,
+      "probability": 0.332333
+    },
+    {
+      "word": "عبد",
+      "start": 58.32,
+      "end": 58.4,
+      "probability": 0.949907
+    },
+    {
+      "word": "السطار",
+      "start": 58.64,
+      "end": 59.019999999999996,
+      "probability": 0.519276
+    },
+    {
+      "word": "لكن",
+      "start": 59.6,
+      "end": 59.68,
+      "probability": 0.686492
+    },
+    {
+      "word": "نويار",
+      "start": 59.94,
+      "end": 60.1,
+      "probability": 0.19401
+    },
+    {
+      "word": "فضل",
+      "start": 60.18,
+      "end": 60.379999999999995,
+      "probability": 0.515384
+    },
+    {
+      "word": "مقرنا",
+      "start": 60.5,
+      "end": 60.96,
+      "probability": 0.582056
+    },
+    {
+      "word": "أشرف",
+      "start": 61.4,
+      "end": 61.699999999999996,
+      "probability": 0.251332
+    },
+    {
+      "word": "إنسان",
+      "start": 61.88,
+      "end": 62.16,
+      "probability": 0.441688
+    },
+    {
+      "word": "طيب",
+      "start": 62.34,
+      "end": 62.64,
+      "probability": 0.669925
+    },
+    {
+      "word": "مجزايل",
+      "start": 63.04,
+      "end": 63.48,
+      "probability": 0.405047
+    },
+    {
+      "word": "ابن",
+      "start": 63.68,
+      "end": 63.82,
+      "probability": 0.571525
+    },
+    {
+      "word": "السب",
+      "start": 63.92,
+      "end": 64.17999999999999,
+      "probability": 0.17156
+    },
+    {
+      "word": "أهلو",
+      "start": 64.32,
+      "end": 64.7,
+      "probability": 0.278356
+    },
+    {
+      "word": "فتس",
+      "start": 64.94,
+      "end": 65.22,
+      "probability": 0.608089
+    },
+    {
+      "word": "كتعائشا",
+      "start": 65.28,
+      "end": 65.96,
+      "probability": 0.293762
+    }
+  ],
+  "silences": [
+    {
+      "start": 0.68,
+      "end": 0.84
+    },
+    {
+      "start": 1.93,
+      "end": 2.03
+    },
+    {
+      "start": 2.08,
+      "end": 2.23
+    },
+    {
+      "start": 4.06,
+      "end": 4.47
+    },
+    {
+      "start": 7.41,
+      "end": 7.99
+    },
+    {
+      "start": 8.94,
+      "end": 9.29
+    },
+    {
+      "start": 9.95,
+      "end": 10.15
+    },
+    {
+      "start": 11.36,
+      "end": 11.9
+    },
+    {
+      "start": 14.21,
+      "end": 14.63
+    },
+    {
+      "start": 16.62,
+      "end": 17.04
+    },
+    {
+      "start": 19.64,
+      "end": 19.99
+    },
+    {
+      "start": 21.17,
+      "end": 21.54
+    },
+    {
+      "start": 22.38,
+      "end": 22.49
+    },
+    {
+      "start": 24.12,
+      "end": 24.63
+    },
+    {
+      "start": 26.7,
+      "end": 26.99
+    },
+    {
+      "start": 28.89,
+      "end": 29.27
+    },
+    {
+      "start": 30.49,
+      "end": 30.59
+    },
+    {
+      "start": 30.6,
+      "end": 30.77
+    },
+    {
+      "start": 33.12,
+      "end": 33.54
+    },
+    {
+      "start": 34.78,
+      "end": 35.13
+    },
+    {
+      "start": 36.61,
+      "end": 36.86
+    },
+    {
+      "start": 37.7,
+      "end": 38.1
+    },
+    {
+      "start": 38.74,
+      "end": 39.1
+    },
+    {
+      "start": 40.41,
+      "end": 40.6
+    },
+    {
+      "start": 41.17,
+      "end": 41.29
+    },
+    {
+      "start": 42.2,
+      "end": 42.73
+    },
+    {
+      "start": 45.36,
+      "end": 45.74
+    },
+    {
+      "start": 47.51,
+      "end": 47.98
+    },
+    {
+      "start": 50.25,
+      "end": 50.63
+    },
+    {
+      "start": 54.26,
+      "end": 54.51
+    },
+    {
+      "start": 54.52,
+      "end": 54.7
+    },
+    {
+      "start": 55.54,
+      "end": 55.65
+    },
+    {
+      "start": 55.71,
+      "end": 55.87
+    },
+    {
+      "start": 58.53,
+      "end": 58.64
+    },
+    {
+      "start": 58.88,
+      "end": 59.33
+    },
+    {
+      "start": 60.75,
+      "end": 61.22
+    },
+    {
+      "start": 62.44,
+      "end": 62.85
+    },
+    {
+      "start": 64.43,
+      "end": 64.79
+    },
+    {
+      "start": 65.77,
+      "end": 65.916125
+    }
+  ]
+}

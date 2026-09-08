@@ -1,12 +1,11 @@
 {
-  "status": "recording_approved_voice07",
+  "status": "complete_pending_publication",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
   "voice_id": "voice-07",
   "language": "ar-EG",
-  "generated_take_indices": [],
-  "pending_take_indices": [
+  "generated_take_indices": [
     0,
     1,
     2,
@@ -17,7 +16,8 @@
     7,
     8
   ],
-  "final_file": null,
+  "pending_take_indices": [],
+  "final_file": "voice07/final-dub-voice07.mp4",
   "background_requested": "original_neural_estimate",
   "previous_result_available": false,
   "previous_result_sha256": "17277bcac0b127cd9af630b42dd6029673fbd9d28cc2b9351b7310d72e923d73",
@@ -29,5 +29,10 @@
   "pilot_file": "voice-tests/voice-07-natural.wav",
   "active_version": "voice07",
   "active_script": "voice07/script.json",
-  "previous_recorded_voice_id": "voice-02"
+  "previous_recorded_voice_id": "voice-02",
+  "final_duration": 676.266667,
+  "publication": {
+    "status": "pending_upload"
+  },
+  "technical_checks_passed": true
 }

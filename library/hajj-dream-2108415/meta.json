@@ -28,12 +28,13 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "recording_voice07",
-    "final": null,
+    "status": "complete_pending_publication",
+    "final": "dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
     "voice_backend": "agent",
     "voice_id": "voice-07",
     "language": "ar-EG",
     "voice_selection_status": "selected_in_latest_audition",
-    "voice_quality_approved": true
+    "voice_quality_approved": true,
+    "duration": 676.266667
   }
 }

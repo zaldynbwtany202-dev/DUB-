@@ -1,0 +1,126 @@
+{
+  "status": "complete",
+  "publication": "pending_upload",
+  "voice_id": "voice-07",
+  "voice_backend": "agent",
+  "language": "ar-EG",
+  "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+  "final_sha256": "248d448bdf5e30ec4d969f0fba974c73173a693df192e87f1cda9c114ef8cf1e",
+  "source_streams": {
+    "container_duration": 676.327619,
+    "picture_duration": 676.2666666666667,
+    "audio_duration": 676.327619047619,
+    "video_codec": "h264",
+    "width": 854,
+    "height": 480,
+    "fps": "30",
+    "audio_codec": "aac",
+    "audio_channels": 2,
+    "sample_rate": 44100,
+    "audio_streams": 1,
+    "audio_language": "eng"
+  },
+  "output_streams": {
+    "container_duration": 676.266667,
+    "picture_duration": 676.2666666666667,
+    "audio_duration": 676.26,
+    "video_codec": "h264",
+    "width": 854,
+    "height": 480,
+    "fps": "30",
+    "audio_codec": "aac",
+    "audio_channels": 2,
+    "sample_rate": 48000,
+    "audio_streams": 1,
+    "audio_language": "ara"
+  },
+  "picture_packets_unchanged": true,
+  "picture_packets": 20288,
+  "takes": 9,
+  "scene_cues": 32,
+  "decode_errors": 0,
+  "speech_truncated": false,
+  "tempo_min": 1.0,
+  "tempo_max": 1.0719760945823038,
+  "natural_speed_scenes": 28,
+  "lossless_voice_archives": true,
+  "lossless_voice_master_used": true,
+  "voice_sample_rate": 48000,
+  "measured_lufs": -16.1,
+  "measured_true_peak_db": -1.99,
+  "waveform_checks": [
+    {
+      "start": 3,
+      "end": 13,
+      "voice_waveform_correlation": 0.9991908594713688,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 70,
+      "end": 80,
+      "voice_waveform_correlation": 0.9990707907902623,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 152,
+      "end": 162,
+      "voice_waveform_correlation": 0.9956821193682301,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 239,
+      "end": 249,
+      "voice_waveform_correlation": 0.9973098024293333,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 323,
+      "end": 333,
+      "voice_waveform_correlation": 0.9991485394824711,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 396,
+      "end": 406,
+      "voice_waveform_correlation": 0.9920153291113155,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 456,
+      "end": 466,
+      "voice_waveform_correlation": 0.9985549341956012,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 530,
+      "end": 540,
+      "voice_waveform_correlation": 0.9897528042656928,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 620,
+      "end": 630,
+      "voice_waveform_correlation": 0.9924019073313304,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 665,
+      "end": 675,
+      "voice_waveform_correlation": 0.9988297153185483,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 674.5,
+      "end": 676.18,
+      "voice_waveform_correlation": 0.9993555428107426,
+      "lag_ms": 0.0
+    }
+  ],
+  "background": "Reconstructed original-source neural estimate, naturally quiet; no purity guarantee",
+  "emotional_delivery_method": "Short sentences, disambiguated spelling, dialogue and pauses; not an asserted human emotion score.",
+  "human_listening_certification": false,
+  "lip_animation_modified": false,
+  "targeted_tests_passed": 66,
+  "technical_checks_passed": true,
+  "validated_at": "2026-09-08T20:02:22+00:00"
+}
