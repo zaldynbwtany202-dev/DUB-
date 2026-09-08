@@ -28,12 +28,12 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "paused_pronunciation_review",
+    "status": "recording_voice07",
     "final": null,
     "voice_backend": "agent",
-    "voice_id": "voice-02",
+    "voice_id": "voice-07",
     "language": "ar-EG",
     "voice_selection_status": "selected_in_latest_audition",
-    "voice_quality_approved": false
+    "voice_quality_approved": true
   }
 }

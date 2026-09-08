@@ -1,11 +1,11 @@
 {
   "voice_backend": "agent",
-  "voice_id": "voice-02",
+  "voice_id": "voice-07",
   "language": "ar-EG",
   "gender": "masculine",
   "use_case": "narration",
   "audition_index": 2,
-  "status": "pilot_awaiting_approval",
+  "status": "approved_for_production",
   "full_narration_generated": false,
   "registration_scope": "Current Arena session only; do not assume this voice ID transfers to a different session.",
   "audition_history": [
@@ -20,7 +20,7 @@
   ],
   "candidate_voice_id": "voice-07",
   "recorded_batch_voice_id": "voice-02",
-  "full_video_generation_authorized": false,
+  "full_video_generation_authorized": true,
   "selected_shortlist_group": 1,
   "selected_audition_index": 7,
   "latest_shortlist": [
@@ -29,5 +29,9 @@
     "voice-09",
     "voice-10",
     "voice-11"
+  ],
+  "requested_improvements": [
+    "clearer Egyptian pronunciation",
+    "emotional narration"
   ]
 }

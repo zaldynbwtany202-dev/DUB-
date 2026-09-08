@@ -1,0 +1,12 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-07",
+  "language": "ar-EG",
+  "status": "in_progress",
+  "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+  "performance_policy": "Short sentences and paragraph breaks, targeted Arabic disambiguation, restrained story-specific emotions. No voice-effect imitation of roughness.",
+  "max_tempo": 1.08,
+  "min_tempo": 1.0,
+  "approval": "User explicitly approved voice-07 and requested clearer pronunciation and emotional delivery.",
+  "takes": []
+}
