@@ -1,0 +1,26 @@
+{
+  "voice_id": "voice-12",
+  "voice_backend": "agent",
+  "language": "ar-EG",
+  "gender": "masculine",
+  "use_case": "narration",
+  "audition_index": 12,
+  "status": "awaiting_long_sample_approval",
+  "text": "في قرية فقيرة، عايش راجل كبير في السن، على قدّ حاله. رزقه قليل... ويادوب بيكفّيه.\nمع أذان الفجر، بيصحّي مراته عائشة. هي بتصلّي في البيت، وهو بيروح الجامع.\nوأهل القرية بيتكلموا عن الشيخ مَبروك، اللي وصل عندهم. بيعتقدوا إن وجوده هيجيب الرزق وينعش المحلات. وحيدر، صاحب محل الشاي، بيقدّم له الشاي.\nالراجل يرجع البيت بخبر بيرجّع الأمل: التقديم للحج بدأ!\nعرف الخبر من واحد قابله في الأتوبيس. حلمه من زمان إنه يروح الحج مع عائشة. وكل سنة، يحصل ظرف ويأجّل السفر. لكن المرة دي، مصمم يحاول من جديد.\nيبدأ يجمع الفلوس في صندوق صغير. يبيع عطور وحاجات بسيطة لأهل القرية، اللي هم كمان بالعافية لاقيين أكلهم. وعائشة بترعى البقر، وتزرع وتبيع من إنتاجهم، عشان تساعده في مصاريف البيت.",
+  "duration_seconds": 56.30482993197279,
+  "sample_rate": 44100,
+  "audio_samples_modified": false,
+  "tempo_changed": false,
+  "effects_added": false,
+  "background_added": false,
+  "lossless_archive": {
+    "commit": "a1785773e51d6cb4b8b6772a8454b266f8abacaa",
+    "path": "dubs/hajj-dream-2108415/voice-tests/_archive/voice-12-narration.flac",
+    "sha256": "2550dd5a409b079ca741d8be4f2e0dd9d91fdc147768056acb772414eb836b21",
+    "bytes": 1608145,
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/a1785773e51d6cb4b8b6772a8454b266f8abacaa/dubs/hajj-dream-2108415/voice-tests/_archive/voice-12-narration.flac",
+    "verified_sample_identical_to_tool_wav": true
+  },
+  "full_video_generation_authorized": false,
+  "registration_scope": "Current Arena session only"
+}

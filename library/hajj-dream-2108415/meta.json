@@ -28,16 +28,17 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "complete",
+    "status": "replacement_narrator_review",
     "final": "dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
     "voice_backend": "agent",
     "voice_id": "voice-07",
     "language": "ar-EG",
     "voice_selection_status": "selected_in_latest_audition",
-    "voice_quality_approved": true,
+    "voice_quality_approved": false,
     "duration": 676.266667,
     "publication_status": "published_verified",
     "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
-    "completed_at": "2026-09-08T20:05:53+00:00"
+    "completed_at": "2026-09-08T20:05:53+00:00",
+    "candidate_voice_id": "voice-12"
   }
 }

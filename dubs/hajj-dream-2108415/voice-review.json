@@ -1,5 +1,5 @@
 {
-  "status": "awaiting_voice_07_pilot_review",
+  "status": "awaiting_voice_12_long_trial",
   "reported_by": "user",
   "feedback": "Pronunciation sounds bad and robotic.",
   "recording_heard": "not_yet_clarified_raw_or_processed",
@@ -11,6 +11,8 @@
     "voice-02",
     "voice-03"
   ],
-  "candidate_voice_id": "voice-07",
-  "pilot": "voice-tests/voice-07-natural.wav"
+  "candidate_voice_id": "voice-12",
+  "pilot": "voice-tests/voice-07-natural.wav",
+  "latest_user_feedback": "Voice-07 is unattractive and the Egyptian pronunciation/dialect is unsatisfactory; user wants professional Egyptian male narration.",
+  "pilot_reference": "voice-tests/voice-12-narration.json"
 }

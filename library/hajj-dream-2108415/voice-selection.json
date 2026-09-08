@@ -5,7 +5,7 @@
   "gender": "masculine",
   "use_case": "narration",
   "audition_index": 2,
-  "status": "used_in_completed_published_dub",
+  "status": "long_narration_trial_awaiting_approval",
   "full_narration_generated": true,
   "registration_scope": "Current Arena session only; do not assume this voice ID transfers to a different session.",
   "audition_history": [
@@ -18,9 +18,9 @@
       "selected_voice_id": "voice-02"
     }
   ],
-  "candidate_voice_id": "voice-07",
+  "candidate_voice_id": "voice-12",
   "recorded_batch_voice_id": "voice-02",
-  "full_video_generation_authorized": true,
+  "full_video_generation_authorized": false,
   "selected_shortlist_group": 1,
   "selected_audition_index": 7,
   "latest_shortlist": [
