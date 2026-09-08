@@ -38,7 +38,9 @@
         "verified_sample_identical_to_tool_wav": true,
         "sample_identical_to_tool_wav": true
       },
-      "reused_approved_sample": true
+      "reused_approved_sample": true,
+      "sha256": "633e35ef10e46d54ba3de0abc5144a11887146b863fceb19f405020724f19467",
+      "spoken_text_sha256": "f619ae1178ae8b5ddb792abc2a0876d1d2063cfa7725675b0780826ee1e01c92"
     },
     {
       "index": 1,

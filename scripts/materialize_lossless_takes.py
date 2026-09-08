@@ -22,6 +22,8 @@ def main():
         out=(args.script.parent/take['audio']).resolve()
         if not out.is_relative_to(ROOT/'.cache'):raise ValueError('Restore only derived cache files')
         current=sha(out) if out.is_file() else None
+        if current is None and not take.get('lossless_archive'):
+            return  # Pending recording: never substitute another speaker.
         if current is None or current not in {take.get('sha256'),take.get('tool_wav_sha256')}:
             ref=take['lossless_archive'];flac=cache/(ref['sha256']+'.flac')
             if not flac.is_file() or sha(flac)!=ref['sha256']:
