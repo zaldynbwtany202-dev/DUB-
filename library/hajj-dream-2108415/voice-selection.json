@@ -5,8 +5,8 @@
   "gender": "masculine",
   "use_case": "narration",
   "audition_index": 2,
-  "status": "approved_for_production",
-  "full_narration_generated": false,
+  "status": "used_in_completed_published_dub",
+  "full_narration_generated": true,
   "registration_scope": "Current Arena session only; do not assume this voice ID transfers to a different session.",
   "audition_history": [
     {

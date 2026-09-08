@@ -2,7 +2,7 @@
   "slug": "hajj-dream-2108415",
   "title": "دبلجة الحج — الصوت المعتمد مع تحسين النطق والإلقاء",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "complete_pending_publication",
+  "status": "complete",
   "versions": [
     {
       "run_id": "voice07-natural-20260908",
@@ -13,7 +13,7 @@
       "size": 39554676,
       "sha256": "248d448bdf5e30ec4d969f0fba974c73173a693df192e87f1cda9c114ef8cf1e",
       "rendered_at": "2026-09-08T20:02:22+00:00",
-      "published_at": null,
+      "published_at": "2026-09-08T20:05:53+00:00",
       "settings": {
         "tts_engine": "agent",
         "target_lang": "ar-EG",
@@ -29,7 +29,17 @@
         "timing": "voice07/narration-timing.json",
         "mix": "voice07/mix.json"
       },
-      "subtitles": "voice07/final-dub-voice07.srt"
+      "subtitles": "voice07/final-dub-voice07.srt",
+      "status": "published",
+      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4"
     }
-  ]
+  ],
+  "publication": {
+    "status": "published_verified",
+    "branch": "arena/01a07c92-dub",
+    "video_commit": "fce9243",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+    "verified_at": "2026-09-08T20:05:53+00:00"
+  }
 }
