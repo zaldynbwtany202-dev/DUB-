@@ -2,8 +2,17 @@
   "slug": "hajj-dream-2108415",
   "title": "دبلجة الحج — الصوت المعتمد مع تحسين النطق والإلقاء",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "complete",
-  "versions": [
+  "status": "recording_voice12",
+  "versions": [],
+  "publication": {
+    "status": "published_verified",
+    "branch": "arena/01a07c92-dub",
+    "video_commit": "fce9243",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+    "verified_at": "2026-09-08T20:05:53+00:00"
+  },
+  "archived_versions": [
     {
       "run_id": "voice07-natural-20260908",
       "file": "voice07/final-dub-voice07.mp4",
@@ -31,15 +40,17 @@
       },
       "subtitles": "voice07/final-dub-voice07.srt",
       "status": "published",
-      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4"
+      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/fce924358a981cac572e05d751182f7f54b15df9/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+      "archive": {
+        "voice_id": "voice-07",
+        "status": "previous_version_replaced_after_user_voice_feedback",
+        "commit": "fce924358a981cac572e05d751182f7f54b15df9",
+        "path": "dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+        "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/fce924358a981cac572e05d751182f7f54b15df9/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+        "size": 39554676,
+        "sha256": "248d448bdf5e30ec4d969f0fba974c73173a693df192e87f1cda9c114ef8cf1e",
+        "preserved_in_reachable_git_history": true
+      }
     }
-  ],
-  "publication": {
-    "status": "published_verified",
-    "branch": "arena/01a07c92-dub",
-    "video_commit": "fce9243",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
-    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
-    "verified_at": "2026-09-08T20:05:53+00:00"
-  }
+  ]
 }
