@@ -6,7 +6,7 @@
   "sample_rate": 48000,
   "voice_backend": "agent",
   "voice_id": "voice-12",
-  "status": "recording",
+  "status": "all_recordings_available",
   "approval": "User approved the complete 56-second unprocessed voice-12 trial.",
   "approved_at": "2026-09-08T20:42:37+00:00",
   "takes": [

@@ -28,8 +28,8 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "recording_voice12",
-    "final": "dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+    "status": "complete_pending_publication",
+    "final": "dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
     "voice_backend": "agent",
     "voice_id": "voice-12",
     "language": "ar-EG",
