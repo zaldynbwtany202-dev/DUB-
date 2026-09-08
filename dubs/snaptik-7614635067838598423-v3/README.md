@@ -10,7 +10,7 @@
 |---|---|
 | `final-dub-agent-ar-eg-original-bg.mp4` | **الأحدث:** التعليق مع الخلفية المستخرجة من الأصل |
 | `final-dub-agent-ar-eg.mp4` | النسخة الكاملة بدون موسيقى — محفوظة دون تعديل |
-| `preview-agent-ar-eg.mp4` | معاينة تاريخية لأول 1:31 فقط |
+| [المعاينة التاريخية](https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/2d33f7d6c98c72fcf924baa08120555a3415599d/dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4) | أول 1:31، محفوظة في أرشيف GitHub |
 
 توجد بجوار كل فيديو ملفات MP3 وSRT وتقارير. حالة المشروع الحالية في `state.json`، وفهرس النسخ في `meta.json`.
 
@@ -36,3 +36,5 @@
 التسجيلات التسعة المعتمدة في `agent_voice/`، والنص المصري في `script.ar-EG.json` و`script.ar-EG.txt`. يستخدم `cues.json` عشرة مواضع زمنية لأن بداية التسجيل الثالث فُصلت عند صمت بعد «مصدومة». لا توجد مقاطع ناقصة.
 
 `cues.json` يعيد إنشاء النسخة **بدون موسيقى**. لإعادة المزج، استخدم دائماً `final-dub-agent-ar-eg.mp4` كمصدر الكلام مع الخلفية المفصولة، لا النسخة التي تحتوي الموسيقى بالفعل. تفاصيل المزج والبصمات في `background-mix.recipe.json` و`final-dub-agent-ar-eg-original-bg.mix.json`.
+
+المعاينة القديمة محفوظة دون تغيير في أرشيف GitHub؛ النسخ النهائية والتسجيلات السابقة لم تتغير. تفاصيل الاسترجاع في `preview-archive.json`.

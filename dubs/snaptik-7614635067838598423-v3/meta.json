@@ -82,7 +82,9 @@
         "language": "final-dub-agent-ar-eg.language.json",
         "agent": "final-dub-agent-ar-eg.agent.json"
       }
-    },
+    }
+  ],
+  "archived_versions": [
     {
       "run_id": "agent-preview-20260907",
       "file": "preview-agent-ar-eg.mp4",
@@ -113,6 +115,15 @@
         "quality": "preview-agent-ar-eg.quality.json",
         "language": "preview-agent-ar-eg.language.json",
         "agent": "preview-agent-ar-eg.agent.json"
+      },
+      "archive": {
+        "purpose": "Historical incomplete preview; complete older versions and original recordings remain unchanged.",
+        "commit": "2d33f7d6c98c72fcf924baa08120555a3415599d",
+        "path": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+        "bytes": 7028575,
+        "sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+        "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/2d33f7d6c98c72fcf924baa08120555a3415599d/dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+        "storage": "Verified immutable Git history; duplicate workspace copy retired to protect persistence."
       }
     }
   ]
