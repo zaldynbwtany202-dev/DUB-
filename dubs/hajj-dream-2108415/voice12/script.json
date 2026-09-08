@@ -167,8 +167,20 @@
           "text_starts": "لكن يرجع على خبر حزين"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0004.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0004.wav",
+      "duration": 56.95716553287982,
+      "sha256": "b54a5eba8e3685ead14b9c41082b5b1472e9f26baa5ac930b9bcac8334fc240e",
+      "tool_wav_sha256": "b54a5eba8e3685ead14b9c41082b5b1472e9f26baa5ac930b9bcac8334fc240e",
+      "spoken_text_sha256": "56dc29a5550a417b12ef48e7ad5052da827a5a2d7f9d5766af7369cb9ca272b8",
+      "lossless_archive": {
+        "commit": "b345e4ed6810153beb989bf46f2b006404dae7e3",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0004.flac",
+        "git_blob_sha": "13af4c13f4cee4989b8c32346b47683cfaa36272",
+        "sha256": "6a533ebf124f7819fe2c8ed49292fd21067ec02d10207328fca5e7a2368355ba",
+        "bytes": 1599059,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 5,
@@ -190,8 +202,20 @@
           "text_starts": "بعدها، يزور قبر"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0005.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0005.wav",
+      "duration": 55.829478458049884,
+      "sha256": "b88890cb99512891962579d77a7660913de15889a93c36663490a74a2203b3a4",
+      "tool_wav_sha256": "b88890cb99512891962579d77a7660913de15889a93c36663490a74a2203b3a4",
+      "spoken_text_sha256": "b863a2e05b3a0d3411ac2b927fe58bb36ad790eef273670237f888cfab4dce40",
+      "lossless_archive": {
+        "commit": "b345e4ed6810153beb989bf46f2b006404dae7e3",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0005.flac",
+        "git_blob_sha": "dfd5dccbe8996ea2066f3468b5c81c9f4f43b038",
+        "sha256": "aea5130b0037cb4d5eb768828f5bd539a8d50f85c3caab7e75fecd39a140dbad",
+        "bytes": 1581136,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 6,
@@ -217,8 +241,20 @@
           "text_starts": "بعدها، يقابل الحاج"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0006.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0006.wav",
+      "duration": 67.3508163265306,
+      "sha256": "25e28a760c747fa319452bf71113ce2f7c671eb8312738e04d722e9e66de2381",
+      "tool_wav_sha256": "25e28a760c747fa319452bf71113ce2f7c671eb8312738e04d722e9e66de2381",
+      "spoken_text_sha256": "7dcd8081bf243b6ef5e7b5eb0bce3fb5b028e3897cb2a462fff3208232d6aba8",
+      "lossless_archive": {
+        "commit": "b345e4ed6810153beb989bf46f2b006404dae7e3",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0006.flac",
+        "git_blob_sha": "c9cc5eff6331dcdf747cfde917a981e412709a37",
+        "sha256": "7cfb46c89056409c4a7f26321336b0cfe40a64a1ce93237472e8ed9f9ef140c5",
+        "bytes": 1860270,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 7,
