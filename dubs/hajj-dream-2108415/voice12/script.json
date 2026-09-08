@@ -58,8 +58,20 @@
           "text_starts": "تاني يوم، يروح شركة السفر"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0001.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0001.wav",
+      "duration": 74.48666666666666,
+      "sha256": "6a6c2e51f6a42e1e17d5fe1d54b080e1935ff1efed3deb15b5cfdb6059f3ab04",
+      "tool_wav_sha256": "6a6c2e51f6a42e1e17d5fe1d54b080e1935ff1efed3deb15b5cfdb6059f3ab04",
+      "spoken_text_sha256": "26741a8be5037b9453767584f00a85e481b640660a375c9911a88c0fcf14dce6",
+      "lossless_archive": {
+        "commit": "8ab82846e7505615a9eac98b410e1bd509e99d2c",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0001.flac",
+        "git_blob_sha": "d279b8fd62a38b155a598cc5705c2276c0559381",
+        "sha256": "75decbc7b94131fd94c8f856c73548ef75978cbbfe431398d9ad060a59c5a1f0",
+        "bytes": 2090004,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 2,
@@ -81,8 +93,20 @@
           "text_starts": "وهما راجعين"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0002.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0002.wav",
+      "duration": 65.6709977324263,
+      "sha256": "389df7d89e0f08c0e3499042ac17ff67f0ccaf8f3a68994c8dc33d8c8506f541",
+      "tool_wav_sha256": "389df7d89e0f08c0e3499042ac17ff67f0ccaf8f3a68994c8dc33d8c8506f541",
+      "spoken_text_sha256": "937cd1dd030700c2e0cb8877583f8fcc9c326d77076ca661e0c35c6c9f1dd3a3",
+      "lossless_archive": {
+        "commit": "8ab82846e7505615a9eac98b410e1bd509e99d2c",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0002.flac",
+        "git_blob_sha": "15eaf514d9a257d737639e7e1d860ace94a94e68",
+        "sha256": "13c60cf02a41fa76c357e3a608136c0e0a9b48d827d3bda1362a35c315a8120b",
+        "bytes": 1838362,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 3,
@@ -104,8 +128,20 @@
           "text_starts": "الضابط يسأله عن جواز السفر"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0003.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0003.wav",
+      "duration": 77.27931972789116,
+      "sha256": "15011c2131d617094066db0b42412d12708a9358bd929cb5d0e7a173456ed728",
+      "tool_wav_sha256": "15011c2131d617094066db0b42412d12708a9358bd929cb5d0e7a173456ed728",
+      "spoken_text_sha256": "8e7bdf626b15a3f20e2ec633c42c9bae51a71aef494526f7c77e16d0e36866b3",
+      "lossless_archive": {
+        "commit": "8ab82846e7505615a9eac98b410e1bd509e99d2c",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0003.flac",
+        "git_blob_sha": "33ebee5be714f6bbde94e2bc394011221412edf6",
+        "sha256": "6997a09e115c573d6a60c20815f3be7fc0c66152d3806893b792582c80b41a97",
+        "bytes": 2211472,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 4,
