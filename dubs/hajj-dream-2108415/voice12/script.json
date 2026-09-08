@@ -288,8 +288,20 @@
           "text_starts": "فتقوله"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0007.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0007.wav",
+      "duration": 82.94315192743764,
+      "sha256": "ae6053dd2546e77412ae1f393129890b3d306002f9eaf9c25b4c8bb8b38239bd",
+      "tool_wav_sha256": "ae6053dd2546e77412ae1f393129890b3d306002f9eaf9c25b4c8bb8b38239bd",
+      "spoken_text_sha256": "858973c6be425a04845c2da6d9d031f1ec767bb8b7747769041975ff4f870790",
+      "lossless_archive": {
+        "commit": "65e8d2084bd19d27f3769f7fd4191b42d16c2433",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0007.flac",
+        "git_blob_sha": "2d3077a59251ea93fe3d2266d6ad57b7cd95d866",
+        "sha256": "02883935dfda29a85972a7909ec983967d7f79797a772fd0b2e593dbb5c42fdc",
+        "bytes": 2294111,
+        "sample_identical_to_tool_wav": true
+      }
     },
     {
       "index": 8,
@@ -319,8 +331,20 @@
           "text_starts": "يستعدّوا لصلاة العيد"
         }
       ],
-      "status": "pending",
-      "audio": "../../../.cache/hajj-voice12/raw/seg-0008.wav"
+      "status": "generated",
+      "audio": "../../../.cache/hajj-voice12/raw/seg-0008.wav",
+      "duration": 80.06414965986394,
+      "sha256": "42de326dc80caec511a670a083d061a311e7f258cbe0285d3048ffcdceaf938e",
+      "tool_wav_sha256": "42de326dc80caec511a670a083d061a311e7f258cbe0285d3048ffcdceaf938e",
+      "spoken_text_sha256": "97bc5e02ad52ca2bbf83b2c16e4a821d2c6496b7feb9a9efe03287b80352bb1b",
+      "lossless_archive": {
+        "commit": "65e8d2084bd19d27f3769f7fd4191b42d16c2433",
+        "path": "dubs/hajj-dream-2108415/voice12/_lossless_archive/seg-0008.flac",
+        "git_blob_sha": "2f020cc84efde32e7fb8a60d5ebdf30aa0a2361d",
+        "sha256": "15c155c889f84949d9f6e46adc3de89d5a980f06185fd33014cb7a636e1f3566",
+        "bytes": 2287941,
+        "sample_identical_to_tool_wav": true
+      }
     }
   ]
 }
