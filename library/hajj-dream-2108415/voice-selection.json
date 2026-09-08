@@ -5,7 +5,7 @@
   "gender": "masculine",
   "use_case": "narration",
   "audition_index": 2,
-  "status": "current_audition_choice",
+  "status": "pilot_awaiting_approval",
   "full_narration_generated": false,
   "registration_scope": "Current Arena session only; do not assume this voice ID transfers to a different session.",
   "audition_history": [
@@ -17,5 +17,8 @@
       "index": 2,
       "selected_voice_id": "voice-02"
     }
-  ]
+  ],
+  "candidate_voice_id": "voice-04",
+  "recorded_batch_voice_id": "voice-02",
+  "full_video_generation_authorized": false
 }

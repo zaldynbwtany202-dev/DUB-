@@ -1,10 +1,16 @@
 {
-  "status": "needs_pronunciation_review",
+  "status": "awaiting_voice_04_pilot_review",
   "reported_by": "user",
   "feedback": "Pronunciation sounds bad and robotic.",
   "recording_heard": "not_yet_clarified_raw_or_processed",
   "publication_on_hold": true,
   "next_step": "Approve a real short narration sample at natural speed before bulk synthesis or publication.",
   "technical_checks_do_not_certify_naturalness": true,
-  "updated_at": "2026-09-08T13:31:50+00:00"
+  "updated_at": "2026-09-08T13:31:50+00:00",
+  "rejected_voice_ids": [
+    "voice-02",
+    "voice-03"
+  ],
+  "candidate_voice_id": "voice-04",
+  "pilot": "voice-tests/voice-04-natural.wav"
 }

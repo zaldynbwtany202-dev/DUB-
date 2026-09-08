@@ -1,0 +1,15 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-04",
+  "language": "ar-EG",
+  "audition_index": 4,
+  "file": "voice-04-natural.wav",
+  "text": "في قرية فقيرة، عايش راجل كبير في السن، على قد حاله. رزقه قليل وبالكاد مكفّيه. مع أذان الفجر، بيصحّي مراته عائشة. هي بتصلّي في البيت، وهو بيروح الجامع. حلمه من زمان إنه يروح الحج معاها، لكن كل سنة تحصل ظروف تأجّل السفر. المرة دي قرر يحاول تاني، ويجمع المصاريف على قد ما يقدر.",
+  "duration_seconds": 28.76,
+  "sha256": "2e0308747ca17b895c393fb1ee4001d67d856bc6ec5e9a0b970225989c7eda72",
+  "postprocessing_applied": false,
+  "tempo_changed": false,
+  "background_added": false,
+  "status": "awaiting_user_pronunciation_approval",
+  "full_video_generation_authorized": false
+}

@@ -1,5 +1,5 @@
 {
-  "status": "paused_pronunciation_review",
+  "status": "awaiting_voice_pilot_review",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -24,5 +24,7 @@
   "recovery_authorized_by_user": true,
   "publication_policy": "Push checkpoints during processing and verify remote media before reporting a download link.",
   "publication_on_hold": true,
-  "voice_quality_approved": false
+  "voice_quality_approved": false,
+  "candidate_voice_id": "voice-04",
+  "pilot_file": "voice-tests/voice-04-natural.wav"
 }
