@@ -2,7 +2,7 @@
   "voice_backend": "agent",
   "voice_id": "voice-07",
   "language": "ar-EG",
-  "status": "in_progress",
+  "status": "all_lossless_recordings_restored",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "performance_policy": "Short sentences and paragraph breaks, targeted Arabic disambiguation, restrained story-specific emotions. No voice-effect imitation of roughness.",
   "max_tempo": 1.08,
@@ -26,7 +26,18 @@
         "sha256": "1b568a5936fbbb8530cea6877f1988fa0f054b54b02f606fb7ff25afb7774e57",
         "bytes": 1773728,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "2d9b8bba39152c2122c6a20a398efdc11d1292f25b91e797160b817b0273b2bd",
+      "scene_cuts": [
+        {
+          "source_time": 27.4,
+          "text_starts": "الراجل يرجع البيت"
+        },
+        {
+          "source_time": 47.3,
+          "text_starts": "يبدأ يجمع الفلوس"
+        }
+      ]
     },
     {
       "index": 1,
@@ -45,7 +56,18 @@
         "sha256": "7b63c9c8bcb1834126e0c1d6dd9173b343091e70f661588b51d5b91c336ef8b3",
         "bytes": 2365762,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "eb8105a61f9bb556c395c385187ad7f1180d3a5bd0b24359567256833486b831",
+      "scene_cuts": [
+        {
+          "source_time": 99.4,
+          "text_starts": "ابنه عبد الستّار"
+        },
+        {
+          "source_time": 126.6,
+          "text_starts": "تاني يوم، يروح شركة السفر"
+        }
+      ]
     },
     {
       "index": 2,
@@ -64,7 +86,22 @@
         "sha256": "086eee962695ec8a75b4c12582a1b6258dc1adda27def1d52ea501f511bb5638",
         "bytes": 2053620,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "eebdb117a9553a071eb90a46ec53237a4f106aed32edcb49e653df21460ac203",
+      "scene_cuts": [
+        {
+          "source_time": 171.9,
+          "text_starts": "يرجع البيت، يلاقي"
+        },
+        {
+          "source_time": 197.8,
+          "text_starts": "تاني يوم، يروحوا يتصوّروا"
+        },
+        {
+          "source_time": 211.8,
+          "text_starts": "وهما راجعين"
+        }
+      ]
     },
     {
       "index": 3,
@@ -83,7 +120,22 @@
         "sha256": "b3e7f41f76d4173e8e1aba1e11cee28da52f4ceba4e40c2317e13ac24aab3b78",
         "bytes": 2531200,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "765cd4abfa59b9c6f10236501731ff103fd1404ea7a4ff5687e74f3c20dd94f8",
+      "scene_cuts": [
+        {
+          "source_time": 248.5,
+          "text_starts": "ولما يرجع البيت"
+        },
+        {
+          "source_time": 273.3,
+          "text_starts": "الراجل يروح للمدرّس"
+        },
+        {
+          "source_time": 300,
+          "text_starts": "الضابط يسأله عن جواز السفر"
+        }
+      ]
     },
     {
       "index": 4,
@@ -125,6 +177,25 @@
             "sample_identical_to_tool_wav": true
           }
         }
+      ],
+      "sha256": "ddca171c2d9f8f24168870b1f5515d50bf92713e941dd8c65862802cf739c777",
+      "scene_cuts": [
+        {
+          "source_time": 334,
+          "text_starts": "بالليل، يحكي"
+        },
+        {
+          "source_time": 350.2,
+          "text_starts": "بعد فترة، يستنّوا"
+        },
+        {
+          "source_time": 362.5,
+          "text_starts": "الراجل يسلّم أشرف"
+        },
+        {
+          "source_time": 372.8,
+          "text_starts": "لكن يرجع على خبر حزين"
+        }
       ]
     },
     {
@@ -144,7 +215,22 @@
         "sha256": "90f853a3a0f5afdb7e85825a94e655b0b49670f2f8d08e511c69c6aea8edb621",
         "bytes": 1809073,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "155984558f8f00de0398eb8cb82c13879520affda81b369ea4b7431da6882572",
+      "scene_cuts": [
+        {
+          "source_time": 396.9,
+          "text_starts": "يرجع الراجل يدي"
+        },
+        {
+          "source_time": 411.7,
+          "text_starts": "لكن رغم كل ده"
+        },
+        {
+          "source_time": 432,
+          "text_starts": "بعدها، يزور قبر"
+        }
+      ]
     },
     {
       "index": 6,
@@ -163,7 +249,26 @@
         "sha256": "988baeca13f13415cf2276ab570dea3b1dc4bff780979b0f42c0b69d42689d46",
         "bytes": 2168461,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "feed97732c402e4e89046a9c3f47e6643a4e0bf68671405973e573166ddc2654",
+      "scene_cuts": [
+        {
+          "source_time": 454.9,
+          "text_starts": "وفي الطريق، الراجل يفتكر"
+        },
+        {
+          "source_time": 477,
+          "text_starts": "لكن سليمان يعترف"
+        },
+        {
+          "source_time": 492.9,
+          "text_starts": "يرجع القرية، ويعرف"
+        },
+        {
+          "source_time": 505.3,
+          "text_starts": "بعدها، يقابل الحاج"
+        }
+      ]
     },
     {
       "index": 7,
@@ -182,7 +287,34 @@
         "sha256": "7bf067dc4f272f34ae28827080aaa01a6d0b8e8b67cd8897728eb57598d60949",
         "bytes": 2566634,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "51f9558f9b17b906784baf6bbc4be7148cf087e1d371b45d257597a54dbb1367",
+      "scene_cuts": [
+        {
+          "source_time": 535,
+          "text_starts": "النجار يسلّمه"
+        },
+        {
+          "source_time": 546,
+          "text_starts": "الراجل يحاول يرجّع الفلوس"
+        },
+        {
+          "source_time": 558.8,
+          "text_starts": "وبالليل، يحلم"
+        },
+        {
+          "source_time": 565.8,
+          "text_starts": "تاني يوم، المدرّس"
+        },
+        {
+          "source_time": 579.4,
+          "text_starts": "عائشة تقترح"
+        },
+        {
+          "source_time": 585.9,
+          "text_starts": "فتقوله"
+        }
+      ]
     },
     {
       "index": 8,
@@ -201,7 +333,31 @@
         "sha256": "a7418374c1a042d3f4a9f8ce37ab5d3223f2225ba4224a5963d07ec8063fea9a",
         "bytes": 2372460,
         "sample_identical_to_tool_wav": true
-      }
+      },
+      "sha256": "56dc4e8f33ccd9823ae6ed4983f295b93c330e9d321804ea60ed67f62b56055e",
+      "scene_cuts": [
+        {
+          "source_time": 603.8,
+          "text_starts": "يروح لأشرف ويلغي"
+        },
+        {
+          "source_time": 623.3,
+          "text_starts": "يخرج متأثر"
+        },
+        {
+          "source_time": 632.4,
+          "text_starts": "تعدّي أيام"
+        },
+        {
+          "source_time": 639.9,
+          "text_starts": "وفي البيت، الراجل"
+        },
+        {
+          "source_time": 653.6,
+          "text_starts": "يستعدّوا لصلاة العيد"
+        }
+      ]
     }
-  ]
+  ],
+  "sample_rate": 48000
 }

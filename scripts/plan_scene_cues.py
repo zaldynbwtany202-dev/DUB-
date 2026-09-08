@@ -35,7 +35,7 @@ def choose_pause(estimate,pauses,duration):
             candidates.append((abs(b-estimate)+.035/(b-a),middle,p))
     return min(candidates,key=lambda x:x[0])[1:] if candidates else (None,None)
 
-def build_take(take,alignment):
+def build_take(take,alignment,max_tempo=1.5):
     if alignment['audio_sha256']!=take['sha256']:raise ValueError('Alignment does not match audio')
     points=[{'source':take['start'],'audio':0.0,'position':0}];audit=[]
     for cut in take.get('scene_cuts',[]):
@@ -48,7 +48,7 @@ def build_take(take,alignment):
     merged=[]
     while len(points)>2:
         rates=[(b['audio']-a['audio'])/max(.01,b['source']-a['source']-.08) for a,b in zip(points,points[1:])]
-        bad=next((i for i,x in enumerate(rates) if x>1.5),None)
+        bad=next((i for i,x in enumerate(rates) if x>max_tempo),None)
         if bad is None:break
         options=([bad] if bad>0 else [])+([bad+1] if bad+1<len(points)-1 else [])
         def penalty(k):
@@ -69,9 +69,10 @@ def main():
     args=p.parse_args();script=json.loads(args.script.read_text());segments=[];audit=[]
     for take in sorted(script['takes'],key=lambda t:t['index']):
         alignment=json.loads((args.script.parent/'voice-alignment'/f"take-{take['index']:04d}.json").read_text())
-        xs,report=build_take(take,alignment);segments.extend(xs);audit.append(report)
+        xs,report=build_take(take,alignment,max_tempo=float(script.get("max_tempo",1.52))-.02);segments.extend(xs);audit.append(report)
     for i,s in enumerate(segments):s['index']=i
     result={'video':os.path.relpath(args.video.resolve(),args.output.parent.resolve()),'source_sha256':sha256_file(args.video),'voice_backend':'agent','voice_id':script['voice_id'],'language':script['language'],'timing':'Reviewed scene windows and measured recording pauses; not lip animation','segments':segments}
+    result.update(min_tempo=float(script.get('min_tempo',.88)),max_tempo=float(script.get('max_tempo',1.6)),sample_rate=int(script.get('sample_rate',24000)))
     args.output.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     args.output.with_name('scene-alignment-audit.json').write_text(json.dumps({'takes':audit,'script_preserved':True,'cuts_only_in_measured_silence':True},ensure_ascii=False,indent=2)+'\n')
     print('Scene cues:',len(segments),flush=True)

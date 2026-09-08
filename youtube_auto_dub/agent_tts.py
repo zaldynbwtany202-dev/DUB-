@@ -122,8 +122,8 @@ def trim_silence(samples: np.ndarray, sr: int) -> tuple[np.ndarray, dict]:
 
 
 def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 0.88,
-             max_tempo: float = 1.6) -> tuple[np.ndarray, dict]:
-    sr = SR_TTS
+             max_tempo: float = 1.6, sample_rate: int = SR_TTS) -> tuple[np.ndarray, dict]:
+    sr = sample_rate
     decoded = subprocess.run([ffmpeg_exe(), "-v", "error", "-i", str(seg["audio"]),
                               "-vn", "-ar", str(sr), "-ac", "1", "-f", "f32le", "-"],
                              capture_output=True, check=True)
@@ -192,17 +192,24 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         raise FileNotFoundError("agent takes missing: " + ", ".join(missing))
     work_dir = Path(work_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
-    timeline = np.zeros(round(duration * SR_TTS), dtype=np.float32)
+    sr = int(cues.get("sample_rate", SR_TTS))
+    if sr not in {24000, 44100, 48000}:
+        raise ValueError("Unsupported narration sample rate")
+    min_tempo = float(cues.get("min_tempo", .88))
+    max_tempo = float(cues.get("max_tempo", 1.6))
+    if not all(math.isfinite(t) for t in (min_tempo,max_tempo)) or not .5 <= min_tempo <= 1 <= max_tempo <= 1.6:
+        raise ValueError("Invalid narration tempo policy")
+    timeline = np.zeros(round(duration * sr), dtype=np.float32)
     placed = []
     for i, seg in enumerate(segments):
-        samples, report = fit_take(seg, work_dir, i)
-        start = round(float(seg["start"]) * SR_TTS)
+        samples, report = fit_take(seg, work_dir, i, min_tempo=min_tempo, max_tempo=max_tempo, sample_rate=sr)
+        start = round(float(seg["start"]) * sr)
         if start + len(samples) > len(timeline):
             raise ValueError("Speech would extend past the video; refusing to trim it")
         timeline[start:start + len(samples)] += samples
         placed.append(report)
     aligned = work_dir / "aligned.wav"
-    sf.write(aligned, timeline, SR_TTS, subtype="PCM_24")
+    sf.write(aligned, timeline, sr, subtype="PCM_24")
     mix_input = aligned
     background_method = "removed_original_track"
     if mix_background:
@@ -216,8 +223,8 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         background_method = "provided_stem" if background else "approximate_source_separation_not_guaranteed_speech_free"
     final_wav = work_dir / "final.wav"
     normalise = subprocess.run([ffmpeg_exe(), "-y", "-v", "info", "-i", str(mix_input),
-                               "-af", "loudnorm=I=-16:TP=-1.5:LRA=9:print_format=json", "-ar", str(SR_TTS),
-                               "-ac", "1", str(final_wav)], check=True, capture_output=True, text=True)
+                               "-af", "loudnorm=I=-16:TP=-1.5:LRA=9:print_format=json", "-ar", str(sr),
+                               "-ac", "1", "-c:a", "pcm_s24le", str(final_wav)], check=True, capture_output=True, text=True)
     output.parent.mkdir(parents=True, exist_ok=True)
     command = [ffmpeg_exe(), "-y", "-v", "error", "-i", str(video), "-i", str(final_wav),
                "-map", "0:v:0", "-map", "1:a:0", "-c:v", "copy", "-c:a", "aac", "-b:a", "128k",
@@ -237,6 +244,7 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         "status": "preview_incomplete" if duration < source_duration - 0.05 else "complete",
         "segments": len(placed), "mix_background": mix_background, "background_method": background_method,
         "video_codec": "copy", "target_lufs": -16, "speech_truncated": False,
+        "tempo_policy": {"min": min_tempo, "max": max_tempo}, "narration_sample_rate": sr,
         "loudness_normalization": json.loads(meter[0]) if meter else None, "placements": placed,
     }
     write_cues(output.with_suffix(".agent.json"), report)

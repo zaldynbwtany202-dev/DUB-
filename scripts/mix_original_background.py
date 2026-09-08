@@ -44,10 +44,11 @@ def mix_graph(duration: float, gain_db: float) -> str:
     )
 
 
-def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_db: float = 2.5, audio_bitrate: str = "160k") -> dict:
+def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_db: float = 2.5, audio_bitrate: str = "160k", voice_audio: Path | None = None) -> dict:
     if audio_bitrate not in {"96k", "128k", "160k", "192k"}:
         raise ValueError("Unsupported audio bitrate")
-    for path in (voice_video, background):
+    inputs = (voice_video, background) + ((voice_audio,) if voice_audio is not None else ())
+    for path in inputs:
         if not path.is_file() or path.stat().st_size == 0:
             raise FileNotFoundError(path)
         if path.resolve() == output.resolve():
@@ -56,12 +57,15 @@ def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_d
     background_duration = probe_duration(background)
     if abs(duration - background_duration) > 0.2:
         raise ValueError("Background and approved dub timelines do not match")
+    narration_source = voice_audio if voice_audio is not None else voice_video
+    if voice_audio is not None and abs(probe_duration(voice_audio)-duration) > .2:
+        raise ValueError("Lossless narration duration does not match picture")
     graph = mix_graph(duration, gain_db)
     work.mkdir(parents=True, exist_ok=True)
     output.parent.mkdir(parents=True, exist_ok=True)
     master = work / "mixed-master.wav"
     result = subprocess.run([
-        ffmpeg_exe(), "-y", "-hide_banner", "-i", str(voice_video), "-i", str(background),
+        ffmpeg_exe(), "-y", "-hide_banner", "-i", str(narration_source), "-i", str(background),
         "-filter_complex", graph, "-map", "[out]", "-t", f"{duration:.6f}",
         "-ar", "48000", "-ac", "2", "-c:a", "pcm_s24le", str(master),
     ], check=True, capture_output=True, text=True)
@@ -81,7 +85,8 @@ def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_d
     meter = re.search(r'\{[^}]+"input_i"[^}]+\}', result.stderr, re.S)
     report = {
         "status": "rendered_pending_validation", "duration": duration,
-        "voice_source": str(voice_video), "voice_source_sha256": sha256(voice_video),
+        "picture_source": str(voice_video), "voice_source": str(narration_source), "voice_source_sha256": sha256(narration_source),
+        "lossless_voice_master_used": voice_audio is not None,
         "voice_regenerated": False, "background_source": str(background), "background_sha256": sha256(background),
         "background_kind": "neural estimate from original uploaded audio, not newly composed music",
         "background_gain_db": gain_db, "audio_bitrate": audio_bitrate,
@@ -98,6 +103,7 @@ def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_d
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--voice-video", type=Path, required=True)
+    parser.add_argument("--voice-audio", type=Path, help="Lossless narration master, avoiding an extra AAC decode")
     parser.add_argument("--background", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--work-dir", type=Path, default=Path(".cache/background-mix"))
@@ -105,7 +111,7 @@ def main():
     parser.add_argument("--audio-bitrate", choices=["96k", "128k", "160k", "192k"], default="160k")
     args = parser.parse_args()
     print(json.dumps(mix(args.voice_video, args.background, args.output, args.work_dir,
-                         gain_db=args.background_gain_db, audio_bitrate=args.audio_bitrate), ensure_ascii=False, indent=2))
+                         gain_db=args.background_gain_db, audio_bitrate=args.audio_bitrate, voice_audio=args.voice_audio), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":
