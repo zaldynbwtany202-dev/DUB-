@@ -8,12 +8,12 @@
   "generated_take_indices": [
     0,
     1,
-    2
-  ],
-  "pending_take_indices": [
+    2,
     3,
     4,
-    5,
+    5
+  ],
+  "pending_take_indices": [
     6,
     7,
     8
