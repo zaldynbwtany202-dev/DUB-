@@ -44,7 +44,9 @@ def mix_graph(duration: float, gain_db: float) -> str:
     )
 
 
-def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_db: float = 2.5) -> dict:
+def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_db: float = 2.5, audio_bitrate: str = "160k") -> dict:
+    if audio_bitrate not in {"96k", "128k", "160k", "192k"}:
+        raise ValueError("Unsupported audio bitrate")
     for path in (voice_video, background):
         if not path.is_file() or path.stat().st_size == 0:
             raise FileNotFoundError(path)
@@ -66,7 +68,7 @@ def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_d
     subprocess.run([
         ffmpeg_exe(), "-y", "-v", "error", "-i", str(voice_video), "-i", str(master),
         "-map", "0:v:0", "-map", "1:a:0", "-map_metadata", "0", "-c:v", "copy",
-        "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-metadata:s:a:0", "language=ara",
+        "-c:a", "aac", "-b:a", audio_bitrate, "-ar", "48000", "-metadata:s:a:0", "language=ara",
         "-t", f"{duration:.6f}", "-movflags", "+faststart", str(output),
     ], check=True, capture_output=True)
     subprocess.run([
@@ -82,7 +84,7 @@ def mix(voice_video: Path, background: Path, output: Path, work: Path, *, gain_d
         "voice_source": str(voice_video), "voice_source_sha256": sha256(voice_video),
         "voice_regenerated": False, "background_source": str(background), "background_sha256": sha256(background),
         "background_kind": "neural estimate from original uploaded audio, not newly composed music",
-        "background_gain_db": gain_db,
+        "background_gain_db": gain_db, "audio_bitrate": audio_bitrate,
         "ducking": {"threshold_linear": 0.05, "ratio": 3, "attack_ms": 20, "release_ms": 500, "detection": "rms"},
         "output": str(output), "output_sha256": sha256(output), "filter_graph": graph,
         "normalization": json.loads(meter[0]) if meter else None,
@@ -100,9 +102,10 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--work-dir", type=Path, default=Path(".cache/background-mix"))
     parser.add_argument("--background-gain-db", type=float, default=2.5)
+    parser.add_argument("--audio-bitrate", choices=["96k", "128k", "160k", "192k"], default="160k")
     args = parser.parse_args()
     print(json.dumps(mix(args.voice_video, args.background, args.output, args.work_dir,
-                         gain_db=args.background_gain_db), ensure_ascii=False, indent=2))
+                         gain_db=args.background_gain_db, audio_bitrate=args.audio_bitrate), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

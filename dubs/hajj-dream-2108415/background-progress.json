@@ -1,0 +1,16 @@
+{
+  "status": "separated_needs_audit",
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+  "output": ".cache/hajj-rebuild/background/background.flac",
+  "output_sha256": "1cf58bbe16b50fcd0cf3daf2fd04dcdea801ec6ff0345f51e0af39d35dbad63f",
+  "duration": 676.327619047619,
+  "sample_rate": 44100,
+  "samples": 29826048,
+  "pieces": 12,
+  "context_seconds": 4,
+  "crossfade_seconds": 0.4,
+  "mask_power": 1.35,
+  "speech_purity_guarantee": false,
+  "elapsed_seconds": 1133.846
+}

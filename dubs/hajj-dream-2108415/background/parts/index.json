@@ -8,8 +8,11 @@
     "piece-005.opus",
     "piece-006.opus",
     "piece-007.opus",
-    "piece-008.opus"
+    "piece-008.opus",
+    "piece-009.opus",
+    "piece-010.opus",
+    "piece-011.opus"
   ],
-  "count": 9,
+  "count": 12,
   "contains_context_overlaps": true
 }
