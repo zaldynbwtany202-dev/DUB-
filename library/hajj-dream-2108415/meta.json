@@ -28,7 +28,11 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "not_started",
-    "final": null
+    "status": "rebuilding",
+    "final": null,
+    "voice_backend": "agent",
+    "voice_id": "voice-02",
+    "language": "ar-EG",
+    "voice_selection_status": "selected_in_latest_audition"
   }
 }
