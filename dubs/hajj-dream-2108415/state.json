@@ -1,12 +1,14 @@
 {
-  "status": "awaiting_replacement_narrator_review",
+  "status": "recording_approved_voice12",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
-  "voice_id": "voice-07",
+  "voice_id": "voice-12",
   "language": "ar-EG",
   "generated_take_indices": [
-    0,
+    0
+  ],
+  "pending_take_indices": [
     1,
     2,
     3,
@@ -16,19 +18,18 @@
     7,
     8
   ],
-  "pending_take_indices": [],
-  "final_file": "voice07/final-dub-voice07.mp4",
+  "final_file": null,
   "background_requested": "original_neural_estimate",
   "previous_result_available": false,
   "previous_result_sha256": "17277bcac0b127cd9af630b42dd6029673fbd9d28cc2b9351b7310d72e923d73",
   "recovery_authorized_by_user": true,
   "publication_policy": "Push checkpoints during processing and verify remote media before reporting a download link.",
-  "publication_on_hold": true,
-  "voice_quality_approved": false,
+  "publication_on_hold": false,
+  "voice_quality_approved": true,
   "candidate_voice_id": "voice-12",
   "pilot_file": "voice-tests/voice-07-natural.wav",
-  "active_version": "voice07",
-  "active_script": "voice07/script.json",
+  "active_version": "voice12",
+  "active_script": "voice12/script.json",
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.266667,
   "publication": {
@@ -43,5 +44,6 @@
   "dub_complete": true,
   "completed_at": "2026-09-08T20:05:53+00:00",
   "next_step": null,
-  "pilot_reference": "voice-tests/voice-12-narration.json"
+  "pilot_reference": "voice-tests/voice-12-narration.json",
+  "previous_published_voice_id": "voice-07"
 }
