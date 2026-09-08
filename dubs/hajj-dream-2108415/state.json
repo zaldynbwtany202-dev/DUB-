@@ -1,15 +1,16 @@
 {
-  "status": "rebuilding",
+  "status": "building_voice_and_background",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
   "voice_id": "voice-02",
   "language": "ar-EG",
-  "generated_take_indices": [],
-  "pending_take_indices": [
+  "generated_take_indices": [
     0,
     1,
-    2,
+    2
+  ],
+  "pending_take_indices": [
     3,
     4,
     5,
