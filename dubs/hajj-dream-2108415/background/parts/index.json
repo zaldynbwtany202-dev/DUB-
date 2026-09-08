@@ -1,0 +1,15 @@
+{
+  "parts": [
+    "piece-000.opus",
+    "piece-001.opus",
+    "piece-002.opus",
+    "piece-003.opus",
+    "piece-004.opus",
+    "piece-005.opus",
+    "piece-006.opus",
+    "piece-007.opus",
+    "piece-008.opus"
+  ],
+  "count": 9,
+  "contains_context_overlaps": true
+}

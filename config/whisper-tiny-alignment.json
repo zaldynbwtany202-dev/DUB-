@@ -1,0 +1,8 @@
+{
+  "repository": "TheJorseman/KaraokIAndroid",
+  "revision": "07c84b92d3fcf82af3780bd566583e7e2da6925d",
+  "path": "app/src/main/assets/transcription/ggml-tiny-q5_1.bin",
+  "bytes": 32152673,
+  "sha256": "818710568da3ca15689e31a743197b520007872ff9576237bda97bd1b469c3d7",
+  "purpose": "Approximate alignment of already-generated speech, not source transcription"
+}
