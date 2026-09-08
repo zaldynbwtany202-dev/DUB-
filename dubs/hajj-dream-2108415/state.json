@@ -25,6 +25,6 @@
   "publication_policy": "Push checkpoints during processing and verify remote media before reporting a download link.",
   "publication_on_hold": true,
   "voice_quality_approved": false,
-  "candidate_voice_id": "voice-04",
-  "pilot_file": "voice-tests/voice-04-natural.wav"
+  "candidate_voice_id": "voice-07",
+  "pilot_file": "voice-tests/voice-07-natural.wav"
 }

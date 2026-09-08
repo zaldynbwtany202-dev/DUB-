@@ -18,7 +18,16 @@
       "selected_voice_id": "voice-02"
     }
   ],
-  "candidate_voice_id": "voice-04",
+  "candidate_voice_id": "voice-07",
   "recorded_batch_voice_id": "voice-02",
-  "full_video_generation_authorized": false
+  "full_video_generation_authorized": false,
+  "selected_shortlist_group": 1,
+  "selected_audition_index": 7,
+  "latest_shortlist": [
+    "voice-07",
+    "voice-08",
+    "voice-09",
+    "voice-10",
+    "voice-11"
+  ]
 }
