@@ -1,0 +1,14 @@
+{
+  "status": "timing_repair_in_progress",
+  "voice_id": "voice-12",
+  "user_requirement": "Every source utterance and meaning must be represented at its original speech time; rewrite unsuitable wording instead of leaving empty gaps.",
+  "previous_unused_declared_cue_seconds": 76.04618749999999,
+  "interpretation": "Unused cue room is measured, but genuine source silences must be distinguished before judging all gaps artificial.",
+  "acceptance_gates": [
+    "complete source-to-target utterance mapping",
+    "no unexplained missing narration during source speech",
+    "no overlapping spoken phrases",
+    "rewrite or regenerate mismatched lines; do not fill with silence",
+    "retain voice-12 and original picture"
+  ]
+}

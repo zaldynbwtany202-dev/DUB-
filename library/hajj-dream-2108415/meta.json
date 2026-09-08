@@ -28,7 +28,7 @@
     "status": "not_started"
   },
   "dubbing": {
-    "status": "complete",
+    "status": "timing_repair_in_progress",
     "final": "dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
     "voice_backend": "agent",
     "voice_id": "voice-12",
@@ -39,6 +39,7 @@
     "publication_status": "published_verified",
     "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
     "completed_at": "2026-09-08T21:03:13+00:00",
-    "candidate_voice_id": "voice-12"
+    "candidate_voice_id": "voice-12",
+    "timing_quality_approved": false
   }
 }

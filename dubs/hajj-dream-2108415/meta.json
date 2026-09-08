@@ -2,39 +2,8 @@
   "slug": "hajj-dream-2108415",
   "title": "دبلجة الحج — الراوي المصري المعتمد voice-12",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "complete",
-  "versions": [
-    {
-      "run_id": "voice12-approved-narration",
-      "file": "voice12/final-dub-voice12.mp4",
-      "kind": "complete_dub",
-      "voice_id": "voice-12",
-      "duration": 676.266667,
-      "size": 39544881,
-      "sha256": "510058ad4cc46a9dfc56279175796eadcb2eb818b26a171bee5d26fb64c6cb41",
-      "rendered_at": "2026-09-08T21:00:43+00:00",
-      "published_at": "2026-09-08T21:03:13+00:00",
-      "reused_approved_opening": true,
-      "settings": {
-        "tts_engine": "agent",
-        "target_lang": "ar-EG",
-        "bg_music": true,
-        "sample_rate": 48000,
-        "min_tempo": 1.0,
-        "max_tempo": 1.08
-      },
-      "technical_checks_passed": true,
-      "human_listening_certification": false,
-      "reports": {
-        "quality": "voice12/quality.json",
-        "timing": "voice12/narration-timing.json",
-        "mix": "voice12/mix.json"
-      },
-      "subtitles": "voice12/final-dub-voice12.srt",
-      "status": "published",
-      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4"
-    }
-  ],
+  "status": "source_timing_repair",
+  "versions": [],
   "publication": {
     "status": "published_verified",
     "branch": "arena/01a07c92-dub",
@@ -81,6 +50,45 @@
         "size": 39554676,
         "sha256": "248d448bdf5e30ec4d969f0fba974c73173a693df192e87f1cda9c114ef8cf1e",
         "preserved_in_reachable_git_history": true
+      }
+    },
+    {
+      "run_id": "voice12-approved-narration",
+      "file": "voice12/final-dub-voice12.mp4",
+      "kind": "complete_dub",
+      "voice_id": "voice-12",
+      "duration": 676.266667,
+      "size": 39544881,
+      "sha256": "510058ad4cc46a9dfc56279175796eadcb2eb818b26a171bee5d26fb64c6cb41",
+      "rendered_at": "2026-09-08T21:00:43+00:00",
+      "published_at": "2026-09-08T21:03:13+00:00",
+      "reused_approved_opening": true,
+      "settings": {
+        "tts_engine": "agent",
+        "target_lang": "ar-EG",
+        "bg_music": true,
+        "sample_rate": 48000,
+        "min_tempo": 1.0,
+        "max_tempo": 1.08
+      },
+      "technical_checks_passed": true,
+      "human_listening_certification": false,
+      "reports": {
+        "quality": "voice12/quality.json",
+        "timing": "voice12/narration-timing.json",
+        "mix": "voice12/mix.json"
+      },
+      "subtitles": "voice12/final-dub-voice12.srt",
+      "status": "published",
+      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/139e51f7d58533f9406ea796d309442e3bb5b6de/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+      "archive": {
+        "reason": "User requested source-synchronous speech repair; prior timing version retained for comparison",
+        "commit": "139e51f7d58533f9406ea796d309442e3bb5b6de",
+        "path": "dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+        "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/139e51f7d58533f9406ea796d309442e3bb5b6de/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+        "bytes": 39544881,
+        "sha256": "510058ad4cc46a9dfc56279175796eadcb2eb818b26a171bee5d26fb64c6cb41",
+        "verified_remote": true
       }
     }
   ],

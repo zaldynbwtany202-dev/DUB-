@@ -1,0 +1,9 @@
+{
+  "reason": "User requested source-synchronous speech repair; prior timing version retained for comparison",
+  "commit": "139e51f7d58533f9406ea796d309442e3bb5b6de",
+  "path": "dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+  "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/139e51f7d58533f9406ea796d309442e3bb5b6de/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+  "bytes": 39544881,
+  "sha256": "510058ad4cc46a9dfc56279175796eadcb2eb818b26a171bee5d26fb64c6cb41",
+  "verified_remote": true
+}
