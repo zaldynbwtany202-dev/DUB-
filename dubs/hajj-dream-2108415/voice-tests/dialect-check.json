@@ -1,0 +1,100 @@
+{
+  "kit": "voice-tests/dialect-stress.txt",
+  "rule": "لا يُعتمد صوت إلا بسماع السطور الستة كاملة؛ الأرقام لا تسمع اللهجة",
+  "voices_tested": [
+    "voice-00",
+    "voice-01",
+    "voice-03"
+  ],
+  "note": "voice-02 رُفض بهذه القائمة: الثخانة مقبولة ونطق اللهجة سييء. العينات هنا على السطور نفسها بين voice-00 وvoice-01 وvoice-03، والجولة الثالثة للتسجيل لن تبدأ قبل اختيار صوت يجتاز الستة بلا خطأ مسموع.",
+  "samples": [
+    {
+      "file": "voice-tests/voice-00-c1.flac",
+      "mp3": "voice-tests/voice-00-c1.mp3",
+      "voice_id": "voice-00",
+      "lines": "c1",
+      "lines_said": "سطر 1+2: قعد/قايل/الجار ده/مجروح/مش + إزاي/إندهولى/دلوقتي/حتة/أديها",
+      "seconds": 12.0,
+      "sample_rate": 24000,
+      "sha256": "b8ee5b757ebc742064be9355b6304ac312954fc9967bd7a5cea65c076f96ffa7",
+      "mp3_sha256": "2cf14ce6dbe6acaac08369d276e0f7610f2ebd674b3262df859ced8380e1e144"
+    },
+    {
+      "file": "voice-tests/voice-00-c2.flac",
+      "mp3": "voice-tests/voice-00-c2.mp3",
+      "voice_id": "voice-00",
+      "lines": "c2",
+      "lines_said": "سطر 3+4: ستّات/الحارة/العيال + حجّ بيت الله الحرام/عرفة/مزدلفة/الجمرات",
+      "seconds": 13.52,
+      "sample_rate": 24000,
+      "sha256": "9069dc74e0e1c5ad71cce4473c52fb19c7c76085c3d1c245302e8bdd313f1af0",
+      "mp3_sha256": "e42f9329acf3e6f74ec1a12af9ab53408ee1eff913a625c70619e4a9265c1488"
+    },
+    {
+      "file": "voice-tests/voice-00-c3.flac",
+      "mp3": "voice-tests/voice-00-c3.mp3",
+      "voice_id": "voice-00",
+      "lines": "c3",
+      "lines_said": "سطر 5+6: سنين/بيحلم/يتأجّل/قالوا له/يسهّل + بكت/عملوا/عزاء",
+      "seconds": 14.16,
+      "sample_rate": 24000,
+      "sha256": "21ba78c45de43d851173de65a05b34f8136ff516051629bbc0e61246d2e5c845",
+      "mp3_sha256": "1ae68be7b4071e9f8c456c94bc2b3583574796ab3c15b9f336a9bfc22c93d426"
+    },
+    {
+      "file": "voice-tests/voice-01-c1.flac",
+      "mp3": "voice-tests/voice-01-c1.mp3",
+      "voice_id": "voice-01",
+      "lines": "c1",
+      "lines_said": "سطر 1+2: قعد/قايل/الجار ده/مجروح/مش + إزاي/إندهولى/دلوقتي/حتة/أديها",
+      "seconds": 11.28,
+      "sample_rate": 24000,
+      "sha256": "94569467e276411f321c361ffd9a91880ba4724cf44fd78858b442f9033ffad3",
+      "mp3_sha256": "a161d92dd5478db9f6f75c7a675e6524ed3db9992b50812b4a1e9f965aad8a60"
+    },
+    {
+      "file": "voice-tests/voice-01-c2.flac",
+      "mp3": "voice-tests/voice-01-c2.mp3",
+      "voice_id": "voice-01",
+      "lines": "c2",
+      "lines_said": "سطر 3+4: ستّات/الحارة/العيال + حجّ بيت الله الحرام/عرفة/مزدلفة/الجمرات",
+      "seconds": 14.36,
+      "sample_rate": 24000,
+      "sha256": "dba02527d87a19d9b75b70ce4488d0a59a903b792108a629ae7bec832ec43dad",
+      "mp3_sha256": "ab1b174f5de269ef1e36ccc1b97925e30b096d9d71050135e96dbd0a6a51eb67"
+    },
+    {
+      "file": "voice-tests/voice-03-c1.flac",
+      "mp3": "voice-tests/voice-03-c1.mp3",
+      "voice_id": "voice-03",
+      "lines": "c1",
+      "lines_said": "سطر 1+2: قعد/قايل/الجار ده/مجروح/مش + إزاي/إندهولى/دلوقتي/حتة/أديها",
+      "seconds": 11.96,
+      "sample_rate": 24000,
+      "sha256": "5aeb8a9d01978d1ec6c396d0aa768ed8d7e2e02bdf7932d45135d0edf01321c4",
+      "mp3_sha256": "0d462b60da56f955aba4bc7a4a79346e66e3a9e38c2564142c95fbad8d485552"
+    },
+    {
+      "file": "voice-tests/voice-03-c2.flac",
+      "mp3": "voice-tests/voice-03-c2.mp3",
+      "voice_id": "voice-03",
+      "lines": "c2",
+      "lines_said": "سطر 3+4: ستّات/الحارة/العيال + حجّ بيت الله الحرام/عرفة/مزدلفة/الجمرات",
+      "seconds": 13.48,
+      "sample_rate": 24000,
+      "sha256": "9e407a64205a940d1b7771150d9cff6ad224981d1ea6e4f88faa21fc95d44bbd",
+      "mp3_sha256": "4647fc7baa083cd9d0d13a7ff5c5de352f88f400dfc0f26a786513412d422243"
+    },
+    {
+      "file": "voice-tests/voice-03-c3.flac",
+      "mp3": "voice-tests/voice-03-c3.mp3",
+      "voice_id": "voice-03",
+      "lines": "c3",
+      "lines_said": "سطر 5+6: سنين/بيحلم/يتأجّل/قالوا له/يسهّل + بكت/عملوا/عزاء",
+      "seconds": 14.96,
+      "sample_rate": 24000,
+      "sha256": "a4c7ad88082c06493699cf1081068728e64ea33ee605e86ecb2b0d0dfd4a9069",
+      "mp3_sha256": "4a62f05b6a273ff27b647395652796829268dc22467c2afc04e859370d7c35c4"
+    }
+  ]
+}

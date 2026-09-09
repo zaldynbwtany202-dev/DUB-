@@ -1,0 +1,51 @@
+{
+  "rule": "the dub is filtered and floored to the original's measured acoustics; the ambience under it is the original's own pause air, not composed sound",
+  "filters": {
+    "lowpass_hz": 6500.0,
+    "low_shelf_db": -4.39,
+    "presence_shelf_db": 2.72,
+    "air_gain_applied_db": -9.45,
+    "chain_applied": [
+      "bass=g=-4.39:f=180:t=s",
+      "treble=g=2.55:f=3200:t=s",
+      "lowpass=f=6500"
+    ],
+    "room_tone_source": "source vocals residual, pauses only",
+    "room_tone_tile_seconds": 12.0,
+    "room_tone_target_dbfs": -31.57,
+    "bed_scale_fitted": 5.19368
+  },
+  "before": {
+    "source": {
+      "hf_share": 0.00129,
+      "low_share": 0.16735,
+      "tilt": -28.25,
+      "floor_dbfs": -31.57,
+      "bandwidth_95pct_hz": 1549.2
+    },
+    "dub": {
+      "hf_share": 0.00207,
+      "low_share": 0.45982,
+      "tilt": -30.97,
+      "floor_dbfs": -63.3,
+      "bandwidth_95pct_hz": 731.2
+    }
+  },
+  "after": {
+    "hf_share": 0.00175,
+    "low_share": 0.28357,
+    "tilt": -29.27,
+    "floor_dbfs": -32.72,
+    "bandwidth_95pct_hz": 1041.2
+  },
+  "deltas_vs_source": {
+    "hf_share": 0.00046,
+    "low_share": 0.11622,
+    "tilt": -1.02,
+    "floor_dbfs": -1.15,
+    "bandwidth_95pct_hz": -508.0
+  },
+  "output": ".cache/hajj-sync-repair/narration-matched.wav",
+  "sha256": "0fa9c06cde494924ad26b2919dcfb62773a5b7f7b6494ec61746c7bbd953a94f",
+  "takes_untouched": true
+}

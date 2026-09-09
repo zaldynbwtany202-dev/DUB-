@@ -1,0 +1,56 @@
+{
+  "what_this_is": "نفس الكلام ونفس المواضع: مرة الماستر الجاف كما هو، ومرة بعد ملاءمة الخصائص الصوتية للتسجيل الأصلي — حدّ النطاق 6500.0 Hz، خفض 4.39 dB عند 180 Hz للصدر الزائد، رفع 2.72 dB عند 3.2 kHz للحضور، وصمت غرفة مسروق من وقفات الأصل نفسها بمستوى -31.57 dBFS بدل صفر رقمي. لا موسيقى مُضافة، لا تمديد زمني، لا إعادة تسجيل: الملف الصوتي الناتج هو التسجيلات المعتمدة بعد سلسلة معلانة ومحفوظة في timing-repair/acoustics-match.json.",
+  "measured": {
+    "hf_share": 0.00046,
+    "low_share": 0.11622,
+    "tilt": -1.02,
+    "floor_dbfs": -1.15,
+    "bandwidth_95pct_hz": -508.0
+  },
+  "clips": [
+    {
+      "clip": "acoustics-ab-opening-before",
+      "window": [
+        0.0,
+        60.0
+      ],
+      "master": "narration.wav",
+      "seconds": 60.0,
+      "bytes": 1441196,
+      "sha256": "e8a1236c2c98002ed5e1bdb9456943782bbae1a8b43323adf2e1c256e8cb1b9d"
+    },
+    {
+      "clip": "acoustics-ab-opening-after",
+      "window": [
+        0.0,
+        60.0
+      ],
+      "master": "narration-matched.wav",
+      "seconds": 60.0,
+      "bytes": 1441196,
+      "sha256": "d6348a60a1d0a0c0182dbf7f28e4177e7eac46e524e960b27fb7356378c3aeb5"
+    },
+    {
+      "clip": "acoustics-ab-tense-office-before",
+      "window": [
+        411.8,
+        471.8
+      ],
+      "master": "narration.wav",
+      "seconds": 60.0,
+      "bytes": 1441196,
+      "sha256": "01b8758c387ac11e3a0fd1e31e8df732044a76a31fc0c7c9a5ad66b4864fa30e"
+    },
+    {
+      "clip": "acoustics-ab-tense-office-after",
+      "window": [
+        411.8,
+        471.8
+      ],
+      "master": "narration-matched.wav",
+      "seconds": 60.0,
+      "bytes": 1441196,
+      "sha256": "f413c2c2128b025d6c10f40ee7a69fea4c5683a282d6189c46e1688a01988d05"
+    }
+  ]
+}
