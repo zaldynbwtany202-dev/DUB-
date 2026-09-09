@@ -1,0 +1,30 @@
+{
+  "what_this_file_is": "تقرير الفحص الكامل لنسخة الماستر المُعالَجة بالطيف فقط (بلا أي طبقة تحت الصوت): `dubs/hajj-dream-2108415/timing-repair/acoustics-match.json` هو السلسلة المعلنة، والناتج هنا طابقها عيّنة-بعيّنة. مش منشور — نسخة مرشّحة للاستماع لحد ما المستخدم يختار الصوت.",
+  "air_decision": "الهواء مرفوض من المصدر نفسه: المتبقي بين كلمات الراوي أقسى 9.8 dB تحت مستوى كلامه Typical، و19.99 ث من الوقفات متوسطة 0.161 ث، و%63 منها داخل نوى كلمات ASR. فبدل وضع صوت الراوي الأصلي تحت الدبلجة، اتطبقت الملاءمة الطيفية لوحدها.",
+  "status": "verified",
+  "gates": {
+    "video_stream_bit_identical": true,
+    "speech_untouched": true,
+    "master_chain_is_air_not_music": true,
+    "no_long_gaps": true,
+    "coverage_within_budget": true,
+    "clause_onsets_at_planned_time": true,
+    "no_quiet_hole_over_budget": true,
+    "clause_phase_matches_plan": true,
+    "loudness_in_range": true,
+    "durations_match": true
+  },
+  "key_numbers": {
+    "alignment_ms": 0.0454,
+    "dry_coverage": 0.981632,
+    "delivered_coverage": 0.983231,
+    "max_abs_difference_vs_declared_chain": 0.0,
+    "rms_difference_dbfs": -240.0,
+    "max_time_lag_ms": 0.0,
+    "length_difference_samples": 0,
+    "chain_report_sha256": "ebf2ea08f6cafa449f99b0fe2c112061b227e286aebea695add3f1f8c4b43489",
+    "filters_applied": "bass=g=-4.39:f=180:t=s,treble=g=2.55:f=3200:t=s,lowpass=f=6500"
+  },
+  "human_listening_certification": false,
+  "dialect_certification": "بانتظار اختيار الصوت على voice-tests/dialect-stress.txt"
+}
