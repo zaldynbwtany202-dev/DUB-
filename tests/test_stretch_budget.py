@@ -27,8 +27,12 @@ ROOT = Path(__file__).resolve().parent.parent
 def _load():
     """Import build_dub with a project that needs no source clip on disk."""
     import os
+    import tempfile
 
     os.environ.setdefault("PROJECT", "Vikings-Ragnar-Floki")
+    # importing build_dub materialises the project layout: keep that out of the work tree
+    os.environ.setdefault("PROSTUDIO_PROJECTS",
+                          tempfile.mkdtemp(prefix="prostudio-test-"))
     spec = importlib.util.spec_from_file_location(
         "build_dub_under_test", ROOT / "scripts" / "build_dub.py"
     )

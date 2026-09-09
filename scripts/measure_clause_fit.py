@@ -4,8 +4,11 @@
 Anchoring can only move silence. If a chunk of the dub is longer than the stretch of the
 original that covers the same content, its successor's moment has already passed and no
 placement can fix it - the wording has to change. This tool measures exactly that, per
-chunk, and prints the word adjustment a re-record needs, so the rewrite is driven by the
-audio instead of by how long the sentence looks on paper.
+chunk (the granularity the planner itself places at), and prints the word adjustment a
+re-record needs, so the rewrite is driven by the audio instead of by how long the sentence
+looks on paper. `fillable_ratio` is the part-level verdict: speech divided by the time the
+original allotted. Below 0.95 the part leaves the screen waiting; above 1.02 it cannot be
+placed in phase at all.
 
 Read-only: it never writes audio, only a json report.
 """
@@ -39,34 +42,27 @@ def analyse(script: Path, words: list[dict], *, min_gap: float, min_speech: floa
         chunks, pauses = measure(audio, SR, min_gap=min_gap, max_pad=edge_pad, min_speech=min_speech)
         durations = [chunk["duration"] for chunk in chunks]
         clauses = take.get("clauses") or split_sentences(str(take["text"]))
-        units = source_units(words, len(clauses), float(take["start"]), float(take["end"]),
+        # Judge at the planner's own granularity: a chunk of the take against the stretch of
+        # the original allotted to it. Mapping sentences onto chunks is degenerate when a part
+        # has more clauses than chunks (sentence_indices collapses every start to 0), so the
+        # words shown for a chunk are those its clauses carry, split proportionally.
+        units = source_units(words, len(durations), float(take["start"]), float(take["end"]),
                              min_gap=min_gap)
-        first_of_chunk: dict[int, int] = {}
-        for rank, chunk in enumerate(sentence_indices(clauses, durations)):
-            first_of_chunk.setdefault(chunk, rank)
-        # A clause may be carried by several chunks: judge it by their combined speech,
-        # against the whole stretch the original spent on that content.
-        start_of = {rank: chunk for chunk, rank in first_of_chunk.items()}
         rate = sum(len(cl.split()) for cl in clauses) / max(0.001, sum(durations))
         rows = []
-        for rank in sorted(start_of):
-            chunk = start_of[rank]
-            nxt = start_of.get(rank + 1)
-            following = list(range(chunk, nxt if nxt is not None else len(durations)))
-            speech = sum(durations[c] for c in following)
-            if rank >= len(units):
-                continue
-            start, stop = units[rank]["start"], (units[rank + 1]["start"] if rank + 1 < len(units)
-                                                 else float(take["end"]))
-            allotted = max(0.05, stop - start)
-            ratio = speech / allotted
-            words_now = len(clauses[rank].split())
-            rows.append({"chunk": chunk, "chunks": following, "clause": rank, "start": start,
-                         "allotted": round(allotted, 3), "speech": round(speech, 3),
-                         "ratio": round(ratio, 3),
-                         "words": words_now,
-                         "words_recommended": max(1, round(allotted * rate)),
-                         "words_delta": max(1, round(allotted * rate)) - words_now,
+        for chunk, duration in enumerate(durations):
+            first = chunk * len(clauses) // len(durations)
+            last = (chunk + 1) * len(clauses) // len(durations)
+            mine = clauses[first:last] or [clauses[min(first, len(clauses) - 1)]]
+            allotted = max(0.05, units[chunk]["end"] - units[chunk]["start"])
+            ratio = duration / allotted
+            words_now = sum(len(cl.split()) for cl in mine)
+            recommended = max(1, round(allotted * rate))
+            rows.append({"chunk": chunk, "clause": first, "clauses": [cl.strip() for cl in mine],
+                         "start": round(units[chunk]["start"], 3),
+                         "allotted": round(allotted, 3), "speech": round(duration, 3),
+                         "ratio": round(ratio, 3), "words": words_now,
+                         "words_recommended": recommended, "words_delta": recommended - words_now,
                          "verdict": ("shorten" if ratio > OVER + tolerance else
                                      "lengthen" if ratio < UNDER - tolerance else "fits")})
         bad = [row for row in rows if row["verdict"] != "fits"]

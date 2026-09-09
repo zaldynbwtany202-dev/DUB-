@@ -98,6 +98,8 @@
 
 - `final-dub-source-sync.mp4` / `.srt` / `.mp3` — الفيديو والنص ومعاينة صوتية.
 - `final-dub-source-sync.mix.json` — وصف المكساج (الخلفية، الخفض، الجهارة، البصمات).
+  حقل `status` فيه يصف خطوة المكساج وحدها (`rendered_pending_validation`)؛ الحالة
+  المُصادَق عليها تُقرأ من `render-verification.json` لا منه.
 - `render-verification.json` — البوابات التسع ونتائجها.
 - `../timing-repair/pause-plan.json` — خطة المواضع: لكل مقطع `anchor_target` و`anchor_error`
   و`take_piece`، وبصمة السلامة `byte-identical to the approved recording`.
