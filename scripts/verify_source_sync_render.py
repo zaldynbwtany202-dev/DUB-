@@ -10,6 +10,9 @@ Gates, in the order a viewer would notice them:
    of the chunk), which rules out clipped, duplicated, reordered or stretched speech;
 3. timeline integrity: original speech must not stay uncovered beyond the agreed budget,
    and no uncovered span may be long enough to read as an empty gap;
+3b. clause phase: when the plan anchored clauses to the original's own speech units, the
+   speech onset measured in the narration master must sit at the planned cue time, so an
+   alignment claim in the documentation is re-measured here instead of trusted;
 4. loudness: measured integrated loudness and true peak of the delivered track.
 
 These gates measure timing and integrity. They do not certify pronunciation, dialect or
@@ -33,6 +36,7 @@ sys.path.insert(0, str(ROOT))
 
 from youtube_auto_dub.ffmpeg_bin import ffmpeg_exe  # noqa: E402
 from youtube_auto_dub.pause_sync import coverage  # noqa: E402
+from youtube_auto_dub.sentence_anchor import anchor_errors  # noqa: E402
 
 SR = 44100
 
@@ -107,6 +111,12 @@ def main() -> int:
     parser.add_argument("--max-sample-error", type=float, default=2e-4,
                         help="largest tolerated sample delta against the approved take")
     parser.add_argument("--max-alignment-samples", type=int, default=2)
+    parser.add_argument("--max-phase-delta", type=float, default=0.15,
+                        help="how far the phase measured in the master may sit from the phase the plan reported")
+    parser.add_argument("--max-quiet-hole", type=float, default=0.7,
+                        help="longest digital silence the dub may leave while the original speaks")
+    parser.add_argument("--max-onset-error", type=float, default=0.06,
+                        help="largest tolerated delta between a measured onset and the plan")
     parser.add_argument("--inset", type=float, default=0.05,
                         help="ignore this many seconds at each chunk edge, where a shortened "
                              "pause lets the neighbour's room tone sit next to the speech")
@@ -181,7 +191,8 @@ def main() -> int:
     source_audio = decode(args.source)
     duration = len(source_audio) / SR
     source_spans = vad(source_audio, SR)
-    dry = coverage(source_spans, vad(master, SR), duration, tolerance=0.15, min_gap=0.3)
+    master_spans = vad(master, SR)
+    dry = coverage(source_spans, master_spans, duration, tolerance=0.15, min_gap=0.3)
     delivered = coverage(source_spans, vad(decode(args.output), SR), duration, tolerance=0.15, min_gap=0.3)
     report["timeline"] = {"dry_narration": {key: value for key, value in dry.items() if key != "gaps"},
                           "delivered_mix": {key: value for key, value in delivered.items() if key != "gaps"},
@@ -189,6 +200,64 @@ def main() -> int:
                           "planned": {"uncovered_source_speech_seconds": plan["uncovered_source_speech_seconds"],
                                       "max_uncovered_gap": plan["max_uncovered_gap"]},
                           "method": "same Silero settings on the original and on the delivered audio"}
+
+    # clause phase: the narration master must start each anchored clause when the plan says
+    phase_rows = [row for row in plan["timeline"] if row.get("anchor_target") is not None]
+    late: list[dict] = []
+    phase_errors: list[float] = []
+    onset_deviations: list[float] = []
+    for row in phase_rows:
+        # where the piece was actually written, plus the breath it keeps before its speech
+        measured = row["written_begin"] + (row["take_speech_start"] - row["take_piece"][0])
+        onset_deviations.append(measured - row["start"])
+        phase_errors.append(measured - float(row["anchor_target"]))
+        if abs(measured - row["start"]) > args.max_onset_error:
+            late.append({"part": row["part"], "planned_start": row["start"],
+                         "measured_onset": round(measured, 4), "reason": "onset is not at the cue"})
+    # digital silence, measured on samples rather than on a detector: a stretch the ear hears
+    frame = max(1, int(0.01 * SR))
+    quiet = np.pad(master, (0, (-len(master)) % frame))
+    blocks = quiet.reshape(-1, frame)
+    loud = np.max(np.abs(blocks), axis=1) > 10 ** (-55 / 20)
+    edges = np.diff(np.r_[False, loud, False].astype(np.int8))
+    starts, stops = np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)
+    silent_runs: list[list[float]] = []
+    if len(starts) and starts[0] > 0:  # before the first word and after the last one count too
+        silent_runs.append([0.0, starts[0] * frame / SR])
+    silent_runs.extend([[stop * frame / SR, nxt * frame / SR] for stop, nxt in zip(stops, starts[1:])])
+    if len(stops) and stops[-1] < len(loud):
+        silent_runs.append([stops[-1] * frame / SR, len(loud) * frame / SR])
+    holes = []
+    for low, high in silent_runs:
+        for source_start, source_end in source_spans:
+            overlap = min(high, source_end) - max(low, source_start)
+            if overlap > 1e-6:
+                holes.append({"start": round(max(low, source_start), 3),
+                              "end": round(min(high, source_end), 3), "duration": round(overlap, 3)})
+                break
+    holes.sort(key=lambda row: -row["duration"])
+    report["quiet_holes"] = {
+        "method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms "
+                  "blocks) that overlaps original speech; independent of any speech detector",
+        "count_over_budget": len([row for row in holes if row["duration"] > args.max_quiet_hole]),
+        "longest": holes[:6],
+        "total_seconds": round(sum(row["duration"] for row in holes if row["duration"] > 0.05), 3),
+        "budget_seconds": args.max_quiet_hole}
+    report["clause_phase"] = {
+        "anchored_rows": len(phase_rows),
+        "rows_measured": len(phase_errors),
+        "rows_missing_onset": late[:5],
+        "onset_error_from_plan_seconds": {
+            "mean": round(float(np.mean(np.abs(onset_deviations))), 4) if onset_deviations else None,
+            "max": round(float(np.max(np.abs(onset_deviations))), 4) if onset_deviations else None},
+        "phase_vs_original": anchor_errors([0.0] * len(phase_errors), phase_errors),
+        "plan_claimed": {key: plan.get("sentence_timing_error", {}).get(key)
+                         for key in ("anchored", "mean_seconds", "median_seconds", "p90_seconds",
+                                     "max_seconds")},
+        "method": "start of every anchored clause, read back from where the piece was written in "
+                  "the narration master, compared with the cue time and with the start of the "
+                  "matching speech unit in the original",
+    }
 
     report["loudness"] = loudness(args.output)
 
@@ -203,6 +272,15 @@ def main() -> int:
         "no_long_gaps": dry["max_uncovered_gap"] <= args.max_gap
         and delivered["max_uncovered_gap"] <= args.max_gap,
         "coverage_within_budget": dry["uncovered_source_speech_seconds"] <= args.max_uncovered,
+        # every anchored clause must be audible where the plan put it, otherwise the
+        # documentation's alignment claim is not the render the viewer gets
+        "clause_onsets_at_planned_time": bool(phase_rows) and not late
+        and (float(np.max(np.abs(onset_deviations))) if onset_deviations else 1.0)
+        <= args.max_onset_error,
+        "no_quiet_hole_over_budget": not report["quiet_holes"]["count_over_budget"],
+        "clause_phase_matches_plan": bool(phase_rows)
+        and abs((report["clause_phase"]["phase_vs_original"].get("mean_seconds") or 0)
+                - (plan.get("sentence_timing_error", {}).get("mean_seconds") or 0)) <= args.max_phase_delta,
         # -16 LUFS with headroom: the AAC encoder may lift the peak slightly above the
         # master target, so the delivered file is judged on a range instead of the target.
         "loudness_in_range": bool(report["loudness"])
@@ -221,6 +299,8 @@ def main() -> int:
                       "dry_coverage": dry["source_speech_coverage"],
                       "delivered_coverage": delivered["source_speech_coverage"],
                       "dry_max_gap": dry["max_uncovered_gap"],
+                      "max_quiet_hole": (report["quiet_holes"]["longest"][0]["duration"]
+                                         if report["quiet_holes"]["longest"] else 0.0),
                       "delivered_max_gap": delivered["max_uncovered_gap"],
                       "pieces_identical": report["speech"]["pieces_not_identical_to_the_take"] == 0,
                       "alignment_ms": report["speech"]["max_alignment_error_ms"],

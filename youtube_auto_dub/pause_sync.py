@@ -22,7 +22,7 @@ from __future__ import annotations
 import math
 from typing import Sequence
 
-__all__ = ["plan_gaps", "allocate_part_spans", "cue_times", "align_sentences",
+__all__ = ["plan_gaps", "allocate_part_spans", "cue_times", "sentence_indices", "align_sentences",
            "overlap_seconds", "coverage"]
 
 
@@ -116,50 +116,69 @@ def cue_times(span_start: float, chunk_durations: Sequence[float], gaps: Sequenc
     return times
 
 
-def align_sentences(sentences: Sequence[str], chunk_durations: Sequence[float]) -> list[str]:
-    """Attach whole sentences to recorded chunks by cumulative proportion.
+def _sentence_bounds(speech_mass: Sequence[float], chunk_durations: Sequence[float]) -> list[int]:
+    """Index of the chunk each piece of speech starts on, split by cumulative mass.
 
-    Sentences are never split across cues, which keeps the generated subtitle readable
-    even though the speech model pauses more often than there are periods. Chunks that
-    receive no sentence merge into the previous cue.
+    Both directions of the sentence/chunk pairing need the same proportional split, so
+    it lives here once: sentences get the speech mass the script writer gave them, chunks
+    get the seconds the recorder actually produced.
     """
+    if not speech_mass or not chunk_durations:
+        return []
+    total_speech = float(sum(chunk_durations))
+    if total_speech <= 0:
+        return [min(index, len(chunk_durations) - 1) for index in range(len(speech_mass))]
+    total_mass = float(sum(speech_mass)) or float(len(speech_mass))
+    bounds: list[int] = []
+    spent = 0.0
+    for index, mass in enumerate(speech_mass):
+        if index == len(speech_mass) - 1:
+            break
+        spent += float(mass)
+        share = total_speech * spent / total_mass
+        running, boundary = 0.0, len(chunk_durations) - 1
+        for position, duration in enumerate(chunk_durations):
+            if running >= share - 1e-9:
+                boundary = position
+                break
+            running += float(duration)
+        bounds.append(boundary)
+    return bounds
+
+
+def sentence_indices(sentences: Sequence[str], chunk_durations: Sequence[float]) -> list[int]:
+    """The chunk each sentence begins on (never split, monotone, all chunks reachable).
+
+    Used by the planner to decide which chunk of a take has to start when the *original*
+    narrator started the corresponding content, so the dub is in phase with the picture
+    at sentence level and not only inside the same window.
+    """
+    if not sentences:
+        return []
     count = len(chunk_durations)
     if count == 0:
-        return []
+        return [0] * len(sentences)
+    bounds = _sentence_bounds([max(1, len(row.strip())) for row in sentences], chunk_durations)
+    starts = [0, *bounds]
+    out: list[int] = []
+    cursor = 0
+    for position, start in enumerate(starts):
+        room = count - (len(starts) - position - 1)  # leave one chunk per remaining sentence
+        value = min(max(start, cursor), max(0, room - 1))
+        out.append(value)
+        cursor = value + 1
+    return out
+
+
+def align_sentences(sentences: Sequence[str], chunk_durations: Sequence[float]) -> list[str]:
+    """Attach whole sentences to recorded chunks so every chunk carries its text."""
     rows = [str(sentence).strip() for sentence in sentences if str(sentence).strip()]
-    if not rows:
-        return [""] * count
-    weights = [max(0.0, float(duration)) for duration in chunk_durations]
-    cumulative = 0.0
-    boundaries = []
-    for weight in weights:
-        cumulative += weight
-        boundaries.append(cumulative)
-    total_weight = cumulative or 1.0
-    boundaries = [value / total_weight for value in boundaries[:-1]]
-    char_total = sum(len(sentence) for sentence in rows) or 1
-    assigned: list[list[str]] = [[] for _ in range(count)]
-    position = 0.0
-    last_used = 0
-    for sentence in rows:
-        middle = (position + len(sentence) / 2) / char_total
-        position += len(sentence)
-        index = sum(1 for boundary in boundaries if boundary <= middle)
-        index = min(max(index, last_used), count - 1)  # strictly forward only
-        assigned[index].append(sentence)
-        last_used = index
-    merged: list[str] = []
-    pending: list[str] = []
-    for chunk_rows in assigned:
-        pending.extend(chunk_rows)
-        if chunk_rows:
-            merged.append(" ".join(pending).strip())
-            pending = []
-    merged += [""] * (count - len(merged))
-    if pending:
-        tail = max((index for index, text in enumerate(merged) if text), default=0)
-        merged[tail] = " ".join([merged[tail], *pending]).strip()
-    return merged[:count]
+    if len(chunk_durations) == 0:
+        return []
+    merged = [""] * len(chunk_durations)
+    for index, sentence in zip(sentence_indices(rows, chunk_durations), rows):
+        merged[index] = f"{merged[index]} {sentence}".strip() if merged[index] else sentence
+    return merged
 
 
 def overlap_seconds(start_a: float, end_a: float, start_b: float, end_b: float) -> float:

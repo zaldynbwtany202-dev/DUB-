@@ -1,22 +1,35 @@
 #!/usr/bin/env python3
-"""Re-time approved agent takes against the original speech timeline, pause by pause.
+"""Re-time approved agent takes onto the original narration, sentence by sentence.
 
-This never synthesizes speech, never time-stretches it, and never re-encodes the
-picture. It measures where each approved recording breathes, then re-lays those
-complete spoken chunks so the dub speaks whenever the source speaks.
+This never synthesizes speech, never time-stretches it, and never re-encodes the picture.
 
-Safety properties, all asserted rather than assumed:
+Two placement modes share the same safety rules:
+
+* ``--anchor`` (default) pairs each dub clause with the speech unit the *original*
+  narrator used for the same content and moves the dub's silence so that the clause starts
+  as near as possible to that unit, while every part still fills its window; the dub is
+  then in phase with the source at clause level and not only at part level. The clause
+  order is shared with the source, the wording is not (an Egyptian rewrite matches a
+  transcription only ~35 %), so units are paired by rank over the source's own pauses;
+* ``--no-anchor`` reproduces the older behaviour (fill each reviewed window with the
+  take's own rhythm). Both are measured, and the report states the sentence-level error
+  of each, so "the sync improved" is a number and not a claim.
+
+Safety properties, asserted rather than assumed:
 
 * every cut lands on a local minimum inside measured silence, so no syllable is clipped;
-* the speech of two chunks never overlaps;
-* a part whose recording is longer than its window borrows from the next part instead
-  of being truncated or sped up;
-* the narration master ends inside the picture duration.
+* speech of two chunks never overlaps;
+* only silence moves: ``tempo 1.000x`` and no piece is dropped or truncated;
+* a pause is never left idle beyond ``--anchor-hole`` while the source keeps talking, so
+  the picture is never silent underneath a dub that is waiting for its cue;
+* the residual mismatch is measured and reported (``sentence_timing_error``), because a
+  dub whose text is shorter than the original cannot match it clause for clause without
+  rewriting, and inventing silence or stretching speech is not allowed.
 
 Outputs:
   narration wav   one continuous 44.1 kHz dry narration master for the mixer
-  plan json       per-part and per-chunk placement plus the measured coverage report
-  srt             subtitles rebuilt from the same chunk placement
+  plan json       per-chunk placement, anchors, coverage and timing error
+  srt             subtitles rebuilt from the same placement
 """
 from __future__ import annotations
 
@@ -36,12 +49,13 @@ sys.path.insert(0, str(ROOT))
 
 from youtube_auto_dub.ffmpeg_bin import ffmpeg_exe  # noqa: E402
 from youtube_auto_dub.pause_sync import (align_sentences, allocate_part_spans, coverage,  # noqa: E402
-                                         overlap_seconds, plan_gaps)
+                                         overlap_seconds, plan_gaps, sentence_indices)
+from youtube_auto_dub.sentence_anchor import (anchor_errors, source_units,  # noqa: E402
+                                               split_sentences, spread_gaps)
 
 SR = 44100
 VAD_SR = 16000
 SAMPLE_TOLERANCE = 3  # samples: rounding of a placement to the sample grid
-SENTENCE = re.compile(r"(?<=[.!?؟])\s+")
 
 
 def sha256(path: Path) -> str:
@@ -113,42 +127,31 @@ def energy_spans(audio: np.ndarray, sample_rate: int) -> list[list[float]]:
             if (high - low) * frame / sample_rate >= 0.12]
 
 
-def measure(audio: np.ndarray, sample_rate: int, *, min_gap: float,
-            max_pad: float) -> tuple[list[dict[str, float]], list[float]]:
-    """Split a take into spoken chunks with the silence that belongs to each side.
+def _drop_short(spans: list[list[float]], floor: float) -> list[list[float]]:
+    """Fold utterances too short to be a clause into the piece before them.
 
-    Returns one row per chunk (``speech_start``/``speech_end`` inside ``piece_start``
-    /``piece_end``, all in seconds of the take) plus the recorded pause length between
-    consecutive chunks. Cuts sit on a local minimum near the middle of each pause.
+    A detector sometimes reports a 0.1 s island (a plosive, a lip noise) between two real
+    phrases. Left alone it becomes a chunk of its own, the placement gives it a pause on
+    each side, and the listener hears a hole in which nobody speaks. Folding it into the
+    previous piece keeps the same samples and removes the false boundary.
     """
-    spans = silero_spans(audio, sample_rate, min_silence_ms=max(60, int(min_gap * 1000) - 20))
-    if not spans:
-        spans = energy_spans(audio, sample_rate)
-    if not spans:
-        raise ValueError("no speech measured in take")
+    out: list[list[float]] = []
+    for span in spans:
+        if out and span[1] - span[0] < floor:
+            out[-1][1] = max(out[-1][1], span[1])
+            continue
+        out.append([span[0], span[1]])
+    return out
+
+
+def _merge(spans: list[list[float]], gap: float) -> list[list[float]]:
     merged: list[list[float]] = []
     for start, end in spans:
-        if merged and start - merged[-1][1] < min_gap:
+        if merged and start - merged[-1][1] < gap:
             merged[-1][1] = max(merged[-1][1], end)
         else:
             merged.append([start, end])
-    duration = len(audio) / sample_rate
-    window = round(max_pad, 6)
-    cuts = [0.0]
-    for previous, following in zip(merged, merged[1:]):
-        gap_start, gap_end = previous[1], following[0]
-        middle = (gap_start + gap_end) / 2
-        cuts.append(_quietest(audio, sample_rate, middle, window, gap_start, gap_end))
-    cuts.append(duration)
-    chunks = []
-    for index, speech in enumerate(merged):
-        piece_start, piece_end = cuts[index], cuts[index + 1]
-        chunks.append({"piece_start": round(piece_start, 6), "piece_end": round(piece_end, 6),
-                       "speech_start": round(max(speech[0], piece_start), 6),
-                       "speech_end": round(min(speech[1], piece_end), 6),
-                       "duration": round(speech[1] - speech[0], 6)})
-    pauses = [round(merged[i + 1][0] - merged[i][1], 6) for i in range(len(merged) - 1)]
-    return chunks, pauses
+    return merged
 
 
 def _quietest(audio: np.ndarray, sample_rate: int, at: float, window: float,
@@ -171,15 +174,64 @@ def _quietest(audio: np.ndarray, sample_rate: int, at: float, window: float,
     return round((low + (best + 0.5) * frame) / sample_rate, 6)
 
 
+def measure(audio: np.ndarray, sample_rate: int, *, min_gap: float, max_pad: float,
+            min_speech: float = 0.0) -> tuple[list[dict[str, float]], list[float]]:
+    """Split a take into spoken chunks, each owning the silence that surrounds it."""
+    spans = silero_spans(audio, sample_rate, min_silence_ms=max(60, int(min_gap * 1000) - 20))
+    if not spans:
+        spans = energy_spans(audio, sample_rate)
+    if not spans:
+        raise ValueError("no speech measured in take")
+    merged = _drop_short(_merge(spans, min_gap), min_speech)
+    duration = len(audio) / sample_rate
+    cuts = [0.0]
+    for previous, following in zip(merged, merged[1:]):
+        gap_start, gap_end = previous[1], following[0]
+        middle = (gap_start + gap_end) / 2
+        cuts.append(_quietest(audio, sample_rate, middle, round(max_pad, 6), gap_start, gap_end))
+    cuts.append(duration)
+    chunks = []
+    for index, speech in enumerate(merged):
+        piece_start, piece_end = cuts[index], cuts[index + 1]
+        chunks.append({"piece_start": round(piece_start, 6), "piece_end": round(piece_end, 6),
+                       "speech_start": round(max(speech[0], piece_start), 6),
+                       "speech_end": round(min(speech[1], piece_end), 6),
+                       "duration": round(speech[1] - speech[0], 6)})
+    pauses = [round(merged[i + 1][0] - merged[i][1], 6) for i in range(len(merged) - 1)]
+    return chunks, pauses
+
+
+def legacy_starts(parts: list[dict], windows: list[float], total: float, *, lead: float,
+                  tail: float, min_gap: float, max_gap: float) -> list[float]:
+    """The older placement: fill each window with the take's own rhythm. Kept for the
+    before/after measurement and for ``--no-anchor`` runs."""
+    spans = allocate_part_spans(windows, [p["min_span"] for p in parts],
+                                [p["max_span"] for p in parts], total)
+    starts: list[float] = []
+    cursor = parts[0]["window_start"] if parts else 0.0
+    for part, span in zip(parts, spans):
+        gaps = plan_gaps(part["recorded_pauses"],
+                         span - part["speech_seconds"] - lead - tail,
+                         min_gap=min_gap, max_gap=max_gap)
+        at = cursor + lead
+        for index, duration in enumerate(part["durations"]):
+            starts.append(round(at, 6))
+            at += duration + (gaps[index] if index < len(gaps) else 0.0)
+        part["legacy_span"] = round(span, 3)
+        cursor += span
+    return starts
+
+
 def build(args: argparse.Namespace) -> dict:
     doc = json.loads(args.script.read_text(encoding="utf-8"))
     if doc.get("voice_backend") != "agent":
         raise ValueError("only agent-recorded takes are accepted")
     source_audio = decode(args.source, SR)
     source_duration = len(source_audio) / SR
-    source_spans = [[row[0], row[1]] for row in
-                    _merge(silero_spans(source_audio, SR, min_silence_ms=60)
-                           or energy_spans(source_audio, SR), args.min_gap)]
+    source_spans = _merge(silero_spans(source_audio, SR, min_silence_ms=100)
+                          or energy_spans(source_audio, SR), args.min_gap)
+    words_path = args.script.parent / doc.get("source_analysis", "source-analysis/words.json")
+    words = json.loads(words_path.read_text(encoding="utf-8"))["words"] if words_path.is_file() else []
 
     parts = []
     for take in sorted(doc["takes"], key=lambda item: item["index"]):
@@ -189,8 +241,6 @@ def build(args: argparse.Namespace) -> dict:
         digest = sha256(audio)
         integrity = "byte-identical to the approved recording"
         if digest not in {take.get("sha256"), take.get("tool_wav_sha256")}:
-            # A restored working copy can differ in container while holding the same
-            # samples, which is all the ear can tell. Prove it against the archive.
             archive = take.get("lossless_archive") or {}
             restored = compare_with_archive(audio, archive)
             if restored is None:
@@ -199,15 +249,17 @@ def build(args: argparse.Namespace) -> dict:
                                           f"{archive.get('sha256', '')[:12]}…; container differs")
         else:
             voice = decode(audio, SR)
-        chunks, pauses = measure(voice, SR, min_gap=args.min_gap, max_pad=args.edge_pad)
+        chunks, pauses = measure(voice, SR, min_gap=args.min_gap, max_pad=args.edge_pad,
+                                 min_speech=args.min_speech)
         durations = [chunk["duration"] for chunk in chunks]
-        sentences = align_sentences(SENTENCE.split(str(take["text"])), durations)
+        sentences = split_sentences(str(take["text"]))
         parts.append({"index": int(take["index"]), "window_start": float(take["start"]),
                       "window_end": float(take["end"]), "text": take["text"],
                       "audio": str(audio), "audio_sha256": digest, "integrity": integrity,
                       "take_duration": round(len(voice) / SR, 3), "voice": voice,
                       "chunks": chunks, "durations": durations, "recorded_pauses": pauses,
-                      "chunk_texts": sentences,
+                      "clauses": sentences,
+                      "chunk_texts": align_sentences(sentences, durations),
                       "speech_seconds": round(sum(durations), 3),
                       "pause_seconds": round(sum(pauses), 3)})
     for part in parts:
@@ -220,74 +272,140 @@ def build(args: argparse.Namespace) -> dict:
     for position, part in enumerate(parts):
         stop = parts[position + 1]["window_start"] if position + 1 < len(parts) else source_duration - args.hold_back
         windows.append(round(stop - part["window_start"], 6))
-    spans = allocate_part_spans(windows, [p["min_span"] for p in parts],
-                                [p["max_span"] for p in parts], round(sum(windows), 6))
+
+    # --- anchors: pair each dub clause with the unit the original narrator spent on it ---
+    spans = allocate_part_spans(windows, [part["min_span"] for part in parts],
+                                [part["max_span"] for part in parts], round(sum(windows), 6))
+    durations_all: list[float] = []
+    targets_all: list[float | None] = []
+    starts: list[float] = []
+    errors: list[float | None] = []
+    owner: list[tuple[int, int]] = []
+    cursor = parts[0]["window_start"] if parts else 0.0
+    for position, (part, span) in enumerate(zip(parts, spans)):
+        part["span_allowed"] = round(span, 3)
+        units = (source_units(words, len(part["clauses"]), part["window_start"],
+                              part["window_end"], min_gap=args.min_gap)
+                 if words and part["clauses"] else [])
+        first_of_clause: dict[int, int] = {}
+        for rank, chunk in enumerate(sentence_indices(part["clauses"], part["durations"])):
+            first_of_clause.setdefault(chunk, rank)
+        targets: list[float | None] = []
+        for index, duration in enumerate(part["durations"]):
+            rank = first_of_clause.get(index)
+            target = None
+            if units and rank is not None and rank < len(units):
+                target = round(float(units[rank]["start"]), 3)
+            elif index == 0:
+                target = round(part["window_start"], 3)
+            if target is not None:  # a clause cannot start before the picture or past its window
+                target = min(max(target, part["window_start"]),
+                             max(part["window_start"], part["window_end"] - duration))
+            targets.append(target)
+        desired: list[float] = []
+        for index in range(1, len(part["durations"])):
+            previous, current = targets[index - 1], targets[index]
+            if previous is not None and current is not None:
+                desired.append(current - previous - part["durations"][index - 1])
+            else:
+                desired.append(part["recorded_pauses"][index - 1] if index - 1 < len(part["recorded_pauses"])
+                               else args.min_gap)
+        silence = span - sum(part["durations"]) - args.lead - args.tail
+        # a hole the listener hears also contains the two breaths the pieces keep around
+        # their speech, so the budget on the *planned* gap is smaller by those pads
+        cap = max(args.anchor_min_gap, args.anchor_hole - 2 * args.edge_pad)
+        average = silence / max(1, len(part["durations"]) - 1)
+        part["source_clauses"] = len(part["clauses"])
+        part["source_units"] = len(units)
+        part["silence_owned"] = round(silence, 3)
+        anchored = [(target, index) for index, target in enumerate(targets) if target is not None]
+        # what the original would demand: silence between the first and last anchored clause
+        part["anchor_silence_demand"] = round(
+            (anchored[-1][0] - anchored[0][0] - sum(part["durations"][anchored[0][1]:anchored[-1][1]]))
+            if len(anchored) > 1 else 0.0, 3)
+        # anchors that cannot be honoured at all: the previous clause of the dub is longer
+        # than the stretch the original spent on its own content, so starting on time would
+        # mean talking over it. Only more words (or a shorter clause) can fix that.
+        conflicts = sum(1 for (previous, before), (current, after) in zip(anchored, anchored[1:])
+                        if current - previous < part["durations"][before:after + 1][0])
+        part["anchor_conflicts"] = conflicts
+        part["gap_average"] = round(average, 3)
+        part["gap_ceiling"] = round(max(cap, average), 3)
+        part["text_starved"] = bool(average > cap + 1e-6)
+        part["shortest_chunk_seconds"] = min(part["durations"], default=0.0)
+        if args.anchor and desired:
+            gaps = spread_gaps(desired, max(0.0, silence), min_gap=args.anchor_min_gap,
+                               max_gap=cap)
+        elif desired:
+            gaps = plan_gaps(part["recorded_pauses"], silence, min_gap=args.min_gap,
+                             max_gap=args.max_gap)
+        else:
+            gaps = []
+        part["gaps_planned"] = [round(gap, 3) for gap in gaps]
+        at = cursor + args.lead
+        for index, duration in enumerate(part["durations"]):
+            at += gaps[index - 1] if 0 < index <= len(gaps) else 0.0
+            starts.append(round(at, 6))
+            errors.append(round(at - targets[index], 3) if targets[index] is not None else None)
+            durations_all.append(duration)
+            targets_all.append(targets[index])
+            owner.append((position, index))
+            at += duration
+        cursor += span
+    plan_errors = anchor_errors(starts, errors)
+    legacy = legacy_starts([{**part} for part in parts], windows, round(sum(windows), 6),
+                           lead=args.lead, tail=args.tail, min_gap=args.min_gap,
+                           max_gap=args.max_gap)
+    legacy_report = anchor_errors(legacy, [round(placed - target, 3) if target is not None else None
+                                           for placed, target in zip(legacy, targets_all)])
+    use_anchor = bool(args.anchor and any(target is not None for target in targets_all))
 
     buffer_length = round((source_duration + args.hold_back) * SR)
     narration = np.zeros(buffer_length, dtype=np.float32)
-    timeline: list[dict] = []
     specs: list[dict] = []
-    cursor = parts[0]["window_start"] if parts else 0.0
-    for part, span in zip(parts, spans):
-        gaps = plan_gaps(part["recorded_pauses"],
-                         span - part["speech_seconds"] - args.lead - args.tail,
-                         min_gap=args.min_gap, max_gap=args.max_gap)
-        at = cursor + args.lead
-        for chunk, gap, text in zip(part["chunks"], gaps + [0.0], part["chunk_texts"]):
-            speech_lo = int(round(chunk["speech_start"] * SR))
-            speech_hi = int(round(chunk["speech_end"] * SR))
-            specs.append({"part": part["index"], "voice": part["voice"],
-                          "begin": int(round((at + chunk["piece_start"] - chunk["speech_start"]) * SR)),
-                          # integer bounds may sit one sample inside the speech; widen to cover it
-                          "lo": min(int(chunk["piece_start"] * SR), speech_lo),
-                          "hi": max(int(chunk["piece_end"] * SR), speech_hi),
-                          "speech_lo": speech_lo, "speech_hi": speech_hi,
-                          "at": at, "duration": chunk["duration"], "text": text})
-            if len(specs) > 1 and at < specs[-2]["at"] + specs[-2]["duration"] - 1e-6:
-                raise ValueError("spoken chunks overlap "
-                                 f"(part {part['index']} chunk {len(specs)}: {at:.3f} vs previous end "
-                                 f"{specs[-2]['at'] + specs[-2]['duration']:.3f}, "
-                                 f"span {span:.3f}, speech {part['speech_seconds']:.3f}, "
-                                 f"gaps {sum(gaps):.3f} of {len(gaps)})")
-            at += chunk["duration"] + gap
-        part["start"] = round(cursor, 3)
-        part["end"] = round(cursor + span, 3)
-        part["span"] = round(span, 3)
-        part["anchor_drift"] = round(cursor - part["window_start"], 3)
-        part["gaps"] = [round(gap, 3) for gap in gaps]
-        part["pauses_planned_seconds"] = round(sum(gaps), 3)
-        part["pause_seconds_source"] = part["pause_seconds"]
-        cursor += span
+    for (part_index, chunk_index), begin_time, duration, target, error in zip(
+            owner, starts, durations_all, targets_all, errors):
+        part = parts[part_index]
+        chunk = part["chunks"][chunk_index]
+        speech_lo = int(round(chunk["speech_start"] * SR))
+        speech_hi = int(round(chunk["speech_end"] * SR))
+        specs.append({"part": part["index"], "voice": part["voice"],
+                      "begin": int(round((begin_time + chunk["piece_start"]
+                                          - chunk["speech_start"]) * SR)),
+                      # integer bounds may sit one sample inside the speech; widen to cover it
+                      "lo": min(int(chunk["piece_start"] * SR), speech_lo),
+                      "hi": max(int(chunk["piece_end"] * SR), speech_hi),
+                      "speech_lo": speech_lo, "speech_hi": speech_hi,
+                      "at": begin_time, "duration": duration, "target": target, "error": error,
+                      "text": part["chunk_texts"][chunk_index]})
+        if len(specs) > 1 and begin_time < (starts[len(specs) - 2] + durations_all[len(specs) - 2]
+                                            - 1e-6):
+            raise ValueError(f"spoken chunks overlap at part {part['index']} chunk {chunk_index}")
     # Pieces may butt against each other when a recorded pause is shortened. Resolve that by
     # trimming silence only: first the head of the later piece, then the tail of the earlier
     # one, and refuse the plan if any speech would still be lost.
-    for part in parts:  # the take arrays are referenced by every spec, so drop them last
-        part.pop("voice", None)
     trims: list[float] = []
     for previous, current in zip(specs, specs[1:]):
-        end_previous = previous["begin"] + previous["hi"] - previous["lo"]
-        need = end_previous - current["begin"]
+        need = (previous["begin"] + previous["hi"] - previous["lo"]) - current["begin"]
         if need <= 0:
             continue
-        head_room = current["speech_lo"] - current["lo"]
-        take = min(need, max(0, head_room))
+        take = min(need, max(0, current["speech_lo"] - current["lo"]))
         current["lo"] += take
         current["begin"] += take
         need -= take
         if need > 0:
             tail_room = previous["hi"] - previous["speech_hi"]
-            take = min(need, max(0, tail_room))
-            previous["hi"] -= take
-            need -= take
+            extra = min(need, max(0, tail_room))
+            previous["hi"] -= extra
+            need -= extra
         if need > 0:
             if need > SAMPLE_TOLERANCE:
                 raise ValueError(f"parts {previous['part']}→{current['part']}: "
                                  f"{need / SR * 1000:.1f} ms of speech would be lost to a "
                                  "shortened pause")
-            current["lo"] += need  # one or two samples at a silence edge, inaudible
+            current["lo"] += need
             current["begin"] += need
-        trims.append((end_previous - (previous["begin"] + previous["hi"] - previous["lo"])) / SR * 1000)
-    max_trim = round(max(trims, default=0.0), 3)
+        trims.append(need / SR * 1000)
     if specs:  # buffer edges: a leading breath may hang before zero, a trailing one past the end
         head = specs[0]
         drop = min(max(0, -head["begin"]), head["speech_lo"] - head["lo"])
@@ -297,8 +415,8 @@ def build(args: argparse.Namespace) -> dict:
             raise ValueError("the opening breath is longer than the recording's leading silence")
         tail = specs[-1]
         overhang = tail["begin"] + tail["hi"] - tail["lo"] - buffer_length
-        room = tail["hi"] - tail["speech_hi"]
         if overhang > 0:
+            room = tail["hi"] - tail["speech_hi"]
             if overhang > room:
                 raise ValueError("the closing breath would cut the last words; shorten the text")
             tail["hi"] -= int(overhang)
@@ -306,48 +424,79 @@ def build(args: argparse.Namespace) -> dict:
     for spec in specs:
         begin, lo, hi = spec["begin"], spec["lo"], spec["hi"]
         if begin < previous_end:
-            raise ValueError(f"collision left after trimming: part {spec['part']} begin={begin} "
-                             f"previous_end={previous_end} lo={lo} hi={hi} speech_lo={spec['speech_lo']} "
-                             f"speech_hi={spec['speech_hi']} at={spec['at']}")
+            raise ValueError("silence trimming did not remove a piece collision")
         if lo > spec["speech_lo"] or hi < spec["speech_hi"] or hi - lo < 1:
             raise ValueError(f"part {spec['part']} chunk is missing its speech tail")
         if begin < 0 or begin + (hi - lo) > buffer_length:
             raise ValueError(f"part {spec['part']} chunk falls outside the picture")
         narration[begin:begin + hi - lo] += spec["voice"][lo:hi]
         previous_end = begin + (hi - lo)
-        timeline.append({"part": spec["part"], "start": round(spec["at"], 6),
-                         "end": round(spec["at"] + spec["duration"], 6), "text": spec["text"],
-                         "take_speech_start": spec["speech_lo"] / SR,
-                         "take_piece": [lo / SR, hi / SR],
-                         "written_begin": begin / SR,
-                         "overlap_seconds": round(overlap_seconds(spec["at"], spec["at"] + spec["duration"],
-                                                                  begin / SR, previous_end / SR), 6)})
+    placed = [[spec["at"], spec["at"] + spec["duration"]] for spec in specs]
+    timeline = [{"part": spec["part"], "start": round(spec["at"], 6),
+                 "end": round(spec["at"] + spec["duration"], 6), "text": spec["text"],
+                 "take_speech_start": spec["speech_lo"] / SR,
+                 "take_piece": [spec["lo"] / SR, spec["hi"] / SR],
+                 "anchor_target": spec["target"], "anchor_error": spec["error"],
+                 "written_begin": spec["begin"] / SR,
+                 "overlap_seconds": round(overlap_seconds(spec["at"], spec["at"] + spec["duration"],
+                                                          spec["begin"] / SR,
+                                                          spec["begin"] / SR + (spec["hi"] - spec["lo"]) / SR), 6)}
+                for spec in specs]
+    all_gaps: list[float] = []
+    for part in parts:
+        rows = [row for row in timeline if row["part"] == part["index"]]
+        part["start"] = round(rows[0]["start"] - args.lead, 3) if rows else part["window_start"]
+        part["end"] = round(rows[-1]["end"], 3) if rows else part["window_end"]
+        part["span"] = round(part["end"] - part["start"], 3)
+        part["anchor_drift"] = round(part["start"] - part["window_start"], 3)
+        part["gaps"] = [round(current["start"] - previous["end"], 3)
+                        for previous, current in zip(rows, rows[1:])]
+        all_gaps.extend(gap for gap in part["gaps"] if gap >= 0)
+        part["pauses_planned_seconds"] = round(sum(gap for gap in part["gaps"] if gap >= 0), 3)
+        part["pause_seconds_source"] = part["pause_seconds"]
+        part["dub_clauses"] = part["source_clauses"]
     narration = narration[:buffer_length]
     if args.narration:
         args.narration.parent.mkdir(parents=True, exist_ok=True)
         sf.write(args.narration, narration, SR, subtype="PCM_24")
         sf.write(args.narration.with_name("source-speech.wav"), source_audio, SR, subtype="PCM_16")
 
-    placed = [[row["start"], row["end"]] for row in timeline]
     report = coverage(source_spans, placed, source_duration, tolerance=args.tolerance,
                       min_gap=args.report_gap)
     report.update({
-        "method": "Measured Silero speech chunks re-laid on the original timeline; "
-                  "speech speed untouched and every cut inside silence",
+        "method": ("clause-level anchoring on the original speech units, silence projected onto "
+                   "the anchors and the window; chunks cut inside measured silence; speech speed "
+                   "untouched" if use_anchor else
+                   "window filling with the take's own rhythm (anchor mode disabled)"),
+        "anchored": use_anchor, "anchor_min_gap": args.anchor_min_gap,
+        "anchor_hole": args.anchor_hole, "anchor_hole_edge_pads": round(2 * args.edge_pad, 3),
+        "min_speech_seconds": args.min_speech,
+        "text_starved_parts": [part["index"] for part in parts if part.get("text_starved")],
+        "anchor_silence_demand_seconds": round(sum(part.get("anchor_silence_demand", 0.0)
+                                                   for part in parts), 3),
+        "silence_owned_seconds": round(sum(part["silence_owned"] for part in parts), 3),
+        "anchor_conflicts": sum(part.get("anchor_conflicts", 0) for part in parts),
+        "anchor_conflicts_note": "anchors whose moment has already passed when the previous dub "
+                                 "clause finishes; unreachable without changing the wording",
+        "shortest_chunk_seconds": round(min((part["shortest_chunk_seconds"] for part in parts),
+                                            default=0.0), 3),
         "source": str(args.source), "source_duration": round(source_duration, 3),
         "voice_id": doc.get("voice_id"), "language": doc.get("language"),
-        "chunks": len(placed), "cue_count": len([row for row in timeline if row["text"]]),
+        "source_word_count": len(words), "chunks": len(placed),
+        "cue_count": len([row for row in timeline if row["text"]]),
         "tempo_applied": 1.0, "speech_speed_changed": False,
         "speech_cut": False, "overlapping_speech": 0,
-        "pieces_trimmed": len(trims), "max_piece_trim_ms": max_trim,
+        "pieces_trimmed": len(trims), "max_piece_trim_ms": round(max(trims, default=0.0), 3),
         "dub_speech_seconds_total": round(sum(stop - start for start, stop in placed), 3),
-        "planned_pause_mean_seconds": round(float(np.mean([gap for part in parts for gap in part["gaps"]]))
-                                            if any(part["gaps"] for part in parts) else 0.0, 3),
+        "planned_pause_mean_seconds": round(float(np.mean(all_gaps)), 3) if all_gaps else 0.0,
+        "planned_pause_max_seconds": round(float(np.max(all_gaps)), 3) if all_gaps else 0.0,
+        "sentence_timing_error": plan_errors,
+        "sentence_timing_error_unanchored": legacy_report,
         "max_anchor_drift": round(max((abs(part["anchor_drift"]) for part in parts), default=0.0), 3),
+        "source_silence_seconds": round(source_duration - sum(stop - start for start, stop in source_spans), 3),
         "parts": [{key: value for key, value in part.items() if key not in {"voice", "chunks"}}
                   for part in parts],
         "timeline": timeline,
-        "source_silence_seconds": round(source_duration - sum(stop - start for start, stop in source_spans), 3),
     })
     if report["uncovered_source_speech_seconds"] > args.max_uncovered:
         raise ValueError(f"uncovered original speech {report['uncovered_source_speech_seconds']}s "
@@ -360,18 +509,10 @@ def build(args: argparse.Namespace) -> dict:
         args.srt.write_text(srt(timeline), encoding="utf-8")
     print(json.dumps({key: value for key, value in report.items()
                       if key not in {"parts", "timeline", "gaps"}}, ensure_ascii=False, indent=2))
+    print("sentence timing error (anchored)  :", json.dumps(plan_errors, ensure_ascii=False))
+    print("sentence timing error (window fill):", json.dumps(legacy_report, ensure_ascii=False))
     print("longest uncovered gaps:", json.dumps(report["gaps"][:8], ensure_ascii=False))
     return report
-
-
-def _merge(spans: list[list[float]], gap: float) -> list[list[float]]:
-    merged: list[list[float]] = []
-    for start, end in spans:
-        if merged and start - merged[-1][1] < gap:
-            merged[-1][1] = max(merged[-1][1], end)
-        else:
-            merged.append([start, end])
-    return merged
 
 
 def srt_stamp(seconds: float) -> str:
@@ -402,6 +543,14 @@ def main() -> int:
     parser.add_argument("--srt", type=Path)
     parser.add_argument("--min-gap", type=float, default=0.12)
     parser.add_argument("--max-gap", type=float, default=0.7)
+    parser.add_argument("--anchor", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument("--anchor-min-gap", type=float, default=0.08,
+                        help="shortest breath the dub may keep between two clauses")
+    parser.add_argument("--anchor-hole", type=float, default=0.62,
+                        help="longest audible hole the dub may leave while the original speaks, "
+                             "measured edge to edge, including the breath kept around each piece")
+    parser.add_argument("--min-speech", type=float, default=0.3,
+                        help="spoken islands shorter than this are folded into the previous piece")
     parser.add_argument("--lead", type=float, default=0.06)
     parser.add_argument("--tail", type=float, default=0.12)
     parser.add_argument("--hold-back", type=float, default=0.12)
@@ -412,12 +561,18 @@ def main() -> int:
                         help="fail the run if original speech stays uncovered beyond this budget")
     args = parser.parse_args()
     for name in ("min_gap", "max_gap", "lead", "tail", "hold_back", "edge_pad", "tolerance",
-                 "report_gap", "max_uncovered"):
+                 "report_gap", "max_uncovered", "anchor_min_gap", "anchor_hole", "min_speech"):
         value = getattr(args, name)
         if not np.isfinite(value) or value < 0:
             raise ValueError(f"--{name.replace('_', '-')} must be finite and non-negative")
     if not 0.02 <= args.min_gap <= args.max_gap <= 2.0:
         raise ValueError("pauses must satisfy 0.02 <= --min-gap <= --max-gap <= 2.0")
+    if not 0.02 <= args.anchor_min_gap <= args.anchor_hole <= 5.0:
+        raise ValueError("anchors need 0.02 <= --anchor-min-gap <= --anchor-hole <= 5.0")
+    if args.anchor_hole < args.min_gap:
+        raise ValueError("--anchor-hole must not be shorter than --min-gap")
+    if not 0.05 <= args.min_speech <= 2.0:
+        raise ValueError("--min-speech belongs in 0.05..2.0 seconds")
     build(args)
     return 0
 

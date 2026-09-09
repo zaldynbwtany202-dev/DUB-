@@ -1,0 +1,111 @@
+{
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "source_speech_spans": 3,
+  "note": "lower total, shorter max hole and fewer holes over 0.7 s are all better",
+  "renders": {
+    "previous_window_fill": {
+      "method": "sample peak below -55.0 dBFS over 10 ms blocks, holes longer than 0.05 s kept",
+      "speech_seconds": 676.448,
+      "count": 170,
+      "total_seconds": 59.078,
+      "max_seconds": 1.58,
+      "mean_seconds": 0.348,
+      "p90_seconds": 1.3,
+      "over_0_7_seconds": 35,
+      "longest": [
+        {
+          "start": 606.03,
+          "end": 607.61,
+          "duration": 1.58
+        },
+        {
+          "start": 145.67,
+          "end": 147.23,
+          "duration": 1.56
+        },
+        {
+          "start": 597.58,
+          "end": 599.12,
+          "duration": 1.54
+        },
+        {
+          "start": 156.33,
+          "end": 157.85,
+          "duration": 1.52
+        },
+        {
+          "start": 158.12,
+          "end": 159.64,
+          "duration": 1.52
+        },
+        {
+          "start": 604.24,
+          "end": 605.76,
+          "duration": 1.52
+        },
+        {
+          "start": 176.31,
+          "end": 177.82,
+          "duration": 1.51
+        },
+        {
+          "start": 187.12,
+          "end": 188.62,
+          "duration": 1.5
+        }
+      ]
+    },
+    "clause_anchoring": {
+      "method": "sample peak below -55.0 dBFS over 10 ms blocks, holes longer than 0.05 s kept",
+      "speech_seconds": 676.448,
+      "count": 269,
+      "total_seconds": 38.082,
+      "max_seconds": 0.45,
+      "mean_seconds": 0.142,
+      "p90_seconds": 0.272,
+      "over_0_7_seconds": 0,
+      "longest": [
+        {
+          "start": 615.43,
+          "end": 615.88,
+          "duration": 0.45
+        },
+        {
+          "start": 221.18,
+          "end": 221.62,
+          "duration": 0.44
+        },
+        {
+          "start": 601.99,
+          "end": 602.41,
+          "duration": 0.42
+        },
+        {
+          "start": 157.03,
+          "end": 157.44,
+          "duration": 0.41
+        },
+        {
+          "start": 305.36,
+          "end": 305.77,
+          "duration": 0.41
+        },
+        {
+          "start": 170.77,
+          "end": 171.17,
+          "duration": 0.4
+        },
+        {
+          "start": 24.38,
+          "end": 24.77,
+          "duration": 0.39
+        },
+        {
+          "start": 178.24,
+          "end": 178.63,
+          "duration": 0.39
+        }
+      ]
+    }
+  }
+}

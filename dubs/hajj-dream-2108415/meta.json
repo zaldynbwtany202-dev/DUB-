@@ -5,6 +5,109 @@
   "status": "source_synchronous_dub_ready_for_listening",
   "versions": [
     {
+      "run_id": "source-sync-clause-anchoring",
+      "file": "source-sync/final-dub-source-sync.mp4",
+      "kind": "complete_dub",
+      "voice_id": "voice-12",
+      "duration": 676.33,
+      "size": 42386506,
+      "sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
+      "rendered_at": "2026-09-09T06:11:29+00:00",
+      "audio_bitrate": "160k",
+      "background": {
+        "gain_db": 12.0,
+        "ducking": {
+          "threshold_linear": 0.05,
+          "ratio": 3,
+          "attack_ms": 20,
+          "release_ms": 500,
+          "detection": "rms"
+        },
+        "source": "UVR estimate of the original track",
+        "purity_guarantee": false
+      },
+      "timing": {
+        "method": "clause-level anchoring on the original speech units, silence projected onto the anchors and the window; chunks cut inside measured silence; speech speed untouched",
+        "tempo": 1.0,
+        "anchored": true,
+        "anchor_hole_seconds": 0.62,
+        "min_speech_seconds": 0.3,
+        "source_speech_coverage_dry": 0.970847,
+        "source_speech_coverage_delivered": 0.962996,
+        "max_quiet_hole_during_source_speech_seconds": 0.45,
+        "quiet_holes_over_budget": 0,
+        "quiet_seconds_during_source_speech": 38.082,
+        "max_uncovered_gap_seconds": 0.45,
+        "uncovered_source_speech_seconds": 18.27,
+        "chunks": 237,
+        "clauses": 228,
+        "sentence_timing_error": {
+          "anchored": 228,
+          "mean_seconds": 2.948,
+          "median_seconds": 2.142,
+          "p90_seconds": 6.678,
+          "max_seconds": 14.499
+        },
+        "sentence_timing_error_previous_method": {
+          "anchored": 228,
+          "mean_seconds": 3.108,
+          "median_seconds": 2.421,
+          "p90_seconds": 7.105,
+          "max_seconds": 14.397
+        },
+        "anchor_conflicts_unreachable_without_rewriting": 83,
+        "speech_cut": false,
+        "overlapping_speech": 0,
+        "max_alignment_error_ms": 0.0454,
+        "quiet_hole_method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms blocks) that overlaps original speech; independent of any speech detector",
+        "phase_method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
+      },
+      "settings": {
+        "tts_engine": "agent",
+        "target_lang": "ar-EG",
+        "bg_music": true,
+        "sample_rate": 44100,
+        "min_tempo": 1.0,
+        "max_tempo": 1.0,
+        "pause_min_seconds": 0.08,
+        "pause_max_seconds": 0.62
+      },
+      "technical_checks_passed": true,
+      "gates": {
+        "video_stream_bit_identical": true,
+        "speech_untouched": true,
+        "no_long_gaps": true,
+        "coverage_within_budget": true,
+        "clause_onsets_at_planned_time": true,
+        "no_quiet_hole_over_budget": true,
+        "clause_phase_matches_plan": true,
+        "loudness_in_range": true,
+        "durations_match": true
+      },
+      "human_listening_certification": false,
+      "content_note": "فائض زمن الكلام المتبقي 2.948 ث في المتوسط، سببه مقاسات الجُمل: 83 مرساة تبدأ قبل انتهاء المقطع السابق. العلاج: نص بكثافة الأصل ثم إعادة تسجيل (مدخله timing-repair/clip-budget.json)",
+      "reports": {
+        "verification": "source-sync/render-verification.json",
+        "pause_plan": "timing-repair/pause-plan.json",
+        "clip_budget": "timing-repair/clip-budget.json",
+        "mix": "source-sync/final-dub-source-sync.mix.json"
+      },
+      "subtitles": "source-sync/final-dub-source-sync.srt",
+      "status": "published_pending_remote_verification",
+      "previous_version": "النسخة السابقة: source-sync-pause-redistribution (كانت تترك فجوات مسموعة حتى 1.58 ث)"
+    }
+  ],
+  "publication": {
+    "status": "pending_push",
+    "branch": "arena/01a08487-dub",
+    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "size": 42386506,
+    "sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "policy": "verify the remote blob (gh api contents) before reporting the link"
+  },
+  "archived_versions": [
+    {
       "run_id": "source-sync-pause-redistribution",
       "file": "source-sync/final-dub-source-sync.mp4",
       "kind": "complete_dub",
@@ -64,25 +167,12 @@
         "mix": "source-sync/final-dub-source-sync.mix.json"
       },
       "subtitles": "source-sync/final-dub-source-sync.srt",
-      "status": "published",
+      "status": "superseded",
       "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
       "published_at": "2026-09-09T05:36:28+00:00",
-      "previous_version": "voice12/final-dub-voice12.mp4 (timing superseded: whole-take placement)"
-    }
-  ],
-  "publication": {
-    "status": "published_verified",
-    "branch": "arena/01a08487-dub",
-    "commit": "d7f2676",
-    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "bytes": 42382465,
-    "git_blob_sha": "c2251f04da243ae7af3d10ebe099ebc374d262d7",
-    "verified_remote_at": "2026-09-09T05:36:28+00:00",
-    "verification": "gh api contents -> blob sha and byte size matched the local object"
-  },
-  "archived_versions": [
+      "previous_version": "voice12/final-dub-voice12.mp4 (timing superseded: whole-take placement)",
+      "superseded_because": "فجوات مسموعة حتى 1.58 ث (35 فجوة > 0.7 ث) وادّعاء README بتوجيه الجُمل لم يكن مُنفَّذًا؛ استُبدلت بالنسخة المُرسّاة جملة‑بجملة"
+    },
     {
       "run_id": "voice07-natural-20260908",
       "file": "voice07/final-dub-voice07.mp4",
@@ -162,6 +252,6 @@
       }
     }
   ],
-  "updated_at": "2026-09-09T05:36:28+00:00",
-  "active_version": "source-sync-pause-redistribution"
+  "updated_at": "2026-09-09T06:11:29+00:00",
+  "active_version": "source-sync-clause-anchoring"
 }

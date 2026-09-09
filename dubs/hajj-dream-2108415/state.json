@@ -1,5 +1,5 @@
 {
-  "status": "source_synchronous_dub_published",
+  "status": "source_synchronous_dub_republished",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -23,25 +23,22 @@
   "previous_result_sha256": "17277bcac0b127cd9af630b42dd6029673fbd9d28cc2b9351b7310d72e923d73",
   "recovery_authorized_by_user": true,
   "publication_policy": "Push checkpoints during processing and verify remote media before reporting a download link.",
-  "publication_on_hold": true,
+  "publication_on_hold": false,
   "voice_quality_approved": true,
   "candidate_voice_id": "voice-12",
   "pilot_file": "voice-tests/voice-07-natural.wav",
-  "active_version": "source-sync",
+  "active_version": "source-sync-clause-anchoring",
   "active_script": "timing-repair/script.json",
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.266667,
   "publication": {
-    "status": "published_verified",
+    "status": "pending_push",
     "branch": "arena/01a08487-dub",
-    "commit": "d7f2676",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "size": 42386506,
+    "sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
     "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "bytes": 42382465,
-    "git_blob_sha": "c2251f04da243ae7af3d10ebe099ebc374d262d7",
-    "verified_remote_at": "2026-09-09T05:36:28+00:00",
-    "verification": "gh api contents -> blob sha and byte size matched the local object"
+    "policy": "verify the remote blob (gh api contents) before reporting the link"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
@@ -64,5 +61,15 @@
     "previous_max_uncovered_gap_seconds": 5.7
   },
   "pending_on_user": "ear test of the delivered file; denser wording only if requested",
-  "updated_at": "2026-09-09T05:36:28+00:00"
+  "updated_at": "2026-09-09T06:11:29+00:00",
+  "sync_state": {
+    "method": "clause-level anchoring on original speech units",
+    "plan": "timing-repair/pause-plan.json",
+    "clip_budget": "timing-repair/clip-budget.json",
+    "verification": "source-sync/render-verification.json",
+    "gates_passed": 9,
+    "gates_total": 9,
+    "narration_master_sha256": "99a9c3001dd0b53809d66e64c2b2d1e0d7103ec55244af6601bbfa7865fa6fca",
+    "remaining_limitation": "clause length budget; needs rewrite + re-record"
+  }
 }

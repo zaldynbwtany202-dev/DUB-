@@ -1,8 +1,8 @@
 {
   "source": "library/hajj-dream-2108415/source.mp4",
   "output": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-  "output_sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
-  "output_bytes": 42382465,
+  "output_sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
+  "output_bytes": 42386506,
   "picture": {
     "source_duration": 676.33,
     "output_duration": 676.27,
@@ -21,7 +21,7 @@
     ]
   },
   "speech": {
-    "pieces_checked": 243,
+    "pieces_checked": 237,
     "pieces_not_identical_to_the_take": 0,
     "worst_mismatch": [],
     "max_alignment_error_samples": 2,
@@ -34,97 +34,149 @@
   "timeline": {
     "dry_narration": {
       "source_speech_seconds": 675.07,
-      "dubbed_speech_seconds": 599.83,
-      "uncovered_source_speech_seconds": 16.45,
-      "source_speech_coverage": 0.975632,
-      "max_uncovered_gap": 0.39,
-      "gap_count": 8,
+      "dubbed_speech_seconds": 603.37,
+      "uncovered_source_speech_seconds": 19.68,
+      "source_speech_coverage": 0.970847,
+      "max_uncovered_gap": 0.45,
+      "gap_count": 4,
       "boundary_tolerance_seconds": 0.15,
       "minimum_reported_gap_seconds": 0.3
     },
     "delivered_mix": {
       "source_speech_seconds": 675.07,
-      "dubbed_speech_seconds": 592.28,
-      "uncovered_source_speech_seconds": 19.86,
-      "source_speech_coverage": 0.970581,
-      "max_uncovered_gap": 0.39,
-      "gap_count": 10,
+      "dubbed_speech_seconds": 593.64,
+      "uncovered_source_speech_seconds": 24.98,
+      "source_speech_coverage": 0.962996,
+      "max_uncovered_gap": 0.68,
+      "gap_count": 8,
       "boundary_tolerance_seconds": 0.15,
       "minimum_reported_gap_seconds": 0.3
     },
     "dry_longest_gaps": [
       {
-        "start": 188.46,
-        "end": 188.85,
-        "duration": 0.39
+        "start": 156.81,
+        "end": 157.26,
+        "duration": 0.45
       },
       {
-        "start": 637.1,
-        "end": 637.46,
-        "duration": 0.36
+        "start": 601.81,
+        "end": 602.26,
+        "duration": 0.45
       },
       {
-        "start": 172.17,
-        "end": 172.5,
-        "duration": 0.33
+        "start": 181.74,
+        "end": 182.16,
+        "duration": 0.42
       },
       {
-        "start": 197.9,
-        "end": 198.23,
-        "duration": 0.33
-      },
-      {
-        "start": 161.33,
-        "end": 161.65,
-        "duration": 0.32
-      },
-      {
-        "start": 212.27,
-        "end": 212.59,
-        "duration": 0.32
+        "start": 470.7,
+        "end": 471.12,
+        "duration": 0.42
       }
     ],
     "delivered_longest_gaps": [
       {
-        "start": 188.46,
-        "end": 188.85,
-        "duration": 0.39
-      },
-      {
-        "start": 655.18,
-        "end": 655.57,
-        "duration": 0.39
-      },
-      {
-        "start": 197.87,
-        "end": 198.23,
-        "duration": 0.36
-      },
-      {
         "start": 416.59,
-        "end": 416.95,
-        "duration": 0.36
+        "end": 417.27,
+        "duration": 0.68
       },
       {
-        "start": 637.1,
-        "end": 637.46,
-        "duration": 0.36
+        "start": 181.74,
+        "end": 182.23,
+        "duration": 0.49
       },
       {
-        "start": 212.3,
-        "end": 212.63,
-        "duration": 0.33
+        "start": 601.77,
+        "end": 602.26,
+        "duration": 0.49
+      },
+      {
+        "start": 470.64,
+        "end": 471.12,
+        "duration": 0.48
+      },
+      {
+        "start": 156.81,
+        "end": 157.26,
+        "duration": 0.45
+      },
+      {
+        "start": 170.61,
+        "end": 171.03,
+        "duration": 0.42
       }
     ],
     "planned": {
-      "uncovered_source_speech_seconds": 15.53,
-      "max_uncovered_gap": 0.39
+      "uncovered_source_speech_seconds": 18.27,
+      "max_uncovered_gap": 0.0
     },
     "method": "same Silero settings on the original and on the delivered audio"
   },
+  "quiet_holes": {
+    "method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms blocks) that overlaps original speech; independent of any speech detector",
+    "count_over_budget": 0,
+    "longest": [
+      {
+        "start": 615.43,
+        "end": 615.88,
+        "duration": 0.45
+      },
+      {
+        "start": 221.18,
+        "end": 221.62,
+        "duration": 0.44
+      },
+      {
+        "start": 601.99,
+        "end": 602.41,
+        "duration": 0.42
+      },
+      {
+        "start": 157.03,
+        "end": 157.44,
+        "duration": 0.41
+      },
+      {
+        "start": 305.36,
+        "end": 305.77,
+        "duration": 0.41
+      },
+      {
+        "start": 170.77,
+        "end": 171.17,
+        "duration": 0.4
+      }
+    ],
+    "total_seconds": 38.082,
+    "budget_seconds": 0.7
+  },
+  "clause_phase": {
+    "anchored_rows": 228,
+    "rows_measured": 228,
+    "rows_missing_onset": [],
+    "onset_error_from_plan_seconds": {
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "phase_vs_original": {
+      "anchored": 228,
+      "mean_seconds": 2.948,
+      "median_seconds": 2.142,
+      "p90_seconds": 6.678,
+      "max_seconds": 14.499
+    },
+    "plan_claimed": {
+      "anchored": 228,
+      "mean_seconds": 2.948,
+      "median_seconds": 2.142,
+      "p90_seconds": 6.678,
+      "max_seconds": 14.499
+    },
+    "method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
+  },
   "loudness": {
     "input_i": "-16.02",
-    "input_tp": "-1.28",
+    "input_tp": "-1.11",
     "input_lra": "2.80",
     "input_thresh": "-26.32",
     "output_i": "-16.01",
@@ -139,6 +191,9 @@
     "speech_untouched": true,
     "no_long_gaps": true,
     "coverage_within_budget": true,
+    "clause_onsets_at_planned_time": true,
+    "no_quiet_hole_over_budget": true,
+    "clause_phase_matches_plan": true,
     "loudness_in_range": true,
     "durations_match": true
   },
