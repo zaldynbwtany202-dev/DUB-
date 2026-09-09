@@ -203,7 +203,7 @@
       "status": "generated",
       "audio": "../../../.cache/hajj-timing-repair/new/part-000-r2.wav",
       "raw_file": "part-000-r2.wav",
-      "sha256": "3e916a7fd72db7129fe64cc83cefdc1a9be64e7f7515e7481e18b4a8d83105aa",
+      "sha256": "ff720e2245fda18ec3748ac00033c00e3b9f145677642ed5dae897c346a34b43",
       "scene_cuts": [
         {
           "source_time": 27.4,
@@ -466,7 +466,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-001.wav",
       "duration": 85.52299319727891,
-      "sha256": "b73614622ff1b10576bad7e5d3d307df37763015106a274547524f1419be25e5",
+      "sha256": "a6d3e06e33cb6ad951b96cd508163e822b6cdbf39510ab88c4d71f2d8885622e",
       "tool_wav_sha256": "b73614622ff1b10576bad7e5d3d307df37763015106a274547524f1419be25e5",
       "spoken_text_sha256": "d7feaa02037a65d5539372a35cdc1230ef2d809e0c2cae5cd63bd183e399931c",
       "lossless_archive": {
@@ -773,7 +773,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-002.wav",
       "duration": 97.43532879818594,
-      "sha256": "84d8623dae13b1fcbe713d4d4c94b3294c595a9fe586f88840f7f444b2ed3cd3",
+      "sha256": "4b147f29f769514b1196dd78bf858f3ce7207a10500e96927589a3506e54aa2b",
       "tool_wav_sha256": "84d8623dae13b1fcbe713d4d4c94b3294c595a9fe586f88840f7f444b2ed3cd3",
       "spoken_text_sha256": "f2eec3e769eada515ccc17791c7aafb158da3409febc3efac17cf3b004f8d1ba",
       "lossless_archive": {
@@ -1036,7 +1036,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-003.wav",
       "duration": 86.69231292517007,
-      "sha256": "e38d32497dbf327c4f1cbb8284e88791550b0d46ab25e14eab7f406b70939178",
+      "sha256": "72e6c8e291dfaf280f097f1eb0a4614fd5b661fd7183ab2be7b6888b35855cf6",
       "tool_wav_sha256": "e38d32497dbf327c4f1cbb8284e88791550b0d46ab25e14eab7f406b70939178",
       "spoken_text_sha256": "dcf22c4fd902cef332c2088a5d32d6d411844c39cc8eacae9d4d095527012b1c",
       "lossless_archive": {
@@ -1258,7 +1258,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-004-r2.wav",
       "duration": 86.9456462585034,
-      "sha256": "3dc1c7b9e21eb82adc9f451963def1290b220ce134b38e7953e33773a8dd7255",
+      "sha256": "f84fc6b5c9e96aff5e656a83e92d5739a371a0e99f13e4ad5a5b4f26af60e51f",
       "tool_wav_sha256": "3dc1c7b9e21eb82adc9f451963def1290b220ce134b38e7953e33773a8dd7255",
       "spoken_text_sha256": "94fd983f5b6846e4775f56e11360a415c30d48c64ee25af64a3da52ecffe963e",
       "lossless_archive": {
@@ -1759,7 +1759,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-005.wav",
       "duration": 90.70249433106576,
-      "sha256": "ec55def56f195e23a555c71ec7cddd38ca8fb5210afdeccb176d4b4e87cb769e",
+      "sha256": "0257de049b59a9fc11d2dfe5144c3d857fc8171dac42f8649ebcf551b7db864c",
       "tool_wav_sha256": "ec55def56f195e23a555c71ec7cddd38ca8fb5210afdeccb176d4b4e87cb769e",
       "spoken_text_sha256": "57d13098f65819450c377a77613ea231083b4134f7b7ab7584b7450516b2adee",
       "lossless_archive": {
@@ -2039,7 +2039,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-006.wav",
       "duration": 93.66514739229025,
-      "sha256": "2790677e5ac3a8130a62b2f05bb312b0e1f56cddc39ed6cd0137595c64f551e8",
+      "sha256": "2fca3d3b618957a59a4f1aa3c6e3e698fd2b9f0ab3f8c35d6a88d7aa2666bbd8",
       "tool_wav_sha256": "2790677e5ac3a8130a62b2f05bb312b0e1f56cddc39ed6cd0137595c64f551e8",
       "spoken_text_sha256": "563df0bc5112a1e43ca831d3f88a1196c4d28ebf12bf1997b7cb31737cc2d3e6",
       "lossless_archive": {
@@ -2289,7 +2289,7 @@
       "meaning_reviewed": true,
       "raw_file": "part-007.wav",
       "duration": 80.24349206349207,
-      "sha256": "4c8ac33945a0ad7ef1698a39c527ec447106aa018e402c400b2c452a1c50a2e7",
+      "sha256": "b74578c1b97620feefd546f3400e0900c6bf8fec24d103e3accc9d18f0e59597",
       "tool_wav_sha256": "4c8ac33945a0ad7ef1698a39c527ec447106aa018e402c400b2c452a1c50a2e7",
       "spoken_text_sha256": "1461dd0178161df30d8c26837658f2de449bf64649b6c5dc3b019c8b4adf6d99",
       "lossless_archive": {

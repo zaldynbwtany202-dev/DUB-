@@ -302,6 +302,24 @@ def build(args: argparse.Namespace) -> dict:
                 target = min(max(target, part["window_start"]),
                              max(part["window_start"], part["window_end"] - duration))
             targets.append(target)
+        # A chunk with no clause starting on it still has a moment to be at: the one the
+        # original spent between the two anchors around it, shared by speech length. Without
+        # this, the recorder's own pauses inside a clause would fight the anchor schedule.
+        anchors = [index for index, target in enumerate(targets) if target is not None]
+        for before, after in zip(anchors, anchors[1:]):
+            if after - before < 2:
+                continue
+            between = targets[after] - targets[before]
+            middle = part["durations"][before:after]
+            mass = sum(middle) or 1.0
+            spent = 0.0
+            for offset, duration in enumerate(middle[:-1], start=1):
+                spent += duration
+                # ``between``/``mass`` and not ``span``/``total``: those names belong to the
+                # part's allowed span and to the whole timeline, and shadowing them here
+                # silently corrupted the silence budget of every following part.
+                targets[before + offset] = round(targets[before] + between * spent / mass, 3)
+            part["interpolated_chunks"] = part.get("interpolated_chunks", 0) + (after - before - 1)
         desired: list[float] = []
         for index in range(1, len(part["durations"])):
             previous, current = targets[index - 1], targets[index]

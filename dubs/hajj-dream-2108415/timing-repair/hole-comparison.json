@@ -3,71 +3,71 @@
   "source_speech_spans": 3,
   "note": "lower total, shorter max hole and fewer holes over 0.7 s are all better",
   "renders": {
-    "previous_window_fill": {
+    "window_fill": {
       "method": "sample peak below -55.0 dBFS over 10 ms blocks, holes longer than 0.05 s kept",
       "speech_seconds": 676.448,
-      "count": 170,
-      "total_seconds": 59.078,
-      "max_seconds": 1.58,
-      "mean_seconds": 0.348,
-      "p90_seconds": 1.3,
-      "over_0_7_seconds": 35,
-      "longest": [
-        {
-          "start": 606.03,
-          "end": 607.61,
-          "duration": 1.58
-        },
-        {
-          "start": 145.67,
-          "end": 147.23,
-          "duration": 1.56
-        },
-        {
-          "start": 597.58,
-          "end": 599.12,
-          "duration": 1.54
-        },
-        {
-          "start": 156.33,
-          "end": 157.85,
-          "duration": 1.52
-        },
-        {
-          "start": 158.12,
-          "end": 159.64,
-          "duration": 1.52
-        },
-        {
-          "start": 604.24,
-          "end": 605.76,
-          "duration": 1.52
-        },
-        {
-          "start": 176.31,
-          "end": 177.82,
-          "duration": 1.51
-        },
-        {
-          "start": 187.12,
-          "end": 188.62,
-          "duration": 1.5
-        }
-      ]
-    },
-    "clause_anchoring": {
-      "method": "sample peak below -55.0 dBFS over 10 ms blocks, holes longer than 0.05 s kept",
-      "speech_seconds": 676.448,
-      "count": 269,
-      "total_seconds": 38.082,
-      "max_seconds": 0.45,
-      "mean_seconds": 0.142,
-      "p90_seconds": 0.272,
+      "count": 300,
+      "total_seconds": 31.768,
+      "max_seconds": 0.38,
+      "mean_seconds": 0.106,
+      "p90_seconds": 0.16,
       "over_0_7_seconds": 0,
       "longest": [
         {
-          "start": 615.43,
-          "end": 615.88,
+          "start": 305.78,
+          "end": 306.16,
+          "duration": 0.38
+        },
+        {
+          "start": 4.75,
+          "end": 5.09,
+          "duration": 0.34
+        },
+        {
+          "start": 204.56,
+          "end": 204.84,
+          "duration": 0.28
+        },
+        {
+          "start": 676.05,
+          "end": 676.328,
+          "duration": 0.278
+        },
+        {
+          "start": 103.99,
+          "end": 104.26,
+          "duration": 0.27
+        },
+        {
+          "start": 27.99,
+          "end": 28.24,
+          "duration": 0.25
+        },
+        {
+          "start": 533.35,
+          "end": 533.6,
+          "duration": 0.25
+        },
+        {
+          "start": 608.21,
+          "end": 608.46,
+          "duration": 0.25
+        }
+      ]
+    },
+    "clause_anchored": {
+      "method": "sample peak below -55.0 dBFS over 10 ms blocks, holes longer than 0.05 s kept",
+      "speech_seconds": 676.448,
+      "count": 275,
+      "total_seconds": 34.902,
+      "max_seconds": 0.45,
+      "mean_seconds": 0.127,
+      "p90_seconds": 0.22,
+      "over_0_7_seconds": 0,
+      "longest": [
+        {
+          "start": 615.42,
+          "end": 615.87,
           "duration": 0.45
         },
         {
@@ -86,24 +86,24 @@
           "duration": 0.41
         },
         {
-          "start": 305.36,
-          "end": 305.77,
-          "duration": 0.41
-        },
-        {
           "start": 170.77,
           "end": 171.17,
           "duration": 0.4
         },
         {
-          "start": 24.38,
-          "end": 24.77,
-          "duration": 0.39
-        },
-        {
           "start": 178.24,
           "end": 178.63,
           "duration": 0.39
+        },
+        {
+          "start": 597.28,
+          "end": 597.66,
+          "duration": 0.38
+        },
+        {
+          "start": 674.7,
+          "end": 675.08,
+          "duration": 0.38
         }
       ]
     }

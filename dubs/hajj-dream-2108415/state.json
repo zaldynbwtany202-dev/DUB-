@@ -27,36 +27,22 @@
   "voice_quality_approved": true,
   "candidate_voice_id": "voice-12",
   "pilot_file": "voice-tests/voice-07-natural.wav",
-  "active_version": "source-sync-clause-anchoring",
+  "active_version": "source-sync-clause-anchoring-v3",
   "active_script": "timing-repair/script.json",
   "previous_recorded_voice_id": "voice-02",
-  "final_duration": 676.266667,
+  "final_duration": 676.328,
   "publication": {
-    "status": "published_verified",
+    "status": "awaiting_push_verification",
     "branch": "arena/01a08487-dub",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "size": 42386506,
-    "sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "policy": "verified with gh api contents on 2026-09-09: git blob sha and byte size matched locally",
-    "commit": "55e318d",
-    "remote_blob_sha256_of_git_object": "bb01d2721caf65308ffb982568948571551bdc68",
-    "remote_size": 42386506,
-    "verified_at": "2026-09-09T06:14:40+00:00",
-    "verification_output_sha256": "02e1b3984876b05b963fd1dfead25296a58c59eda7a6c53b9abd77744d8f09c6",
-    "render_status": "verified",
-    "gates_passed": "9/9",
-    "remote_files": {
-      "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4": "bb01d2721caf65308ffb982568948571551bdc68",
-      "dubs/hajj-dream-2108415/source-sync/README.md": "b6984444857f72e5270276b40d61aa7fe70ff380",
-      "dubs/hajj-dream-2108415/source-sync/render-verification.json": "e792d51c75d30c2327204e72e0049734be8b9271",
-      "dubs/hajj-dream-2108415/timing-repair/clip-budget.json": "b64491da586706659cd8b970060a60438cffae73"
-    }
+    "size": 42384124,
+    "sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
+    "recorded_at": "2026-09-09T08:17:26+00:00"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
   "completed_at": "2026-09-08T21:03:13+00:00",
-  "next_step": "user ear test; denser wording only on request",
+  "next_step": "كثافة النص: إعادة صياغة على ميزانية timing-repair/clip-budget.json ثم تسجيل من جديد؛ لا حشو صمت ولا تمديد زمني",
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
   "reused_approved_opening": true,
@@ -84,5 +70,12 @@
     "gates_total": 9,
     "narration_master_sha256": "99a9c3001dd0b53809d66e64c2b2d1e0d7103ec55244af6601bbfa7865fa6fca",
     "remaining_limitation": "clause length budget; needs rewrite + re-record"
+  },
+  "timing_metrics": {
+    "phase_mean_seconds": 2.937,
+    "coverage_dry": 0.980284,
+    "max_quiet_hole_seconds": 0.45,
+    "uncovered_source_speech_seconds": 11.74,
+    "holes_over_budget": 0
   }
 }

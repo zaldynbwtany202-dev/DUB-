@@ -1,0 +1,4377 @@
+{
+  "rule": "a chunk may not exceed the original's allotment (>1.06x shorten, <0.8x lengthen); speech lengths, not placement, decide the phase",
+  "parts": [
+    {
+      "part": 0,
+      "window_start": 0.0,
+      "window_end": 63.5,
+      "chunks": 28,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 60.608,
+      "window_seconds": 63.5,
+      "words_per_second": 2.359,
+      "fillable_ratio": 2.408,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27
+          ],
+          "clause": 0,
+          "start": 0.33,
+          "allotted": 1.6,
+          "speech": 60.608,
+          "ratio": 37.88,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1
+          ],
+          "clause": 9,
+          "start": 15.41,
+          "allotted": 1.34,
+          "speech": 1.672,
+          "ratio": 1.248,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 10,
+          "start": 16.75,
+          "allotted": 1.72,
+          "speech": 2.632,
+          "ratio": 1.53,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 11,
+          "start": 18.47,
+          "allotted": 1.8,
+          "speech": 0.744,
+          "ratio": 0.413,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 12,
+          "start": 20.27,
+          "allotted": 1.56,
+          "speech": 3.496,
+          "ratio": 2.241,
+          "words": 2,
+          "words_recommended": 4,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 13,
+          "start": 21.83,
+          "allotted": 1.66,
+          "speech": 1.16,
+          "ratio": 0.699,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 14,
+          "start": 23.49,
+          "allotted": 1.86,
+          "speech": 1.672,
+          "ratio": 0.899,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 15,
+          "start": 25.35,
+          "allotted": 2.42,
+          "speech": 2.056,
+          "ratio": 0.85,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 16,
+          "start": 27.77,
+          "allotted": 1.74,
+          "speech": 0.744,
+          "ratio": 0.428,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 17,
+          "start": 29.51,
+          "allotted": 2.2,
+          "speech": 0.936,
+          "ratio": 0.425,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 18,
+          "start": 31.71,
+          "allotted": 1.72,
+          "speech": 4.84,
+          "ratio": 2.814,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 19,
+          "start": 33.43,
+          "allotted": 1.76,
+          "speech": 1.0,
+          "ratio": 0.568,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 20,
+          "start": 35.19,
+          "allotted": 1.82,
+          "speech": 3.56,
+          "ratio": 1.956,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 21,
+          "start": 37.01,
+          "allotted": 1.26,
+          "speech": 2.12,
+          "ratio": 1.683,
+          "words": 3,
+          "words_recommended": 3,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 22,
+          "start": 38.27,
+          "allotted": 1.46,
+          "speech": 5.96,
+          "ratio": 4.082,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 23,
+          "start": 39.73,
+          "allotted": 1.62,
+          "speech": 1.992,
+          "ratio": 1.23,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 24,
+          "start": 41.35,
+          "allotted": 3.62,
+          "speech": 1.384,
+          "ratio": 0.382,
+          "words": 4,
+          "words_recommended": 9,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 25,
+          "start": 44.97,
+          "allotted": 0.6,
+          "speech": 2.536,
+          "ratio": 4.227,
+          "words": 2,
+          "words_recommended": 1,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 26,
+          "start": 45.57,
+          "allotted": 1.72,
+          "speech": 2.152,
+          "ratio": 1.251,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 27,
+          "start": 47.29,
+          "allotted": 1.64,
+          "speech": 2.376,
+          "ratio": 1.449,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 28,
+          "start": 48.93,
+          "allotted": 1.58,
+          "speech": 1.64,
+          "ratio": 1.038,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 29,
+          "start": 50.51,
+          "allotted": 2.74,
+          "speech": 0.808,
+          "ratio": 0.295,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 30,
+          "start": 53.25,
+          "allotted": 1.6,
+          "speech": 0.776,
+          "ratio": 0.485,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 31,
+          "start": 54.85,
+          "allotted": 1.34,
+          "speech": 4.936,
+          "ratio": 3.684,
+          "words": 3,
+          "words_recommended": 3,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 32,
+          "start": 56.19,
+          "allotted": 1.86,
+          "speech": 1.384,
+          "ratio": 0.744,
+          "words": 2,
+          "words_recommended": 4,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 33,
+          "start": 58.05,
+          "allotted": 1.94,
+          "speech": 2.888,
+          "ratio": 1.489,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26
+          ],
+          "clause": 34,
+          "start": 59.99,
+          "allotted": 1.66,
+          "speech": 1.512,
+          "ratio": 0.911,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 35,
+          "start": 61.65,
+          "allotted": 1.85,
+          "speech": 2.056,
+          "ratio": 1.111,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        }
+      ],
+      "mismatched": 24,
+      "shorten_by_words": 9,
+      "lengthen_by_words": 14
+    },
+    {
+      "part": 1,
+      "window_start": 63.5,
+      "window_end": 148.7,
+      "chunks": 47,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 69.752,
+      "window_seconds": 85.2,
+      "words_per_second": 2.71,
+      "fillable_ratio": 0.819,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1
+          ],
+          "clause": 0,
+          "start": 63.51,
+          "allotted": 1.74,
+          "speech": 2.288,
+          "ratio": 1.315,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 1,
+          "start": 65.25,
+          "allotted": 2.14,
+          "speech": 6.856,
+          "ratio": 3.204,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 2,
+          "start": 67.39,
+          "allotted": 2.58,
+          "speech": 4.904,
+          "ratio": 1.901,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 3,
+          "start": 69.97,
+          "allotted": 2.16,
+          "speech": 0.808,
+          "ratio": 0.374,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 4,
+          "start": 72.13,
+          "allotted": 2.32,
+          "speech": 1.832,
+          "ratio": 0.79,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 5,
+          "start": 74.45,
+          "allotted": 1.64,
+          "speech": 0.872,
+          "ratio": 0.532,
+          "words": 7,
+          "words_recommended": 4,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 6,
+          "start": 76.09,
+          "allotted": 2.8,
+          "speech": 1.352,
+          "ratio": 0.483,
+          "words": 3,
+          "words_recommended": 8,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 7,
+          "start": 78.89,
+          "allotted": 3.08,
+          "speech": 0.904,
+          "ratio": 0.294,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 8,
+          "start": 81.97,
+          "allotted": 1.5,
+          "speech": 1.448,
+          "ratio": 0.965,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 9,
+          "start": 83.47,
+          "allotted": 2.64,
+          "speech": 2.12,
+          "ratio": 0.803,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 10,
+          "start": 86.11,
+          "allotted": 2.92,
+          "speech": 1.608,
+          "ratio": 0.551,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 11,
+          "start": 89.03,
+          "allotted": 1.7,
+          "speech": 0.872,
+          "ratio": 0.513,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 12,
+          "start": 90.73,
+          "allotted": 2.4,
+          "speech": 2.376,
+          "ratio": 0.99,
+          "words": 10,
+          "words_recommended": 7,
+          "words_delta": -3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 13,
+          "start": 93.13,
+          "allotted": 2.22,
+          "speech": 0.968,
+          "ratio": 0.436,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 14,
+          "start": 95.35,
+          "allotted": 2.42,
+          "speech": 1.864,
+          "ratio": 0.77,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 15,
+          "start": 97.77,
+          "allotted": 2.1,
+          "speech": 1.288,
+          "ratio": 0.613,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 16,
+          "start": 99.87,
+          "allotted": 2.26,
+          "speech": 0.488,
+          "ratio": 0.216,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18,
+            19
+          ],
+          "clause": 17,
+          "start": 102.13,
+          "allotted": 2.1,
+          "speech": 1.872,
+          "ratio": 0.891,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20,
+            21
+          ],
+          "clause": 18,
+          "start": 104.23,
+          "allotted": 2.84,
+          "speech": 1.968,
+          "ratio": 0.693,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 19,
+          "start": 107.07,
+          "allotted": 2.94,
+          "speech": 1.16,
+          "ratio": 0.395,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23,
+            24
+          ],
+          "clause": 20,
+          "start": 110.01,
+          "allotted": 1.46,
+          "speech": 2.0,
+          "ratio": 1.37,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 21,
+          "start": 111.47,
+          "allotted": 1.8,
+          "speech": 1.064,
+          "ratio": 0.591,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26,
+            27
+          ],
+          "clause": 22,
+          "start": 113.27,
+          "allotted": 3.06,
+          "speech": 2.224,
+          "ratio": 0.727,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28,
+            29
+          ],
+          "clause": 23,
+          "start": 116.33,
+          "allotted": 3.0,
+          "speech": 1.936,
+          "ratio": 0.645,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30
+          ],
+          "clause": 24,
+          "start": 119.33,
+          "allotted": 2.92,
+          "speech": 1.768,
+          "ratio": 0.605,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 25,
+          "start": 122.25,
+          "allotted": 1.4,
+          "speech": 1.608,
+          "ratio": 1.149,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32
+          ],
+          "clause": 26,
+          "start": 123.65,
+          "allotted": 1.74,
+          "speech": 1.288,
+          "ratio": 0.74,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 33,
+          "chunks": [
+            33,
+            34,
+            35
+          ],
+          "clause": 27,
+          "start": 125.39,
+          "allotted": 3.0,
+          "speech": 4.344,
+          "ratio": 1.448,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 36,
+          "chunks": [
+            36
+          ],
+          "clause": 28,
+          "start": 128.39,
+          "allotted": 3.52,
+          "speech": 1.512,
+          "ratio": 0.43,
+          "words": 4,
+          "words_recommended": 10,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 37,
+          "chunks": [
+            37
+          ],
+          "clause": 29,
+          "start": 131.91,
+          "allotted": 1.26,
+          "speech": 1.768,
+          "ratio": 1.403,
+          "words": 6,
+          "words_recommended": 3,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 38,
+          "chunks": [
+            38
+          ],
+          "clause": 30,
+          "start": 133.17,
+          "allotted": 2.22,
+          "speech": 1.544,
+          "ratio": 0.695,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 39,
+          "chunks": [
+            39
+          ],
+          "clause": 31,
+          "start": 135.39,
+          "allotted": 2.44,
+          "speech": 1.672,
+          "ratio": 0.685,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 40,
+          "chunks": [
+            40,
+            41
+          ],
+          "clause": 32,
+          "start": 137.83,
+          "allotted": 2.78,
+          "speech": 2.0,
+          "ratio": 0.719,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 42,
+          "chunks": [
+            42,
+            43
+          ],
+          "clause": 33,
+          "start": 140.61,
+          "allotted": 1.4,
+          "speech": 4.304,
+          "ratio": 3.074,
+          "words": 10,
+          "words_recommended": 4,
+          "words_delta": -6,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 44,
+          "chunks": [
+            44,
+            45
+          ],
+          "clause": 34,
+          "start": 142.01,
+          "allotted": 4.78,
+          "speech": 2.096,
+          "ratio": 0.438,
+          "words": 5,
+          "words_recommended": 13,
+          "words_delta": 8,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 46,
+          "chunks": [
+            46
+          ],
+          "clause": 35,
+          "start": 146.79,
+          "allotted": 1.91,
+          "speech": 0.776,
+          "ratio": 0.406,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 32,
+      "shorten_by_words": 12,
+      "lengthen_by_words": 60
+    },
+    {
+      "part": 2,
+      "window_start": 148.7,
+      "window_end": 248.4,
+      "chunks": 49,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 78.568,
+      "window_seconds": 99.7,
+      "words_per_second": 2.647,
+      "fillable_ratio": 0.791,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0
+          ],
+          "clause": 0,
+          "start": 149.01,
+          "allotted": 2.84,
+          "speech": 1.672,
+          "ratio": 0.589,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1,
+            2
+          ],
+          "clause": 1,
+          "start": 151.85,
+          "allotted": 3.08,
+          "speech": 6.256,
+          "ratio": 2.031,
+          "words": 9,
+          "words_recommended": 8,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 2,
+          "start": 154.93,
+          "allotted": 3.84,
+          "speech": 1.448,
+          "ratio": 0.377,
+          "words": 10,
+          "words_recommended": 10,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 3,
+          "start": 158.77,
+          "allotted": 1.7,
+          "speech": 2.44,
+          "ratio": 1.435,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 4,
+          "start": 160.47,
+          "allotted": 2.94,
+          "speech": 2.184,
+          "ratio": 0.743,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 5,
+          "start": 163.41,
+          "allotted": 2.06,
+          "speech": 1.32,
+          "ratio": 0.641,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 6,
+          "start": 165.47,
+          "allotted": 2.52,
+          "speech": 1.128,
+          "ratio": 0.448,
+          "words": 3,
+          "words_recommended": 7,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8,
+            9
+          ],
+          "clause": 7,
+          "start": 167.99,
+          "allotted": 2.4,
+          "speech": 1.552,
+          "ratio": 0.647,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10,
+            11
+          ],
+          "clause": 8,
+          "start": 170.39,
+          "allotted": 2.52,
+          "speech": 4.944,
+          "ratio": 1.962,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 9,
+          "start": 172.91,
+          "allotted": 3.2,
+          "speech": 2.984,
+          "ratio": 0.932,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 10,
+          "start": 176.11,
+          "allotted": 2.94,
+          "speech": 1.864,
+          "ratio": 0.634,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 11,
+          "start": 179.05,
+          "allotted": 2.02,
+          "speech": 2.92,
+          "ratio": 1.446,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 12,
+          "start": 181.07,
+          "allotted": 2.86,
+          "speech": 1.288,
+          "ratio": 0.45,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 13,
+          "start": 183.93,
+          "allotted": 3.28,
+          "speech": 0.584,
+          "ratio": 0.178,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 14,
+          "start": 187.21,
+          "allotted": 1.96,
+          "speech": 1.768,
+          "ratio": 0.902,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18,
+            19
+          ],
+          "clause": 15,
+          "start": 189.17,
+          "allotted": 3.38,
+          "speech": 1.36,
+          "ratio": 0.402,
+          "words": 3,
+          "words_recommended": 9,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 16,
+          "start": 192.55,
+          "allotted": 1.56,
+          "speech": 1.832,
+          "ratio": 1.174,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21,
+            22,
+            23
+          ],
+          "clause": 17,
+          "start": 194.11,
+          "allotted": 2.8,
+          "speech": 2.84,
+          "ratio": 1.014,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24,
+            25,
+            26
+          ],
+          "clause": 18,
+          "start": 196.91,
+          "allotted": 2.92,
+          "speech": 3.096,
+          "ratio": 1.06,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 19,
+          "start": 199.83,
+          "allotted": 3.98,
+          "speech": 2.12,
+          "ratio": 0.533,
+          "words": 4,
+          "words_recommended": 11,
+          "words_delta": 7,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28
+          ],
+          "clause": 20,
+          "start": 203.81,
+          "allotted": 1.54,
+          "speech": 2.6,
+          "ratio": 1.688,
+          "words": 7,
+          "words_recommended": 4,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "chunks": [
+            29,
+            30
+          ],
+          "clause": 21,
+          "start": 205.35,
+          "allotted": 2.84,
+          "speech": 1.968,
+          "ratio": 0.693,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 22,
+          "start": 208.19,
+          "allotted": 4.06,
+          "speech": 0.616,
+          "ratio": 0.152,
+          "words": 1,
+          "words_recommended": 11,
+          "words_delta": 10,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32
+          ],
+          "clause": 23,
+          "start": 212.25,
+          "allotted": 0.78,
+          "speech": 2.76,
+          "ratio": 3.538,
+          "words": 10,
+          "words_recommended": 2,
+          "words_delta": -8,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 33,
+          "chunks": [
+            33
+          ],
+          "clause": 24,
+          "start": 213.03,
+          "allotted": 3.88,
+          "speech": 1.192,
+          "ratio": 0.307,
+          "words": 4,
+          "words_recommended": 10,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 34,
+          "chunks": [
+            34
+          ],
+          "clause": 25,
+          "start": 216.91,
+          "allotted": 2.58,
+          "speech": 2.28,
+          "ratio": 0.884,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 35,
+          "chunks": [
+            35
+          ],
+          "clause": 26,
+          "start": 219.49,
+          "allotted": 3.76,
+          "speech": 0.808,
+          "ratio": 0.215,
+          "words": 2,
+          "words_recommended": 10,
+          "words_delta": 8,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 36,
+          "chunks": [
+            36
+          ],
+          "clause": 27,
+          "start": 223.25,
+          "allotted": 1.82,
+          "speech": 1.352,
+          "ratio": 0.743,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 37,
+          "chunks": [
+            37,
+            38
+          ],
+          "clause": 28,
+          "start": 225.07,
+          "allotted": 3.28,
+          "speech": 2.576,
+          "ratio": 0.785,
+          "words": 6,
+          "words_recommended": 9,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 39,
+          "chunks": [
+            39
+          ],
+          "clause": 29,
+          "start": 228.35,
+          "allotted": 3.8,
+          "speech": 2.312,
+          "ratio": 0.608,
+          "words": 6,
+          "words_recommended": 10,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 40,
+          "chunks": [
+            40
+          ],
+          "clause": 30,
+          "start": 232.15,
+          "allotted": 3.38,
+          "speech": 2.76,
+          "ratio": 0.817,
+          "words": 6,
+          "words_recommended": 9,
+          "words_delta": 3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 41,
+          "chunks": [
+            41,
+            42
+          ],
+          "clause": 31,
+          "start": 235.53,
+          "allotted": 2.08,
+          "speech": 2.576,
+          "ratio": 1.238,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 43,
+          "chunks": [
+            43
+          ],
+          "clause": 32,
+          "start": 237.61,
+          "allotted": 2.46,
+          "speech": 2.024,
+          "ratio": 0.823,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 44,
+          "chunks": [
+            44,
+            45
+          ],
+          "clause": 33,
+          "start": 240.07,
+          "allotted": 2.26,
+          "speech": 4.624,
+          "ratio": 2.046,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 46,
+          "chunks": [
+            46
+          ],
+          "clause": 34,
+          "start": 242.33,
+          "allotted": 3.04,
+          "speech": 0.968,
+          "ratio": 0.318,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 47,
+          "chunks": [
+            47,
+            48
+          ],
+          "clause": 35,
+          "start": 245.37,
+          "allotted": 3.03,
+          "speech": 1.552,
+          "ratio": 0.512,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 30,
+      "shorten_by_words": 15,
+      "lengthen_by_words": 69
+    },
+    {
+      "part": 3,
+      "window_start": 248.4,
+      "window_end": 333.5,
+      "chunks": 35,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 78.296,
+      "window_seconds": 85.1,
+      "words_per_second": 2.491,
+      "fillable_ratio": 1.822,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "clause": 0,
+          "start": 248.79,
+          "allotted": 4.38,
+          "speech": 78.296,
+          "ratio": 17.876,
+          "words": 7,
+          "words_recommended": 11,
+          "words_delta": 4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1
+          ],
+          "clause": 2,
+          "start": 254.17,
+          "allotted": 3.02,
+          "speech": 0.712,
+          "ratio": 0.236,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 3,
+          "start": 257.19,
+          "allotted": 1.56,
+          "speech": 2.216,
+          "ratio": 1.421,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 4,
+          "start": 258.75,
+          "allotted": 2.52,
+          "speech": 1.16,
+          "ratio": 0.46,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 5,
+          "start": 261.27,
+          "allotted": 1.98,
+          "speech": 1.8,
+          "ratio": 0.909,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 6,
+          "start": 263.25,
+          "allotted": 2.06,
+          "speech": 1.224,
+          "ratio": 0.594,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 7,
+          "start": 265.31,
+          "allotted": 2.18,
+          "speech": 3.016,
+          "ratio": 1.383,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 8,
+          "start": 267.49,
+          "allotted": 2.34,
+          "speech": 2.376,
+          "ratio": 1.015,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 9,
+          "start": 269.83,
+          "allotted": 1.86,
+          "speech": 1.928,
+          "ratio": 1.037,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 10,
+          "start": 271.69,
+          "allotted": 2.06,
+          "speech": 2.056,
+          "ratio": 0.998,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 11,
+          "start": 273.75,
+          "allotted": 2.52,
+          "speech": 3.272,
+          "ratio": 1.298,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 12,
+          "start": 276.27,
+          "allotted": 2.28,
+          "speech": 2.952,
+          "ratio": 1.295,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 13,
+          "start": 278.55,
+          "allotted": 3.64,
+          "speech": 1.032,
+          "ratio": 0.284,
+          "words": 7,
+          "words_recommended": 9,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 14,
+          "start": 282.19,
+          "allotted": 0.9,
+          "speech": 1.576,
+          "ratio": 1.751,
+          "words": 1,
+          "words_recommended": 2,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 15,
+          "start": 283.09,
+          "allotted": 2.4,
+          "speech": 2.888,
+          "ratio": 1.203,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 16,
+          "start": 285.49,
+          "allotted": 2.46,
+          "speech": 2.728,
+          "ratio": 1.109,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 17,
+          "start": 287.95,
+          "allotted": 3.52,
+          "speech": 3.944,
+          "ratio": 1.12,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 18,
+          "start": 291.47,
+          "allotted": 0.9,
+          "speech": 1.416,
+          "ratio": 1.573,
+          "words": 11,
+          "words_recommended": 2,
+          "words_delta": -9,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 19,
+          "start": 292.37,
+          "allotted": 2.7,
+          "speech": 0.936,
+          "ratio": 0.347,
+          "words": 3,
+          "words_recommended": 7,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 20,
+          "start": 295.07,
+          "allotted": 2.06,
+          "speech": 4.616,
+          "ratio": 2.241,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 21,
+          "start": 297.13,
+          "allotted": 2.48,
+          "speech": 2.056,
+          "ratio": 0.829,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 22,
+          "start": 299.61,
+          "allotted": 2.28,
+          "speech": 2.184,
+          "ratio": 0.958,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 23,
+          "start": 301.89,
+          "allotted": 2.1,
+          "speech": 2.76,
+          "ratio": 1.314,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 24,
+          "start": 303.99,
+          "allotted": 2.24,
+          "speech": 2.696,
+          "ratio": 1.204,
+          "words": 1,
+          "words_recommended": 6,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 25,
+          "start": 306.23,
+          "allotted": 2.52,
+          "speech": 0.552,
+          "ratio": 0.219,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 26,
+          "start": 308.75,
+          "allotted": 2.44,
+          "speech": 1.48,
+          "ratio": 0.607,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26
+          ],
+          "clause": 27,
+          "start": 311.19,
+          "allotted": 3.06,
+          "speech": 1.16,
+          "ratio": 0.379,
+          "words": 8,
+          "words_recommended": 8,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 28,
+          "start": 314.25,
+          "allotted": 2.44,
+          "speech": 2.6,
+          "ratio": 1.066,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28
+          ],
+          "clause": 29,
+          "start": 316.69,
+          "allotted": 1.84,
+          "speech": 4.552,
+          "ratio": 2.474,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "chunks": [
+            29
+          ],
+          "clause": 30,
+          "start": 318.53,
+          "allotted": 3.32,
+          "speech": 2.664,
+          "ratio": 0.802,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30
+          ],
+          "clause": 31,
+          "start": 321.85,
+          "allotted": 2.1,
+          "speech": 2.664,
+          "ratio": 1.269,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 32,
+          "start": 323.95,
+          "allotted": 2.66,
+          "speech": 0.52,
+          "ratio": 0.195,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32
+          ],
+          "clause": 33,
+          "start": 326.61,
+          "allotted": 2.4,
+          "speech": 1.928,
+          "ratio": 0.803,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 33,
+          "chunks": [
+            33
+          ],
+          "clause": 34,
+          "start": 329.01,
+          "allotted": 2.52,
+          "speech": 2.28,
+          "ratio": 0.905,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 34,
+          "chunks": [
+            34
+          ],
+          "clause": 35,
+          "start": 331.53,
+          "allotted": 1.97,
+          "speech": 2.312,
+          "ratio": 1.174,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        }
+      ],
+      "mismatched": 26,
+      "shorten_by_words": 16,
+      "lengthen_by_words": 29
+    },
+    {
+      "part": 4,
+      "window_start": 333.5,
+      "window_end": 411.8,
+      "chunks": 34,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 72.176,
+      "window_seconds": 78.3,
+      "words_per_second": 2.411,
+      "fillable_ratio": 1.951,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "clause": 0,
+          "start": 333.87,
+          "allotted": 1.76,
+          "speech": 72.176,
+          "ratio": 41.009,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1
+          ],
+          "clause": 3,
+          "start": 340.37,
+          "allotted": 2.48,
+          "speech": 3.944,
+          "ratio": 1.59,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 4,
+          "start": 342.85,
+          "allotted": 1.86,
+          "speech": 2.408,
+          "ratio": 1.295,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 5,
+          "start": 344.71,
+          "allotted": 2.58,
+          "speech": 4.04,
+          "ratio": 1.566,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 6,
+          "start": 347.29,
+          "allotted": 1.64,
+          "speech": 1.608,
+          "ratio": 0.98,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 7,
+          "start": 348.93,
+          "allotted": 3.5,
+          "speech": 1.992,
+          "ratio": 0.569,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 8,
+          "start": 352.43,
+          "allotted": 1.28,
+          "speech": 0.904,
+          "ratio": 0.706,
+          "words": 2,
+          "words_recommended": 3,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 9,
+          "start": 353.71,
+          "allotted": 1.92,
+          "speech": 3.112,
+          "ratio": 1.621,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 10,
+          "start": 355.63,
+          "allotted": 1.44,
+          "speech": 3.624,
+          "ratio": 2.517,
+          "words": 2,
+          "words_recommended": 3,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 11,
+          "start": 357.07,
+          "allotted": 3.68,
+          "speech": 2.76,
+          "ratio": 0.75,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 12,
+          "start": 360.75,
+          "allotted": 2.04,
+          "speech": 4.456,
+          "ratio": 2.184,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 13,
+          "start": 362.79,
+          "allotted": 2.04,
+          "speech": 1.96,
+          "ratio": 0.961,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 14,
+          "start": 364.83,
+          "allotted": 1.96,
+          "speech": 1.768,
+          "ratio": 0.902,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 15,
+          "start": 366.79,
+          "allotted": 2.24,
+          "speech": 2.056,
+          "ratio": 0.918,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 16,
+          "start": 369.03,
+          "allotted": 1.66,
+          "speech": 2.504,
+          "ratio": 1.508,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 17,
+          "start": 370.69,
+          "allotted": 2.1,
+          "speech": 1.128,
+          "ratio": 0.537,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 18,
+          "start": 372.79,
+          "allotted": 2.7,
+          "speech": 1.032,
+          "ratio": 0.382,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 19,
+          "start": 375.49,
+          "allotted": 2.12,
+          "speech": 2.632,
+          "ratio": 1.242,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 20,
+          "start": 377.61,
+          "allotted": 3.46,
+          "speech": 0.52,
+          "ratio": 0.15,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 21,
+          "start": 381.07,
+          "allotted": 0.66,
+          "speech": 2.92,
+          "ratio": 4.424,
+          "words": 1,
+          "words_recommended": 2,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 22,
+          "start": 381.73,
+          "allotted": 1.84,
+          "speech": 1.512,
+          "ratio": 0.822,
+          "words": 7,
+          "words_recommended": 4,
+          "words_delta": -3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 23,
+          "start": 383.57,
+          "allotted": 2.08,
+          "speech": 2.184,
+          "ratio": 1.05,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 24,
+          "start": 385.65,
+          "allotted": 2.0,
+          "speech": 1.32,
+          "ratio": 0.66,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 25,
+          "start": 387.65,
+          "allotted": 1.44,
+          "speech": 1.512,
+          "ratio": 1.05,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 26,
+          "start": 389.09,
+          "allotted": 2.14,
+          "speech": 1.704,
+          "ratio": 0.796,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 27,
+          "start": 391.23,
+          "allotted": 2.62,
+          "speech": 1.896,
+          "ratio": 0.724,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26
+          ],
+          "clause": 28,
+          "start": 393.85,
+          "allotted": 2.2,
+          "speech": 1.256,
+          "ratio": 0.571,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 29,
+          "start": 396.05,
+          "allotted": 2.54,
+          "speech": 1.192,
+          "ratio": 0.469,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28
+          ],
+          "clause": 30,
+          "start": 398.59,
+          "allotted": 2.22,
+          "speech": 1.992,
+          "ratio": 0.897,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 29,
+          "chunks": [
+            29
+          ],
+          "clause": 31,
+          "start": 400.81,
+          "allotted": 2.64,
+          "speech": 2.216,
+          "ratio": 0.839,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30
+          ],
+          "clause": 32,
+          "start": 403.45,
+          "allotted": 2.36,
+          "speech": 3.208,
+          "ratio": 1.359,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 33,
+          "start": 405.81,
+          "allotted": 2.08,
+          "speech": 1.224,
+          "ratio": 0.588,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32
+          ],
+          "clause": 34,
+          "start": 407.89,
+          "allotted": 2.48,
+          "speech": 2.792,
+          "ratio": 1.126,
+          "words": 9,
+          "words_recommended": 6,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 33,
+          "chunks": [
+            33
+          ],
+          "clause": 35,
+          "start": 410.37,
+          "allotted": 1.43,
+          "speech": 1.224,
+          "ratio": 0.856,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "fits"
+        }
+      ],
+      "mismatched": 24,
+      "shorten_by_words": 13,
+      "lengthen_by_words": 19
+    },
+    {
+      "part": 5,
+      "window_start": 411.8,
+      "window_end": 504.3,
+      "chunks": 32,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 88.704,
+      "window_seconds": 92.5,
+      "words_per_second": 2.221,
+      "fillable_ratio": 2.135,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "clause": 0,
+          "start": 412.05,
+          "allotted": 2.4,
+          "speech": 88.704,
+          "ratio": 36.96,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1
+          ],
+          "clause": 5,
+          "start": 424.87,
+          "allotted": 2.52,
+          "speech": 1.736,
+          "ratio": 0.689,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 6,
+          "start": 427.39,
+          "allotted": 2.7,
+          "speech": 1.608,
+          "ratio": 0.596,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 7,
+          "start": 430.09,
+          "allotted": 2.22,
+          "speech": 2.12,
+          "ratio": 0.955,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 8,
+          "start": 432.31,
+          "allotted": 2.88,
+          "speech": 1.128,
+          "ratio": 0.392,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 9,
+          "start": 435.19,
+          "allotted": 2.12,
+          "speech": 2.248,
+          "ratio": 1.06,
+          "words": 1,
+          "words_recommended": 5,
+          "words_delta": 4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 10,
+          "start": 437.31,
+          "allotted": 2.58,
+          "speech": 3.08,
+          "ratio": 1.194,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 11,
+          "start": 439.89,
+          "allotted": 2.8,
+          "speech": 2.632,
+          "ratio": 0.94,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 12,
+          "start": 442.69,
+          "allotted": 3.64,
+          "speech": 2.536,
+          "ratio": 0.697,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 13,
+          "start": 446.33,
+          "allotted": 3.8,
+          "speech": 1.128,
+          "ratio": 0.297,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 14,
+          "start": 450.13,
+          "allotted": 4.14,
+          "speech": 0.488,
+          "ratio": 0.118,
+          "words": 7,
+          "words_recommended": 9,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 15,
+          "start": 454.27,
+          "allotted": 1.32,
+          "speech": 2.536,
+          "ratio": 1.921,
+          "words": 3,
+          "words_recommended": 3,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 16,
+          "start": 455.59,
+          "allotted": 2.64,
+          "speech": 1.0,
+          "ratio": 0.379,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 17,
+          "start": 458.23,
+          "allotted": 1.74,
+          "speech": 4.392,
+          "ratio": 2.524,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 18,
+          "start": 459.97,
+          "allotted": 3.42,
+          "speech": 2.056,
+          "ratio": 0.601,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 19,
+          "start": 463.39,
+          "allotted": 1.88,
+          "speech": 2.632,
+          "ratio": 1.4,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 20,
+          "start": 465.27,
+          "allotted": 2.4,
+          "speech": 3.592,
+          "ratio": 1.497,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 21,
+          "start": 467.67,
+          "allotted": 3.92,
+          "speech": 3.144,
+          "ratio": 0.802,
+          "words": 8,
+          "words_recommended": 9,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 22,
+          "start": 471.59,
+          "allotted": 0.84,
+          "speech": 4.04,
+          "ratio": 4.81,
+          "words": 1,
+          "words_recommended": 2,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 23,
+          "start": 472.43,
+          "allotted": 2.58,
+          "speech": 4.008,
+          "ratio": 1.553,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 24,
+          "start": 475.01,
+          "allotted": 3.46,
+          "speech": 2.888,
+          "ratio": 0.835,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 25,
+          "start": 478.47,
+          "allotted": 1.76,
+          "speech": 1.256,
+          "ratio": 0.714,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 26,
+          "start": 480.23,
+          "allotted": 2.34,
+          "speech": 4.392,
+          "ratio": 1.877,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 27,
+          "start": 482.57,
+          "allotted": 2.46,
+          "speech": 1.64,
+          "ratio": 0.667,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 28,
+          "start": 485.03,
+          "allotted": 2.4,
+          "speech": 6.632,
+          "ratio": 2.763,
+          "words": 9,
+          "words_recommended": 5,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 29,
+          "start": 487.43,
+          "allotted": 1.86,
+          "speech": 4.872,
+          "ratio": 2.619,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26
+          ],
+          "clause": 30,
+          "start": 489.29,
+          "allotted": 3.06,
+          "speech": 2.696,
+          "ratio": 0.881,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 31,
+          "start": 492.35,
+          "allotted": 2.02,
+          "speech": 1.48,
+          "ratio": 0.733,
+          "words": 2,
+          "words_recommended": 4,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28
+          ],
+          "clause": 32,
+          "start": 494.37,
+          "allotted": 2.66,
+          "speech": 3.048,
+          "ratio": 1.146,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "chunks": [
+            29
+          ],
+          "clause": 33,
+          "start": 497.03,
+          "allotted": 2.48,
+          "speech": 2.376,
+          "ratio": 0.958,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30
+          ],
+          "clause": 34,
+          "start": 499.51,
+          "allotted": 2.62,
+          "speech": 4.712,
+          "ratio": 1.798,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 35,
+          "start": 502.13,
+          "allotted": 2.17,
+          "speech": 3.944,
+          "ratio": 1.818,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "shorten"
+        }
+      ],
+      "mismatched": 26,
+      "shorten_by_words": 23,
+      "lengthen_by_words": 22
+    },
+    {
+      "part": 6,
+      "window_start": 504.3,
+      "window_end": 593.8,
+      "chunks": 41,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 75.24,
+      "window_seconds": 89.5,
+      "words_per_second": 2.698,
+      "fillable_ratio": 0.842,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1
+          ],
+          "clause": 0,
+          "start": 504.49,
+          "allotted": 2.06,
+          "speech": 3.952,
+          "ratio": 1.918,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 1,
+          "start": 506.55,
+          "allotted": 3.26,
+          "speech": 1.768,
+          "ratio": 0.542,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 2,
+          "start": 509.81,
+          "allotted": 2.1,
+          "speech": 2.632,
+          "ratio": 1.253,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 3,
+          "start": 511.91,
+          "allotted": 2.54,
+          "speech": 3.432,
+          "ratio": 1.351,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 4,
+          "start": 514.45,
+          "allotted": 2.16,
+          "speech": 3.272,
+          "ratio": 1.515,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 5,
+          "start": 516.61,
+          "allotted": 2.84,
+          "speech": 1.928,
+          "ratio": 0.679,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 6,
+          "start": 519.45,
+          "allotted": 2.58,
+          "speech": 1.832,
+          "ratio": 0.71,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 7,
+          "start": 522.03,
+          "allotted": 3.58,
+          "speech": 2.12,
+          "ratio": 0.592,
+          "words": 6,
+          "words_recommended": 10,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 8,
+          "start": 525.61,
+          "allotted": 1.92,
+          "speech": 2.312,
+          "ratio": 1.204,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 9,
+          "start": 527.53,
+          "allotted": 3.44,
+          "speech": 2.408,
+          "ratio": 0.7,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 10,
+          "start": 530.97,
+          "allotted": 2.34,
+          "speech": 1.512,
+          "ratio": 0.646,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 11,
+          "start": 533.31,
+          "allotted": 4.32,
+          "speech": 1.032,
+          "ratio": 0.239,
+          "words": 5,
+          "words_recommended": 12,
+          "words_delta": 7,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 12,
+          "start": 537.63,
+          "allotted": 2.37,
+          "speech": 1.736,
+          "ratio": 0.732,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 13,
+          "start": 540.0,
+          "allotted": 1.51,
+          "speech": 2.664,
+          "ratio": 1.764,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 14,
+          "start": 541.51,
+          "allotted": 2.26,
+          "speech": 2.152,
+          "ratio": 0.952,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 15,
+          "start": 543.77,
+          "allotted": 2.32,
+          "speech": 0.68,
+          "ratio": 0.293,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 16,
+          "start": 546.09,
+          "allotted": 2.28,
+          "speech": 1.0,
+          "ratio": 0.439,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 17,
+          "start": 548.37,
+          "allotted": 2.6,
+          "speech": 2.088,
+          "ratio": 0.803,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 18,
+          "start": 550.97,
+          "allotted": 2.48,
+          "speech": 2.056,
+          "ratio": 0.829,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 19,
+          "start": 553.45,
+          "allotted": 2.66,
+          "speech": 2.792,
+          "ratio": 1.05,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 20,
+          "start": 556.11,
+          "allotted": 1.96,
+          "speech": 1.8,
+          "ratio": 0.918,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 21,
+          "start": 558.07,
+          "allotted": 2.82,
+          "speech": 2.28,
+          "ratio": 0.809,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 22,
+          "start": 560.89,
+          "allotted": 0.98,
+          "speech": 0.424,
+          "ratio": 0.433,
+          "words": 1,
+          "words_recommended": 3,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 23,
+          "start": 561.87,
+          "allotted": 3.18,
+          "speech": 2.312,
+          "ratio": 0.727,
+          "words": 7,
+          "words_recommended": 9,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 24,
+          "start": 565.05,
+          "allotted": 2.9,
+          "speech": 2.312,
+          "ratio": 0.797,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26,
+            27
+          ],
+          "clause": 25,
+          "start": 567.95,
+          "allotted": 2.3,
+          "speech": 3.152,
+          "ratio": 1.37,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28,
+            29
+          ],
+          "clause": 26,
+          "start": 570.25,
+          "allotted": 2.04,
+          "speech": 1.776,
+          "ratio": 0.871,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30,
+            31
+          ],
+          "clause": 27,
+          "start": 572.29,
+          "allotted": 2.14,
+          "speech": 2.864,
+          "ratio": 1.338,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32,
+            33
+          ],
+          "clause": 28,
+          "start": 574.43,
+          "allotted": 2.68,
+          "speech": 3.44,
+          "ratio": 1.284,
+          "words": 10,
+          "words_recommended": 7,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 34,
+          "chunks": [
+            34
+          ],
+          "clause": 29,
+          "start": 577.11,
+          "allotted": 2.12,
+          "speech": 3.304,
+          "ratio": 1.558,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 35,
+          "chunks": [
+            35
+          ],
+          "clause": 30,
+          "start": 579.23,
+          "allotted": 2.8,
+          "speech": 1.064,
+          "ratio": 0.38,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 36,
+          "chunks": [
+            36
+          ],
+          "clause": 31,
+          "start": 582.03,
+          "allotted": 2.54,
+          "speech": 2.216,
+          "ratio": 0.872,
+          "words": 3,
+          "words_recommended": 7,
+          "words_delta": 4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 37,
+          "chunks": [
+            37
+          ],
+          "clause": 32,
+          "start": 584.57,
+          "allotted": 2.34,
+          "speech": 2.28,
+          "ratio": 0.974,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 38,
+          "chunks": [
+            38
+          ],
+          "clause": 33,
+          "start": 586.91,
+          "allotted": 2.24,
+          "speech": 0.424,
+          "ratio": 0.189,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 39,
+          "chunks": [
+            39
+          ],
+          "clause": 34,
+          "start": 589.15,
+          "allotted": 2.48,
+          "speech": 0.488,
+          "ratio": 0.197,
+          "words": 1,
+          "words_recommended": 7,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 40,
+          "chunks": [
+            40
+          ],
+          "clause": 35,
+          "start": 591.63,
+          "allotted": 2.17,
+          "speech": 1.736,
+          "ratio": 0.8,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        }
+      ],
+      "mismatched": 26,
+      "shorten_by_words": 9,
+      "lengthen_by_words": 44
+    },
+    {
+      "part": 7,
+      "window_start": 593.8,
+      "window_end": 676.328,
+      "chunks": 33,
+      "clauses": 36,
+      "units": 36,
+      "speech_seconds": 72.232,
+      "window_seconds": 82.528,
+      "words_per_second": 2.547,
+      "fillable_ratio": 1.88,
+      "rows": [
+        {
+          "chunk": 0,
+          "chunks": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "clause": 0,
+          "start": 594.09,
+          "allotted": 2.14,
+          "speech": 72.232,
+          "ratio": 33.753,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "chunks": [
+            1
+          ],
+          "clause": 4,
+          "start": 602.75,
+          "allotted": 2.36,
+          "speech": 1.704,
+          "ratio": 0.722,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "chunks": [
+            2
+          ],
+          "clause": 5,
+          "start": 605.11,
+          "allotted": 4.24,
+          "speech": 0.872,
+          "ratio": 0.206,
+          "words": 5,
+          "words_recommended": 11,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "chunks": [
+            3
+          ],
+          "clause": 6,
+          "start": 609.35,
+          "allotted": 2.32,
+          "speech": 1.448,
+          "ratio": 0.624,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "chunks": [
+            4
+          ],
+          "clause": 7,
+          "start": 611.67,
+          "allotted": 0.76,
+          "speech": 2.216,
+          "ratio": 2.916,
+          "words": 1,
+          "words_recommended": 2,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "chunks": [
+            5
+          ],
+          "clause": 8,
+          "start": 612.43,
+          "allotted": 1.86,
+          "speech": 1.704,
+          "ratio": 0.916,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 6,
+          "chunks": [
+            6
+          ],
+          "clause": 9,
+          "start": 614.29,
+          "allotted": 1.88,
+          "speech": 0.936,
+          "ratio": 0.498,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "chunks": [
+            7
+          ],
+          "clause": 10,
+          "start": 616.17,
+          "allotted": 3.36,
+          "speech": 1.64,
+          "ratio": 0.488,
+          "words": 11,
+          "words_recommended": 9,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "chunks": [
+            8
+          ],
+          "clause": 11,
+          "start": 619.53,
+          "allotted": 0.88,
+          "speech": 2.984,
+          "ratio": 3.391,
+          "words": 2,
+          "words_recommended": 2,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 9,
+          "chunks": [
+            9
+          ],
+          "clause": 12,
+          "start": 620.41,
+          "allotted": 1.34,
+          "speech": 2.376,
+          "ratio": 1.773,
+          "words": 3,
+          "words_recommended": 3,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 10,
+          "chunks": [
+            10
+          ],
+          "clause": 13,
+          "start": 621.75,
+          "allotted": 1.62,
+          "speech": 2.472,
+          "ratio": 1.526,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "chunks": [
+            11
+          ],
+          "clause": 14,
+          "start": 623.37,
+          "allotted": 2.78,
+          "speech": 5.448,
+          "ratio": 1.96,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "chunks": [
+            12
+          ],
+          "clause": 15,
+          "start": 626.15,
+          "allotted": 2.36,
+          "speech": 1.832,
+          "ratio": 0.776,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "chunks": [
+            13
+          ],
+          "clause": 16,
+          "start": 628.51,
+          "allotted": 1.72,
+          "speech": 3.08,
+          "ratio": 1.791,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "chunks": [
+            14
+          ],
+          "clause": 17,
+          "start": 630.23,
+          "allotted": 2.72,
+          "speech": 1.288,
+          "ratio": 0.474,
+          "words": 10,
+          "words_recommended": 7,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "chunks": [
+            15
+          ],
+          "clause": 18,
+          "start": 632.95,
+          "allotted": 2.12,
+          "speech": 1.608,
+          "ratio": 0.758,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "chunks": [
+            16
+          ],
+          "clause": 19,
+          "start": 635.07,
+          "allotted": 1.82,
+          "speech": 3.272,
+          "ratio": 1.798,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "chunks": [
+            17
+          ],
+          "clause": 20,
+          "start": 636.89,
+          "allotted": 3.06,
+          "speech": 1.32,
+          "ratio": 0.431,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "chunks": [
+            18
+          ],
+          "clause": 21,
+          "start": 639.95,
+          "allotted": 3.2,
+          "speech": 0.456,
+          "ratio": 0.143,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "chunks": [
+            19
+          ],
+          "clause": 22,
+          "start": 643.15,
+          "allotted": 2.32,
+          "speech": 4.712,
+          "ratio": 2.031,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "chunks": [
+            20
+          ],
+          "clause": 23,
+          "start": 645.47,
+          "allotted": 2.28,
+          "speech": 2.152,
+          "ratio": 0.944,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "chunks": [
+            21
+          ],
+          "clause": 24,
+          "start": 647.75,
+          "allotted": 2.64,
+          "speech": 2.792,
+          "ratio": 1.058,
+          "words": 2,
+          "words_recommended": 7,
+          "words_delta": 5,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "chunks": [
+            22
+          ],
+          "clause": 25,
+          "start": 650.39,
+          "allotted": 2.8,
+          "speech": 2.088,
+          "ratio": 0.746,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "chunks": [
+            23
+          ],
+          "clause": 26,
+          "start": 653.19,
+          "allotted": 1.74,
+          "speech": 1.352,
+          "ratio": 0.777,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "chunks": [
+            24
+          ],
+          "clause": 27,
+          "start": 654.93,
+          "allotted": 2.94,
+          "speech": 1.576,
+          "ratio": 0.536,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "chunks": [
+            25
+          ],
+          "clause": 28,
+          "start": 657.87,
+          "allotted": 2.08,
+          "speech": 2.28,
+          "ratio": 1.096,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "chunks": [
+            26
+          ],
+          "clause": 29,
+          "start": 659.95,
+          "allotted": 2.24,
+          "speech": 2.792,
+          "ratio": 1.246,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 27,
+          "chunks": [
+            27
+          ],
+          "clause": 30,
+          "start": 662.19,
+          "allotted": 3.04,
+          "speech": 1.768,
+          "ratio": 0.582,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "chunks": [
+            28
+          ],
+          "clause": 31,
+          "start": 665.23,
+          "allotted": 1.28,
+          "speech": 2.376,
+          "ratio": 1.856,
+          "words": 3,
+          "words_recommended": 3,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "chunks": [
+            29
+          ],
+          "clause": 32,
+          "start": 666.51,
+          "allotted": 3.68,
+          "speech": 4.456,
+          "ratio": 1.211,
+          "words": 8,
+          "words_recommended": 9,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 30,
+          "chunks": [
+            30
+          ],
+          "clause": 33,
+          "start": 670.19,
+          "allotted": 1.86,
+          "speech": 1.608,
+          "ratio": 0.865,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 31,
+          "chunks": [
+            31
+          ],
+          "clause": 34,
+          "start": 672.05,
+          "allotted": 0.86,
+          "speech": 1.864,
+          "ratio": 2.167,
+          "words": 2,
+          "words_recommended": 2,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 32,
+          "chunks": [
+            32
+          ],
+          "clause": 35,
+          "start": 672.91,
+          "allotted": 3.418,
+          "speech": 1.672,
+          "ratio": 0.489,
+          "words": 6,
+          "words_recommended": 9,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 29,
+      "shorten_by_words": 10,
+      "lengthen_by_words": 36
+    }
+  ]
+}
