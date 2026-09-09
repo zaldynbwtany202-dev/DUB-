@@ -32,12 +32,17 @@
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.328,
   "publication": {
-    "status": "awaiting_push_verification",
+    "status": "published_verified",
     "branch": "arena/01a08487-dub",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
     "size": 42384124,
     "sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
-    "recorded_at": "2026-09-09T08:17:26+00:00"
+    "recorded_at": "2026-09-09T08:17:26+00:00",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "commit": "866e7d7",
+    "remote_blob_sha256_of_git_object": "4bb9b91e1abc27cc185cfd86e52a80ef5720fd76",
+    "policy": "verified with gh api contents on 2026-09-09: remote git blob sha and byte size matched the locally verified render (blob 4bb9b91e, 42384124 B, sha256 99f1966b)",
+    "verified_at": "2026-09-09T08:23:17+00:00"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
@@ -48,7 +53,7 @@
   "reused_approved_opening": true,
   "timing_quality_approved": false,
   "active_plan": "timing-repair/pause-plan.json",
-  "final_sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
+  "final_sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
   "final_bytes": 42382465,
   "voice_regenerated_this_run": false,
   "tempo_applied": 1.0,
