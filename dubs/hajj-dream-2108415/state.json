@@ -1,5 +1,5 @@
 {
-  "status": "source_synchronous_dub_rendered",
+  "status": "source_synchronous_dub_published",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -32,13 +32,21 @@
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.266667,
   "publication": {
-    "status": "pending_commit",
-    "branch": "arena/01a08487-dub"
+    "status": "published_verified",
+    "branch": "arena/01a08487-dub",
+    "commit": "d7f2676",
+    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "bytes": 42382465,
+    "git_blob_sha": "c2251f04da243ae7af3d10ebe099ebc374d262d7",
+    "verified_remote_at": "2026-09-09T05:36:28+00:00",
+    "verification": "gh api contents -> blob sha and byte size matched the local object"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
   "completed_at": "2026-09-08T21:03:13+00:00",
-  "next_step": "publish and verify remote bytes, then listen",
+  "next_step": "user ear test; denser wording only on request",
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
   "reused_approved_opening": true,
@@ -56,5 +64,5 @@
     "previous_max_uncovered_gap_seconds": 5.7
   },
   "pending_on_user": "ear test of the delivered file; denser wording only if requested",
-  "updated_at": "2026-09-09T05:35:31+00:00"
+  "updated_at": "2026-09-09T05:36:28+00:00"
 }

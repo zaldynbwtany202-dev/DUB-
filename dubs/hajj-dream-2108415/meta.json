@@ -64,16 +64,23 @@
         "mix": "source-sync/final-dub-source-sync.mix.json"
       },
       "subtitles": "source-sync/final-dub-source-sync.srt",
-      "status": "rendered_verified_pending_publication"
+      "status": "published",
+      "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+      "published_at": "2026-09-09T05:36:28+00:00",
+      "previous_version": "voice12/final-dub-voice12.mp4 (timing superseded: whole-take placement)"
     }
   ],
   "publication": {
     "status": "published_verified",
-    "branch": "arena/01a07c92-dub",
-    "video_commit": "139e51f",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
-    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
-    "verified_at": "2026-09-08T21:03:13+00:00"
+    "branch": "arena/01a08487-dub",
+    "commit": "d7f2676",
+    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "bytes": 42382465,
+    "git_blob_sha": "c2251f04da243ae7af3d10ebe099ebc374d262d7",
+    "verified_remote_at": "2026-09-09T05:36:28+00:00",
+    "verification": "gh api contents -> blob sha and byte size matched the local object"
   },
   "archived_versions": [
     {
@@ -155,6 +162,6 @@
       }
     }
   ],
-  "updated_at": "2026-09-09T05:35:31+00:00",
+  "updated_at": "2026-09-09T05:36:28+00:00",
   "active_version": "source-sync-pause-redistribution"
 }
