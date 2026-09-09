@@ -319,10 +319,12 @@ function paintChoice(choice, where) {
 
 async function loadSavedChoice() {
   try {
+    // The branch first: that is where a click writes. Once this page is served from
+    // main, a relative read would show main's older choice instead of the live one.
     const { text, url } = await fetchFirst([
+      `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/${CHOICE_PATH}?ts=${Date.now()}`,
       `${CHOICE_PATH.split('/').pop()}?ts=${Date.now()}`,
       `../${CHOICE_PATH}?ts=${Date.now()}`,
-      `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/${CHOICE_PATH}?ts=${Date.now()}`,
     ]);
     const saved = JSON.parse(text);
     saved.__from = url;
