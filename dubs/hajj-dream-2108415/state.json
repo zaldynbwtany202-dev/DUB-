@@ -1,5 +1,5 @@
 {
-  "status": "source_synchronous_dub_republished",
+  "status": "voice_only_render_ready_for_listening",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -18,7 +18,7 @@
   ],
   "pending_take_indices": [],
   "final_file": "source-sync/final-dub-source-sync.mp4",
-  "background_requested": "original_neural_estimate",
+  "background_requested": "none — the original clip has no music",
   "previous_result_available": false,
   "previous_result_sha256": "17277bcac0b127cd9af630b42dd6029673fbd9d28cc2b9351b7310d72e923d73",
   "recovery_authorized_by_user": true,
@@ -27,27 +27,21 @@
   "voice_quality_approved": true,
   "candidate_voice_id": "voice-12",
   "pilot_file": "voice-tests/voice-07-natural.wav",
-  "active_version": "source-sync-clause-anchoring-v3",
+  "active_version": "source-sync-no-bed-voice-only",
   "active_script": "timing-repair/script.json",
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.328,
   "publication": {
-    "status": "published_verified",
-    "branch": "arena/01a08487-dub",
+    "status": "awaiting_push_verification",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "size": 42384124,
-    "sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
-    "recorded_at": "2026-09-09T08:17:26+00:00",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "commit": "866e7d7",
-    "remote_blob_sha256_of_git_object": "4bb9b91e1abc27cc185cfd86e52a80ef5720fd76",
-    "policy": "verified with gh api contents on 2026-09-09: remote git blob sha and byte size matched the locally verified render (blob 4bb9b91e, 42384124 B, sha256 99f1966b)",
-    "verified_at": "2026-09-09T08:23:17+00:00"
+    "size": 41915527,
+    "sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+    "recorded_at": "2026-09-09T10:04:11+00:00"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
   "completed_at": "2026-09-08T21:03:13+00:00",
-  "next_step": "كثافة النص: إعادة صياغة على ميزانية timing-repair/clip-budget.json ثم تسجيل من جديد؛ لا حشو صمت ولا تمديد زمني",
+  "next_step": "عينات صوت أثخن بصوت voice-02 في voice-tests/، ثم جولة النص الثالثة بميزانية phrase-budget.json (107 جملات، صمت مستهدف ≈20 ث) وإعادة تسجيل بها",
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
   "reused_approved_opening": true,
@@ -78,9 +72,14 @@
   },
   "timing_metrics": {
     "phase_mean_seconds": 2.937,
-    "coverage_dry": 0.980284,
+    "coverage_delivered": 0.981765,
     "max_quiet_hole_seconds": 0.45,
-    "uncovered_source_speech_seconds": 11.74,
-    "holes_over_budget": 0
-  }
+    "delivered_max_gap_seconds": 0.42,
+    "uncovered_source_speech_seconds": 11.74
+  },
+  "background_note": "الفصل العصبي أنتج بقايا صوت الراوي (90.8% في نطاق الكلام) لا موسيقى؛ حُذفت الطبقة من المسلَّم والنسخة القديمة محفوظة للمقارنة",
+  "voice_candidates_offered": [
+    "voice-01",
+    "voice-02"
+  ]
 }

@@ -84,8 +84,7 @@ TEXT = """# دبلجة متزامنة مع كلام الأصل — صوت {voice
    على مستوى الملف كله، لكن التوزيع المحلي هو العائق: الأجزاء الأضيق نصًا {starved}.
    العلاج: نص بكثافة الأصل ثم إعادة تسجيل، ومدخله `../timing-repair/clip-budget.json`
    و`../timing-repair/clause-fit-dense.json` (عدد الكلمات اللازمة لكل جملة).
-2. الخلفية تقدير UVR من صوت المصدر (+{bg_gain} dB مع خفض تلقائي أثناء الكلام)؛ قد تحمل بقايا
-   من الراوي الأصلي، فالفصل الآلي لا يضمن نقاءً تامًا.
+2. {bg_note}
 3. هذا الملف ليس «نهائيًا» قبل أن تسمعه: الفحوص تقيس التوقيت وسلامة الصورة، لا الجودة.
 
 ## الملفات
@@ -109,11 +108,7 @@ scripts/sync_takes_to_source_timeline.py \\
   --narration .cache/hajj-sync-repair/narration.wav \\
   --anchor-hole {hole} --min-speech {min_speech} \\
   --plan-json ../timing-repair/pause-plan.json --srt final-dub-source-sync.srt
-scripts/restore_background_parts.py --source {source} --parts ../background/parts \\
-  --output .cache/hajj-sync-repair/background.wav
-scripts/mix_original_background.py --voice-video {source} --voice-audio .cache/hajj-sync-repair/narration.wav \\
-  --background .cache/hajj-sync-repair/background.wav --output final-dub-source-sync.mp4 \\
-  --background-gain-db {bg_gain}.0 --audio-bitrate 160k --work-dir .cache/hajj-sync-repair/mix
+{bed_recipe}
 scripts/verify_source_sync_render.py --source {source} --output final-dub-source-sync.mp4 \\
   --narration .cache/hajj-sync-repair/narration.wav --plan ../timing-repair/pause-plan.json \\
   --script {script} --output-json render-verification.json
@@ -141,6 +136,8 @@ def main() -> int:
     parser.add_argument("--script", default="dubs/hajj-dream-2108415/timing-repair/script.json")
     parser.add_argument("--source", default="library/hajj-dream-2108415/source.mp4")
     parser.add_argument("--srt", type=Path)
+    parser.add_argument("--mix-json", type=Path, default=None,
+                        help="the mix report (defaults to final-dub-source-sync.mix.json next to --verification)")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
 
@@ -186,6 +183,31 @@ def main() -> int:
         sweep += ("\n\nالسطر الأول يعبّئ الصمت داخل النافذة بالتساوي؛ الأسطر التالية تحرّكه نحو المراسي."
                   " السقف الأوسع يحسّن الطور مقابل صمت أطول يسمعه الأذن، فقد اختير أكبر سقف يبقي أطول"
                   " فجوة ≤ 0.45 ث. هذه المفاضلة هي السبب في أن تحسين النص لا الخوارزمية هو المتبقّي.")
+    mix_path = args.mix_json or (args.verification.parent / "final-dub-source-sync.mix.json")
+    mix_report = json.loads(mix_path.read_text(encoding="utf-8")) if mix_path.exists() else {}
+    gain = mix_report.get("background_gain_db")
+    if gain is None:
+        bg_note = ("**لا طبقة خلفية إطلاقًا**: المقطع الأصلي لا موسيقى فيه، وتقدير الفصل العصبي "
+                   "المتاح منه 91% من طاقته في نطاق الكلام و28 dB تحت المكساج، أي أنه بقايا صوت "
+                   "الراوي الأصلي لا موسيقى؛ كان يُضاف بـ+12 dB فيُسمع صوتان عربيان معًا، والآن "
+                   "التعليق وحده على الصورة.")
+    else:
+        bg_note = (f"الخلفية تقدير UVR من صوت المصدر (+{gain} dB مع خفض تلقائي أثناء الكلام)؛ قد "
+                   "تحمل بقايا من الراوي الأصلي، فالفصل الآلي لا يضمن نقاءً تامًا.")
+    src = args.source or "library/hajj-dream-2108415/source.mp4"
+    mixline = ("scripts/mix_original_background.py --voice-video {SRC} "
+               "--voice-audio .cache/hajj-sync-repair/narration.wav \\\n"
+               "  {FLAGS} --output final-dub-source-sync.mp4 --audio-bitrate 160k "
+               "--work-dir .cache/hajj-sync-repair/mix")
+    if gain is None:
+        bed_recipe = mixline.replace("{SRC}", src).replace("{FLAGS}", "--no-background")
+    else:
+        bed_recipe = ("scripts/restore_background_parts.py --source " + src +
+                      " --parts ../background/parts \\\n"
+                      "  --output .cache/hajj-sync-repair/background.wav\n" +
+                      mixline.replace("{SRC}", src).replace(
+                          "{FLAGS}", "--background .cache/hajj-sync-repair/background.wav "
+                                     f"--background-gain-db {gain}.0"))
     cues = len([row for row in plan["timeline"] if row["text"]])
     if args.srt and args.srt.is_file():
         cues = len([block for block in args.srt.read_text(encoding="utf-8").split("\n\n") if block.strip()])
@@ -214,8 +236,7 @@ def main() -> int:
         last_packet=ver["picture"]["output_last_packet_time"], lufs=loud["input_i"], tp=loud["input_tp"],
         cues=cues, owned=plan["silence_owned_seconds"], demand=plan["anchor_silence_demand_seconds"],
         starved=", ".join(str(i) for i in plan["text_starved_parts"]) or "لا شيء",
-        bg_gain=json.loads((args.verification.parent / "final-dub-source-sync.mix.json").read_text(
-            encoding="utf-8"))["background_gain_db"],
+        bg_note=bg_note, bed_recipe=bed_recipe,
         words=plan["source_word_count"], integrity=plan["parts"][0]["integrity"],
         script=args.script, source=args.source, prev_master=str(args.previous_master))
     args.output.parent.mkdir(parents=True, exist_ok=True)

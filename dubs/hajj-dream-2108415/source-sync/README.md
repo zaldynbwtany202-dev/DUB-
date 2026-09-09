@@ -26,7 +26,7 @@
 10 مللي‑ثانية) المتداخل مع كلام الأصل، على مسار التعليق الجاف في النسختين؛ الفجوات أقصر من
 0.05 ث غير محسوبة، وأقلّ أفضل في كل سطر:
 
-| المقياس | تعبئة النافذة بنفس التسجيلات (`--no-anchor`) | هذه النسخة |
+| المقياس | توزيع الصمت بالتساوي (`--no-anchor`)، للتقييم النسبي | هذه النسخة |
 |---|---|---|
 | عدد الفجوات المسموعة | 300 | 275 |
 | مجموع الصمت أثناء كلام الأصل | 31.768 ث | **34.902 ث** |
@@ -74,12 +74,12 @@
 - الحالة **verified** — 9/9 بوابة (لا بوابة فاشلة).
 - 237 قطعة طابقت التسجيل المُعتمد عيّنة‑بعيّنة؛ أقصى خطأ موضع 0.0454 مللي‑ثانية
   (2 عيّنة)، وقطع صامتة في الماستر: 0.
-- تغطية كلام الأصل 98.03% في الجاف و97.32% في المكساج؛ أطول فترة صمت أثناء
+- تغطية كلام الأصل 98.03% في الجاف و98.18% في المكساج؛ أطول فترة صمت أثناء
   كلام الأصل 0.45 ث (2 فجوة ≥ 0.3 ث).
 - سرعة الكلام 1.0×؛ `speech_cut: false`؛ `overlapping_speech: 0`؛ قصّات صمت
   145 بأقصى 0.0 مللي‑ثانية؛ صورة MD5 مطابقة للمصدر وأخطاء فك الترميز 0؛
   أقصى زمن حزمة 00:11:16.23.
-- الجهارة -16.03 LUFS والذروة الحقيقية -1.12 dBTP؛ 228 وصلة نصية بتوقيت المقاطع.
+- الجهارة -16.01 LUFS والذروة الحقيقية -1.15 dBTP؛ 228 وصلة نصية بتوقيت المقاطع.
 - `human_listening_certification: false` — النطق واللهجة والانفعال تُحكم بسمعك لا بالأرقام.
 
 ## ما لا تدّعيه هذه النسخة
@@ -90,8 +90,7 @@
    على مستوى الملف كله، لكن التوزيع المحلي هو العائق: الأجزاء الأضيق نصًا 1, 2, 3, 5, 7.
    العلاج: نص بكثافة الأصل ثم إعادة تسجيل، ومدخله `../timing-repair/clip-budget.json`
    و`../timing-repair/clause-fit-dense.json` (عدد الكلمات اللازمة لكل جملة).
-2. الخلفية تقدير UVR من صوت المصدر (+12.0 dB مع خفض تلقائي أثناء الكلام)؛ قد تحمل بقايا
-   من الراوي الأصلي، فالفصل الآلي لا يضمن نقاءً تامًا.
+2. **لا طبقة خلفية إطلاقًا**: المقطع الأصلي لا موسيقى فيه، وتقدير الفصل العصبي المتاح منه 91% من طاقته في نطاق الكلام و28 dB تحت المكساج، أي أنه بقايا صوت الراوي الأصلي لا موسيقى؛ كان يُضاف بـ+12 dB فيُسمع صوتان عربيان معًا، والآن التعليق وحده على الصورة.
 3. هذا الملف ليس «نهائيًا» قبل أن تسمعه: الفحوص تقيس التوقيت وسلامة الصورة، لا الجودة.
 
 ## الملفات
@@ -115,16 +114,13 @@ scripts/sync_takes_to_source_timeline.py \
   --narration .cache/hajj-sync-repair/narration.wav \
   --anchor-hole 0.5 --min-speech 0.3 \
   --plan-json ../timing-repair/pause-plan.json --srt final-dub-source-sync.srt
-scripts/restore_background_parts.py --source library/hajj-dream-2108415/source.mp4 --parts ../background/parts \
-  --output .cache/hajj-sync-repair/background.wav
 scripts/mix_original_background.py --voice-video library/hajj-dream-2108415/source.mp4 --voice-audio .cache/hajj-sync-repair/narration.wav \
-  --background .cache/hajj-sync-repair/background.wav --output final-dub-source-sync.mp4 \
-  --background-gain-db 12.0.0 --audio-bitrate 160k --work-dir .cache/hajj-sync-repair/mix
+  --no-background --output final-dub-source-sync.mp4 --audio-bitrate 160k --work-dir .cache/hajj-sync-repair/mix
 scripts/verify_source_sync_render.py --source library/hajj-dream-2108415/source.mp4 --output final-dub-source-sync.mp4 \
   --narration .cache/hajj-sync-repair/narration.wav --plan ../timing-repair/pause-plan.json \
   --script dubs/hajj-dream-2108415/timing-repair/script.json --output-json render-verification.json
 scripts/compare_quiet_holes.py --source library/hajj-dream-2108415/source.mp4 --master this=.cache/hajj-sync-repair/narration.wav \
-  --master previous=.cache/hajj-sync-repair/narration-baseline.wav --output-json ../timing-repair/hole-comparison.json
+  --master previous=/tmp/unused.wav --output-json ../timing-repair/hole-comparison.json
 ```
 
 `--no-anchor` في الأمر الثاني يعيد إنتاج التعبئة القديمة؛ التقرير يطبع رقمَي الطريقتين معًا،

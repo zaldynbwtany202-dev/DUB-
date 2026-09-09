@@ -1,8 +1,8 @@
 {
   "source": "library/hajj-dream-2108415/source.mp4",
-  "output": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-  "output_sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
-  "output_bytes": 42384124,
+  "output": "/tmp/voice-only.mp4",
+  "output_sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+  "output_bytes": 41915527,
   "picture": {
     "source_duration": 676.33,
     "output_duration": 676.27,
@@ -44,11 +44,11 @@
     },
     "delivered_mix": {
       "source_speech_seconds": 675.07,
-      "dubbed_speech_seconds": 593.17,
-      "uncovered_source_speech_seconds": 18.08,
-      "source_speech_coverage": 0.973218,
-      "max_uncovered_gap": 0.64,
-      "gap_count": 6,
+      "dubbed_speech_seconds": 603.47,
+      "uncovered_source_speech_seconds": 12.31,
+      "source_speech_coverage": 0.981765,
+      "max_uncovered_gap": 0.42,
+      "gap_count": 1,
       "boundary_tolerance_seconds": 0.15,
       "minimum_reported_gap_seconds": 0.3
     },
@@ -66,33 +66,8 @@
     ],
     "delivered_longest_gaps": [
       {
-        "start": 416.59,
-        "end": 417.23,
-        "duration": 0.64
-      },
-      {
         "start": 181.74,
-        "end": 182.23,
-        "duration": 0.49
-      },
-      {
-        "start": 156.81,
-        "end": 157.26,
-        "duration": 0.45
-      },
-      {
-        "start": 601.81,
-        "end": 602.26,
-        "duration": 0.45
-      },
-      {
-        "start": 170.61,
-        "end": 171.03,
-        "duration": 0.42
-      },
-      {
-        "start": 471.09,
-        "end": 471.51,
+        "end": 182.16,
         "duration": 0.42
       }
     ],
@@ -165,16 +140,16 @@
     "method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
   },
   "loudness": {
-    "input_i": "-16.03",
-    "input_tp": "-1.12",
-    "input_lra": "2.80",
-    "input_thresh": "-26.33",
-    "output_i": "-16.01",
+    "input_i": "-16.01",
+    "input_tp": "-1.15",
+    "input_lra": "3.00",
+    "input_thresh": "-26.42",
+    "output_i": "-16.00",
     "output_tp": "-1.50",
-    "output_lra": "2.80",
-    "output_thresh": "-26.30",
+    "output_lra": "2.90",
+    "output_thresh": "-26.42",
     "normalization_type": "dynamic",
-    "target_offset": "0.01"
+    "target_offset": "0.00"
   },
   "gates": {
     "video_stream_bit_identical": true,

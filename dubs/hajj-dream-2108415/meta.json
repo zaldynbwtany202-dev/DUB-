@@ -2,11 +2,114 @@
   "slug": "hajj-dream-2108415",
   "title": "دبلجة الحج — صوت voice-12 بمزامنة مقيسة على كلام الأصل",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "source_synchronous_dub_ready_for_listening",
+  "status": "voice_only_render_verified_awaiting_push",
   "versions": [
     {
-      "run_id": "source-sync-clause-anchoring-v3",
+      "run_id": "source-sync-no-bed-voice-only",
       "file": "source-sync/final-dub-source-sync.mp4",
+      "kind": "complete_dub",
+      "voice_id": "voice-12",
+      "duration": 676.33,
+      "size": 41915527,
+      "sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+      "rendered_at": "2026-09-09T10:04:11+00:00",
+      "audio_bitrate": "160k",
+      "background": {
+        "gain_db": null,
+        "ducking": null,
+        "source": null,
+        "kind": "none — the source carries no music; nothing added under the dub",
+        "purity_guarantee": true,
+        "evidence": "timing-repair/source-analysis/vocal-pauses.json and the bed spectrum: 90.8% of the estimate's energy inside 120 Hz–1 kHz"
+      },
+      "timing": {
+        "method": "clause-level anchoring on the original speech units, unanchored chunks interpolated between anchors, silence projected onto the anchors inside the measured hole budget; chunks cut inside measured silence; speech speed untouched",
+        "tempo": 1.0,
+        "anchored": true,
+        "anchor_hole_seconds": 0.5,
+        "min_speech_seconds": 0.3,
+        "source_speech_coverage_dry": 0.980284,
+        "source_speech_coverage_delivered": 0.981765,
+        "max_quiet_hole_during_source_speech_seconds": 0.45,
+        "quiet_holes_over_budget": 0,
+        "quiet_seconds_during_source_speech": 34.902,
+        "max_uncovered_gap_seconds": 0.0,
+        "uncovered_source_speech_seconds": 11.74,
+        "chunks": 237,
+        "clauses": 228,
+        "sentence_timing_error": {
+          "anchored": 236,
+          "mean_seconds": 2.937,
+          "median_seconds": 2.234,
+          "p90_seconds": 6.702,
+          "max_seconds": 14.499
+        },
+        "sentence_timing_error_previous_method": {
+          "anchored": 236,
+          "mean_seconds": 3.061,
+          "median_seconds": 2.398,
+          "p90_seconds": 7.096,
+          "max_seconds": 14.397
+        },
+        "anchor_conflicts_unreachable_without_rewriting": 96,
+        "speech_cut": false,
+        "overlapping_speech": 0,
+        "max_alignment_error_ms": 0.0454,
+        "quiet_hole_method": "scripts/compare_quiet_holes.py (same detector on both renders)",
+        "phase_method": "scripts/verify_source_sync_render.py clause_phase, cross-checked against the plan",
+        "policy_frontier": "timing-repair/policy-sweep.json",
+        "previous_render_quiet_seconds_during_source_speech": 31.768,
+        "delivered_max_gap_seconds": 0.42,
+        "bed": "none"
+      },
+      "settings": {
+        "tts_engine": "agent",
+        "target_lang": "ar-EG",
+        "bg_music": true,
+        "sample_rate": 44100,
+        "min_tempo": 1.0,
+        "max_tempo": 1.0,
+        "pause_min_seconds": 0.08,
+        "pause_max_seconds": 0.5
+      },
+      "technical_checks_passed": true,
+      "gates": {
+        "video_stream_bit_identical": true,
+        "speech_untouched": true,
+        "no_long_gaps": true,
+        "coverage_within_budget": true,
+        "clause_onsets_at_planned_time": true,
+        "no_quiet_hole_over_budget": true,
+        "clause_phase_matches_plan": true,
+        "loudness_in_range": true,
+        "durations_match": true
+      },
+      "human_listening_certification": false,
+      "content_note": "نفس التسجيلات المعتمدة بنفس المواضع؛ الفرق الوحيد أن طبقة الخلفية حُذفت لأن المصدر لا موسيقى فيه، فتحسّنت التغطية المقاسة من الملف المسلَّم",
+      "reports": [
+        "source-sync/render-verification.json",
+        "timing-repair/pause-plan.json",
+        "timing-repair/hole-comparison.json",
+        "timing-repair/policy-sweep.json"
+      ],
+      "subtitles": "source-sync/final-dub-source-sync.srt",
+      "status": "source_synchronous_dub_ready_for_listening",
+      "superseded_because": "كانت تُضيف فوق التعليق طبقة «خلفية» مقدَّرة بالفصل العصبي من صوت المصدر؛ والقياس أن 91% من طاقتها في نطاق الكلام و28 dB تحت المكساج، أي بقايا صوت الراوي الأصلي لا موسيقى (المقطع بلا موسيقى أصلًا). مع +12 dB كان يُسمع صاتان عربيان، وصار التعليق وحده. الملف محفوظ هنا للمقارنة السمعية فقط."
+    }
+  ],
+  "publication": {
+    "status": "local_render_complete_awaiting_push",
+    "branch": "arena/01a08487-dub",
+    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "size": 41915527,
+    "sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+    "recorded_at": "2026-09-09T10:04:11+00:00",
+    "policy": "verify the remote file with gh api before reporting a download link"
+  },
+  "archived_versions": [
+    {
+      "run_id": "source-sync-clause-anchoring-v3",
+      "file": "archive-with-bed/final-dub-source-sync-plus12dB-bed.mp4",
       "kind": "complete_dub",
       "voice_id": "voice-12",
       "duration": 676.33,
@@ -96,22 +199,8 @@
       ],
       "subtitles": "source-sync/final-dub-source-sync.srt",
       "status": "source_synchronous_dub_ready_for_listening",
-      "superseded_because": "نفس التسجيلات؛ أُعيد التخطيط بسقف صمت 0.5 ث بدل 0.62 ث بعد إصلاح استيفاء المواضع غير المرتكزة، فارتفعت تغطية كلام الأصل من 0.9708 إلى 0.9803 ونقص الصمت غير المغطّي من 18.27 ث إلى 11.74 ث"
-    }
-  ],
-  "publication": {
-    "status": "published_verified",
-    "branch": "arena/01a08487-dub",
-    "commit": "866e7d7",
-    "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "size": 42384124,
-    "sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
-    "policy": "verified with gh api contents on 2026-09-09: remote git blob sha and byte size matched the locally verified render (blob 4bb9b91e, 42384124 B, sha256 99f1966b)",
-    "remote_blob_sha256_of_git_object": "4bb9b91e1abc27cc185cfd86e52a80ef5720fd76",
-    "verified_at": "2026-09-09T08:23:17+00:00"
-  },
-  "archived_versions": [
+      "superseded_because": "كانت تُضيف فوق التعليق طبقة «خلفية» مقدَّرة بالفصل العصبي من صوت المصدر؛ والقياس أن 91% من طاقتها في نطاق الكلام و28 dB تحت المكساج، أي بقايا صوت الراوي الأصلي لا موسيقى (المقطع بلا موسيقى أصلًا). مع +12 dB كان يُسمع صاتان عربيان، وصار التعليق وحده. الملف محفوظ هنا للمقارنة السمعية فقط."
+    },
     {
       "run_id": "source-sync-clause-anchoring",
       "file": "source-sync/final-dub-source-sync.mp4",
@@ -350,7 +439,7 @@
       }
     }
   ],
-  "updated_at": "2026-09-09T08:23:17+00:00",
-  "active_version": "source-sync-clause-anchoring-v3",
+  "updated_at": "2026-09-09T10:04:11+00:00",
+  "active_version": "source-sync-no-bed-voice-only",
   "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4"
 }
