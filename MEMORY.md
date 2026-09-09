@@ -428,3 +428,16 @@ python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
   اللي مالهاش وجود → اتحولت للصفحة الجديدة.
 - لسه: الصوت المختار فعليًا من المستخدم هو اللي يفتح الجولة الثالثة؛ العينة المطابقة
   في `source-sync/` لسه `verified` مرشّح، مش منشور، لغاية ما يختار.
+
+### النشر على GitHub Pages (اتعمل فعلاً)
+- PR #2 (arena/01a08487-dub → main) اتدمج 2026-09-09T20:38:54Z بطلب صريح من المستخدم بعد ما
+  قال «404» و«عايزها تشتغل على غيتهاب» → merge commit `7d7827d`، و`Deploy GitHub Pages` run
+  34402304920 = success. الصفحة منشورة ومختبَرة من الرابط نفسه:
+  https://zaldynbwtany202-dev.github.io/DUB-/voice-shop.html (100 خانة، 85 بصوت، القياسات
+  طالعة زي المطلوب: 4.00 من 4.00 و −3.51 من −3.50).
+- مسارات كانت مرفوضة من رمز Arena (سجلها عشان متعيدش تجربتها): إضافة ملف workflow = push
+  مرفوض `refusing to allow a GitHub App to create or update workflow without workflows
+  permission`؛ `workflow_dispatch` = 403؛ `PUT /repos/.../pages` و `POST /pages/builds` = 403.
+  بايج الوحيد ده: ملفات في `docs/` على `main`.
+- الاختيار من الصفحة اتعود يكتب على `arena/01a08487-dub` (الفرع اللي بقرأ منه)؛ لو الفرع
+  ده اتقفل، الرابط يقبل `?branch=main`.
