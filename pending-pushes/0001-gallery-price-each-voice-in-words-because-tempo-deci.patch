@@ -2,7 +2,7 @@ From abac2181a97967529e918d992560d9e0bf3937ab Mon Sep 17 00:00:00 2001
 From: zaldynbwtany202-dev
  <227440178+zaldynbwtany202-dev@users.noreply.github.com>
 Date: Wed, 9 Sep 2026 11:46:41 +0000
-Subject: [PATCH 1/4] gallery: price each voice in words, because tempo decides
+Subject: [PATCH 1/5] gallery: price each voice in words, because tempo decides
  what the text can keep
 
 Round three has a fixed budget - 1585 words over 632.5 s of original speech -

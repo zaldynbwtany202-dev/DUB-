@@ -2,7 +2,7 @@ From 04a1ff351d660de2767cf1e8029cf9b37fe03eac Mon Sep 17 00:00:00 2001
 From: zaldynbwtany202-dev
  <227440178+zaldynbwtany202-dev@users.noreply.github.com>
 Date: Wed, 9 Sep 2026 12:14:08 +0000
-Subject: [PATCH 2/4] Verify a filtered master as air, not music:
+Subject: [PATCH 2/5] Verify a filtered master as air, not music:
  --master-chain mode, and six tests that prove it can fail
 
 A matched master used to be unpublishable: the gate demanded sample-identity with

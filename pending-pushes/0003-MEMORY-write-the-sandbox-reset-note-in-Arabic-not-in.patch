@@ -2,7 +2,7 @@ From 41f6b48c55ce15f59d114dcbd07bcdf69cc5cd34 Mon Sep 17 00:00:00 2001
 From: zaldynbwtany202-dev
  <227440178+zaldynbwtany202-dev@users.noreply.github.com>
 Date: Wed, 9 Sep 2026 12:17:31 +0000
-Subject: [PATCH 3/4] MEMORY: write the sandbox-reset note in Arabic, not in
+Subject: [PATCH 3/5] MEMORY: write the sandbox-reset note in Arabic, not in
  stray Cyrillic
 
 Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>

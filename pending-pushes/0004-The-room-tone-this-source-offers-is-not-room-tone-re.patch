@@ -2,7 +2,7 @@ From 723f8763d1997b6a3b1c232e2a039f4370c3a50f Mon Sep 17 00:00:00 2001
 From: zaldynbwtany202-dev
  <227440178+zaldynbwtany202-dev@users.noreply.github.com>
 Date: Wed, 9 Sep 2026 12:49:05 +0000
-Subject: [PATCH 4/4] The room tone this source offers is not room tone: refuse
+Subject: [PATCH 4/5] The room tone this source offers is not room tone: refuse
  it, and say why
 
 The acoustics match lifted its 'air' from dubs/.../source-analysis/vocal-pauses.json - and

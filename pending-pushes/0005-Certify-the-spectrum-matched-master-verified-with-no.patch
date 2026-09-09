@@ -1,0 +1,1377 @@
+From 91372e35b7057437d1c34a62a6936c82aad35ac4 Mon Sep 17 00:00:00 2001
+From: zaldynbwtany202-dev
+ <227440178+zaldynbwtany202-dev@users.noreply.github.com>
+Date: Wed, 9 Sep 2026 12:50:12 +0000
+Subject: [PATCH 5/5] Certify the spectrum-matched master: verified, with
+ nothing added under the voice
+
+The EQ-only match now passes all ten gates, including the new one: the delivered
+master equals the declared filtered dry master to the sample (max absolute
+difference printed below, zero time lag, identical length), the picture stream is
+bit-identical, 237/237 pieces are the approved takes with 0.0454 ms alignment,
+coverage 0.983231 with a 0.42 s worst gap and a 0.45 s quiet hole. The report is
+kept beside the chain report rather than over final-dub-source-sync.mp4, because
+this is a candidate for listening: the published render stays until a voice is
+chosen from the gallery, and the room-tone question is closed for this source by
+measurement, not by taste.
+
+pending-pushes/ carries the unpushed commits as patches, since the GitHub token
+rotated mid-session and .git/config is not restored by the sandbox snapshot.
+
+Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
+---
+ .../timing-repair/matched-render-note.json    |  30 ++
+ .../matched-render-verification.json          | 188 ++++++++
+ ...ch-voice-in-words-because-tempo-deci.patch | 183 +++++++
+ ...d-master-as-air-not-music-master-cha.patch | 408 ++++++++++++++++
+ ...-sandbox-reset-note-in-Arabic-not-in.patch |  46 ++
+ ...is-source-offers-is-not-room-tone-re.patch | 447 ++++++++++++++++++
+ 6 files changed, 1302 insertions(+)
+ create mode 100644 dubs/hajj-dream-2108415/timing-repair/matched-render-note.json
+ create mode 100644 dubs/hajj-dream-2108415/timing-repair/matched-render-verification.json
+ create mode 100644 pending-pushes/0001-gallery-price-each-voice-in-words-because-tempo-deci.patch
+ create mode 100644 pending-pushes/0002-Verify-a-filtered-master-as-air-not-music-master-cha.patch
+ create mode 100644 pending-pushes/0003-MEMORY-write-the-sandbox-reset-note-in-Arabic-not-in.patch
+ create mode 100644 pending-pushes/0004-The-room-tone-this-source-offers-is-not-room-tone-re.patch
+
+diff --git a/dubs/hajj-dream-2108415/timing-repair/matched-render-note.json b/dubs/hajj-dream-2108415/timing-repair/matched-render-note.json
+new file mode 100644
+index 0000000..fed21bc
+--- /dev/null
++++ b/dubs/hajj-dream-2108415/timing-repair/matched-render-note.json
+@@ -0,0 +1,30 @@
++{
++  "what_this_file_is": "تقرير الفحص الكامل لنسخة الماستر المُعالَجة بالطيف فقط (بلا أي طبقة تحت الصوت): `dubs/hajj-dream-2108415/timing-repair/acoustics-match.json` هو السلسلة المعلنة، والناتج هنا طابقها عيّنة-بعيّنة. مش منشور — نسخة مرشّحة للاستماع لحد ما المستخدم يختار الصوت.",
++  "air_decision": "الهواء مرفوض من المصدر نفسه: المتبقي بين كلمات الراوي أقسى 9.8 dB تحت مستوى كلامه Typical، و19.99 ث من الوقفات متوسطة 0.161 ث، و%63 منها داخل نوى كلمات ASR. فبدل وضع صوت الراوي الأصلي تحت الدبلجة، اتطبقت الملاءمة الطيفية لوحدها.",
++  "status": "verified",
++  "gates": {
++    "video_stream_bit_identical": true,
++    "speech_untouched": true,
++    "master_chain_is_air_not_music": true,
++    "no_long_gaps": true,
++    "coverage_within_budget": true,
++    "clause_onsets_at_planned_time": true,
++    "no_quiet_hole_over_budget": true,
++    "clause_phase_matches_plan": true,
++    "loudness_in_range": true,
++    "durations_match": true
++  },
++  "key_numbers": {
++    "alignment_ms": 0.0454,
++    "dry_coverage": 0.981632,
++    "delivered_coverage": 0.983231,
++    "max_abs_difference_vs_declared_chain": 0.0,
++    "rms_difference_dbfs": -240.0,
++    "max_time_lag_ms": 0.0,
++    "length_difference_samples": 0,
++    "chain_report_sha256": "ebf2ea08f6cafa449f99b0fe2c112061b227e286aebea695add3f1f8c4b43489",
++    "filters_applied": "bass=g=-4.39:f=180:t=s,treble=g=2.55:f=3200:t=s,lowpass=f=6500"
++  },
++  "human_listening_certification": false,
++  "dialect_certification": "بانتظار اختيار الصوت على voice-tests/dialect-stress.txt"
++}
+diff --git a/dubs/hajj-dream-2108415/timing-repair/matched-render-verification.json b/dubs/hajj-dream-2108415/timing-repair/matched-render-verification.json
+new file mode 100644
+index 0000000..f533cdd
+--- /dev/null
++++ b/dubs/hajj-dream-2108415/timing-repair/matched-render-verification.json
+@@ -0,0 +1,188 @@
++{
++  "source": "library/hajj-dream-2108415/source.mp4",
++  "output": ".cache/hajj-sync-repair/matched-preview.mp4",
++  "output_sha256": "027fb01475246e2582c7d6732a597fb3b8b4ff9b1a27ea5ad355ba315f13171d",
++  "output_bytes": 41927422,
++  "picture": {
++    "source_duration": 676.33,
++    "output_duration": 676.4,
++    "source_video_md5": "5638564d989fc1aa43d755f1ab05857e",
++    "output_video_md5": "5638564d989fc1aa43d755f1ab05857e",
++    "video_stream_identical": true,
++    "source_video_kib": 27145,
++    "output_video_kib": 27145,
++    "output_last_packet_time": "00:11:16.23",
++    "source_decode_errors": 0,
++    "output_decode_errors": 0,
++    "video_reencoded": false,
++    "streams": [
++      "Video",
++      "Audio"
++    ]
++  },
++  "speech": {
++    "pieces_checked": 237,
++    "pieces_not_identical_to_the_take": 0,
++    "worst_mismatch": [],
++    "max_alignment_error_samples": 2,
++    "max_alignment_error_ms": 0.0454,
++    "pieces_silent_in_master": 0,
++    "master_duration": 676.448,
++    "master_peak_dbfs": -1.206,
++    "compared_against": ".cache/hajj-sync-repair/narration.wav",
++    "method": "every placed piece is compared sample by sample with the approved take, and its speech onset is compared with the planned cue time; silence between pieces moved, the speech itself did not"
++  },
++  "timeline": {
++    "dry_narration": {
++      "source_speech_seconds": 675.07,
++      "dubbed_speech_seconds": 601.08,
++      "uncovered_source_speech_seconds": 12.4,
++      "source_speech_coverage": 0.981632,
++      "max_uncovered_gap": 0.42,
++      "gap_count": 1,
++      "boundary_tolerance_seconds": 0.15,
++      "minimum_reported_gap_seconds": 0.3
++    },
++    "delivered_mix": {
++      "source_speech_seconds": 675.07,
++      "dubbed_speech_seconds": 604.61,
++      "uncovered_source_speech_seconds": 11.32,
++      "source_speech_coverage": 0.983231,
++      "max_uncovered_gap": 0.42,
++      "gap_count": 1,
++      "boundary_tolerance_seconds": 0.15,
++      "minimum_reported_gap_seconds": 0.3
++    },
++    "dry_longest_gaps": [
++      {
++        "start": 181.74,
++        "end": 182.16,
++        "duration": 0.42
++      }
++    ],
++    "delivered_longest_gaps": [
++      {
++        "start": 181.74,
++        "end": 182.16,
++        "duration": 0.42
++      }
++    ],
++    "planned": {
++      "uncovered_source_speech_seconds": 11.74,
++      "max_uncovered_gap": 0.0
++    },
++    "method": "same Silero settings on the original and on the delivered audio"
++  },
++  "quiet_holes": {
++    "method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms blocks) that overlaps original speech; independent of any speech detector",
++    "count_over_budget": 0,
++    "longest": [
++      {
++        "start": 615.42,
++        "end": 615.87,
++        "duration": 0.45
++      },
++      {
++        "start": 221.18,
++        "end": 221.62,
++        "duration": 0.44
++      },
++      {
++        "start": 157.02,
++        "end": 157.44,
++        "duration": 0.42
++      },
++      {
++        "start": 601.99,
++        "end": 602.41,
++        "duration": 0.42
++      },
++      {
++        "start": 170.77,
++        "end": 171.17,
++        "duration": 0.4
++      },
++      {
++        "start": 181.56,
++        "end": 181.96,
++        "duration": 0.4
++      }
++    ],
++    "total_seconds": 38.152,
++    "budget_seconds": 0.7
++  },
++  "clause_phase": {
++    "anchored_rows": 236,
++    "rows_measured": 236,
++    "rows_missing_onset": [],
++    "onset_error_from_plan_seconds": {
++      "mean": 0.0,
++      "max": 0.0
++    },
++    "phase_vs_original": {
++      "anchored": 236,
++      "mean_seconds": 2.975,
++      "median_seconds": 2.293,
++      "p90_seconds": 6.702,
++      "max_seconds": 14.499
++    },
++    "plan_claimed": {
++      "anchored": 236,
++      "mean_seconds": 2.975,
++      "median_seconds": 2.293,
++      "p90_seconds": 6.702,
++      "max_seconds": 14.499
++    },
++    "method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
++  },
++  "master_chain": {
++    "chain_report": "dubs/hajj-dream-2108415/timing-repair/acoustics-match.json",
++    "chain_report_sha256": "ebf2ea08f6cafa449f99b0fe2c112061b227e286aebea695add3f1f8c4b43489",
++    "filters_applied": "bass=g=-4.39:f=180:t=s,treble=g=2.55:f=3200:t=s,lowpass=f=6500",
++    "air_source": null,
++    "method": "the delivered master, in the pauses, must measure as the room tone level the chain report declares, be stationary, show no pumping against the speech envelope and sit at zero time lag - that is air from the scene, not music and not a re-recording",
++    "usable": true,
++    "gap_seconds": 8.86,
++    "max_abs_difference": 0.0,
++    "rms_difference_dbfs": -240.0,
++    "air_level_dbfs": -180.0,
++    "declared_air_level_dbfs": null,
++    "air_level_error_db": null,
++    "air_level_spread_per_second_db": 0.0,
++    "level_under_speech_minus_in_gaps_db": 0.0,
++    "spectral_flatness_db": 0.0,
++    "spectral_peakiness_db": 0.0,
++    "correlation_with_speech_envelope": 0.0,
++    "max_time_lag_ms": 0.0,
++    "length_difference_samples": 0,
++    "air_added": false,
++    "air_refused_reason": "the lifted material is only 9.8 dB below typical speech (needs 10); that is voice, not room tone - refusing to lay it under the dub"
++  },
++  "loudness": {
++    "input_i": "-16.08",
++    "input_tp": "-1.12",
++    "input_lra": "2.90",
++    "input_thresh": "-26.52",
++    "output_i": "-15.99",
++    "output_tp": "-1.50",
++    "output_lra": "2.90",
++    "output_thresh": "-26.43",
++    "normalization_type": "dynamic",
++    "target_offset": "-0.01"
++  },
++  "gates": {
++    "video_stream_bit_identical": true,
++    "speech_untouched": true,
++    "master_chain_is_air_not_music": true,
++    "no_long_gaps": true,
++    "coverage_within_budget": true,
++    "clause_onsets_at_planned_time": true,
++    "no_quiet_hole_over_budget": true,
++    "clause_phase_matches_plan": true,
++    "loudness_in_range": true,
++    "durations_match": true
++  },
++  "status": "verified",
++  "human_listening_certification": false,
++  "note": "These gates measure timing, picture integrity, and loudness. They do not certify pronunciation, dialect, or emotional delivery."
++}
+diff --git a/pending-pushes/0001-gallery-price-each-voice-in-words-because-tempo-deci.patch b/pending-pushes/0001-gallery-price-each-voice-in-words-because-tempo-deci.patch
+new file mode 100644
+index 0000000..a26154e
+--- /dev/null
++++ b/pending-pushes/0001-gallery-price-each-voice-in-words-because-tempo-deci.patch
+@@ -0,0 +1,183 @@
++From abac2181a97967529e918d992560d9e0bf3937ab Mon Sep 17 00:00:00 2001
++From: zaldynbwtany202-dev
++ <227440178+zaldynbwtany202-dev@users.noreply.github.com>
++Date: Wed, 9 Sep 2026 11:46:41 +0000
++Subject: [PATCH 1/4] gallery: price each voice in words, because tempo decides
++ what the text can keep
++
++Round three has a fixed budget - 1585 words over 632.5 s of original speech -
++and stretching is forbidden, so the candidate's measured pace is not a detail:
++it is how many words of meaning survive. voice-07 at 2.545 w/s, voice-13 at
++2.509 and voice-11 at 2.516 carry the whole rewrite and hand the leftover to
++breaths; at 2.17-2.35 w/s the ear gets a performance that must lose 60-145
++words. Recorded as data next to the clips so the cost is visible before the
++choice, not argued about after it.
++
++Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
++---
++ .../voice-tests/gallery/README.md             |  19 +++
++ .../voice-tests/gallery/pace-fit.json         | 122 ++++++++++++++++++
++ 2 files changed, 141 insertions(+)
++ create mode 100644 dubs/hajj-dream-2108415/voice-tests/gallery/pace-fit.json
++
++diff --git a/dubs/hajj-dream-2108415/voice-tests/gallery/README.md b/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
++index f00a0c4..02bd945 100644
++--- a/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
+++++ b/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
++@@ -46,6 +46,25 @@
++ القائمة الكاملة في `voice-tests/dialect-stress.txt`، وللمقارنة الصوتية الخالصة
++ `voice-tests/dialect-stress.txt` مطبقة على `voice-00/01/03` في نفس المجلد.
++ 
+++## ثمن كل اختيار (ده اللي بيحدد فعلاً، مش الطابع وحده)
+++
+++الميزانية ثابتة: **1585 كلمة** على **632.5 ثانية** كلام. السرعة المقSuiteة لكل صوت تعرفه يسع كام كلمة:
+++
+++| صوت | كلمات/ث | يسع (كلمة) | ناقص | يعني إيه |
+++|---|---|---|---|---|
+++| **voice-07** | 2.545 | 1609 | 0 | النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي |
+++| **voice-13** | 2.509 | 1586 | 0 | النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي |
+++| **voice-11** | 2.516 | 1591 | 0 | النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي |
+++| **voice-12** | 2.353 | 1488 | 97 | لازم يُقطع 97 كلمة (6.1%) — لا تمديد |
+++| **voice-08** | 2.336 | 1477 | 107 | لازم يُقطع 107 كلمة (6.8%) — لا تمديد |
+++| **voice-05** | 2.331 | 1474 | 111 | لازم يُقطع 111 كلمة (7.0%) — لا تمديد |
+++| **voice-06** | 2.255 | 1426 | 159 | لازم يُقطع 159 كلمة (10.0%) — لا تمديد |
+++| **voice-10** | 2.225 | 1407 | 178 | لازم يُقطع 178 كلمة (11.2%) — لا تمديد |
+++| **voice-04** | 2.222 | 1405 | 180 | لازم يُقطع 180 كلمة (11.3%) — لا تمديد |
+++| **voice-09** | 2.172 | 1373 | 211 | لازم يُقطع 211 كلمة (13.3%) — لا تمديد |
+++
+++ثلاثة أصوات بس سرعتها فوق المطلوب (voice-07، voice-13، voice-11) — دول اللي يقدروا يقولوا النص كامل من غير ما نحذف معاني ومن غير أي تمديد. الباقي معناه قطع من النص؛ مش عيب في الصوت، بس ده الثمن، واختارك بالأذن هو الفيصل.
+++
++ **رقم واحد منك = الأوامر كلها**: أعيد اشتقاق `phrase-budget.json --rate` بسرعة الصوت
++ المختار، أكتب الـ107 جُملة طابعًا-بطابع حسب `affect-map.json`، أسجّل من غير أي تمديد،
++ أطبّق `match_source_acoustics.py` على الماستر (بلا موسيقى، بهواء الأصل نفسه)، وأشغّل
++diff --git a/dubs/hajj-dream-2108415/voice-tests/gallery/pace-fit.json b/dubs/hajj-dream-2108415/voice-tests/gallery/pace-fit.json
++new file mode 100644
++index 0000000..928fe27
++--- /dev/null
+++++ b/dubs/hajj-dream-2108415/voice-tests/gallery/pace-fit.json
++@@ -0,0 +1,122 @@
+++{
+++  "method": "سرعة كل مرشّح مقاسة على المقطع نفسه (scripts/compare_voice_candidates.py)، مطبّقة على ميزانية الجولة الثالثة: 1585 كلمة فوق 632.5 ثانية كلام الأصل، بواقف الأصل 19.99 ث",
+++  "rule": "التمديد ممنوع وحشو الصمت ممنوع؛ فسرعة الصوت المختار تحدد كم كلمة تدخل. لو الصوت أبطأ من المطلوب، الفرق يتحسب من المعنى لا من الإيقاع.",
+++  "budget": {
+++    "needed_dub_words": 1585,
+++    "source_speech_seconds": 632.5,
+++    "target_words_per_second": 2.507,
+++    "source_pause_seconds": 19.99
+++  },
+++  "voices": [
+++    {
+++      "voice": "voice-07",
+++      "rank_by_band_and_proximity": 4,
+++      "measured_words_per_sec": 2.545,
+++      "capacity_words_in_632.5s": 1609,
+++      "words_needed": 1585,
+++      "words_to_cut": 0,
+++      "cut_percent": 0.0,
+++      "spare_seconds_if_text_kept": 9.7,
+++      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+++    },
+++    {
+++      "voice": "voice-13",
+++      "rank_by_band_and_proximity": 5,
+++      "measured_words_per_sec": 2.509,
+++      "capacity_words_in_632.5s": 1586,
+++      "words_needed": 1585,
+++      "words_to_cut": 0,
+++      "cut_percent": 0.0,
+++      "spare_seconds_if_text_kept": 0.8,
+++      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+++    },
+++    {
+++      "voice": "voice-11",
+++      "rank_by_band_and_proximity": 7,
+++      "measured_words_per_sec": 2.516,
+++      "capacity_words_in_632.5s": 1591,
+++      "words_needed": 1585,
+++      "words_to_cut": 0,
+++      "cut_percent": 0.0,
+++      "spare_seconds_if_text_kept": 2.5,
+++      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+++    },
+++    {
+++      "voice": "voice-12",
+++      "rank_by_band_and_proximity": 6,
+++      "measured_words_per_sec": 2.353,
+++      "capacity_words_in_632.5s": 1488,
+++      "words_needed": 1585,
+++      "words_to_cut": 97,
+++      "cut_percent": 6.1,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 97 كلمة (6.1%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-08",
+++      "rank_by_band_and_proximity": 1,
+++      "measured_words_per_sec": 2.336,
+++      "capacity_words_in_632.5s": 1477,
+++      "words_needed": 1585,
+++      "words_to_cut": 107,
+++      "cut_percent": 6.8,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 107 كلمة (6.8%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-05",
+++      "rank_by_band_and_proximity": 3,
+++      "measured_words_per_sec": 2.331,
+++      "capacity_words_in_632.5s": 1474,
+++      "words_needed": 1585,
+++      "words_to_cut": 111,
+++      "cut_percent": 7.0,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 111 كلمة (7.0%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-06",
+++      "rank_by_band_and_proximity": 2,
+++      "measured_words_per_sec": 2.255,
+++      "capacity_words_in_632.5s": 1426,
+++      "words_needed": 1585,
+++      "words_to_cut": 159,
+++      "cut_percent": 10.0,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 159 كلمة (10.0%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-10",
+++      "rank_by_band_and_proximity": 8,
+++      "measured_words_per_sec": 2.225,
+++      "capacity_words_in_632.5s": 1407,
+++      "words_needed": 1585,
+++      "words_to_cut": 178,
+++      "cut_percent": 11.2,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 178 كلمة (11.2%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-04",
+++      "rank_by_band_and_proximity": 9,
+++      "measured_words_per_sec": 2.222,
+++      "capacity_words_in_632.5s": 1405,
+++      "words_needed": 1585,
+++      "words_to_cut": 180,
+++      "cut_percent": 11.3,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 180 كلمة (11.3%) — لا تمديد"
+++    },
+++    {
+++      "voice": "voice-09",
+++      "rank_by_band_and_proximity": 10,
+++      "measured_words_per_sec": 2.172,
+++      "capacity_words_in_632.5s": 1373,
+++      "words_needed": 1585,
+++      "words_to_cut": 211,
+++      "cut_percent": 13.3,
+++      "spare_seconds_if_text_kept": 0.0,
+++      "verdict": "لازم يُقطع 211 كلمة (13.3%) — لا تمديد"
+++    }
+++  ]
+++}
++-- 
++2.39.5
++
+diff --git a/pending-pushes/0002-Verify-a-filtered-master-as-air-not-music-master-cha.patch b/pending-pushes/0002-Verify-a-filtered-master-as-air-not-music-master-cha.patch
+new file mode 100644
+index 0000000..1801524
+--- /dev/null
++++ b/pending-pushes/0002-Verify-a-filtered-master-as-air-not-music-master-cha.patch
+@@ -0,0 +1,408 @@
++From 04a1ff351d660de2767cf1e8029cf9b37fe03eac Mon Sep 17 00:00:00 2001
++From: zaldynbwtany202-dev
++ <227440178+zaldynbwtany202-dev@users.noreply.github.com>
++Date: Wed, 9 Sep 2026 12:14:08 +0000
++Subject: [PATCH 2/4] Verify a filtered master as air, not music:
++ --master-chain mode, and six tests that prove it can fail
++
++A matched master used to be unpublishable: the gate demanded sample-identity with
++the approved takes, and any EQ or room tone breaks that by construction. It now
++re-applies the declared chain to the dry master and measures what the chain ADDED,
++in the pauses only - level against the declared air target, per-second spread,
++the level difference between speech and gaps, spectral flatness and peakiness,
++and the time lag. A room tone passes; a 220 Hz hum, a side-chained bed, a 10 ms
++shift and a 9 dB hot floor all fail, and tests/test_master_chain.py asserts each
++of those without rendering anything.
++
++The gallery README gains the price of each voice in words: at 2.507 words/s the
++round-three budget is 1585 words over 632.5 s, and only voice-07, voice-13 and
++voice-11 are measured at or above that pace - every slower pick means cutting
++meaning, since stretching and silence padding are both forbidden here.
++
++MEMORY records the fresh-sandbox recovery in order (the reset to 9048ea7 happened
++mid-turn), that the source video and the background bed are both tracked and the
++bed rebuilds in three seconds, that a missing faster-whisper wheel is what makes
++uncovered speech jump 11.74 s to 29.34 s in a new environment, and that an
++archive-rebuilt master legitimately differs by hash from the original run while
++reproducing the plan exactly - so --plan and --narration must come from one run.
++
++Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
++---
++ MEMORY.md                                     |  51 +++++++
++ .../voice-tests/gallery/README.md             |   2 +-
++ scripts/verify_source_sync_render.py          | 140 +++++++++++++++++-
++ tests/test_master_chain.py                    |  87 +++++++++++
++ 4 files changed, 277 insertions(+), 3 deletions(-)
++ create mode 100644 tests/test_master_chain.py
++
++diff --git a/MEMORY.md b/MEMORY.md
++index 8e3ea64..5954cdd 100644
++--- a/MEMORY.md
+++++ b/MEMORY.md
++@@ -315,6 +315,57 @@ p90 6.702، أقصى 14.499). 96 مرساة «مستحيلة» (من `anchor_con
++    بالمسلَّم (تطابق تام متوقع)، بدل فرض `speech_untouched` على الصوت الخام. لا تنشر نسخة
++    المعالجة كبوابة خضراء قبل كتابة هذا الوضع.
++ 
+++### 2026-09-09 (مساءً) — إعادة بناء كاملة من GitHub + بوابة «الهواء مش موسيقى»
+++
+++**الرنج بокس اتصفّر في النص (11:42)**: لا venv، لا `.cache`، وHEAD رجع لوراء `9048ea7`
+++والشجرة فيها ملفات أحدث/أقدم مخلوطة. الاسترجاع الصحيح (اتعمل فعلاً وانجح):
+++
+++```
+++git fetch origin arena/01a08487-dub          # shallow: بالـsha مش بالاسم لو لزم
+++git reset -q --mixed <head-المنشور> && git status --porcelain   # طابِع الأول: إيه الفرق فعلًا
+++git reset --hard <head-المنشور>
+++python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
+++    numpy soundfile imageio-ffmpeg faster-whisper pytest
+++```
+++
+++1. **كل المادة الخام موجودة في المستودع نفسه**: `library/hajj-dream-2108415/source.mp4`
+++   **متعقَّب** رغم `*.mp4` في .gitignore (استثناء المقبولات) وبصمته `26a4dce5…0cebb4` ✓.
+++   السرير الصوتي بيتبني من الأجزاء المتعقَّبة في `3 ثواني`:
+++   `python scripts/restore_background_parts.py --source library/<slug>/source.mp4 --parts
+++   dubs/<slug>/background/parts --output .cache/<slug>-sync-repair/background.wav`.
+++   والتسجيلات المعتمدة بترجع بـ `scripts/materialize_lossless_takes.py --script
+++   dubs/<slug>/timing-repair/script.json` (من كوميتات الأرشيف، من غير أي إعادة توليد).
+++2. **VAD هو مشكل الريفريش**: `silero_spans` في `sync_takes_to_source_timeline.py` بيستورد
+++   `faster_whisper.vad` (نموذج ONNX مرفق مع الحزمة، بلا تنزيل من HF). من غير `pip install
+++   faster-whisper` بيرجع [] والـfallback هو `energy_spans` → الكلام بيبدو أطول و`uncovered`
+++   يقفز 11.74 → 29.34 ث ويفشل البتة (`ValueError`). لو شفت الرقم ده في sandbox جديد، ده السبب،
+++   مش نص سييء.
+++3. **إعادة البناء مش bit-identical، وسببها مفهوم**: بلان المعاد بناجه يطابق المنشور حرفيًا في
+++   `source_speech_coverage=0.982609` و`uncovered=11.74` و`max_uncovered_gap=0.0`، لكن بصمة
+++   الماستر بتختلف (`4674f021…` مقابل `2ae18fb5…` المسجلة في mix.json) لأن FLAC المؤرشف
+++   بيتعمله resample من 24k بشكل مختلف عن WAV العائم للأداة، فحدود القص داخل كل take اتغيرت
+++   (median 0 ms، p90 194 ms، 61/237 أكتر من 60 ms). **النتيجة العملية**: `--plan` لازم يكون
+++   من نفس الريان اللي بنى الماستر؛ اعملهم ورا بعض في نفس الجلسة (وهذا اللي هيحصل في الجولة
+++   التالتة)، ومفيش داعي لإنك تتوقع sha قديمة تتكرر.
+++4. **`verify_source_sync_render.py` بقى ليه وضع `--master-chain`** (مع `--dry-narration`):
+++   بيعيد تطبيق السلسلة المعلنة في تقرير `match_source_acoustics.py` على الماستر الجاف، وقياس
+++   **الفرق في الوقفات بس** (مش على الملف كله — عشان أي loudnorm ما يسرقش الرقم)، ولازم
+++   يبقى: إزاحة زمن 0، طول مطابق، انتشار مستوى ≤2 dB/ثانية، فرق «وقت الكلام − وقت الوقفة»
+++   ≤4 dB، flatness ≥−6 dB، peakiness ≤12 dB، ومستوى ضمن ±4 dB من `room_tone_target_dbfs`.
+++   البوابة `master_chain_is_air_not_music` + دالة `master_chain_gate(mc) -> bool` + 6 اختبارات
+++   تركيبية (`tests/test_master_chain.py`) تثبت إن البوابة بتقبول الهواء و**بترفض**: همّ 220 Hz
+++   عند −23 dBFS، سرير بـducking (الفرق −26 dB)، نسخة متأخرة 10 ms، وهوا بأعلى +9 dB.
+++   ملاحظة معايرة: `correlation_with_speech_envelope` لوحدها بترضّ ~0.2 مع ضجيج أبيض
+++   (n=32) فاتاحيتها 0.5؛ الكاشف الحقيقي للـducking هو فرق المستوى، مش الارتباط.
+++5. **مقاييس «بشرية» اللي انثبتت عمياء اتمسحت من الترجيح** و`scripts/compare_voice_candidates.py`
+++   بيقيس الطرفين من نفس النافذة 16 kHz وعلى نفس الإطارات المصوتة؛ `level_sd_db` لازم يُقاس
+++   على الكلام فوق `floor+6 dB` بس، وإلا الوقفات بتخلي أي عينة تبان «أكثر حيوية» كذبًا.
+++   معرض `dubs/hajj-dream-2108415/voice-tests/gallery/`: 10 مرشحين قرأوا نص حقيقي،
+++   `pace-fit.json` بيحوّل السرعة لثمن: المطلوب 1585 كلمة فوق 632.5 ث؛ `voice-07` (2.545 ك/ث)
+++   و`voice-13` (2.509) و`voice-11` (2.516) بس اللي يبلعوا النص كامل؛ الباقي معناه قطع كلمات.
+++   `voice-06` أنضف نطاق (0.161 تحت 200 Hz مقابل 0.151 للبشري)، `voice-08` أقرب حركة مستوى.
+++   **القرار للمسمع**: المستخدم يقول رقم، وبعدها الجولة التالتة مباشرة من غير أسئلة.
+++
++ **فحص المخرج** (`scripts/verify_source_sync_render.py`) صار يقيس من الأثر لا من الخطة:
++ `quiet_holes` بصمت رقمي مُقاس من العيّنات (ذروة < -55 dBFS على 10 مللي‑ثانية) متقاطعاً مع
++ كلام الأصل، و`clause_phase` يعيد قراءة بداية كل قطعة من `written_begin` ويقارنها بالوقت
++diff --git a/dubs/hajj-dream-2108415/voice-tests/gallery/README.md b/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
++index 02bd945..59f2889 100644
++--- a/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
+++++ b/dubs/hajj-dream-2108415/voice-tests/gallery/README.md
++@@ -48,7 +48,7 @@
++ 
++ ## ثمن كل اختيار (ده اللي بيحدد فعلاً، مش الطابع وحده)
++ 
++-الميزانية ثابتة: **1585 كلمة** على **632.5 ثانية** كلام. السرعة المقSuiteة لكل صوت تعرفه يسع كام كلمة:
+++الميزانية ثابتة: **1585 كلمة** على **632.5 ثانية** كلام. السرعة المقاسة لكل صوت تعرفه يسع كام كلمة:
++ 
++ | صوت | كلمات/ث | يسع (كلمة) | ناقص | يعني إيه |
++ |---|---|---|---|---|
++diff --git a/scripts/verify_source_sync_render.py b/scripts/verify_source_sync_render.py
++index 6048d86..0307d33 100644
++--- a/scripts/verify_source_sync_render.py
+++++ b/scripts/verify_source_sync_render.py
++@@ -98,6 +98,99 @@ def vad(audio: np.ndarray, sample_rate: int, min_gap: float = 0.12) -> list[list
++     return _merge(spans, min_gap)
++ 
++ 
+++def _welch(audio: np.ndarray, sample_rate: int, frame: int = 2048) -> tuple[np.ndarray, np.ndarray]:
+++    """Averaged power spectrum. A single window over minutes of audio measures the window,
+++    not the signal - that is what made an early version of this check report -102 dB
+++    flatness for plain noise."""
+++    if audio.size < frame * 2:
+++        frame = max(64, audio.size // 4)
+++    count = 1 + (audio.size - frame) // (frame // 2)
+++    window = np.hanning(frame)
+++    acc = np.zeros(frame // 2 + 1)
+++    for i in range(count):
+++        acc += np.abs(np.fft.rfft(audio[i * (frame // 2): i * (frame // 2) + frame] * window)) ** 2
+++    freqs = np.fft.rfftfreq(frame, 1 / sample_rate)
+++    return acc / max(1, count), freqs
+++
+++
+++def chain_air_evidence(delivered: np.ndarray, shaped: np.ndarray, plan: dict, sample_rate: int,
+++                       declared_air_dbfs: float | None) -> dict:
+++    """What the chain added, measured where nobody is speaking.
+++
+++    The delivered master minus the filtered takes is the room tone the chain poured into the
+++    pauses. Judging it in silence keeps a loudness pass or a level trim on the speech out of
+++    the number, which is what let a 5 dB error hide here before."""
+++    length = min(len(delivered), len(shaped))
+++    residual = delivered[:length] - shaped[:length]
+++    occupied = np.zeros(length, bool)
+++    for row in plan["timeline"]:
+++        begin = int(round(row["written_begin"] * sample_rate))
+++        stop = min(length, begin + int(round((row["take_piece"][1] - row["take_piece"][0]) * sample_rate)))
+++        occupied[begin:stop] = True
+++    gaps = ~occupied
+++    if gaps.sum() < sample_rate:
+++        return {"usable": False, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2)}
+++    blocks = sample_rate
+++    cut = int(gaps.sum() // 1)
+++    gap_res = residual[gaps]
+++    level = 20 * np.log10(max(float(np.sqrt((gap_res[: min(gap_res.size, cut)] ** 2).mean())), 1e-9))
+++    per_second = 20 * np.log10(np.maximum(np.sqrt((gap_res[: gap_res.size // blocks * blocks]
+++                                                   .reshape(-1, blocks) ** 2).mean(1)), 1e-9))
+++    under_speech = 20 * np.log10(max(float(np.sqrt((residual[:length][occupied][: sample_rate * 120] ** 2).mean())), 1e-9))
+++    power, freqs = _welch(gap_res[: min(gap_res.size, sample_rate * 120)], sample_rate)
+++    band = (freqs >= 60) & (freqs <= 0.45 * sample_rate)
+++    pw = power[band]
+++    flatness = 10 * np.log10(max(float(np.exp(np.mean(np.log(np.maximum(pw, 1e-30))))), 1e-30)
+++                              / max(float(pw.mean()), 1e-30))
+++    peakiness = 10 * np.log10(max(float(pw.max()), 1e-30) / max(float(np.median(pw)), 1e-30))
+++    # Pumping is measured on the added layer across the whole timeline, one value per second,
+++    # so it has the same shape as the speech envelope it is compared against.
+++    span = min(length, blocks * 600) - min(length, blocks * 600) % blocks
+++    def per_second_level(x: np.ndarray) -> np.ndarray:
+++        return 20 * np.log10(np.maximum(np.sqrt((x[:span].reshape(-1, blocks) ** 2).mean(1)), 1e-9))
+++    corr = 0.0
+++    if span >= blocks * 4:
+++        env = per_second_level(delivered[:length])
+++        res_env = per_second_level(residual)
+++        corr = float(np.corrcoef(res_env, env)[0, 1]) if np.std(env) > 1e-6 else 0.0
+++    lag = int(np.argmax(np.correlate(delivered[: sample_rate * 30], shaped[: sample_rate * 30],
+++                                     mode="full"))) - (sample_rate * 30 - 1)
+++    return {"usable": True, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2),
+++            "air_level_dbfs": round(float(level), 2),
+++            "declared_air_level_dbfs": declared_air_dbfs,
+++            "air_level_error_db": round(float(level - declared_air_dbfs), 2) if declared_air_dbfs is not None else None,
+++            "air_level_spread_per_second_db": round(float(np.std(per_second)), 2),
+++            "level_under_speech_minus_in_gaps_db": round(float(under_speech - float(level)), 2),
+++            "spectral_flatness_db": round(float(flatness), 2),
+++            "spectral_peakiness_db": round(float(peakiness), 2),
+++            "correlation_with_speech_envelope": round(corr, 3),
+++            "max_time_lag_ms": round(abs(lag) / sample_rate * 1000, 4),
+++            "length_difference_samples": int(len(delivered) - len(shaped))}
+++
+++
+++def master_chain_gate(mc: dict) -> bool:
+++    """The published room tone must be air, at the declared level, that does not move.
+++
+++    Kept as a function of the measurement dict so a test can feed it hums, ducked music and
+++    a shifted copy without rendering a 676 second video first.    The envelope correlation is checked loosely: with only a second per sample and a room tone
+++    that is uncorrelated noise by construction, |r| wanders around 0.2 by itself. The level
+++    difference between the pauses and under-speech is the number that actually catches a
+++    side-chained bed (a ducked one drops 20+ dB under speech; air moves 0.04 dB).
+++    """
+++    if not mc.get("usable"):
+++        return False
+++    # bool() on purpose: numpy comparisons return np.bool_, which is not False/True for `is`
+++    # and which json refuses to serialise in the published report
+++    return bool(mc["max_time_lag_ms"] <= 0.5
+++            and mc["length_difference_samples"] == 0
+++            and mc["air_level_spread_per_second_db"] <= 2.0
+++            and abs(mc["level_under_speech_minus_in_gaps_db"]) <= 4.0
+++            and mc["spectral_flatness_db"] >= -6.0
+++            and mc["spectral_peakiness_db"] <= 12.0
+++            and abs(mc.get("air_level_error_db") or 0.0) <= 4.0
+++            and abs(mc["correlation_with_speech_envelope"]) <= 0.5)
+++
+++
++ def main() -> int:
++     parser = argparse.ArgumentParser(description=__doc__)
++     parser.add_argument("--source", type=Path, required=True, help="original picture")
++@@ -120,6 +213,14 @@ def main() -> int:
++     parser.add_argument("--inset", type=float, default=0.05,
++                         help="ignore this many seconds at each chunk edge, where a shortened "
++                              "pause lets the neighbour's room tone sit next to the speech")
+++    parser.add_argument("--dry-narration", type=Path,
+++                        help="narration master before any declared master chain; the per-piece "
+++                             "identity check runs against this file when given")
+++    parser.add_argument("--master-chain", type=Path,
+++                        help="report written by scripts/match_source_acoustics.py. With it the "
+++                             "delivered master is certified as the dry master pushed through the "
+++                             "declared filters plus a stationary air bed: the speech is still the "
+++                             "approved takes, the room tone is not music, and nothing moved in time")
++     args = parser.parse_args()
++ 
++     plan = json.loads(args.plan.read_text(encoding="utf-8"))
++@@ -147,6 +248,14 @@ def main() -> int:
++     master, rate = sf.read(args.narration, dtype="float32")
++     if master.ndim > 1:
++         master = master.mean(axis=1)
+++    voice_master, voice_rate = master, rate
+++    if args.dry_narration:
+++        voice_master, voice_rate = sf.read(args.dry_narration, dtype="float32")
+++        if voice_master.ndim > 1:
+++            voice_master = voice_master.mean(axis=1)
+++        if voice_rate != rate:
+++            raise ValueError(f"dry narration at {voice_rate} Hz cannot be compared with the "
+++                             f"delivered master at {rate} Hz")
++     audio_of = {int(part["index"]): Path(part["audio"]) for part in plan["parts"]}
++     voices: dict[int, np.ndarray] = {}
++     mismatches: list[dict] = []
++@@ -161,7 +270,8 @@ def main() -> int:
++         piece_hi = int(round(row["take_piece"][1] * rate))
++         written = int(round(row["written_begin"] * rate))
++         expected = voice[piece_lo:piece_hi]
++-        got = master[written:written + len(expected)]
+++        got = voice_master[written:written + len(expected)]
+++        delivered_piece = master[written:written + len(expected)]
++         if len(got) != len(expected) or len(expected) < 16:
++             mismatches.append({"part": row["part"], "start": row["start"], "reason": "length"})
++             continue
++@@ -172,7 +282,7 @@ def main() -> int:
++         # the piece was written so that its speech starts exactly at the planned cue time
++         speech_lo = int(round(row["take_speech_start"] * rate))
++         alignment.append(abs(written + speech_lo - piece_lo - int(round(row["start"] * rate))))
++-        if float(np.max(np.abs(got))) < 1e-3:
+++        if float(np.max(np.abs(got))) < 1e-3 or float(np.max(np.abs(delivered_piece))) < 1e-3:
++             silent += 1
++     report["speech"] = {
++         "pieces_checked": checked,
++@@ -183,6 +293,7 @@ def main() -> int:
++         "pieces_silent_in_master": silent,
++         "master_duration": round(len(master) / rate, 3),
++         "master_peak_dbfs": round(20 * np.log10(max(float(np.max(np.abs(master))), 1e-9)), 3),
+++        "compared_against": str(args.dry_narration or args.narration),
++         "method": "every placed piece is compared sample by sample with the approved take, and its "
++                   "speech onset is compared with the planned cue time; silence between pieces moved, "
++                   "the speech itself did not",
++@@ -259,6 +370,29 @@ def main() -> int:
++                   "matching speech unit in the original",
++     }
++ 
+++    if args.master_chain:
+++        if not args.dry_narration:
+++            raise ValueError("--master-chain also needs --dry-narration: without the file before "
+++                             "the chain there is nothing to prove the chain was applied to")
+++        chain = json.loads(args.master_chain.read_text(encoding="utf-8"))
+++        af = ",".join(chain["filters"].get("chain_applied") or []) or "anull"
+++        trial = args.output.parent / ".chain-check.wav"
+++        subprocess.run([ffmpeg_exe(), "-y", "-v", "error", "-i", str(args.dry_narration), "-af", af,
+++                        "-ar", str(rate), "-ac", "1", str(trial)], check=True, capture_output=True)
+++        shaped = sf.read(trial, dtype="float32")[0]
+++        evidence = chain_air_evidence(master, shaped, plan, rate,
+++                                      chain["filters"].get("room_tone_target_dbfs"))
+++        report["master_chain"] = {"chain_report": str(args.master_chain),
+++                                  "chain_report_sha256": sha256(args.master_chain),
+++                                  "filters_applied": af,
+++                                  "air_source": chain["filters"].get("room_tone_source"),
+++                                  "method": ("the delivered master, in the pauses, must measure as the room "
+++                                             "tone level the chain report declares, be stationary, show no "
+++                                             "pumping against the speech envelope and sit at zero time lag - "
+++                                             "that is air from the scene, not music and not a re-recording"),
+++                                  **evidence}
+++        trial.unlink(missing_ok=True)
+++
++     report["loudness"] = loudness(args.output)
++ 
++     gates = {
++@@ -269,6 +403,8 @@ def main() -> int:
++         and report["speech"]["max_alignment_error_samples"] <= args.max_alignment_samples
++         and report["speech"]["pieces_silent_in_master"] == 0
++         and report["speech"]["pieces_checked"] == len(plan["timeline"]),
+++        "master_chain_is_air_not_music": (not args.master_chain)
+++        or master_chain_gate(report["master_chain"]),
++         "no_long_gaps": dry["max_uncovered_gap"] <= args.max_gap
++         and delivered["max_uncovered_gap"] <= args.max_gap,
++         "coverage_within_budget": dry["uncovered_source_speech_seconds"] <= args.max_uncovered,
++diff --git a/tests/test_master_chain.py b/tests/test_master_chain.py
++new file mode 100644
++index 0000000..6381f5c
++--- /dev/null
+++++ b/tests/test_master_chain.py
++@@ -0,0 +1,87 @@
+++"""The room-tone gate must accept air and refuse hums, ducked music and shifted speech."""
+++import sys
+++from pathlib import Path
+++
+++import numpy as np
+++import pytest
+++
+++sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+++from verify_source_sync_render import chain_air_evidence, master_chain_gate  # noqa: E402
+++
+++SR = 8000
+++AIR_DBFS = -32.0
+++SPEECH = [(2.0, 6.0), (10.0, 14.0), (18.0, 22.0), (26.0, 30.0)]
+++PLAN = {"timeline": [{"written_begin": a, "take_piece": [0.0, b - a]} for a, b in SPEECH]}
+++
+++
+++def _bursts(rng: np.random.Generator, gain: float = 0.5) -> np.ndarray:
+++    track = np.zeros(SR * 32)
+++    for lo, hi in SPEECH:
+++        track[int(lo * SR):int(hi * SR)] = rng.normal(0, gain, int((hi - lo) * SR))
+++    return track
+++
+++
+++def _air(rng: np.random.Generator, level_dbfs: float = AIR_DBFS) -> np.ndarray:
+++    return rng.normal(0, 10 ** (level_dbfs / 20), SR * 32)
+++
+++
+++@pytest.fixture
+++def base():
+++    rng = np.random.default_rng(7)
+++    return rng, _bursts(rng)
+++
+++
+++def test_air_passes(base):
+++    rng, shaped = base
+++    mc = chain_air_evidence(shaped + _air(rng), shaped, PLAN, SR, AIR_DBFS)
+++    assert mc["usable"]
+++    assert abs(mc["air_level_error_db"]) <= 1.0
+++    assert mc["spectral_flatness_db"] > -3.0
+++    assert master_chain_gate(mc) is True
+++
+++
+++def test_hum_is_not_air(base):
+++    rng, shaped = base
+++    t = np.arange(SR * 32) / SR
+++    # A tonal layer at -23 dBFS under the voice: quiet enough to hide in a waveform view,
+++    # loud enough that a listener would call it "music", which is exactly what is forbidden.
+++    hum = 0.02 * np.sin(2 * np.pi * 220 * t) + 0.012 * np.sin(2 * np.pi * 440 * t)
+++    mc = chain_air_evidence(shaped + _air(rng) + hum, shaped, PLAN, SR, AIR_DBFS)
+++    assert master_chain_gate(mc) is False
+++    assert mc["spectral_peakiness_db"] > 12.0
+++    assert mc["air_level_dbfs"] < -28.0  # the level alone looks fine; the spectrum catches it
+++
+++
+++def test_ducked_music_pumps_with_the_voice(base):
+++    """A bed that disappears under speech (side-chain ducking) is a mix, not room tone."""
+++    rng, shaped = base
+++    air = _air(rng)
+++    mask = np.zeros_like(air)
+++    for lo, hi in SPEECH:
+++        mask[int(lo * SR):int(hi * SR)] = 1.0
+++    mc = chain_air_evidence(shaped + air * (1.0 - 0.95 * mask), shaped, PLAN, SR, AIR_DBFS)
+++    assert master_chain_gate(mc) is False
+++    assert mc["level_under_speech_minus_in_gaps_db"] < -4.0
+++
+++
+++def test_shifted_copy_is_rejected(base):
+++    rng, shaped = base
+++    delayed = np.concatenate([np.zeros(SR // 100), shaped])[:-SR // 100] + _air(rng)
+++    mc = chain_air_evidence(delayed, shaped, PLAN, SR, AIR_DBFS)
+++    assert master_chain_gate(mc) is False
+++    assert mc["max_time_lag_ms"] > 0.5
+++
+++
+++def test_wrong_level_is_rejected(base):
+++    rng, shaped = base
+++    mc = chain_air_evidence(shaped + _air(rng, AIR_DBFS + 9.0), shaped, PLAN, SR, AIR_DBFS)
+++    assert master_chain_gate(mc) is False
+++    assert abs(mc["air_level_error_db"]) > 4.0
+++
+++
+++def test_unusable_without_enough_silence(base):
+++    rng, shaped = base
+++    crowded = {"timeline": [{"written_begin": 0.0, "take_piece": [0.0, 31.5]}]}
+++    mc = chain_air_evidence(shaped + _air(rng), shaped, crowded, SR, AIR_DBFS)
+++    assert mc["usable"] is False
+++    assert master_chain_gate(mc) is False
++-- 
++2.39.5
++
+diff --git a/pending-pushes/0003-MEMORY-write-the-sandbox-reset-note-in-Arabic-not-in.patch b/pending-pushes/0003-MEMORY-write-the-sandbox-reset-note-in-Arabic-not-in.patch
+new file mode 100644
+index 0000000..04cd5b9
+--- /dev/null
++++ b/pending-pushes/0003-MEMORY-write-the-sandbox-reset-note-in-Arabic-not-in.patch
+@@ -0,0 +1,46 @@
++From 41f6b48c55ce15f59d114dcbd07bcdf69cc5cd34 Mon Sep 17 00:00:00 2001
++From: zaldynbwtany202-dev
++ <227440178+zaldynbwtany202-dev@users.noreply.github.com>
++Date: Wed, 9 Sep 2026 12:17:31 +0000
++Subject: [PATCH 3/4] MEMORY: write the sandbox-reset note in Arabic, not in
++ stray Cyrillic
++
++Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
++---
++ MEMORY.md | 6 +++---
++ 1 file changed, 3 insertions(+), 3 deletions(-)
++
++diff --git a/MEMORY.md b/MEMORY.md
++index 5954cdd..ad26264 100644
++--- a/MEMORY.md
+++++ b/MEMORY.md
++@@ -317,7 +317,7 @@ p90 6.702، أقصى 14.499). 96 مرساة «مستحيلة» (من `anchor_con
++ 
++ ### 2026-09-09 (مساءً) — إعادة بناء كاملة من GitHub + بوابة «الهواء مش موسيقى»
++ 
++-**الرنج بокس اتصفّر في النص (11:42)**: لا venv، لا `.cache`، وHEAD رجع لوراء `9048ea7`
+++**الساندبوكس اتصفّر في النص (11:42)**: لا venv، لا `.cache`، وHEAD رجع لوراء `9048ea7`
++ والشجرة فيها ملفات أحدث/أقدم مخلوطة. الاسترجاع الصحيح (اتعمل فعلاً وانجح):
++ 
++ ```
++@@ -346,7 +346,7 @@ python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
++    بيتعمله resample من 24k بشكل مختلف عن WAV العائم للأداة، فحدود القص داخل كل take اتغيرت
++    (median 0 ms، p90 194 ms، 61/237 أكتر من 60 ms). **النتيجة العملية**: `--plan` لازم يكون
++    من نفس الريان اللي بنى الماستر؛ اعملهم ورا بعض في نفس الجلسة (وهذا اللي هيحصل في الجولة
++-   التالتة)، ومفيش داعي لإنك تتوقع sha قديمة تتكرر.
+++   التالتة)، ومفيش داعي تتوقع إن بصمة قديمة تتكرر.
++ 4. **`verify_source_sync_render.py` بقى ليه وضع `--master-chain`** (مع `--dry-narration`):
++    بيعيد تطبيق السلسلة المعلنة في تقرير `match_source_acoustics.py` على الماستر الجاف، وقياس
++    **الفرق في الوقفات بس** (مش على الملف كله — عشان أي loudnorm ما يسرقش الرقم)، ولازم
++@@ -356,7 +356,7 @@ python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
++    تركيبية (`tests/test_master_chain.py`) تثبت إن البوابة بتقبول الهواء و**بترفض**: همّ 220 Hz
++    عند −23 dBFS، سرير بـducking (الفرق −26 dB)، نسخة متأخرة 10 ms، وهوا بأعلى +9 dB.
++    ملاحظة معايرة: `correlation_with_speech_envelope` لوحدها بترضّ ~0.2 مع ضجيج أبيض
++-   (n=32) فاتاحيتها 0.5؛ الكاشف الحقيقي للـducking هو فرق المستوى، مش الارتباط.
+++   (n=32) فوسعنا حدودها لـ0.5؛ الكاشف الحقيقي للـducking هو فرق المستوى، مش الارتباط.
++ 5. **مقاييس «بشرية» اللي انثبتت عمياء اتمسحت من الترجيح** و`scripts/compare_voice_candidates.py`
++    بيقيس الطرفين من نفس النافذة 16 kHz وعلى نفس الإطارات المصوتة؛ `level_sd_db` لازم يُقاس
++    على الكلام فوق `floor+6 dB` بس، وإلا الوقفات بتخلي أي عينة تبان «أكثر حيوية» كذبًا.
++-- 
++2.39.5
++
+diff --git a/pending-pushes/0004-The-room-tone-this-source-offers-is-not-room-tone-re.patch b/pending-pushes/0004-The-room-tone-this-source-offers-is-not-room-tone-re.patch
+new file mode 100644
+index 0000000..d27d6cd
+--- /dev/null
++++ b/pending-pushes/0004-The-room-tone-this-source-offers-is-not-room-tone-re.patch
+@@ -0,0 +1,447 @@
++From 723f8763d1997b6a3b1c232e2a039f4370c3a50f Mon Sep 17 00:00:00 2001
++From: zaldynbwtany202-dev
++ <227440178+zaldynbwtany202-dev@users.noreply.github.com>
++Date: Wed, 9 Sep 2026 12:49:05 +0000
++Subject: [PATCH 4/4] The room tone this source offers is not room tone: refuse
++ it, and say why
++
++The acoustics match lifted its 'air' from dubs/.../source-analysis/vocal-pauses.json - and
++that file keeps the speech units under 'spans' and the breaths under 'pause_list'. Reading
++the wrong key laid the original narrator's own voice under our dub at -25.9 dBFS, with the
++same 215 Hz peak his voice has. The new provenance check catches it before any audio is
++written: pauses are chosen by shape, cross-checked against the ASR word cores, and the tile
++must sit at least 10 dB under typical speech and at or below the recording's own floor.
++
++It then refuses this source outright: the residual between the narrator's words measures
++9.8 dB below his speech level, because there is no silence here to steal - 655.99 s of
++speech in 676.33 s, 124 pauses averaging 0.161 s, and 63% of that 'pause' material still
++overlaps word cores. So --air-source none is now the honest default fallback: band and slope
++get matched, nothing gets added, and the report records the refusal and its numbers instead
++of hiding them.
++
++Two verification fixes found while certifying that render: the no-air path gets a stronger
++gate than spectral similarity (the delivered master must equal the filtered dry master to
++the sample, max_abs_difference <= 2e-4, so 'nothing was added' is proved, not assumed), and
++the lag search moved from np.correlate's quadratic loop - which stalled a run for twenty
++minutes - to an FFT over four seconds, after which the whole test file runs in 0.3 s.
++The correlation is left undefined-safe at 0.0 when the residual has no variance, so the
++published report never carries a NaN.
++
++Co-authored-by: arena-agent <297053741+arena-agent@users.noreply.github.com>
++---
++ .../timing-repair/acoustics-match.json        |  53 +++---
++ scripts/match_source_acoustics.py             | 173 ++++++++++++++++--
++ scripts/verify_source_sync_render.py          |  32 +++-
++ tests/test_master_chain.py                    |  22 +++
++ 4 files changed, 236 insertions(+), 44 deletions(-)
++
++diff --git a/dubs/hajj-dream-2108415/timing-repair/acoustics-match.json b/dubs/hajj-dream-2108415/timing-repair/acoustics-match.json
++index 1976f28..9871e1b 100644
++--- a/dubs/hajj-dream-2108415/timing-repair/acoustics-match.json
+++++ b/dubs/hajj-dream-2108415/timing-repair/acoustics-match.json
++@@ -1,18 +1,29 @@
++ {
++-  "rule": "the dub is filtered and floored to the original's measured acoustics; the ambience under it is the original's own pause air, not composed sound",
+++  "rule": "the dub is filtered to the original's measured band and slope; nothing was added under it, because this recording has no quiet air to lift without lifting the narrator's voice with it",
++   "filters": {
++     "lowpass_hz": 6500.0,
++     "low_shelf_db": -4.39,
++-    "presence_shelf_db": 2.72,
++-    "air_gain_applied_db": -9.45,
+++    "presence_shelf_db": 2.55,
++     "chain_applied": [
++       "bass=g=-4.39:f=180:t=s",
++       "treble=g=2.55:f=3200:t=s",
++       "lowpass=f=6500"
++     ],
++-    "room_tone_source": "source vocals residual, pauses only",
++-    "room_tone_tile_seconds": 12.0,
++-    "room_tone_target_dbfs": -31.57,
+++    "room_tone": {
+++      "added": false,
+++      "requested": "pauses",
+++      "refused": "the lifted material is only 9.8 dB below typical speech (needs 10); that is voice, not room tone - refusing to lay it under the dub"
+++    },
+++    "pause_spans": {
+++      "key_used": "pause_list",
+++      "count": 124,
+++      "total_seconds": 19.99,
+++      "mean_seconds": 0.161,
+++      "max_seconds": 0.7,
+++      "words_file": "words.json",
+++      "seconds_overlapping_word_cores": 12.68,
+++      "overlap_fraction": 0.6343
+++    },
++     "bed_scale_fitted": 5.19368
++   },
++   "before": {
++@@ -25,27 +36,27 @@
++     },
++     "dub": {
++       "hf_share": 0.00207,
++-      "low_share": 0.45982,
+++      "low_share": 0.4598,
++       "tilt": -30.97,
++-      "floor_dbfs": -63.3,
++-      "bandwidth_95pct_hz": 731.2
+++      "floor_dbfs": -62.62,
+++      "bandwidth_95pct_hz": 731.3
++     }
++   },
++   "after": {
++-    "hf_share": 0.00175,
++-    "low_share": 0.28357,
++-    "tilt": -29.27,
++-    "floor_dbfs": -32.72,
++-    "bandwidth_95pct_hz": 1041.2
+++    "hf_share": 0.0019,
+++    "low_share": 0.30333,
+++    "tilt": -29.29,
+++    "floor_dbfs": -64.03,
+++    "bandwidth_95pct_hz": 962.2
++   },
++   "deltas_vs_source": {
++-    "hf_share": 0.00046,
++-    "low_share": 0.11622,
++-    "tilt": -1.02,
++-    "floor_dbfs": -1.15,
++-    "bandwidth_95pct_hz": -508.0
+++    "hf_share": 0.0006,
+++    "low_share": 0.136,
+++    "tilt": -1.04,
+++    "floor_dbfs": -32.46,
+++    "bandwidth_95pct_hz": -587.0
++   },
+++  "takes_untouched": true,
++   "output": ".cache/hajj-sync-repair/narration-matched.wav",
++-  "sha256": "0fa9c06cde494924ad26b2919dcfb62773a5b7f7b6494ec61746c7bbd953a94f",
++-  "takes_untouched": true
+++  "output_sha256": "5f7d7bf8884420668f621250d8da4775c1544a91580e32f5b54c49788934e253"
++ }
++diff --git a/scripts/match_source_acoustics.py b/scripts/match_source_acoustics.py
++index ddecadc..40c162a 100644
++--- a/scripts/match_source_acoustics.py
+++++ b/scripts/match_source_acoustics.py
++@@ -61,15 +61,84 @@ def tilt(audio: np.ndarray) -> float:
++     return float(np.polyfit(np.log10(freqs[inside]), 10 * np.log10(power[inside]), 1)[0])
++ 
++ 
+++def pause_spans(path: Path, *, max_mean_seconds: float = 1.0) -> tuple[list[list[float]], str, dict]:
+++    """Pick the breaths, and prove the pick is not the speech.
+++
+++    ``vocal-pauses.json`` keeps the original's speech units under ``spans`` and the real
+++    pauses under ``pause_list``. Reading the wrong key pours the narrator's own voice
+++    under the dub - the exact defect this whole project exists to remove - so the key is
+++    chosen by shape (short mean duration) and the result is checked against the ASR word
+++    intervals before anything is cut out of the recording.
+++    """
+++    doc = json.loads(path.read_text(encoding="utf-8"))
+++    # Several of these keys are counts rather than lists in this file (``pauses: 124``),
+++    # so every candidate is taken only when it really is a list of spans.
+++    def pairs(value, keys=None):
+++        if not isinstance(value, list):
+++            return []
+++        rows = []
+++        for row in value:
+++            if isinstance(row, dict) and keys:
+++                if all(k in row for k in keys):
+++                    rows.append([float(row[keys[0]]), float(row[keys[1]])])
+++            elif isinstance(row, (list, tuple)) and len(row) == 2 and all(
+++                    isinstance(v, (int, float)) for v in row):
+++                rows.append([float(row[0]), float(row[1])])
+++        return rows
+++
+++    candidates = {"pause_list": pairs(doc.get("pause_list"), ("start", "end")),
+++                  "pauses": pairs(doc.get("pauses"))}
+++    chosen = None
+++    for key, rows in candidates.items():
+++        if len(rows) >= 8:
+++            mean = sum(hi - lo for lo, hi in rows) / len(rows)
+++            if mean <= max_mean_seconds:
+++                chosen, spans = key, rows
+++                break
+++    if chosen is None:
+++        raise SystemExit("no usable pause spans in " + str(path) + " - refusing to guess: ambience "
+++                         "must come from real silence, never from speech")
+++    words_file = path.parent / "words.json"
+++    check = {"key_used": chosen, "count": len(spans),
+++             "total_seconds": round(sum(hi - lo for lo, hi in spans), 3),
+++             "mean_seconds": round(sum(hi - lo for lo, hi in spans) / len(spans), 3),
+++             "max_seconds": round(max(hi - lo for lo, hi in spans), 3)}
+++    if words_file.is_file():
+++        words = json.loads(words_file.read_text(encoding="utf-8")).get("words", [])
+++        # ASR envelopes are generous: they cover the breath before and after a word by
+++        # 60-100 ms, so an unshrunk interval makes every real breath look like speech. Only
+++        # the core of each word counts, which still catches a tile cut out of the speech units.
+++        shrink, overlap = 0.06, 0.0
+++        for lo, hi in spans:
+++            for row in words:
+++                w_lo = float(row.get("start", 0)) + shrink
+++                w_hi = float(row.get("end", 0)) - shrink
+++                if w_hi <= w_lo or w_hi < lo or w_lo > hi:
+++                    continue
+++                overlap += max(0.0, min(hi, w_hi) - max(lo, w_lo))
+++        check["words_file"] = str(words_file.name)
+++        check["seconds_overlapping_word_cores"] = round(overlap, 3)
+++        check["overlap_fraction"] = round(overlap / max(1e-6, check["total_seconds"]), 4)
+++        # Recorded rather than fatal above a fraction: on this source the narrator's
+++        # energy-VAD pauses still sit inside generous ASR word tails (63%), and the physical
+++        # level test below is what actually separates air from voice. This number only has
+++        # to stop a tile taken wholesale out of the speech units.
+++        if check["overlap_fraction"] > 0.9:
+++            raise SystemExit(f"the pause list overlaps {check['overlap_fraction']:.0%} of ASR words; "
+++                             "this is not silence and will not be used as room tone")
+++    return spans, chosen, check
+++
+++
++ def source_room_tone(source: Path, background: Path, pauses: list[list[float]], *,
++-                     seconds: float = 12.0) -> tuple[np.ndarray, float]:
++-    """Air taken from the original's own pauses, at the original's own floor."""
+++                     seconds: float = 12.0, min_gap_db: float = 10.0) -> tuple[np.ndarray, float, dict]:
+++    """Air taken from the original's own pauses, at the level those pauses actually sit at."""
++     voice = decode(source, SR)
++     bed = decode(background, SR)
++     count = min(len(voice), len(bed))
++     scale = float(np.dot(voice[:count], bed[:count]) / max(1e-12, float(np.dot(bed[:count], bed[:count]))))
++     residual = voice[:count] - scale * bed[:count]
++     want = int(seconds * SR)
+++    fade = int(0.008 * SR)
++     pieces: list[np.ndarray] = []
++     taken = 0
++     for start, end in pauses:
++@@ -78,13 +147,43 @@ def source_room_tone(source: Path, background: Path, pauses: list[list[float]],
++         low, high = int(start * SR), int(min(end * SR, count))
++         if high - low < int(0.06 * SR):
++             continue
++-        piece = residual[low:high]
++-        pieces.append(piece[: want - taken] if len(piece) > want - taken else piece)
++-        taken += len(piece)
+++        piece = residual[low:high].astype(np.float32)
+++        if taken and fade * 2 < len(piece):  # equal-power joins, so the tile has no clicks
+++            edge = np.hanning(2 * fade + 1)[fade + 1:fade + 1 + fade]
+++            pieces[-1][-fade:] *= np.sqrt(1 - edge ** 2)
+++            piece = piece.copy()
+++            piece[:fade] *= np.sqrt(edge ** 2)
+++            pieces[-1] = np.concatenate([pieces[-1], piece])
+++        else:
+++            pieces.append(piece)
+++        taken = sum(len(x) for x in pieces)
++     if not pieces:
++         raise SystemExit("no usable pauses to lift room tone from")
++-    air = np.concatenate(pieces)
++-    return air, floor_dbfs(residual)
+++    air = np.concatenate(pieces)[:want]
+++    mask = np.ones(count, bool)
+++    for start, end in pauses:
+++        mask[int(start * SR):int(min(end * SR, count))] = False
+++    # This source is a phone recording whose pauses sit only ~13 dB under its speech, so a
+++    # "silence must be very quiet" rule in absolute dB would be nonsense. What is checked
+++    # instead is that the lifted material sits at the recording's own floor and clearly under
+++    # its typical speech - which is what fails when a tile is cut out of speech by mistake.
+++    size = int(0.05 * SR)
+++    frames = np.sqrt((residual[: (count // size) * size].reshape(-1, size) ** 2).mean(1))
+++    frame_mask = mask[: (count // size) * size].reshape(-1, size).any(1)
+++    speech_db = float(20 * math.log10(float(np.median(frames[frame_mask])) + 1e-12))
+++    floor_db = float(20 * math.log10(float(np.percentile(frames[~frame_mask], 5)) + 1e-12))
+++    quiet_db = 20 * math.log10(max(float(np.sqrt((air ** 2).mean())), 1e-9))
+++    gap_db = speech_db - quiet_db
+++    if gap_db < min_gap_db:
+++        raise SystemExit(f"the lifted material is only {gap_db:.1f} dB below typical speech "
+++                         f"(needs {min_gap_db:.0f}); "
+++                         "that is voice, not room tone - refusing to lay it under the dub")
+++    if quiet_db > floor_db + 3.0:
+++        raise SystemExit(f"the lifted tile ({quiet_db:.1f} dBFS) is louder than the recording's own "
+++                         f"floor ({floor_db:.1f} dBFS); it is not ambience")
+++    return air, quiet_db, {"tile_seconds": round(len(air) / SR, 3), "tile_level_dbfs": round(quiet_db, 2),
+++                           "level_below_speech_db": round(gap_db, 2),
+++                           "recording_floor_dbfs": round(floor_db, 2)}
++ 
++ 
++ def main() -> int:
++@@ -95,13 +194,23 @@ def main() -> int:
++                         help="restored neural bed, subtracted to isolate the original vocals")
++     parser.add_argument("--pauses", type=Path, required=True, help="source-analysis/vocal-pauses.json")
++     parser.add_argument("--output", type=Path, required=True)
+++    parser.add_argument("--air-source", choices=("pauses", "none"), default="pauses",
+++                        help="'pauses' lifts the room tone out of the original's own breaths and "
+++                             "refuses it if those breaths are not quiet enough; 'none' matches "
+++                             "only the band and the slope and adds nothing at all")
+++    parser.add_argument("--air-fallback", choices=("reject", "none"), default="none",
+++                        help="what to do when the lifted air fails the quietness test: give up, "
+++                             "or publish the EQ-only match and say so in the report")
+++    parser.add_argument("--air-min-gap-db", type=float, default=10.0,
+++                        help="the lifted tile must sit at least this far under the source's "
+++                             "typical speech level, or it is voice and gets refused")
++     parser.add_argument("--air-gain-db", type=float, default=0.0,
++                         help="extra trim on the lifted room tone, dB")
++     parser.add_argument("--report", type=Path)
++     args = parser.parse_args()
++ 
++     dub = decode(args.master, SR)
++-    pauses = json.loads(args.pauses.read_text(encoding="utf-8"))["spans"]
+++    pauses, pause_key, pause_check = pause_spans(args.pauses)
++     reference = decode(args.source, SR)
++     bed = decode(args.background, SR)
++     count = min(len(reference), len(bed))
++@@ -160,17 +269,41 @@ def main() -> int:
++                 corner, shaped, after_shaped = candidate, data, stats
++                 break
++ 
++-    air, air_target = source_room_tone(args.source, args.background, pauses)
++-    # Presence: a deep voice plus a low shelf ends up duller than the microphone it sits beside,
++-    # and "muffled" is read as amateur just as fast as "bright". Correct the slope, capped.
++-    tilt_gap = round(dub_before["tilt"] - source["tilt"], 2)
++-    shelf_high = 0.0
++-    if tilt_gap < -1.0:
++-        shelf_high = round(min(3.0, -tilt_gap), 2)
++-
+++    air, air_target, air_info = None, None, {"added": False, "requested": args.air_source,
+++                                              "reason": "no ambience requested"}
+++    if args.air_source == "pauses":
+++        try:
+++            air, air_target, air_info = source_room_tone(args.source, args.background, pauses,
+++                                                         min_gap_db=args.air_min_gap_db)
+++            air_info["added"] = True
+++        except SystemExit as error:
+++            if args.air_fallback == "reject":
+++                raise
+++            air_info = {"added": False, "requested": "pauses", "refused": str(error)}
++     voice = shaped
++     length = len(voice)
++-    tile = np.tile(air, int(math.ceil(length / len(air))))[:length]
+++    if air is None:
+++        mixed, floor_now, gain_db = np.clip(voice, -1.0, 1.0), floor_dbfs(voice), float("nan")
+++        sf.write(args.output, mixed.astype(np.float32), SR, subtype="PCM_24")
+++        after = measure(mixed)
+++        report = {"rule": "the dub is filtered to the original's measured band and slope; nothing "
+++                          "was added under it, because this recording has no quiet air to lift "
+++                          "without lifting the narrator's voice with it",
+++                  "filters": {"lowpass_hz": corner, "low_shelf_db": shelf_db,
+++                              "presence_shelf_db": shelf_high,
+++                              "chain_applied": shelf_chain + ([f"lowpass=f={corner:.0f}"] if corner else []),
+++                              "room_tone": air_info, "pause_spans": pause_check,
+++                              "bed_scale_fitted": round(scale, 5)},
+++                  "before": before, "after": after,
+++                  "deltas_vs_source": {key: round(after[key] - source[key], 4) for key in after},
+++                  "takes_untouched": True,
+++                  "output": str(args.output), "output_sha256": hashlib.sha256(args.output.read_bytes()).hexdigest()}
+++        if args.report:
+++            args.report.parent.mkdir(parents=True, exist_ok=True)
+++            args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n",
+++                                   encoding="utf-8")
+++        print(json.dumps(report, ensure_ascii=False, indent=1))
+++        return 0
++     level_now = float(np.sqrt(np.mean(tile ** 2))) or 1e-9
++ 
++     def with_air(target_db: float) -> tuple[np.ndarray, float, float]:
++@@ -192,7 +325,11 @@ def main() -> int:
++               "filters": {"lowpass_hz": corner, "low_shelf_db": shelf_db,
++                           "presence_shelf_db": shelf_high, "air_gain_applied_db": round(gain_db, 2),
++                           "chain_applied": shelf_chain + ([f"lowpass=f={corner:.0f}"] if corner else []),
++-                          "room_tone_source": "source vocals residual, pauses only",
+++                          "room_tone": {**air_info, "added": True, "gain_db": round(gain_db, 2),
+++                                        "target_dbfs": round(float(air_target), 2),
+++                                        "fitted_floor_dbfs": round(float(floor_now), 2)},
+++                          "room_tone_source": "source vocals residual, between its own pauses",
+++                          "pause_spans": pause_check, "room_tone_measured": air_info,
++                           "room_tone_tile_seconds": round(len(air) / SR, 2),
++                           "room_tone_target_dbfs": round(air_target + args.air_gain_db, 2),
++                           "bed_scale_fitted": round(scale, 5)},
++diff --git a/scripts/verify_source_sync_render.py b/scripts/verify_source_sync_render.py
++index 0307d33..c7caa2d 100644
++--- a/scripts/verify_source_sync_render.py
+++++ b/scripts/verify_source_sync_render.py
++@@ -23,6 +23,7 @@ from __future__ import annotations
++ import argparse
++ import hashlib
++ import json
+++import math
++ import re
++ import subprocess
++ import sys
++@@ -152,10 +153,22 @@ def chain_air_evidence(delivered: np.ndarray, shaped: np.ndarray, plan: dict, sa
++     if span >= blocks * 4:
++         env = per_second_level(delivered[:length])
++         res_env = per_second_level(residual)
++-        corr = float(np.corrcoef(res_env, env)[0, 1]) if np.std(env) > 1e-6 else 0.0
++-    lag = int(np.argmax(np.correlate(delivered[: sample_rate * 30], shaped[: sample_rate * 30],
++-                                     mode="full"))) - (sample_rate * 30 - 1)
+++        # a master with nothing added has a zero-variance residual; a correlation of that with
+++        # anything is undefined, and a NaN in the published report would read as a broken tool
+++        if np.std(env) > 1e-6 and np.std(res_env) > 1e-6:
+++            corr = float(np.corrcoef(res_env, env)[0, 1])
+++    # FFT cross-correlation over a few seconds: np.correlate's direct method on half a minute
+++    # of 44.1 kHz audio is quadratic, and it stalled a verification run for twenty minutes.
+++    probe = min(length, sample_rate * 4)
+++    size = 1 << (2 * probe).bit_length()
+++    cc = np.fft.irfft(np.fft.rfft(delivered[:probe], size) * np.conj(np.fft.rfft(shaped[:probe], size)), size)
+++    lag = int(np.argmax(cc))
+++    if lag > size // 2:
+++        lag -= size
+++    max_diff = float(np.max(np.abs(residual))) if residual.size else float("nan")
++     return {"usable": True, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2),
+++            "max_abs_difference": round(max_diff, 8),
+++            "rms_difference_dbfs": round(20 * math.log10(max(float(np.sqrt((residual ** 2).mean())), 1e-12)), 2),
++             "air_level_dbfs": round(float(level), 2),
++             "declared_air_level_dbfs": declared_air_dbfs,
++             "air_level_error_db": round(float(level - declared_air_dbfs), 2) if declared_air_dbfs is not None else None,
++@@ -179,6 +192,11 @@ def master_chain_gate(mc: dict) -> bool:
++     """
++     if not mc.get("usable"):
++         return False
+++    if not mc.get("air_added", True):
+++        # Nothing was added under the voice: then the delivered master must be the filtered
+++        # dry master to the sample, which is a stronger claim than any spectral similarity.
+++        return bool(mc["max_time_lag_ms"] <= 0.5 and mc["length_difference_samples"] == 0
+++                    and mc["max_abs_difference"] <= 2e-4)
++     # bool() on purpose: numpy comparisons return np.bool_, which is not False/True for `is`
++     # and which json refuses to serialise in the published report
++     return bool(mc["max_time_lag_ms"] <= 0.5
++@@ -380,8 +398,12 @@ def main() -> int:
++         subprocess.run([ffmpeg_exe(), "-y", "-v", "error", "-i", str(args.dry_narration), "-af", af,
++                         "-ar", str(rate), "-ac", "1", str(trial)], check=True, capture_output=True)
++         shaped = sf.read(trial, dtype="float32")[0]
++-        evidence = chain_air_evidence(master, shaped, plan, rate,
++-                                      chain["filters"].get("room_tone_target_dbfs"))
+++        air = chain["filters"].get("room_tone") or {}
+++        declared = air.get("target_dbfs", chain["filters"].get("room_tone_target_dbfs"))
+++        evidence = chain_air_evidence(master, shaped, plan, rate, declared if air.get("added", True) else None)
+++        evidence["air_added"] = bool(air.get("added", True))
+++        if not evidence["air_added"]:
+++            evidence["air_refused_reason"] = air.get("refused")
++         report["master_chain"] = {"chain_report": str(args.master_chain),
++                                   "chain_report_sha256": sha256(args.master_chain),
++                                   "filters_applied": af,
++diff --git a/tests/test_master_chain.py b/tests/test_master_chain.py
++index 6381f5c..eee700b 100644
++--- a/tests/test_master_chain.py
+++++ b/tests/test_master_chain.py
++@@ -85,3 +85,25 @@ def test_unusable_without_enough_silence(base):
++     mc = chain_air_evidence(shaped + _air(rng), shaped, crowded, SR, AIR_DBFS)
++     assert mc["usable"] is False
++     assert master_chain_gate(mc) is False
+++
+++
+++def test_no_air_path_demands_the_exact_filtered_master(base):
+++    """When the chain declares no ambience, nothing at all may be added to the voice."""
+++    rng, shaped = base
+++    untouched = chain_air_evidence(shaped.copy(), shaped, PLAN, SR, None)
+++    untouched["air_added"] = False
+++    assert untouched["max_abs_difference"] == 0.0
+++    assert master_chain_gate(untouched) is True
+++
+++    tampered = shaped.copy()
+++    tampered[int(3 * SR):int(4 * SR)] += 0.002  # a layer under one sentence, -34 dBFS
+++    hidden = chain_air_evidence(tampered, shaped, PLAN, SR, None)
+++    hidden["air_added"] = False
+++    assert master_chain_gate(hidden) is False
+++    assert hidden["max_abs_difference"] > 1e-3
+++
+++
+++def test_correlation_is_defined_for_a_silent_residual(base):
+++    rng, shaped = base
+++    mc = chain_air_evidence(shaped.copy(), shaped, PLAN, SR, None)
+++    assert mc["correlation_with_speech_envelope"] == 0.0
++-- 
++2.39.5
++
+-- 
+2.39.5
+
