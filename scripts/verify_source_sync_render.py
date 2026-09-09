@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import re
 import subprocess
 import sys
@@ -152,10 +153,22 @@ def chain_air_evidence(delivered: np.ndarray, shaped: np.ndarray, plan: dict, sa
     if span >= blocks * 4:
         env = per_second_level(delivered[:length])
         res_env = per_second_level(residual)
-        corr = float(np.corrcoef(res_env, env)[0, 1]) if np.std(env) > 1e-6 else 0.0
-    lag = int(np.argmax(np.correlate(delivered[: sample_rate * 30], shaped[: sample_rate * 30],
-                                     mode="full"))) - (sample_rate * 30 - 1)
+        # a master with nothing added has a zero-variance residual; a correlation of that with
+        # anything is undefined, and a NaN in the published report would read as a broken tool
+        if np.std(env) > 1e-6 and np.std(res_env) > 1e-6:
+            corr = float(np.corrcoef(res_env, env)[0, 1])
+    # FFT cross-correlation over a few seconds: np.correlate's direct method on half a minute
+    # of 44.1 kHz audio is quadratic, and it stalled a verification run for twenty minutes.
+    probe = min(length, sample_rate * 4)
+    size = 1 << (2 * probe).bit_length()
+    cc = np.fft.irfft(np.fft.rfft(delivered[:probe], size) * np.conj(np.fft.rfft(shaped[:probe], size)), size)
+    lag = int(np.argmax(cc))
+    if lag > size // 2:
+        lag -= size
+    max_diff = float(np.max(np.abs(residual))) if residual.size else float("nan")
     return {"usable": True, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2),
+            "max_abs_difference": round(max_diff, 8),
+            "rms_difference_dbfs": round(20 * math.log10(max(float(np.sqrt((residual ** 2).mean())), 1e-12)), 2),
             "air_level_dbfs": round(float(level), 2),
             "declared_air_level_dbfs": declared_air_dbfs,
             "air_level_error_db": round(float(level - declared_air_dbfs), 2) if declared_air_dbfs is not None else None,
@@ -179,6 +192,11 @@ def master_chain_gate(mc: dict) -> bool:
     """
     if not mc.get("usable"):
         return False
+    if not mc.get("air_added", True):
+        # Nothing was added under the voice: then the delivered master must be the filtered
+        # dry master to the sample, which is a stronger claim than any spectral similarity.
+        return bool(mc["max_time_lag_ms"] <= 0.5 and mc["length_difference_samples"] == 0
+                    and mc["max_abs_difference"] <= 2e-4)
     # bool() on purpose: numpy comparisons return np.bool_, which is not False/True for `is`
     # and which json refuses to serialise in the published report
     return bool(mc["max_time_lag_ms"] <= 0.5
@@ -380,8 +398,12 @@ def main() -> int:
         subprocess.run([ffmpeg_exe(), "-y", "-v", "error", "-i", str(args.dry_narration), "-af", af,
                         "-ar", str(rate), "-ac", "1", str(trial)], check=True, capture_output=True)
         shaped = sf.read(trial, dtype="float32")[0]
-        evidence = chain_air_evidence(master, shaped, plan, rate,
-                                      chain["filters"].get("room_tone_target_dbfs"))
+        air = chain["filters"].get("room_tone") or {}
+        declared = air.get("target_dbfs", chain["filters"].get("room_tone_target_dbfs"))
+        evidence = chain_air_evidence(master, shaped, plan, rate, declared if air.get("added", True) else None)
+        evidence["air_added"] = bool(air.get("added", True))
+        if not evidence["air_added"]:
+            evidence["air_refused_reason"] = air.get("refused")
         report["master_chain"] = {"chain_report": str(args.master_chain),
                                   "chain_report_sha256": sha256(args.master_chain),
                                   "filters_applied": af,

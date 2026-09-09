@@ -85,3 +85,25 @@ def test_unusable_without_enough_silence(base):
     mc = chain_air_evidence(shaped + _air(rng), shaped, crowded, SR, AIR_DBFS)
     assert mc["usable"] is False
     assert master_chain_gate(mc) is False
+
+
+def test_no_air_path_demands_the_exact_filtered_master(base):
+    """When the chain declares no ambience, nothing at all may be added to the voice."""
+    rng, shaped = base
+    untouched = chain_air_evidence(shaped.copy(), shaped, PLAN, SR, None)
+    untouched["air_added"] = False
+    assert untouched["max_abs_difference"] == 0.0
+    assert master_chain_gate(untouched) is True
+
+    tampered = shaped.copy()
+    tampered[int(3 * SR):int(4 * SR)] += 0.002  # a layer under one sentence, -34 dBFS
+    hidden = chain_air_evidence(tampered, shaped, PLAN, SR, None)
+    hidden["air_added"] = False
+    assert master_chain_gate(hidden) is False
+    assert hidden["max_abs_difference"] > 1e-3
+
+
+def test_correlation_is_defined_for_a_silent_residual(base):
+    rng, shaped = base
+    mc = chain_air_evidence(shaped.copy(), shaped, PLAN, SR, None)
+    assert mc["correlation_with_speech_envelope"] == 0.0
