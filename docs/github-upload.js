@@ -30,7 +30,19 @@ const PAGE_PATH = typeof location !== 'undefined' ? location.pathname.split('/')
 const ON_GITHUB_PAGES = PAGE_HOST.endsWith('.github.io');
 export const OWNER = ON_GITHUB_PAGES ? PAGE_HOST.split('.')[0] : 'zaldynbwtany202-dev';
 export const REPO = ON_GITHUB_PAGES ? (PAGE_PATH[0] || `${OWNER}.github.io`) : 'DUB-';
-export const BRANCH = 'arena/01a07c69-dub';
+// The branch the pages write to. It used to be a constant from an older session,
+// which silently sent uploads somewhere nobody was reading; now it follows the
+// session branch, overridable with ?branch=… and remembered per browser.
+const BRANCH_KEY = 'prostudio.github.branch';
+export const BRANCH = (() => {
+  try {
+    const fromUrl = new URLSearchParams(location.search).get('branch');
+    if (fromUrl) { localStorage.setItem(BRANCH_KEY, fromUrl); return fromUrl; }
+    return localStorage.getItem(BRANCH_KEY) || 'arena/01a08487-dub';
+  } catch {
+    return 'arena/01a08487-dub';
+  }
+})();
 export const TOKEN_URL =
   'https://github.com/settings/tokens/new?scopes=public_repo&description=ProStudio%20upload';
 
@@ -250,4 +262,35 @@ export async function commitFile(file, token, onProgress) {
     commit: commit.sha,
     url: `https://github.com/${OWNER}/${REPO}/commit/${commit.sha}`,
   };
+}
+
+/**
+ * Write one small text file (json, md, srt) into the branch, same mechanics as
+ * commitFile but without the part-splitting: these are kilobytes, not videos.
+ * Used by the voice shop so a click on «اختر هذه العينة» becomes a commit the
+ * agent can read, instead of a preference that dies inside localStorage.
+ */
+export async function commitTextFile(path, text, message, token) {
+  const t = token || loadToken();
+  if (!t) throw new Error('لا يوجد رمز GitHub محفوظ — أضِفه أولًا.');
+  const sha = await api(`/repos/${OWNER}/${REPO}/git/blobs`, t, {
+    method: 'POST',
+    body: JSON.stringify({ content: btoa(unescape(encodeURIComponent(text))) }),
+  });
+  const ref = await api(`/repos/${OWNER}/${REPO}/git/ref/heads/${BRANCH}`, t);
+  const head = ref.object.sha;
+  const parent = await api(`/repos/${OWNER}/${REPO}/git/commits/${head}`, t);
+  const tree = await api(`/repos/${OWNER}/${REPO}/git/trees`, t, {
+    method: 'POST',
+    body: JSON.stringify({ base_tree: parent.tree.sha, tree: [{ path, mode: '100644', type: 'blob', sha: sha.sha }] }),
+  });
+  const commit = await api(`/repos/${OWNER}/${REPO}/git/commits`, t, {
+    method: 'POST',
+    body: JSON.stringify({ message, tree: tree.sha, parents: [head] }),
+  });
+  await api(`/repos/${OWNER}/${REPO}/git/refs/heads/${BRANCH}`, t, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha: commit.sha }),
+  });
+  return { path, commit: commit.sha, url: `https://github.com/${OWNER}/${REPO}/commit/${commit.sha}` };
 }

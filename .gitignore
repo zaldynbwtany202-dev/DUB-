@@ -72,3 +72,8 @@ voice-audit/
 !library/**
 !dubs/
 !dubs/**
+
+# Voice-shop previews are the product, not scratch audio: the page plays exactly
+# these files, so they live in the repo. Same reason docs/samples is excepted above.
+!docs/voice-shop/
+!docs/voice-shop/*.mp3
