@@ -315,6 +315,57 @@ p90 6.702، أقصى 14.499). 96 مرساة «مستحيلة» (من `anchor_con
    بالمسلَّم (تطابق تام متوقع)، بدل فرض `speech_untouched` على الصوت الخام. لا تنشر نسخة
    المعالجة كبوابة خضراء قبل كتابة هذا الوضع.
 
+### 2026-09-09 (مساءً) — إعادة بناء كاملة من GitHub + بوابة «الهواء مش موسيقى»
+
+**الرنج بокس اتصفّر في النص (11:42)**: لا venv، لا `.cache`، وHEAD رجع لوراء `9048ea7`
+والشجرة فيها ملفات أحدث/أقدم مخلوطة. الاسترجاع الصحيح (اتعمل فعلاً وانجح):
+
+```
+git fetch origin arena/01a08487-dub          # shallow: بالـsha مش بالاسم لو لزم
+git reset -q --mixed <head-المنشور> && git status --porcelain   # طابِع الأول: إيه الفرق فعلًا
+git reset --hard <head-المنشور>
+python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
+    numpy soundfile imageio-ffmpeg faster-whisper pytest
+```
+
+1. **كل المادة الخام موجودة في المستودع نفسه**: `library/hajj-dream-2108415/source.mp4`
+   **متعقَّب** رغم `*.mp4` في .gitignore (استثناء المقبولات) وبصمته `26a4dce5…0cebb4` ✓.
+   السرير الصوتي بيتبني من الأجزاء المتعقَّبة في `3 ثواني`:
+   `python scripts/restore_background_parts.py --source library/<slug>/source.mp4 --parts
+   dubs/<slug>/background/parts --output .cache/<slug>-sync-repair/background.wav`.
+   والتسجيلات المعتمدة بترجع بـ `scripts/materialize_lossless_takes.py --script
+   dubs/<slug>/timing-repair/script.json` (من كوميتات الأرشيف، من غير أي إعادة توليد).
+2. **VAD هو مشكل الريفريش**: `silero_spans` في `sync_takes_to_source_timeline.py` بيستورد
+   `faster_whisper.vad` (نموذج ONNX مرفق مع الحزمة، بلا تنزيل من HF). من غير `pip install
+   faster-whisper` بيرجع [] والـfallback هو `energy_spans` → الكلام بيبدو أطول و`uncovered`
+   يقفز 11.74 → 29.34 ث ويفشل البتة (`ValueError`). لو شفت الرقم ده في sandbox جديد، ده السبب،
+   مش نص سييء.
+3. **إعادة البناء مش bit-identical، وسببها مفهوم**: بلان المعاد بناجه يطابق المنشور حرفيًا في
+   `source_speech_coverage=0.982609` و`uncovered=11.74` و`max_uncovered_gap=0.0`، لكن بصمة
+   الماستر بتختلف (`4674f021…` مقابل `2ae18fb5…` المسجلة في mix.json) لأن FLAC المؤرشف
+   بيتعمله resample من 24k بشكل مختلف عن WAV العائم للأداة، فحدود القص داخل كل take اتغيرت
+   (median 0 ms، p90 194 ms، 61/237 أكتر من 60 ms). **النتيجة العملية**: `--plan` لازم يكون
+   من نفس الريان اللي بنى الماستر؛ اعملهم ورا بعض في نفس الجلسة (وهذا اللي هيحصل في الجولة
+   التالتة)، ومفيش داعي لإنك تتوقع sha قديمة تتكرر.
+4. **`verify_source_sync_render.py` بقى ليه وضع `--master-chain`** (مع `--dry-narration`):
+   بيعيد تطبيق السلسلة المعلنة في تقرير `match_source_acoustics.py` على الماستر الجاف، وقياس
+   **الفرق في الوقفات بس** (مش على الملف كله — عشان أي loudnorm ما يسرقش الرقم)، ولازم
+   يبقى: إزاحة زمن 0، طول مطابق، انتشار مستوى ≤2 dB/ثانية، فرق «وقت الكلام − وقت الوقفة»
+   ≤4 dB، flatness ≥−6 dB، peakiness ≤12 dB، ومستوى ضمن ±4 dB من `room_tone_target_dbfs`.
+   البوابة `master_chain_is_air_not_music` + دالة `master_chain_gate(mc) -> bool` + 6 اختبارات
+   تركيبية (`tests/test_master_chain.py`) تثبت إن البوابة بتقبول الهواء و**بترفض**: همّ 220 Hz
+   عند −23 dBFS، سرير بـducking (الفرق −26 dB)، نسخة متأخرة 10 ms، وهوا بأعلى +9 dB.
+   ملاحظة معايرة: `correlation_with_speech_envelope` لوحدها بترضّ ~0.2 مع ضجيج أبيض
+   (n=32) فاتاحيتها 0.5؛ الكاشف الحقيقي للـducking هو فرق المستوى، مش الارتباط.
+5. **مقاييس «بشرية» اللي انثبتت عمياء اتمسحت من الترجيح** و`scripts/compare_voice_candidates.py`
+   بيقيس الطرفين من نفس النافذة 16 kHz وعلى نفس الإطارات المصوتة؛ `level_sd_db` لازم يُقاس
+   على الكلام فوق `floor+6 dB` بس، وإلا الوقفات بتخلي أي عينة تبان «أكثر حيوية» كذبًا.
+   معرض `dubs/hajj-dream-2108415/voice-tests/gallery/`: 10 مرشحين قرأوا نص حقيقي،
+   `pace-fit.json` بيحوّل السرعة لثمن: المطلوب 1585 كلمة فوق 632.5 ث؛ `voice-07` (2.545 ك/ث)
+   و`voice-13` (2.509) و`voice-11` (2.516) بس اللي يبلعوا النص كامل؛ الباقي معناه قطع كلمات.
+   `voice-06` أنضف نطاق (0.161 تحت 200 Hz مقابل 0.151 للبشري)، `voice-08` أقرب حركة مستوى.
+   **القرار للمسمع**: المستخدم يقول رقم، وبعدها الجولة التالتة مباشرة من غير أسئلة.
+
 **فحص المخرج** (`scripts/verify_source_sync_render.py`) صار يقيس من الأثر لا من الخطة:
 `quiet_holes` بصمت رقمي مُقاس من العيّنات (ذروة < -55 dBFS على 10 مللي‑ثانية) متقاطعاً مع
 كلام الأصل، و`clause_phase` يعيد قراءة بداية كل قطعة من `written_begin` ويقارنها بالوقت

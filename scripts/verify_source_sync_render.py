@@ -98,6 +98,99 @@ def vad(audio: np.ndarray, sample_rate: int, min_gap: float = 0.12) -> list[list
     return _merge(spans, min_gap)
 
 
+def _welch(audio: np.ndarray, sample_rate: int, frame: int = 2048) -> tuple[np.ndarray, np.ndarray]:
+    """Averaged power spectrum. A single window over minutes of audio measures the window,
+    not the signal - that is what made an early version of this check report -102 dB
+    flatness for plain noise."""
+    if audio.size < frame * 2:
+        frame = max(64, audio.size // 4)
+    count = 1 + (audio.size - frame) // (frame // 2)
+    window = np.hanning(frame)
+    acc = np.zeros(frame // 2 + 1)
+    for i in range(count):
+        acc += np.abs(np.fft.rfft(audio[i * (frame // 2): i * (frame // 2) + frame] * window)) ** 2
+    freqs = np.fft.rfftfreq(frame, 1 / sample_rate)
+    return acc / max(1, count), freqs
+
+
+def chain_air_evidence(delivered: np.ndarray, shaped: np.ndarray, plan: dict, sample_rate: int,
+                       declared_air_dbfs: float | None) -> dict:
+    """What the chain added, measured where nobody is speaking.
+
+    The delivered master minus the filtered takes is the room tone the chain poured into the
+    pauses. Judging it in silence keeps a loudness pass or a level trim on the speech out of
+    the number, which is what let a 5 dB error hide here before."""
+    length = min(len(delivered), len(shaped))
+    residual = delivered[:length] - shaped[:length]
+    occupied = np.zeros(length, bool)
+    for row in plan["timeline"]:
+        begin = int(round(row["written_begin"] * sample_rate))
+        stop = min(length, begin + int(round((row["take_piece"][1] - row["take_piece"][0]) * sample_rate)))
+        occupied[begin:stop] = True
+    gaps = ~occupied
+    if gaps.sum() < sample_rate:
+        return {"usable": False, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2)}
+    blocks = sample_rate
+    cut = int(gaps.sum() // 1)
+    gap_res = residual[gaps]
+    level = 20 * np.log10(max(float(np.sqrt((gap_res[: min(gap_res.size, cut)] ** 2).mean())), 1e-9))
+    per_second = 20 * np.log10(np.maximum(np.sqrt((gap_res[: gap_res.size // blocks * blocks]
+                                                   .reshape(-1, blocks) ** 2).mean(1)), 1e-9))
+    under_speech = 20 * np.log10(max(float(np.sqrt((residual[:length][occupied][: sample_rate * 120] ** 2).mean())), 1e-9))
+    power, freqs = _welch(gap_res[: min(gap_res.size, sample_rate * 120)], sample_rate)
+    band = (freqs >= 60) & (freqs <= 0.45 * sample_rate)
+    pw = power[band]
+    flatness = 10 * np.log10(max(float(np.exp(np.mean(np.log(np.maximum(pw, 1e-30))))), 1e-30)
+                              / max(float(pw.mean()), 1e-30))
+    peakiness = 10 * np.log10(max(float(pw.max()), 1e-30) / max(float(np.median(pw)), 1e-30))
+    # Pumping is measured on the added layer across the whole timeline, one value per second,
+    # so it has the same shape as the speech envelope it is compared against.
+    span = min(length, blocks * 600) - min(length, blocks * 600) % blocks
+    def per_second_level(x: np.ndarray) -> np.ndarray:
+        return 20 * np.log10(np.maximum(np.sqrt((x[:span].reshape(-1, blocks) ** 2).mean(1)), 1e-9))
+    corr = 0.0
+    if span >= blocks * 4:
+        env = per_second_level(delivered[:length])
+        res_env = per_second_level(residual)
+        corr = float(np.corrcoef(res_env, env)[0, 1]) if np.std(env) > 1e-6 else 0.0
+    lag = int(np.argmax(np.correlate(delivered[: sample_rate * 30], shaped[: sample_rate * 30],
+                                     mode="full"))) - (sample_rate * 30 - 1)
+    return {"usable": True, "gap_seconds": round(float(gaps.sum()) / sample_rate, 2),
+            "air_level_dbfs": round(float(level), 2),
+            "declared_air_level_dbfs": declared_air_dbfs,
+            "air_level_error_db": round(float(level - declared_air_dbfs), 2) if declared_air_dbfs is not None else None,
+            "air_level_spread_per_second_db": round(float(np.std(per_second)), 2),
+            "level_under_speech_minus_in_gaps_db": round(float(under_speech - float(level)), 2),
+            "spectral_flatness_db": round(float(flatness), 2),
+            "spectral_peakiness_db": round(float(peakiness), 2),
+            "correlation_with_speech_envelope": round(corr, 3),
+            "max_time_lag_ms": round(abs(lag) / sample_rate * 1000, 4),
+            "length_difference_samples": int(len(delivered) - len(shaped))}
+
+
+def master_chain_gate(mc: dict) -> bool:
+    """The published room tone must be air, at the declared level, that does not move.
+
+    Kept as a function of the measurement dict so a test can feed it hums, ducked music and
+    a shifted copy without rendering a 676 second video first.    The envelope correlation is checked loosely: with only a second per sample and a room tone
+    that is uncorrelated noise by construction, |r| wanders around 0.2 by itself. The level
+    difference between the pauses and under-speech is the number that actually catches a
+    side-chained bed (a ducked one drops 20+ dB under speech; air moves 0.04 dB).
+    """
+    if not mc.get("usable"):
+        return False
+    # bool() on purpose: numpy comparisons return np.bool_, which is not False/True for `is`
+    # and which json refuses to serialise in the published report
+    return bool(mc["max_time_lag_ms"] <= 0.5
+            and mc["length_difference_samples"] == 0
+            and mc["air_level_spread_per_second_db"] <= 2.0
+            and abs(mc["level_under_speech_minus_in_gaps_db"]) <= 4.0
+            and mc["spectral_flatness_db"] >= -6.0
+            and mc["spectral_peakiness_db"] <= 12.0
+            and abs(mc.get("air_level_error_db") or 0.0) <= 4.0
+            and abs(mc["correlation_with_speech_envelope"]) <= 0.5)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True, help="original picture")
@@ -120,6 +213,14 @@ def main() -> int:
     parser.add_argument("--inset", type=float, default=0.05,
                         help="ignore this many seconds at each chunk edge, where a shortened "
                              "pause lets the neighbour's room tone sit next to the speech")
+    parser.add_argument("--dry-narration", type=Path,
+                        help="narration master before any declared master chain; the per-piece "
+                             "identity check runs against this file when given")
+    parser.add_argument("--master-chain", type=Path,
+                        help="report written by scripts/match_source_acoustics.py. With it the "
+                             "delivered master is certified as the dry master pushed through the "
+                             "declared filters plus a stationary air bed: the speech is still the "
+                             "approved takes, the room tone is not music, and nothing moved in time")
     args = parser.parse_args()
 
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
@@ -147,6 +248,14 @@ def main() -> int:
     master, rate = sf.read(args.narration, dtype="float32")
     if master.ndim > 1:
         master = master.mean(axis=1)
+    voice_master, voice_rate = master, rate
+    if args.dry_narration:
+        voice_master, voice_rate = sf.read(args.dry_narration, dtype="float32")
+        if voice_master.ndim > 1:
+            voice_master = voice_master.mean(axis=1)
+        if voice_rate != rate:
+            raise ValueError(f"dry narration at {voice_rate} Hz cannot be compared with the "
+                             f"delivered master at {rate} Hz")
     audio_of = {int(part["index"]): Path(part["audio"]) for part in plan["parts"]}
     voices: dict[int, np.ndarray] = {}
     mismatches: list[dict] = []
@@ -161,7 +270,8 @@ def main() -> int:
         piece_hi = int(round(row["take_piece"][1] * rate))
         written = int(round(row["written_begin"] * rate))
         expected = voice[piece_lo:piece_hi]
-        got = master[written:written + len(expected)]
+        got = voice_master[written:written + len(expected)]
+        delivered_piece = master[written:written + len(expected)]
         if len(got) != len(expected) or len(expected) < 16:
             mismatches.append({"part": row["part"], "start": row["start"], "reason": "length"})
             continue
@@ -172,7 +282,7 @@ def main() -> int:
         # the piece was written so that its speech starts exactly at the planned cue time
         speech_lo = int(round(row["take_speech_start"] * rate))
         alignment.append(abs(written + speech_lo - piece_lo - int(round(row["start"] * rate))))
-        if float(np.max(np.abs(got))) < 1e-3:
+        if float(np.max(np.abs(got))) < 1e-3 or float(np.max(np.abs(delivered_piece))) < 1e-3:
             silent += 1
     report["speech"] = {
         "pieces_checked": checked,
@@ -183,6 +293,7 @@ def main() -> int:
         "pieces_silent_in_master": silent,
         "master_duration": round(len(master) / rate, 3),
         "master_peak_dbfs": round(20 * np.log10(max(float(np.max(np.abs(master))), 1e-9)), 3),
+        "compared_against": str(args.dry_narration or args.narration),
         "method": "every placed piece is compared sample by sample with the approved take, and its "
                   "speech onset is compared with the planned cue time; silence between pieces moved, "
                   "the speech itself did not",
@@ -259,6 +370,29 @@ def main() -> int:
                   "matching speech unit in the original",
     }
 
+    if args.master_chain:
+        if not args.dry_narration:
+            raise ValueError("--master-chain also needs --dry-narration: without the file before "
+                             "the chain there is nothing to prove the chain was applied to")
+        chain = json.loads(args.master_chain.read_text(encoding="utf-8"))
+        af = ",".join(chain["filters"].get("chain_applied") or []) or "anull"
+        trial = args.output.parent / ".chain-check.wav"
+        subprocess.run([ffmpeg_exe(), "-y", "-v", "error", "-i", str(args.dry_narration), "-af", af,
+                        "-ar", str(rate), "-ac", "1", str(trial)], check=True, capture_output=True)
+        shaped = sf.read(trial, dtype="float32")[0]
+        evidence = chain_air_evidence(master, shaped, plan, rate,
+                                      chain["filters"].get("room_tone_target_dbfs"))
+        report["master_chain"] = {"chain_report": str(args.master_chain),
+                                  "chain_report_sha256": sha256(args.master_chain),
+                                  "filters_applied": af,
+                                  "air_source": chain["filters"].get("room_tone_source"),
+                                  "method": ("the delivered master, in the pauses, must measure as the room "
+                                             "tone level the chain report declares, be stationary, show no "
+                                             "pumping against the speech envelope and sit at zero time lag - "
+                                             "that is air from the scene, not music and not a re-recording"),
+                                  **evidence}
+        trial.unlink(missing_ok=True)
+
     report["loudness"] = loudness(args.output)
 
     gates = {
@@ -269,6 +403,8 @@ def main() -> int:
         and report["speech"]["max_alignment_error_samples"] <= args.max_alignment_samples
         and report["speech"]["pieces_silent_in_master"] == 0
         and report["speech"]["pieces_checked"] == len(plan["timeline"]),
+        "master_chain_is_air_not_music": (not args.master_chain)
+        or master_chain_gate(report["master_chain"]),
         "no_long_gaps": dry["max_uncovered_gap"] <= args.max_gap
         and delivered["max_uncovered_gap"] <= args.max_gap,
         "coverage_within_budget": dry["uncovered_source_speech_seconds"] <= args.max_uncovered,
