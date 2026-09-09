@@ -2,7 +2,7 @@
   "slug": "hajj-dream-2108415",
   "title": "دبلجة الحج — صوت voice-12 بمزامنة مقيسة على كلام الأصل",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "voice_only_render_verified_awaiting_push",
+  "status": "voice_only_dub_ready_for_listening",
   "versions": [
     {
       "run_id": "source-sync-no-bed-voice-only",
@@ -90,7 +90,9 @@
         "source-sync/render-verification.json",
         "timing-repair/pause-plan.json",
         "timing-repair/hole-comparison.json",
-        "timing-repair/policy-sweep.json"
+        "timing-repair/policy-sweep.json",
+        "timing-repair/source-analysis/vocal-pauses.json",
+        "voice-tests/voice-02-thick-samples.json"
       ],
       "subtitles": "source-sync/final-dub-source-sync.srt",
       "status": "source_synchronous_dub_ready_for_listening",
@@ -98,13 +100,16 @@
     }
   ],
   "publication": {
-    "status": "local_render_complete_awaiting_push",
+    "status": "published_verified",
     "branch": "arena/01a08487-dub",
+    "commit": "bf0a2e9",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
     "size": 41915527,
     "sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
-    "recorded_at": "2026-09-09T10:04:11+00:00",
-    "policy": "verify the remote file with gh api before reporting a download link"
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "policy": "verified with gh api contents on 2026-09-09: remote git blob 20df03de and byte size 41915527 matched the locally verified render at commit bf0a2e9; the three voice-02 samples and their manifest were size-checked the same way",
+    "remote_blob_sha256_of_git_object": "20df03de64066ac6af786b3bb36791b542c62900",
+    "verified_at": "2026-09-09T10:07:13+00:00"
   },
   "archived_versions": [
     {
@@ -439,7 +444,7 @@
       }
     }
   ],
-  "updated_at": "2026-09-09T10:04:11+00:00",
+  "updated_at": "2026-09-09T10:07:13+00:00",
   "active_version": "source-sync-no-bed-voice-only",
   "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4"
 }

@@ -32,11 +32,16 @@
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.328,
   "publication": {
-    "status": "awaiting_push_verification",
+    "status": "published_verified",
     "path": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
     "size": 41915527,
     "sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
-    "recorded_at": "2026-09-09T10:04:11+00:00"
+    "recorded_at": "2026-09-09T10:04:11+00:00",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a08487-dub/dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+    "commit": "bf0a2e9",
+    "policy": "verified with gh api contents on 2026-09-09: remote git blob 20df03de and byte size 41915527 matched the locally verified render at commit bf0a2e9; the three voice-02 samples and their manifest were size-checked the same way",
+    "verified_at": "2026-09-09T10:07:13+00:00",
+    "remote_blob_sha256_of_git_object": "20df03de64066ac6af786b3bb36791b542c62900"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
@@ -47,7 +52,7 @@
   "reused_approved_opening": true,
   "timing_quality_approved": false,
   "active_plan": "timing-repair/pause-plan.json",
-  "final_sha256": "99f1966b7f6339f33e6c72c2e91c06941627d2347fbbbb7cc4b757194710a820",
+  "final_sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
   "final_bytes": 42382465,
   "voice_regenerated_this_run": false,
   "tempo_applied": 1.0,
@@ -81,5 +86,19 @@
   "voice_candidates_offered": [
     "voice-01",
     "voice-02"
-  ]
+  ],
+  "samples": {
+    "voice_id": "voice-02",
+    "count": 3,
+    "paths": [
+      "voice-tests/voice-02-s1-quiet.mp3",
+      "voice-tests/voice-02-s2-grief.mp3",
+      "voice-tests/voice-02-s3-astonished.mp3"
+    ],
+    "lossless": [
+      "voice-tests/voice-02-s1-quiet.flac",
+      "voice-tests/voice-02-s2-grief.flac",
+      "voice-tests/voice-02-s3-astonished.flac"
+    ]
+  }
 }
