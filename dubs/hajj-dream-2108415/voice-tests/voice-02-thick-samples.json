@@ -1,0 +1,51 @@
+{
+  "purpose": "أثخن قليلاً، بنفس نص الدبلجة المصري، لتقييم ثخانة الصوت ونطق اللهجة قبل اعتماد صوت الجولة الثالثة؛ الفحوص الرقمية لا تحكم على الجودة، السمع هو الحكم",
+  "how_to_compare": "قارنها بالصوت المعتمد voice-12 في source-sync/final-dub-source-sync.mp3 عند 0:00-0:40",
+  "samples": [
+    {
+      "sample": "voice-02-s1-quiet",
+      "voice_id": "02-s1",
+      "flac": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.flac",
+      "mp3": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.mp3",
+      "seconds": 17.32,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak_dbfs": -3.43,
+      "flac_sha256": "941beb92021b50be84d62a996cea5cdc3b13b913d24f7878e78c7294d6ccd7f7",
+      "mp3_sha256": "08b13491713eff0e85c76e3ca8e7da10ea293aab6531e3acce57614e4db8cc02",
+      "words": 38,
+      "text": "ده راجل كبر في السن، فقير وبسيط للغاية، لاقي أكله بالعافية. وزوجته عائشة ست بيت، بتصلي الفجر في وقتها، وبتلمّ البيت قبل ما يمشي. وأهل القرية في نفس الوقت رايحين الجامع، كل واحد بيحسب حساب ربنا في نفسه.",
+      "prose_note": ""
+    },
+    {
+      "sample": "voice-02-s2-grief",
+      "voice_id": "02-s2",
+      "flac": "dubs/hajj-dream-2108415/voice-tests/voice-02-s2-grief.flac",
+      "mp3": "dubs/hajj-dream-2108415/voice-tests/voice-02-s2-grief.mp3",
+      "seconds": 21.68,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak_dbfs": -3.03,
+      "flac_sha256": "7ea0bf2790e274977ad2ed02020944ff7b26e8393daec4e131d934b12e359cf9",
+      "mp3_sha256": "155ee60881a36a2d2fcce72d124f964655fbaac750e0fd204361037c49a8057e",
+      "words": 41,
+      "text": "بعد كده يلاقوا إن الفلوس لسه ناقصة، مش كفاية تكاليف الحج. عائشة تتحسف على دهبها، لكنه يواسيها ويقول: ربنا اللي ادّاني الدعوة دي مش هيحرمني الطريق. وفي الطريق يفتكر جاره سليمان، صاحب الخلاف القديم، فيروح للقرية اللي انتقل لها ويسأله.",
+      "prose_note": ""
+    },
+    {
+      "sample": "voice-02-s3-astonished",
+      "voice_id": "02-s3",
+      "flac": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "mp3": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.mp3",
+      "seconds": 18.56,
+      "sample_rate": 24000,
+      "channels": 1,
+      "peak_dbfs": -3.23,
+      "flac_sha256": "55f4a9b383bf6747f799274b551a8fd3562c153ea53c0a624287493fdc2539b9",
+      "mp3_sha256": "623611093cc11bb287c6644b40a80abffce831aebf2a8ec7126903e3742a1c41",
+      "words": 37,
+      "text": "يسأله الضابط: فين الجواز؟ فينفي ويقول إنه عمره ما سافر برّه قريته. فيستغرب، لأن الضابط ما طلبش منه حاجة. تاني يوم، لما يعدّيه يدّيله المبلغ ويسأله: معاد الجواز إمتى هيجهز؟ فيقوله: هيوصّلهولك البيت.",
+      "prose_note": ""
+    }
+  ]
+}

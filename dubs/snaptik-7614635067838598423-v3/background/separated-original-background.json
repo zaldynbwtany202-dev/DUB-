@@ -1,0 +1,19 @@
+{
+  "method": "neural UVR four-band ONNX instrumental mask projected onto source phase",
+  "is_exact_original_stem": false,
+  "speech_contamination": "No reliable narrator phrase recovered by diagnostic ASR; not a purity guarantee.",
+  "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+  "source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+  "model_sha256": "84e57b4685dfa0042e04b33266b650ee7785604ac472414bef6dea90e810448f",
+  "output": "dubs/snaptik-7614635067838598423-v3/background/separated-original-background.flac",
+  "output_sha256": "66580f5d4f106e4521a5337483de1e1c1ba6e35ed875e3997fec792ba7225ac1",
+  "sample_rate": 44100,
+  "samples": 4801598,
+  "duration": 108.87977324263039,
+  "mask_power": 1.35,
+  "source_rms_dbfs": -20.89357085748137,
+  "background_rms_dbfs": -29.259469168463564,
+  "background_peak_dbfs": -8.399285963830623,
+  "elapsed_seconds": 142.299,
+  "audit": "narrator-leak-audit.json"
+}

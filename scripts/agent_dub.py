@@ -4,12 +4,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from youtube_auto_dub.agent_tts import assemble, cues_from_segments, load_cues, write_cues
+from youtube_auto_dub.agent_tts import assemble, cues_from_segments, load_cues, resolve_cue_paths, write_cues
 
 
 def main() -> int:
@@ -30,6 +31,7 @@ def main() -> int:
     sync.add_argument("--work-dir", type=Path, default=Path("output/agent-work"))
     sync.add_argument("--video", type=Path)
     sync.add_argument("--no-background", action="store_true")
+    sync.add_argument("--until", type=float, help="Explicit incomplete prefix preview ending at a cue boundary")
 
     args = p.parse_args()
     if args.cmd == "plan":
@@ -38,24 +40,18 @@ def main() -> int:
         sheet = cues_from_segments(
             args.video, segs, voice_id=args.voice_id, language=args.language, audio_dir=args.audio_dir,
         )
+        sheet["video"] = os.path.relpath(args.video.resolve(), args.out.parent.resolve())
         write_cues(args.out, sheet)
         print(json.dumps({"cues": str(args.out), "lines": len(sheet["segments"])}, ensure_ascii=False))
         return 0
-    cues = load_cues(args.cues)
-    # Resolve audio paths relative to the cue file.
-    root = args.cues.parent
-    for seg in cues["segments"]:
-        audio = Path(seg["audio"])
-        if not audio.is_absolute():
-            cand = (root / audio).resolve()
-            if cand.exists() or not Path(seg["audio"]).exists():
-                seg["audio"] = str(cand)
+    cues = resolve_cue_paths(load_cues(args.cues), args.cues.parent)
     out = assemble(
         cues,
         work_dir=args.work_dir,
         output=args.output,
         mix_background=not args.no_background,
         video=args.video,
+        end_time=args.until,
     )
     print(json.dumps({"output": str(out)}, ensure_ascii=False))
     return 0

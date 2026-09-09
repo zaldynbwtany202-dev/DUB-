@@ -1,0 +1,102 @@
+{
+  "status": "complete",
+  "technical_checks_passed": true,
+  "source_duration": 108.9,
+  "output_duration": 108.9,
+  "original_source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+  "approved_dry_dub_sha256": "229a93bd58e931203d45d497beebd8d5a0deb42fddb1aeb75e32b77d129eebed",
+  "output_sha256": "c9b60c2d9570bfe47be996575c4e39bbd7593bba4983980b7e1e7fa58a0dcdfd",
+  "picture_packets_unchanged": true,
+  "picture_packet_count": 3267,
+  "streams": {
+    "duration": 108.9,
+    "width": 576,
+    "height": 768,
+    "fps": "30",
+    "video_codec": "h264",
+    "audio_streams": 1,
+    "audio_codec": "aac",
+    "audio_channels": 2,
+    "audio_sample_rate": 48000,
+    "audio_language": "ara"
+  },
+  "decode_errors": 0,
+  "measured_lufs": -16.01,
+  "measured_true_peak_db": -3.33,
+  "voice_backend": "agent",
+  "voice_id": "voice-00",
+  "voice_regenerated": false,
+  "narration_alignment_checks": [
+    {
+      "start": 0.7,
+      "end": 10.8,
+      "dry_voice_correlation": 0.9798589421983145,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 23,
+      "end": 31.5,
+      "dry_voice_correlation": 0.9586921074301848,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 43,
+      "end": 52.6,
+      "dry_voice_correlation": 0.9694093509849583,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 64,
+      "end": 73.8,
+      "dry_voice_correlation": 0.9775091593204608,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 92,
+      "end": 99,
+      "dry_voice_correlation": 0.9891058290018477,
+      "lag_ms": 0.0
+    },
+    {
+      "start": 100,
+      "end": 107.8,
+      "dry_voice_correlation": 0.9726244245040156,
+      "lag_ms": 0.0
+    }
+  ],
+  "music_presence_checks": [
+    {
+      "start": 32.8,
+      "end": 34.8,
+      "dry_rms_dbfs": -240.0,
+      "music_mix_rms_dbfs": -20.92
+    },
+    {
+      "start": 36.5,
+      "end": 39.5,
+      "dry_rms_dbfs": -240.0,
+      "music_mix_rms_dbfs": -17.39
+    }
+  ],
+  "music_included": true,
+  "music_source": "neural estimate from original uploaded audio",
+  "ducking_enabled": true,
+  "background_gain_db": 2.5,
+  "original_narrated_track_overlaid": false,
+  "speech_free_stem_guarantee": false,
+  "stem_audit": "background/narrator-leak-audit.json",
+  "dry_version_preserved": true,
+  "captions_unchanged": true,
+  "lip_animation_modified": false,
+  "language_check": {
+    "valid": true,
+    "expected": "ar",
+    "detected": "ar",
+    "confidence": 0.999483,
+    "scope": "first detection window of the actual exported mix",
+    "engine": "whisper.cpp small",
+    "is_full_content_accuracy_score": false
+  },
+  "targeted_tests_passed": 62,
+  "validated_at": "2026-09-07T17:56:23+00:00"
+}

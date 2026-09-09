@@ -1,0 +1,188 @@
+{
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "output": ".cache/hajj-sync-repair/matched-preview.mp4",
+  "output_sha256": "027fb01475246e2582c7d6732a597fb3b8b4ff9b1a27ea5ad355ba315f13171d",
+  "output_bytes": 41927422,
+  "picture": {
+    "source_duration": 676.33,
+    "output_duration": 676.4,
+    "source_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "output_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "video_stream_identical": true,
+    "source_video_kib": 27145,
+    "output_video_kib": 27145,
+    "output_last_packet_time": "00:11:16.23",
+    "source_decode_errors": 0,
+    "output_decode_errors": 0,
+    "video_reencoded": false,
+    "streams": [
+      "Video",
+      "Audio"
+    ]
+  },
+  "speech": {
+    "pieces_checked": 237,
+    "pieces_not_identical_to_the_take": 0,
+    "worst_mismatch": [],
+    "max_alignment_error_samples": 2,
+    "max_alignment_error_ms": 0.0454,
+    "pieces_silent_in_master": 0,
+    "master_duration": 676.448,
+    "master_peak_dbfs": -1.206,
+    "compared_against": ".cache/hajj-sync-repair/narration.wav",
+    "method": "every placed piece is compared sample by sample with the approved take, and its speech onset is compared with the planned cue time; silence between pieces moved, the speech itself did not"
+  },
+  "timeline": {
+    "dry_narration": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 601.08,
+      "uncovered_source_speech_seconds": 12.4,
+      "source_speech_coverage": 0.981632,
+      "max_uncovered_gap": 0.42,
+      "gap_count": 1,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "delivered_mix": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 604.61,
+      "uncovered_source_speech_seconds": 11.32,
+      "source_speech_coverage": 0.983231,
+      "max_uncovered_gap": 0.42,
+      "gap_count": 1,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "dry_longest_gaps": [
+      {
+        "start": 181.74,
+        "end": 182.16,
+        "duration": 0.42
+      }
+    ],
+    "delivered_longest_gaps": [
+      {
+        "start": 181.74,
+        "end": 182.16,
+        "duration": 0.42
+      }
+    ],
+    "planned": {
+      "uncovered_source_speech_seconds": 11.74,
+      "max_uncovered_gap": 0.0
+    },
+    "method": "same Silero settings on the original and on the delivered audio"
+  },
+  "quiet_holes": {
+    "method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms blocks) that overlaps original speech; independent of any speech detector",
+    "count_over_budget": 0,
+    "longest": [
+      {
+        "start": 615.42,
+        "end": 615.87,
+        "duration": 0.45
+      },
+      {
+        "start": 221.18,
+        "end": 221.62,
+        "duration": 0.44
+      },
+      {
+        "start": 157.02,
+        "end": 157.44,
+        "duration": 0.42
+      },
+      {
+        "start": 601.99,
+        "end": 602.41,
+        "duration": 0.42
+      },
+      {
+        "start": 170.77,
+        "end": 171.17,
+        "duration": 0.4
+      },
+      {
+        "start": 181.56,
+        "end": 181.96,
+        "duration": 0.4
+      }
+    ],
+    "total_seconds": 38.152,
+    "budget_seconds": 0.7
+  },
+  "clause_phase": {
+    "anchored_rows": 236,
+    "rows_measured": 236,
+    "rows_missing_onset": [],
+    "onset_error_from_plan_seconds": {
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "phase_vs_original": {
+      "anchored": 236,
+      "mean_seconds": 2.975,
+      "median_seconds": 2.293,
+      "p90_seconds": 6.702,
+      "max_seconds": 14.499
+    },
+    "plan_claimed": {
+      "anchored": 236,
+      "mean_seconds": 2.975,
+      "median_seconds": 2.293,
+      "p90_seconds": 6.702,
+      "max_seconds": 14.499
+    },
+    "method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
+  },
+  "master_chain": {
+    "chain_report": "dubs/hajj-dream-2108415/timing-repair/acoustics-match.json",
+    "chain_report_sha256": "ebf2ea08f6cafa449f99b0fe2c112061b227e286aebea695add3f1f8c4b43489",
+    "filters_applied": "bass=g=-4.39:f=180:t=s,treble=g=2.55:f=3200:t=s,lowpass=f=6500",
+    "air_source": null,
+    "method": "the delivered master, in the pauses, must measure as the room tone level the chain report declares, be stationary, show no pumping against the speech envelope and sit at zero time lag - that is air from the scene, not music and not a re-recording",
+    "usable": true,
+    "gap_seconds": 8.86,
+    "max_abs_difference": 0.0,
+    "rms_difference_dbfs": -240.0,
+    "air_level_dbfs": -180.0,
+    "declared_air_level_dbfs": null,
+    "air_level_error_db": null,
+    "air_level_spread_per_second_db": 0.0,
+    "level_under_speech_minus_in_gaps_db": 0.0,
+    "spectral_flatness_db": 0.0,
+    "spectral_peakiness_db": 0.0,
+    "correlation_with_speech_envelope": 0.0,
+    "max_time_lag_ms": 0.0,
+    "length_difference_samples": 0,
+    "air_added": false,
+    "air_refused_reason": "the lifted material is only 9.8 dB below typical speech (needs 10); that is voice, not room tone - refusing to lay it under the dub"
+  },
+  "loudness": {
+    "input_i": "-16.08",
+    "input_tp": "-1.12",
+    "input_lra": "2.90",
+    "input_thresh": "-26.52",
+    "output_i": "-15.99",
+    "output_tp": "-1.50",
+    "output_lra": "2.90",
+    "output_thresh": "-26.43",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.01"
+  },
+  "gates": {
+    "video_stream_bit_identical": true,
+    "speech_untouched": true,
+    "master_chain_is_air_not_music": true,
+    "no_long_gaps": true,
+    "coverage_within_budget": true,
+    "clause_onsets_at_planned_time": true,
+    "no_quiet_hole_over_budget": true,
+    "clause_phase_matches_plan": true,
+    "loudness_in_range": true,
+    "durations_match": true
+  },
+  "status": "verified",
+  "human_listening_certification": false,
+  "note": "These gates measure timing, picture integrity, and loudness. They do not certify pronunciation, dialect, or emotional delivery."
+}

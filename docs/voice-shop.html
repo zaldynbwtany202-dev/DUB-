@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>مئة عينة صوت — اختر صوت الدبلجة — ProStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#07080c;--ink:#f4efe4;--muted:#b7b0a3;--line:rgba(244,239,228,.12);
+        --card:rgba(16,17,23,.78);--gold:#e8b86d;--ok:#7dcea0;--warn:#e8c97d;--err:#e88d8d}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+       font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+       background-image:radial-gradient(circle at 12% 6%,rgba(232,184,109,.15),transparent 38%),
+                        radial-gradient(circle at 90% 88%,rgba(90,140,255,.10),transparent 34%)}
+  header{padding:24px 5vw 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+        background:linear-gradient(160deg,var(--gold),#9a6a2c);color:#1a1208;font-weight:700}
+  .brand strong{display:block}.brand small{color:var(--muted)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14.5px;margin-inline-start:16px}
+  nav a:hover,nav a.on{color:var(--gold)}
+  main{max-width:1180px;margin:0 auto;padding:22px 5vw 70px}
+  h1{font-size:clamp(24px,4vw,34px);margin:10px 0 8px}
+  .lede{color:var(--muted);margin:0 0 18px;font-size:16px;line-height:1.9;max-width:80ch}
+  .lede b{color:var(--ink)}
+
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:20px 0 6px;
+       background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+  .bar label{display:flex;flex-direction:column;gap:5px;font-size:13px;color:var(--muted)}
+  .bar select,.bar input[type=search]{background:rgba(0,0,0,.4);border:1px solid var(--line);
+       border-radius:9px;padding:9px 12px;color:var(--ink);font:inherit;font-size:14px;min-width:130px}
+  .bar input[type=search]{min-width:200px;direction:rtl}
+  .bar .toggle{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--muted);
+       padding-bottom:9px;cursor:pointer}
+  .count{margin-inline-start:auto;font-size:13.5px;color:var(--muted);padding-bottom:9px}
+  .count b{color:var(--gold)}
+
+  .chosen{display:flex;gap:14px;align-items:center;flex-wrap:wrap;background:rgba(125,206,160,.07);
+       border:1px solid rgba(125,206,160,.28);border-radius:14px;padding:13px 18px;margin:14px 0 0;
+       font-size:14.5px;line-height:1.8}
+  .chosen b{color:var(--ok)}
+  .chosen a{color:var(--gold)}
+  .chosen .none{color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;margin-top:18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px 16px;
+        display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:start;transition:.16s}
+  .card:hover{border-color:rgba(232,184,109,.45)}
+  .card.on{border-color:var(--gold);background:rgba(232,184,109,.10)}
+  .card.queued{opacity:.72;border-style:dashed}
+  .play{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);
+        background:rgba(255,255,255,.05);color:var(--ink);font-size:16px;cursor:pointer;
+        display:grid;place-items:center;transition:.16s;font-family:inherit}
+  .play:hover{background:var(--gold);color:#1a1208;border-color:var(--gold)}
+  .play[disabled]{opacity:.35;cursor:not-allowed}
+  .body{min-width:0}
+  .top{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .num{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+  .name{font-size:15.5px;font-weight:600;line-height:1.5}
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
+  .tag{font-size:11.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);
+       color:var(--muted);background:rgba(255,255,255,.03)}
+  .tag.d{color:var(--gold);border-color:rgba(232,184,109,.35)}
+  .tag.raw{color:#9fd0ff;border-color:rgba(120,175,255,.3)}
+  .tag.proc{color:var(--warn);border-color:rgba(232,201,125,.3)}
+  .facts{margin:9px 0 0;font-size:12.5px;color:var(--muted);line-height:1.8;direction:ltr;text-align:left}
+  .facts code{background:rgba(232,184,109,.10);color:var(--gold);padding:1px 5px;border-radius:4px;
+              font-size:11px;word-break:break-all}
+  .note{margin:8px 0 0;font-size:12.5px;color:var(--warn);line-height:1.75}
+  .note.q{color:var(--muted)}
+  .act{margin-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+  .pick{padding:9px 16px;border-radius:10px;border:none;cursor:pointer;font:inherit;font-size:13.5px;
+        font-weight:600;background:linear-gradient(160deg,var(--gold),#c98f3f);color:#1a1208}
+  .pick:hover{filter:brightness(1.08)}
+  .pick.sel{background:rgba(125,206,160,.16);color:var(--ok);border:1px solid rgba(125,206,160,.4)}
+  .ghost{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:transparent;
+         color:var(--muted);font:inherit;font-size:13px;cursor:pointer}
+  .ghost:hover{color:var(--gold);border-color:var(--gold)}
+
+  .tok{margin:16px 0 0}
+  .tok .saved{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ok);
+       background:rgba(125,206,160,.08);border:1px solid rgba(125,206,160,.25);border-radius:12px;
+       padding:11px 16px}
+  .tok .saved button{background:none;border:none;color:var(--gold);cursor:pointer;font:inherit;
+       text-decoration:underline;padding:0;margin-inline-start:6px}
+  .tok .fld{display:flex;flex-direction:column;gap:6px;text-align:start}
+  .tok .fld span{font-size:13.5px;color:var(--muted)}
+  .tok .fld a{color:var(--gold)}
+  .tok .fld input{background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:10px;
+       padding:11px 14px;color:var(--ink);font:inherit;font-size:15px;direction:ltr;text-align:start}
+  .say{margin:14px 0 0;font-size:14.5px;line-height:1.9;color:var(--muted);text-align:start;min-height:20px}
+  .say.ok{color:var(--ink)}.say.err{color:var(--err)}.say.warn{color:var(--warn)}
+  .cmd{display:block;background:rgba(0,0,0,.45);border:1px solid var(--line);border-radius:9px;
+       padding:11px 13px;margin:9px 0 0;font-size:12.5px;direction:ltr;text-align:left;
+       color:var(--gold);white-space:pre-wrap;word-break:break-all}
+  .empty{text-align:center;color:var(--muted);padding:40px 0;font-size:15px}
+  footer{color:var(--muted);font-size:13px;text-align:center;padding:0 5vw 40px;line-height:1.9}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="mark">PS</span>
+    <div><strong>ProStudio</strong><small>مئة عينة صوت — اختار واحدة</small></div>
+  </div>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="send.html">إرسال فيديو</a>
+    <a href="voice-shop.html" class="on">مئة صوت</a>
+    <a href="voices.html">أصوات الأدوار</a>
+    <a href="preview.html">المعاينة</a>
+  </nav>
+</header>
+
+<main>
+  <h1>اختار الصوت اللي تتعمل بيه الدبلجة</h1>
+  <p class="lede">
+    كل كارت = مقطع مسموع من كلام حقيقي، وتحته <b>سلسلة الفلاتر</b> اللي اتعملت بيها والعمر
+    والنبرة واللهجة. الضغط على <b>«اختر هذه العينة»</b> بيكتب اختيارك في المستودع نفسه في
+    <code>docs/voice-choice.json</code> — مش في المتصفح بس — فالتوليد الجاي ياخد الصوت ده
+    بنفس السلسلة بالظبط. اللي لسه ما اتسجلش بيظهر محجوزًا ومعاه السبب، ومش بنلبس صوت
+    مصري فلتر ونقوله عليه سعودي.
+  </p>
+
+  <div class="chosen" id="chosenBox"><span class="none">بنقرأ الاختيار المحفوظ في المستودع…</span></div>
+
+  <div class="bar">
+    <label>اللهجة<select id="fDialect"></select></label>
+    <label>العمر<select id="fAge"></select></label>
+    <label>النبرة<select id="fTone"></select></label>
+    <label>الجنس<select id="fGender"></select></label>
+    <label>الحالة<select id="fStatus"></select></label>
+    <label>بحث<input type="search" id="fText" placeholder="اسم الصوت أو رقم العينة" /></label>
+    <label class="toggle"><input type="checkbox" id="fHideQueued" checked /> إخفاء المحجوز</label>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="grid" id="grid"><div class="empty">…</div></div>
+
+  <div class="tok" id="tokBox">
+    <div id="tokSaved" class="saved" hidden>
+      <span>✓ رمز GitHub محفوظ في المتصفح — الاختيار هيتعمّل كـ commit في الفرع.</span>
+      <button type="button" id="tokForget">انسَ الرمز</button>
+    </div>
+    <label class="fld" id="tokField" hidden>
+      <span>علشان الاختيار يتسجّل في المستودع، اكتب رمز GitHub (صلاحية
+            <code>public_repo</code>) <a href="#" id="tokHelp">كيف أحصل عليه؟</a></span>
+      <input type="password" id="token" placeholder="ghp_..." autocomplete="off" />
+    </label>
+  </div>
+  <p class="say" id="say"></p>
+
+  <footer id="foot"></footer>
+</main>
+
+<script type="module">
+import { commitTextFile, loadToken, saveToken, forgetToken, checkToken, TOKEN_URL,
+         OWNER, REPO, BRANCH } from './github-upload.js';
+
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const PROJECT = params.get('project') || '';
+const CHOICE_PATH = 'docs/voice-choice.json';
+const LOCAL_KEY = 'prostudio.voice.choice';
+
+let data = null, base = new URL('.', location.href), playing = null;
+
+/* ── where the files live ────────────────────────────────────────────────
+   On Pages, docs/ *is* the site root, so voice-shop.json sits beside this
+   page. Opened from a repo blob or a local copy the path is one level up,
+   and if both fail we read the committed file straight from raw.githubusercontent
+   on the branch the pages write to. */
+const CANDIDATES = [
+  `voice-shop.json?ts=${Date.now()}`,
+  `../docs/voice-shop.json?ts=${Date.now()}`,
+  `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/voice-shop.json?ts=${Date.now()}`,
+];
+
+async function fetchFirst(paths) {
+  let last;
+  for (const path of paths) {
+    try {
+      const res = await fetch(path, { cache: 'no-store' });
+      if (res.ok) return { text: await res.text(), url: new URL(path, location.href) };
+      last = new Error(`${path} → HTTP ${res.status}`);
+    } catch (err) { last = err; }
+  }
+  throw last || new Error('لا يوجد ملف');
+}
+
+function relative(url) {
+  try { return new URL(url, base).href; } catch { return url; }
+}
+
+function fmt(n, digits = 1) {
+  return (typeof n === 'number' && isFinite(n)) ? n.toFixed(digits) : '—';
+}
+
+/* ── filters ─────────────────────────────────────────────────────────── */
+const FIELDS = [['fDialect', 'dialect'], ['fAge', 'age'], ['fTone', 'tone'],
+                ['fGender', 'gender'], ['fStatus', 'status']];
+
+function fillFilters() {
+  for (const [id, key] of FIELDS) {
+    const sel = $(id);
+    const values = [...new Set(data.samples.map(s => key === 'status'
+      ? (s.status === 'ready' ? 'ready' : 'queued') : s[key]))];
+    const labels = { ready: 'جاهز (فيه صوت)', queued: 'محجوز (لسه ما اتسجلش)' };
+    sel.innerHTML = `<option value="">الكل</option>` + values.map(v =>
+      `<option value="${v}">${labels[v] || v}</option>`).join('');
+  }
+}
+
+function visible() {
+  const q = $('fText').value.trim();
+  return data.samples.filter(s => {
+    for (const [id, key] of FIELDS) {
+      const want = $(id).value;
+      if (want && (key === 'status' ? s.status : s[key]) !== want) return false;
+    }
+    if ($('fHideQueued').checked && s.status !== 'ready') return false;
+    if (q && !(`${s.id} ${s.title} ${s.base_voice || ''}`.includes(q))) return false;
+    return true;
+  });
+}
+
+function card(s) {
+  const el = document.createElement('div');
+  const ready = s.status === 'ready';
+  el.className = 'card' + (ready ? '' : ' queued');
+  if (s.id === current) el.classList.add('on');
+  const facts = s.facts || {};
+  const check = s.chain_check || {};
+  const chain = (s.chain && s.chain !== 'anull')
+    ? `<div class="facts">الفلاتر: <code>${s.chain}</code></div>` : '';
+  const measured = ready ? `<div class="facts">
+      ${fmt(facts.f0_mean)} Hz متوسط النبرة · حركة ${fmt(facts.f0_spread, 2)} نصفا نغمة ·
+      ${fmt(s.preview_seconds)} ث · انزياح مُقاس ${fmt(check.applied_semitones, 2)} من
+      ${fmt(s.expected_f0_delta_st, 2)} طلبت</div>` : '';
+  const note = ready
+    ? (s.chain_note ? `<p class="note">${s.chain_note}</p>` : '')
+    : `<p class="note q">${s.why || 'بانتظار تسجيل هذا الصوت'}<br>${s.note || ''}</p>`;
+  el.innerHTML = `
+    <button class="play" ${ready ? '' : 'disabled'} title="اسمع" aria-label="اسمع العينة ${s.id}">
+      ${playing === s.id ? '■' : '▶'}</button>
+    <div class="body">
+      <div class="top"><span class="num">#${s.id}</span><span class="name">${s.title}</span></div>
+      <div class="tags">
+        <span class="tag d">${s.dialect}</span><span class="tag">${s.age}</span>
+        <span class="tag">${s.tone}</span><span class="tag">${s.gender}</span>
+        ${ready ? (s.raw ? '<span class="tag raw">خام بلا معالجة</span>'
+                         : '<span class="tag proc">مُعالَج بسلسلة معلنة</span>')
+                : '<span class="tag">محجوز</span>'}
+        ${s.base_voice ? `<span class="tag">${s.base_voice}</span>` : ''}
+      </div>
+      ${measured}${chain}${note}
+      <div class="act">
+        <button class="pick ${s.id === current ? 'sel' : ''}" data-pick="${s.id}">
+          ${s.id === current ? '✓ المختارة' : 'اختر هذه العينة'}</button>
+        ${ready ? `<button class="ghost" data-copy="${s.id}">انسخ الأمر</button>` : ''}
+      </div>
+    </div>`;
+  el.querySelector('.play').onclick = () => {
+    const audio = new Audio(relative(s.preview_url));
+    if (playing === s.id) { playing = null; render(); return; }
+    if (window.__voice) window.__voice.pause();
+    window.__voice = audio; playing = s.id; render();
+    audio.play();
+    audio.onended = () => { if (playing === s.id) { playing = null; render(); } };
+    audio.onerror = () => say('الملف الصوتي ما اتقريش — جرب تفتح الصفحة من رابط GitHub Pages.', 'err');
+  };
+  el.querySelector('[data-pick]').onclick = () => pick(s);
+  const cp = el.querySelector('[data-copy]');
+  if (cp) cp.onclick = () => navigator.clipboard.writeText(commandFor(s))
+    .then(() => say('اتنسخ. الصقه في المحادثة لو تفضّل تختار من هنا.', 'ok'));
+  return el;
+}
+
+function commandFor(s) {
+  return `شغّل الدبلجة بالصوت رقم ${s.id} (${s.title}) — ` +
+         `voice=${s.base_voice || 'غير مسجل'} chain=${s.chain || 'anull'}` +
+         (PROJECT ? ` project=${PROJECT}` : '');
+}
+
+let current = 0;
+let localChoice = null;
+try { localChoice = JSON.parse(localStorage.getItem(LOCAL_KEY) || 'null'); } catch {}
+
+function render() {
+  const grid = $('grid');
+  const rows = visible();
+  grid.replaceChildren(...rows.map(card));
+  $('count').innerHTML = `يظهر <b>${rows.length}</b> من <b>${data.total_slots}</b> —
+    <b>${data.ready}</b> جاهز بصوت حقيقي، <b>${data.queued}</b> محجوز`;
+}
+
+/* ── showing / writing the choice ─────────────────────────────────────── */
+function paintChoice(choice, where) {
+  const box = $('chosenBox');
+  if (!choice) {
+    box.innerHTML = `<span class="none">لسه ما فيش اختيار محفوظ. اختار أي عينة
+      وده هيكتب في <code>${CHOICE_PATH}</code> على فرع <code>${BRANCH}</code>.</span>`;
+    return;
+  }
+  current = choice.sample_id;
+  box.innerHTML = `<b>الاختيار المحفوظ${where ? ` (${where})` : ''}</b>
+    <span>العينة <b>#${choice.sample_id}</b> — ${choice.title || ''}
+      · لهجة ${choice.dialect} · عمر ${choice.age} · نبرة ${choice.tone}
+      ${choice.base_voice ? `· الصوت الأصلي <code>${choice.base_voice}</code>` : ''}
+      <br>السلسلة: <code>${choice.chain || 'anull'}</code>
+      ${choice.project ? `· المشروع <code>${choice.project}</code>` : ''}
+      ${choice.commit_url ? `· <a href="${choice.commit_url}" target="_blank" rel="noopener">شوف الـ commit ↗</a>` : ''}
+    </span>`;
+}
+
+async function loadSavedChoice() {
+  try {
+    // The branch first: that is where a click writes. Once this page is served from
+    // main, a relative read would show main's older choice instead of the live one.
+    const { text, url } = await fetchFirst([
+      `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/${CHOICE_PATH}?ts=${Date.now()}`,
+      `${CHOICE_PATH.split('/').pop()}?ts=${Date.now()}`,
+      `../${CHOICE_PATH}?ts=${Date.now()}`,
+    ]);
+    const saved = JSON.parse(text);
+    saved.__from = url;
+    paintChoice(saved, 'في المستودع');
+    return;
+  } catch {
+    paintChoice(localChoice, 'في المتصفح — لسه ما اتبعتش للمستودع');
+  }
+}
+
+async function pick(sample) {
+  const payload = {
+    schema: 1,
+    sample_id: sample.id,
+    title: sample.title,
+    base_voice: sample.base_voice || null,
+    source_take: sample.source_take || null,
+    dialect: sample.dialect, age: sample.age, tone: sample.tone, gender: sample.gender,
+    chain: sample.chain || 'anull',
+    chain_check: sample.chain_check || null,
+    preview: sample.preview_url || null,
+    preview_sha256: sample.sha256 || null,
+    seconds_of_source_previewed: sample.preview_seconds || null,
+    project: PROJECT || null,
+    chosen_at: new Date().toISOString(),
+    chosen_by: 'docs/voice-shop.html',
+    branch: BRANCH,
+    how_to_apply: 'scripts/set_voice_choice.py — يقرا الملف ده ويطبّق السلسلة على الميكس',
+  };
+  const text = JSON.stringify(payload, null, 2) + '\n';
+  localStorage.setItem(LOCAL_KEY, JSON.stringify({ ...payload, commit_url: null }));
+  paintChoice(payload, 'محفوظ في المتصفح');
+  render();
+
+  const token = loadToken();
+  if (!token) {
+    $('tokField').hidden = false;
+    say('اختارك اتسجّل في المتصفح. علشان يوصلني في المستودع، اكتب رمز GitHub فوق — ' +
+        'أو انسخ الأمر اللي تحت والصقه في المحادثة.', 'warn');
+    $('say').insertAdjacentHTML('afterend',
+      `<span class="cmd" id="cmdFallback"></span>`);
+    const cmd = $('cmdFallback');
+    if (cmd) { cmd.textContent = commandFor(sample); cmd.id = ''; }
+    return;
+  }
+  say('بكتب الاختيار في المستودع…');
+  try {
+    const result = await commitTextFile(CHOICE_PATH, text,
+      `voice: sample #${sample.id} (${sample.dialect}/${sample.age}/${sample.tone})`, token);
+    const paths = [result];
+    if (PROJECT) {
+      const per = `library/${PROJECT}/voice-choice.json`;
+      paths.push(await commitTextFile(per, text, `voice: sample #${sample.id} for ${PROJECT}`, token));
+    }
+    payload.commit_url = result.url;
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(payload));
+    paintChoice(payload, 'في المستودع');
+    say(`<b>وصل الاختيار للمستودع</b> — العينة #${sample.id}.
+         <a href="${result.url}" target="_blank" rel="noopener">شوف الـ commit ↗</a>
+         ${PROJECT ? `· اتسجّل كمان في <code>library/${PROJECT}/</code>` : ''}
+         <br>قلّي «كمّل الدبلجة بالصوت ده» وأنا أبدأ.`, 'ok');
+    render();
+  } catch (err) {
+    say('ما قدرتش أكتب في المستودع: ' + err.message +
+        ' — الاختيار فاضل في المتصفح، تقدر تنسخ الأمر وتبعتهولي.', 'err');
+  }
+}
+
+/* ── token field (same behavior as the upload page) ───────────────────── */
+function showTokenState() {
+  const saved = !!loadToken();
+  $('tokSaved').hidden = !saved;
+  $('tokField').hidden = saved;
+}
+$('tokForget').onclick = () => { forgetToken(); showTokenState(); say('امسحنا الرمز من المتصفح.', 'ok'); };
+$('tokHelp').onclick = e => { e.preventDefault(); open(TOKEN_URL, '_blank', 'noopener'); };
+$('token').addEventListener('change', async e => {
+  const value = e.target.value.trim();
+  if (!value) return;
+  try {
+    await checkToken(value);
+    saveToken(value); showTokenState();
+    say('الرمز شغال — ارجع اختار العينة وهيترسل للمستودع.', 'ok');
+  } catch (err) { say('الرمز مرفوض: ' + err.message, 'err'); }
+});
+
+for (const [id] of FIELDS) $(id).onchange = render;
+$('fText').oninput = render;
+$('fHideQueued').onchange = render;
+
+/* ── boot ──────────────────────────────────────────────────────────────── */
+try {
+  const { text, url } = await fetchFirst(CANDIDATES);
+  base = new URL('.', url);
+  data = JSON.parse(text);
+  $('foot').innerHTML = `${data.total_slots} خانة · ${data.ready} فيها صوت حقيقي من تسجيلات
+    المستودع، و${data.queued} محجوزة لأصوات محتاجة تسجيل على المنصة.
+    <br>${data.gender_note}
+    <br>الفرع اللي بنكتب فيه دلوقتي: <code>${BRANCH}</code>${PROJECT ? ` · المشروع: <code>${PROJECT}</code>` : ''}
+    <br><small>${data.how_the_choice_is_used}</small>`;
+  if (url.href !== CANDIDATES[0]) console.info('catalog from', url.href);
+} catch (err) {
+  $('grid').innerHTML = `<div class="empty">ما قدرناش نقري <code>docs/voice-shop.json</code>:
+    ${err.message}<br>لو الصفحة مفتوحة من غير GitHub Pages، افتحها من الرابط المنشور.</div>`;
+  showTokenState();
+  throw err;
+}
+fillFilters();
+showTokenState();
+await loadSavedChoice();
+render();
+</script>
+
+</body>
+</html>

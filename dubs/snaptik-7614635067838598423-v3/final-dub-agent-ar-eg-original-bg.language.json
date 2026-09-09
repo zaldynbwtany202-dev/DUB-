@@ -1,0 +1,9 @@
+{
+  "valid": true,
+  "expected": "ar",
+  "detected": "ar",
+  "confidence": 0.999483,
+  "scope": "first detection window of the actual exported mix",
+  "engine": "whisper.cpp small",
+  "is_full_content_accuracy_score": false
+}

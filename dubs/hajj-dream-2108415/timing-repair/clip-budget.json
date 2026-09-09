@@ -1,0 +1,2992 @@
+{
+  "words_per_second": 2.43,
+  "source_word_count": 1855,
+  "source_speech_seconds": 675.07,
+  "dub_speech_seconds_total": 600.966,
+  "sentence_timing_error": {
+    "anchored": 228,
+    "mean_seconds": 2.948,
+    "median_seconds": 2.142,
+    "p90_seconds": 6.678,
+    "max_seconds": 14.499
+  },
+  "rule": "a dub clause has to be as long as the unit it answers; length comes from the word count at the recorded pace, so the budget is written in words - no time stretching and no padded silence may substitute for it",
+  "parts": [
+    {
+      "part": 0,
+      "window_start": 0.0,
+      "window_end": 63.5,
+      "clauses": 36,
+      "dub_speech_seconds": 57.992,
+      "source_speech_seconds": 63.17,
+      "unreachable_anchors": 6,
+      "budget_words": 152,
+      "rows": [
+        {
+          "index": 0,
+          "start": 0.33,
+          "end": 1.93,
+          "seconds": 1.6,
+          "source_words": 5,
+          "source_text": "هذا رجل كبير بالعمر و",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ده راجل كبير في السن فقير وبسيط لدرجة إنه بالعافية يقدر ياكل بيصحّي مراته عائشة مع أذان الفجر"
+        },
+        {
+          "index": 1,
+          "start": 1.93,
+          "end": 3.77,
+          "seconds": 1.84,
+          "source_words": 5,
+          "source_text": "هو فقير و بسيط للدرجة",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ده راجل كبير في السن فقير وبسيط لدرجة إنه بالعافية يقدر ياكل بيصحّي مراته عائشة مع أذان الفجر"
+        },
+        {
+          "index": 2,
+          "start": 3.77,
+          "end": 5.27,
+          "seconds": 1.5,
+          "source_words": 5,
+          "source_text": "أنه هو قوي يقدر ياكل",
+          "needed_dub_words": 4,
+          "dub_clause_now": "هي بتصلّي في البيت"
+        },
+        {
+          "index": 3,
+          "start": 5.27,
+          "end": 7.99,
+          "seconds": 2.72,
+          "source_words": 7,
+          "source_text": "فهو يقعد بيزوجت اللي كنت اسمها عائشة",
+          "needed_dub_words": 7,
+          "dub_clause_now": "هي بتصلّي في البيت"
+        },
+        {
+          "index": 4,
+          "start": 7.99,
+          "end": 9.39,
+          "seconds": 1.4,
+          "source_words": 5,
+          "source_text": "على أذان الفجر و هي",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وهو بيروح الجامع"
+        },
+        {
+          "index": 5,
+          "start": 9.39,
+          "end": 10.99,
+          "seconds": 1.6,
+          "source_words": 5,
+          "source_text": "كانت تتصلي بالبيت أما هو",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وفي الوقت ده"
+        },
+        {
+          "index": 6,
+          "start": 10.99,
+          "end": 11.99,
+          "seconds": 1.0,
+          "source_words": 3,
+          "source_text": "في رحل الجامع",
+          "needed_dub_words": 2,
+          "dub_clause_now": "وفي الوقت ده"
+        },
+        {
+          "index": 7,
+          "start": 11.99,
+          "end": 13.63,
+          "seconds": 1.64,
+          "source_words": 5,
+          "source_text": "وبنفس الوقت أهل القرية كانوا",
+          "needed_dub_words": 4,
+          "dub_clause_now": "أهل القرية بيتكلموا عن شيخ اسمه مبروك وصل عندهم"
+        },
+        {
+          "index": 8,
+          "start": 13.63,
+          "end": 15.41,
+          "seconds": 1.78,
+          "source_words": 5,
+          "source_text": "يحجون عن شيخ اسمه مبروك",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وبيعتقدوا إن وجوده هيجيب الرزق وينشّط المحلات اللي حواليه"
+        },
+        {
+          "index": 9,
+          "start": 15.41,
+          "end": 17.65,
+          "seconds": 2.24,
+          "source_words": 7,
+          "source_text": "اللي هو وصل للقرية و يعتقدون أن",
+          "needed_dub_words": 5,
+          "dub_clause_now": "وبيعتقدوا إن وجوده هيجيب الرزق وينشّط المحلات اللي حواليه"
+        },
+        {
+          "index": 10,
+          "start": 17.65,
+          "end": 18.47,
+          "seconds": 0.82,
+          "source_words": 3,
+          "source_text": "وجودة رح جيب",
+          "needed_dub_words": 2,
+          "dub_clause_now": "لأن القرية عايشة في فقر شديد"
+        },
+        {
+          "index": 11,
+          "start": 18.47,
+          "end": 20.93,
+          "seconds": 2.46,
+          "source_words": 7,
+          "source_text": "الرزق و رح يحرك المحلات القريبة من",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لأن القرية عايشة في فقر شديد"
+        },
+        {
+          "index": 12,
+          "start": 20.93,
+          "end": 21.83,
+          "seconds": 0.9,
+          "source_words": 3,
+          "source_text": "عنده لأنه هاي",
+          "needed_dub_words": 2,
+          "dub_clause_now": "لأن القرية عايشة في فقر شديد"
+        },
+        {
+          "index": 13,
+          "start": 21.83,
+          "end": 23.49,
+          "seconds": 1.66,
+          "source_words": 5,
+          "source_text": "القرية هي عايشة فقر متقع",
+          "needed_dub_words": 4,
+          "dub_clause_now": "حتى حيدر صاحب محل الشاي بيقدّم له الشاي"
+        },
+        {
+          "index": 14,
+          "start": 23.49,
+          "end": 25.35,
+          "seconds": 1.86,
+          "source_words": 5,
+          "source_text": "وحتى هيدار صاحب محل تشاي",
+          "needed_dub_words": 5,
+          "dub_clause_now": "حتى حيدر صاحب محل الشاي بيقدّم له الشاي"
+        },
+        {
+          "index": 15,
+          "start": 25.35,
+          "end": 27.23,
+          "seconds": 1.88,
+          "source_words": 4,
+          "source_text": "قدم لتشاي ويحاسبه ينزل",
+          "needed_dub_words": 5,
+          "dub_clause_now": "والراجل بيحاسبه وينزل"
+        },
+        {
+          "index": 16,
+          "start": 27.23,
+          "end": 29.51,
+          "seconds": 2.28,
+          "source_words": 6,
+          "source_text": "وبالبيت الرجل هذا يخبر زوجته أنه",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وفي البيت"
+        },
+        {
+          "index": 17,
+          "start": 29.51,
+          "end": 31.71,
+          "seconds": 2.2,
+          "source_words": 6,
+          "source_text": "هو التقب زميلة بالباص وعرف من",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يحكي لمراته إنه قابل زميله في الأتوبيس"
+        },
+        {
+          "index": 18,
+          "start": 31.71,
+          "end": 33.43,
+          "seconds": 1.72,
+          "source_words": 4,
+          "source_text": "عنده أنه أكلجنا تلحاج",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وعرف منه إن لجنة الحج بدأت تستقبل طلبات التقديم من الناس"
+        },
+        {
+          "index": 19,
+          "start": 33.43,
+          "end": 35.19,
+          "seconds": 1.76,
+          "source_words": 5,
+          "source_text": "اللي هي بدت استقبل الطلبات",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وعرف منه إن لجنة الحج بدأت تستقبل طلبات التقديم من الناس"
+        },
+        {
+          "index": 20,
+          "start": 35.19,
+          "end": 37.01,
+          "seconds": 1.82,
+          "source_words": 6,
+          "source_text": "فهنا أنا هو بده يوضح ويقول",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وهنا يبدأ يشرح لها ويقول:"
+        },
+        {
+          "index": 21,
+          "start": 37.01,
+          "end": 38.27,
+          "seconds": 1.26,
+          "source_words": 4,
+          "source_text": "أنا حلمي من زمان",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وهنا يبدأ يشرح لها ويقول:"
+        },
+        {
+          "index": 22,
+          "start": 38.27,
+          "end": 39.73,
+          "seconds": 1.46,
+          "source_words": 4,
+          "source_text": "أنه أنا أروح للحاج",
+          "needed_dub_words": 4,
+          "dub_clause_now": "حلمي من زمان أروح الحج أنا ومراتي عائشة"
+        },
+        {
+          "index": 23,
+          "start": 39.73,
+          "end": 41.35,
+          "seconds": 1.62,
+          "source_words": 4,
+          "source_text": "أنا وزوجتي عائشة لكن",
+          "needed_dub_words": 4,
+          "dub_clause_now": "حلمي من زمان أروح الحج أنا ومراتي عائشة"
+        },
+        {
+          "index": 24,
+          "start": 41.35,
+          "end": 44.97,
+          "seconds": 3.62,
+          "source_words": 10,
+          "source_text": "كل سنة تصير ظروف وتمنعنا لذلك أنا قررت هاي المرة",
+          "needed_dub_words": 9,
+          "dub_clause_now": "لكن كل سنة بتحصل ظروف تمنعنا"
+        },
+        {
+          "index": 25,
+          "start": 44.97,
+          "end": 45.57,
+          "seconds": 0.6,
+          "source_words": 2,
+          "source_text": "أنه أجمع",
+          "needed_dub_words": 1,
+          "dub_clause_now": "عشان كده قررت المرة دي أجمع المبلغ مهما حصل"
+        },
+        {
+          "index": 26,
+          "start": 45.57,
+          "end": 47.29,
+          "seconds": 1.72,
+          "source_words": 5,
+          "source_text": "المبلغ مهما أصار فهو بده",
+          "needed_dub_words": 4,
+          "dub_clause_now": "عشان كده قررت المرة دي أجمع المبلغ مهما حصل"
+        },
+        {
+          "index": 27,
+          "start": 47.29,
+          "end": 48.93,
+          "seconds": 1.64,
+          "source_words": 5,
+          "source_text": "يجمع فلوسة في صندوق شبير",
+          "needed_dub_words": 4,
+          "dub_clause_now": "يبدأ يجمع فلوسه في صندوق كبير"
+        },
+        {
+          "index": 28,
+          "start": 48.93,
+          "end": 51.67,
+          "seconds": 2.74,
+          "source_words": 7,
+          "source_text": "و نعرف أنه يشتغل ببيع العطور المحلية",
+          "needed_dub_words": 7,
+          "dub_clause_now": "يبدأ يجمع فلوسه في صندوق كبير"
+        },
+        {
+          "index": 29,
+          "start": 51.67,
+          "end": 53.25,
+          "seconds": 1.58,
+          "source_words": 3,
+          "source_text": "وبعض المنتجات البسيطة",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ونعرف إن شغله بيع العطور البلدي وبعض الحاجات البسيطة لأهل القرية"
+        },
+        {
+          "index": 30,
+          "start": 53.25,
+          "end": 54.85,
+          "seconds": 1.6,
+          "source_words": 5,
+          "source_text": "اللي بيحة على أهل القرية",
+          "needed_dub_words": 4,
+          "dub_clause_now": "اللي هم كمان بالعافية لاقيين أكلهم"
+        },
+        {
+          "index": 31,
+          "start": 54.85,
+          "end": 56.19,
+          "seconds": 1.34,
+          "source_words": 5,
+          "source_text": "اللي هم مجولا جين أكل",
+          "needed_dub_words": 3,
+          "dub_clause_now": "اللي هم كمان بالعافية لاقيين أكلهم"
+        },
+        {
+          "index": 32,
+          "start": 56.19,
+          "end": 58.31,
+          "seconds": 2.12,
+          "source_words": 6,
+          "source_text": "على مودي أكلون بينما عائشة هي",
+          "needed_dub_words": 5,
+          "dub_clause_now": "اللي هم كمان بالعافية لاقيين أكلهم"
+        },
+        {
+          "index": 33,
+          "start": 58.31,
+          "end": 59.99,
+          "seconds": 1.68,
+          "source_words": 4,
+          "source_text": "كانت تهتمب البقر وتزرع",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وعائشة بترعى البقر"
+        },
+        {
+          "index": 34,
+          "start": 59.99,
+          "end": 61.65,
+          "seconds": 1.66,
+          "source_words": 5,
+          "source_text": "وتبيع من المنتجاتهم على مودي",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وتزرع وتبيع من إنتاجهم عشان تساعد جوزها في مصاريف البيت"
+        },
+        {
+          "index": 35,
+          "start": 61.65,
+          "end": 63.5,
+          "seconds": 1.85,
+          "source_words": 5,
+          "source_text": "تساعد زوجها بمصاري في البيت",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وتزرع وتبيع من إنتاجهم عشان تساعد جوزها في مصاريف البيت"
+        }
+      ]
+    },
+    {
+      "part": 1,
+      "window_start": 63.5,
+      "window_end": 148.7,
+      "clauses": 36,
+      "dub_speech_seconds": 74.647,
+      "source_speech_seconds": 85.19,
+      "unreachable_anchors": 12,
+      "budget_words": 207,
+      "rows": [
+        {
+          "index": 0,
+          "start": 63.51,
+          "end": 65.25,
+          "seconds": 1.74,
+          "source_words": 6,
+          "source_text": "أووية التعب يطلع هذا الرجل على",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ومع تعبه يطلع الراجل يشتري شوية حاجات ويدفع فاتورة الكهربا"
+        },
+        {
+          "index": 1,
+          "start": 65.25,
+          "end": 68.41,
+          "seconds": 3.16,
+          "source_words": 9,
+          "source_text": "مودي اشتر بعض الشغلات و يدفع فاتورة الكهرباء فهنا",
+          "needed_dub_words": 8,
+          "dub_clause_now": "ومع تعبه يطلع الراجل يشتري شوية حاجات ويدفع فاتورة الكهربا"
+        },
+        {
+          "index": 2,
+          "start": 68.41,
+          "end": 69.97,
+          "seconds": 1.56,
+          "source_words": 4,
+          "source_text": "يجيجارهم على مودي اشتر",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وجارهم ييجي يشتري اللبن"
+        },
+        {
+          "index": 3,
+          "start": 69.97,
+          "end": 72.13,
+          "seconds": 2.16,
+          "source_words": 6,
+          "source_text": "اللبن و يسأل عن سفرته فيروح",
+          "needed_dub_words": 5,
+          "dub_clause_now": "وجارهم ييجي يشتري اللبن"
+        },
+        {
+          "index": 4,
+          "start": 72.13,
+          "end": 74.01,
+          "seconds": 1.88,
+          "source_words": 6,
+          "source_text": "هذا الرجل العجوز على مودي وصل",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويسأل عن سفره"
+        },
+        {
+          "index": 5,
+          "start": 74.01,
+          "end": 77.47,
+          "seconds": 3.46,
+          "source_words": 10,
+          "source_text": "الدواء اللي جابه إلى من السفرة مالتة ويخبره أن لجنة",
+          "needed_dub_words": 8,
+          "dub_clause_now": "يروح الراجل يوصل لصاحبه الدواء اللي جابه له من سفرته"
+        },
+        {
+          "index": 6,
+          "start": 77.47,
+          "end": 77.89,
+          "seconds": 0.42,
+          "source_words": 1,
+          "source_text": "الحاج",
+          "needed_dub_words": 1,
+          "dub_clause_now": "يروح الراجل يوصل لصاحبه الدواء اللي جابه له من سفرته"
+        },
+        {
+          "index": 7,
+          "start": 77.89,
+          "end": 81.39,
+          "seconds": 3.5,
+          "source_words": 7,
+          "source_text": "فتحة التقديم وأنه يريد حجوية عائشة فينصح",
+          "needed_dub_words": 9,
+          "dub_clause_now": "يروح الراجل يوصل لصاحبه الدواء اللي جابه له من سفرته"
+        },
+        {
+          "index": 8,
+          "start": 81.39,
+          "end": 83.47,
+          "seconds": 2.08,
+          "source_words": 6,
+          "source_text": "أن يقدم بالقرة بس هو يحذر",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويقوله إن لجنة الحج فتحت التقديم وإنه عايز يروح هو وعائشة"
+        },
+        {
+          "index": 9,
+          "start": 83.47,
+          "end": 86.11,
+          "seconds": 2.64,
+          "source_words": 8,
+          "source_text": "لأن ممكن هو اسمه ما يطلع ويقترح حاليا",
+          "needed_dub_words": 6,
+          "dub_clause_now": "صاحبه ينصحه يقدّم في القرعة"
+        },
+        {
+          "index": 10,
+          "start": 86.11,
+          "end": 89.03,
+          "seconds": 2.92,
+          "source_words": 7,
+          "source_text": "أن يسافر عن طريق وكالة وينطيس موكالة",
+          "needed_dub_words": 7,
+          "dub_clause_now": "لكن يحذّره إن اسمه ممكن ما يطلعش"
+        },
+        {
+          "index": 11,
+          "start": 89.03,
+          "end": 90.11,
+          "seconds": 1.08,
+          "source_words": 4,
+          "source_text": "أو شركة على مودي",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ويقترح يحجز عن طريق وكالة"
+        },
+        {
+          "index": 12,
+          "start": 90.11,
+          "end": 94.07,
+          "seconds": 3.96,
+          "source_words": 11,
+          "source_text": "روح يحجز بها. وهو يبدى شاقي ويقول اكيد ابنك في دوباي",
+          "needed_dub_words": 10,
+          "dub_clause_now": "ويدّيله اسم شركة يروح لها"
+        },
+        {
+          "index": 13,
+          "start": 94.07,
+          "end": 95.35,
+          "seconds": 1.28,
+          "source_words": 3,
+          "source_text": "هو راسلك فلوس",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ويهزر معاه:"
+        },
+        {
+          "index": 14,
+          "start": 95.35,
+          "end": 97.77,
+          "seconds": 2.42,
+          "source_words": 7,
+          "source_text": "على مودي انت وزوجتك تحجون. فهذا الرجل",
+          "needed_dub_words": 6,
+          "dub_clause_now": "أكيد ابنك اللي في دبي بعتلك فلوس عشان تروحوا الحج إنت ومراتك"
+        },
+        {
+          "index": 15,
+          "start": 97.77,
+          "end": 99.87,
+          "seconds": 2.1,
+          "source_words": 6,
+          "source_text": "يسكت لان حسب الاحراج لان ابنة",
+          "needed_dub_words": 5,
+          "dub_clause_now": "الراجل يسكت ويحس بإحراج"
+        },
+        {
+          "index": 16,
+          "start": 99.87,
+          "end": 102.13,
+          "seconds": 2.26,
+          "source_words": 7,
+          "source_text": "اللي اسم عبد الستار انقاط طحم وماري",
+          "needed_dub_words": 5,
+          "dub_clause_now": "الراجل يسكت ويحس بإحراج"
+        },
+        {
+          "index": 17,
+          "start": 102.13,
+          "end": 104.23,
+          "seconds": 2.1,
+          "source_words": 6,
+          "source_text": "دي اعترف بهم كاهلة. وبلا ليرجع",
+          "needed_dub_words": 5,
+          "dub_clause_now": "لأن ابنه اللي اسمه عبد الستّار قاطعهم ومش عايز يعترف بيهم كأهله"
+        },
+        {
+          "index": 18,
+          "start": 104.23,
+          "end": 107.07,
+          "seconds": 2.84,
+          "source_words": 6,
+          "source_text": "للبيت ويقبوا عالصورة ابنة. فعائشت لاحظ",
+          "needed_dub_words": 7,
+          "dub_clause_now": "لأن ابنه اللي اسمه عبد الستّار قاطعهم ومش عايز يعترف بيهم كأهله"
+        },
+        {
+          "index": 19,
+          "start": 107.07,
+          "end": 110.01,
+          "seconds": 2.94,
+          "source_words": 7,
+          "source_text": "انه هو حزين. وخبرته وقالت لان نجارنا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "بالليل يرجع للبيت ويبص لصورة ابنه"
+        },
+        {
+          "index": 20,
+          "start": 110.01,
+          "end": 111.31,
+          "seconds": 1.3,
+          "source_words": 5,
+          "source_text": "رجع من من دبي يقول",
+          "needed_dub_words": 3,
+          "dub_clause_now": "تقوله إن جارهم رجع من دبي"
+        },
+        {
+          "index": 21,
+          "start": 111.31,
+          "end": 113.27,
+          "seconds": 1.96,
+          "source_words": 5,
+          "source_text": "أن عبد الستار ابنك الشبير",
+          "needed_dub_words": 5,
+          "dub_clause_now": "تقوله إن جارهم رجع من دبي"
+        },
+        {
+          "index": 22,
+          "start": 113.27,
+          "end": 116.91,
+          "seconds": 3.64,
+          "source_words": 11,
+          "source_text": "عند ولا الثاني كبر أو دخل للمدرسة فيطلب منها أن تترك",
+          "needed_dub_words": 9,
+          "dub_clause_now": "وقال إن عبد الستّار"
+        },
+        {
+          "index": 23,
+          "start": 116.91,
+          "end": 119.33,
+          "seconds": 2.42,
+          "source_words": 6,
+          "source_text": "الموضوع وأنه لا تحتشبي بعد أبدا",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ابنهم الكبير"
+        },
+        {
+          "index": 24,
+          "start": 119.33,
+          "end": 122.25,
+          "seconds": 2.92,
+          "source_words": 7,
+          "source_text": "لأن ابنهم نفاهم ويطلب منها أن تنام",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ابنه التاني كبر ودخل المدرسة"
+        },
+        {
+          "index": 25,
+          "start": 122.25,
+          "end": 123.65,
+          "seconds": 1.4,
+          "source_words": 4,
+          "source_text": "لكن هي تبشي وحدها",
+          "needed_dub_words": 3,
+          "dub_clause_now": "يطلب منها تسيب الموضوع وما تجيبش سيرته تاني خالص"
+        },
+        {
+          "index": 26,
+          "start": 123.65,
+          "end": 125.39,
+          "seconds": 1.74,
+          "source_words": 6,
+          "source_text": "لأن هي محرومة حتى من رؤية",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لأن ابنهم متبرّي منهم"
+        },
+        {
+          "index": 27,
+          "start": 125.39,
+          "end": 128.39,
+          "seconds": 3.0,
+          "source_words": 6,
+          "source_text": "أحفادها وبثاني يروح هذا الرجل الشركة",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويقولها تنام"
+        },
+        {
+          "index": 28,
+          "start": 128.39,
+          "end": 131.91,
+          "seconds": 3.52,
+          "source_words": 9,
+          "source_text": "اللي هي تحجزهم على مديروحون للحج في خبره يقول",
+          "needed_dub_words": 9,
+          "dub_clause_now": "لكنها تبكي لوحدها"
+        },
+        {
+          "index": 29,
+          "start": 131.91,
+          "end": 133.17,
+          "seconds": 1.26,
+          "source_words": 4,
+          "source_text": "أنه أنا ردروح للحج",
+          "needed_dub_words": 3,
+          "dub_clause_now": "محرومة حتى من شوفة أحفادها"
+        },
+        {
+          "index": 30,
+          "start": 133.17,
+          "end": 135.39,
+          "seconds": 2.22,
+          "source_words": 6,
+          "source_text": "أنا وزوجتي فيسأل صاحب الشركة اللي",
+          "needed_dub_words": 5,
+          "dub_clause_now": "تاني يوم يروح شركة السفر اللي بتحجز لهم رحلات الحج"
+        },
+        {
+          "index": 31,
+          "start": 135.39,
+          "end": 137.83,
+          "seconds": 2.44,
+          "source_words": 7,
+          "source_text": "يكون اسمه أشرف عن جواز السفر ولما",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ويقول لصاحبها أشرف إنه عايز يروح الحج هو ومراته"
+        },
+        {
+          "index": 32,
+          "start": 137.83,
+          "end": 140.61,
+          "seconds": 2.78,
+          "source_words": 8,
+          "source_text": "يعرف أنه وما عند جوة السفر يطمن ويقول",
+          "needed_dub_words": 7,
+          "dub_clause_now": "أشرف يسأله عن جواز السفر"
+        },
+        {
+          "index": 33,
+          "start": 140.61,
+          "end": 142.01,
+          "seconds": 1.4,
+          "source_words": 4,
+          "source_text": "انا رح سوى الكياها",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ولما يعرف إنه معندوش جواز يطمنه إنهم هيعملوه له"
+        },
+        {
+          "index": 34,
+          "start": 142.01,
+          "end": 146.79,
+          "seconds": 4.78,
+          "source_words": 9,
+          "source_text": "وينادي السكرتيرا على متشرح للإجراءات والأوراق المطلوبة فتكتبها إلى",
+          "needed_dub_words": 12,
+          "dub_clause_now": "وينادي السكرتيرة تشرح الإجراءات والأوراق المطلوبة"
+        },
+        {
+          "index": 35,
+          "start": 146.79,
+          "end": 148.7,
+          "seconds": 1.91,
+          "source_words": 4,
+          "source_text": "وهو ياخذها ويمشي ومن",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فتكتبها له"
+        }
+      ]
+    },
+    {
+      "part": 2,
+      "window_start": 148.7,
+      "window_end": 248.4,
+      "clauses": 36,
+      "dub_speech_seconds": 85.968,
+      "source_speech_seconds": 99.39,
+      "unreachable_anchors": 14,
+      "budget_words": 240,
+      "rows": [
+        {
+          "index": 0,
+          "start": 149.01,
+          "end": 150.17,
+          "seconds": 1.16,
+          "source_words": 4,
+          "source_text": "بعد هيروح هذا الرجل",
+          "needed_dub_words": 3,
+          "dub_clause_now": "بعدها يروح للشيخ مبروك ويلاقيه لوحده بيفكر في هموم الناس يطلب منه يساعده عشان يروح الحج مع مراته عائشة الشيخ يقوله لازم تسعى وربنا سبحانه وتعالى هيسهّلها الراجل يدّيله أعشاب جابها من سفره والشيخ يقرا عليها ويرجّعها له"
+        },
+        {
+          "index": 1,
+          "start": 150.17,
+          "end": 154.93,
+          "seconds": 4.76,
+          "source_words": 12,
+          "source_text": "الشيخ مبروك ويلقى واحدة يفكر بهموم الناس فيطلب من عند أنه يساعد",
+          "needed_dub_words": 12,
+          "dub_clause_now": "بعدها يروح للشيخ مبروك ويلاقيه لوحده بيفكر في هموم الناس يطلب منه يساعده عشان يروح الحج مع مراته عائشة الشيخ يقوله لازم تسعى وربنا سبحانه وتعالى هيسهّلها الراجل يدّيله أعشاب جابها من سفره والشيخ يقرا عليها ويرجّعها له"
+        },
+        {
+          "index": 2,
+          "start": 154.93,
+          "end": 158.77,
+          "seconds": 3.84,
+          "source_words": 10,
+          "source_text": "على مدخلي حجوية عائشة زوجتها فهذا الشيخ يرد عليها ويقول",
+          "needed_dub_words": 9,
+          "dub_clause_now": "وبعدها يقوم بسرعة"
+        },
+        {
+          "index": 3,
+          "start": 158.77,
+          "end": 160.47,
+          "seconds": 1.7,
+          "source_words": 5,
+          "source_text": "انت لازم تسعة وقال سبحانه",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لأن عنده ضيوف جايين من الجنوب"
+        },
+        {
+          "index": 4,
+          "start": 160.47,
+          "end": 163.41,
+          "seconds": 2.94,
+          "source_words": 8,
+          "source_text": "وتعالى هو رح ساهلها فينطيه هذا الرجل احشاف",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويدعيه يروح معاه"
+        },
+        {
+          "index": 5,
+          "start": 163.41,
+          "end": 166.79,
+          "seconds": 3.38,
+          "source_words": 12,
+          "source_text": "جابها من السفر و يقرع ليها الشيخ و يرجحن إلى و من",
+          "needed_dub_words": 8,
+          "dub_clause_now": "يرجع الراجل البيت"
+        },
+        {
+          "index": 6,
+          "start": 166.79,
+          "end": 167.99,
+          "seconds": 1.2,
+          "source_words": 4,
+          "source_text": "بعد هي جمبسورة لأن",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وعائشة تكون مجهّزة الأكل"
+        },
+        {
+          "index": 7,
+          "start": 167.99,
+          "end": 170.39,
+          "seconds": 2.4,
+          "source_words": 8,
+          "source_text": "عنده ضيوف جايين من الجنوب و يدعوه أن",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وعائشة تكون مجهّزة الأكل"
+        },
+        {
+          "index": 8,
+          "start": 170.39,
+          "end": 172.91,
+          "seconds": 2.52,
+          "source_words": 7,
+          "source_text": "يروح ويا فيرجح هذا الرجل للبيت و",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يحكيلها إزاي المدينة اتغيّرت"
+        },
+        {
+          "index": 9,
+          "start": 172.91,
+          "end": 176.11,
+          "seconds": 3.2,
+          "source_words": 8,
+          "source_text": "كانت عائشة محضر الأكل فيحشيلها شون المدن تغيرت",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وإن شركة السفر والسياحة فيها موظفين كتير"
+        },
+        {
+          "index": 10,
+          "start": 176.11,
+          "end": 179.05,
+          "seconds": 2.94,
+          "source_words": 8,
+          "source_text": "و شركة السفر و السياحة بها موظفين هواية",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويقولها إنه قابل الشيخ مبروك"
+        },
+        {
+          "index": 11,
+          "start": 179.05,
+          "end": 181.07,
+          "seconds": 2.02,
+          "source_words": 8,
+          "source_text": "و يخبرها و يقول لها ان واني قابلت",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ووعده يحاول يساعدهم في الشهادات والوثائق اللازمة عشان يروحوا الحج"
+        },
+        {
+          "index": 12,
+          "start": 181.07,
+          "end": 183.93,
+          "seconds": 2.86,
+          "source_words": 8,
+          "source_text": "الشيخ مبروك وعدنا انه هو رح يحاولي ساعدنا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "تسأله:"
+        },
+        {
+          "index": 13,
+          "start": 183.93,
+          "end": 187.21,
+          "seconds": 3.28,
+          "source_words": 8,
+          "source_text": "حتى احنا نطلع شهادات وثائق اتساعدنا على مدن",
+          "needed_dub_words": 8,
+          "dub_clause_now": "تسأله:"
+        },
+        {
+          "index": 14,
+          "start": 187.21,
+          "end": 189.17,
+          "seconds": 1.96,
+          "source_words": 7,
+          "source_text": "روح لحاجة فتسأل لو تقول لها احنا",
+          "needed_dub_words": 5,
+          "dub_clause_now": "هنجيب تكاليف الحج كلها منين"
+        },
+        {
+          "index": 15,
+          "start": 189.17,
+          "end": 192.55,
+          "seconds": 3.38,
+          "source_words": 9,
+          "source_text": "مين رح نجيب تكاليف الحج بالكامل فيطمنها ويقول لها",
+          "needed_dub_words": 8,
+          "dub_clause_now": "هنجيب تكاليف الحج كلها منين"
+        },
+        {
+          "index": 16,
+          "start": 192.55,
+          "end": 194.11,
+          "seconds": 1.56,
+          "source_words": 7,
+          "source_text": "انه احنا رح نجمع على جد ما",
+          "needed_dub_words": 4,
+          "dub_clause_now": "والباقي ربنا سبحانه وتعالى هيدبّره"
+        },
+        {
+          "index": 17,
+          "start": 194.11,
+          "end": 196.91,
+          "seconds": 2.8,
+          "source_words": 8,
+          "source_text": "نقدر والباقي الله سبحانه وتعالى هو رح يدابرة",
+          "needed_dub_words": 7,
+          "dub_clause_now": "والباقي ربنا سبحانه وتعالى هيدبّره"
+        },
+        {
+          "index": 18,
+          "start": 196.91,
+          "end": 199.83,
+          "seconds": 2.92,
+          "source_words": 9,
+          "source_text": "وباليوم التالي يطلع وياها على مودي اخدون صور جواز",
+          "needed_dub_words": 7,
+          "dub_clause_now": "تاني يوم يطلع معاها عشان يتصوروا صور جواز السفر"
+        },
+        {
+          "index": 19,
+          "start": 199.83,
+          "end": 203.81,
+          "seconds": 3.98,
+          "source_words": 8,
+          "source_text": "السفر ومنانا هم يروحون المكتب السفر ويقابلون اشرف",
+          "needed_dub_words": 10,
+          "dub_clause_now": "وبعدها يروحوا المكتب ويقابلوا أشرف"
+        },
+        {
+          "index": 20,
+          "start": 203.81,
+          "end": 205.35,
+          "seconds": 1.54,
+          "source_words": 6,
+          "source_text": "الذي هو يطم منهم ويقول لهم",
+          "needed_dub_words": 4,
+          "dub_clause_now": "يطمنهم ويتمنى لهم يروحوا ويرجعوا بالسلامة"
+        },
+        {
+          "index": 21,
+          "start": 205.35,
+          "end": 208.19,
+          "seconds": 2.84,
+          "source_words": 8,
+          "source_text": "ان شاء الله ستروحون ترجعون بالسلامة فينتل هذا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويدّي للراجل كارت الشركة عشان يتواصل معاه وقت الحاجة"
+        },
+        {
+          "index": 22,
+          "start": 208.19,
+          "end": 212.25,
+          "seconds": 4.06,
+          "source_words": 10,
+          "source_text": "الرجل كارتي الشركة حتى يتوصل ويا بوقت الحاجة وبطريقة الرجعة",
+          "needed_dub_words": 10,
+          "dub_clause_now": "في طريق الرجوع"
+        },
+        {
+          "index": 23,
+          "start": 212.25,
+          "end": 213.03,
+          "seconds": 0.78,
+          "source_words": 2,
+          "source_text": "عائشة تقول",
+          "needed_dub_words": 2,
+          "dub_clause_now": "عائشة تقول إن أشرف شبه ابنهم عبد الستّار"
+        },
+        {
+          "index": 24,
+          "start": 213.03,
+          "end": 216.91,
+          "seconds": 3.88,
+          "source_words": 12,
+          "source_text": "انه اشرف يشبه ابن عبد الستار فهذا الرجل رفض انه يحجب هذا",
+          "needed_dub_words": 9,
+          "dub_clause_now": "عائشة تقول إن أشرف شبه ابنهم عبد الستّار"
+        },
+        {
+          "index": 25,
+          "start": 216.91,
+          "end": 219.49,
+          "seconds": 2.58,
+          "source_words": 8,
+          "source_text": "الكلام ويقول لها انه اشرف هو انسان طيب",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لكنه يرفض الكلام"
+        },
+        {
+          "index": 26,
+          "start": 219.49,
+          "end": 223.25,
+          "seconds": 3.76,
+          "source_words": 10,
+          "source_text": "وهو ممثل ابنه ابنه هو ولد عاق فعائشة تبقى ساكته",
+          "needed_dub_words": 9,
+          "dub_clause_now": "ويقول إن أشرف إنسان طيب"
+        },
+        {
+          "index": 27,
+          "start": 223.25,
+          "end": 225.07,
+          "seconds": 1.82,
+          "source_words": 5,
+          "source_text": "فيروحوا الصديقة على مدى صلح",
+          "needed_dub_words": 4,
+          "dub_clause_now": "فتسكت عائشة"
+        },
+        {
+          "index": 28,
+          "start": 225.07,
+          "end": 228.35,
+          "seconds": 3.28,
+          "source_words": 8,
+          "source_text": "للمظلة المكسورة ويجعدون يحجون عن ضيق الحال وقلت",
+          "needed_dub_words": 8,
+          "dub_clause_now": "بعدها يروح لصاحبه يصلّح الشمسية المكسورة"
+        },
+        {
+          "index": 29,
+          "start": 228.35,
+          "end": 232.15,
+          "seconds": 3.8,
+          "source_words": 7,
+          "source_text": "لفلوس وصعوبة العيشة مقارنة بصديقه من المتعلم",
+          "needed_dub_words": 9,
+          "dub_clause_now": "ويتكلموا عن ضيق الحال وقلة الفلوس وصعوبة العيشة"
+        },
+        {
+          "index": 30,
+          "start": 232.15,
+          "end": 234.79,
+          "seconds": 2.64,
+          "source_words": 7,
+          "source_text": "الذي صارت عنده من مخابز وسيارة ويخبر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "مقارنة بصاحبهم المتعلّم اللي بقى عنده مخابز وعربية"
+        },
+        {
+          "index": 31,
+          "start": 234.79,
+          "end": 236.87,
+          "seconds": 2.08,
+          "source_words": 7,
+          "source_text": "صديقة ويقول لها انه انا اخذت قرض",
+          "needed_dub_words": 5,
+          "dub_clause_now": "صاحبه يقول إنه أخد قرض عشان يجوّز بنته ولسه بيعاني في سداده"
+        },
+        {
+          "index": 32,
+          "start": 236.87,
+          "end": 240.07,
+          "seconds": 3.2,
+          "source_words": 10,
+          "source_text": "على مدى زوج بنتي والحد الان اعاني من تزديدة فهذا",
+          "needed_dub_words": 8,
+          "dub_clause_now": "صاحبه يقول إنه أخد قرض عشان يجوّز بنته ولسه بيعاني في سداده"
+        },
+        {
+          "index": 33,
+          "start": 240.07,
+          "end": 242.33,
+          "seconds": 2.26,
+          "source_words": 8,
+          "source_text": "الرجل يقول لها انه انا ايضا نحاول اجمع",
+          "needed_dub_words": 5,
+          "dub_clause_now": "والراجل يرد إنه كمان بيجمع فلوس عشان يروح الحج مع مراته"
+        },
+        {
+          "index": 34,
+          "start": 242.33,
+          "end": 245.37,
+          "seconds": 3.04,
+          "source_words": 8,
+          "source_text": "فلوس على مدى روح للحجان وزوجتي وبوقت اضان",
+          "needed_dub_words": 7,
+          "dub_clause_now": "والراجل يرد إنه كمان بيجمع فلوس عشان يروح الحج مع مراته"
+        },
+        {
+          "index": 35,
+          "start": 245.37,
+          "end": 248.4,
+          "seconds": 3.03,
+          "source_words": 8,
+          "source_text": "العصر هم يتركون الكلام حتى يروحون ويصلون وبالبيت",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ومع أذان العصر يسيبوا الكلام ويروحوا يصلّوا"
+        }
+      ]
+    },
+    {
+      "part": 3,
+      "window_start": 248.4,
+      "window_end": 333.5,
+      "clauses": 36,
+      "dub_speech_seconds": 74.12,
+      "source_speech_seconds": 84.71,
+      "unreachable_anchors": 12,
+      "budget_words": 206,
+      "rows": [
+        {
+          "index": 0,
+          "start": 248.79,
+          "end": 253.17,
+          "seconds": 4.38,
+          "source_words": 9,
+          "source_text": "كانت عائشة تبشي أو حواليها الجيران يحاولني هددنها ويأكدن",
+          "needed_dub_words": 11,
+          "dub_clause_now": "وفي البيت"
+        },
+        {
+          "index": 1,
+          "start": 253.17,
+          "end": 253.65,
+          "seconds": 0.48,
+          "source_words": 2,
+          "source_text": "أن الكل",
+          "needed_dub_words": 1,
+          "dub_clause_now": "وبيأكدوا إن الكل عارف إن جوزها ما سرقش حاجة"
+        },
+        {
+          "index": 2,
+          "start": 253.65,
+          "end": 257.19,
+          "seconds": 3.54,
+          "source_words": 10,
+          "source_text": "يعرف أنه زوجها ما سرق عيشي ولما يرجع هذا الرجل",
+          "needed_dub_words": 9,
+          "dub_clause_now": "وبيأكدوا إن الكل عارف إن جوزها ما سرقش حاجة"
+        },
+        {
+          "index": 3,
+          "start": 257.19,
+          "end": 258.75,
+          "seconds": 1.56,
+          "source_words": 5,
+          "source_text": "كل النساء ينصر فانت فهو",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لما يرجع"
+        },
+        {
+          "index": 4,
+          "start": 258.75,
+          "end": 261.27,
+          "seconds": 2.52,
+          "source_words": 7,
+          "source_text": "يسألها ويقول لها شبيتش فتخبرها وتقول لها",
+          "needed_dub_words": 6,
+          "dub_clause_now": "كل الستات تمشي"
+        },
+        {
+          "index": 5,
+          "start": 261.27,
+          "end": 263.25,
+          "seconds": 1.98,
+          "source_words": 7,
+          "source_text": "أنه أكون واحد غريب يجاو سأل عنك",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فتقوله إن راجل غريب جه وسأل عنه وعن شغله"
+        },
+        {
+          "index": 6,
+          "start": 263.25,
+          "end": 265.31,
+          "seconds": 2.06,
+          "source_words": 6,
+          "source_text": "عن شغلك ودعا أنه هو ضابط",
+          "needed_dub_words": 5,
+          "dub_clause_now": "وادّعى إنه ضابط شرطة"
+        },
+        {
+          "index": 7,
+          "start": 265.31,
+          "end": 268.39,
+          "seconds": 3.08,
+          "source_words": 9,
+          "source_text": "شرطة رغم أنه هو ماتشن لابس ملابس الشرطة فهنا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وادّعى إنه ضابط شرطة"
+        },
+        {
+          "index": 8,
+          "start": 268.39,
+          "end": 269.83,
+          "seconds": 1.44,
+          "source_words": 4,
+          "source_text": "يبدأ القلق يدخل بحياتهم",
+          "needed_dub_words": 3,
+          "dub_clause_now": "رغم إنه مش لابس زي الشرطة"
+        },
+        {
+          "index": 9,
+          "start": 269.83,
+          "end": 271.69,
+          "seconds": 1.86,
+          "source_words": 7,
+          "source_text": "من جديد ومن بعد ما عايشة خبر",
+          "needed_dub_words": 5,
+          "dub_clause_now": "القلق يدخل حياتهم من جديد"
+        },
+        {
+          "index": 10,
+          "start": 271.69,
+          "end": 273.75,
+          "seconds": 2.06,
+          "source_words": 7,
+          "source_text": "زوجها عن الرجل اللي ادعى انه هو",
+          "needed_dub_words": 5,
+          "dub_clause_now": "بعد ما يسمع منها"
+        },
+        {
+          "index": 11,
+          "start": 273.75,
+          "end": 277.79,
+          "seconds": 4.04,
+          "source_words": 10,
+          "source_text": "ضابط هو يروح فورا للمدرسة ويخبر المدرس بالموضوع ويطلب من",
+          "needed_dub_words": 10,
+          "dub_clause_now": "يروح فوراً للمدرسة"
+        },
+        {
+          "index": 12,
+          "start": 277.79,
+          "end": 278.55,
+          "seconds": 0.76,
+          "source_words": 3,
+          "source_text": "عنده انه يرافق",
+          "needed_dub_words": 2,
+          "dub_clause_now": "ويحكي للمدرّس ويطلب منه يرافقه لقسم الشرطة"
+        },
+        {
+          "index": 13,
+          "start": 278.55,
+          "end": 282.19,
+          "seconds": 3.64,
+          "source_words": 8,
+          "source_text": "المركز الشرطة فيسأل الضابط اذا سبق وصافر للخليج",
+          "needed_dub_words": 9,
+          "dub_clause_now": "ويحكي للمدرّس ويطلب منه يرافقه لقسم الشرطة"
+        },
+        {
+          "index": 14,
+          "start": 282.19,
+          "end": 283.09,
+          "seconds": 0.9,
+          "source_words": 3,
+          "source_text": "لكن هو ينفي",
+          "needed_dub_words": 2,
+          "dub_clause_now": "الضابط يسأله إن كان سافر للخليج قبل كده"
+        },
+        {
+          "index": 15,
+          "start": 283.09,
+          "end": 285.49,
+          "seconds": 2.4,
+          "source_words": 9,
+          "source_text": "ويشرح له ويقول له انه انا بعمري ما صافر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وهو ينفي ويشرح له إنه عمره ما سافر برّه قريته"
+        },
+        {
+          "index": 16,
+          "start": 285.49,
+          "end": 287.95,
+          "seconds": 2.46,
+          "source_words": 6,
+          "source_text": "اتخرج القرية فهذا الضابط يوجه بلا",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وهو ينفي ويشرح له إنه عمره ما سافر برّه قريته"
+        },
+        {
+          "index": 17,
+          "start": 287.95,
+          "end": 291.47,
+          "seconds": 3.52,
+          "source_words": 10,
+          "source_text": "قديم ضده ويوظح الرجل انه قبل ثمان سنوات صار خلاف",
+          "needed_dub_words": 9,
+          "dub_clause_now": "يظهر موضوع بلاغ قديم ضده"
+        },
+        {
+          "index": 18,
+          "start": 291.47,
+          "end": 292.37,
+          "seconds": 0.9,
+          "source_words": 4,
+          "source_text": "بينه و بين جارة",
+          "needed_dub_words": 2,
+          "dub_clause_now": "فيشرح إنه من تمان سنين حصل خلاف بينه وبين جاره سليمان على حدود الأرض"
+        },
+        {
+          "index": 19,
+          "start": 292.37,
+          "end": 295.07,
+          "seconds": 2.7,
+          "source_words": 7,
+          "source_text": "سليمان على حدود الارض و طور الأمر",
+          "needed_dub_words": 7,
+          "dub_clause_now": "فيشرح إنه من تمان سنين حصل خلاف بينه وبين جاره سليمان على حدود الأرض"
+        },
+        {
+          "index": 20,
+          "start": 295.07,
+          "end": 296.29,
+          "seconds": 1.22,
+          "source_words": 4,
+          "source_text": "إلى ضربه و إصابته",
+          "needed_dub_words": 3,
+          "dub_clause_now": "واتطور الموضوع إنه اتضرب واتصاب"
+        },
+        {
+          "index": 21,
+          "start": 296.29,
+          "end": 299.61,
+          "seconds": 3.32,
+          "source_words": 8,
+          "source_text": "وبعد تدخل الإدارة سليمان أخذ الارض مات وترك",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وبعد تدخل الإدارة"
+        },
+        {
+          "index": 22,
+          "start": 299.61,
+          "end": 301.89,
+          "seconds": 2.28,
+          "source_words": 7,
+          "source_text": "القرية من خم السنوات فالضابط يسأل عن",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وبعدين ساب القرية من خمس سنين"
+        },
+        {
+          "index": 23,
+          "start": 301.89,
+          "end": 304.93,
+          "seconds": 3.04,
+          "source_words": 10,
+          "source_text": "جواز السفر و يخبره و يقول لأنه أنا قدمت علي",
+          "needed_dub_words": 7,
+          "dub_clause_now": "الضابط يسأل عن جواز السفر"
+        },
+        {
+          "index": 24,
+          "start": 304.93,
+          "end": 306.23,
+          "seconds": 1.3,
+          "source_words": 3,
+          "source_text": "على مدسافر للحج",
+          "needed_dub_words": 3,
+          "dub_clause_now": "فيقوله إنه قدم عليه عشان يسافر للحج"
+        },
+        {
+          "index": 25,
+          "start": 306.23,
+          "end": 308.75,
+          "seconds": 2.52,
+          "source_words": 7,
+          "source_text": "فالضابط قطمنه و يقول لأنه أنا استدعتك",
+          "needed_dub_words": 6,
+          "dub_clause_now": "فيقوله إنه قدم عليه عشان يسافر للحج"
+        },
+        {
+          "index": 26,
+          "start": 308.75,
+          "end": 311.19,
+          "seconds": 2.44,
+          "source_words": 6,
+          "source_text": "على مدين كم الإجراءات التقرير والجواز",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يطمنه الضابط إن استدعاءه كان لاستكمال التقرير وإجراءات الجواز"
+        },
+        {
+          "index": 27,
+          "start": 311.19,
+          "end": 314.25,
+          "seconds": 3.06,
+          "source_words": 9,
+          "source_text": "و ما كوشي خوه فيرجح هذا الرجل هو فرحان",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ومفيش حاجة تخوّفه"
+        },
+        {
+          "index": 28,
+          "start": 314.25,
+          "end": 316.69,
+          "seconds": 2.44,
+          "source_words": 7,
+          "source_text": "لكن حيدر صاحب محلت شاي خبره ويقول",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يرجع فرحان"
+        },
+        {
+          "index": 29,
+          "start": 316.69,
+          "end": 318.53,
+          "seconds": 1.84,
+          "source_words": 4,
+          "source_text": "أنه استخراج الجواز عادة",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لكن حيدر صاحب محل الشاي يقوله إن استخراج الجواز عادةً محتاج مبلغ للشرطة"
+        },
+        {
+          "index": 30,
+          "start": 318.53,
+          "end": 321.15,
+          "seconds": 2.62,
+          "source_words": 5,
+          "source_text": "يحتاج إلى مبلغ الشرطة فيستغرب",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يستغرب"
+        },
+        {
+          "index": 31,
+          "start": 321.15,
+          "end": 323.95,
+          "seconds": 2.8,
+          "source_words": 9,
+          "source_text": "لان الضابط مطلب من عنده اي شيء بسبب وجود",
+          "needed_dub_words": 7,
+          "dub_clause_now": "لأن الضابط ما طلبش حاجة وهو مع المدرّس"
+        },
+        {
+          "index": 32,
+          "start": 323.95,
+          "end": 326.61,
+          "seconds": 2.66,
+          "source_words": 6,
+          "source_text": "المدرسوية في يعرف مكان الضابط وينتضر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يعرف مكانه ويستناه تاني يوم"
+        },
+        {
+          "index": 33,
+          "start": 326.61,
+          "end": 329.01,
+          "seconds": 2.4,
+          "source_words": 7,
+          "source_text": "ثاني يوم ولما يمر ينطي المبلغ يسأل",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ولما يعدّي يدّيله مبلغ ويسأل عن معاد الجواز"
+        },
+        {
+          "index": 34,
+          "start": 329.01,
+          "end": 331.53,
+          "seconds": 2.52,
+          "source_words": 6,
+          "source_text": "عن معد الجواز فالضابط طمنة ويقول",
+          "needed_dub_words": 6,
+          "dub_clause_now": "الضابط يطمنه ويقوله إنه هيوصّله له البيت"
+        },
+        {
+          "index": 35,
+          "start": 331.53,
+          "end": 333.5,
+          "seconds": 1.97,
+          "source_words": 7,
+          "source_text": "انه انا رحى وصل الكيا للبيت وباللي",
+          "needed_dub_words": 5,
+          "dub_clause_now": ""
+        }
+      ]
+    },
+    {
+      "part": 4,
+      "window_start": 333.5,
+      "window_end": 411.8,
+      "clauses": 36,
+      "dub_speech_seconds": 75.568,
+      "source_speech_seconds": 77.93,
+      "unreachable_anchors": 8,
+      "budget_words": 189,
+      "rows": [
+        {
+          "index": 0,
+          "start": 333.87,
+          "end": 335.63,
+          "seconds": 1.76,
+          "source_words": 5,
+          "source_text": "لهذا الرجل يصحمن النوم ويخبر",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وبالليل"
+        },
+        {
+          "index": 1,
+          "start": 335.63,
+          "end": 337.67,
+          "seconds": 2.04,
+          "source_words": 5,
+          "source_text": "عائشة انه هو شاف بالمنام",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يصحى من النوم ويحكي لعائشة إنه شاف في المنام روضة الرسول محمد"
+        },
+        {
+          "index": 2,
+          "start": 337.67,
+          "end": 340.37,
+          "seconds": 2.7,
+          "source_words": 6,
+          "source_text": "روضة الرسول محمد فهي تفرح جدا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "يصحى من النوم ويحكي لعائشة إنه شاف في المنام روضة الرسول محمد"
+        },
+        {
+          "index": 3,
+          "start": 340.37,
+          "end": 342.85,
+          "seconds": 2.48,
+          "source_words": 6,
+          "source_text": "وتعتبرها بشارة ومن ذلك اليوم يستمرون",
+          "needed_dub_words": 6,
+          "dub_clause_now": "فتفرح جداً وتعتبره بشارة"
+        },
+        {
+          "index": 4,
+          "start": 342.85,
+          "end": 344.13,
+          "seconds": 1.28,
+          "source_words": 4,
+          "source_text": "بجمع كل فلسي جيهم",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ومن اليوم ده"
+        },
+        {
+          "index": 5,
+          "start": 344.13,
+          "end": 347.29,
+          "seconds": 3.16,
+          "source_words": 7,
+          "source_text": "ويخلوب الصندوق وحتى هم ضيق والعيش عليهم.",
+          "needed_dub_words": 8,
+          "dub_clause_now": "يفضلوا يجمعوا كل قرش ييجي لهم في الصندوق"
+        },
+        {
+          "index": 6,
+          "start": 347.29,
+          "end": 348.93,
+          "seconds": 1.64,
+          "source_words": 5,
+          "source_text": "وعايشة تدعيب كل صلاع على",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ويقلّلوا مصاريفهم جداً"
+        },
+        {
+          "index": 7,
+          "start": 348.93,
+          "end": 352.43,
+          "seconds": 3.5,
+          "source_words": 8,
+          "source_text": "موديت حقق حلمهم. وبعد فترة يروحون يستلمون جوازاتهم",
+          "needed_dub_words": 9,
+          "dub_clause_now": "ويقلّلوا مصاريفهم جداً"
+        },
+        {
+          "index": 8,
+          "start": 352.43,
+          "end": 352.69,
+          "seconds": 0.26,
+          "source_words": 1,
+          "source_text": "لكن",
+          "needed_dub_words": 1,
+          "dub_clause_now": "بعد فترة"
+        },
+        {
+          "index": 9,
+          "start": 352.69,
+          "end": 355.63,
+          "seconds": 2.94,
+          "source_words": 8,
+          "source_text": "الموظف يخبرهم ان التسليم هو الساعة بالعشراء. في",
+          "needed_dub_words": 7,
+          "dub_clause_now": "بعد فترة"
+        },
+        {
+          "index": 10,
+          "start": 355.63,
+          "end": 357.07,
+          "seconds": 1.44,
+          "source_words": 5,
+          "source_text": "انتظرون الحد ما يجي الموظف",
+          "needed_dub_words": 3,
+          "dub_clause_now": "يروحوا يستلموا جوازاتهم"
+        },
+        {
+          "index": 11,
+          "start": 357.07,
+          "end": 360.09,
+          "seconds": 3.02,
+          "source_words": 5,
+          "source_text": "يسلمهم الجواز. ويرجعون للبيتهم فرحانين.",
+          "needed_dub_words": 7,
+          "dub_clause_now": "لكن الموظف يحدد التسليم الساعة عشرة"
+        },
+        {
+          "index": 12,
+          "start": 360.09,
+          "end": 362.79,
+          "seconds": 2.7,
+          "source_words": 6,
+          "source_text": "ويطلعون كل متخاراتهم على مديرات تبوها",
+          "needed_dub_words": 7,
+          "dub_clause_now": "فيستنوا لحد ما ييجي يديهم الجوازات"
+        },
+        {
+          "index": 13,
+          "start": 362.79,
+          "end": 364.83,
+          "seconds": 2.04,
+          "source_words": 6,
+          "source_text": "وباليوم التالي يروح هذا الرجل المكتب",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويرجعوا البيت فرحانين"
+        },
+        {
+          "index": 14,
+          "start": 364.83,
+          "end": 366.79,
+          "seconds": 1.96,
+          "source_words": 5,
+          "source_text": "السفر وينتعشر في الجوازات وليفلوس",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويطلعوا كل مدخراتهم ويرتبوها"
+        },
+        {
+          "index": 15,
+          "start": 366.79,
+          "end": 369.03,
+          "seconds": 2.24,
+          "source_words": 6,
+          "source_text": "على مدي كم الإجراءات السفر وياخذ",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويطلعوا كل مدخراتهم ويرتبوها"
+        },
+        {
+          "index": 16,
+          "start": 369.03,
+          "end": 371.05,
+          "seconds": 2.02,
+          "source_words": 6,
+          "source_text": "من عنده الوصل أو مواعيد روس",
+          "needed_dub_words": 5,
+          "dub_clause_now": "تاني يوم"
+        },
+        {
+          "index": 17,
+          "start": 371.05,
+          "end": 372.79,
+          "seconds": 1.74,
+          "source_words": 4,
+          "source_text": "الحج ولما يرجع للقرية",
+          "needed_dub_words": 4,
+          "dub_clause_now": "يروح الراجل لمكتب السفر ويسلّم أشرف الجوازات والفلوس عشان يكمّل إجراءات الرحلة"
+        },
+        {
+          "index": 18,
+          "start": 372.79,
+          "end": 375.49,
+          "seconds": 2.7,
+          "source_words": 6,
+          "source_text": "حيث رفاجأ أبخبر وفات الشيخ مبروك",
+          "needed_dub_words": 7,
+          "dub_clause_now": ""
+        },
+        {
+          "index": 19,
+          "start": 375.49,
+          "end": 379.03,
+          "seconds": 3.54,
+          "source_words": 8,
+          "source_text": "فكل أهل القرية يحزنون وشاركونوا بدفنا وجناستها ومن",
+          "needed_dub_words": 9,
+          "dub_clause_now": "وياخد الإيصال ومواعيد دروس الحج"
+        },
+        {
+          "index": 20,
+          "start": 379.03,
+          "end": 381.07,
+          "seconds": 2.04,
+          "source_words": 5,
+          "source_text": "بعدها هذا الرجل يروح للنجار",
+          "needed_dub_words": 5,
+          "dub_clause_now": "حيدر يفاجئه بخبر وفاة الشيخ مبروك"
+        },
+        {
+          "index": 21,
+          "start": 381.07,
+          "end": 381.73,
+          "seconds": 0.66,
+          "source_words": 3,
+          "source_text": "اللي كان يريد",
+          "needed_dub_words": 2,
+          "dub_clause_now": "فيحزن أهل القرية ويشاركوا في جنازته ودفنه"
+        },
+        {
+          "index": 22,
+          "start": 381.73,
+          "end": 384.03,
+          "seconds": 2.3,
+          "source_words": 7,
+          "source_text": "يشتر الشجرة اللي موجودة بيتها من زمان",
+          "needed_dub_words": 6,
+          "dub_clause_now": "فيحزن أهل القرية ويشاركوا في جنازته ودفنه"
+        },
+        {
+          "index": 23,
+          "start": 384.03,
+          "end": 385.65,
+          "seconds": 1.62,
+          "source_words": 4,
+          "source_text": "وبالفعل هذا الرجل يوافق",
+          "needed_dub_words": 4,
+          "dub_clause_now": "بعدها يروح للنجّار اللي كان عايز يشتري شجرة بيته من زمان"
+        },
+        {
+          "index": 24,
+          "start": 385.65,
+          "end": 387.31,
+          "seconds": 1.66,
+          "source_words": 5,
+          "source_text": "لين هو محتاج فلوس للحج",
+          "needed_dub_words": 4,
+          "dub_clause_now": "بعدها يروح للنجّار اللي كان عايز يشتري شجرة بيته من زمان"
+        },
+        {
+          "index": 25,
+          "start": 387.31,
+          "end": 389.09,
+          "seconds": 1.78,
+          "source_words": 6,
+          "source_text": "رغم أنه سابقاً كان يرفض أن",
+          "needed_dub_words": 4,
+          "dub_clause_now": "يوافق المرّة دي لأنه محتاج فلوس للحج"
+        },
+        {
+          "index": 26,
+          "start": 389.09,
+          "end": 391.23,
+          "seconds": 2.14,
+          "source_words": 5,
+          "source_text": "يبيع هاي الشجرة فيتفقون على",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يوافق المرّة دي لأنه محتاج فلوس للحج"
+        },
+        {
+          "index": 27,
+          "start": 391.23,
+          "end": 393.85,
+          "seconds": 2.62,
+          "source_words": 6,
+          "source_text": "60 الفروبيا وهي تفعل النجار جزء",
+          "needed_dub_words": 6,
+          "dub_clause_now": "بعد ما كان بيرفض بيعها"
+        },
+        {
+          "index": 28,
+          "start": 393.85,
+          "end": 396.05,
+          "seconds": 2.2,
+          "source_words": 6,
+          "source_text": "والباق خلال عشر تيام فيرجع هذا",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يتفقوا على ستين ألف روبية"
+        },
+        {
+          "index": 29,
+          "start": 396.05,
+          "end": 398.59,
+          "seconds": 2.54,
+          "source_words": 5,
+          "source_text": "الرجل للبيت وينطعائش لفلوس ويخبرها",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ويدفع النجار جزء والباقي خلال عشر أيام"
+        },
+        {
+          "index": 30,
+          "start": 398.59,
+          "end": 400.81,
+          "seconds": 2.22,
+          "source_words": 5,
+          "source_text": "أن الباقر سيستلم قريب وقررت",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يرجع يدي عائشة الفلوس ويبلغها إن الباقي هيستلمه قريب"
+        },
+        {
+          "index": 31,
+          "start": 400.81,
+          "end": 403.45,
+          "seconds": 2.64,
+          "source_words": 7,
+          "source_text": "هي أيضاً أنه تبيع ذهبها حتى توفر",
+          "needed_dub_words": 6,
+          "dub_clause_now": ""
+        },
+        {
+          "index": 32,
+          "start": 403.45,
+          "end": 405.81,
+          "seconds": 2.36,
+          "source_words": 5,
+          "source_text": "35 الفروبيا فهذا الرجل يذكر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وهي تقرر تبيع دهبها عشان توفّر خمسة وتلاتين ألف روبية"
+        },
+        {
+          "index": 33,
+          "start": 405.81,
+          "end": 407.89,
+          "seconds": 2.08,
+          "source_words": 5,
+          "source_text": "الشون عائشة زوجتة سابقاً هي",
+          "needed_dub_words": 5,
+          "dub_clause_now": ""
+        },
+        {
+          "index": 34,
+          "start": 407.89,
+          "end": 410.37,
+          "seconds": 2.48,
+          "source_words": 6,
+          "source_text": "بعد ذهبها على مدهية سعدة بالمعيشة",
+          "needed_dub_words": 6,
+          "dub_clause_now": "فيفتكر إنها باعت دهبها قبل كده عشان تساعده في المعيشة"
+        },
+        {
+          "index": 35,
+          "start": 410.37,
+          "end": 411.8,
+          "seconds": 1.43,
+          "source_words": 5,
+          "source_text": "فيبدأ يتشكر من عدها ومن",
+          "needed_dub_words": 3,
+          "dub_clause_now": ""
+        }
+      ]
+    },
+    {
+      "part": 5,
+      "window_start": 411.8,
+      "window_end": 504.3,
+      "clauses": 36,
+      "dub_speech_seconds": 80.48,
+      "source_speech_seconds": 92.25,
+      "unreachable_anchors": 10,
+      "budget_words": 224,
+      "rows": [
+        {
+          "index": 0,
+          "start": 412.05,
+          "end": 414.05,
+          "seconds": 2.0,
+          "source_words": 5,
+          "source_text": "نانا شافوا أن الافلوس ماذكف",
+          "needed_dub_words": 5,
+          "dub_clause_now": "بعد كده يلاقوا إن الفلوس لسه مش كفاية عشان الحج فيضطروا يبيعوا البقرة والعجل عائشة تحزن عليهم"
+        },
+        {
+          "index": 1,
+          "start": 414.05,
+          "end": 417.65,
+          "seconds": 3.6,
+          "source_words": 9,
+          "source_text": "على مودي روح للحج فأصطروا أن يبيعون البقرة والعجل",
+          "needed_dub_words": 9,
+          "dub_clause_now": "بعد كده يلاقوا إن الفلوس لسه مش كفاية عشان الحج فيضطروا يبيعوا البقرة والعجل عائشة تحزن عليهم"
+        },
+        {
+          "index": 2,
+          "start": 417.65,
+          "end": 420.23,
+          "seconds": 2.58,
+          "source_words": 7,
+          "source_text": "وعايشة تحزن عليهم بس هو يوازيها ويقول",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لكنه يواسيها ويقول إنهم هيسافروا شهر"
+        },
+        {
+          "index": 3,
+          "start": 420.23,
+          "end": 422.35,
+          "seconds": 2.12,
+          "source_words": 7,
+          "source_text": "لها أنه احنا رحن سافر شهر وميك",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ومفيش حد هيهتم بالحيوانات غير المشتري"
+        },
+        {
+          "index": 4,
+          "start": 422.35,
+          "end": 424.87,
+          "seconds": 2.52,
+          "source_words": 7,
+          "source_text": "واحد رح يهتم بالحيوانات غير المشتري وإذا",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لو سابوهم هنا هيموتوا من غير رعاية"
+        },
+        {
+          "index": 5,
+          "start": 424.87,
+          "end": 427.39,
+          "seconds": 2.52,
+          "source_words": 7,
+          "source_text": "افنان احنانا فهنا رح يموتن بدون رعاية",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وحلم الحج بقى قريب"
+        },
+        {
+          "index": 6,
+          "start": 427.39,
+          "end": 430.09,
+          "seconds": 2.7,
+          "source_words": 7,
+          "source_text": "وأن حلم الحج صار قريب لذلك الأفضل",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وحلم الحج بقى قريب"
+        },
+        {
+          "index": 7,
+          "start": 430.09,
+          "end": 432.31,
+          "seconds": 2.22,
+          "source_words": 7,
+          "source_text": "أن ينبيحن فمن بعد هيروح ويزور قبر",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فالأفضل يبيعوهم"
+        },
+        {
+          "index": 8,
+          "start": 432.31,
+          "end": 435.19,
+          "seconds": 2.88,
+          "source_words": 7,
+          "source_text": "الشيخ مبروك ويخبره انه هو باعش اهواية",
+          "needed_dub_words": 7,
+          "dub_clause_now": "بعدها يزور قبر الشيخ مبروك"
+        },
+        {
+          "index": 9,
+          "start": 435.19,
+          "end": 436.25,
+          "seconds": 1.06,
+          "source_words": 4,
+          "source_text": "على موديج مع فلوس",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ويوعده إنه هيدعيله عند الكعبة المشرفة"
+        },
+        {
+          "index": 10,
+          "start": 436.25,
+          "end": 440.61,
+          "seconds": 4.36,
+          "source_words": 12,
+          "source_text": "السفر حتى يروح للحج وحقق حلمة ويوعده انه هو رح يدعيل عند",
+          "needed_dub_words": 11,
+          "dub_clause_now": "ويوعده إنه هيدعيله عند الكعبة المشرفة"
+        },
+        {
+          "index": 11,
+          "start": 440.61,
+          "end": 442.09,
+          "seconds": 1.48,
+          "source_words": 3,
+          "source_text": "الكعبة المشرفة ومن",
+          "needed_dub_words": 4,
+          "dub_clause_now": "بعد كده هو وعائشة يودّعوا جيرانهم قبل السفر"
+        },
+        {
+          "index": 12,
+          "start": 442.09,
+          "end": 446.33,
+          "seconds": 4.24,
+          "source_words": 9,
+          "source_text": "بعده يروح وعائشة ويودعون جيرانهم قبل السفر وعائشة انتجارتهم",
+          "needed_dub_words": 10,
+          "dub_clause_now": "بعد كده هو وعائشة يودّعوا جيرانهم قبل السفر"
+        },
+        {
+          "index": 13,
+          "start": 446.33,
+          "end": 450.13,
+          "seconds": 3.8,
+          "source_words": 9,
+          "source_text": "اخر كمية لبنعدها فهذا الجار يفرح ويبارك كلهم لانهم",
+          "needed_dub_words": 9,
+          "dub_clause_now": "وعائشة تدي لجارتهم آخر كمية لبن عندها"
+        },
+        {
+          "index": 14,
+          "start": 450.13,
+          "end": 454.27,
+          "seconds": 4.14,
+          "source_words": 8,
+          "source_text": "مراحي روحون. واتمنالهم ان يرجعون بالسلامة. وبطريقهم يذكر",
+          "needed_dub_words": 10,
+          "dub_clause_now": "وعائشة تدي لجارتهم آخر كمية لبن عندها"
+        },
+        {
+          "index": 15,
+          "start": 454.27,
+          "end": 455.59,
+          "seconds": 1.32,
+          "source_words": 4,
+          "source_text": "هذا الرجل جار سليمان",
+          "needed_dub_words": 3,
+          "dub_clause_now": "فيفرح الجار ويباركلهم ويتمنالهم يرجعوا بالسلامة"
+        },
+        {
+          "index": 16,
+          "start": 455.59,
+          "end": 458.23,
+          "seconds": 2.64,
+          "source_words": 7,
+          "source_text": "اللي صار بيناتهم الخلاف القديم. فيروح للقرية",
+          "needed_dub_words": 6,
+          "dub_clause_now": "فيفرح الجار ويباركلهم ويتمنالهم يرجعوا بالسلامة"
+        },
+        {
+          "index": 17,
+          "start": 458.23,
+          "end": 459.97,
+          "seconds": 1.74,
+          "source_words": 6,
+          "source_text": "اللي انتقل إلها. أو يسأل عن",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وفي الطريق"
+        },
+        {
+          "index": 18,
+          "start": 459.97,
+          "end": 463.39,
+          "seconds": 3.42,
+          "source_words": 8,
+          "source_text": "بيته. ويزورة ويعائشة. لان يعرف إذا راح للحاج",
+          "needed_dub_words": 8,
+          "dub_clause_now": "يفتكر جاره سليمان صاحب الخلاف القديم"
+        },
+        {
+          "index": 19,
+          "start": 463.39,
+          "end": 465.27,
+          "seconds": 1.88,
+          "source_words": 6,
+          "source_text": "ما يصر واحد يبقى زعلان عالية.",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فيروح للقرية اللي انتقل لها ويسأل عن بيته"
+        },
+        {
+          "index": 20,
+          "start": 465.27,
+          "end": 467.67,
+          "seconds": 2.4,
+          "source_words": 7,
+          "source_text": "وهناك يلقون مريض من بعد ما اتعرض",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ويزوره مع عائشة"
+        },
+        {
+          "index": 21,
+          "start": 467.67,
+          "end": 471.59,
+          "seconds": 3.92,
+          "source_words": 11,
+          "source_text": "الى إصابة قبل الشهر انه دخل للمستشفى. فهذا الرجل يخبره انهم",
+          "needed_dub_words": 10,
+          "dub_clause_now": "ويزوره مع عائشة"
+        },
+        {
+          "index": 22,
+          "start": 471.59,
+          "end": 472.43,
+          "seconds": 0.84,
+          "source_words": 3,
+          "source_text": "وجائين على مودي",
+          "needed_dub_words": 2,
+          "dub_clause_now": "لأنه عارف إنه قبل الحج ماينفعش يسيب حد زعلان منه"
+        },
+        {
+          "index": 23,
+          "start": 472.43,
+          "end": 475.01,
+          "seconds": 2.58,
+          "source_words": 7,
+          "source_text": "سلمون عالية ويطلبون من عند السماح وما",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لأنه عارف إنه قبل الحج ماينفعش يسيب حد زعلان منه"
+        },
+        {
+          "index": 24,
+          "start": 475.01,
+          "end": 478.47,
+          "seconds": 3.46,
+          "source_words": 9,
+          "source_text": "يبقى زحل بيناتهم قبل ما يروحون لكن سليمان يعترف",
+          "needed_dub_words": 8,
+          "dub_clause_now": "يلاقوه مريض بعد إصابة حصلت له من شهر ودخل بسببها المستشفى"
+        },
+        {
+          "index": 25,
+          "start": 478.47,
+          "end": 480.23,
+          "seconds": 1.76,
+          "source_words": 5,
+          "source_text": "انه هو اللي ظلمهم وحاول",
+          "needed_dub_words": 4,
+          "dub_clause_now": "يقولوله إنهم جايين يسلّموا عليه ويطلبوا السماح"
+        },
+        {
+          "index": 26,
+          "start": 480.23,
+          "end": 482.57,
+          "seconds": 2.34,
+          "source_words": 7,
+          "source_text": "انه ياخد حق موئلة ويقول لانه خسارة",
+          "needed_dub_words": 6,
+          "dub_clause_now": "عشان مايبقاش زعل بينهم قبل السفر"
+        },
+        {
+          "index": 27,
+          "start": 482.57,
+          "end": 485.03,
+          "seconds": 2.46,
+          "source_words": 7,
+          "source_text": "تفلوسي كانت عقوبة من رب العالمين واني",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لكن سليمان يعترف إنه هو اللي ظلمهم وحاول ياخد حق مش حقه"
+        },
+        {
+          "index": 28,
+          "start": 485.03,
+          "end": 487.43,
+          "seconds": 2.4,
+          "source_words": 7,
+          "source_text": "يطلب من عدكم السماح وهو يبتش ويطلب",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وبيقول إن خسارة فلوسه كانت عقوبة من ربنا"
+        },
+        {
+          "index": 29,
+          "start": 487.43,
+          "end": 489.29,
+          "seconds": 1.86,
+          "source_words": 7,
+          "source_text": "من الرجل بشدة انه يسامح قبل لا",
+          "needed_dub_words": 5,
+          "dub_clause_now": "وهو اللي بيطلب منهم السماح"
+        },
+        {
+          "index": 30,
+          "start": 489.29,
+          "end": 492.35,
+          "seconds": 3.06,
+          "source_words": 8,
+          "source_text": "يموت فهو يسامح ويوعده انه رح يدعيل عند",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وهو اللي بيطلب منهم السماح"
+        },
+        {
+          "index": 31,
+          "start": 492.35,
+          "end": 494.37,
+          "seconds": 2.02,
+          "source_words": 6,
+          "source_text": "الكعبة ومن بعد هيرجع هذا الرجل",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فيسامحه ويوعده يدعيله عند الكعبة"
+        },
+        {
+          "index": 32,
+          "start": 494.37,
+          "end": 498.39,
+          "seconds": 4.02,
+          "source_words": 11,
+          "source_text": "للقرية ويقعد بالجهوة ويعرف انه اهل القرية حوالا ولو قبر الشيخ",
+          "needed_dub_words": 10,
+          "dub_clause_now": "فيسامحه ويوعده يدعيله عند الكعبة"
+        },
+        {
+          "index": 33,
+          "start": 498.39,
+          "end": 500.11,
+          "seconds": 1.72,
+          "source_words": 4,
+          "source_text": "إلى مقام وصار ويزوروا",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ويعرف إن الناس حوّلوا قبر الشيخ لمقام وبقوا يزوروه من وقت للتاني"
+        },
+        {
+          "index": 34,
+          "start": 500.11,
+          "end": 501.13,
+          "seconds": 1.02,
+          "source_words": 3,
+          "source_text": "بين فترة وفترة",
+          "needed_dub_words": 2,
+          "dub_clause_now": "ويعرف إن الناس حوّلوا قبر الشيخ لمقام وبقوا يزوروه من وقت للتاني"
+        },
+        {
+          "index": 35,
+          "start": 501.13,
+          "end": 504.3,
+          "seconds": 3.17,
+          "source_words": 10,
+          "source_text": "بينما حيث ربقى يسمع صوت الشيخ وهو ينادي عليه ومن",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وحيدر لسه بيسمع صوت الشيخ بيناديه"
+        }
+      ]
+    },
+    {
+      "part": 6,
+      "window_start": 504.3,
+      "window_end": 593.8,
+      "clauses": 36,
+      "dub_speech_seconds": 82.096,
+      "source_speech_seconds": 89.31,
+      "unreachable_anchors": 11,
+      "budget_words": 217,
+      "rows": [
+        {
+          "index": 0,
+          "start": 504.49,
+          "end": 506.55,
+          "seconds": 2.06,
+          "source_words": 5,
+          "source_text": "نان يلتقي هذا الرجل بالحاج",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ومن هنا يقابل الحاج اللي دلّه على شركة السفر"
+        },
+        {
+          "index": 1,
+          "start": 506.55,
+          "end": 509.81,
+          "seconds": 3.26,
+          "source_words": 9,
+          "source_text": "الذي دلع على شركة السفر والسياحة ويسأل إذا رح",
+          "needed_dub_words": 8,
+          "dub_clause_now": "ويسأله إذا كان هيسافر معاهم"
+        },
+        {
+          "index": 2,
+          "start": 509.81,
+          "end": 511.91,
+          "seconds": 2.1,
+          "source_words": 7,
+          "source_text": "سافر وياهم في كل الحد الآن أنا",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يقول إنه لحد دلوقتي مش عارف"
+        },
+        {
+          "index": 3,
+          "start": 511.91,
+          "end": 514.45,
+          "seconds": 2.54,
+          "source_words": 7,
+          "source_text": "لا أدري وينطير قم ابنة القاسم على",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يقول إنه لحد دلوقتي مش عارف"
+        },
+        {
+          "index": 4,
+          "start": 514.45,
+          "end": 517.43,
+          "seconds": 2.98,
+          "source_words": 9,
+          "source_text": "مودي تواصل ويا إذا احتاج أي شيء ومن بعدها",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويدّيله رقم ابنه قاسم عشان يتواصل معاه لو احتاج حاجة"
+        },
+        {
+          "index": 5,
+          "start": 517.43,
+          "end": 519.45,
+          "seconds": 2.02,
+          "source_words": 5,
+          "source_text": "هذا الرجل وعائشة يحظرون دروس",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويدّيله رقم ابنه قاسم عشان يتواصل معاه لو احتاج حاجة"
+        },
+        {
+          "index": 6,
+          "start": 519.45,
+          "end": 522.03,
+          "seconds": 2.58,
+          "source_words": 8,
+          "source_text": "الحاج على مودي عرفون شو يحتاجون للسفر في",
+          "needed_dub_words": 6,
+          "dub_clause_now": "بعد كده الراجل وعائشة يحضروا دروس الحج عشان يعرفوا محتاجين إيه للسفر"
+        },
+        {
+          "index": 7,
+          "start": 522.03,
+          "end": 525.05,
+          "seconds": 3.02,
+          "source_words": 6,
+          "source_text": "طلعون يشترون ملابس الإحرام وباق المستلزمات",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويطلعوا يشتروا ملابس الإحرام وباقي المستلزمات"
+        },
+        {
+          "index": 8,
+          "start": 525.05,
+          "end": 527.53,
+          "seconds": 2.48,
+          "source_words": 5,
+          "source_text": "وبطريقة الرجع يلتقون بصحب المظلة",
+          "needed_dub_words": 6,
+          "dub_clause_now": "وفي الرجوع يقابلوا صاحب الشمسية"
+        },
+        {
+          "index": 9,
+          "start": 527.53,
+          "end": 530.97,
+          "seconds": 3.44,
+          "source_words": 10,
+          "source_text": "اللي كان يبارك كلهم على الحاج ويخبر الرجل أن النجار",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وفي الرجوع يقابلوا صاحب الشمسية"
+        },
+        {
+          "index": 10,
+          "start": 530.97,
+          "end": 534.73,
+          "seconds": 3.76,
+          "source_words": 10,
+          "source_text": "كان يسأل عنه فهو يترك عائشة ترجع للبيت ويروح للنجار",
+          "needed_dub_words": 9,
+          "dub_clause_now": ""
+        },
+        {
+          "index": 11,
+          "start": 534.73,
+          "end": 537.63,
+          "seconds": 2.9,
+          "source_words": 6,
+          "source_text": "وبالفعل لما يوصل يستلم باق المبلغ",
+          "needed_dub_words": 7,
+          "dub_clause_now": "يسيب عائشة ترجع البيت ويروح للنجار"
+        },
+        {
+          "index": 12,
+          "start": 537.63,
+          "end": 540.0,
+          "seconds": 2.37,
+          "source_words": 6,
+          "source_text": "لكن النجار يخبره ويقول لأن الشجرة",
+          "needed_dub_words": 6,
+          "dub_clause_now": "يستلم باقي المبلغ"
+        },
+        {
+          "index": 13,
+          "start": 540.0,
+          "end": 542.45,
+          "seconds": 2.45,
+          "source_words": 8,
+          "source_text": "كانت فرغة من الداخل و ما انطت الخشب",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لكن النجار يحكيله إن الشجرة كانت فاضية من جوه ومطلّعتش الخشب اللي كان متوقعه"
+        },
+        {
+          "index": 14,
+          "start": 542.45,
+          "end": 544.43,
+          "seconds": 1.98,
+          "source_words": 7,
+          "source_text": "اللي أنا شنت متوقعه و رغم هذا",
+          "needed_dub_words": 5,
+          "dub_clause_now": "لكن النجار يحكيله إن الشجرة كانت فاضية من جوه ومطلّعتش الخشب اللي كان متوقعه"
+        },
+        {
+          "index": 15,
+          "start": 544.43,
+          "end": 546.09,
+          "seconds": 1.66,
+          "source_words": 5,
+          "source_text": "أني نجار بس أنا انطت",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ورغم كده هيدفع له الفلوس كلها"
+        },
+        {
+          "index": 16,
+          "start": 546.09,
+          "end": 548.37,
+          "seconds": 2.28,
+          "source_words": 7,
+          "source_text": "كل الفلوس فهذا الرجل كان يحاول لرجع",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ورغم كده هيدفع له الفلوس كلها"
+        },
+        {
+          "index": 17,
+          "start": 548.37,
+          "end": 550.97,
+          "seconds": 2.6,
+          "source_words": 7,
+          "source_text": "للفلوس لأن هو مستفاد من الشجرة بس",
+          "needed_dub_words": 6,
+          "dub_clause_now": "الراجل يحاول يرجّع الفلوس لأن النجار ما استفادش من الشجرة"
+        },
+        {
+          "index": 18,
+          "start": 550.97,
+          "end": 553.45,
+          "seconds": 2.48,
+          "source_words": 8,
+          "source_text": "النجار يرفض و يقول لأن الخطأ من عندي",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لكن النجار يرفض ويقول إن الغلطة غلطته"
+        },
+        {
+          "index": 19,
+          "start": 553.45,
+          "end": 556.11,
+          "seconds": 2.66,
+          "source_words": 7,
+          "source_text": "لأن أنا قيامة بشكل خطأ فيترك الرجل",
+          "needed_dub_words": 6,
+          "dub_clause_now": "لأنه قدّر تمنها غلط"
+        },
+        {
+          "index": 20,
+          "start": 556.11,
+          "end": 558.07,
+          "seconds": 1.96,
+          "source_words": 7,
+          "source_text": "المبلغ عنده و يرجع للبيت و ينام",
+          "needed_dub_words": 5,
+          "dub_clause_now": "الراجل يسيب المبلغ عنده ويرجع البيت وينام"
+        },
+        {
+          "index": 21,
+          "start": 558.07,
+          "end": 560.89,
+          "seconds": 2.82,
+          "source_words": 8,
+          "source_text": "وبنص اللي يليفز هو نايم لأن هو حلم",
+          "needed_dub_words": 7,
+          "dub_clause_now": "الراجل يسيب المبلغ عنده ويرجع البيت وينام"
+        },
+        {
+          "index": 22,
+          "start": 560.89,
+          "end": 561.87,
+          "seconds": 0.98,
+          "source_words": 4,
+          "source_text": "ان الشجرة و يقعد",
+          "needed_dub_words": 2,
+          "dub_clause_now": "وفي نص الليل يفزع بسبب حلم بالشجرة"
+        },
+        {
+          "index": 23,
+          "start": 561.87,
+          "end": 565.05,
+          "seconds": 3.18,
+          "source_words": 9,
+          "source_text": "أو كانت عائشة تحاولت هدي وابثاني يوم يجي المدرس",
+          "needed_dub_words": 8,
+          "dub_clause_now": "ويصحى وعائشة بتحاول تهدّيه"
+        },
+        {
+          "index": 24,
+          "start": 565.05,
+          "end": 568.59,
+          "seconds": 3.54,
+          "source_words": 9,
+          "source_text": "على موديزورهم وينطل الرجل خمسين ألف روبية ويقول له",
+          "needed_dub_words": 9,
+          "dub_clause_now": "تاني يوم يزورهم المدرّس ويدّيه خمسين ألف روبية"
+        },
+        {
+          "index": 25,
+          "start": 568.59,
+          "end": 570.25,
+          "seconds": 1.66,
+          "source_words": 5,
+          "source_text": "أنه أنا مو محتاجها حالياً",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ويقوله إنه مش محتاجهم دلوقتي ويقدر يدبّر أموره بيهم عشان هو مسافر"
+        },
+        {
+          "index": 26,
+          "start": 570.25,
+          "end": 572.29,
+          "seconds": 2.04,
+          "source_words": 7,
+          "source_text": "وتقدر أنت الدبر أمورك بها لأن أنت",
+          "needed_dub_words": 5,
+          "dub_clause_now": ""
+        },
+        {
+          "index": 27,
+          "start": 572.29,
+          "end": 575.53,
+          "seconds": 3.24,
+          "source_words": 9,
+          "source_text": "رايح السفر بس هذا الرجل رفض أنه يأخذها لأنه",
+          "needed_dub_words": 8,
+          "dub_clause_now": "لكن الراجل يرفض لأنه مش عايز يروح الحج بفلوس مستلفها"
+        },
+        {
+          "index": 28,
+          "start": 575.53,
+          "end": 577.11,
+          "seconds": 1.58,
+          "source_words": 5,
+          "source_text": "ما يريد يروح للحج بفلوس",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لكن الراجل يرفض لأنه مش عايز يروح الحج بفلوس مستلفها"
+        },
+        {
+          "index": 29,
+          "start": 577.11,
+          "end": 579.83,
+          "seconds": 2.72,
+          "source_words": 8,
+          "source_text": "دين ومن بعد ما يمشي المدرس عائشة تقترح",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وبعد ما المدرّس يمشي"
+        },
+        {
+          "index": 30,
+          "start": 579.83,
+          "end": 582.03,
+          "seconds": 2.2,
+          "source_words": 6,
+          "source_text": "أنه يطلبه مساعدة من ابنهم لكن",
+          "needed_dub_words": 5,
+          "dub_clause_now": "عائشة تقترح يطلبوا مساعدة ابنهم"
+        },
+        {
+          "index": 31,
+          "start": 582.03,
+          "end": 583.61,
+          "seconds": 1.58,
+          "source_words": 5,
+          "source_text": "هو يرفض لأن ما يعرف",
+          "needed_dub_words": 4,
+          "dub_clause_now": "لكنه يرفض لأنه مش عارف فلوس ابنه حلال ولا حرام"
+        },
+        {
+          "index": 32,
+          "start": 583.61,
+          "end": 585.57,
+          "seconds": 1.96,
+          "source_words": 7,
+          "source_text": "إذا فلوس ابنهم هي حلال لو حرام",
+          "needed_dub_words": 5,
+          "dub_clause_now": "لكنه يرفض لأنه مش عارف فلوس ابنه حلال ولا حرام"
+        },
+        {
+          "index": 33,
+          "start": 585.57,
+          "end": 590.21,
+          "seconds": 4.64,
+          "source_words": 13,
+          "source_text": "فعايشة تقترح حاليا أن يروح للحج الواحدة لأن المبلغ ما يكفي غير شخص",
+          "needed_dub_words": 11,
+          "dub_clause_now": "فتقترح عليه يروح الحج لوحده"
+        },
+        {
+          "index": 34,
+          "start": 590.21,
+          "end": 590.65,
+          "seconds": 0.44,
+          "source_words": 1,
+          "source_text": "واحد",
+          "needed_dub_words": 1,
+          "dub_clause_now": "لكنه يرفض لأن حلمه يروح هو وعائشة مع بعض"
+        },
+        {
+          "index": 35,
+          "start": 590.65,
+          "end": 593.8,
+          "seconds": 3.15,
+          "source_words": 10,
+          "source_text": "بس هو يرفض لأن حلمة أن يحج هو وياها ومن",
+          "needed_dub_words": 8,
+          "dub_clause_now": "لكنه يرفض لأن حلمه يروح هو وعائشة مع بعض"
+        }
+      ]
+    },
+    {
+      "part": 7,
+      "window_start": 593.8,
+      "window_end": 676.327625,
+      "clauses": 36,
+      "dub_speech_seconds": 70.096,
+      "source_speech_seconds": 82.238,
+      "unreachable_anchors": 10,
+      "budget_words": 199,
+      "rows": [
+        {
+          "index": 0,
+          "start": 594.09,
+          "end": 596.23,
+          "seconds": 2.14,
+          "source_words": 6,
+          "source_text": "بعد هتقترح أن يبيعون البيت والأرض",
+          "needed_dub_words": 5,
+          "dub_clause_now": "بعدها تقترح يبيعوا البيت والأرض لتكميل المبلغ لكنه يرفض خايف يموت في السفر ويسيبها من غير بيت يقرر يروح شركة السفر ويلغي الرحلة"
+        },
+        {
+          "index": 1,
+          "start": 596.23,
+          "end": 598.01,
+          "seconds": 1.78,
+          "source_words": 5,
+          "source_text": "على مودي كنبلون المبلغ لكن",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ويرجّع البقرة والعجل"
+        },
+        {
+          "index": 2,
+          "start": 598.01,
+          "end": 600.87,
+          "seconds": 2.86,
+          "source_words": 8,
+          "source_text": "هو يرفض خوفاً من موته أثناء السفر وهو",
+          "needed_dub_words": 7,
+          "dub_clause_now": "ويرجّع البقرة والعجل"
+        },
+        {
+          "index": 3,
+          "start": 600.87,
+          "end": 603.35,
+          "seconds": 2.48,
+          "source_words": 7,
+          "source_text": "يخاف لا يموت ويتركها بدون بيت فقرر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "أشرف يحاول يقنعه يسافر"
+        },
+        {
+          "index": 4,
+          "start": 603.35,
+          "end": 605.11,
+          "seconds": 1.76,
+          "source_words": 5,
+          "source_text": "أن يروح الشركة السفر ويلغر",
+          "needed_dub_words": 4,
+          "dub_clause_now": "أشرف يحاول يقنعه يسافر"
+        },
+        {
+          "index": 5,
+          "start": 605.11,
+          "end": 609.35,
+          "seconds": 4.24,
+          "source_words": 9,
+          "source_text": "رحلة ويرجع البقرة والعجل ويحاول السنة جاية أن يروح",
+          "needed_dub_words": 10,
+          "dub_clause_now": "ويقوله إنه شايف فيه صورة أبوه وعايز يساعده"
+        },
+        {
+          "index": 6,
+          "start": 609.35,
+          "end": 611.67,
+          "seconds": 2.32,
+          "source_words": 7,
+          "source_text": "بس أشرفتش أن يحاول يقنع أن يسافر",
+          "needed_dub_words": 6,
+          "dub_clause_now": "ويصر يروح الحج هو ومراته من غير اعتماد على غيرهم أو فلوس من الناس"
+        },
+        {
+          "index": 7,
+          "start": 611.67,
+          "end": 612.43,
+          "seconds": 0.76,
+          "source_words": 3,
+          "source_text": "و يقول له",
+          "needed_dub_words": 2,
+          "dub_clause_now": "ويصر يروح الحج هو ومراته من غير اعتماد على غيرهم أو فلوس من الناس"
+        },
+        {
+          "index": 8,
+          "start": 612.43,
+          "end": 614.29,
+          "seconds": 1.86,
+          "source_words": 6,
+          "source_text": "انه انا يشوف بيك صورة ابوية",
+          "needed_dub_words": 5,
+          "dub_clause_now": "يخرج متأثر"
+        },
+        {
+          "index": 9,
+          "start": 614.29,
+          "end": 615.63,
+          "seconds": 1.34,
+          "source_words": 4,
+          "source_text": "او انا يريد اساعدك",
+          "needed_dub_words": 3,
+          "dub_clause_now": "يخرج متأثر"
+        },
+        {
+          "index": 10,
+          "start": 615.63,
+          "end": 619.53,
+          "seconds": 3.9,
+          "source_words": 12,
+          "source_text": "الا انه هذا الرجل ورفاضه و اصر انه هو يريد حجوي ازاوشته",
+          "needed_dub_words": 9,
+          "dub_clause_now": "ويتمنى ابنه يبقى طيب زي أشرف"
+        },
+        {
+          "index": 11,
+          "start": 619.53,
+          "end": 620.41,
+          "seconds": 0.88,
+          "source_words": 3,
+          "source_text": "مو حتى يحتمد",
+          "needed_dub_words": 2,
+          "dub_clause_now": "وفي الرجوع بالأتوبيس يتعب ويقع على الأرض"
+        },
+        {
+          "index": 12,
+          "start": 620.41,
+          "end": 621.75,
+          "seconds": 1.34,
+          "source_words": 6,
+          "source_text": "على الغير و ياخذ فلوس من",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وفي الرجوع بالأتوبيس يتعب ويقع على الأرض"
+        },
+        {
+          "index": 13,
+          "start": 621.75,
+          "end": 623.37,
+          "seconds": 1.62,
+          "source_words": 4,
+          "source_text": "الناس فيطلع من يمة",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وفي الرجوع بالأتوبيس يتعب ويقع على الأرض"
+        },
+        {
+          "index": 14,
+          "start": 623.37,
+          "end": 625.67,
+          "seconds": 2.3,
+          "source_words": 7,
+          "source_text": "وهو متأثر و يتمنى لو ابنة كان",
+          "needed_dub_words": 6,
+          "dub_clause_now": "والناس تلحقه بسرعة"
+        },
+        {
+          "index": 15,
+          "start": 625.67,
+          "end": 628.51,
+          "seconds": 2.84,
+          "source_words": 8,
+          "source_text": "انسان طيب مثل اشرف و بطريقة الرجعة بالباصة",
+          "needed_dub_words": 7,
+          "dub_clause_now": "والناس تلحقه بسرعة"
+        },
+        {
+          "index": 16,
+          "start": 628.51,
+          "end": 630.11,
+          "seconds": 1.6,
+          "source_words": 5,
+          "source_text": "يتعب هذا الرجل و يوجع",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وبعد أيام ييجي العيد"
+        },
+        {
+          "index": 17,
+          "start": 630.11,
+          "end": 632.95,
+          "seconds": 2.84,
+          "source_words": 7,
+          "source_text": "على الارض والناس يبسرعي الحقوه وبعد أيام",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وحيدر يسمع صوت من المكان اللي كان الشيخ بيقعد فيه"
+        },
+        {
+          "index": 18,
+          "start": 632.95,
+          "end": 635.07,
+          "seconds": 2.12,
+          "source_words": 6,
+          "source_text": "يجي العيد فيسمع حيدر صوت من",
+          "needed_dub_words": 5,
+          "dub_clause_now": "فيروح ويقعد هناك"
+        },
+        {
+          "index": 19,
+          "start": 635.07,
+          "end": 636.69,
+          "seconds": 1.62,
+          "source_words": 5,
+          "source_text": "المكان اللي كان الشيخ يقعد",
+          "needed_dub_words": 4,
+          "dub_clause_now": "وفي البيت"
+        },
+        {
+          "index": 20,
+          "start": 636.69,
+          "end": 639.95,
+          "seconds": 3.26,
+          "source_words": 8,
+          "source_text": "به فيروحه يقعد هناكة وبيت الرجل زوجته يسمعون",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وفي البيت"
+        },
+        {
+          "index": 21,
+          "start": 639.95,
+          "end": 643.15,
+          "seconds": 3.2,
+          "source_words": 7,
+          "source_text": "تكبيرات العيد وكانوا يبشون بحزن عن الحجاج",
+          "needed_dub_words": 8,
+          "dub_clause_now": "ويبكوا بحزن:"
+        },
+        {
+          "index": 22,
+          "start": 643.15,
+          "end": 646.17,
+          "seconds": 3.02,
+          "source_words": 7,
+          "source_text": "اللي مجتمعينه بعرفة وهم ينحرموا من الحجب",
+          "needed_dub_words": 7,
+          "dub_clause_now": "الحجاج مجتمعين بعرفة"
+        },
+        {
+          "index": 23,
+          "start": 646.17,
+          "end": 649.19,
+          "seconds": 3.02,
+          "source_words": 7,
+          "source_text": "هذه السنة بسبب الظروف المادية بس قرروا",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وهم اتحرموا من الحج السنة دي بسبب الظروف المادية"
+        },
+        {
+          "index": 24,
+          "start": 649.19,
+          "end": 650.39,
+          "seconds": 1.2,
+          "source_words": 4,
+          "source_text": "أنه ما يفقدون الأمل",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وهم اتحرموا من الحج السنة دي بسبب الظروف المادية"
+        },
+        {
+          "index": 25,
+          "start": 650.39,
+          "end": 653.19,
+          "seconds": 2.8,
+          "source_words": 6,
+          "source_text": "ويخلون الحجم لهم للسنة جاية فيجومون",
+          "needed_dub_words": 7,
+          "dub_clause_now": "لكنهم يقرروا ما يفقدوش الأمل ويأجلوا الحج للسنة الجاية"
+        },
+        {
+          "index": 26,
+          "start": 653.19,
+          "end": 654.93,
+          "seconds": 1.74,
+          "source_words": 5,
+          "source_text": "على مودي الحقون صلاة العيد",
+          "needed_dub_words": 4,
+          "dub_clause_now": "ويقوموا عشان يلحقوا صلاة العيد"
+        },
+        {
+          "index": 27,
+          "start": 654.93,
+          "end": 657.87,
+          "seconds": 2.94,
+          "source_words": 7,
+          "source_text": "وتروح هائشة وتتوظّى بينما هو يطلع ويزرع",
+          "needed_dub_words": 7,
+          "dub_clause_now": "تروح عائشة تتوضّى"
+        },
+        {
+          "index": 28,
+          "start": 657.87,
+          "end": 659.95,
+          "seconds": 2.08,
+          "source_words": 6,
+          "source_text": "شجرة جديدة أو بمكان الشجرة اللي",
+          "needed_dub_words": 5,
+          "dub_clause_now": "وهو يطلع يزرع شجرة جديدة مكان الشجرة اللي باعها"
+        },
+        {
+          "index": 29,
+          "start": 659.95,
+          "end": 662.03,
+          "seconds": 2.08,
+          "source_words": 6,
+          "source_text": "مباعت أو يبدى يسقيها أو من",
+          "needed_dub_words": 5,
+          "dub_clause_now": "ويبدأ يسقيها"
+        },
+        {
+          "index": 30,
+          "start": 662.03,
+          "end": 665.23,
+          "seconds": 3.2,
+          "source_words": 9,
+          "source_text": "بعد هي توجه للجامع على مودي الحق صلاة العيد",
+          "needed_dub_words": 8,
+          "dub_clause_now": "وبعدين يتجه للجامع ليلحق الصلاة"
+        },
+        {
+          "index": 31,
+          "start": 665.23,
+          "end": 666.51,
+          "seconds": 1.28,
+          "source_words": 4,
+          "source_text": "وهو قرّر من هذه",
+          "needed_dub_words": 3,
+          "dub_clause_now": "ومن اللحظة دي يقرر يجمع كل المبلغ اللي هيحتاجه هو ومراته"
+        },
+        {
+          "index": 32,
+          "start": 666.51,
+          "end": 670.19,
+          "seconds": 3.68,
+          "source_words": 9,
+          "source_text": "اللحظة أن يجمع كل المبلغ اللي يحتاجه هو زوجته",
+          "needed_dub_words": 9,
+          "dub_clause_now": "من غير ما ياخد فلوس من حد"
+        },
+        {
+          "index": 33,
+          "start": 670.19,
+          "end": 672.05,
+          "seconds": 1.86,
+          "source_words": 7,
+          "source_text": "أو أنه ما يخذ فلوس من أحد",
+          "needed_dub_words": 5,
+          "dub_clause_now": "عشان يروحوا الحج السنة الجاية"
+        },
+        {
+          "index": 34,
+          "start": 672.05,
+          "end": 673.49,
+          "seconds": 1.44,
+          "source_words": 4,
+          "source_text": "على مودي روحون بالسنة",
+          "needed_dub_words": 3,
+          "dub_clause_now": "وبس هنا"
+        },
+        {
+          "index": 35,
+          "start": 673.49,
+          "end": 676.328,
+          "seconds": 2.838,
+          "source_words": 5,
+          "source_text": "الجاية أو بالسهنة ونسلم عليكم",
+          "needed_dub_words": 7,
+          "dub_clause_now": "وبس هنا"
+        }
+      ]
+    }
+  ]
+}

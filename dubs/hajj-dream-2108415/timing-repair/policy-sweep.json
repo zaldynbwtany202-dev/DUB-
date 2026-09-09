@@ -1,0 +1,141 @@
+{
+  "script": "dubs/hajj-dream-2108415/timing-repair/script.json",
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "reading": "phase improves as the hole cap grows; audible silence grows with it. Choose the largest cap whose hole total is acceptable, because the alternative - moving speech - is not allowed",
+  "best_hole_setting": "window_fill",
+  "best_phase_setting": "anchor_hole_0.75",
+  "rows": [
+    {
+      "setting": "window_fill",
+      "extra_args": [
+        "--no-anchor"
+      ],
+      "phase_mean_seconds": 3.061,
+      "phase_median_seconds": 2.398,
+      "phase_p90_seconds": 7.096,
+      "phase_max_seconds": 14.397,
+      "anchored_rows": 236,
+      "hole_count": 300,
+      "hole_total_seconds": 31.768,
+      "hole_max_seconds": 0.38,
+      "hole_p90_seconds": 0.16,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/window_fill/master.wav",
+      "plan": ".cache/anchor-sweep/window_fill/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.25",
+      "extra_args": [
+        "--anchor-hole",
+        "0.25"
+      ],
+      "phase_mean_seconds": 2.975,
+      "phase_median_seconds": 2.293,
+      "phase_p90_seconds": 6.702,
+      "phase_max_seconds": 14.499,
+      "anchored_rows": 236,
+      "hole_count": 266,
+      "hole_total_seconds": 34.102,
+      "hole_max_seconds": 0.45,
+      "hole_p90_seconds": 0.22,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.25/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.25/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.32",
+      "extra_args": [
+        "--anchor-hole",
+        "0.32"
+      ],
+      "phase_mean_seconds": 2.975,
+      "phase_median_seconds": 2.293,
+      "phase_p90_seconds": 6.702,
+      "phase_max_seconds": 14.499,
+      "anchored_rows": 236,
+      "hole_count": 266,
+      "hole_total_seconds": 34.102,
+      "hole_max_seconds": 0.45,
+      "hole_p90_seconds": 0.22,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.32/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.32/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.4",
+      "extra_args": [
+        "--anchor-hole",
+        "0.4"
+      ],
+      "phase_mean_seconds": 2.951,
+      "phase_median_seconds": 2.243,
+      "phase_p90_seconds": 6.702,
+      "phase_max_seconds": 14.499,
+      "anchored_rows": 236,
+      "hole_count": 270,
+      "hole_total_seconds": 34.312,
+      "hole_max_seconds": 0.45,
+      "hole_p90_seconds": 0.22,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.4/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.4/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.5",
+      "extra_args": [
+        "--anchor-hole",
+        "0.5"
+      ],
+      "phase_mean_seconds": 2.937,
+      "phase_median_seconds": 2.234,
+      "phase_p90_seconds": 6.702,
+      "phase_max_seconds": 14.499,
+      "anchored_rows": 236,
+      "hole_count": 275,
+      "hole_total_seconds": 34.902,
+      "hole_max_seconds": 0.45,
+      "hole_p90_seconds": 0.22,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.5/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.5/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.62",
+      "extra_args": [
+        "--anchor-hole",
+        "0.62"
+      ],
+      "phase_mean_seconds": 2.901,
+      "phase_median_seconds": 2.122,
+      "phase_p90_seconds": 6.642,
+      "phase_max_seconds": 14.499,
+      "anchored_rows": 236,
+      "hole_count": 268,
+      "hole_total_seconds": 38.022,
+      "hole_max_seconds": 0.45,
+      "hole_p90_seconds": 0.272,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.62/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.62/plan.json"
+    },
+    {
+      "setting": "anchor_hole_0.75",
+      "extra_args": [
+        "--anchor-hole",
+        "0.75"
+      ],
+      "phase_mean_seconds": 2.724,
+      "phase_median_seconds": 1.898,
+      "phase_p90_seconds": 6.332,
+      "phase_max_seconds": 14.416,
+      "anchored_rows": 236,
+      "hole_count": 256,
+      "hole_total_seconds": 43.772,
+      "hole_max_seconds": 0.58,
+      "hole_p90_seconds": 0.36,
+      "holes_over_0_7s": 0,
+      "master": ".cache/anchor-sweep/anchor_hole_0.75/master.wav",
+      "plan": ".cache/anchor-sweep/anchor_hole_0.75/plan.json"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "slug": "snaptik-7614635067838598423-v3",
+  "title": "الدبلجة المصرية مع الخلفية المستخرجة من الأصل",
+  "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+  "status": "complete",
+  "updated_at": "2026-09-07T17:56:23+00:00",
+  "versions": [
+    {
+      "run_id": "agent-ar-eg-original-bg-20260907",
+      "file": "final-dub-agent-ar-eg-original-bg.mp4",
+      "kind": "final_with_original_background",
+      "status": "complete",
+      "size": 9740451,
+      "sha256": "c9b60c2d9570bfe47be996575c4e39bbd7593bba4983980b7e1e7fa58a0dcdfd",
+      "duration": 108.9,
+      "source_duration": 108.9,
+      "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+      "published_at": "2026-09-07T17:56:23+00:00",
+      "execution": "local",
+      "settings": {
+        "source_lang": "ar",
+        "target_lang": "ar-EG",
+        "tts_engine": "agent",
+        "voice_id": "voice-00",
+        "gender": "masculine",
+        "use_case": "narration",
+        "user_selected": true,
+        "bg_music": true,
+        "background_source": "estimated from original uploaded audio",
+        "background_gain_db": 2.5,
+        "ducking": true
+      },
+      "technical_checks_passed": true,
+      "dub_complete": true,
+      "quality_ok": true,
+      "quality_scope": "technical checks plus diagnostic background audit; neural stem purity is not guaranteed",
+      "takes": 9,
+      "segments": 10,
+      "audio": "final-dub-agent-ar-eg-original-bg.mp3",
+      "subtitles": "final-dub-agent-ar-eg-original-bg.srt",
+      "reports": {
+        "quality": "final-dub-agent-ar-eg-original-bg.quality.json",
+        "language": "final-dub-agent-ar-eg-original-bg.language.json",
+        "mix": "final-dub-agent-ar-eg-original-bg.mix.json",
+        "separation": "background/separated-original-background.json",
+        "background_audit": "background/narrator-leak-audit.json"
+      },
+      "voice_regenerated": false
+    },
+    {
+      "run_id": "agent-ar-eg-20260907",
+      "file": "final-dub-agent-ar-eg.mp4",
+      "kind": "final",
+      "status": "complete",
+      "size": 9266265,
+      "sha256": "229a93bd58e931203d45d497beebd8d5a0deb42fddb1aeb75e32b77d129eebed",
+      "duration": 108.9,
+      "source_duration": 108.9,
+      "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+      "published_at": "2026-09-07T17:10:25+00:00",
+      "execution": "local",
+      "settings": {
+        "source_lang": "ar",
+        "target_lang": "ar-EG",
+        "tts_engine": "agent",
+        "voice_id": "voice-00",
+        "gender": "masculine",
+        "use_case": "narration",
+        "user_selected": true,
+        "bg_music": false
+      },
+      "technical_checks_passed": true,
+      "dub_complete": true,
+      "quality_ok": true,
+      "quality_scope": "technical checks; no lip animation or human listening certification",
+      "takes": 9,
+      "segments": 10,
+      "audio": "final-dub-agent-ar-eg.mp3",
+      "subtitles": "final-dub-agent-ar-eg.srt",
+      "reports": {
+        "quality": "final-dub-agent-ar-eg.quality.json",
+        "language": "final-dub-agent-ar-eg.language.json",
+        "agent": "final-dub-agent-ar-eg.agent.json"
+      }
+    }
+  ],
+  "archived_versions": [
+    {
+      "run_id": "agent-preview-20260907",
+      "file": "preview-agent-ar-eg.mp4",
+      "kind": "preview",
+      "status": "preview_incomplete",
+      "size": 7028575,
+      "sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+      "duration": 91.2,
+      "source_duration": 108.9,
+      "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+      "published_at": "2026-09-07T16:41:44+00:00",
+      "settings": {
+        "source_lang": "ar",
+        "target_lang": "ar-EG",
+        "tts_engine": "agent",
+        "voice_id": "voice-00",
+        "gender": "masculine",
+        "use_case": "narration",
+        "user_selected": true,
+        "bg_music": false
+      },
+      "technical_checks_passed": true,
+      "dub_complete": false,
+      "quality_ok": false,
+      "quality_note": "Preview is technically valid but the complete dub is waiting for take 7.",
+      "segments": 8,
+      "reports": {
+        "quality": "preview-agent-ar-eg.quality.json",
+        "language": "preview-agent-ar-eg.language.json",
+        "agent": "preview-agent-ar-eg.agent.json"
+      },
+      "archive": {
+        "purpose": "Historical incomplete preview; complete older versions and original recordings remain unchanged.",
+        "commit": "2d33f7d6c98c72fcf924baa08120555a3415599d",
+        "path": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+        "bytes": 7028575,
+        "sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+        "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/2d33f7d6c98c72fcf924baa08120555a3415599d/dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+        "storage": "Verified immutable Git history; duplicate workspace copy retired to protect persistence."
+      }
+    }
+  ]
+}

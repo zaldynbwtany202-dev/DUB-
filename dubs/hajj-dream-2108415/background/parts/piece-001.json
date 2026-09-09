@@ -1,0 +1,15 @@
+{
+  "key": {
+    "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+    "begin": 2469600,
+    "end": 5468400,
+    "power": 1.35,
+    "version": 1
+  },
+  "sample_rate_before_archive": 44100,
+  "file": "piece-001.opus",
+  "sha256": "c37486acc2841fbbb171517f7fa775de18984d8ddb29d16b034b883c462add94",
+  "codec": "Opus stereo 32 kbps CBR",
+  "lossless_model_output_retained": false,
+  "model_method": "UVR source-phase masking; no speech-purity guarantee"
+}

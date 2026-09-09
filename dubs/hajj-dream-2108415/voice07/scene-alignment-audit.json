@@ -1,0 +1,434 @@
+{
+  "takes": [
+    {
+      "take_index": 0,
+      "cuts": [
+        {
+          "source_time": 27.4,
+          "text_starts": "الراجل يرجع البيت",
+          "estimate": 26.94,
+          "character_match_ratio": 0.8717948717948718,
+          "pause": {
+            "start": 26.25,
+            "end": 26.72
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 47.3,
+          "text_starts": "يبدأ يجمع الفلوس",
+          "estimate": 44.86,
+          "character_match_ratio": 0.8717948717948718,
+          "pause": {
+            "start": 44.22,
+            "end": 44.66
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [],
+      "segments": 3
+    },
+    {
+      "take_index": 1,
+      "cuts": [
+        {
+          "source_time": 99.4,
+          "text_starts": "ابنه عبد الستّار",
+          "estimate": 35.04,
+          "character_match_ratio": 0.8859060402684564,
+          "pause": {
+            "start": 34.3,
+            "end": 34.79
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 126.6,
+          "text_starts": "تاني يوم، يروح شركة السفر",
+          "estimate": 57.66,
+          "character_match_ratio": 0.8859060402684564,
+          "pause": {
+            "start": 57.23,
+            "end": 57.74
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [],
+      "segments": 3
+    },
+    {
+      "take_index": 2,
+      "cuts": [
+        {
+          "source_time": 171.9,
+          "text_starts": "يرجع البيت، يلاقي",
+          "estimate": 21.62,
+          "character_match_ratio": 0.8718801996672213,
+          "pause": {
+            "start": 21.17,
+            "end": 21.54
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 197.8,
+          "text_starts": "تاني يوم، يروحوا يتصوّروا",
+          "estimate": 42.86,
+          "character_match_ratio": 0.8718801996672213,
+          "pause": {
+            "start": 42.2,
+            "end": 42.73
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 211.8,
+          "text_starts": "وهما راجعين",
+          "estimate": 54.82,
+          "character_match_ratio": 0.8718801996672213,
+          "pause": {
+            "start": 54.52,
+            "end": 54.7
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [],
+      "segments": 4
+    },
+    {
+      "take_index": 3,
+      "cuts": [
+        {
+          "source_time": 248.5,
+          "text_starts": "ولما يرجع البيت",
+          "estimate": 24.24,
+          "character_match_ratio": 0.8870636550308009,
+          "pause": {
+            "start": 23.04,
+            "end": 23.49
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 273.3,
+          "text_starts": "الراجل يروح للمدرّس",
+          "estimate": 44.96,
+          "character_match_ratio": 0.8870636550308009,
+          "pause": {
+            "start": 44.24,
+            "end": 44.77
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 300,
+          "text_starts": "الضابط يسأله عن جواز السفر",
+          "estimate": 68.04,
+          "character_match_ratio": 0.8870636550308009,
+          "pause": {
+            "start": 67.28,
+            "end": 67.75
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [],
+      "segments": 4
+    },
+    {
+      "take_index": 4,
+      "cuts": [
+        {
+          "source_time": 334,
+          "text_starts": "بالليل، يحكي",
+          "estimate": 18.88,
+          "character_match_ratio": 0.9413020277481323,
+          "pause": {
+            "start": 18.22,
+            "end": 18.63
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 350.2,
+          "text_starts": "بعد فترة، يستنّوا",
+          "estimate": 36.02,
+          "character_match_ratio": 0.9413020277481323,
+          "pause": {
+            "start": 35.4,
+            "end": 35.81
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 362.5,
+          "text_starts": "الراجل يسلّم أشرف",
+          "estimate": 43.96,
+          "character_match_ratio": 0.9413020277481323,
+          "pause": {
+            "start": 43.31,
+            "end": 43.7
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 372.8,
+          "text_starts": "لكن يرجع على خبر حزين",
+          "estimate": 49.7,
+          "character_match_ratio": 0.9413020277481323,
+          "pause": {
+            "start": 49.24,
+            "end": 49.65
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [
+        334
+      ],
+      "segments": 4
+    },
+    {
+      "take_index": 5,
+      "cuts": [
+        {
+          "source_time": 396.9,
+          "text_starts": "يرجع الراجل يدي",
+          "estimate": 17.18,
+          "character_match_ratio": 0.8696498054474708,
+          "pause": {
+            "start": 16.42,
+            "end": 16.98
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 411.7,
+          "text_starts": "لكن رغم كل ده",
+          "estimate": 34.7,
+          "character_match_ratio": 0.8696498054474708,
+          "pause": {
+            "start": 33.92,
+            "end": 34.43
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 432,
+          "text_starts": "بعدها، يزور قبر",
+          "estimate": 50.22,
+          "character_match_ratio": 0.8696498054474708,
+          "pause": {
+            "start": 49.86,
+            "end": 50.42
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [
+        411.7
+      ],
+      "segments": 3
+    },
+    {
+      "take_index": 6,
+      "cuts": [
+        {
+          "source_time": 454.9,
+          "text_starts": "وفي الطريق، الراجل يفتكر",
+          "estimate": 9.14,
+          "character_match_ratio": 0.8431535269709544,
+          "pause": {
+            "start": 8.48,
+            "end": 9.02
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 477,
+          "text_starts": "لكن سليمان يعترف",
+          "estimate": 32.519999999999996,
+          "character_match_ratio": 0.8431535269709544,
+          "pause": {
+            "start": 31.9,
+            "end": 32.32
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 492.9,
+          "text_starts": "يرجع القرية، ويعرف",
+          "estimate": 49.18,
+          "character_match_ratio": 0.8431535269709544,
+          "pause": {
+            "start": 48.51,
+            "end": 49.01
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 505.3,
+          "text_starts": "بعدها، يقابل الحاج",
+          "estimate": 57.36,
+          "character_match_ratio": 0.8431535269709544,
+          "pause": {
+            "start": 56.7,
+            "end": 57.18
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [
+        454.9
+      ],
+      "segments": 4
+    },
+    {
+      "take_index": 7,
+      "cuts": [
+        {
+          "source_time": 535,
+          "text_starts": "النجار يسلّمه",
+          "estimate": 17.46,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 16.75,
+            "end": 17.26
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 546,
+          "text_starts": "الراجل يحاول يرجّع الفلوس",
+          "estimate": 27.82,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 27.13,
+            "end": 27.67
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 558.8,
+          "text_starts": "وبالليل، يحلم",
+          "estimate": 45.74,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 45.27,
+            "end": 45.63
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 565.8,
+          "text_starts": "تاني يوم، المدرّس",
+          "estimate": 52.12,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 51.3,
+            "end": 51.86
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 579.4,
+          "text_starts": "عائشة تقترح",
+          "estimate": 64.04,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 63.31,
+            "end": 63.78
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 585.9,
+          "text_starts": "فتقوله",
+          "estimate": 72.3,
+          "character_match_ratio": 0.9267175572519084,
+          "pause": {
+            "start": 71.73,
+            "end": 72.18
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [
+        546,
+        535,
+        558.8,
+        565.8,
+        579.4,
+        585.9
+      ],
+      "segments": 1
+    },
+    {
+      "take_index": 8,
+      "cuts": [
+        {
+          "source_time": 603.8,
+          "text_starts": "يروح لأشرف ويلغي",
+          "estimate": 9.18,
+          "character_match_ratio": 0.879284649776453,
+          "pause": {
+            "start": 8.49,
+            "end": 8.93
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 623.3,
+          "text_starts": "يخرج متأثر",
+          "estimate": 27.2,
+          "character_match_ratio": 0.879284649776453,
+          "pause": {
+            "start": 26.61,
+            "end": 26.96
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 632.4,
+          "text_starts": "تعدّي أيام",
+          "estimate": 35.86,
+          "character_match_ratio": 0.879284649776453,
+          "pause": {
+            "start": 35.12,
+            "end": 35.6
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 639.9,
+          "text_starts": "وفي البيت، الراجل",
+          "estimate": 43.22,
+          "character_match_ratio": 0.879284649776453,
+          "pause": {
+            "start": 42.6,
+            "end": 43.1
+          },
+          "accepted": true
+        },
+        {
+          "source_time": 653.6,
+          "text_starts": "يستعدّوا لصلاة العيد",
+          "estimate": 55.12,
+          "character_match_ratio": 0.879284649776453,
+          "pause": {
+            "start": 54.49,
+            "end": 54.93
+          },
+          "accepted": true
+        }
+      ],
+      "merged_boundaries": [],
+      "segments": 6
+    }
+  ],
+  "script_preserved": true,
+  "cuts_only_in_measured_silence": true
+}

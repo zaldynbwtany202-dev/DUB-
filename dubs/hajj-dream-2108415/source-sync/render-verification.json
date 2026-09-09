@@ -1,0 +1,168 @@
+{
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "output": "/tmp/voice-only.mp4",
+  "output_sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+  "output_bytes": 41915527,
+  "picture": {
+    "source_duration": 676.33,
+    "output_duration": 676.27,
+    "source_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "output_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "video_stream_identical": true,
+    "source_video_kib": 27145,
+    "output_video_kib": 27145,
+    "output_last_packet_time": "00:11:16.23",
+    "source_decode_errors": 0,
+    "output_decode_errors": 0,
+    "video_reencoded": false,
+    "streams": [
+      "Video",
+      "Audio"
+    ]
+  },
+  "speech": {
+    "pieces_checked": 237,
+    "pieces_not_identical_to_the_take": 0,
+    "worst_mismatch": [],
+    "max_alignment_error_samples": 2,
+    "max_alignment_error_ms": 0.0454,
+    "pieces_silent_in_master": 0,
+    "master_duration": 676.448,
+    "master_peak_dbfs": -1.498,
+    "method": "every placed piece is compared sample by sample with the approved take, and its speech onset is compared with the planned cue time; silence between pieces moved, the speech itself did not"
+  },
+  "timeline": {
+    "dry_narration": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 601.01,
+      "uncovered_source_speech_seconds": 13.31,
+      "source_speech_coverage": 0.980284,
+      "max_uncovered_gap": 0.45,
+      "gap_count": 2,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "delivered_mix": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 603.47,
+      "uncovered_source_speech_seconds": 12.31,
+      "source_speech_coverage": 0.981765,
+      "max_uncovered_gap": 0.42,
+      "gap_count": 1,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "dry_longest_gaps": [
+      {
+        "start": 156.81,
+        "end": 157.26,
+        "duration": 0.45
+      },
+      {
+        "start": 181.74,
+        "end": 182.16,
+        "duration": 0.42
+      }
+    ],
+    "delivered_longest_gaps": [
+      {
+        "start": 181.74,
+        "end": 182.16,
+        "duration": 0.42
+      }
+    ],
+    "planned": {
+      "uncovered_source_speech_seconds": 11.74,
+      "max_uncovered_gap": 0.0
+    },
+    "method": "same Silero settings on the original and on the delivered audio"
+  },
+  "quiet_holes": {
+    "method": "digital silence in the narration master (sample peak below -55 dBFS over 10 ms blocks) that overlaps original speech; independent of any speech detector",
+    "count_over_budget": 0,
+    "longest": [
+      {
+        "start": 615.42,
+        "end": 615.87,
+        "duration": 0.45
+      },
+      {
+        "start": 221.18,
+        "end": 221.62,
+        "duration": 0.44
+      },
+      {
+        "start": 601.99,
+        "end": 602.41,
+        "duration": 0.42
+      },
+      {
+        "start": 157.03,
+        "end": 157.44,
+        "duration": 0.41
+      },
+      {
+        "start": 170.77,
+        "end": 171.17,
+        "duration": 0.4
+      },
+      {
+        "start": 178.24,
+        "end": 178.63,
+        "duration": 0.39
+      }
+    ],
+    "total_seconds": 34.902,
+    "budget_seconds": 0.7
+  },
+  "clause_phase": {
+    "anchored_rows": 236,
+    "rows_measured": 236,
+    "rows_missing_onset": [],
+    "onset_error_from_plan_seconds": {
+      "mean": 0.0,
+      "max": 0.0
+    },
+    "phase_vs_original": {
+      "anchored": 236,
+      "mean_seconds": 2.937,
+      "median_seconds": 2.234,
+      "p90_seconds": 6.702,
+      "max_seconds": 14.499
+    },
+    "plan_claimed": {
+      "anchored": 236,
+      "mean_seconds": 2.937,
+      "median_seconds": 2.234,
+      "p90_seconds": 6.702,
+      "max_seconds": 14.499
+    },
+    "method": "start of every anchored clause, read back from where the piece was written in the narration master, compared with the cue time and with the start of the matching speech unit in the original"
+  },
+  "loudness": {
+    "input_i": "-16.01",
+    "input_tp": "-1.15",
+    "input_lra": "3.00",
+    "input_thresh": "-26.42",
+    "output_i": "-16.00",
+    "output_tp": "-1.50",
+    "output_lra": "2.90",
+    "output_thresh": "-26.42",
+    "normalization_type": "dynamic",
+    "target_offset": "0.00"
+  },
+  "gates": {
+    "video_stream_bit_identical": true,
+    "speech_untouched": true,
+    "no_long_gaps": true,
+    "coverage_within_budget": true,
+    "clause_onsets_at_planned_time": true,
+    "no_quiet_hole_over_budget": true,
+    "clause_phase_matches_plan": true,
+    "loudness_in_range": true,
+    "durations_match": true
+  },
+  "status": "verified",
+  "human_listening_certification": false,
+  "note": "These gates measure timing, picture integrity, and loudness. They do not certify pronunciation, dialect, or emotional delivery."
+}

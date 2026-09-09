@@ -1,0 +1,4644 @@
+{
+  "rule": "a chunk may not exceed the original's allotment (>1.06x shorten, <0.8x lengthen); speech lengths, not placement, decide the phase",
+  "parts": [
+    {
+      "part": 0,
+      "window_start": 0.0,
+      "window_end": 63.5,
+      "chunks": 28,
+      "clauses": 36,
+      "units": 28,
+      "speech_seconds": 60.608,
+      "window_seconds": 63.5,
+      "words_per_second": 2.359,
+      "fillable_ratio": 0.973,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "ده راجل كبر في السن"
+          ],
+          "start": 0.33,
+          "allotted": 1.75,
+          "speech": 1.576,
+          "ratio": 0.901,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 1,
+          "clause": 1,
+          "clauses": [
+            "فقير وبسيط للغاية"
+          ],
+          "start": 2.15,
+          "allotted": 2.27,
+          "speech": 1.672,
+          "ratio": 0.737,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "clause": 2,
+          "clauses": [
+            "لاقي أكله بالعافية"
+          ],
+          "start": 4.43,
+          "allotted": 2.25,
+          "speech": 2.632,
+          "ratio": 1.17,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "clause": 3,
+          "clauses": [
+            "وزوجته عائشة ست بيت",
+            "بتصلي الفجر في وقته"
+          ],
+          "start": 6.63,
+          "allotted": 2.53,
+          "speech": 0.744,
+          "ratio": 0.294,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "clause": 5,
+          "clauses": [
+            "وبتلم البيت قبل ما يمشي"
+          ],
+          "start": 9.15,
+          "allotted": 1.75,
+          "speech": 3.496,
+          "ratio": 1.998,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "clause": 6,
+          "clauses": [
+            "وهو رايح الجامع"
+          ],
+          "start": 10.99,
+          "allotted": 2.39,
+          "speech": 1.16,
+          "ratio": 0.485,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "clause": 7,
+          "clauses": [
+            "وأهل القرية في نفس الوقت",
+            "بيتكلموا عن شيخ وصل عندهم"
+          ],
+          "start": 13.43,
+          "allotted": 1.87,
+          "speech": 1.672,
+          "ratio": 0.894,
+          "words": 10,
+          "words_recommended": 4,
+          "words_delta": -6,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 7,
+          "clause": 9,
+          "clauses": [
+            "اسمه مبروك والناس بتحبّه"
+          ],
+          "start": 15.41,
+          "allotted": 1.97,
+          "speech": 2.056,
+          "ratio": 1.044,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "clause": 10,
+          "clauses": [
+            "القرية غرقانة فقر"
+          ],
+          "start": 17.41,
+          "allotted": 1.89,
+          "speech": 0.744,
+          "ratio": 0.394,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "clause": 11,
+          "clauses": [
+            "وجوده هييجب الرزق ويحرّك المحلات"
+          ],
+          "start": 19.23,
+          "allotted": 2.41,
+          "speech": 0.936,
+          "ratio": 0.388,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "clause": 12,
+          "clauses": [
+            "وحالهم واقف",
+            "حيدر صاحب محل الشاي"
+          ],
+          "start": 21.57,
+          "allotted": 2.41,
+          "speech": 4.84,
+          "ratio": 2.008,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 14,
+          "clauses": [
+            "بيقدّم له كوبايته كل يوم"
+          ],
+          "start": 23.97,
+          "allotted": 2.15,
+          "speech": 1.0,
+          "ratio": 0.465,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "clause": 15,
+          "clauses": [
+            "والراجل يحاسبه وينزل على بيته"
+          ],
+          "start": 26.07,
+          "allotted": 3.11,
+          "speech": 3.56,
+          "ratio": 1.145,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 13,
+          "clause": 16,
+          "clauses": [
+            "وفي البيت يقعد يحكي لمراته",
+            "إنه قابل صاحبه في الأتوبيس"
+          ],
+          "start": 29.25,
+          "allotted": 2.33,
+          "speech": 2.12,
+          "ratio": 0.91,
+          "words": 10,
+          "words_recommended": 5,
+          "words_delta": -5,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 14,
+          "clause": 18,
+          "clauses": [
+            "وعرف منه خبر فرّح قلبه"
+          ],
+          "start": 31.71,
+          "allotted": 1.95,
+          "speech": 5.96,
+          "ratio": 3.056,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "clause": 19,
+          "clauses": [
+            "لجنة الحج فتحت التقديم"
+          ],
+          "start": 33.65,
+          "allotted": 3.19,
+          "speech": 1.992,
+          "ratio": 0.624,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "clause": 20,
+          "clauses": [
+            "وهنا يبدأ يشرح لها"
+          ],
+          "start": 37.01,
+          "allotted": 1.13,
+          "speech": 1.384,
+          "ratio": 1.225,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "clause": 21,
+          "clauses": [
+            "حلمي من زمان",
+            "نروح الحج أنا وانتي"
+          ],
+          "start": 38.27,
+          "allotted": 2.65,
+          "speech": 2.536,
+          "ratio": 0.957,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "clause": 23,
+          "clauses": [
+            "وكل سنة يحصل ظرف"
+          ],
+          "start": 41.07,
+          "allotted": 1.29,
+          "speech": 2.152,
+          "ratio": 1.668,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "clause": 24,
+          "clauses": [
+            "يمنعنا، فقررت أجمع الفلوس"
+          ],
+          "start": 42.35,
+          "allotted": 2.37,
+          "speech": 2.376,
+          "ratio": 1.003,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 20,
+          "clause": 25,
+          "clauses": [
+            "مهما حصل",
+            "ويحط كل قرش في صندوق"
+          ],
+          "start": 44.97,
+          "allotted": 2.37,
+          "speech": 1.64,
+          "ratio": 0.692,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 21,
+          "clause": 27,
+          "clauses": [
+            "والصندوق ده تحت السرير"
+          ],
+          "start": 47.29,
+          "allotted": 1.79,
+          "speech": 0.808,
+          "ratio": 0.451,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "clause": 28,
+          "clauses": [
+            "شغلته بيع العطور البلدي"
+          ],
+          "start": 49.01,
+          "allotted": 2.99,
+          "speech": 0.776,
+          "ratio": 0.26,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "clause": 29,
+          "clauses": [
+            "وحاجات بسيطة تانية"
+          ],
+          "start": 51.97,
+          "allotted": 2.29,
+          "speech": 4.936,
+          "ratio": 2.155,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 24,
+          "clause": 30,
+          "clauses": [
+            "لناس القرية اللي حالها زيّه",
+            "بالعافية لاقيين أكلهم"
+          ],
+          "start": 54.27,
+          "allotted": 2.07,
+          "speech": 1.384,
+          "ratio": 0.669,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "clause": 32,
+          "clauses": [
+            "وبترعى البقر"
+          ],
+          "start": 56.33,
+          "allotted": 2.27,
+          "speech": 2.888,
+          "ratio": 1.272,
+          "words": 2,
+          "words_recommended": 5,
+          "words_delta": 3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "clause": 33,
+          "clauses": [
+            "وتزرع وتبيع من إنتاجهم"
+          ],
+          "start": 58.55,
+          "allotted": 2.85,
+          "speech": 1.512,
+          "ratio": 0.531,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "clause": 34,
+          "clauses": [
+            "وتساعده في مصاريف البيت",
+            "والفلوس بتزيد شوية شوية"
+          ],
+          "start": 61.41,
+          "allotted": 2.03,
+          "speech": 2.056,
+          "ratio": 1.013,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "fits"
+        }
+      ],
+      "mismatched": 21,
+      "shorten_by_words": 9,
+      "lengthen_by_words": 26
+    },
+    {
+      "part": 1,
+      "window_start": 63.5,
+      "window_end": 148.7,
+      "chunks": 47,
+      "clauses": 36,
+      "units": 47,
+      "speech_seconds": 69.752,
+      "window_seconds": 85.2,
+      "words_per_second": 2.71,
+      "fillable_ratio": 0.836,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "ومع تعبه الراجل بيطلع يشتري"
+          ],
+          "start": 63.51,
+          "allotted": 1.55,
+          "speech": 0.936,
+          "ratio": 0.604,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 1,
+          "clause": 0,
+          "clauses": [
+            "ومع تعبه الراجل بيطلع يشتري"
+          ],
+          "start": 65.11,
+          "allotted": 1.43,
+          "speech": 1.352,
+          "ratio": 0.945,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 2,
+          "clause": 1,
+          "clauses": [
+            "شوية حاجات لبيته ويدفع فاتورة النور"
+          ],
+          "start": 66.53,
+          "allotted": 1.79,
+          "speech": 6.856,
+          "ratio": 3.83,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "clause": 2,
+          "clauses": [
+            "وجارهم ييجي يشتري اللبن"
+          ],
+          "start": 68.41,
+          "allotted": 1.51,
+          "speech": 4.904,
+          "ratio": 3.248,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "clause": 3,
+          "clauses": [
+            "ويسأله على سفرته هيحصل إمتى"
+          ],
+          "start": 69.97,
+          "allotted": 1.71,
+          "speech": 0.808,
+          "ratio": 0.473,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "clause": 3,
+          "clauses": [
+            "ويسأله على سفرته هيحصل إمتى"
+          ],
+          "start": 71.61,
+          "allotted": 1.71,
+          "speech": 1.832,
+          "ratio": 1.071,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 6,
+          "clause": 4,
+          "clauses": [
+            "الراجل العجوز يوصل لصاحبه"
+          ],
+          "start": 73.33,
+          "allotted": 1.65,
+          "speech": 0.872,
+          "ratio": 0.528,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "clause": 5,
+          "clauses": [
+            "الدواء اللي جابه له من سفرته دي"
+          ],
+          "start": 74.97,
+          "allotted": 1.73,
+          "speech": 1.352,
+          "ratio": 0.782,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "clause": 6,
+          "clauses": [
+            "ويمدح في صاحبه"
+          ],
+          "start": 76.77,
+          "allotted": 2.15,
+          "speech": 0.904,
+          "ratio": 0.42,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "clause": 6,
+          "clauses": [
+            "ويمدح في صاحبه"
+          ],
+          "start": 78.89,
+          "allotted": 2.39,
+          "speech": 1.448,
+          "ratio": 0.606,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "clause": 7,
+          "clauses": [
+            "صاحبه يقولّه لجنة الحج فتحت التقديم وعائشة معايا"
+          ],
+          "start": 81.39,
+          "allotted": 1.93,
+          "speech": 2.12,
+          "ratio": 1.098,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 8,
+          "clauses": [
+            "ينصحه يقدّم في القرعة"
+          ],
+          "start": 83.47,
+          "allotted": 0.79,
+          "speech": 1.608,
+          "ratio": 2.035,
+          "words": 4,
+          "words_recommended": 2,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "clause": 9,
+          "clauses": [
+            "لكن يحذّره إن اسمه ممكن ما يطلعش"
+          ],
+          "start": 84.33,
+          "allotted": 1.73,
+          "speech": 0.872,
+          "ratio": 0.504,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "clause": 9,
+          "clauses": [
+            "لكن يحذّره إن اسمه ممكن ما يطلعش"
+          ],
+          "start": 86.11,
+          "allotted": 1.71,
+          "speech": 2.376,
+          "ratio": 1.389,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "clause": 10,
+          "clauses": [
+            "ويقترح عليه يحجز عن طريق وكالة"
+          ],
+          "start": 87.81,
+          "allotted": 2.07,
+          "speech": 0.968,
+          "ratio": 0.468,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "clause": 11,
+          "clauses": [
+            "ويدّيله اسم شركة معروفة"
+          ],
+          "start": 89.87,
+          "allotted": 1.59,
+          "speech": 1.864,
+          "ratio": 1.172,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "clause": 12,
+          "clauses": [
+            "ويهزر معاه: أكيد ابنك اللي في دبي بعتلك فلوس تروحوا"
+          ],
+          "start": 91.47,
+          "allotted": 1.65,
+          "speech": 1.288,
+          "ratio": 0.781,
+          "words": 10,
+          "words_recommended": 4,
+          "words_delta": -6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "clause": 13,
+          "clauses": [
+            "الراجل يسكت"
+          ],
+          "start": 93.13,
+          "allotted": 2.09,
+          "speech": 0.488,
+          "ratio": 0.233,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "clause": 13,
+          "clauses": [
+            "الراجل يسكت"
+          ],
+          "start": 95.35,
+          "allotted": 1.17,
+          "speech": 1.32,
+          "ratio": 1.128,
+          "words": 2,
+          "words_recommended": 3,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "clause": 14,
+          "clauses": [
+            "ويحسّ بإحراج يقطع كلامه"
+          ],
+          "start": 96.51,
+          "allotted": 1.87,
+          "speech": 0.552,
+          "ratio": 0.295,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 20,
+          "clause": 15,
+          "clauses": [
+            "لأن ابنه عبد الستّار"
+          ],
+          "start": 98.39,
+          "allotted": 1.69,
+          "speech": 0.872,
+          "ratio": 0.516,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 21,
+          "clause": 16,
+          "clauses": [
+            "قاطعهم ومش عايز يعترف بيهم"
+          ],
+          "start": 100.05,
+          "allotted": 1.71,
+          "speech": 1.096,
+          "ratio": 0.641,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "clause": 16,
+          "clauses": [
+            "قاطعهم ومش عايز يعترف بيهم"
+          ],
+          "start": 101.75,
+          "allotted": 1.81,
+          "speech": 1.16,
+          "ratio": 0.641,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "clause": 17,
+          "clauses": [
+            "بالليل يرجع البيت ويبصّ لصورة ابنه"
+          ],
+          "start": 103.57,
+          "allotted": 1.65,
+          "speech": 0.584,
+          "ratio": 0.354,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 18,
+          "clauses": [
+            "وعائشة لاحظت زعله وتقوله"
+          ],
+          "start": 105.21,
+          "allotted": 2.11,
+          "speech": 1.416,
+          "ratio": 0.671,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "clause": 19,
+          "clauses": [
+            "إن جارهم رجع من دبي"
+          ],
+          "start": 107.35,
+          "allotted": 2.19,
+          "speech": 1.064,
+          "ratio": 0.486,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "clause": 19,
+          "clauses": [
+            "إن جارهم رجع من دبي"
+          ],
+          "start": 109.53,
+          "allotted": 1.27,
+          "speech": 1.736,
+          "ratio": 1.367,
+          "words": 5,
+          "words_recommended": 3,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 27,
+          "clause": 20,
+          "clauses": [
+            "وسأل على ابنك"
+          ],
+          "start": 110.85,
+          "allotted": 2.29,
+          "speech": 0.488,
+          "ratio": 0.213,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "clause": 21,
+          "clauses": [
+            "وسأل عن عبد الستّار الكبير"
+          ],
+          "start": 113.27,
+          "allotted": 1.15,
+          "speech": 0.648,
+          "ratio": 0.563,
+          "words": 5,
+          "words_recommended": 3,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 29,
+          "clause": 22,
+          "clauses": [
+            "يقولوا إنه كبر ودخل مدرسة في المدينة"
+          ],
+          "start": 114.51,
+          "allotted": 1.79,
+          "speech": 1.288,
+          "ratio": 0.72,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 30,
+          "clause": 22,
+          "clauses": [
+            "يقولوا إنه كبر ودخل مدرسة في المدينة"
+          ],
+          "start": 116.33,
+          "allotted": 1.65,
+          "speech": 1.768,
+          "ratio": 1.072,
+          "words": 7,
+          "words_recommended": 4,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "clause": 23,
+          "clauses": [
+            "الراجل يطلب منها تسيب الموضوع"
+          ],
+          "start": 117.87,
+          "allotted": 1.31,
+          "speech": 1.608,
+          "ratio": 1.227,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 32,
+          "clause": 24,
+          "clauses": [
+            "وما تجيبش سيرته تاني خالص"
+          ],
+          "start": 119.33,
+          "allotted": 2.73,
+          "speech": 1.288,
+          "ratio": 0.472,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 33,
+          "clause": 25,
+          "clauses": [
+            "لكنها تبكي في الضلمة"
+          ],
+          "start": 122.25,
+          "allotted": 1.31,
+          "speech": 1.736,
+          "ratio": 1.325,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 34,
+          "clause": 26,
+          "clauses": [
+            "محرومة حتى من شوفة أحفادها"
+          ],
+          "start": 123.65,
+          "allotted": 1.39,
+          "speech": 0.552,
+          "ratio": 0.397,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 35,
+          "clause": 26,
+          "clauses": [
+            "محرومة حتى من شوفة أحفادها"
+          ],
+          "start": 125.01,
+          "allotted": 2.27,
+          "speech": 2.056,
+          "ratio": 0.906,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 36,
+          "clause": 27,
+          "clauses": [
+            "تاني يوم يروح شركة السفر اللي بتحجّز للحج"
+          ],
+          "start": 127.33,
+          "allotted": 1.47,
+          "speech": 1.512,
+          "ratio": 1.029,
+          "words": 8,
+          "words_recommended": 4,
+          "words_delta": -4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 37,
+          "clause": 28,
+          "clauses": [
+            "ويقول لأشرف صاحب الشركة"
+          ],
+          "start": 128.79,
+          "allotted": 2.83,
+          "speech": 1.768,
+          "ratio": 0.625,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 38,
+          "clause": 29,
+          "clauses": [
+            "إنه عايز يروح الحج هو ومراته"
+          ],
+          "start": 131.91,
+          "allotted": 0.85,
+          "speech": 1.544,
+          "ratio": 1.816,
+          "words": 6,
+          "words_recommended": 2,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 39,
+          "clause": 29,
+          "clauses": [
+            "إنه عايز يروح الحج هو ومراته"
+          ],
+          "start": 132.71,
+          "allotted": 2.19,
+          "speech": 1.672,
+          "ratio": 0.763,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 40,
+          "clause": 30,
+          "clauses": [
+            "أشرف يسأله عن جواز السفر"
+          ],
+          "start": 134.89,
+          "allotted": 1.43,
+          "speech": 0.52,
+          "ratio": 0.364,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 41,
+          "clause": 31,
+          "clauses": [
+            "ولما يعرف إنه معندوش جواز يطمّنه"
+          ],
+          "start": 136.37,
+          "allotted": 1.73,
+          "speech": 1.48,
+          "ratio": 0.855,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 42,
+          "clause": 32,
+          "clauses": [
+            "إنهم هيعملوه له بسهولة"
+          ],
+          "start": 138.13,
+          "allotted": 2.31,
+          "speech": 2.92,
+          "ratio": 1.264,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 43,
+          "clause": 32,
+          "clauses": [
+            "إنهم هيعملوه له بسهولة"
+          ],
+          "start": 140.61,
+          "allotted": 0.47,
+          "speech": 1.384,
+          "ratio": 2.945,
+          "words": 4,
+          "words_recommended": 1,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 44,
+          "clause": 33,
+          "clauses": [
+            "وينادي السكرتيرة تشرحله الإجراءات والأوراق المطلوبة، وتكتبها كلها على ورقة"
+          ],
+          "start": 141.07,
+          "allotted": 2.35,
+          "speech": 1.32,
+          "ratio": 0.562,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 45,
+          "clause": 34,
+          "clauses": [
+            "تكتبله كل حاجة على الورق"
+          ],
+          "start": 143.49,
+          "allotted": 3.13,
+          "speech": 0.776,
+          "ratio": 0.248,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 46,
+          "clause": 35,
+          "clauses": [
+            "ياخد الورقة ويمشي راضي"
+          ],
+          "start": 146.79,
+          "allotted": 2.13,
+          "speech": 0.776,
+          "ratio": 0.364,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 43,
+      "shorten_by_words": 44,
+      "lengthen_by_words": 32
+    },
+    {
+      "part": 2,
+      "window_start": 148.7,
+      "window_end": 248.4,
+      "chunks": 49,
+      "clauses": 36,
+      "units": 49,
+      "speech_seconds": 78.568,
+      "window_seconds": 99.7,
+      "words_per_second": 2.647,
+      "fillable_ratio": 0.794,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "وبعدها يروح للشيخ مبروك"
+          ],
+          "start": 149.01,
+          "allotted": 1.93,
+          "speech": 1.672,
+          "ratio": 0.866,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 1,
+          "clause": 0,
+          "clauses": [
+            "وبعدها يروح للشيخ مبروك"
+          ],
+          "start": 150.97,
+          "allotted": 2.67,
+          "speech": 3.08,
+          "ratio": 1.154,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "clause": 1,
+          "clauses": [
+            "يلاقيه قاعد لوحده بيفكّر في هموم الناس اللي حواليه"
+          ],
+          "start": 153.65,
+          "allotted": 1.09,
+          "speech": 3.176,
+          "ratio": 2.914,
+          "words": 9,
+          "words_recommended": 3,
+          "words_delta": -6,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 3,
+          "clause": 2,
+          "clauses": [
+            "وعلى طول يقوم يستأذن لأن عنده ضيوف جايين من الجنوب"
+          ],
+          "start": 154.93,
+          "allotted": 3.59,
+          "speech": 1.448,
+          "ratio": 0.403,
+          "words": 10,
+          "words_recommended": 10,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "clause": 2,
+          "clauses": [
+            "وعلى طول يقوم يستأذن لأن عنده ضيوف جايين من الجنوب"
+          ],
+          "start": 158.77,
+          "allotted": 1.01,
+          "speech": 2.44,
+          "ratio": 2.416,
+          "words": 10,
+          "words_recommended": 3,
+          "words_delta": -7,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "clause": 3,
+          "clauses": [
+            "ويدعّي الراجل يروح معاه"
+          ],
+          "start": 159.77,
+          "allotted": 2.09,
+          "speech": 2.184,
+          "ratio": 1.045,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 6,
+          "clause": 4,
+          "clauses": [
+            "يمشوا سوا والشيخ بيسأله على شغله"
+          ],
+          "start": 161.85,
+          "allotted": 1.89,
+          "speech": 1.32,
+          "ratio": 0.698,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "clause": 5,
+          "clauses": [
+            "ويرجع البيت والريحة الحلوة في الصالة"
+          ],
+          "start": 163.69,
+          "allotted": 1.77,
+          "speech": 1.128,
+          "ratio": 0.637,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 8,
+          "clause": 5,
+          "clauses": [
+            "ويرجع البيت والريحة الحلوة في الصالة"
+          ],
+          "start": 165.41,
+          "allotted": 1.53,
+          "speech": 1.096,
+          "ratio": 0.716,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "clause": 6,
+          "clauses": [
+            "وعائشة مجهّزة الأكل"
+          ],
+          "start": 166.95,
+          "allotted": 1.93,
+          "speech": 0.456,
+          "ratio": 0.236,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "clause": 7,
+          "clauses": [
+            "لأن عندها ضيوف وهي عرفة قيمتهم"
+          ],
+          "start": 168.85,
+          "allotted": 1.59,
+          "speech": 1.608,
+          "ratio": 1.011,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 11,
+          "clause": 8,
+          "clauses": [
+            "يقعدوا والضيوف يسألوه على المدينة"
+          ],
+          "start": 170.39,
+          "allotted": 2.31,
+          "speech": 3.336,
+          "ratio": 1.444,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "clause": 8,
+          "clauses": [
+            "يقعدوا والضيوف يسألوه على المدينة"
+          ],
+          "start": 172.71,
+          "allotted": 2.21,
+          "speech": 2.984,
+          "ratio": 1.35,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 13,
+          "clause": 9,
+          "clauses": [
+            "يحكيلها إزاي المدينة اتغيّرت والناس تركض على الدنيا"
+          ],
+          "start": 174.93,
+          "allotted": 2.19,
+          "speech": 1.864,
+          "ratio": 0.851,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 14,
+          "clause": 10,
+          "clauses": [
+            "وإن شركة السفر والسياحة فيها موظفين كتير"
+          ],
+          "start": 177.07,
+          "allotted": 1.97,
+          "speech": 2.92,
+          "ratio": 1.482,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "clause": 11,
+          "clauses": [
+            "ويقولها إنه قابل الشيخ مبروك"
+          ],
+          "start": 179.05,
+          "allotted": 1.31,
+          "speech": 1.288,
+          "ratio": 0.983,
+          "words": 5,
+          "words_recommended": 3,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 16,
+          "clause": 11,
+          "clauses": [
+            "ويقولها إنه قابل الشيخ مبروك"
+          ],
+          "start": 180.35,
+          "allotted": 2.21,
+          "speech": 0.584,
+          "ratio": 0.264,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "clause": 12,
+          "clauses": [
+            "ووعده يحاول يساعدهم في الشهادات والوثائق"
+          ],
+          "start": 182.55,
+          "allotted": 1.91,
+          "speech": 1.768,
+          "ratio": 0.926,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "clause": 13,
+          "clauses": [
+            "تسأله وعينيها بتلمع: هو إحنا"
+          ],
+          "start": 184.39,
+          "allotted": 2.55,
+          "speech": 0.712,
+          "ratio": 0.279,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "clause": 13,
+          "clauses": [
+            "تسأله وعينيها بتلمع: هو إحنا"
+          ],
+          "start": 186.91,
+          "allotted": 1.89,
+          "speech": 0.648,
+          "ratio": 0.343,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 20,
+          "clause": 14,
+          "clauses": [
+            "هنجيب تكاليف الحج كلها منين"
+          ],
+          "start": 188.75,
+          "allotted": 1.53,
+          "speech": 1.832,
+          "ratio": 1.197,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 21,
+          "clause": 15,
+          "clauses": [
+            "فيقول لها والباقي"
+          ],
+          "start": 190.33,
+          "allotted": 2.09,
+          "speech": 0.616,
+          "ratio": 0.295,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "clause": 16,
+          "clauses": [
+            "ربنا سبحانه وتعالى هيدبّره"
+          ],
+          "start": 192.55,
+          "allotted": 1.43,
+          "speech": 0.776,
+          "ratio": 0.543,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "clause": 16,
+          "clauses": [
+            "ربنا سبحانه وتعالى هيدبّره"
+          ],
+          "start": 193.99,
+          "allotted": 2.09,
+          "speech": 1.448,
+          "ratio": 0.693,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 17,
+          "clauses": [
+            "تاني يوم يطلع معاها يتصوّروا صور الجواز"
+          ],
+          "start": 196.03,
+          "allotted": 1.97,
+          "speech": 1.224,
+          "ratio": 0.621,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "clause": 18,
+          "clauses": [
+            "وبعدها يروحوا المكتب ويقابلوا أشرف اللي اطمن عليهم"
+          ],
+          "start": 197.99,
+          "allotted": 1.65,
+          "speech": 0.936,
+          "ratio": 0.567,
+          "words": 8,
+          "words_recommended": 4,
+          "words_delta": -4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "clause": 19,
+          "clauses": [
+            "يتمنالهم يروحوا ويرجعوا بالسلامة"
+          ],
+          "start": 199.83,
+          "allotted": 3.79,
+          "speech": 0.936,
+          "ratio": 0.247,
+          "words": 4,
+          "words_recommended": 10,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "clause": 19,
+          "clauses": [
+            "يتمنالهم يروحوا ويرجعوا بالسلامة"
+          ],
+          "start": 203.81,
+          "allotted": 0.61,
+          "speech": 2.12,
+          "ratio": 3.475,
+          "words": 4,
+          "words_recommended": 2,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 28,
+          "clause": 20,
+          "clauses": [
+            "ويدّيله كارت الشركة يتواصل معاه وقت الحاجة"
+          ],
+          "start": 204.43,
+          "allotted": 1.31,
+          "speech": 2.6,
+          "ratio": 1.985,
+          "words": 7,
+          "words_recommended": 3,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "clause": 21,
+          "clauses": [
+            "في طريق الرجوع عائشة تفتكر حاجة"
+          ],
+          "start": 205.73,
+          "allotted": 2.75,
+          "speech": 0.84,
+          "ratio": 0.305,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 30,
+          "clause": 22,
+          "clauses": [
+            "وتقولّه"
+          ],
+          "start": 208.47,
+          "allotted": 1.75,
+          "speech": 1.128,
+          "ratio": 0.645,
+          "words": 1,
+          "words_recommended": 5,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 31,
+          "clause": 22,
+          "clauses": [
+            "وتقولّه"
+          ],
+          "start": 210.19,
+          "allotted": 2.71,
+          "speech": 0.616,
+          "ratio": 0.227,
+          "words": 1,
+          "words_recommended": 7,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "clause": 23,
+          "clauses": [
+            "إن أشرف ده شبه ابنهم عبد الستّار في كل حاجة"
+          ],
+          "start": 213.03,
+          "allotted": 2.15,
+          "speech": 2.76,
+          "ratio": 1.284,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 33,
+          "clause": 24,
+          "clauses": [
+            "لكنه يرفض الكلام ده"
+          ],
+          "start": 215.17,
+          "allotted": 1.75,
+          "speech": 1.192,
+          "ratio": 0.681,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 34,
+          "clause": 24,
+          "clauses": [
+            "لكنه يرفض الكلام ده"
+          ],
+          "start": 216.91,
+          "allotted": 1.69,
+          "speech": 2.28,
+          "ratio": 1.349,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 35,
+          "clause": 25,
+          "clauses": [
+            "ويقول أشرف إنسان طيب وأصله طيب"
+          ],
+          "start": 218.63,
+          "allotted": 2.07,
+          "speech": 0.808,
+          "ratio": 0.39,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 36,
+          "clause": 26,
+          "clauses": [
+            "فتسكت عائشة"
+          ],
+          "start": 220.73,
+          "allotted": 2.39,
+          "speech": 1.352,
+          "ratio": 0.566,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 37,
+          "clause": 27,
+          "clauses": [
+            "وتكمل الطريق على البيت"
+          ],
+          "start": 223.25,
+          "allotted": 1.87,
+          "speech": 1.128,
+          "ratio": 0.603,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 38,
+          "clause": 27,
+          "clauses": [
+            "وتكمل الطريق على البيت"
+          ],
+          "start": 225.07,
+          "allotted": 2.33,
+          "speech": 1.448,
+          "ratio": 0.621,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 39,
+          "clause": 28,
+          "clauses": [
+            "بعدها يروح لصاحبه يصلّح الشمسية المكسورة"
+          ],
+          "start": 227.41,
+          "allotted": 2.61,
+          "speech": 2.312,
+          "ratio": 0.886,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 40,
+          "clause": 29,
+          "clauses": [
+            "ويتكلموا عن ضيق الحال وقلة الفلوس"
+          ],
+          "start": 230.01,
+          "allotted": 1.93,
+          "speech": 2.76,
+          "ratio": 1.43,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 41,
+          "clause": 30,
+          "clauses": [
+            "وصاحبهم المتعلّم بقى عنده مخابز وعربية"
+          ],
+          "start": 232.15,
+          "allotted": 3.07,
+          "speech": 0.776,
+          "ratio": 0.253,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 42,
+          "clause": 30,
+          "clauses": [
+            "وصاحبهم المتعلّم بقى عنده مخابز وعربية"
+          ],
+          "start": 235.21,
+          "allotted": 1.33,
+          "speech": 1.8,
+          "ratio": 1.353,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 43,
+          "clause": 31,
+          "clauses": [
+            "صاحبه يقوله إنه أخد قرض عشان يجهّز بنته"
+          ],
+          "start": 236.49,
+          "allotted": 1.87,
+          "speech": 2.024,
+          "ratio": 1.082,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 44,
+          "clause": 32,
+          "clauses": [
+            "ولسه بيعاني في تسديد الديون اللي عليه"
+          ],
+          "start": 238.33,
+          "allotted": 2.09,
+          "speech": 0.904,
+          "ratio": 0.433,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 45,
+          "clause": 33,
+          "clauses": [
+            "والراجل يرد إنه كمان بيجمع"
+          ],
+          "start": 240.37,
+          "allotted": 1.59,
+          "speech": 3.72,
+          "ratio": 2.34,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 46,
+          "clause": 33,
+          "clauses": [
+            "والراجل يرد إنه كمان بيجمع"
+          ],
+          "start": 241.95,
+          "allotted": 1.33,
+          "speech": 0.968,
+          "ratio": 0.728,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 47,
+          "clause": 34,
+          "clauses": [
+            "فلوس عشان يروح الحج هو ومراته السنة دي"
+          ],
+          "start": 243.21,
+          "allotted": 2.77,
+          "speech": 0.808,
+          "ratio": 0.292,
+          "words": 8,
+          "words_recommended": 7,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 48,
+          "clause": 35,
+          "clauses": [
+            "ومع أذان العصر يسيبوا الكلام ويروحوا يصلّوا"
+          ],
+          "start": 245.95,
+          "allotted": 2.79,
+          "speech": 0.744,
+          "ratio": 0.267,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 42,
+      "shorten_by_words": 47,
+      "lengthen_by_words": 42
+    },
+    {
+      "part": 3,
+      "window_start": 248.4,
+      "window_end": 333.5,
+      "chunks": 35,
+      "clauses": 36,
+      "units": 35,
+      "speech_seconds": 78.296,
+      "window_seconds": 85.1,
+      "words_per_second": 2.491,
+      "fillable_ratio": 0.936,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "وفي البيت الستات حوالين عائشة والجيران بيطمّنوها"
+          ],
+          "start": 248.79,
+          "allotted": 4.25,
+          "speech": 4.04,
+          "ratio": 0.951,
+          "words": 7,
+          "words_recommended": 11,
+          "words_delta": 4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 1,
+          "clause": 1,
+          "clauses": [
+            "إن الكل"
+          ],
+          "start": 253.17,
+          "allotted": 1.43,
+          "speech": 0.712,
+          "ratio": 0.498,
+          "words": 2,
+          "words_recommended": 4,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "clause": 2,
+          "clauses": [
+            "عارف إن جوزها ما سرقش حاجة من حد"
+          ],
+          "start": 254.63,
+          "allotted": 2.37,
+          "speech": 2.216,
+          "ratio": 0.935,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 3,
+          "clause": 3,
+          "clauses": [
+            "ولما يرجع الراجل"
+          ],
+          "start": 257.19,
+          "allotted": 2.03,
+          "speech": 1.16,
+          "ratio": 0.571,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "clause": 4,
+          "clauses": [
+            "كل الستات تمشي وتسيبها معاه"
+          ],
+          "start": 259.15,
+          "allotted": 2.45,
+          "speech": 1.8,
+          "ratio": 0.735,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "clause": 5,
+          "clauses": [
+            "يسألها حصل إيه فتخبره"
+          ],
+          "start": 261.45,
+          "allotted": 1.95,
+          "speech": 1.224,
+          "ratio": 0.628,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "clause": 6,
+          "clauses": [
+            "إن راجل غريب جه وسأل عنه"
+          ],
+          "start": 263.43,
+          "allotted": 2.61,
+          "speech": 3.016,
+          "ratio": 1.156,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 7,
+          "clause": 7,
+          "clauses": [
+            "وعن شغله ودّعى إنه ضابط شرطة"
+          ],
+          "start": 266.05,
+          "allotted": 1.93,
+          "speech": 2.376,
+          "ratio": 1.231,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 8,
+          "clause": 8,
+          "clauses": [
+            "رغم إنه ما كانش لابس زي الشرطة"
+          ],
+          "start": 267.93,
+          "allotted": 2.43,
+          "speech": 1.928,
+          "ratio": 0.793,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "clause": 9,
+          "clauses": [
+            "القلق يرجع لحياتهم من جديد"
+          ],
+          "start": 270.31,
+          "allotted": 2.01,
+          "speech": 2.056,
+          "ratio": 1.023,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 10,
+          "clause": 10,
+          "clauses": [
+            "وبعد ما يسمع منها كلامها"
+          ],
+          "start": 272.31,
+          "allotted": 2.03,
+          "speech": 3.272,
+          "ratio": 1.612,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 11,
+          "clauses": [
+            "يروح فوراً للمدرسة ويحكي للمدرّس اللي يرافقه"
+          ],
+          "start": 274.33,
+          "allotted": 3.21,
+          "speech": 2.952,
+          "ratio": 0.92,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 12,
+          "clause": 12,
+          "clauses": [
+            "لقسم الشرطة"
+          ],
+          "start": 277.55,
+          "allotted": 1.93,
+          "speech": 1.032,
+          "ratio": 0.535,
+          "words": 2,
+          "words_recommended": 5,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "clause": 13,
+          "clauses": [
+            "يسأله الضابط: هل سافرت للخليج من قبل"
+          ],
+          "start": 279.43,
+          "allotted": 2.61,
+          "speech": 1.576,
+          "ratio": 0.604,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 14,
+          "clause": 14,
+          "clauses": [
+            "فينفي"
+          ],
+          "start": 282.19,
+          "allotted": 2.39,
+          "speech": 2.888,
+          "ratio": 1.208,
+          "words": 1,
+          "words_recommended": 6,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "clause": 15,
+          "clauses": [
+            "ويقول إنه عمره ما سافر برّه قريته"
+          ],
+          "start": 284.51,
+          "allotted": 2.31,
+          "speech": 2.728,
+          "ratio": 1.181,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "clause": 16,
+          "clauses": [
+            "ويظهر قدامه بلاغ قديم مسجّل ضده"
+          ],
+          "start": 286.83,
+          "allotted": 2.81,
+          "speech": 3.944,
+          "ratio": 1.404,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "clause": 17,
+          "clauses": [
+            "فيشرح إن من تمان سنين"
+          ],
+          "start": 289.71,
+          "allotted": 1.55,
+          "speech": 1.416,
+          "ratio": 0.914,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "clause": 18,
+          "clauses": [
+            "حصل خلاف مع جاره على حدود الأرض، واتطوّر لحد ما اتضرب"
+          ],
+          "start": 291.47,
+          "allotted": 3.39,
+          "speech": 0.936,
+          "ratio": 0.276,
+          "words": 11,
+          "words_recommended": 8,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "clause": 19,
+          "clauses": [
+            "واتصاب في جسده"
+          ],
+          "start": 295.07,
+          "allotted": 0.61,
+          "speech": 4.616,
+          "ratio": 7.567,
+          "words": 3,
+          "words_recommended": 2,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "clause": 20,
+          "clauses": [
+            "وتدخّلت الإدارة في الموضوع"
+          ],
+          "start": 295.65,
+          "allotted": 3.23,
+          "speech": 2.056,
+          "ratio": 0.637,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 21,
+          "clause": 21,
+          "clauses": [
+            "وأخدت الأرض من الطرفين وسكّتوا الخلاف"
+          ],
+          "start": 298.83,
+          "allotted": 2.49,
+          "speech": 2.184,
+          "ratio": 0.877,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "clause": 22,
+          "clauses": [
+            "وبعدين ساب القرية من خمس سنين"
+          ],
+          "start": 301.33,
+          "allotted": 1.99,
+          "speech": 2.76,
+          "ratio": 1.387,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 23,
+          "clause": 23,
+          "clauses": [
+            "الضابط يسأله عن جواز السفر بتاعه"
+          ],
+          "start": 303.27,
+          "allotted": 1.81,
+          "speech": 2.696,
+          "ratio": 1.49,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 24,
+          "clause": 24,
+          "clauses": [
+            "فيقوله"
+          ],
+          "start": 305.07,
+          "allotted": 2.83,
+          "speech": 0.552,
+          "ratio": 0.195,
+          "words": 1,
+          "words_recommended": 7,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "clause": 25,
+          "clauses": [
+            "إنه قدّم عليه عشان يسافر للحج"
+          ],
+          "start": 307.85,
+          "allotted": 2.73,
+          "speech": 1.48,
+          "ratio": 0.542,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "clause": 26,
+          "clauses": [
+            "فيطمّنه الضابط إن الاستدعاء كان لإجراء"
+          ],
+          "start": 310.57,
+          "allotted": 3.45,
+          "speech": 1.16,
+          "ratio": 0.336,
+          "words": 6,
+          "words_recommended": 9,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "clause": 27,
+          "clauses": [
+            "استكمال التقرير مع إصدار الجواز، ومفيش حاجة تخوّفه"
+          ],
+          "start": 314.25,
+          "allotted": 2.25,
+          "speech": 2.6,
+          "ratio": 1.156,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 28,
+          "clause": 28,
+          "clauses": [
+            "يرجع بيته فرحان والستات تفرح معاه"
+          ],
+          "start": 316.69,
+          "allotted": 1.71,
+          "speech": 4.552,
+          "ratio": 2.662,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "clause": 29,
+          "clauses": [
+            "لكن حيدر صاحب محل الشاي"
+          ],
+          "start": 318.53,
+          "allotted": 2.95,
+          "speech": 2.664,
+          "ratio": 0.903,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "clause": 30,
+          "clauses": [
+            "يقوله إن استخراج الجواز بيكلّف فلوس"
+          ],
+          "start": 321.49,
+          "allotted": 2.11,
+          "speech": 2.664,
+          "ratio": 1.263,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "clause": 31,
+          "clauses": [
+            "يستغرب، لأن الضابط ما طلبش منه حاجة"
+          ],
+          "start": 323.65,
+          "allotted": 2.93,
+          "speech": 0.52,
+          "ratio": 0.177,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "clause": 32,
+          "clauses": [
+            "وهو مع المدرّس، يعرف مكانه ويستناه"
+          ],
+          "start": 326.61,
+          "allotted": 2.01,
+          "speech": 1.928,
+          "ratio": 0.959,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 33,
+          "clause": 33,
+          "clauses": [
+            "تاني يوم، ولما يعدّيه يدّيله المبلغ"
+          ],
+          "start": 328.63,
+          "allotted": 2.63,
+          "speech": 2.28,
+          "ratio": 0.867,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 34,
+          "clause": 34,
+          "clauses": [
+            "ويسأله معاد الجواز إمتى هيجهز",
+            "فيقوله الضابط: هيوصّلهولك البيت"
+          ],
+          "start": 331.53,
+          "allotted": 2.27,
+          "speech": 2.312,
+          "ratio": 1.019,
+          "words": 9,
+          "words_recommended": 6,
+          "words_delta": -3,
+          "verdict": "fits"
+        }
+      ],
+      "mismatched": 25,
+      "shorten_by_words": 14,
+      "lengthen_by_words": 30
+    },
+    {
+      "part": 4,
+      "window_start": 333.5,
+      "window_end": 411.8,
+      "chunks": 34,
+      "clauses": 36,
+      "units": 34,
+      "speech_seconds": 72.176,
+      "window_seconds": 78.3,
+      "words_per_second": 2.411,
+      "fillable_ratio": 0.95,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "وبالليل يصحى من النوم"
+          ],
+          "start": 333.87,
+          "allotted": 2.29,
+          "speech": 1.576,
+          "ratio": 0.688,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 1,
+          "clause": 1,
+          "clauses": [
+            "ويحكي لعائشة إنه شاف"
+          ],
+          "start": 336.23,
+          "allotted": 1.29,
+          "speech": 3.944,
+          "ratio": 3.057,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 2,
+          "clause": 2,
+          "clauses": [
+            "في المنام روضة النبي منوّرة"
+          ],
+          "start": 337.67,
+          "allotted": 3.37,
+          "speech": 2.408,
+          "ratio": 0.715,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "clause": 3,
+          "clauses": [
+            "فتفرح جداً وتعتبره بشارة"
+          ],
+          "start": 340.97,
+          "allotted": 2.33,
+          "speech": 4.04,
+          "ratio": 1.734,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "clause": 4,
+          "clauses": [
+            "ومن اليوم ده"
+          ],
+          "start": 343.31,
+          "allotted": 2.37,
+          "speech": 1.608,
+          "ratio": 0.678,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "clause": 5,
+          "clauses": [
+            "يفضلوا يجمعوا كل قرش ييجي لهم في الصندوق"
+          ],
+          "start": 345.63,
+          "allotted": 2.61,
+          "speech": 1.992,
+          "ratio": 0.763,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "clause": 6,
+          "clauses": [
+            "ويقلّلوا مصاريفهم جداً"
+          ],
+          "start": 348.19,
+          "allotted": 2.13,
+          "speech": 0.904,
+          "ratio": 0.424,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "clause": 7,
+          "clauses": [
+            "وعائشة تدعّي كل صلاة إن الحلم يتحقق"
+          ],
+          "start": 350.31,
+          "allotted": 1.99,
+          "speech": 3.112,
+          "ratio": 1.564,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 8,
+          "clause": 8,
+          "clauses": [
+            "وبعد فترة"
+          ],
+          "start": 352.43,
+          "allotted": 2.09,
+          "speech": 3.624,
+          "ratio": 1.734,
+          "words": 2,
+          "words_recommended": 5,
+          "words_delta": 3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 9,
+          "clause": 9,
+          "clauses": [
+            "يروحوا يستلموا جوازاتهم من المكتب"
+          ],
+          "start": 354.57,
+          "allotted": 1.91,
+          "speech": 2.76,
+          "ratio": 1.445,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 10,
+          "clause": 10,
+          "clauses": [
+            "لكن الموظف"
+          ],
+          "start": 356.41,
+          "allotted": 2.93,
+          "speech": 4.456,
+          "ratio": 1.521,
+          "words": 2,
+          "words_recommended": 7,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 11,
+          "clauses": [
+            "يحدّدلهم التسليم الساعة عشرة الصبح"
+          ],
+          "start": 359.39,
+          "allotted": 2.81,
+          "speech": 1.96,
+          "ratio": 0.698,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "clause": 12,
+          "clauses": [
+            "فيستّنوا لحد ما ييجي ويديهم الجوازات"
+          ],
+          "start": 362.17,
+          "allotted": 1.89,
+          "speech": 1.768,
+          "ratio": 0.935,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 13,
+          "clause": 13,
+          "clauses": [
+            "ويرجعوا البيت فرحانين"
+          ],
+          "start": 364.07,
+          "allotted": 2.29,
+          "speech": 2.056,
+          "ratio": 0.898,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 14,
+          "clause": 14,
+          "clauses": [
+            "ويطلعوا كل مدخراتهم ويرتبوها"
+          ],
+          "start": 366.31,
+          "allotted": 2.29,
+          "speech": 2.504,
+          "ratio": 1.093,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "clause": 15,
+          "clauses": [
+            "ويعيدوا حساب الفلوس مرتين"
+          ],
+          "start": 368.59,
+          "allotted": 2.07,
+          "speech": 1.128,
+          "ratio": 0.545,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "clause": 16,
+          "clauses": [
+            "تاني يوم يروح مكتب السفر",
+            "ويسلّم أشرف الجوازات والفلوس"
+          ],
+          "start": 370.69,
+          "allotted": 2.07,
+          "speech": 1.032,
+          "ratio": 0.499,
+          "words": 9,
+          "words_recommended": 5,
+          "words_delta": -4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "clause": 18,
+          "clauses": [
+            "وياخد الإيصال ومواعيد دروس الحج"
+          ],
+          "start": 372.79,
+          "allotted": 2.69,
+          "speech": 2.632,
+          "ratio": 0.978,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 18,
+          "clause": 19,
+          "clauses": [
+            "ولما يرجع القرية يلقاها حزينة"
+          ],
+          "start": 375.49,
+          "allotted": 3.91,
+          "speech": 0.52,
+          "ratio": 0.133,
+          "words": 5,
+          "words_recommended": 9,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "clause": 20,
+          "clauses": [
+            "حيدر يفاجئه بخبر وفاة الشيخ مبروك"
+          ],
+          "start": 379.53,
+          "allotted": 1.39,
+          "speech": 2.92,
+          "ratio": 2.101,
+          "words": 6,
+          "words_recommended": 3,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "clause": 21,
+          "clauses": [
+            "فيحزن"
+          ],
+          "start": 381.07,
+          "allotted": 1.43,
+          "speech": 1.512,
+          "ratio": 1.057,
+          "words": 1,
+          "words_recommended": 3,
+          "words_delta": 2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "clause": 22,
+          "clauses": [
+            "ويحزن أهل القرية كلهم ويشاركوا في الجنازة"
+          ],
+          "start": 382.49,
+          "allotted": 1.45,
+          "speech": 2.184,
+          "ratio": 1.506,
+          "words": 7,
+          "words_recommended": 3,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 22,
+          "clause": 23,
+          "clauses": [
+            "بعدها يروح للنجّار"
+          ],
+          "start": 384.03,
+          "allotted": 1.99,
+          "speech": 1.32,
+          "ratio": 0.663,
+          "words": 3,
+          "words_recommended": 5,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 23,
+          "clause": 24,
+          "clauses": [
+            "اللي كان عايز يشتري شجرة بيته من زمان"
+          ],
+          "start": 386.03,
+          "allotted": 2.39,
+          "speech": 1.512,
+          "ratio": 0.633,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 25,
+          "clauses": [
+            "يوافق المرّة دي بسرعة"
+          ],
+          "start": 388.39,
+          "allotted": 2.63,
+          "speech": 1.704,
+          "ratio": 0.648,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 25,
+          "clause": 26,
+          "clauses": [
+            "لأنه محتاج فلوس للحج"
+          ],
+          "start": 391.23,
+          "allotted": 0.15,
+          "speech": 1.896,
+          "ratio": 12.64,
+          "words": 4,
+          "words_recommended": 1,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "clause": 27,
+          "clauses": [
+            "بعد ما كان بيرفض يبيعها سنين"
+          ],
+          "start": 391.55,
+          "allotted": 3.39,
+          "speech": 1.256,
+          "ratio": 0.371,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "clause": 28,
+          "clauses": [
+            "يتفقوا على ستين ألف روبية"
+          ],
+          "start": 394.99,
+          "allotted": 3.47,
+          "speech": 1.192,
+          "ratio": 0.344,
+          "words": 5,
+          "words_recommended": 8,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "clause": 29,
+          "clauses": [
+            "ويدفع النجار جزء والباقي في عشرة أيام"
+          ],
+          "start": 398.59,
+          "allotted": 2.09,
+          "speech": 1.992,
+          "ratio": 0.953,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 29,
+          "clause": 30,
+          "clauses": [
+            "يرجع يدي عائشة الفلوس ويبلغها"
+          ],
+          "start": 400.81,
+          "allotted": 2.23,
+          "speech": 2.216,
+          "ratio": 0.994,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "clause": 31,
+          "clauses": [
+            "وإن الباقي هيستلمه قريب من النجار"
+          ],
+          "start": 403.45,
+          "allotted": 0.15,
+          "speech": 3.208,
+          "ratio": 21.387,
+          "words": 6,
+          "words_recommended": 1,
+          "words_delta": -5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "clause": 32,
+          "clauses": [
+            "وهي تقرر تبيع دهبها وتوفّر خمسة وتلاتين ألف"
+          ],
+          "start": 403.93,
+          "allotted": 3.77,
+          "speech": 1.224,
+          "ratio": 0.325,
+          "words": 8,
+          "words_recommended": 9,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "clause": 33,
+          "clauses": [
+            "الراجل يفتكر زعلها"
+          ],
+          "start": 407.89,
+          "allotted": 1.81,
+          "speech": 2.792,
+          "ratio": 1.543,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 33,
+          "clause": 34,
+          "clauses": [
+            "إنها باعت دهبها قبل كده عشان تساعده في المعيشة",
+            "فيتشكر لها من قلبه"
+          ],
+          "start": 409.67,
+          "allotted": 2.33,
+          "speech": 1.224,
+          "ratio": 0.525,
+          "words": 13,
+          "words_recommended": 6,
+          "words_delta": -7,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 28,
+      "shorten_by_words": 33,
+      "lengthen_by_words": 40
+    },
+    {
+      "part": 5,
+      "window_start": 411.8,
+      "window_end": 504.3,
+      "chunks": 32,
+      "clauses": 36,
+      "units": 32,
+      "speech_seconds": 88.704,
+      "window_seconds": 92.5,
+      "words_per_second": 2.221,
+      "fillable_ratio": 0.972,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "بعد كده يلاقوا إن الفلوس لسه ناقصة"
+          ],
+          "start": 412.05,
+          "allotted": 2.67,
+          "speech": 2.664,
+          "ratio": 0.998,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 1,
+          "clause": 1,
+          "clauses": [
+            "مش كفاية تكاليف الحج، فيرجعوا يحسبوا تاني"
+          ],
+          "start": 414.79,
+          "allotted": 3.81,
+          "speech": 1.736,
+          "ratio": 0.456,
+          "words": 7,
+          "words_recommended": 8,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "clause": 2,
+          "clauses": [
+            "عائشة تتحسف على دهبها لكنه يواسيها"
+          ],
+          "start": 418.65,
+          "allotted": 2.37,
+          "speech": 1.608,
+          "ratio": 0.678,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "clause": 3,
+          "clauses": [
+            "ويقول لهم هيسافروا شهر وبس"
+          ],
+          "start": 420.95,
+          "allotted": 2.09,
+          "speech": 2.12,
+          "ratio": 1.014,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 4,
+          "clause": 4,
+          "clauses": [
+            "ومفيش حد هيهتم بالحيوانات غير اللي اشتراهم"
+          ],
+          "start": 423.09,
+          "allotted": 3.09,
+          "speech": 1.128,
+          "ratio": 0.365,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "clause": 5,
+          "clauses": [
+            "لو سابوهم هنا هيموتوا من غير رعاية"
+          ],
+          "start": 426.11,
+          "allotted": 2.97,
+          "speech": 2.248,
+          "ratio": 0.757,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "clause": 6,
+          "clauses": [
+            "وحلم الحج بقى قريب قدام عينيه"
+          ],
+          "start": 429.09,
+          "allotted": 2.91,
+          "speech": 3.08,
+          "ratio": 1.058,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 7,
+          "clause": 7,
+          "clauses": [
+            "فالأفضل يبيعوهم ويمشوا",
+            "بعدها يزور قبر الشيخ مبروك يقعد قدامه"
+          ],
+          "start": 432.03,
+          "allotted": 3.15,
+          "speech": 2.632,
+          "ratio": 0.836,
+          "words": 10,
+          "words_recommended": 7,
+          "words_delta": -3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "clause": 9,
+          "clauses": [
+            "ويوعده"
+          ],
+          "start": 435.19,
+          "allotted": 2.49,
+          "speech": 2.536,
+          "ratio": 1.018,
+          "words": 1,
+          "words_recommended": 6,
+          "words_delta": 5,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 9,
+          "clause": 10,
+          "clauses": [
+            "إنه هيدعيله عند الكعبة المشرفة يرجع لربه"
+          ],
+          "start": 437.65,
+          "allotted": 2.61,
+          "speech": 1.128,
+          "ratio": 0.432,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 10,
+          "clause": 11,
+          "clauses": [
+            "وبعد كده يودّعوا جيرانهم"
+          ],
+          "start": 440.35,
+          "allotted": 3.41,
+          "speech": 0.488,
+          "ratio": 0.143,
+          "words": 4,
+          "words_recommended": 8,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 11,
+          "clause": 12,
+          "clauses": [
+            "هو وعائشة قبل ما يسافروا بيوم واحد"
+          ],
+          "start": 443.73,
+          "allotted": 4.09,
+          "speech": 2.536,
+          "ratio": 0.62,
+          "words": 7,
+          "words_recommended": 9,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "clause": 13,
+          "clauses": [
+            "وعائشة تدي لجارتهم آخر كمية لبن عندها"
+          ],
+          "start": 447.83,
+          "allotted": 2.17,
+          "speech": 1.0,
+          "ratio": 0.461,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "clause": 14,
+          "clauses": [
+            "وتقول لها دي آخر حاجة عندنا خديها"
+          ],
+          "start": 450.13,
+          "allotted": 4.01,
+          "speech": 4.392,
+          "ratio": 1.095,
+          "words": 7,
+          "words_recommended": 9,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "clause": 15,
+          "clauses": [
+            "يفرح الجار جداً"
+          ],
+          "start": 454.27,
+          "allotted": 3.55,
+          "speech": 2.056,
+          "ratio": 0.579,
+          "words": 3,
+          "words_recommended": 8,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "clause": 16,
+          "clauses": [
+            "ويباركلهم ويتمنالهم يرجعوا بالسلامة",
+            "وفي الطريق يفتكر"
+          ],
+          "start": 457.77,
+          "allotted": 2.19,
+          "speech": 2.632,
+          "ratio": 1.202,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "clause": 18,
+          "clauses": [
+            "جاره سليمان صاحب الخلاف القديم"
+          ],
+          "start": 459.97,
+          "allotted": 3.21,
+          "speech": 3.592,
+          "ratio": 1.119,
+          "words": 5,
+          "words_recommended": 7,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "clause": 19,
+          "clauses": [
+            "فيروح للقرية اللي انتقل لها ويسأل"
+          ],
+          "start": 463.39,
+          "allotted": 2.83,
+          "speech": 3.144,
+          "ratio": 1.111,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 18,
+          "clause": 20,
+          "clauses": [
+            "على بيته، ويروحله مع عائشة"
+          ],
+          "start": 466.23,
+          "allotted": 2.27,
+          "speech": 4.04,
+          "ratio": 1.78,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "clause": 21,
+          "clauses": [
+            "يلاقيه مريض بعد إصابة حصلت له من شهر"
+          ],
+          "start": 468.53,
+          "allotted": 2.93,
+          "speech": 4.008,
+          "ratio": 1.368,
+          "words": 8,
+          "words_recommended": 7,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "clause": 22,
+          "clauses": [
+            "ودخل"
+          ],
+          "start": 471.59,
+          "allotted": 2.53,
+          "speech": 2.888,
+          "ratio": 1.142,
+          "words": 1,
+          "words_recommended": 6,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 21,
+          "clause": 23,
+          "clauses": [
+            "المستشفى بسببها، وقاعد في البيت تعبان"
+          ],
+          "start": 474.19,
+          "allotted": 4.11,
+          "speech": 1.256,
+          "ratio": 0.306,
+          "words": 6,
+          "words_recommended": 9,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 22,
+          "clause": 24,
+          "clauses": [
+            "يقولوله إنهم جايين يسلّموا عليه ويطلبوا السماح"
+          ],
+          "start": 478.47,
+          "allotted": 1.13,
+          "speech": 4.392,
+          "ratio": 3.887,
+          "words": 7,
+          "words_recommended": 3,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 23,
+          "clause": 25,
+          "clauses": [
+            "عشان مايبقاش زعل",
+            "بينهم قبل ما يسافر بيت ربنا"
+          ],
+          "start": 479.65,
+          "allotted": 2.95,
+          "speech": 1.64,
+          "ratio": 0.556,
+          "words": 9,
+          "words_recommended": 7,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 27,
+          "clauses": [
+            "لكن سليمان يعترف إنه هو اللي ظلمهم"
+          ],
+          "start": 482.57,
+          "allotted": 2.77,
+          "speech": 6.632,
+          "ratio": 2.394,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 25,
+          "clause": 28,
+          "clauses": [
+            "وحاول ياخد حق مش حقّه، وخسارة فلوسه كانت عقوبة"
+          ],
+          "start": 485.33,
+          "allotted": 2.59,
+          "speech": 4.872,
+          "ratio": 1.881,
+          "words": 9,
+          "words_recommended": 6,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "clause": 29,
+          "clauses": [
+            "من ربنا، وهو اللي بيطلب السماح"
+          ],
+          "start": 487.87,
+          "allotted": 2.65,
+          "speech": 2.696,
+          "ratio": 1.017,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 27,
+          "clause": 30,
+          "clauses": [
+            "ويسامحه الراجل ويوعده يدعيله عند الكعبة"
+          ],
+          "start": 490.47,
+          "allotted": 1.69,
+          "speech": 1.48,
+          "ratio": 0.876,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 28,
+          "clause": 31,
+          "clauses": [
+            "ويرجع القرية"
+          ],
+          "start": 492.35,
+          "allotted": 3.85,
+          "speech": 3.048,
+          "ratio": 0.792,
+          "words": 2,
+          "words_recommended": 9,
+          "words_delta": 7,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 29,
+          "clause": 32,
+          "clauses": [
+            "ويقعد مع حيدر، ويعرف إن الناس حوّلوا قبر الشيخ لمقام"
+          ],
+          "start": 496.25,
+          "allotted": 2.29,
+          "speech": 2.376,
+          "ratio": 1.038,
+          "words": 10,
+          "words_recommended": 5,
+          "words_delta": -5,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 30,
+          "clause": 33,
+          "clauses": [
+            "وبقوا يزوروه"
+          ],
+          "start": 498.61,
+          "allotted": 3.21,
+          "speech": 4.712,
+          "ratio": 1.468,
+          "words": 2,
+          "words_recommended": 7,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 31,
+          "clause": 34,
+          "clauses": [
+            "كل فترة",
+            "وحيدر لسه بيسمع صوت الشيخ بيناديه وهو قاعد"
+          ],
+          "start": 501.77,
+          "allotted": 2.71,
+          "speech": 3.944,
+          "ratio": 1.455,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "shorten"
+        }
+      ],
+      "mismatched": 24,
+      "shorten_by_words": 21,
+      "lengthen_by_words": 36
+    },
+    {
+      "part": 6,
+      "window_start": 504.3,
+      "window_end": 593.8,
+      "chunks": 41,
+      "clauses": 36,
+      "units": 41,
+      "speech_seconds": 75.24,
+      "window_seconds": 89.5,
+      "words_per_second": 2.698,
+      "fillable_ratio": 0.861,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "ويقابل الحاج اللي دلّه على الشركة"
+          ],
+          "start": 504.49,
+          "allotted": 1.83,
+          "speech": 1.96,
+          "ratio": 1.071,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 1,
+          "clause": 0,
+          "clauses": [
+            "ويقابل الحاج اللي دلّه على الشركة"
+          ],
+          "start": 506.55,
+          "allotted": 2.79,
+          "speech": 1.992,
+          "ratio": 0.714,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "clause": 1,
+          "clauses": [
+            "ويسأله هيسافر معاهم ولا لأ"
+          ],
+          "start": 509.37,
+          "allotted": 2.03,
+          "speech": 1.768,
+          "ratio": 0.871,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 3,
+          "clause": 2,
+          "clauses": [
+            "يقول إنه لحد دلوقتي مش عارف"
+          ],
+          "start": 511.39,
+          "allotted": 1.93,
+          "speech": 2.632,
+          "ratio": 1.364,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 4,
+          "clause": 3,
+          "clauses": [
+            "ومريض، وما ياخدش قرار من غير أهله"
+          ],
+          "start": 513.31,
+          "allotted": 2.15,
+          "speech": 3.432,
+          "ratio": 1.596,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 5,
+          "clause": 4,
+          "clauses": [
+            "ويدّيله رقم ابنه قاسم"
+          ],
+          "start": 515.51,
+          "allotted": 1.83,
+          "speech": 3.272,
+          "ratio": 1.788,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 6,
+          "clause": 5,
+          "clauses": [
+            "لو احتاج أي حاجة في السفر"
+          ],
+          "start": 517.43,
+          "allotted": 2.61,
+          "speech": 1.928,
+          "ratio": 0.739,
+          "words": 6,
+          "words_recommended": 7,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "clause": 6,
+          "clauses": [
+            "بعد كده الراجل وعائشة يحضروا دروس الحج"
+          ],
+          "start": 520.01,
+          "allotted": 2.01,
+          "speech": 1.832,
+          "ratio": 0.911,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "clause": 7,
+          "clauses": [
+            "عشان يعرفوا المطلوب قبل ما يمشوا"
+          ],
+          "start": 522.03,
+          "allotted": 2.91,
+          "speech": 2.12,
+          "ratio": 0.729,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 9,
+          "clause": 7,
+          "clauses": [
+            "عشان يعرفوا المطلوب قبل ما يمشوا"
+          ],
+          "start": 525.05,
+          "allotted": 2.31,
+          "speech": 2.312,
+          "ratio": 1.001,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 10,
+          "clause": 8,
+          "clauses": [
+            "ويطلعوا يشتروا ملابس الإحرام"
+          ],
+          "start": 527.53,
+          "allotted": 2.19,
+          "speech": 2.408,
+          "ratio": 1.1,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 9,
+          "clauses": [
+            "وباقي المستلزمات اللي قالولهم عليها"
+          ],
+          "start": 529.79,
+          "allotted": 2.35,
+          "speech": 1.512,
+          "ratio": 0.643,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 12,
+          "clause": 10,
+          "clauses": [
+            "وفي الرجوع يقابلوا صاحب الشمسية"
+          ],
+          "start": 532.15,
+          "allotted": 3.73,
+          "speech": 1.032,
+          "ratio": 0.277,
+          "words": 5,
+          "words_recommended": 10,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 13,
+          "clause": 11,
+          "clauses": [
+            "يباركلهم على الحج ويدعيلهم بالتوفيق"
+          ],
+          "start": 536.07,
+          "allotted": 1.35,
+          "speech": 1.736,
+          "ratio": 1.286,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "clause": 12,
+          "clauses": [
+            "يسيّب عائشة ترجع البيت ويروح للنجّار"
+          ],
+          "start": 537.63,
+          "allotted": 2.11,
+          "speech": 2.664,
+          "ratio": 1.263,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 15,
+          "clause": 13,
+          "clauses": [
+            "يستلم باقي المبلغ اللي عليه"
+          ],
+          "start": 540.0,
+          "allotted": 1.82,
+          "speech": 2.152,
+          "ratio": 1.182,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 16,
+          "clause": 14,
+          "clauses": [
+            "لكن النجار يحكيله إن الشجرة كانت فاضية"
+          ],
+          "start": 541.89,
+          "allotted": 1.93,
+          "speech": 0.68,
+          "ratio": 0.352,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 17,
+          "clause": 14,
+          "clauses": [
+            "لكن النجار يحكيله إن الشجرة كانت فاضية"
+          ],
+          "start": 543.77,
+          "allotted": 2.19,
+          "speech": 1.0,
+          "ratio": 0.457,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "clause": 15,
+          "clauses": [
+            "وما أعطتش الخشب اللي كانوا متوقعينه"
+          ],
+          "start": 546.09,
+          "allotted": 1.63,
+          "speech": 2.088,
+          "ratio": 1.281,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 19,
+          "clause": 16,
+          "clauses": [
+            "ورغم كده هيدفع له الفلوس"
+          ],
+          "start": 547.67,
+          "allotted": 2.33,
+          "speech": 2.056,
+          "ratio": 0.882,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 20,
+          "clause": 17,
+          "clauses": [
+            "يحاول يرجّع الفلوس للنجّار"
+          ],
+          "start": 550.01,
+          "allotted": 2.05,
+          "speech": 2.792,
+          "ratio": 1.362,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 21,
+          "clause": 18,
+          "clauses": [
+            "لأن النجار ما استفادش من الشجرة حاجة"
+          ],
+          "start": 552.05,
+          "allotted": 1.87,
+          "speech": 1.8,
+          "ratio": 0.963,
+          "words": 7,
+          "words_recommended": 5,
+          "words_delta": -2,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 22,
+          "clause": 19,
+          "clauses": [
+            "لكن النجار يرفض ويقول إن الغلطة غلطته"
+          ],
+          "start": 553.97,
+          "allotted": 2.59,
+          "speech": 2.28,
+          "ratio": 0.88,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 23,
+          "clause": 20,
+          "clauses": [
+            "لأنه قدّر التمن بشكل غلط"
+          ],
+          "start": 556.61,
+          "allotted": 1.43,
+          "speech": 0.424,
+          "ratio": 0.297,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 21,
+          "clauses": [
+            "الراجل يسيب المبلغ عنده ويرجع البيت"
+          ],
+          "start": 558.07,
+          "allotted": 1.77,
+          "speech": 2.312,
+          "ratio": 1.306,
+          "words": 6,
+          "words_recommended": 5,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 25,
+          "clause": 21,
+          "clauses": [
+            "الراجل يسيب المبلغ عنده ويرجع البيت"
+          ],
+          "start": 559.97,
+          "allotted": 1.61,
+          "speech": 2.312,
+          "ratio": 1.436,
+          "words": 6,
+          "words_recommended": 4,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 26,
+          "clause": 22,
+          "clauses": [
+            "وينام"
+          ],
+          "start": 561.87,
+          "allotted": 2.55,
+          "speech": 1.48,
+          "ratio": 0.58,
+          "words": 1,
+          "words_recommended": 7,
+          "words_delta": 6,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 27,
+          "clause": 23,
+          "clauses": [
+            "وفي نص الليل يفزع من حلم الشجرة"
+          ],
+          "start": 564.31,
+          "allotted": 2.59,
+          "speech": 1.672,
+          "ratio": 0.646,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "clause": 24,
+          "clauses": [
+            "ويصحى وعائشة بتحاول تهدّيه وتطمنه"
+          ],
+          "start": 566.91,
+          "allotted": 1.93,
+          "speech": 0.712,
+          "ratio": 0.369,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 29,
+          "clause": 25,
+          "clauses": [
+            "تاني يوم يزورهم المدرّس ويدّيه خمسين ألف روبية"
+          ],
+          "start": 568.85,
+          "allotted": 2.33,
+          "speech": 1.064,
+          "ratio": 0.457,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 30,
+          "clause": 26,
+          "clauses": [
+            "ويقوله خدهم، مش محتاجهم دلوقتي"
+          ],
+          "start": 571.19,
+          "allotted": 1.93,
+          "speech": 1.704,
+          "ratio": 0.883,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 31,
+          "clause": 27,
+          "clauses": [
+            "لأنه مش محتاجهم وهو مسافر، وبيقدر يدبّر أمره"
+          ],
+          "start": 573.13,
+          "allotted": 1.81,
+          "speech": 1.16,
+          "ratio": 0.641,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 32,
+          "clause": 28,
+          "clauses": [
+            "لكن الراجل يرفض لأنه مش عايز يروح الحج بفلوس مستلف"
+          ],
+          "start": 574.89,
+          "allotted": 2.19,
+          "speech": 1.096,
+          "ratio": 0.5,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 33,
+          "clause": 28,
+          "clauses": [
+            "لكن الراجل يرفض لأنه مش عايز يروح الحج بفلوس مستلف"
+          ],
+          "start": 577.11,
+          "allotted": 1.71,
+          "speech": 2.344,
+          "ratio": 1.371,
+          "words": 10,
+          "words_recommended": 5,
+          "words_delta": -5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 34,
+          "clause": 29,
+          "clauses": [
+            "وبعد ما المدرّس يمشي"
+          ],
+          "start": 578.81,
+          "allotted": 2.77,
+          "speech": 3.304,
+          "ratio": 1.193,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 35,
+          "clause": 30,
+          "clauses": [
+            "تقترح يطلبوا مساعدة من ابنهم"
+          ],
+          "start": 581.73,
+          "allotted": 1.79,
+          "speech": 1.064,
+          "ratio": 0.594,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 36,
+          "clause": 31,
+          "clauses": [
+            "لكنه يرفض يسأل"
+          ],
+          "start": 583.61,
+          "allotted": 1.61,
+          "speech": 2.216,
+          "ratio": 1.376,
+          "words": 3,
+          "words_recommended": 4,
+          "words_delta": 1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 37,
+          "clause": 32,
+          "clauses": [
+            "لأنه مش عارف فلوس ابنه حلال ولا حرام"
+          ],
+          "start": 585.25,
+          "allotted": 2.11,
+          "speech": 2.28,
+          "ratio": 1.081,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 38,
+          "clause": 33,
+          "clauses": [
+            "فتقترح عليه يروح الحج لوحده السنة دي"
+          ],
+          "start": 587.29,
+          "allotted": 2.47,
+          "speech": 0.424,
+          "ratio": 0.172,
+          "words": 7,
+          "words_recommended": 7,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 39,
+          "clause": 34,
+          "clauses": [
+            "وتقولّه"
+          ],
+          "start": 589.77,
+          "allotted": 2.17,
+          "speech": 0.488,
+          "ratio": 0.225,
+          "words": 1,
+          "words_recommended": 6,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 40,
+          "clause": 35,
+          "clauses": [
+            "يرفض، وحلمه يحجّ هو وياها مع بعض"
+          ],
+          "start": 591.97,
+          "allotted": 2.07,
+          "speech": 1.736,
+          "ratio": 0.839,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "fits"
+        }
+      ],
+      "mismatched": 33,
+      "shorten_by_words": 29,
+      "lengthen_by_words": 31
+    },
+    {
+      "part": 7,
+      "window_start": 593.8,
+      "window_end": 676.328,
+      "chunks": 33,
+      "clauses": 36,
+      "units": 33,
+      "speech_seconds": 72.232,
+      "window_seconds": 82.528,
+      "words_per_second": 2.547,
+      "fillable_ratio": 0.9,
+      "rows": [
+        {
+          "chunk": 0,
+          "clause": 0,
+          "clauses": [
+            "بعدها تقترح يبيعوا البيت والأرض"
+          ],
+          "start": 594.09,
+          "allotted": 2.29,
+          "speech": 2.088,
+          "ratio": 0.912,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 1,
+          "clause": 1,
+          "clauses": [
+            "عشان يكمّلوا المبلغ الناقص"
+          ],
+          "start": 596.37,
+          "allotted": 2.63,
+          "speech": 1.704,
+          "ratio": 0.648,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 2,
+          "clause": 2,
+          "clauses": [
+            "لكنه يرفض، خوفاً إنه يموت في السفر"
+          ],
+          "start": 598.93,
+          "allotted": 2.27,
+          "speech": 0.872,
+          "ratio": 0.384,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 3,
+          "clause": 3,
+          "clauses": [
+            "ويتركها هي والبيت من غير سقف"
+          ],
+          "start": 601.19,
+          "allotted": 2.31,
+          "speech": 1.448,
+          "ratio": 0.627,
+          "words": 6,
+          "words_recommended": 6,
+          "words_delta": 0,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 4,
+          "clause": 4,
+          "clauses": [
+            "يقرر يروح الشركة السفر"
+          ],
+          "start": 603.45,
+          "allotted": 2.89,
+          "speech": 2.216,
+          "ratio": 0.767,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 5,
+          "clause": 5,
+          "clauses": [
+            "ويلغي الرحلة، ويرجّع البقرة والعجل"
+          ],
+          "start": 606.33,
+          "allotted": 2.49,
+          "speech": 1.704,
+          "ratio": 0.684,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 6,
+          "clause": 6,
+          "clauses": [
+            "وأشرف يحاول يقنعه إنه يسافر رغم كل حاجة"
+          ],
+          "start": 609.35,
+          "allotted": 2.19,
+          "speech": 0.936,
+          "ratio": 0.427,
+          "words": 8,
+          "words_recommended": 6,
+          "words_delta": -2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 7,
+          "clause": 7,
+          "clauses": [
+            "ويقوله"
+          ],
+          "start": 611.67,
+          "allotted": 1.69,
+          "speech": 1.64,
+          "ratio": 0.97,
+          "words": 1,
+          "words_recommended": 4,
+          "words_delta": 3,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 8,
+          "clause": 8,
+          "clauses": [
+            "إنه شايف فيه صورة أبوه وعايز يساعده"
+          ],
+          "start": 613.35,
+          "allotted": 2.43,
+          "speech": 2.984,
+          "ratio": 1.228,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 9,
+          "clause": 9,
+          "clauses": [
+            "من قلبه من غير مقابل"
+          ],
+          "start": 615.87,
+          "allotted": 2.13,
+          "speech": 2.376,
+          "ratio": 1.115,
+          "words": 5,
+          "words_recommended": 5,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 10,
+          "clause": 10,
+          "clauses": [
+            "لكنه يصرّ يروح هو ومراته من غير ما يعتمد على حد",
+            "ياخد فلوس"
+          ],
+          "start": 617.99,
+          "allotted": 1.41,
+          "speech": 2.472,
+          "ratio": 1.753,
+          "words": 13,
+          "words_recommended": 4,
+          "words_delta": -9,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 11,
+          "clause": 12,
+          "clauses": [
+            "من الناس أبدا"
+          ],
+          "start": 619.53,
+          "allotted": 3.67,
+          "speech": 5.448,
+          "ratio": 1.484,
+          "words": 3,
+          "words_recommended": 9,
+          "words_delta": 6,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 12,
+          "clause": 13,
+          "clauses": [
+            "ويخرج متأثر من المكتب"
+          ],
+          "start": 623.37,
+          "allotted": 1.13,
+          "speech": 1.832,
+          "ratio": 1.621,
+          "words": 4,
+          "words_recommended": 3,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 13,
+          "clause": 14,
+          "clauses": [
+            "وفي الرجوع بالأتوبيس يتعب ويقع على الأرض"
+          ],
+          "start": 624.45,
+          "allotted": 2.35,
+          "speech": 3.08,
+          "ratio": 1.311,
+          "words": 7,
+          "words_recommended": 6,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 14,
+          "clause": 15,
+          "clauses": [
+            "والناس تلحقه بسرعة"
+          ],
+          "start": 626.77,
+          "allotted": 2.25,
+          "speech": 1.288,
+          "ratio": 0.572,
+          "words": 3,
+          "words_recommended": 6,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 15,
+          "clause": 16,
+          "clauses": [
+            "وبعد أيام يجي العيد"
+          ],
+          "start": 629.05,
+          "allotted": 2.59,
+          "speech": 1.608,
+          "ratio": 0.621,
+          "words": 4,
+          "words_recommended": 7,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 16,
+          "clause": 17,
+          "clauses": [
+            "وحيدر يسمع صوت من المكان اللي كان الشيخ قاعده فيه"
+          ],
+          "start": 631.63,
+          "allotted": 2.51,
+          "speech": 3.272,
+          "ratio": 1.304,
+          "words": 10,
+          "words_recommended": 6,
+          "words_delta": -4,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 17,
+          "clause": 18,
+          "clauses": [
+            "فيروح يقعد في مكانه"
+          ],
+          "start": 634.21,
+          "allotted": 2.07,
+          "speech": 1.32,
+          "ratio": 0.638,
+          "words": 4,
+          "words_recommended": 5,
+          "words_delta": 1,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 18,
+          "clause": 19,
+          "clauses": [
+            "وفي البيت الراجل"
+          ],
+          "start": 636.23,
+          "allotted": 2.85,
+          "speech": 0.456,
+          "ratio": 0.16,
+          "words": 3,
+          "words_recommended": 7,
+          "words_delta": 4,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 19,
+          "clause": 20,
+          "clauses": [
+            "وزوجته تسمّع تكبيرات العيد"
+          ],
+          "start": 639.11,
+          "allotted": 3.87,
+          "speech": 4.712,
+          "ratio": 1.218,
+          "words": 4,
+          "words_recommended": 10,
+          "words_delta": 6,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 20,
+          "clause": 21,
+          "clauses": [
+            "ويبكوا بحزن على حج فاتهما"
+          ],
+          "start": 643.15,
+          "allotted": 2.35,
+          "speech": 2.152,
+          "ratio": 0.916,
+          "words": 5,
+          "words_recommended": 6,
+          "words_delta": 1,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 21,
+          "clause": 22,
+          "clauses": [
+            "الحجاج مجتمعين النهاردة بعرفة",
+            "وهم اتحرموا من الحج السنة دي بسبب الفلوس"
+          ],
+          "start": 645.47,
+          "allotted": 2.25,
+          "speech": 2.792,
+          "ratio": 1.241,
+          "words": 12,
+          "words_recommended": 6,
+          "words_delta": -6,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 22,
+          "clause": 24,
+          "clauses": [
+            "لكنهم قرروا"
+          ],
+          "start": 647.75,
+          "allotted": 2.51,
+          "speech": 2.088,
+          "ratio": 0.832,
+          "words": 2,
+          "words_recommended": 6,
+          "words_delta": 4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 23,
+          "clause": 25,
+          "clauses": [
+            "ما يفقدوش الأمل، ويأجّلوا للسنة الجاية"
+          ],
+          "start": 650.39,
+          "allotted": 2.95,
+          "speech": 1.352,
+          "ratio": 0.458,
+          "words": 6,
+          "words_recommended": 8,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 24,
+          "clause": 26,
+          "clauses": [
+            "ويقوموا يلحقوا صلاة العيد"
+          ],
+          "start": 653.35,
+          "allotted": 1.43,
+          "speech": 1.576,
+          "ratio": 1.102,
+          "words": 4,
+          "words_recommended": 4,
+          "words_delta": 0,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 25,
+          "clause": 27,
+          "clauses": [
+            "تتوضّى وتلبس أحسن حاجة عندها"
+          ],
+          "start": 654.93,
+          "allotted": 3.87,
+          "speech": 2.28,
+          "ratio": 0.589,
+          "words": 5,
+          "words_recommended": 10,
+          "words_delta": 5,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 26,
+          "clause": 28,
+          "clauses": [
+            "وهو يطلع يزرع شجرة جديدة مكان اللي باعها"
+          ],
+          "start": 658.85,
+          "allotted": 2.15,
+          "speech": 2.792,
+          "ratio": 1.299,
+          "words": 8,
+          "words_recommended": 5,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 27,
+          "clause": 29,
+          "clauses": [
+            "ويبدأ يسقيها بميّه حلوة"
+          ],
+          "start": 660.95,
+          "allotted": 2.45,
+          "speech": 1.768,
+          "ratio": 0.722,
+          "words": 4,
+          "words_recommended": 6,
+          "words_delta": 2,
+          "verdict": "lengthen"
+        },
+        {
+          "chunk": 28,
+          "clause": 30,
+          "clauses": [
+            "وبعدين يتجه للجامع يلحق الصلاة"
+          ],
+          "start": 663.51,
+          "allotted": 1.57,
+          "speech": 2.376,
+          "ratio": 1.513,
+          "words": 5,
+          "words_recommended": 4,
+          "words_delta": -1,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 29,
+          "clause": 31,
+          "clauses": [
+            "ومن اللحظة دي"
+          ],
+          "start": 665.23,
+          "allotted": 3.25,
+          "speech": 4.456,
+          "ratio": 1.371,
+          "words": 3,
+          "words_recommended": 8,
+          "words_delta": 5,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 30,
+          "clause": 32,
+          "clauses": [
+            "يقرر يجمع كل المبلغ اللي هيحتاجه هو وعائشة"
+          ],
+          "start": 668.51,
+          "allotted": 1.55,
+          "speech": 1.608,
+          "ratio": 1.037,
+          "words": 8,
+          "words_recommended": 4,
+          "words_delta": -4,
+          "verdict": "fits"
+        },
+        {
+          "chunk": 31,
+          "clause": 33,
+          "clauses": [
+            "من غير ما ياخد فلوس من حد"
+          ],
+          "start": 670.19,
+          "allotted": 1.71,
+          "speech": 1.864,
+          "ratio": 1.09,
+          "words": 7,
+          "words_recommended": 4,
+          "words_delta": -3,
+          "verdict": "shorten"
+        },
+        {
+          "chunk": 32,
+          "clause": 34,
+          "clauses": [
+            "وعشان يروحوا",
+            "الحج السنة الجاية، ونسلّم عليكم ونمشي"
+          ],
+          "start": 672.05,
+          "allotted": 4.19,
+          "speech": 1.672,
+          "ratio": 0.399,
+          "words": 8,
+          "words_recommended": 11,
+          "words_delta": 3,
+          "verdict": "lengthen"
+        }
+      ],
+      "mismatched": 28,
+      "shorten_by_words": 32,
+      "lengthen_by_words": 47
+    }
+  ]
+}

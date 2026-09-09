@@ -1,0 +1,45 @@
+{
+  "slug": "hajj-dream-2108415",
+  "title": "رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!",
+  "original_name": "رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4",
+  "size": 39320203,
+  "sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
+  "duration": 676.327619,
+  "width": 854,
+  "height": 480,
+  "fps": "30",
+  "parts": 1,
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "source_lang": "auto",
+  "uploaded_at": "2026-09-07T20:35:04Z",
+  "received_at": "2026-09-07T20:48:03+00:00",
+  "status": "uploaded",
+  "uploaded_with": "sendbox_split_verified_import",
+  "original_upload_parts": 3,
+  "poster": "poster.jpg",
+  "verification": {
+    "all_part_sha256_match": true,
+    "all_git_blob_ids_match": true,
+    "total_size_matches": true,
+    "reencoded": false,
+    "full_decode_errors": 0
+  },
+  "transcription": {
+    "status": "not_started"
+  },
+  "dubbing": {
+    "status": "timing_repair_in_progress",
+    "final": "dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+    "voice_backend": "agent",
+    "voice_id": "voice-12",
+    "language": "ar-EG",
+    "voice_selection_status": "selected_in_latest_audition",
+    "voice_quality_approved": true,
+    "duration": 676.266667,
+    "publication_status": "published_verified",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
+    "completed_at": "2026-09-08T21:03:13+00:00",
+    "candidate_voice_id": "voice-12",
+    "timing_quality_approved": false
+  }
+}

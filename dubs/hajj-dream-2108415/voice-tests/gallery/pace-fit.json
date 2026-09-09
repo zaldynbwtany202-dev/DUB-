@@ -1,0 +1,122 @@
+{
+  "method": "سرعة كل مرشّح مقاسة على المقطع نفسه (scripts/compare_voice_candidates.py)، مطبّقة على ميزانية الجولة الثالثة: 1585 كلمة فوق 632.5 ثانية كلام الأصل، بواقف الأصل 19.99 ث",
+  "rule": "التمديد ممنوع وحشو الصمت ممنوع؛ فسرعة الصوت المختار تحدد كم كلمة تدخل. لو الصوت أبطأ من المطلوب، الفرق يتحسب من المعنى لا من الإيقاع.",
+  "budget": {
+    "needed_dub_words": 1585,
+    "source_speech_seconds": 632.5,
+    "target_words_per_second": 2.507,
+    "source_pause_seconds": 19.99
+  },
+  "voices": [
+    {
+      "voice": "voice-07",
+      "rank_by_band_and_proximity": 4,
+      "measured_words_per_sec": 2.545,
+      "capacity_words_in_632.5s": 1609,
+      "words_needed": 1585,
+      "words_to_cut": 0,
+      "cut_percent": 0.0,
+      "spare_seconds_if_text_kept": 9.7,
+      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+    },
+    {
+      "voice": "voice-13",
+      "rank_by_band_and_proximity": 5,
+      "measured_words_per_sec": 2.509,
+      "capacity_words_in_632.5s": 1586,
+      "words_needed": 1585,
+      "words_to_cut": 0,
+      "cut_percent": 0.0,
+      "spare_seconds_if_text_kept": 0.8,
+      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+    },
+    {
+      "voice": "voice-11",
+      "rank_by_band_and_proximity": 7,
+      "measured_words_per_sec": 2.516,
+      "capacity_words_in_632.5s": 1591,
+      "words_needed": 1585,
+      "words_to_cut": 0,
+      "cut_percent": 0.0,
+      "spare_seconds_if_text_kept": 2.5,
+      "verdict": "النص كامل يدخل، والفاضل يتحوّل تنفّس طبيعي"
+    },
+    {
+      "voice": "voice-12",
+      "rank_by_band_and_proximity": 6,
+      "measured_words_per_sec": 2.353,
+      "capacity_words_in_632.5s": 1488,
+      "words_needed": 1585,
+      "words_to_cut": 97,
+      "cut_percent": 6.1,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 97 كلمة (6.1%) — لا تمديد"
+    },
+    {
+      "voice": "voice-08",
+      "rank_by_band_and_proximity": 1,
+      "measured_words_per_sec": 2.336,
+      "capacity_words_in_632.5s": 1477,
+      "words_needed": 1585,
+      "words_to_cut": 107,
+      "cut_percent": 6.8,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 107 كلمة (6.8%) — لا تمديد"
+    },
+    {
+      "voice": "voice-05",
+      "rank_by_band_and_proximity": 3,
+      "measured_words_per_sec": 2.331,
+      "capacity_words_in_632.5s": 1474,
+      "words_needed": 1585,
+      "words_to_cut": 111,
+      "cut_percent": 7.0,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 111 كلمة (7.0%) — لا تمديد"
+    },
+    {
+      "voice": "voice-06",
+      "rank_by_band_and_proximity": 2,
+      "measured_words_per_sec": 2.255,
+      "capacity_words_in_632.5s": 1426,
+      "words_needed": 1585,
+      "words_to_cut": 159,
+      "cut_percent": 10.0,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 159 كلمة (10.0%) — لا تمديد"
+    },
+    {
+      "voice": "voice-10",
+      "rank_by_band_and_proximity": 8,
+      "measured_words_per_sec": 2.225,
+      "capacity_words_in_632.5s": 1407,
+      "words_needed": 1585,
+      "words_to_cut": 178,
+      "cut_percent": 11.2,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 178 كلمة (11.2%) — لا تمديد"
+    },
+    {
+      "voice": "voice-04",
+      "rank_by_band_and_proximity": 9,
+      "measured_words_per_sec": 2.222,
+      "capacity_words_in_632.5s": 1405,
+      "words_needed": 1585,
+      "words_to_cut": 180,
+      "cut_percent": 11.3,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 180 كلمة (11.3%) — لا تمديد"
+    },
+    {
+      "voice": "voice-09",
+      "rank_by_band_and_proximity": 10,
+      "measured_words_per_sec": 2.172,
+      "capacity_words_in_632.5s": 1373,
+      "words_needed": 1585,
+      "words_to_cut": 211,
+      "cut_percent": 13.3,
+      "spare_seconds_if_text_kept": 0.0,
+      "verdict": "لازم يُقطع 211 كلمة (13.3%) — لا تمديد"
+    }
+  ]
+}

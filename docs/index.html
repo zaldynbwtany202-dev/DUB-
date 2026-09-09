@@ -33,6 +33,7 @@
   <button class="tab" data-tab="dubs" role="tab" aria-selected="false">المدبلجة <span id="countDubs" class="count">0</span></button>
   <button class="tab" data-tab="runs" role="tab" aria-selected="false">التشغيلات <span id="countRuns" class="count">0</span></button>
   <button class="tab" data-tab="voices" role="tab" aria-selected="false">الأصوات <span id="countVoices" class="count">0</span></button>
+  <button class="tab" data-tab="shop" role="tab" aria-selected="false">مئة صوت</button>
   <button class="tab" data-tab="settings" role="tab" aria-selected="false">الإعدادات</button>
 </nav>
 
@@ -151,6 +152,16 @@
   </section>
 
   <!-- ============================== الإعدادات ============================== -->
+  <!-- ============================== مئة عينة صوت ============================== -->
+  <section id="tab-shop" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">اختيار يوصل للمستودع</p>
+      <h2>مئة عينة صوت</h2>
+      <p>لكل عينة زر «اختر هذه العينة» يكتب <code>docs/voice-choice.json</code> في الفرع،
+         فتُبنى الدبلجة بالصوت المختار وسلسلة فلاتره المعلنة. الصفحة مستقلة ومفتوحة أيضًا على
+         <a href="voice-shop.html">voice-shop.html</a>.</p></div></div>
+    <iframe src="voice-shop.html" title="مئة عينة صوت"
+            style="width:100%;height:78vh;border:1px solid rgba(244,239,228,.12);border-radius:14px;background:#07080c"></iframe>
+  </section>
   <section id="tab-settings" class="panel" role="tabpanel">
     <div class="section-head"><div><p class="eyebrow">النظام</p><h2>الإعدادات</h2><p>الاتصال بالمستودع وخيارات الدبلجة والترجمة الذكية.</p></div></div>
     <div class="card wide">

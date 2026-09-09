@@ -1,0 +1,53 @@
+{
+  "status": "complete",
+  "source": "library/snaptik-7614635067838598423-v3/source.mp4",
+  "voice_id": "voice-00",
+  "language": "ar-EG",
+  "generated_take_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "pending_take_indices": [],
+  "pending_interval_seconds": null,
+  "reason": "Completed dub now has an optional recovered-original-background mix; the approved dry version and all selected-voice takes are unchanged.",
+  "preview_end": 91.12,
+  "preview_file": null,
+  "final_file": "final-dub-agent-ar-eg-original-bg.mp4",
+  "next_step": null,
+  "preview_duration": 91.2,
+  "technical_checks_passed": true,
+  "updated_at": "2026-09-07T17:56:23+00:00",
+  "final_audio": "final-dub-agent-ar-eg-original-bg.mp3",
+  "final_subtitles": "final-dub-agent-ar-eg-original-bg.srt",
+  "final_duration": 108.9,
+  "dub_complete": true,
+  "completed_at": "2026-09-07T17:10:25+00:00",
+  "dry_final_file": "final-dub-agent-ar-eg.mp4",
+  "dry_final_audio": "final-dub-agent-ar-eg.mp3",
+  "background": {
+    "user_choice": "original",
+    "mode": "neural_original_background_estimate",
+    "file": "background/separated-original-background.flac",
+    "music_included": true,
+    "gain_db": 2.5,
+    "ducking": true,
+    "pure_original_stem_guarantee": false,
+    "new_music_composed": false
+  },
+  "preview_archive": {
+    "purpose": "Historical incomplete preview; complete older versions and original recordings remain unchanged.",
+    "commit": "2d33f7d6c98c72fcf924baa08120555a3415599d",
+    "path": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+    "bytes": 7028575,
+    "sha256": "2c07742a55883dc61925338da6d5ba2d1fa2facb4105a03dd28b0270f98d491c",
+    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/2d33f7d6c98c72fcf924baa08120555a3415599d/dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+    "storage": "Verified immutable Git history; duplicate workspace copy retired to protect persistence."
+  }
+}

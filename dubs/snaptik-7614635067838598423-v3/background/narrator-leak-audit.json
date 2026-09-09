@@ -1,0 +1,10 @@
+{
+  "method": "Arabic Whisper Small transcription of estimated background, compared with the source narrator transcript",
+  "source_word_count": 308,
+  "diagnostic_word_count": 155,
+  "longest_exact_reference_match_words": 1,
+  "matching_reference_phrases_at_least_3_words": [],
+  "observation": "ASR produced repetitive/non-matching text characteristic of music hallucinations. It did not recover a reliable narrator phrase.",
+  "speech_free_guarantee": false,
+  "limitation": "Non-detection by ASR is not proof that every trace of speech is absent; the final bed is kept low and ducked under narration."
+}

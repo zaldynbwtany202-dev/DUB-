@@ -10,5 +10,40 @@
   "source_lang": "ar",
   "uploaded_at": "2026-09-07T12:51:08Z",
   "status": "uploaded",
-  "uploaded_with": "ana"
+  "uploaded_with": "ana",
+  "transcription": {
+    "status": "draft_needs_review",
+    "engine": "whisper.cpp",
+    "model": "small",
+    "detected_language": "ar",
+    "language_probability": 0.99583,
+    "segments": 34,
+    "words": 308,
+    "source_sha256": "6c242309a37469c2e868845bec638ff039e3607e73835ddca3e708a5750ecf16",
+    "run_date": "2026-09-07",
+    "text": "source.txt",
+    "srt": "source.srt",
+    "timed_json": "source.segments.json",
+    "review": "source.review.md"
+  },
+  "dubbing": {
+    "status": "complete",
+    "voice_backend": "agent",
+    "voice_id": "voice-00",
+    "language": "ar-EG",
+    "preview": "dubs/snaptik-7614635067838598423-v3/preview-agent-ar-eg.mp4",
+    "preview_duration": 91.2,
+    "state": "dubs/snaptik-7614635067838598423-v3/state.json",
+    "final": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg-original-bg.mp4",
+    "audio": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg-original-bg.mp3",
+    "subtitles": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg-original-bg.srt",
+    "duration": 108.9,
+    "pending_takes": [],
+    "completed_at": "2026-09-07T17:10:25+00:00",
+    "dry_final": "dubs/snaptik-7614635067838598423-v3/final-dub-agent-ar-eg.mp4",
+    "music_included": true,
+    "background_mode": "neural_original_background_estimate",
+    "background_purity_guarantee": false,
+    "updated_at": "2026-09-07T17:56:23+00:00"
+  }
 }

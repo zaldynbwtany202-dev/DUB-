@@ -89,6 +89,11 @@
   .tok .help code{background:rgba(232,184,109,.12);padding:2px 6px;border-radius:5px;
                   font-size:13px}
   /* ── Progress bar ── */
+  .nextstep{margin:22px 0 0;text-align:start;background:rgba(232,184,109,.08);
+            border:1px solid rgba(232,184,109,.28);border-radius:14px;padding:16px 20px}
+  .nextstep b{color:var(--gold);font-size:15.5px}
+  .nextstep p{margin:8px 0 12px;color:var(--muted);font-size:14px;line-height:1.9}
+  .nextstep code{background:rgba(0,0,0,.4);padding:2px 6px;border-radius:5px;font-size:12.5px}
   .bar{height:6px;border-radius:3px;background:rgba(244,239,228,.1);margin:16px 0 0;overflow:hidden}
   .bar #fill{height:100%;width:0;border-radius:3px;
              background:linear-gradient(90deg,var(--gold),#c98f3f);
@@ -106,7 +111,7 @@
     <a href="index.html">الرئيسية</a>
     <a href="preview.html">المعاينة</a>
     <a href="voices.html">الأصوات</a>
-    <a href="studio.html">المصمّم</a>
+    <a href="voice-shop.html">مئة صوت</a>
     <a href="send.html" class="on">إرسال</a>
   </nav>
 </header>
@@ -249,10 +254,24 @@ async function handle(file) {
     });
 
     progress(100);
+    const slug = (r.name || '').replace(/\.part\d+of\d+/, '').replace(/\.[^.]+$/, '');
     say(`<b>وصل الملف كاملاً</b> — ${formatMB(r.size)} م.ب` +
         (r.parts > 1 ? ` في ${r.parts} قطع` : '') +
         `.<br><a href="${r.url}" target="_blank" rel="noopener">شاهد الالتزام على GitHub ↗</a>` +
-        '<br>قل لي أن أبدأ الدبلجة.', 'ok');
+        `<div class="nextstep">
+           <b>الخطوة التالية: اختار الصوت</b>
+           <p>مئة عينة، ولكل واحدة زر «اختر هذه العينة» يسجّل اختيارك في المستودع
+              فيُبنى الدبلج بهذا الصوت نفسه.
+              <span dir="ltr"><code>${slug}</code></span></p>
+           <a class="dl" href="voice-shop.html${slug ? '?project=' + encodeURIComponent(slug) : ''}">
+             افتح مئة عينة صوت ←</a>
+           <button type="button" class="alt" id="skipVoice">أو اترك الصوت لي</button>
+         </div>`, 'ok');
+    // Step two of the same flow: the file is in the repo and the voice is what is
+    // still missing. The shop writes its answer back into the repo as well, so
+    // nothing has to be retyped here; the slug ties both halves to one project.
+    const skip = document.getElementById('skipVoice');
+    if (skip) skip.onclick = () => say('تمام — قل لي «ابدأ الدبلجة» وأختار أنا الصوت المناسب للنص.', 'ok');
   } catch (err) {
     progress(null);
     // A rejected token is worth clearing: leaving a dead one saved would make

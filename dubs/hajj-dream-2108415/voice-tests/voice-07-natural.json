@@ -1,0 +1,18 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-07",
+  "language": "ar-EG",
+  "gender": "masculine",
+  "audition_index": 7,
+  "selection": "User requested the chosen voice from the first group of the last ten-sample batch.",
+  "text": "في قرية فقيرة، عايش راجل كبير في السن، على قد حاله. رزقه قليل ويادوب مكفّيه. مع أذان الفجر، بيصحّي مراته عائشة. هي بتصلّي في البيت، وهو بيروح الجامع. حلمه من زمان إنه يروح الحج معاها، لكن كل سنة تحصل ظروف تأجّل السفر. المرة دي قرر يحاول تاني، ويجمع المصاريف على قد ما يقدر.",
+  "file": "voice-07-natural.wav",
+  "duration_seconds": 24.55065759637188,
+  "sha256": "7e43a86d77bb3293f31429680d297f2e3871c8c9c9b9e5b5f456344f9e33d844",
+  "postprocessing_applied": false,
+  "tempo_changed": false,
+  "background_added": false,
+  "status": "awaiting_extended_sample_approval",
+  "full_video_generation_authorized": false,
+  "registration_scope": "Current Arena session only"
+}

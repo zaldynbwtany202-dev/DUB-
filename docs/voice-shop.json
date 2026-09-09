@@ -1,0 +1,3401 @@
+{
+  "built_by": "scripts/build_voice_catalog.py",
+  "project": "hajj-dream-2108415",
+  "total_slots": 100,
+  "ready": 85,
+  "queued": 15,
+  "gender_note": "كل ما مسجل من الأصوات في هذه الجلسة رجولي؛ الإناث تُطلب بمباريات على المنصة، ولا تُصطنع بتغيير النبرة — لن يُعرض صوت رجل معدّل على أنه صوت امرأة",
+  "how_the_choice_is_used": "الضغط على «اختر هذه العينة» يكتب docs/voice-choice.json في الفرع؛ الدبلجة تُبنى من نفس السلسلة: الصوت + chain، لا وصف لفظي. لو تغيّر الصوت أو الجلسة، السلسلة تُعاد من هنا.",
+  "samples": [
+    {
+      "id": 1,
+      "title": "قارئ النص الكامل · voice-04 · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "ff250318429a00df",
+      "preview": {
+        "f0_mean": 176.47058823529412,
+        "f0_spread": 6.379,
+        "level_dbfs": -17.27
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-001.mp3"
+    },
+    {
+      "id": 2,
+      "title": "قارئ النص الكامل · voice-05 · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "96b8600cbb4a8887",
+      "preview": {
+        "f0_mean": 138.12978237106233,
+        "f0_spread": 6.486,
+        "level_dbfs": -17.09
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-002.mp3"
+    },
+    {
+      "id": 3,
+      "title": "قارئ النص الكامل · voice-07 · يافع · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "58333a38930076e9",
+      "preview": {
+        "f0_mean": 215.24663677130044,
+        "f0_spread": 6.313,
+        "level_dbfs": -16.91
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-003.mp3"
+    },
+    {
+      "id": 4,
+      "title": "قارئ النص الكامل · voice-08 · رجل · نبرة عميق",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-08",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-08.flac",
+      "chain": "bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.48,
+        "f0_spread": 6.5,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.43
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "b8e2f01815939322",
+      "preview": {
+        "f0_mean": 146.34146341463415,
+        "f0_spread": 6.524,
+        "level_dbfs": -16.47
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-004.mp3"
+    },
+    {
+      "id": 5,
+      "title": "قارئ النص الكامل · voice-10 · شاب · نبرة محايد",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700",
+      "chain_note": "pitch أعلى بدرجة ونصف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "0539afb72fb72632",
+      "preview": {
+        "f0_mean": 152.38095238095238,
+        "f0_spread": 6.499,
+        "level_dbfs": -17.09
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-005.mp3"
+    },
+    {
+      "id": 6,
+      "title": "قارئ النص الكامل · voice-11 · مسن · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-11",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-11.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 162.73,
+        "f0_spread": 7.51,
+        "voiced_ratio": 0.61,
+        "level_dbfs": -18.69
+      },
+      "preview_seconds": 10.01,
+      "bytes": 121004,
+      "sha256": "3651768cef219b7c",
+      "preview": {
+        "f0_mean": 146.34146341463415,
+        "f0_spread": 7.98,
+        "level_dbfs": -16.78
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-006.mp3"
+    },
+    {
+      "id": 7,
+      "title": "قارئ النص الكامل · voice-13 · شاب · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-13",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-13.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 145.07,
+        "f0_spread": 6.93,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.56
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "54d387353f41c2e5",
+      "preview": {
+        "f0_mean": 159.734219269103,
+        "f0_spread": 6.233,
+        "level_dbfs": -17.85
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-007.mp3"
+    },
+    {
+      "id": 8,
+      "title": "اختبار اللهجة · voice-00-c1 · مسن · نبرة عميق",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-00-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c1.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.99,
+        "f0_spread": 6.24,
+        "voiced_ratio": 0.74,
+        "level_dbfs": -18.71
+      },
+      "preview_seconds": 10.01,
+      "bytes": 121004,
+      "sha256": "d4acbac5eac9d123",
+      "preview": {
+        "f0_mean": 154.83870967741936,
+        "f0_spread": 7.2,
+        "level_dbfs": -16.7
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-008.mp3"
+    },
+    {
+      "id": 9,
+      "title": "اختبار اللهجة · voice-00-c3 · رجل · نبرة محايد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-00-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c3.flac",
+      "chain": "anull",
+      "chain_note": "",
+      "raw": true,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 179.63,
+        "f0_spread": 6.92,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.58
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "d69be4bb1f2ec5f2",
+      "preview": {
+        "f0_mean": 178.77156966098875,
+        "f0_spread": 6.891,
+        "level_dbfs": -17.91
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-009.mp3"
+    },
+    {
+      "id": 10,
+      "title": "اختبار اللهجة · voice-01-c2 · يافع · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-01-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-01-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 150.0,
+        "f0_spread": 7.46,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -19.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "5e8ce231149f4113",
+      "preview": {
+        "f0_mean": 164.38548960275853,
+        "f0_spread": 7.256,
+        "level_dbfs": -18.01
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-010.mp3"
+    },
+    {
+      "id": 11,
+      "title": "اختبار اللهجة · voice-03-c1 · رجل · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-03-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c1.flac",
+      "chain": "treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 164.55,
+        "f0_spread": 6.44,
+        "voiced_ratio": 0.67,
+        "level_dbfs": -19.18
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "5f293ecf2dd8bffd",
+      "preview": {
+        "f0_mean": 164.10304362055263,
+        "f0_spread": 6.289,
+        "level_dbfs": -17.44
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-011.mp3"
+    },
+    {
+      "id": 12,
+      "title": "اختبار اللهجة · voice-03-c3 · يافع · نبرة عميق",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-03-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c3.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 168.32,
+        "f0_spread": 6.1,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.05
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "0623c7ebc7bbbd1e",
+      "preview": {
+        "f0_mean": 185.32818532818533,
+        "f0_spread": 6.413,
+        "level_dbfs": -17.52
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-012.mp3"
+    },
+    {
+      "id": 13,
+      "title": "عيّنة مشهدية · voice-02-s1-quiet · مسن · نبرة محايد",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-02-s1-quiet",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 140.0,
+        "f0_spread": 7.93,
+        "voiced_ratio": 0.63,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "b6dd01a779ac139b",
+      "preview": {
+        "f0_mean": 136.36363636363637,
+        "f0_spread": 8.854,
+        "level_dbfs": -16.77
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-013.mp3"
+    },
+    {
+      "id": 14,
+      "title": "عيّنة مشهدية · voice-02-s3-astonished · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-02-s3-astonished",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.99,
+        "f0_spread": 7.95,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -18.94
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "ee616be2043cc1ac",
+      "preview": {
+        "f0_mean": 144.14544405165572,
+        "f0_spread": 7.459,
+        "level_dbfs": -16.96
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-014.mp3"
+    },
+    {
+      "id": 15,
+      "title": "سرد كثيف · part-00 · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "part-00",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-00.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 175.35,
+        "f0_spread": 7.34,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.57
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "51329fe194f02e6f",
+      "preview": {
+        "f0_mean": 164.3835616438356,
+        "f0_spread": 7.946,
+        "level_dbfs": -18.03
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-015.mp3"
+    },
+    {
+      "id": 16,
+      "title": "سرد كثيف · part-02 · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "part-02",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-02.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 170.6,
+        "f0_spread": 6.54,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.21
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "e74b3b61be59a001",
+      "preview": {
+        "f0_mean": 170.2127659574468,
+        "f0_spread": 6.555,
+        "level_dbfs": -16.85
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-016.mp3"
+    },
+    {
+      "id": 17,
+      "title": "قارئ النص الكامل · voice-04 · يافع · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "8f84428d402fb26b",
+      "preview": {
+        "f0_mean": 174.86396814863969,
+        "f0_spread": 6.281,
+        "level_dbfs": -17.05
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-017.mp3"
+    },
+    {
+      "id": 18,
+      "title": "قارئ النص الكامل · voice-05 · رجل · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "16132407f8bb9879",
+      "preview": {
+        "f0_mean": 140.55667026804548,
+        "f0_spread": 6.36,
+        "level_dbfs": -17.63
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-018.mp3"
+    },
+    {
+      "id": 19,
+      "title": "قارئ النص الكامل · voice-07 · يافع · نبرة عميق",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "34479c9552e13365",
+      "preview": {
+        "f0_mean": 209.15131953673819,
+        "f0_spread": 6.218,
+        "level_dbfs": -16.7
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-019.mp3"
+    },
+    {
+      "id": 20,
+      "title": "قارئ النص الكامل · voice-08 · مسن · نبرة محايد",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-08",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-08.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.48,
+        "f0_spread": 6.5,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.43
+      },
+      "preview_seconds": 10.02,
+      "bytes": 121004,
+      "sha256": "0d3005f4490f58b7",
+      "preview": {
+        "f0_mean": 129.3800539083558,
+        "f0_spread": 7.052,
+        "level_dbfs": -16.62
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-020.mp3"
+    },
+    {
+      "id": 21,
+      "title": "قارئ النص الكامل · voice-10 · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "a416bb43b7d6b245",
+      "preview": {
+        "f0_mean": 147.24064925899788,
+        "f0_spread": 6.213,
+        "level_dbfs": -16.98
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-021.mp3"
+    },
+    {
+      "id": 22,
+      "title": "قارئ النص الكامل · voice-11 · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-11",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-11.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 162.73,
+        "f0_spread": 7.51,
+        "voiced_ratio": 0.61,
+        "level_dbfs": -18.69
+      },
+      "preview_seconds": 10.01,
+      "bytes": 121004,
+      "sha256": "ae332c3a860245fa",
+      "preview": {
+        "f0_mean": 161.88916188916187,
+        "f0_spread": 7.617,
+        "level_dbfs": -17.84
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-022.mp3"
+    },
+    {
+      "id": 23,
+      "title": "قارئ النص الكامل · voice-13 · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-13",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-13.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 145.07,
+        "f0_spread": 6.93,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.56
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "bad1a8316a5a9c30",
+      "preview": {
+        "f0_mean": 154.3424317617866,
+        "f0_spread": 6.416,
+        "level_dbfs": -16.93
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-023.mp3"
+    },
+    {
+      "id": 24,
+      "title": "اختبار اللهجة · voice-00-c2 · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-00-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 187.66,
+        "f0_spread": 7.02,
+        "voiced_ratio": 0.56,
+        "level_dbfs": -19.74
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "876a0358a49d60d0",
+      "preview": {
+        "f0_mean": 206.89655172413794,
+        "f0_spread": 7.313,
+        "level_dbfs": -17.98
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-024.mp3"
+    },
+    {
+      "id": 25,
+      "title": "اختبار اللهجة · voice-00-c3 · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-00-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c3.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 179.63,
+        "f0_spread": 6.92,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.58
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "f373f04e402566df",
+      "preview": {
+        "f0_mean": 172.04301075268816,
+        "f0_spread": 6.818,
+        "level_dbfs": -17.64
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-025.mp3"
+    },
+    {
+      "id": 26,
+      "title": "اختبار اللهجة · voice-01-c2 · يافع · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-01-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-01-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 150.0,
+        "f0_spread": 7.46,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -19.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "a4d85e71b07643ba",
+      "preview": {
+        "f0_mean": 166.08996539792386,
+        "f0_spread": 7.234,
+        "level_dbfs": -18.6
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-026.mp3"
+    },
+    {
+      "id": 27,
+      "title": "اختبار اللهجة · voice-03-c1 · رجل · نبرة عميق",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-03-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c1.flac",
+      "chain": "bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 164.55,
+        "f0_spread": 6.44,
+        "voiced_ratio": 0.67,
+        "level_dbfs": -19.18
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "cb2f02032fb6f563",
+      "preview": {
+        "f0_mean": 163.82252559726962,
+        "f0_spread": 6.366,
+        "level_dbfs": -16.87
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-027.mp3"
+    },
+    {
+      "id": 28,
+      "title": "اختبار اللهجة · voice-03-c3 · شاب · نبرة محايد",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-03-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c3.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700",
+      "chain_note": "pitch أعلى بدرجة ونصف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 168.32,
+        "f0_spread": 6.1,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.05
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "d0c0813daea639df",
+      "preview": {
+        "f0_mean": 170.2127659574468,
+        "f0_spread": 6.107,
+        "level_dbfs": -17.53
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-028.mp3"
+    },
+    {
+      "id": 29,
+      "title": "عيّنة مشهدية · voice-02-s1-quiet · مسن · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-02-s1-quiet",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 140.0,
+        "f0_spread": 7.93,
+        "voiced_ratio": 0.63,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "72036dc1fbf481f7",
+      "preview": {
+        "f0_mean": 134.8314606741573,
+        "f0_spread": 8.685,
+        "level_dbfs": -16.61
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-029.mp3"
+    },
+    {
+      "id": 30,
+      "title": "عيّنة مشهدية · voice-02-s3-astonished · شاب · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-02-s3-astonished",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.99,
+        "f0_spread": 7.95,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -18.94
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "59635cf6de761883",
+      "preview": {
+        "f0_mean": 152.86624203821657,
+        "f0_spread": 7.536,
+        "level_dbfs": -17.16
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-030.mp3"
+    },
+    {
+      "id": 31,
+      "title": "سرد كثيف · part-00 · مسن · نبرة عميق",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "part-00",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-00.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 175.35,
+        "f0_spread": 7.34,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.57
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "2d7c17f8bdbf3c71",
+      "preview": {
+        "f0_mean": 149.53271028037383,
+        "f0_spread": 8.73,
+        "level_dbfs": -16.88
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-031.mp3"
+    },
+    {
+      "id": 32,
+      "title": "سرد كثيف · part-02 · رجل · نبرة محايد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "part-02",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-02.flac",
+      "chain": "anull",
+      "chain_note": "",
+      "raw": true,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 170.6,
+        "f0_spread": 6.54,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.21
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "242c08e3e6dab248",
+      "preview": {
+        "f0_mean": 170.2127659574468,
+        "f0_spread": 6.565,
+        "level_dbfs": -16.97
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-032.mp3"
+    },
+    {
+      "id": 33,
+      "title": "قارئ النص الكامل · voice-04 · يافع · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "371f485100db6534",
+      "preview": {
+        "f0_mean": 176.79617972650314,
+        "f0_spread": 6.346,
+        "level_dbfs": -17.63
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-033.mp3"
+    },
+    {
+      "id": 34,
+      "title": "قارئ النص الكامل · voice-05 · رجل · نبرة عميق",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "12949e4b77e824e3",
+      "preview": {
+        "f0_mean": 137.93217343913858,
+        "f0_spread": 6.426,
+        "level_dbfs": -17.14
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-034.mp3"
+    },
+    {
+      "id": 35,
+      "title": "قارئ النص الكامل · voice-07 · شاب · نبرة محايد",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700",
+      "chain_note": "pitch أعلى بدرجة ونصف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "4587ee546523a580",
+      "preview": {
+        "f0_mean": 192.7741935483871,
+        "f0_spread": 5.37,
+        "level_dbfs": -16.73
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-035.mp3"
+    },
+    {
+      "id": 36,
+      "title": "قارئ النص الكامل · voice-08 · مسن · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-08",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-08.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.48,
+        "f0_spread": 6.5,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.43
+      },
+      "preview_seconds": 10.02,
+      "bytes": 121004,
+      "sha256": "e68a78f858a07eea",
+      "preview": {
+        "f0_mean": 125.0,
+        "f0_spread": 6.959,
+        "level_dbfs": -16.47
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-036.mp3"
+    },
+    {
+      "id": 37,
+      "title": "قارئ النص الكامل · voice-10 · شاب · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "34fec666dd3baa75",
+      "preview": {
+        "f0_mean": 153.3546325878594,
+        "f0_spread": 6.416,
+        "level_dbfs": -17.46
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-037.mp3"
+    },
+    {
+      "id": 38,
+      "title": "قارئ النص الكامل · voice-11 · مسن · نبرة عميق",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-11",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-11.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 162.73,
+        "f0_spread": 7.51,
+        "voiced_ratio": 0.61,
+        "level_dbfs": -18.69
+      },
+      "preview_seconds": 10.01,
+      "bytes": 121004,
+      "sha256": "5d0adb7ab593e3c2",
+      "preview": {
+        "f0_mean": 146.34146341463415,
+        "f0_spread": 8.454,
+        "level_dbfs": -16.81
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-038.mp3"
+    },
+    {
+      "id": 39,
+      "title": "قارئ النص الكامل · voice-13 · رجل · نبرة محايد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-13",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-13.flac",
+      "chain": "anull",
+      "chain_note": "",
+      "raw": true,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 145.07,
+        "f0_spread": 6.93,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.56
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "8d843615d7965bb5",
+      "preview": {
+        "f0_mean": 146.78899082568807,
+        "f0_spread": 6.955,
+        "level_dbfs": -17.43
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-039.mp3"
+    },
+    {
+      "id": 40,
+      "title": "اختبار اللهجة · voice-00-c2 · يافع · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-00-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 187.66,
+        "f0_spread": 7.02,
+        "voiced_ratio": 0.56,
+        "level_dbfs": -19.74
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "a88eaf1469cbba53",
+      "preview": {
+        "f0_mean": 200.0,
+        "f0_spread": 7.268,
+        "level_dbfs": -17.87
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-040.mp3"
+    },
+    {
+      "id": 41,
+      "title": "اختبار اللهجة · voice-00-c3 · رجل · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-00-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c3.flac",
+      "chain": "treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 179.63,
+        "f0_spread": 6.92,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.58
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "b51283386e933ed5",
+      "preview": {
+        "f0_mean": 179.43987925540836,
+        "f0_spread": 6.798,
+        "level_dbfs": -18.58
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-041.mp3"
+    },
+    {
+      "id": 42,
+      "title": "اختبار اللهجة · voice-01-c2 · يافع · نبرة عميق",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-01-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-01-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 150.0,
+        "f0_spread": 7.46,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -19.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "3c742e7758e1a941",
+      "preview": {
+        "f0_mean": 166.08996539792386,
+        "f0_spread": 7.177,
+        "level_dbfs": -17.81
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-042.mp3"
+    },
+    {
+      "id": 43,
+      "title": "اختبار اللهجة · voice-03-c1 · مسن · نبرة محايد",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-03-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c1.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 164.55,
+        "f0_spread": 6.44,
+        "voiced_ratio": 0.67,
+        "level_dbfs": -19.18
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "cdde71de64a2704c",
+      "preview": {
+        "f0_mean": 137.14285714285714,
+        "f0_spread": 6.999,
+        "level_dbfs": -16.82
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-043.mp3"
+    },
+    {
+      "id": 44,
+      "title": "اختبار اللهجة · voice-03-c3 · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-03-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c3.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 168.32,
+        "f0_spread": 6.1,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.05
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "d774d6a88038cdb2",
+      "preview": {
+        "f0_mean": 169.31269596376848,
+        "f0_spread": 6.039,
+        "level_dbfs": -17.5
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-044.mp3"
+    },
+    {
+      "id": 45,
+      "title": "عيّنة مشهدية · voice-02-s1-quiet · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-02-s1-quiet",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 140.0,
+        "f0_spread": 7.93,
+        "voiced_ratio": 0.63,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "b97cd0f4f85cfd5d",
+      "preview": {
+        "f0_mean": 142.43323442136497,
+        "f0_spread": 8.451,
+        "level_dbfs": -17.26
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-045.mp3"
+    },
+    {
+      "id": 46,
+      "title": "عيّنة مشهدية · voice-02-s3-astonished · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-02-s3-astonished",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.99,
+        "f0_spread": 7.95,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -18.94
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "ac2ea49e87e3898e",
+      "preview": {
+        "f0_mean": 141.38469547110878,
+        "f0_spread": 7.519,
+        "level_dbfs": -16.94
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-046.mp3"
+    },
+    {
+      "id": 47,
+      "title": "سرد كثيف · part-01 · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "part-01",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-01.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 184.52,
+        "f0_spread": 7.4,
+        "voiced_ratio": 0.65,
+        "level_dbfs": -17.31
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "052ced69b4f8a3e8",
+      "preview": {
+        "f0_mean": 200.0,
+        "f0_spread": 7.47,
+        "level_dbfs": -16.53
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-047.mp3"
+    },
+    {
+      "id": 48,
+      "title": "سرد كثيف · part-02 · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "part-02",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-02.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 170.6,
+        "f0_spread": 6.54,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.21
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "aa55600544a97218",
+      "preview": {
+        "f0_mean": 169.01408450704224,
+        "f0_spread": 6.333,
+        "level_dbfs": -16.7
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-048.mp3"
+    },
+    {
+      "id": 49,
+      "title": "قارئ النص الكامل · voice-04 · يافع · نبرة عميق",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "516a7c19467d35ac",
+      "preview": {
+        "f0_mean": 175.1824817518248,
+        "f0_spread": 6.217,
+        "level_dbfs": -17.07
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-049.mp3"
+    },
+    {
+      "id": 50,
+      "title": "قارئ النص الكامل · voice-05 · مسن · نبرة محايد",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.01,
+      "bytes": 120716,
+      "sha256": "3e5962c077f854a6",
+      "preview": {
+        "f0_mean": 124.35233160621762,
+        "f0_spread": 9.233,
+        "level_dbfs": -17.32
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-050.mp3"
+    },
+    {
+      "id": 51,
+      "title": "قارئ النص الكامل · voice-07 · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "06a36f8ff8d440f0",
+      "preview": {
+        "f0_mean": 188.23529411764707,
+        "f0_spread": 5.398,
+        "level_dbfs": -16.62
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-051.mp3"
+    },
+    {
+      "id": 52,
+      "title": "قارئ النص الكامل · voice-08 · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-08",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-08.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.48,
+        "f0_spread": 6.5,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.43
+      },
+      "preview_seconds": 10.02,
+      "bytes": 121004,
+      "sha256": "e2e1bd7768fe6b9c",
+      "preview": {
+        "f0_mean": 137.53581661891118,
+        "f0_spread": 6.644,
+        "level_dbfs": -17.04
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-052.mp3"
+    },
+    {
+      "id": 53,
+      "title": "قارئ النص الكامل · voice-10 · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "4b6a150a4fa13c62",
+      "preview": {
+        "f0_mean": 145.01510574018127,
+        "f0_spread": 6.204,
+        "level_dbfs": -16.92
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-053.mp3"
+    },
+    {
+      "id": 54,
+      "title": "قارئ النص الكامل · voice-12 · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-12",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-12.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 153.66,
+        "f0_spread": 7.5,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -19.02
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "dab8344f8c241583",
+      "preview": {
+        "f0_mean": 167.83421969558043,
+        "f0_spread": 7.158,
+        "level_dbfs": -16.58
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-054.mp3"
+    },
+    {
+      "id": 55,
+      "title": "قارئ النص الكامل · voice-13 · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-13",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-13.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 145.07,
+        "f0_spread": 6.93,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.56
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "01e4a3c69776bfa8",
+      "preview": {
+        "f0_mean": 142.64518863925392,
+        "f0_spread": 7.055,
+        "level_dbfs": -17.09
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-055.mp3"
+    },
+    {
+      "id": 56,
+      "title": "اختبار اللهجة · voice-00-c2 · يافع · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-00-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 187.66,
+        "f0_spread": 7.02,
+        "voiced_ratio": 0.56,
+        "level_dbfs": -19.74
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "684f2195caf71ce5",
+      "preview": {
+        "f0_mean": 206.89655172413794,
+        "f0_spread": 7.324,
+        "level_dbfs": -18.26
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-056.mp3"
+    },
+    {
+      "id": 57,
+      "title": "اختبار اللهجة · voice-00-c3 · رجل · نبرة عميق",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-00-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c3.flac",
+      "chain": "bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 179.63,
+        "f0_spread": 6.92,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.58
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "d3e1137a92d1ea66",
+      "preview": {
+        "f0_mean": 169.01408450704224,
+        "f0_spread": 6.984,
+        "level_dbfs": -17.43
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-057.mp3"
+    },
+    {
+      "id": 58,
+      "title": "اختبار اللهجة · voice-01-c2 · شاب · نبرة محايد",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-01-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-01-c2.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700",
+      "chain_note": "pitch أعلى بدرجة ونصف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 150.0,
+        "f0_spread": 7.46,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -19.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "35464e6fac0551ef",
+      "preview": {
+        "f0_mean": 150.9433962264151,
+        "f0_spread": 7.301,
+        "level_dbfs": -18.09
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-058.mp3"
+    },
+    {
+      "id": 59,
+      "title": "اختبار اللهجة · voice-03-c1 · مسن · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-03-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c1.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 164.55,
+        "f0_spread": 6.44,
+        "voiced_ratio": 0.67,
+        "level_dbfs": -19.18
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "f8fe5cae696f5582",
+      "preview": {
+        "f0_mean": 136.55788655788655,
+        "f0_spread": 6.974,
+        "level_dbfs": -16.46
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-059.mp3"
+    },
+    {
+      "id": 60,
+      "title": "اختبار اللهجة · voice-03-c3 · شاب · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-03-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c3.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 168.32,
+        "f0_spread": 6.1,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.05
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "9740603e07600029",
+      "preview": {
+        "f0_mean": 177.46432671805806,
+        "f0_spread": 5.959,
+        "level_dbfs": -17.64
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-060.mp3"
+    },
+    {
+      "id": 61,
+      "title": "عيّنة مشهدية · voice-02-s1-quiet · مسن · نبرة عميق",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-02-s1-quiet",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s1-quiet.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 140.0,
+        "f0_spread": 7.93,
+        "voiced_ratio": 0.63,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "631472631f60503d",
+      "preview": {
+        "f0_mean": 118.51851851851852,
+        "f0_spread": 9.28,
+        "level_dbfs": -16.61
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-061.mp3"
+    },
+    {
+      "id": 62,
+      "title": "عيّنة مشهدية · voice-02-s3-astonished · رجل · نبرة محايد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-02-s3-astonished",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "chain": "anull",
+      "chain_note": "",
+      "raw": true,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.99,
+        "f0_spread": 7.95,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -18.94
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "67af74040be3d567",
+      "preview": {
+        "f0_mean": 145.01642935377876,
+        "f0_spread": 7.671,
+        "level_dbfs": -17.07
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-062.mp3"
+    },
+    {
+      "id": 63,
+      "title": "سرد كثيف · part-01 · يافع · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "part-01",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-01.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 184.52,
+        "f0_spread": 7.4,
+        "voiced_ratio": 0.65,
+        "level_dbfs": -17.31
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "8685cb15c327d9d3",
+      "preview": {
+        "f0_mean": 199.1701244813278,
+        "f0_spread": 7.403,
+        "level_dbfs": -16.46
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-063.mp3"
+    },
+    {
+      "id": 64,
+      "title": "سرد كثيف · part-02 · رجل · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "part-02",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-02.flac",
+      "chain": "treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 170.6,
+        "f0_spread": 6.54,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.21
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "9d6075bf04ec376e",
+      "preview": {
+        "f0_mean": 175.1824817518248,
+        "f0_spread": 6.478,
+        "level_dbfs": -17.25
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-064.mp3"
+    },
+    {
+      "id": 65,
+      "title": "قارئ النص الكامل · voice-04 · شاب · نبرة محايد",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700",
+      "chain_note": "pitch أعلى بدرجة ونصف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "6e5592a75a7c8221",
+      "preview": {
+        "f0_mean": 156.09797368755022,
+        "f0_spread": 6.277,
+        "level_dbfs": -17.24
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-065.mp3"
+    },
+    {
+      "id": 66,
+      "title": "قارئ النص الكامل · voice-05 · مسن · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.01,
+      "bytes": 120716,
+      "sha256": "16a5c34df6000621",
+      "preview": {
+        "f0_mean": 120.90680100755668,
+        "f0_spread": 8.897,
+        "level_dbfs": -17.01
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-066.mp3"
+    },
+    {
+      "id": 67,
+      "title": "قارئ النص الكامل · voice-07 · شاب · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "6dcd50054d2ae633",
+      "preview": {
+        "f0_mean": 195.91836734693877,
+        "f0_spread": 5.351,
+        "level_dbfs": -16.85
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-067.mp3"
+    },
+    {
+      "id": 68,
+      "title": "قارئ النص الكامل · voice-08 · مسن · نبرة عميق",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-08",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-08.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.48,
+        "f0_spread": 6.5,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.43
+      },
+      "preview_seconds": 10.02,
+      "bytes": 121004,
+      "sha256": "11a2c060510f4c64",
+      "preview": {
+        "f0_mean": 121.8274111675127,
+        "f0_spread": 7.171,
+        "level_dbfs": -16.36
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-068.mp3"
+    },
+    {
+      "id": 69,
+      "title": "قارئ النص الكامل · voice-10 · رجل · نبرة محايد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "anull",
+      "chain_note": "",
+      "raw": true,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "8714f7103f25d356",
+      "preview": {
+        "f0_mean": 142.43323442136497,
+        "f0_spread": 6.494,
+        "level_dbfs": -17.08
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-069.mp3"
+    },
+    {
+      "id": 70,
+      "title": "قارئ النص الكامل · voice-12 · يافع · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-12",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-12.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 153.66,
+        "f0_spread": 7.5,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -19.02
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "d4b54a881d7d909e",
+      "preview": {
+        "f0_mean": 167.24738675958187,
+        "f0_spread": 7.143,
+        "level_dbfs": -16.4
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-070.mp3"
+    },
+    {
+      "id": 71,
+      "title": "قارئ النص الكامل · voice-13 · رجل · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-13",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-13.flac",
+      "chain": "treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 145.07,
+        "f0_spread": 6.93,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.56
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "4a5634319969cb1f",
+      "preview": {
+        "f0_mean": 152.38095238095238,
+        "f0_spread": 6.724,
+        "level_dbfs": -18.0
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-071.mp3"
+    },
+    {
+      "id": 72,
+      "title": "اختبار اللهجة · voice-00-c2 · يافع · نبرة عميق",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-00-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c2.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 187.66,
+        "f0_spread": 7.02,
+        "voiced_ratio": 0.56,
+        "level_dbfs": -19.74
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "afa58a84fe7b9482",
+      "preview": {
+        "f0_mean": 200.0,
+        "f0_spread": 7.343,
+        "level_dbfs": -17.84
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-072.mp3"
+    },
+    {
+      "id": 73,
+      "title": "اختبار اللهجة · voice-00-c3 · مسن · نبرة محايد",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-00-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-00-c3.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 179.63,
+        "f0_spread": 6.92,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.58
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "62a6c9cf2980cd8d",
+      "preview": {
+        "f0_mean": 159.468438538206,
+        "f0_spread": 7.935,
+        "level_dbfs": -17.8
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-073.mp3"
+    },
+    {
+      "id": 74,
+      "title": "اختبار اللهجة · voice-01-c2 · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-01-c2",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-01-c2.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 150.0,
+        "f0_spread": 7.46,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -19.46
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "c0ea1194eefcf85f",
+      "preview": {
+        "f0_mean": 149.30051663087016,
+        "f0_spread": 7.07,
+        "level_dbfs": -17.89
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-074.mp3"
+    },
+    {
+      "id": 75,
+      "title": "اختبار اللهجة · voice-03-c1 · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-03-c1",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c1.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 164.55,
+        "f0_spread": 6.44,
+        "voiced_ratio": 0.67,
+        "level_dbfs": -19.18
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "ffa52daf03bfd3e8",
+      "preview": {
+        "f0_mean": 140.7624633431085,
+        "f0_spread": 6.926,
+        "level_dbfs": -17.25
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-075.mp3"
+    },
+    {
+      "id": 76,
+      "title": "اختبار اللهجة · voice-03-c3 · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-03-c3",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-03-c3.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 168.32,
+        "f0_spread": 6.1,
+        "voiced_ratio": 0.62,
+        "level_dbfs": -19.05
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "8bf1a04eaa301d7f",
+      "preview": {
+        "f0_mean": 169.01408450704224,
+        "f0_spread": 6.078,
+        "level_dbfs": -17.45
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-076.mp3"
+    },
+    {
+      "id": 77,
+      "title": "عيّنة مشهدية · voice-02-s2-grief · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-02-s2-grief",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s2-grief.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 162.13,
+        "f0_spread": 8.14,
+        "voiced_ratio": 0.56,
+        "level_dbfs": -18.52
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120428,
+      "sha256": "9048205cb4b4c387",
+      "preview": {
+        "f0_mean": 154.83870967741936,
+        "f0_spread": 8.416,
+        "level_dbfs": -17.18
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-077.mp3"
+    },
+    {
+      "id": 78,
+      "title": "عيّنة مشهدية · voice-02-s3-astonished · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-02-s3-astonished",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/voice-02-s3-astonished.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 148.99,
+        "f0_spread": 7.95,
+        "voiced_ratio": 0.57,
+        "level_dbfs": -18.94
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "37c65354371667df",
+      "preview": {
+        "f0_mean": 139.53488372093022,
+        "f0_spread": 7.604,
+        "level_dbfs": -16.97
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-078.mp3"
+    },
+    {
+      "id": 79,
+      "title": "سرد كثيف · part-01 · يافع · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "part-01",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-01.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 184.52,
+        "f0_spread": 7.4,
+        "voiced_ratio": 0.65,
+        "level_dbfs": -17.31
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "d8296aabd09ed72c",
+      "preview": {
+        "f0_mean": 201.68067226890756,
+        "f0_spread": 7.53,
+        "level_dbfs": -16.58
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-079.mp3"
+    },
+    {
+      "id": 80,
+      "title": "سرد كثيف · part-02 · رجل · نبرة عميق",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "part-02",
+      "source_take": "dubs/hajj-dream-2108415/takes-dense/part-02.flac",
+      "chain": "bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 170.6,
+        "f0_spread": 6.54,
+        "voiced_ratio": 0.71,
+        "level_dbfs": -17.21
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "083832aacfac75e9",
+      "preview": {
+        "f0_mean": 164.10304362055263,
+        "f0_spread": 6.625,
+        "level_dbfs": -16.8
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-080.mp3"
+    },
+    {
+      "id": 81,
+      "title": "قارئ النص الكامل · voice-04 · شاب · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-04",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-04.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 147.74,
+        "f0_spread": 6.76,
+        "voiced_ratio": 0.72,
+        "level_dbfs": -18.83
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "b7022dc9d7535214",
+      "preview": {
+        "f0_mean": 155.84415584415584,
+        "f0_spread": 6.089,
+        "level_dbfs": -17.01
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-081.mp3"
+    },
+    {
+      "id": 82,
+      "title": "قارئ النص الكامل · voice-05 · مسن · نبرة ساطع",
+      "gender": "ذكر",
+      "age": "مسن",
+      "dialect": "مصري",
+      "tone": "ساطع",
+      "base_voice": "voice-05",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-05.flac",
+      "chain": "asetrate=44100*0.81696,aresample=44100,atempo=1.22405,tremolo=f=5.5:d=0.35,treble=g=3:f=3200:t=s,highpass=f=95",
+      "chain_note": "pitch أخفض بثلاث أنصاف + ارتعاش مستوى خفيف؛ نبرة ساطع",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": -3.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 139.12,
+        "f0_spread": 6.48,
+        "voiced_ratio": 0.66,
+        "level_dbfs": -18.86
+      },
+      "preview_seconds": 10.01,
+      "bytes": 120716,
+      "sha256": "a94bb5235032efea",
+      "preview": {
+        "f0_mean": 134.45378151260505,
+        "f0_spread": 8.85,
+        "level_dbfs": -17.61
+      },
+      "chain_check": {
+        "applied_semitones": -3.51,
+        "duration_ratio": 0.998,
+        "reference_hz": 163.3
+      },
+      "preview_url": "voice-shop/sample-082.mp3"
+    },
+    {
+      "id": 83,
+      "title": "قارئ النص الكامل · voice-07 · شاب · نبرة عميق",
+      "gender": "ذكر",
+      "age": "شاب",
+      "dialect": "مصري",
+      "tone": "عميق",
+      "base_voice": "voice-07",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-07.flac",
+      "chain": "asetrate=44100*1.09051,aresample=44100,atempo=0.91700,bass=g=4.5:f=120:t=s,lowpass=f=7200",
+      "chain_note": "pitch أعلى بدرجة ونصف؛ نبرة عميق",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 1.5,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 182.23,
+        "f0_spread": 5.6,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.55
+      },
+      "preview_seconds": 9.98,
+      "bytes": 120716,
+      "sha256": "efd81dd85490d107",
+      "preview": {
+        "f0_mean": 188.6058360352015,
+        "f0_spread": 5.464,
+        "level_dbfs": -16.62
+      },
+      "chain_check": {
+        "applied_semitones": 1.5,
+        "duration_ratio": 0.997,
+        "reference_hz": 218.1
+      },
+      "preview_url": "voice-shop/sample-083.mp3"
+    },
+    {
+      "id": 84,
+      "title": "قارئ النص الكامل · voice-09 · يافع · نبرة محايد",
+      "gender": "ذكر",
+      "age": "يافع",
+      "dialect": "مصري",
+      "tone": "محايد",
+      "base_voice": "voice-09",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-09.flac",
+      "chain": "asetrate=44100*1.25992,aresample=44100,atempo=0.79370",
+      "chain_note": "pitch أعلى بأربع أنصاف نغمة، لا صوت طفل حقيقي",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 4.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 125.64,
+        "f0_spread": 7.22,
+        "voiced_ratio": 0.59,
+        "level_dbfs": -17.98
+      },
+      "preview_seconds": 9.99,
+      "bytes": 120716,
+      "sha256": "1bc0a55b5eda695a",
+      "preview": {
+        "f0_mean": 149.06832298136646,
+        "f0_spread": 6.619,
+        "level_dbfs": -16.85
+      },
+      "chain_check": {
+        "applied_semitones": 4.0,
+        "duration_ratio": 0.996,
+        "reference_hz": 251.9
+      },
+      "preview_url": "voice-shop/sample-084.mp3"
+    },
+    {
+      "id": 85,
+      "title": "قارئ النص الكامل · voice-10 · رجل · نبرة دافئ",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مصري",
+      "tone": "دافئ",
+      "base_voice": "voice-10",
+      "source_take": "dubs/hajj-dream-2108415/voice-tests/gallery/voice-10.flac",
+      "chain": "bass=g=2.5:f=220:t=s,treble=g=-1.5:f=4200:t=s",
+      "chain_note": "؛ نبرة دافئ",
+      "raw": false,
+      "status": "ready",
+      "expected_f0_delta_st": 0.0,
+      "facts": {
+        "seconds": 10.0,
+        "f0_mean": 142.95,
+        "f0_spread": 6.64,
+        "voiced_ratio": 0.7,
+        "level_dbfs": -18.46
+      },
+      "preview_seconds": 10.0,
+      "bytes": 120716,
+      "sha256": "6de23f4be55fc56f",
+      "preview": {
+        "f0_mean": 138.73295910184441,
+        "f0_spread": 6.191,
+        "level_dbfs": -16.94
+      },
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "preview_url": "voice-shop/sample-085.mp3"
+    },
+    {
+      "id": 86,
+      "title": "لكنة سعودي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "سعودي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«سعودي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 87,
+      "title": "لكنة إماراتي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "إماراتي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«إماراتي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 88,
+      "title": "لكنة كويتي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "كويتي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«كويتي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 89,
+      "title": "لكنة بحريني — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "بحريني",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«بحريني»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 90,
+      "title": "لكنة شامي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "شامي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«شامي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 91,
+      "title": "لكنة عراقي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "عراقي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«عراقي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 92,
+      "title": "لكنة يمني — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "يمني",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«يمني»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 93,
+      "title": "لكنة مغربي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "مغربي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«مغربي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 94,
+      "title": "لكنة جزائري — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "جزائري",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«جزائري»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 95,
+      "title": "لكنة تونسي — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "تونسي",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«تونسي»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 96,
+      "title": "لكنة سوداني — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "سوداني",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«سوداني»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 97,
+      "title": "لكنة فصحى — لم يُسجَّل بعد",
+      "gender": "ذكر",
+      "age": "رجل",
+      "dialect": "فصحى",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "الأصوات المسجّلة على المنصة رفضت وسم اللهجة المطلوبة لـ«فصحى»، ولم يُقبل سوى ar و ar-EG. يلزم battle صوت جديد بنفس اللهجة ثم يُضاف مقطعه الحقيقي هنا.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 98,
+      "title": "صوت أنثى (فصحى) — لم يُسجَّل بعد",
+      "gender": "أنثى",
+      "age": "شاب",
+      "dialect": "فصحى",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "لا يوجد صوت أنثوي مسجّل في هذه الجلسة؛ يُطلب بإضافة صوت من المنصة. لن يُصنع صوت امرأة من صوت رجل بالتعديل.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 99,
+      "title": "صوت أنثى (مصري) — لم يُسجَّل بعد",
+      "gender": "أنثى",
+      "age": "شاب",
+      "dialect": "فصحى",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "لا يوجد صوت أنثوي مسجّل في هذه الجلسة؛ يُطلب بإضافة صوت من المنصة. لن يُصنع صوت امرأة من صوت رجل بالتعديل.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    },
+    {
+      "id": 100,
+      "title": "صوت أنثى (شامي) — لم يُسجَّل بعد",
+      "gender": "أنثى",
+      "age": "شاب",
+      "dialect": "فصحى",
+      "tone": "محايد",
+      "base_voice": null,
+      "status": "queued",
+      "preview": null,
+      "bytes": 0,
+      "chain": "anull",
+      "chain_note": "",
+      "facts": {},
+      "chain_check": {
+        "applied_semitones": 0.0,
+        "duration_ratio": 1.0,
+        "reference_hz": 200.0
+      },
+      "why": "لا يوجد صوت أنثوي مسجّل في هذه الجلسة؛ يُطلب بإضافة صوت من المنصة. لن يُصنع صوت امرأة من صوت رجل بالتعديل.",
+      "note": "لا يعرض المنزّل بصوت وهمي — يبقى محجوزًا حتى يُسجَّل"
+    }
+  ]
+}

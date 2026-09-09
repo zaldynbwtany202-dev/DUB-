@@ -1,0 +1,62 @@
+{
+  "rule": "the dub is filtered to the original's measured band and slope; nothing was added under it, because this recording has no quiet air to lift without lifting the narrator's voice with it",
+  "filters": {
+    "lowpass_hz": 6500.0,
+    "low_shelf_db": -4.39,
+    "presence_shelf_db": 2.55,
+    "chain_applied": [
+      "bass=g=-4.39:f=180:t=s",
+      "treble=g=2.55:f=3200:t=s",
+      "lowpass=f=6500"
+    ],
+    "room_tone": {
+      "added": false,
+      "requested": "pauses",
+      "refused": "the lifted material is only 9.8 dB below typical speech (needs 10); that is voice, not room tone - refusing to lay it under the dub"
+    },
+    "pause_spans": {
+      "key_used": "pause_list",
+      "count": 124,
+      "total_seconds": 19.99,
+      "mean_seconds": 0.161,
+      "max_seconds": 0.7,
+      "words_file": "words.json",
+      "seconds_overlapping_word_cores": 12.68,
+      "overlap_fraction": 0.6343
+    },
+    "bed_scale_fitted": 5.19368
+  },
+  "before": {
+    "source": {
+      "hf_share": 0.00129,
+      "low_share": 0.16735,
+      "tilt": -28.25,
+      "floor_dbfs": -31.57,
+      "bandwidth_95pct_hz": 1549.2
+    },
+    "dub": {
+      "hf_share": 0.00207,
+      "low_share": 0.4598,
+      "tilt": -30.97,
+      "floor_dbfs": -62.62,
+      "bandwidth_95pct_hz": 731.3
+    }
+  },
+  "after": {
+    "hf_share": 0.0019,
+    "low_share": 0.30333,
+    "tilt": -29.29,
+    "floor_dbfs": -64.03,
+    "bandwidth_95pct_hz": 962.2
+  },
+  "deltas_vs_source": {
+    "hf_share": 0.0006,
+    "low_share": 0.136,
+    "tilt": -1.04,
+    "floor_dbfs": -32.46,
+    "bandwidth_95pct_hz": -587.0
+  },
+  "takes_untouched": true,
+  "output": ".cache/hajj-sync-repair/narration-matched.wav",
+  "output_sha256": "5f7d7bf8884420668f621250d8da4775c1544a91580e32f5b54c49788934e253"
+}

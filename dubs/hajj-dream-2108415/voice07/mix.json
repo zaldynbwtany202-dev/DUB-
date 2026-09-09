@@ -1,0 +1,38 @@
+{
+  "status": "technically_verified",
+  "duration": 676.33,
+  "picture_source": ".cache/hajj-voice07/render/dry.mp4",
+  "voice_source": ".cache/hajj-voice07/render/work/final.wav",
+  "voice_source_sha256": "78e2db004bb82893c9ae74c759b0dfcc42bcff90c94f0634b15e9a14629bc6ce",
+  "lossless_voice_master_used": true,
+  "voice_regenerated": false,
+  "background_source": ".cache/hajj-voice07/background.flac",
+  "background_sha256": "c475c95af904428865b78634b569774d9885db8e98afdde4d7cb3f73feb4adcf",
+  "background_kind": "neural estimate from original uploaded audio, not newly composed music",
+  "background_gain_db": 12.0,
+  "audio_bitrate": "128k",
+  "ducking": {
+    "threshold_linear": 0.05,
+    "ratio": 3,
+    "attack_ms": 20,
+    "release_ms": 500,
+    "detection": "rms"
+  },
+  "output": "dubs/hajj-dream-2108415/voice07/final-dub-voice07.mp4",
+  "output_sha256": "248d448bdf5e30ec4d969f0fba974c73173a693df192e87f1cda9c114ef8cf1e",
+  "filter_graph": "[0:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad=whole_dur=676.330000,atrim=0:676.330000,asetpts=PTS-STARTPTS,asplit=2[voice][side];[1:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad=whole_dur=676.330000,atrim=0:676.330000,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.200000,afade=t=out:st=675.980000:d=0.350000,volume=12.000dB[bed];[bed][side]sidechaincompress=threshold=0.05:ratio=3:attack=20:release=500:knee=2:detection=rms:link=average[ducked];[voice][ducked]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:print_format=json,aresample=48000[out]",
+  "normalization": {
+    "input_i": "-17.18",
+    "input_tp": "-3.84",
+    "input_lra": "4.00",
+    "input_thresh": "-27.94",
+    "output_i": "-16.05",
+    "output_tp": "-2.09",
+    "output_lra": "3.80",
+    "output_thresh": "-26.70",
+    "normalization_type": "dynamic",
+    "target_offset": "0.05"
+  },
+  "speech_contamination": "Neural separation can leave residuals; see the background audit, not a purity guarantee.",
+  "video_reencoded": false
+}

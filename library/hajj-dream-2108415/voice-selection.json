@@ -1,0 +1,37 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-12",
+  "language": "ar-EG",
+  "gender": "masculine",
+  "use_case": "narration",
+  "audition_index": 2,
+  "status": "used_in_complete_published_dub",
+  "full_narration_generated": true,
+  "registration_scope": "Current Arena session only; do not assume this voice ID transfers to a different session.",
+  "audition_history": [
+    {
+      "index": 1,
+      "selected_voice_id": "voice-01"
+    },
+    {
+      "index": 2,
+      "selected_voice_id": "voice-02"
+    }
+  ],
+  "candidate_voice_id": "voice-12",
+  "recorded_batch_voice_id": "voice-02",
+  "full_video_generation_authorized": true,
+  "selected_shortlist_group": 1,
+  "selected_audition_index": 7,
+  "latest_shortlist": [
+    "voice-07",
+    "voice-08",
+    "voice-09",
+    "voice-10",
+    "voice-11"
+  ],
+  "requested_improvements": [
+    "clearer Egyptian pronunciation",
+    "emotional narration"
+  ]
+}

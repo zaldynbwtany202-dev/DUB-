@@ -1,0 +1,32 @@
+{
+  "status": "rendered_pending_validation",
+  "duration": 676.33,
+  "picture_source": "library/hajj-dream-2108415/source.mp4",
+  "voice_source": ".cache/hajj-sync-repair/narration.wav",
+  "voice_source_sha256": "2ae18fb5e8e86589f4927d3f918644ca4e5ccf52e52c7c7bfaf8aa1e301e31a3",
+  "lossless_voice_master_used": true,
+  "voice_regenerated": false,
+  "background_source": null,
+  "background_sha256": null,
+  "background_kind": "none: the source carries no music, so nothing was added under the dub",
+  "background_gain_db": null,
+  "audio_bitrate": "160k",
+  "ducking": null,
+  "output": "/tmp/voice-only.mp4",
+  "output_sha256": "8b82081c153175e25fb9798727fcf11bc3cc403c5859d7986b5da37027d212f5",
+  "filter_graph": "[0:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad=whole_dur=676.330000,atrim=0:676.330000,asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-1.5:LRA=9:print_format=json,aresample=48000[out]",
+  "normalization": {
+    "input_i": "-19.04",
+    "input_tp": "-4.51",
+    "input_lra": "2.90",
+    "input_thresh": "-29.45",
+    "output_i": "-15.98",
+    "output_tp": "-1.50",
+    "output_lra": "3.00",
+    "output_thresh": "-26.40",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.02"
+  },
+  "speech_contamination": "no bed was mixed in, so no original-voice residue can leak through",
+  "video_reencoded": false
+}

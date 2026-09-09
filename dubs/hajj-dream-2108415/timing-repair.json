@@ -1,0 +1,55 @@
+{
+  "status": "complete_via_clause_anchoring",
+  "voice_id": "voice-12",
+  "user_requirement": "Every source utterance and meaning must be represented at its original speech time; rewrite unsuitable wording instead of leaving empty gaps.",
+  "previous_unused_declared_cue_seconds": 76.04618749999999,
+  "interpretation": "Unused cue room is measured, but genuine source silences must be distinguished before judging all gaps artificial.",
+  "acceptance_gates": [
+    "complete source-to-target utterance mapping",
+    "no unexplained missing narration during source speech",
+    "no overlapping spoken phrases",
+    "rewrite or regenerate mismatched lines; do not fill with silence",
+    "retain voice-12 and original picture"
+  ],
+  "completed_at": "2026-09-09T08:17:59+00:00",
+  "solution": "توجيه كل جملة إلى بداية وحدتها الكلامية في الأصل: إسقاط الصمت المتاح على المراسي مع تغطية النافذة كاملة، والقطع داخل صمت مقاس",
+  "gates": {
+    "source_speech_coverage": 0.980284,
+    "max_quiet_hole_seconds": 0.45,
+    "quiet_holes_over_budget": 0,
+    "speech_speed_changed": false,
+    "speech_cut": false,
+    "pieces_sample_identical": true,
+    "clause_onsets_at_planned_time": true
+  },
+  "remaining_limitation": "مقاسات الجُمل: نص الدبلجة المقطوع 1510 كلمة مقابل 1855 في الأصل، وميزانية الميزان 1634 لكلمات 288 وحدة؛ الباقي لا يُسد بصمت بل بإعادة صياغة أكثف وتسجيل من جديد، ومدخله timing-repair/clip-budget.json وtiming-repair/clause-fit-dense.json",
+  "artifacts": {
+    "plan": "timing-repair/pause-plan.json",
+    "verification": "source-sync/render-verification.json",
+    "measurement": "timing-repair/fit-measurement.json",
+    "pause_plan": "timing-repair/pause-plan.json",
+    "clip_budget": "timing-repair/clip-budget.json",
+    "policy_sweep": "timing-repair/policy-sweep.json",
+    "clause_fit_dense": "timing-repair/clause-fit-dense.json",
+    "dense_script": "timing-repair/script-dense.json",
+    "dense_takes": "takes-dense/"
+  },
+  "sentence_timing_error_seconds": {
+    "anchored": 228,
+    "mean_seconds": 2.948,
+    "median_seconds": 2.142,
+    "p90_seconds": 6.678,
+    "max_seconds": 14.499
+  },
+  "unreachable_anchors": 83,
+  "sentence_timing_error": {
+    "anchored": 236,
+    "mean_seconds": 2.937,
+    "median_seconds": 2.234,
+    "p90_seconds": 6.702,
+    "max_seconds": 14.499
+  },
+  "uncovered_source_speech_seconds": 11.74,
+  "anchor_hole_seconds": 0.5,
+  "dense_take_status": "8 مقاطع بصوت voice-00 محفوظة في takes-dense/؛ لم تُنشر: الملاءمة لكل جملة لم تبلغ 0.95–1.0 بعد، والمدخلات في timing-repair/clause-fit-dense.json"
+}
