@@ -1,5 +1,5 @@
 {
-  "status": "timing_repair_in_progress",
+  "status": "complete_via_pause_redistribution",
   "voice_id": "voice-12",
   "user_requirement": "Every source utterance and meaning must be represented at its original speech time; rewrite unsuitable wording instead of leaving empty gaps.",
   "previous_unused_declared_cue_seconds": 76.04618749999999,
@@ -10,5 +10,20 @@
     "no overlapping spoken phrases",
     "rewrite or regenerate mismatched lines; do not fill with silence",
     "retain voice-12 and original picture"
-  ]
+  ],
+  "completed_at": "2026-09-09T05:35:31+00:00",
+  "solution": "cut each approved take at its measured silences and re-lay the spoken chunks on the original speech timeline; only silence moved",
+  "gates": {
+    "source_speech_coverage": 0.975632,
+    "max_uncovered_gap_seconds": 0.39,
+    "speech_speed_changed": false,
+    "speech_cut": false,
+    "pieces_sample_identical": true
+  },
+  "remaining_limitation": "text density is ~79% of the source word count; raising it needs a re-record",
+  "artifacts": {
+    "plan": "timing-repair/pause-plan.json",
+    "verification": "source-sync/render-verification.json",
+    "measurement": "timing-repair/fit-measurement.json"
+  }
 }

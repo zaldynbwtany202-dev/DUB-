@@ -1,9 +1,72 @@
 {
   "slug": "hajj-dream-2108415",
-  "title": "دبلجة الحج — الراوي المصري المعتمد voice-12",
+  "title": "دبلجة الحج — صوت voice-12 بمزامنة مقيسة على كلام الأصل",
   "source": "library/hajj-dream-2108415/source.mp4",
-  "status": "source_timing_repair",
-  "versions": [],
+  "status": "source_synchronous_dub_ready_for_listening",
+  "versions": [
+    {
+      "run_id": "source-sync-pause-redistribution",
+      "file": "source-sync/final-dub-source-sync.mp4",
+      "kind": "complete_dub",
+      "voice_id": "voice-12",
+      "duration": 676.33,
+      "size": 42382465,
+      "sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
+      "rendered_at": "2026-09-09T05:35:31+00:00",
+      "audio_bitrate": "160k",
+      "background": {
+        "gain_db": 12.0,
+        "ducking": {
+          "threshold_linear": 0.05,
+          "ratio": 3,
+          "attack_ms": 20,
+          "release_ms": 500,
+          "detection": "rms"
+        },
+        "source": "UVR estimate of the original track",
+        "purity_guarantee": false
+      },
+      "timing": {
+        "method": "Measured Silero speech chunks re-laid on the original timeline; speech speed untouched and every cut inside silence",
+        "tempo": 1.0,
+        "source_speech_coverage_dry": 0.975632,
+        "source_speech_coverage_delivered": 0.970581,
+        "max_uncovered_gap_seconds": 0.39,
+        "uncovered_source_speech_seconds": 16.45,
+        "chunks": 243,
+        "speech_cut": false,
+        "overlapping_speech": 0
+      },
+      "settings": {
+        "tts_engine": "agent",
+        "target_lang": "ar-EG",
+        "bg_music": true,
+        "sample_rate": 44100,
+        "min_tempo": 1.0,
+        "max_tempo": 1.0,
+        "pause_min_seconds": 0.12,
+        "pause_max_seconds": 0.7
+      },
+      "technical_checks_passed": true,
+      "gates": {
+        "video_stream_bit_identical": true,
+        "speech_untouched": true,
+        "no_long_gaps": true,
+        "coverage_within_budget": true,
+        "loudness_in_range": true,
+        "durations_match": true
+      },
+      "human_listening_certification": false,
+      "content_note": "dub text covers ~79% of the source word count (243 spoken chunks); full word-for-word density needs a re-record with a voice approved this session",
+      "reports": {
+        "verification": "source-sync/render-verification.json",
+        "pause_plan": "timing-repair/pause-plan.json",
+        "mix": "source-sync/final-dub-source-sync.mix.json"
+      },
+      "subtitles": "source-sync/final-dub-source-sync.srt",
+      "status": "rendered_verified_pending_publication"
+    }
+  ],
   "publication": {
     "status": "published_verified",
     "branch": "arena/01a07c92-dub",
@@ -92,5 +155,6 @@
       }
     }
   ],
-  "updated_at": "2026-09-08T21:00:43+00:00"
+  "updated_at": "2026-09-09T05:35:31+00:00",
+  "active_version": "source-sync-pause-redistribution"
 }

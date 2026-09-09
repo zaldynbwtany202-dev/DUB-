@@ -1,0 +1,148 @@
+{
+  "source": "library/hajj-dream-2108415/source.mp4",
+  "output": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+  "output_sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
+  "output_bytes": 42382465,
+  "picture": {
+    "source_duration": 676.33,
+    "output_duration": 676.27,
+    "source_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "output_video_md5": "5638564d989fc1aa43d755f1ab05857e",
+    "video_stream_identical": true,
+    "source_video_kib": 27145,
+    "output_video_kib": 27145,
+    "output_last_packet_time": "00:11:16.23",
+    "source_decode_errors": 0,
+    "output_decode_errors": 0,
+    "video_reencoded": false,
+    "streams": [
+      "Video",
+      "Audio"
+    ]
+  },
+  "speech": {
+    "pieces_checked": 243,
+    "pieces_not_identical_to_the_take": 0,
+    "worst_mismatch": [],
+    "max_alignment_error_samples": 2,
+    "max_alignment_error_ms": 0.0454,
+    "pieces_silent_in_master": 0,
+    "master_duration": 676.448,
+    "master_peak_dbfs": -1.498,
+    "method": "every placed piece is compared sample by sample with the approved take, and its speech onset is compared with the planned cue time; silence between pieces moved, the speech itself did not"
+  },
+  "timeline": {
+    "dry_narration": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 599.83,
+      "uncovered_source_speech_seconds": 16.45,
+      "source_speech_coverage": 0.975632,
+      "max_uncovered_gap": 0.39,
+      "gap_count": 8,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "delivered_mix": {
+      "source_speech_seconds": 675.07,
+      "dubbed_speech_seconds": 592.28,
+      "uncovered_source_speech_seconds": 19.86,
+      "source_speech_coverage": 0.970581,
+      "max_uncovered_gap": 0.39,
+      "gap_count": 10,
+      "boundary_tolerance_seconds": 0.15,
+      "minimum_reported_gap_seconds": 0.3
+    },
+    "dry_longest_gaps": [
+      {
+        "start": 188.46,
+        "end": 188.85,
+        "duration": 0.39
+      },
+      {
+        "start": 637.1,
+        "end": 637.46,
+        "duration": 0.36
+      },
+      {
+        "start": 172.17,
+        "end": 172.5,
+        "duration": 0.33
+      },
+      {
+        "start": 197.9,
+        "end": 198.23,
+        "duration": 0.33
+      },
+      {
+        "start": 161.33,
+        "end": 161.65,
+        "duration": 0.32
+      },
+      {
+        "start": 212.27,
+        "end": 212.59,
+        "duration": 0.32
+      }
+    ],
+    "delivered_longest_gaps": [
+      {
+        "start": 188.46,
+        "end": 188.85,
+        "duration": 0.39
+      },
+      {
+        "start": 655.18,
+        "end": 655.57,
+        "duration": 0.39
+      },
+      {
+        "start": 197.87,
+        "end": 198.23,
+        "duration": 0.36
+      },
+      {
+        "start": 416.59,
+        "end": 416.95,
+        "duration": 0.36
+      },
+      {
+        "start": 637.1,
+        "end": 637.46,
+        "duration": 0.36
+      },
+      {
+        "start": 212.3,
+        "end": 212.63,
+        "duration": 0.33
+      }
+    ],
+    "planned": {
+      "uncovered_source_speech_seconds": 15.53,
+      "max_uncovered_gap": 0.39
+    },
+    "method": "same Silero settings on the original and on the delivered audio"
+  },
+  "loudness": {
+    "input_i": "-16.02",
+    "input_tp": "-1.28",
+    "input_lra": "2.80",
+    "input_thresh": "-26.32",
+    "output_i": "-16.01",
+    "output_tp": "-1.50",
+    "output_lra": "2.80",
+    "output_thresh": "-26.31",
+    "normalization_type": "dynamic",
+    "target_offset": "0.01"
+  },
+  "gates": {
+    "video_stream_bit_identical": true,
+    "speech_untouched": true,
+    "no_long_gaps": true,
+    "coverage_within_budget": true,
+    "loudness_in_range": true,
+    "durations_match": true
+  },
+  "status": "verified",
+  "human_listening_certification": false,
+  "note": "These gates measure timing, picture integrity, and loudness. They do not certify pronunciation, dialect, or emotional delivery."
+}

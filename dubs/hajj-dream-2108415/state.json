@@ -1,5 +1,5 @@
 {
-  "status": "repairing_source_synchronous_narration",
+  "status": "source_synchronous_dub_rendered",
   "source": "library/hajj-dream-2108415/source.mp4",
   "source_sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
   "voice_backend": "agent",
@@ -17,7 +17,7 @@
     8
   ],
   "pending_take_indices": [],
-  "final_file": "voice12/final-dub-voice12.mp4",
+  "final_file": "source-sync/final-dub-source-sync.mp4",
   "background_requested": "original_neural_estimate",
   "previous_result_available": false,
   "previous_result_sha256": "17277bcac0b127cd9af630b42dd6029673fbd9d28cc2b9351b7310d72e923d73",
@@ -27,24 +27,34 @@
   "voice_quality_approved": true,
   "candidate_voice_id": "voice-12",
   "pilot_file": "voice-tests/voice-07-natural.wav",
-  "active_version": "voice12",
-  "active_script": "voice12/script.json",
+  "active_version": "source-sync",
+  "active_script": "timing-repair/script.json",
   "previous_recorded_voice_id": "voice-02",
   "final_duration": 676.266667,
   "publication": {
-    "status": "published_verified",
-    "branch": "arena/01a07c92-dub",
-    "video_commit": "139e51f",
-    "download_url": "https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
-    "html_url": "https://github.com/zaldynbwtany202-dev/DUB-/blob/arena/01a07c92-dub/dubs/hajj-dream-2108415/voice12/final-dub-voice12.mp4",
-    "verified_at": "2026-09-08T21:03:13+00:00"
+    "status": "pending_commit",
+    "branch": "arena/01a08487-dub"
   },
   "technical_checks_passed": true,
   "dub_complete": true,
   "completed_at": "2026-09-08T21:03:13+00:00",
-  "next_step": null,
+  "next_step": "publish and verify remote bytes, then listen",
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
   "reused_approved_opening": true,
-  "timing_quality_approved": false
+  "timing_quality_approved": false,
+  "active_plan": "timing-repair/pause-plan.json",
+  "final_sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
+  "final_bytes": 42382465,
+  "voice_regenerated_this_run": false,
+  "tempo_applied": 1.0,
+  "timing_repair": {
+    "status": "complete_pause_redistribution",
+    "gates_passed": true,
+    "source_speech_coverage": 0.975632,
+    "max_uncovered_gap_seconds": 0.39,
+    "previous_max_uncovered_gap_seconds": 5.7
+  },
+  "pending_on_user": "ear test of the delivered file; denser wording only if requested",
+  "updated_at": "2026-09-09T05:35:31+00:00"
 }

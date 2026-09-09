@@ -1,0 +1,38 @@
+{
+  "status": "rendered_pending_validation",
+  "duration": 676.33,
+  "picture_source": "library/hajj-dream-2108415/source.mp4",
+  "voice_source": ".cache/hajj-sync-repair/narration.wav",
+  "voice_source_sha256": "78c1d8ef7c9e8dbafadfe8f07996c5e3554095947bad353b088b56c5141e8485",
+  "lossless_voice_master_used": true,
+  "voice_regenerated": false,
+  "background_source": ".cache/hajj-sync-repair/background.wav",
+  "background_sha256": "15aefa6ffd9ddf4124070acb6590b50a31542ebb3a0efc76fe89417416235d4e",
+  "background_kind": "neural estimate from original uploaded audio, not newly composed music",
+  "background_gain_db": 12.0,
+  "audio_bitrate": "160k",
+  "ducking": {
+    "threshold_linear": 0.05,
+    "ratio": 3,
+    "attack_ms": 20,
+    "release_ms": 500,
+    "detection": "rms"
+  },
+  "output": "dubs/hajj-dream-2108415/source-sync/final-dub-source-sync.mp4",
+  "output_sha256": "bece6ac52d66b49de56acdc0dd1364f61087a6ee16502eda1d77ce0829c5b8c8",
+  "filter_graph": "[0:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad=whole_dur=676.330000,atrim=0:676.330000,asetpts=PTS-STARTPTS,asplit=2[voice][side];[1:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,apad=whole_dur=676.330000,atrim=0:676.330000,asetpts=PTS-STARTPTS,afade=t=in:st=0:d=0.200000,afade=t=out:st=675.980000:d=0.350000,volume=12.000dB[bed];[bed][side]sidechaincompress=threshold=0.05:ratio=3:attack=20:release=500:knee=2:detection=rms:link=average[ducked];[voice][ducked]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9:print_format=json,aresample=48000[out]",
+  "normalization": {
+    "input_i": "-19.07",
+    "input_tp": "-4.19",
+    "input_lra": "2.80",
+    "input_thresh": "-29.37",
+    "output_i": "-16.00",
+    "output_tp": "-1.50",
+    "output_lra": "2.80",
+    "output_thresh": "-26.30",
+    "normalization_type": "dynamic",
+    "target_offset": "-0.00"
+  },
+  "speech_contamination": "Neural separation can leave residuals; see the background audit, not a purity guarantee.",
+  "video_reencoded": false
+}
