@@ -46,7 +46,7 @@
   "technical_checks_passed": true,
   "dub_complete": true,
   "completed_at": "2026-09-08T21:03:13+00:00",
-  "next_step": "اختيار الصوت الذي يجتاز voice-tests/dialect-stress.txt بالسمع (voice-00/01/03 معروضة)، ثم جولة ثالثة: 107 جملات على السرعة الحقيقية للصوت المختار (build_phrase_budget --rate)، ونص لكل طابع حسب affect-map.json، وتطبيق match_source_acoustics.py على الماستر الجديد قبل النشر.",
+  "next_step": "رقم واحد من gallery/ (10 مرشحين + pace-fit.json) = بداية الجولة التالتة؛ وبالتوازي: إعادة ربط GitHub لأن التوكن رجع 401 والـ5 كوميتات محفوظة في pending-pushes/*.patch",
   "pilot_reference": "voice-tests/voice-12-narration.json",
   "previous_published_voice_id": "voice-07",
   "reused_approved_opening": true,
@@ -64,7 +64,7 @@
     "previous_max_uncovered_gap_seconds": 5.7
   },
   "pending_on_user": "اسمع acoustics-ab-*.mp3 وvoice-0{0,1,3}-c*.mp3 وقل: أي صوت مقبول للّهجة، وهل معالجة الطابع تُعتمد؛ أو ارفع تسجيلًا بشريًا عبر docs/send.html",
-  "updated_at": "2026-09-09T10:40:22+00:00",
+  "updated_at": "2026-09-09T12:50:48+00:00",
   "sync_state": {
     "method": "clause-level anchoring on original speech units",
     "plan": "timing-repair/pause-plan.json",
@@ -102,5 +102,8 @@
     ]
   },
   "voice_test_kit": "dubs/hajj-dream-2108415/voice-tests/dialect-stress.txt",
-  "acoustics_match_report": "dubs/hajj-dream-2108415/timing-repair/acoustics-match.json"
+  "acoustics_match_report": "dubs/hajj-dream-2108415/timing-repair/acoustics-match.json",
+  "acoustics_match": "dubs/hajj-dream-2108415/timing-repair/acoustics-match.json",
+  "matched_candidate_verification": "dubs/hajj-dream-2108415/timing-repair/matched-render-verification.json",
+  "room_tone_decision": "مرفوع من المصدر: وقفات الأصل 9.8 dB بس تحت كلامه، فمفيش هواء نضيف؛ المسلَّم المتوقع من غير طبقة ضجيج، والفجوات بتتقلل بكثافة النص"
 }
