@@ -6,7 +6,7 @@
   "pending": 82,
   "distinct_voices": 13,
   "audio_files_on_disk": 18,
-  "audio_files_tracked": 9,
+  "audio_files_tracked": 18,
   "untracked_audio": [
     "voice-library/voice-00-001.mp3",
     "voice-library/voice-00-014.mp3",
