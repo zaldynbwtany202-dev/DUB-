@@ -178,3 +178,26 @@ def test_audio_manifest_names_the_deployment_branch():
     js = (ROOT / "docs" / "audio-url.js").read_text(encoding="utf-8")
     assert manifest["branch"] in js, "audio-url.js defaults must include the manifest branch"
     assert manifest["branch"].startswith("arena/"), "deployment branch is an arena session branch"
+
+
+def test_pick_click_auto_sends():
+    """The user asked for pick = send directly. Both players commit the pick
+    automatically (debounced) once a token is saved; the send button stays as
+    the no-token explainer and manual fallback."""
+    js = (ROOT / "docs" / "auditions-tab.js").read_text(encoding="utf-8")
+    assert "scheduleAutoSend" in js
+    assert "setTimeout(() => doSend(true), 2000)" in js
+    html = (ROOT / "docs" / "voices.html").read_text(encoding="utf-8")
+    assert "scheduleAutoSend" in html
+    assert "doSend(key, true)" in html
+
+
+def test_success_message_tells_the_user_one_word():
+    """After an auto-send the page must ask for a single chat word — the agent
+    reads the committed file on the next message."""
+    js = (ROOT / "docs" / "auditions-tab.js").read_text(encoding="utf-8")
+    assert "«اخترت»" in js
+    html = (ROOT / "docs" / "voices.html").read_text(encoding="utf-8")
+    assert "«اخترت»" in html
+    shop = (ROOT / "docs" / "voice-shop.html").read_text(encoding="utf-8")
+    assert "«اخترت»" in shop

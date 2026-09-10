@@ -117,6 +117,12 @@ ok(/if \(typeof document !== 'undefined'/.test(moduleSrc),
    'DOM init is guarded so node can import the helpers');
 ok(moduleSrc.includes('playThrough'), 'playback walks a candidate list');
 ok(moduleSrc.includes("from './audio-url.js'"), 'the tab resolves audio via audio-url.js');
+ok(moduleSrc.includes('scheduleAutoSend') && moduleSrc.includes('doSend(true)'),
+   'picking auto-sends — the pick itself commits when a token exists');
+ok(moduleSrc.includes('setTimeout(() => doSend(true), 2000)'),
+   'auto-send is debounced so multi-role picks land as one commit');
+ok(moduleSrc.includes('if (!loadToken()) return; // no token yet'),
+   'auto-send stays silent without a token — the manual send explains');
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

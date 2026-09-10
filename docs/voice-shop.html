@@ -405,7 +405,7 @@ async function pick(sample) {
     say(`<b>وصل الاختيار للمستودع</b> — العينة #${sample.id}.
          <a href="${result.url}" target="_blank" rel="noopener">شوف الـ commit ↗</a>
          ${PROJECT ? `· اتسجّل كمان في <code>library/${PROJECT}/</code>` : ''}
-         <br>قلّي «كمّل الدبلجة بالصوت ده» وأنا أبدأ.`, 'ok');
+         <br>اكتب لي في الشات «اخترت» فقط — سأقرأ الاختيار من المستودع وأبني الدبلجة به.`, 'ok');
     render();
   } catch (err) {
     say('ما قدرتش أكتب في المستودع: ' + err.message +

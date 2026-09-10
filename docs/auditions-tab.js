@@ -124,8 +124,8 @@ function initAuditions() {
     answer.textContent = line || '—';
     const count = Object.keys(chosen).length;
     hint.textContent = count === 0
-      ? 'لم تختر بعد — اضغط «اختر» عند الصوت الذي يعجبك لكل شخصية.'
-      : 'اختيارك جاهز — عدّله متى شئت وأعد الإرسال؛ الكوميت الجديد يستبدل القديم.';
+      ? 'اضغط «اختر» عند الصوت الذي يعجبك — يصلني اختيارك تلقائياً بلا زر إرسال.'
+      : 'اختيارك يُرسل تلقائياً أثناء الاختيار — كل ضغطة «اختر» تحدّث ما يصلني.';
     sendBtn.disabled = count === 0;
   };
 
@@ -186,6 +186,7 @@ function initAuditions() {
           row.classList.add('on');
           chosen[s.role] = s;
           setPickState();
+          scheduleAutoSend();
         };
         row.dataset.role = s.role;
         box.appendChild(row);
@@ -218,25 +219,38 @@ function initAuditions() {
   };
   $('auditionRefreshCurrent').onclick = refreshCurrent;
 
-  sendBtn.onclick = async () => {
+  let autoTimer = null;
+  const doSend = async (auto) => {
     const token = loadToken();
     if (!token) {
-      say('أضف رمز GitHub من تبويب «الإعدادات» أولاً — الإرسال يثبّت اختيارك كوميتاً في المستودع.', 'err');
-      document.querySelector('.tab[data-tab="settings"]')?.click();
+      if (!auto) {
+        say('أضف رمز GitHub من تبويب «الإعدادات» أولاً — الإرسال يثبّت اختيارك كوميتاً في المستودع.', 'err');
+        document.querySelector('.tab[data-tab="settings"]')?.click();
+      }
       return;
     }
     const selection = buildSelection(chosen, { note: noteInput.value, page: 'index.html#auditions' });
     sendBtn.disabled = true;
-    say('يثبّت الاختيار في المستودع…');
+    say(auto ? 'اخترتَ صوتاً — يصلني اختيارك الآن تلقائياً…' : 'يثبّت الاختيار في المستودع…');
     try {
       const r = await commitSelection(selection, token);
-      say(`وصل اختيارك إلى GitHub ✓ — ${r.commit.slice(0, 7)}. اكتب لي في الشات: «اخترت من الصفحة».`, 'ok');
+      say(`✓ وصلني اختيارك على GitHub (${r.commit.slice(0, 7)}) — اكتب لي في الشات «اخترت» فقط وسأقرؤه فوراً وأبني الدبلجة به.`, 'ok');
       await refreshCurrent();
     } catch (err) {
       say(`فشل الإرسال: ${err.message}`, 'err');
     } finally {
       setPickState();
     }
+  };
+  sendBtn.onclick = () => doSend(false);
+
+  // The pick IS the send. Clicks inside two seconds collapse into one commit,
+  // so picking both roles one after the other still lands as a single
+  // complete selection instead of racing two commits onto the same ref.
+  const scheduleAutoSend = () => {
+    if (!loadToken()) return; // no token yet — the manual send explains and points to Settings
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(() => doSend(true), 2000);
   };
 
   fetch('samples.json')

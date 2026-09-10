@@ -106,8 +106,8 @@
 <main>
   <h1>اسمع واختر</h1>
   <p class="lede">
-    عشر عينات حقيقية — نفس الجملة بأصوات ولهجات مختلفة. اضغط ▶ للاستماع،
-    ثم «اختر»، ثم اضغط «أرسل الاختيار إلى الوكيل» فيصلني اختيارك من GitHub مباشرة.
+    عشر عينات حقيقية — نفس الجملة بأصوات ولهجات مختلفة. اضغط ▶ للاستماع ثم
+    «اختر» — يصلني اختيارك تلقائياً من GitHub بلا خطوة إضافية (الزر بالأسفل احتياط).
     <br />
     <span style="font-size:14px">
       <b>CV</b> هو تنوّع النبرة المقيس: تحت 0.18 يقرأ كآلة، فوق 0.30 حيّ.
@@ -238,6 +238,7 @@ function render(samples) {
         row.classList.add('on');
         chosen[role] = s;
         update();
+        scheduleAutoSend();
       };
       row.dataset.role = role;
       box.appendChild(row);
@@ -287,27 +288,20 @@ document.getElementById('tokHelp').onclick = (e) => {
   body.hidden = !body.hidden;
 };
 
-sendBtn.onclick = async () => {
-  const key = (token.value.trim() || loadToken()).trim();
-  if (!key) {
-    say('ضع رمز GitHub أولاً — صفحة ساكنة بلا خادم، والكتابة في المستودع تحتاج رمزاً.');
-    token.focus();
-    return;
-  }
+const doSend = async (key, auto) => {
   const selection = buildSelection(chosen, { note: note.value });
   sendBtn.disabled = true;
-  say('يتحقق من الرمز…');
+  say(auto ? 'اخترتَ صوتاً — يصلني اختيارك الآن تلقائياً…' : 'يتحقق من الرمز…');
   try {
-    await checkToken(key);
-    say('يثبّت الاختيار في المستودع…');
+    if (!auto) await checkToken(key);
     const r = await commitSelection(selection, key);
     if (saveToken(key)) { token.value = ''; showTokenState(); }
     document.getElementById('where').hidden = false;
     document.getElementById('where').textContent =
       `الفرع ${r.branch} ← ${r.path} ← كوميت ${r.commit.slice(0, 7)}`;
-    say(`<b>وصل اختيارك إلى GitHub ✓</b> — المعرف <code>${selection.selection_id}</code>.` +
+    say(`<b>✓ وصلني اختيارك على GitHub</b> — المعرف <code>${selection.selection_id}</code>.` +
         ` <a href="${r.url}" target="_blank" rel="noopener">شاهد الكوميت</a>.` +
-        ` الآن اكتب لي في الشات فقط: «اخترت من الصفحة» وسأقرأ اختيارك من المستودع وأبني الدبلجة به.`);
+        ` اكتب لي في الشات «اخترت» فقط وسأقرؤه فوراً وأبني الدبلجة به.`);
   } catch (err) {
     say(`<b>فشل الإرسال:</b> ${err.message}`);
     // A dead token would fail every later send with no obvious cause — the
@@ -316,6 +310,26 @@ sendBtn.onclick = async () => {
   } finally {
     update();
   }
+};
+
+sendBtn.onclick = () => {
+  const key = (token.value.trim() || loadToken()).trim();
+  if (!key) {
+    say('ضع رمز GitHub أولاً — صفحة ساكنة بلا خادم، والكتابة في المستودع تحتاج رمزاً.');
+    token.focus();
+    return;
+  }
+  doSend(key, false);
+};
+
+// The pick IS the send: clicks inside two seconds collapse into one commit,
+// so picking both roles lands as one complete selection, not a race.
+let autoTimer = null;
+const scheduleAutoSend = () => {
+  const key = loadToken();
+  if (!key) return; // no saved token — the manual send says what to do
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => doSend(key, true), 2000);
 };
 
 showTokenState();
