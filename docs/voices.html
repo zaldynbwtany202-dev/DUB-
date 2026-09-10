@@ -59,6 +59,29 @@
   .out code{display:block;background:rgba(0,0,0,.45);border:1px solid var(--line);
             border-radius:9px;padding:12px 14px;font-size:14.5px;color:var(--gold);
             direction:rtl;text-align:right}
+  .out code.file{font-size:13px;color:var(--muted);margin-top:8px}
+
+  .send{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line)}
+  .fld{display:block;margin-bottom:12px}
+  .fld>span{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+  .fld input{width:100%;background:rgba(0,0,0,.4);border:1px solid var(--line);
+             border-radius:9px;padding:10px 12px;color:var(--ink);font:inherit;font-size:14px}
+  .fld input:focus{outline:none;border-color:var(--gold)}
+  .saved{display:flex;align-items:center;gap:10px;color:var(--ok);font-size:13.5px;margin-bottom:10px}
+  .linkbtn{background:none;border:none;color:var(--muted);font:inherit;font-size:13px;
+           cursor:pointer;text-decoration:underline}
+  .linkbtn:hover{color:var(--warn)}
+  .help{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:10px;
+        padding:12px 16px;margin-bottom:12px;font-size:13.5px;color:var(--muted);line-height:1.9}
+  .help ol{margin:0;padding-inline-start:20px}
+  .big{width:100%;padding:13px 18px;border-radius:11px;border:1px solid var(--line);
+       background:rgba(255,255,255,.05);color:var(--ink);font:inherit;font-size:15.5px;
+       font-weight:700;cursor:pointer;transition:.16s}
+  .big:hover:not(:disabled){border-color:var(--gold);background:rgba(232,184,109,.08)}
+  .big:disabled{opacity:.45;cursor:not-allowed}
+  .status{margin-top:12px;font-size:14px;line-height:1.9;color:var(--muted);min-height:0}
+  .status b{color:var(--ink)}
+  .status a{color:var(--gold)}
   footer{color:var(--muted);font-size:13.5px;text-align:center;padding:0 6vw 40px}
   a{color:var(--gold)}
   @media(max-width:640px){.row{grid-template-columns:auto 1fr;gap:12px}.pick{grid-column:2;justify-self:start}}
@@ -83,8 +106,8 @@
 <main>
   <h1>اسمع واختر</h1>
   <p class="lede">
-    عشر عينات حقيقية — نفس الجملة بأصوات ولهجات مختلفة. اضغط ▶ للاستماع،
-    ثم «اختر». في الأسفل يظهر اختيارك جاهزاً لتنسخه لي.
+    عشر عينات حقيقية — نفس الجملة بأصوات ولهجات مختلفة. اضغط ▶ للاستماع ثم
+    «اختر» — يصلني اختيارك تلقائياً من GitHub بلا خطوة إضافية (الزر بالأسفل احتياط).
     <br />
     <span style="font-size:14px">
       <b>CV</b> هو تنوّع النبرة المقيس: تحت 0.18 يقرأ كآلة، فوق 0.30 حيّ.
@@ -98,12 +121,46 @@
     <h3>اختيارك</h3>
     <p id="hint">لم تختر بعد — اضغط «اختر» عند الصوت الذي يعجبك لكل شخصية.</p>
     <code id="answer">—</code>
+    <code id="where" class="file" hidden></code>
+
+    <div class="send">
+      <label class="fld">
+        <span>ملاحظة للوكيل (اختياري) — لمن هذا الصوت؟ في أي مشروع؟</span>
+        <input type="text" id="note" placeholder="مثال: هذا صوت الراوي للفيديو القادم" />
+      </label>
+      <div id="tokSaved" class="saved" hidden>
+        <span>✓ رمز GitHub محفوظ في هذا المتصفح — الإرسال بنقرة واحدة.</span>
+        <button type="button" id="tokForget" class="linkbtn">انسَ الرمز</button>
+      </div>
+      <label class="fld" id="tokField">
+        <span>رمز GitHub <a href="#" id="tokHelp">(كيف أحصل عليه؟ ولماذا يلزم؟)</a></span>
+        <input type="password" id="token" placeholder="ghp_..." autocomplete="off" />
+      </label>
+      <div id="tokHelpBody" class="help" hidden>
+        <ol>
+          <li>افتح <a id="tokLink" target="_blank" rel="noopener">صفحة إنشاء الرمز</a></li>
+          <li>في <b>Select scopes</b> ضع علامة على <code>public_repo</code> وحدها</li>
+          <li>انزل لأسفل واضغط <b>Generate token</b></li>
+          <li>انسخ السلسلة التي تبدأ بـ <code>ghp_</code> والصقها هنا</li>
+        </ol>
+        <p><b>يُحفظ في متصفحك وحده</b> — لا خادم لي يستقبله، ولا يُرسَل إلا إلى GitHub نفسه.
+           بدون رمز لا سبيل للكتابة في المستودع من صفحة ساكنة. اضغط «انسَ الرمز» لمسحه.</p>
+      </div>
+      <button type="button" id="send" class="big" disabled>أرسل الاختيار إلى الوكيل</button>
+      <div id="status" class="status"></div>
+    </div>
   </div>
 </main>
 
 <footer>ProStudio · رخصة MIT</footer>
 
-<script>
+<script type="module">
+import { buildSelection, commitSelection, SELECTION_BRANCH, SELECTION_PATH }
+  from './voice-select.js';
+import { audioCandidates } from './audio-url.js';
+import { checkToken, loadToken, saveToken, forgetToken, TOKEN_URL }
+  from './github-upload.js';
+
 // One audio element for the whole page: two clips playing at once makes every
 // voice sound bad, and a viewer comparing takes will click quickly.
 const player = new Audio();
@@ -157,9 +214,21 @@ function render(samples) {
       btn.onclick = () => {
         if (playingBtn === btn) { stop(); return; }
         stop();
-        player.src = s.mp3;
-        player.play().then(() => { btn.textContent = '⏸'; playingBtn = btn; })
-                     .catch(() => { btn.textContent = '⚠'; });
+        const playThrough = (urls, i = 0) => {
+          if (i >= urls.length) { btn.textContent = '⚠'; return; }
+          let moved = false;
+          const onErr = () => {
+            if (moved) return;
+            moved = true;
+            player.removeEventListener('error', onErr);
+            playThrough(urls, i + 1);
+          };
+          player.addEventListener('error', onErr);
+          player.src = urls[i];
+          player.play().then(() => { btn.textContent = '⏸'; playingBtn = btn; })
+                       .catch(() => { /* the error event drives the fallback */ });
+        };
+        audioCandidates(s.mp3).then((urls) => playThrough(urls));
       };
 
       row.querySelector('.pick').onclick = () => {
@@ -169,6 +238,7 @@ function render(samples) {
         row.classList.add('on');
         chosen[role] = s;
         update();
+        scheduleAutoSend();
       };
       row.dataset.role = role;
       box.appendChild(row);
@@ -181,12 +251,88 @@ function update() {
   for (const role of ['راغنار', 'فلوكي']) {
     if (chosen[role]) parts.push(`${role} = ${chosen[role].voice} ${chosen[role].dialect}`);
   }
-  const done = parts.length === 2;
-  document.getElementById('hint').textContent = done
-    ? 'انسخ السطر التالي وأرسله لي، وسأبني الدبلجة به.'
-    : 'اخترت واحداً — اختر للشخصية الأخرى أيضاً.';
+  const all = parts.length === 2;
+  document.getElementById('hint').textContent = parts.length === 0
+    ? 'لم تختر بعد — اضغط «اختر» عند الصوت الذي يعجبك لكل شخصية.'
+    : all
+      ? 'اختيار مكتمل — أرسله إلى الوكيل بالزر أدناه فيصله من GitHub مباشرة.'
+      : 'اخترت واحداً — يمكنك الإرسال الآن أو إكمال الشخصية الأخرى.';
   document.getElementById('answer').textContent = parts.length ? parts.join(' ، ') : '—';
+  document.getElementById('send').disabled = parts.length === 0;
 }
+
+// ── sending the choice to the agent ─────────────────────────────────────
+// The choice becomes one small commit on the Sendbox branch
+// (inbox/voice-selection.json) — the same way send.html uploads files. The
+// agent reads that path with gh api, so nothing has to be copy-pasted here.
+
+const token = document.getElementById('token');
+const note = document.getElementById('note');
+const status = document.getElementById('status');
+const sendBtn = document.getElementById('send');
+
+const say = (html) => { status.innerHTML = html; };
+
+function showTokenState() {
+  const saved = !!loadToken();
+  document.getElementById('tokSaved').hidden = !saved;
+  document.getElementById('tokField').hidden = saved;
+}
+document.getElementById('tokForget').onclick = () => { forgetToken(); showTokenState(); };
+
+const tokHelpLink = document.getElementById('tokLink');
+tokHelpLink.href = TOKEN_URL;
+document.getElementById('tokHelp').onclick = (e) => {
+  e.preventDefault();
+  const body = document.getElementById('tokHelpBody');
+  body.hidden = !body.hidden;
+};
+
+const doSend = async (key, auto) => {
+  const selection = buildSelection(chosen, { note: note.value });
+  sendBtn.disabled = true;
+  say(auto ? 'اخترتَ صوتاً — يصلني اختيارك الآن تلقائياً…' : 'يتحقق من الرمز…');
+  try {
+    if (!auto) await checkToken(key);
+    const r = await commitSelection(selection, key);
+    if (saveToken(key)) { token.value = ''; showTokenState(); }
+    document.getElementById('where').hidden = false;
+    document.getElementById('where').textContent =
+      `الفرع ${r.branch} ← ${r.path} ← كوميت ${r.commit.slice(0, 7)}`;
+    say(`<b>✓ وصلني اختيارك على GitHub</b> — المعرف <code>${selection.selection_id}</code>.` +
+        ` <a href="${r.url}" target="_blank" rel="noopener">شاهد الكوميت</a>.` +
+        ` اكتب لي في الشات «اخترت» فقط وسأقرؤه فوراً وأبني الدبلجة به.`);
+  } catch (err) {
+    say(`<b>فشل الإرسال:</b> ${err.message}`);
+    // A dead token would fail every later send with no obvious cause — the
+    // same reasoning send.html applies. Anything else may be transient.
+    if (String(err.message).includes('الرمز غير صالح')) { forgetToken(); showTokenState(); }
+  } finally {
+    update();
+  }
+};
+
+sendBtn.onclick = () => {
+  const key = (token.value.trim() || loadToken()).trim();
+  if (!key) {
+    say('ضع رمز GitHub أولاً — صفحة ساكنة بلا خادم، والكتابة في المستودع تحتاج رمزاً.');
+    token.focus();
+    return;
+  }
+  doSend(key, false);
+};
+
+// The pick IS the send: clicks inside two seconds collapse into one commit,
+// so picking both roles lands as one complete selection, not a race.
+let autoTimer = null;
+const scheduleAutoSend = () => {
+  const key = loadToken();
+  if (!key) return; // no saved token — the manual send says what to do
+  clearTimeout(autoTimer);
+  autoTimer = setTimeout(() => doSend(key, true), 2000);
+};
+
+showTokenState();
 
 fetch('samples.json')
   .then(r => r.json())

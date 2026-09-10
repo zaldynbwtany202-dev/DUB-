@@ -33,6 +33,10 @@
   <button class="tab" data-tab="dubs" role="tab" aria-selected="false">المدبلجة <span id="countDubs" class="count">0</span></button>
   <button class="tab" data-tab="runs" role="tab" aria-selected="false">التشغيلات <span id="countRuns" class="count">0</span></button>
   <button class="tab" data-tab="voices" role="tab" aria-selected="false">الأصوات <span id="countVoices" class="count">0</span></button>
+  <button class="tab" data-tab="shop" role="tab" aria-selected="false">مئة صوت</button>
+  <button class="tab" data-tab="lib100" role="tab" aria-selected="false">المكتبة الخام</button>
+  <button class="tab" data-tab="auditions" role="tab" aria-selected="false">العينات <span id="countAuditions" class="count">0</span></button>
+  <button class="tab" data-tab="registry" role="tab" aria-selected="false">شيفرات الأصوات</button>
   <button class="tab" data-tab="settings" role="tab" aria-selected="false">الإعدادات</button>
 </nav>
 
@@ -42,7 +46,7 @@
   <section id="tab-overview" class="panel active" role="tabpanel">
     <div class="desk-head">
       <div><p class="eyebrow">مساحة العمل</p><h2>المشاريع</h2><p>افتح مشروعاً لمتابعة الشخصيات والمقاطع والمراجعة والتصدير.</p></div>
-      <div class="desk-actions"><button id="quickUpload" class="btn primary">مشروع من فيديو</button><button id="quickYoutube" class="btn">مشروع من يوتيوب</button><button id="quickVoice" class="btn">إضافة صوت</button></div>
+      <div class="desk-actions"><button id="quickUpload" class="btn primary">مشروع من فيديو</button><button id="quickYoutube" class="btn">مشروع من يوتيوب</button><button data-jump="auditions" class="btn">اسمع واختر</button><button id="quickVoice" class="btn">إضافة صوت</button></div>
     </div>
     <div class="desk-readout">
       <div class="desk-total"><span id="overviewHeroValue">0</span><small id="overviewHeroLabel">مشروع</small></div>
@@ -150,6 +154,74 @@
     <div id="voicesGrid" class="grid"></div>
   </section>
 
+  <!-- ============================== مئة عينة صوت (المتجر) ============================== -->
+  <section id="tab-shop" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">اختيار يوصل للمستودع</p>
+      <h2>مئة عينة صوت</h2>
+      <p>لكل عينة زر «اختر هذه العينة» يكتب <code>docs/voice-choice.json</code> في الفرع،
+         فتُبنى الدبلجة بالصوت المختار وسلسلة فلاتره المعلنة. الصفحة مستقلة ومفتوحة أيضًا على
+         <a href="voice-shop.html">voice-shop.html</a>.</p></div></div>
+    <iframe src="voice-shop.html" title="مئة عينة صوت"
+            style="width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#07080c"></iframe>
+  </section>
+
+  <!-- ============================== مكتبة المئة عينة الخام ============================== -->
+  <section id="tab-lib100" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">كلها مولَّدة في الجلسة، بلا فلاتر</p>
+      <h2>مكتبة المئة عينة</h2>
+      <p>100 خانة، كل واحدة نص مختلف وصوت مختلف، وخرج الأداة زي ما هو
+         (<code>anull</code> — لا pitch ولا موسيقى ولا حشو سكون). زر «اختر هذه العينة» يكتب
+         <code>docs/voice-choice.json</code> في الفرع. الصفحة مستقلة كمان على
+         <a href="voice-library.html">voice-library.html</a>.</p></div></div>
+    <iframe src="voice-library.html" title="مكتبة المئة عينة"
+            style="width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#07080c"></iframe>
+  </section>
+
+  <!-- ============================== العينات: اسمع واختر ============================== -->
+  <section id="tab-auditions" class="panel" role="tabpanel">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">اختبار الاستماع</p>
+        <h2>العينات — اسمع واختر</h2>
+        <p>نفس الجملة بعدة أصوات ولهجات حقيقية. اضغط «اختر» عند الصوت الذي يعجبك —
+           يصلني اختيارك تلقائياً ككوميت في <code>inbox/voice-selection.json</code>؛
+           ثم اكتب لي في الشات «اخترت» فقط وأبني الدبلجة به مباشرة.</p>
+      </div>
+      <button id="auditionRefreshCurrent" class="btn small">تحديث اختيار الوكيل</button>
+    </div>
+
+    <div class="card wide">
+      <h2>اختيار الوكيل الحالي</h2>
+      <div id="auditionCurrent" class="audition-current">جارٍ الفحص…</div>
+    </div>
+
+    <div id="auditionRoles"><div class="empty compact-empty">جارٍ تحميل العينات…</div></div>
+
+    <div class="card wide audition-pick">
+      <h2>اختيارك</h2>
+      <p class="hint" id="auditionHint">لم تختر بعد — اضغط «اختر» عند الصوت الذي يعجبك لكل شخصية.</p>
+      <div class="answer mono" id="auditionAnswer">—</div>
+      <div class="row">
+        <input id="auditionNote" placeholder="ملاحظة للوكيل (اختياري): لمن هذا الصوت؟ في أي مشروع؟">
+        <button id="auditionSend" class="btn primary" disabled>أرسل الاختيار إلى الوكيل</button>
+      </div>
+      <div id="auditionStatus" class="status"></div>
+      <p class="hint">الإرسال يستخدم رمز GitHub المحفوظ في تبويب «الإعدادات» — الرمز نفسه الذي يرفع به الملفات، ولا يُرسَل إلا إلى api.github.com.</p>
+    </div>
+  </section>
+
+  <!-- ============================== سجل شيفرات الأصوات ============================== -->
+  <section id="tab-registry" class="panel" role="tabpanel">
+    <div class="section-head"><div>
+      <p class="eyebrow">Voice Registry</p>
+      <h2>سجل شيفرات الأصوات</h2>
+      <p>لكل صوت شيفرة هوية ثابتة — اطلب أي تعليق باسم الشيفرة وأعرف الصوت الذي تقصده.
+         الصفحة مستقلة أيضاً على <a href="registry.html">registry.html</a>.</p>
+    </div></div>
+    <iframe src="registry.html" title="سجل شيفرات الأصوات"
+            style="width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#07080c"></iframe>
+  </section>
+
   <!-- ============================== الإعدادات ============================== -->
   <section id="tab-settings" class="panel" role="tabpanel">
     <div class="section-head"><div><p class="eyebrow">النظام</p><h2>الإعدادات</h2><p>الاتصال بالمستودع وخيارات الدبلجة والترجمة الذكية.</p></div></div>
@@ -185,7 +257,7 @@
     </div>
     <div class="card wide">
       <h2>الترجمة الذكية</h2>
-      <p class="hint">تُضبط من أسرار المستودع ومتغيّراته (<code>TRANSLATE_API_KEY</code>, <code>TRANSLATE_PROVIDER</code>, <code>TRANSLATE_MODEL</code>). للتحقق شغّل <a id="preflightLink" target="_blank" rel="noreferrer">Translation API preflight</a> من Actions أو من هنا:</p>
+      <p class="hint">تُضبط من أسرار المستودع ومتغيّراته (<code>TRANSLATE_API_KEY</code>, <code>TRANSLATE_PROVIDER</code>, <code>TRANSLATE_MODEL</code>). زر الفحص يتطلب تثبيت <code>translation-preflight.yml</code> أولاً — غير مثبّت في هذا المستودع حالياً:</p>
       <div class="row"><button id="runPreflight" class="btn">تشغيل فحص الترجمة</button><span id="preflightStatus" class="status"></span></div>
     </div>
   </section>
@@ -205,5 +277,6 @@
 </footer>
 
 <script type="module" src="studio.js"></script>
+<script type="module" src="auditions-tab.js"></script>
 </body>
 </html>

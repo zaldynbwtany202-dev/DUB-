@@ -165,3 +165,23 @@ header.top{padding:14px 24px;min-height:72px}.brandmark{width:40px;height:40px}.
 .option-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}.option-toggle{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);background:#faf9f5;cursor:pointer}.option-toggle input{margin-top:4px}.option-toggle b,.option-toggle small{display:block}.option-toggle b{font-size:.9rem}.option-toggle small{margin-top:3px;color:var(--muted);font-size:.76rem}.option-toggle:has(input:checked){border-color:#9dc2b6;background:#eef6f2}.advanced-options{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.advanced-options summary{cursor:pointer;color:var(--accent);font-weight:600}.compact-option{height:100%}.dub-submit{position:sticky;bottom:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:16px 18px;background:#16221e;color:#fff;border:1px solid #16221e}.dub-submit b,.dub-submit small{display:block}.dub-submit small{margin-top:3px;color:#aeb9b4}.dub-submit>div:last-child{display:flex;gap:8px;flex-wrap:wrap}.dub-submit .btn:not(.primary){background:transparent;border-color:#61706a;color:#fff}
 @media(max-width:1000px){.dub-form-grid{grid-template-columns:1fr 1fr}.dub-config .character .fields{grid-template-columns:1fr 1fr}}
 @media(max-width:700px){.dub-steps{grid-template-columns:1fr 1fr}.dub-form-grid,.option-grid,.dub-config .character .fields{grid-template-columns:1fr}.dub-config .character .fields .wide{grid-column:auto}.dub-submit{position:static;align-items:flex-start;flex-direction:column}.dub-submit>div:last-child,.dub-submit .btn{width:100%}.dub-submit .btn{text-align:center}}
+
+/* ── العينات: اسمع واختر ── */
+.audition-current{font-size:.95rem;display:grid;gap:4px}
+.audition-current:empty::before{content:'—';color:var(--muted)}
+.audition-group{margin:6px 0 18px}
+.audition-group h3{margin:0 0 8px;font-size:1.02rem}
+.audition-group h3 small{color:var(--muted);font-weight:400}
+.audition-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:8px;background:var(--card)}
+.audition-row.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.audition-row .play{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:15px;line-height:1;flex:0 0 auto}
+.audition-row .play:hover{border-color:var(--accent);color:var(--accent)}
+.audition-row .name{font-weight:650}
+.audition-row .say{color:var(--muted);font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.audition-row .chips{margin-top:5px}
+.audition-row .pick{white-space:nowrap}
+.audition-pick .answer{margin:2px 0 10px}
+.tag{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:.78rem}
+.tag.ok{color:var(--ok);border-color:#bbe7c8}
+.tag.warn{color:var(--warn);border-color:#ecd9ae}
+@media(max-width:640px){.audition-row{grid-template-columns:auto minmax(0,1fr)}.audition-row .pick{grid-column:2;justify-self:start}}
