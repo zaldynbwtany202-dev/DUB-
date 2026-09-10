@@ -274,67 +274,192 @@ def cmd_ingest(args) -> int:
 
 
 PAGE_TEMPLATE = r"""<!doctype html><html dir="rtl" lang="ar"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><title>مكتبة مئة عينة صوت</title>
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>مكتبة مئة عينة صوت — تختار من هنا</title>
 <style>
-body{font-family:system-ui,"Segoe UI",Tahoma,sans-serif;background:#12141a;color:#e8ecf3;margin:0;padding:22px}
-h1{font-size:20px;margin:0 0 6px}.sub{color:#9fb0c8;font-size:13px;margin-bottom:14px;line-height:1.8}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
-input,select{background:#1c2130;color:#e8ecf3;border:1px solid #2c3547;border-radius:8px;padding:7px 10px;font:inherit;font-size:13px}
-table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:7px 8px;border-bottom:1px solid #232a3a;text-align:right;vertical-align:top}
+body{font-family:system-ui,"Segoe UI",Tahoma,sans-serif;background:#12141a;color:#e8ecf3;margin:0;padding:20px}
+h1{font-size:19px;margin:0 0 6px}
+.sub{color:#9fb0c8;font-size:13px;line-height:1.8;margin-bottom:12px}
+.card{background:#171c26;border:1px solid #232a3a;border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:13px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+input,select,button{background:#1c2130;color:#e8ecf3;border:1px solid #2c3547;border-radius:8px;padding:7px 10px;font:inherit;font-size:13px}
+button{cursor:pointer}button.pick{background:#2563eb;border-color:#2563eb;color:#fff}
+button.pick.sel{background:#0f9d58;border-color:#0f9d58}
+button.ghost{background:transparent}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 6px;border-bottom:1px solid #232a3a;text-align:right;vertical-align:top}
 th{color:#9fb0c8;font-weight:600;position:sticky;top:0;background:#12141a}
-tr.gen{background:#141b24}tr.pen{background:#171521;opacity:.6}tr.bad{background:#241416}
+tr.gen{background:#141b24}tr.pen{background:#171521;opacity:.55}tr.bad{background:#241416}
+tr.sel{outline:1px solid #0f9d58}
 code{background:#1c2130;padding:1px 5px;border-radius:5px;font-size:12px}
 .ok{color:#7ddc9b}.no{color:#e6757a}.mut{color:#8698b3;font-size:12px}
-audio{width:210px;height:30px;vertical-align:middle}
+audio{width:200px;height:30px;vertical-align:middle}
+a{color:#7cc0ff}
+#say{min-height:20px;font-size:13px;line-height:1.7}
+#say.err{color:#e6757a}#say.warn{color:#e8c46b}#say.ok{color:#7ddc9b}
 </style></head><body>
-<h1>مكتبة مئة عينة صوت — @@GEN@@/@@TOTAL@@ مولَّد فعليًا</h1>
-<div class="sub">@@RULES@@<br>أصوات الجلسة: <code>@@VOICES@@</code> · نصوص مختلفة: <code>@@TEXTS@@</code> ·
-ميزانية الجولة التالتة: <code>1633</code> مسموح / <code>1457</code> منشور / عجز <code>176</code> كلمة ·
-هدف السرعة <code>2.507</code> كلمة/ث.<br>
-كل تعليق في عمود «مقيس» محسوب من العيّنات نفسها (سرعة، جهارة، اتساع نبرة، نطاق تحت 200 هرتز)،
-مش صفة مكتوبة قبل السماع. <span class="no">لا يُعتمد أي صوت راويًا بالأرقام وحدها</span> —
-القرار بسمعك على سطور اختبار اللهجة الستة.</div>
-<div class="bar"><input id="q" placeholder="دوّر في الكلام...">
-<select id="v"><option value="">كل الأصوات</option></select>
-<select id="s"><option value="">كل الحالات</option><option>generated</option><option>pending</option>
-<option>failed_silent</option></select>
-<span class="mut" id="c">@@COUNT@@</span></div>
-<table><thead><tr><th>#</th><th>الصوت</th><th>العينة</th><th>النص</th><th>كلمة/ث</th><th>مقيس</th><th>الحالة</th></tr></thead>
+<h1>مكتبة مئة عينة صوت — @@GEN@@/@@TOTAL@@ مولَّدة</h1>
+<div class="sub">@@RULES@@<br>
+أصوات الجلسة: <code>@@VOICES@@</code> · نصوص مختلفة: <code>@@TEXTS@@</code> ·
+ميزانية الجولة التالتة <code>1633</code> مسموح / <code>1457</code> منشور / عجز <code>176</code> ·
+هدف السرعة <code>2.507</code> كلمة/ث. كل «مقيس» في الجدول محسوب من العيّنة نفسها،
+مش صفة مكتوبة قبل السماع. <b>اضغط «اختر هذه العينة» على اللي تعجبك</b> — اختيارك بيتكتب في
+<code>docs/voice-choice.json</code> داخل المستودع نفسه، فالتوليد الجاي ياخد الصوت ده بالظبط.</div>
+
+<div class="card" id="tok">
+  <span class="mut">علشان اختيارك يوصلني: الصق رمز GitHub (صلاحية <code>public_repo</code> بس) —
+  الرمز بيتكتب في المتصفح مرة واحدة ومش بيترفع لمكان تاني غير api.github.com.</span>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
+    <input id="token" type="password" placeholder="ghp_..." style="flex:1;min-width:220px">
+    <button id="saveTok">احفظ الرمز</button>
+    <button id="testTok" class="ghost">اختبره</button>
+    <button id="dropTok" class="ghost">امسحه</button>
+    <a id="tokUrl" href="@@TOKEN_URL@@" target="_blank" rel="noopener">اعمل رمز ↗</a>
+  </div>
+</div>
+
+<div class="card" id="choice"><span class="mut">لسه ما اخترتشي عينة.</span></div>
+
+<div class="bar">
+  <input id="q" placeholder="دوّر في الكلام...">
+  <select id="v"><option value="">كل الأصوات</option></select>
+  <select id="s"><option value="">كل الحالات</option><option value="generated">مولَّدة</option>
+    <option value="pending">في الانتظار</option><option value="failed_silent">صامتة</option></select>
+  <span class="mut" id="c">@@COUNT@@</span>
+</div>
+
+<table><thead><tr><th>#</th><th>الصوت</th><th>العيّنة</th><th>النص</th><th>كلمة/ث</th><th>مقيس</th><th>اختيار</th></tr></thead>
 <tbody id="b"></tbody></table>
-<script>
-const D=@@ROWS@@;
-const vb=document.getElementById("v");
-[...new Set(D.map(r=>r.voice_id))].forEach(v=>{const o=document.createElement("option");o.textContent=v;vb.appendChild(o)});
-function esc(t){return String(t==null?"":t).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
-function cls(r){return r.status==="generated"?"gen":(r.status==="failed_silent"?"bad":"pen")}
-function draw(){
-  const q=document.getElementById("q").value.trim(), v=vb.value, s=document.getElementById("s").value;
-  const b=document.getElementById("b"); b.innerHTML=""; let n=0;
-  D.forEach(function(r){
-    if(v && r.voice_id!==v) return;
-    if(s && r.status!==s) return;
-    if(q && esc(r.text).indexOf(q)<0) return;
+<p id="say"></p>
+
+<script type="module">
+import { commitTextFile, loadToken, saveToken, forgetToken, checkToken, TOKEN_URL,
+         OWNER, REPO, BRANCH } from './github-upload.js';
+const $ = id => document.getElementById(id);
+const params = new URLSearchParams(location.search);
+const PROJECT = params.get('project') || 'hajj-dream-2108415';
+const CHOICE_PATH = 'docs/voice-choice.json';
+const LOCAL_KEY = 'prostudio.voice.library.choice';
+$('tokUrl').href = TOKEN_URL;
+let EMBEDDED = @@ROWS@@;
+let ROWS = EMBEDDED;
+let current = null, localChoice = null;
+try { localChoice = JSON.parse(localStorage.getItem(LOCAL_KEY) || 'null'); } catch {}
+
+const say = (msg, cls) => { const el = $('say'); el.innerHTML = msg || ''; el.className = cls || ''; };
+
+/* The committed manifest wins whenever it is reachable; the embedded copy is the offline fallback. */
+async function fresh(){
+  const cands = [`voice-library.json?ts=${Date.now()}`,
+                 `../docs/voice-library.json?ts=${Date.now()}`,
+                 `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/voice-library.json?ts=${Date.now()}`];
+  for (const u of cands) { try { const r = await fetch(u, {cache:'no-store'});
+    if (r.ok) { const d = await r.json(); if (d && d.samples) { ROWS = d.samples;
+      say(`اتقريت من <code>voice-library.json</code>: ${d.generated}/${d.total_slots} مولَّدة.`, 'ok'); return; } } } catch {} }
+  say('المانيفيست الجديد ما وصلش — بوصل نسخة المتصفح المضمّنة.');
+}
+
+function esc(t){return String(t==null?'':t).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function fmt(n){return (typeof n === 'number' && isFinite(n)) ? n.toFixed(3) : '—'}
+function commandFor(r){return `اختار العينة ${r.id} (صوت ${r.voice_id} · ${fmt(r.words_per_sec)} كلمة/ث · خام بلا فلاتر) project=${PROJECT}`}
+
+const vb = $('v');
+[...new Set(ROWS.map(r=>r.voice_id))].forEach(v=>{const o=document.createElement('option');o.textContent=v;vb.appendChild(o)});
+
+function paintChoice(c, where){
+  if (!c) { $('choice').innerHTML = '<span class="mut">لسه ما اخترتشي عينة.</span>'; return; }
+  $('choice').innerHTML = `<b>العينة المختارة:</b> <code>${esc(c.sample_id)}</code> ·
+    صوت <code>${esc(c.voice_id)}</code> · ${esc(c.text||'')} ·
+    <span class="mut">${where}${c.branch?' · فرع <code>'+esc(c.branch)+'</code>':''}</span>
+    ${c.commit_url?` · <a href="${c.commit_url}" target="_blank" rel="noopener">شوف الـcommit ↗</a>`:''}`;
+  current = c.sample_id;
+}
+
+async function loadSavedChoice(){
+  const cands = [`https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/${CHOICE_PATH}?ts=${Date.now()}`,
+                 `${CHOICE_PATH.split('/').pop()}?ts=${Date.now()}`, `../${CHOICE_PATH}?ts=${Date.now()}`];
+  for (const u of cands) { try { const r = await fetch(u, {cache:'no-store'});
+    if (r.ok) { paintChoice(JSON.parse(await r.text()), 'في المستودع'); return; } } catch {} }
+  paintChoice(localChoice, localChoice ? 'في المتصفح — لسه ما بعتّوهش للمستودع' : null);
+}
+
+async function pick(row){
+  if (row.status !== 'generated') { say('العينة دي لسه ما تولّدتش — اختار من المولَّدة.', 'warn'); return; }
+  const payload = { schema: 1, sample_id: row.id, source_catalog: 'docs/voice-library.json',
+    voice_id: row.voice_id, text: row.text, words: row.words,
+    words_per_sec: row.words_per_sec || null, delivery_measured: row.delivery_measured || null,
+    audio: row.audio, sha256: row.sha256 || null, chain: 'anull',
+    note: 'خرج أداة الصوت زي ما هو: لا فلتر ولا pitch ولا موسيقى ولا حشو سكون.',
+    project: PROJECT, chosen_at: new Date().toISOString(),
+    chosen_by: 'docs/voice-library.html', branch: BRANCH,
+    how_to_apply: 'scripts/set_voice_choice.py --catalog docs/voice-library.json' };
+  const text = JSON.stringify(payload, null, 2) + '\n';
+  localStorage.setItem(LOCAL_KEY, JSON.stringify({...payload, commit_url: null}));
+  paintChoice(payload, 'محفوظ في المتصفح'); render();
+  const token = loadToken();
+  if (!token) {
+    $('token').focus();
+    say('اختارك اتسجّل عندك في المتصفح. يوصلني في المستودع بطريقتين: اكتب رمز GitHub فوق، ' +
+        `أو انسخ السطر ده والصقه في المحادثة: <code>${esc(commandFor(row))}</code>
+         <br><button class="ghost" id="cp">انسخ</button>`, 'warn');
+    const b = $('cp'); if (b) b.onclick = () => navigator.clipboard.writeText(commandFor(row))
+      .then(()=>say('اتنسخ.','ok'));
+    return;
+  }
+  say('بكتب الاختيار في المستودع…');
+  try {
+    const res = await commitTextFile(CHOICE_PATH, text, `voice: ${row.id} (${row.voice_id}) من مكتبة المئة عينة`, token);
+    let per = null;
+    try { per = await commitTextFile(`library/${PROJECT}/voice-choice.json`, text, `voice: ${row.id} for ${PROJECT}`, token); } catch {}
+    payload.commit_url = res.url; localStorage.setItem(LOCAL_KEY, JSON.stringify(payload));
+    paintChoice(payload, 'في المستودع'); render();
+    say(`<b>وصل الاختيار للمستودع</b> — <code>${row.id}</code>${per?` · اتسجّل في <code>library/${PROJECT}/</code>`:''}
+         · <a href="${res.url}" target="_blank" rel="noopener">شوف الـcommit ↗</a><br>
+         قولّي «كمّل الدبلجة بالعينة دي» وأنا أبدأ الجولة التالتة بنفس الصوت.`, 'ok');
+  } catch (err) { say('ما قدرتش أكتب في المستودع: ' + err.message + ' — الاختيار فاضل في المتصفح.', 'err'); }
+}
+
+function render(){
+  const q = $('q').value.trim(), v = vb.value, st = $('s').value;
+  const b = $('b'); b.innerHTML = ''; let n = 0;
+  ROWS.forEach(r => {
+    if (v && r.voice_id !== v) return;
+    if (st && r.status !== st) return;
+    if (q && esc(r.text).indexOf(q) < 0) return;
     n++;
-    const tr=document.createElement("tr"); tr.className=cls(r);
-    const rate=r.words_per_sec?r.words_per_sec.toFixed(3):"—";
-    const a=r.status==="generated"
-      ?'<audio controls preload="none" src="'+r.audio+'"></audio>'
-      :'<span class="mut">لسه ما تولّدش</span>';
-    const hash=r.sha256?r.sha256.slice(0,12):"";
-    tr.innerHTML="<td>"+r.id+"<br><span class='mut'>"+r.paragraph+"</span></td>"
-      +"<td><code>"+r.voice_id+"</code><br><span class='mut'>"+esc(r.battle_batch)+"</span></td>"
-      +"<td>"+a+"</td>"
-      +"<td>"+esc(r.text)+"<br><span class='mut'>"+r.words+" كلمة · "+hash+"</span></td>"
-      +"<td>"+rate+"</td>"
-      +"<td>"+esc(r.delivery_measured||"—")+"</td>"
-      +"<td><span class='"+(r.status==="generated"?"ok":"mut")+"'>"+r.status+"</span>"
-      +"<br><span class='mut'>"+esc(r.voice_verdict)+"</span></td>";
+    const tr = document.createElement('tr');
+    tr.className = (r.status === 'generated' ? 'gen' : (r.status === 'failed_silent' ? 'bad' : 'pen'))
+                 + (r.id === current ? ' sel' : '');
+    const a = r.status === 'generated'
+      ? `<audio controls preload="none" src="${r.audio}"></audio>` : '<span class="mut">لسه ما تولّدش</span>';
+    tr.innerHTML = `<td>${r.id}<br><span class="mut">${esc(r.paragraph)}</span></td>
+      <td><code>${esc(r.voice_id)}</code><br><span class="mut">${esc(r.battle_batch||'')}</span></td>
+      <td>${a}</td>
+      <td>${esc(r.text)}<br><span class="mut">${r.words} كلمة · ${r.sha256?r.sha256.slice(0,12):''}</span></td>
+      <td>${fmt(r.words_per_sec)}</td>
+      <td>${esc(r.delivery_measured||'—')}</td>
+      <td><button class="pick ${r.id===current?'sel':''}" ${r.status==='generated'?'':'disabled'}>${r.id===current?'✓ المختارة':'اختر هذه العينة'}</button>
+          <br><button class="ghost">${'انسخ الأمر'}</button></td>`;
+    const [pickBtn, copyBtn] = tr.querySelectorAll('button');
+    pickBtn.onclick = () => pick(r);
+    copyBtn.onclick = () => navigator.clipboard.writeText(commandFor(r)).then(()=>say('اتنسخ.','ok'));
     b.appendChild(tr);
   });
-  document.getElementById("c").textContent="معرض "+n+" سطر";
+  $('c').textContent = `معرض ${n} · مُولَّدة ${ROWS.filter(r=>r.status==='generated').length}/${ROWS.length}`;
 }
-["q","v","s"].forEach(function(i){document.getElementById(i).addEventListener("input",draw)});
-draw();
+['q','s'].forEach(i=>$(i).addEventListener('input',render));
+vb.addEventListener('input',render);
+$('saveTok').onclick = () => { saveToken($('token').value.trim()); say('الرمز اتحفظ في المتصفح.','ok'); };
+$('dropTok').onclick = () => { forgetToken(); $('token').value=''; say('اتمسح.','warn'); };
+$('testTok').onclick = async () => { const t = $('token').value.trim() || loadToken();
+  if (!t) return say('اكتب الرمز الأول.','warn');
+  try { const u = await checkToken(t); say(`الرمز شغال: <code>${esc(u&&u.login||'?')}</code> — يقدر يكتب في <code>${esc(BRANCH)}</code>.`,'ok'); }
+  catch (e) { say('الرمز مرفوض: '+e.message,'err'); } };
+(async () => { const t = loadToken(); if (t) $('token').value = t;
+  await fresh(); await loadSavedChoice(); render();
+  const pend = ROWS.filter(r=>r.status==='pending').length;
+  if (pend) say(`فيه <b>${pend}</b> خانة لسه بتتولّد (سقف المنصة 10 مقاطع في اللفة) — `
+    + 'المولَّد شغال حالًا، والباقي بييجي ورا بعضه.','warn');
+})();
 </script></body></html>
 """
 
@@ -346,6 +471,7 @@ def write_page(doc: dict) -> None:
             for r in doc["samples"]]
     html = (PAGE_TEMPLATE
             .replace("@@ROWS@@", json.dumps(rows, ensure_ascii=False))
+            .replace("@@TOKEN_URL@@", "https://github.com/settings/tokens/new?scopes=public_repo&amp;description=ProStudio%20voice%20choice")
             .replace("@@GEN@@", str(doc["generated"]))
             .replace("@@TOTAL@@", str(doc["total_slots"]))
             .replace("@@VOICES@@", str(doc["distinct_voices"]))

@@ -511,3 +511,18 @@ python3 -m venv /home/user/dubenv && /home/user/dubenv/bin/pip install -q \
   1.6–2.3. **التحذير لازم يتكرر**: المتوسط محسوب على 1–2 مقطع قصير لكل صوت، مش شهادة؛
   المقياس المعتمد في المستود كان 34 ثانية من النص الحقيقي (`voice-tests/gallery/pace-fit.json`).
   المقارنة بـ2.507 ك/ث تبقى قرار موقت لحد ما المكتبة تكتمل.
+
+### 2026-09-10 — الاختيار من الموقع نفسه: `voice-library.html` بزرار «اختر هذه العينة»
+
+- المستخدم طلب: 100 عينة + **هو اللي يختار** + تكون **على الموقع**. فالصفحة المولّدة بقت نفس
+  تدفيق `voice-shop.html`: استيراد `github-upload.js` (`commitTextFile`/`loadToken`/`checkToken`)،
+  حقل رمز، `docs/voice-choice.json` بـ`sample_id: "lib-NNN"`، كتابة موازية في
+  `library/<project>/voice-choice.json`، ولما الرمز مش موجود تحفظ في المتصفح وتدي سطر يُنسخ.
+- `set_voice_choice.py` بقى بيقبل `--catalog docs/voice-library.json`: صفة `generated` مقبولة
+  زي `ready`، المعاينة من `audio` لما `preview_url` مش موجود، و`sha256` بيقارن **بادئة**
+  (الكتالوج القديم 16 حرف والمكتبة 64 — المقارنة بالمساواة كانت بت طلّع تحذير كاذب).
+  الاختبار الجافّ عدّى: `raw_generation: true` و`chain: anull` و`platform_voice: voice-00`.
+- `docs/index.html`: تبويب جديد «مكتبة المئة» (iframe) جنب «مئة صوت».
+- النشر على `main` مطلوب صراحة («تكون في الموقع»): PR من فرع الجلسة ودمج، لأن Pages بيبني من
+  `docs/` على `main` بس (مسارات الـAPI للبايج مرفوضة من رمز Arena).
+- الحالة: **28/100** مولَّدة وmeta-قياسة، والـ72 الباقيين 8 لفّات بسقف 10 في اللفة.

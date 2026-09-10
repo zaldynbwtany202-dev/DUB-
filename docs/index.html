@@ -34,6 +34,7 @@
   <button class="tab" data-tab="runs" role="tab" aria-selected="false">التشغيلات <span id="countRuns" class="count">0</span></button>
   <button class="tab" data-tab="voices" role="tab" aria-selected="false">الأصوات <span id="countVoices" class="count">0</span></button>
   <button class="tab" data-tab="shop" role="tab" aria-selected="false">مئة صوت</button>
+  <button class="tab" data-tab="lib100" role="tab" aria-selected="false">مكتبة المئة</button>
   <button class="tab" data-tab="settings" role="tab" aria-selected="false">الإعدادات</button>
 </nav>
 
@@ -160,6 +161,16 @@
          فتُبنى الدبلجة بالصوت المختار وسلسلة فلاتره المعلنة. الصفحة مستقلة ومفتوحة أيضًا على
          <a href="voice-shop.html">voice-shop.html</a>.</p></div></div>
     <iframe src="voice-shop.html" title="مئة عينة صوت"
+            style="width:100%;height:78vh;border:1px solid rgba(244,239,228,.12);border-radius:14px;background:#07080c"></iframe>
+  </section>
+  <section id="tab-lib100" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">كلها مولَّدة في الجلسة، بلا فلاتر</p>
+      <h2>مكتبة المئة عينة</h2>
+      <p>100 خانة، كل واحدة نص مختلف وصوت مختلف من أصوات الجلسة الـ13، وخرج الأداة زي ما هو
+         (<code>anull</code> — لا pitch ولا موسيقى ولا حشو سكون). عمود «كلمة/ث» محسوب على مدى
+         الكلام نفسه، وزر «اختر هذه العينة» بيكتب <code>docs/voice-choice.json</code> في الفرع.
+         الصفحة مستقلة كمان على <a href="voice-library.html">voice-library.html</a>.</p></div></div>
+    <iframe src="voice-library.html" title="مكتبة المئة عينة"
             style="width:100%;height:78vh;border:1px solid rgba(244,239,228,.12);border-radius:14px;background:#07080c"></iframe>
   </section>
   <section id="tab-settings" class="panel" role="tabpanel">
