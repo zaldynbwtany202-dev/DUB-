@@ -48,7 +48,9 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--project", default="hajj-dream-2108415")
     ap.add_argument("--choice", type=Path, default=ROOT / "docs" / "voice-choice.json")
-    ap.add_argument("--catalog", type=Path, default=ROOT / "docs" / "voice-shop.json")
+    ap.add_argument("--catalog", type=Path, default=ROOT / "docs" / "voice-shop.json",
+                    help="docs/voice-shop.json لل كتالوج المعالج، أو docs/voice-library.json "
+                         "للمكتبة المولَّدة خام (chain=anull)")
     ap.add_argument("--narration", type=Path, help="existing narration wav to re-voice with the chain")
     ap.add_argument("--out", type=Path)
     ap.add_argument("--write-state", action="store_true",
@@ -62,7 +64,7 @@ def main() -> int:
     if row is None:
         raise SystemExit(f"العينة رقم {slot} غير موجودة في الكتالوج المولّد — لن ننفّذ طلبًا من المتصفح")
 
-    if row.get("status") != "ready":
+    if row.get("status") not in ("ready", "generated"):
         raise SystemExit(f"العينة رقم {slot} محجوزة وما اتسجلتش بعد: {row.get('why', '')}")
 
     browser_chain, repo_chain = choice.get("chain"), row.get("chain")
@@ -73,9 +75,12 @@ def main() -> int:
     if not chain_is_safe(chain):
         raise SystemExit(f"سلسلة الفلاتر في الكتالوج فيها فلتر غير مسموح: {chain!r}")
 
-    preview = ROOT / "docs" / row["preview_url"]
-    digest = hashlib.sha256(preview.read_bytes()).hexdigest()[:16] if preview.is_file() else None
-    if digest and row.get("sha256") and digest != row["sha256"]:
+    # Catalog rows from the shop carry `preview_url`; the generated library carries `audio`.
+    rel = row.get("preview_url") or row.get("audio")
+    preview = ROOT / "docs" / rel if rel else None
+    digest = hashlib.sha256(preview.read_bytes()).hexdigest()[:16] if preview and preview.is_file() else None
+    # The shop stores a 16-char digest, the library stores the full 64 — compare by prefix.
+    if digest and row.get("sha256") and not str(row["sha256"]).startswith(digest):
         print(f"⚠ معاينة العينة اتغيرت عن اللي اتولّد ({row['sha256']} → {digest}) — "
               "أعد بناء الكتالوج قبل التشغيل.")
 
@@ -84,9 +89,12 @@ def main() -> int:
         "recorded_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "sample_id": slot,
         "project": args.project,
-        "base_take": row["source_take"],
-        "platform_voice": row["base_voice"],
-        "dialect": row["dialect"], "age": row["age"], "tone": row["tone"], "gender": row["gender"],
+        "base_take": row.get("source_take") or row.get("audio"),
+        "platform_voice": row.get("base_voice") or row.get("voice_id"),
+        "dialect": row.get("dialect") or "مصري", "age": row.get("age"), "tone": row.get("tone"),
+        "gender": row.get("gender"),
+        "text": row.get("text"), "words_per_sec": row.get("words_per_sec"),
+        "raw_generation": row.get("post_processing") == "anull",
         "chain": chain,
         "chain_check": row.get("chain_check"),
         "regenerate_note": (
