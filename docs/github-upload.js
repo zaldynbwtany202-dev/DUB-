@@ -38,9 +38,9 @@ export const BRANCH = (() => {
   try {
     const fromUrl = new URLSearchParams(location.search).get('branch');
     if (fromUrl) { localStorage.setItem(BRANCH_KEY, fromUrl); return fromUrl; }
-    return localStorage.getItem(BRANCH_KEY) || 'arena/01a08487-dub';
+    return localStorage.getItem(BRANCH_KEY) || 'arena/01a0880a-dub';
   } catch {
-    return 'arena/01a08487-dub';
+    return 'arena/01a0880a-dub';
   }
 })();
 export const TOKEN_URL =
