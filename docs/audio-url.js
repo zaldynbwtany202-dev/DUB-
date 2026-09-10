@@ -48,19 +48,66 @@ export function parseManifest(text) {
   }
 }
 
+/**
+ * GitHub Pages deployments → the ref each one deployed, newest first.
+ *
+ * The manifest records the branch its own build came from, but a later
+ * session deploys a NEW branch carrying the OLD manifest — the trap that
+ * silenced playback once already. The deployments API is public, so the
+ * pages can ask GitHub which branch is really live right now and heal
+ * without anyone touching this repo. Response: [{"ref": "arena/…-dub"}, …].
+ */
+export function parseDeployments(text) {
+  try {
+    const list = JSON.parse(text);
+    if (!Array.isArray(list)) return [];
+    return list
+      .map((d) => (d && typeof d.ref === 'string' ? d.ref.trim() : ''))
+      .filter((ref, i, arr) => ref && arr.indexOf(ref) === i);
+  } catch {
+    return [];
+  }
+}
+
+function mergeBranches(lists) {
+  const seen = new Set();
+  return lists.flat().filter((b) => {
+    if (typeof b !== 'string' || !b.trim() || seen.has(b)) return false;
+    seen.add(b);
+    return true;
+  });
+}
+
 let branchesPromise = null;
 export function audioBranches() {
   if (typeof fetch === 'undefined') {
     return Promise.resolve(DEFAULT_AUDIO_BRANCHES);
   }
   if (!branchesPromise) {
-    branchesPromise = fetch(`${MANIFEST_PATH}?ts=${Date.now()}`, { cache: 'no-store' })
+    const deployments = fetch(
+      `https://api.github.com/repos/${OWNER}/${REPO}/deployments?environment=github-pages&per_page=5`,
+      { headers: { Accept: 'application/vnd.github+json' } },
+    )
+      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then((t) => parseDeployments(t))
+      .catch(() => []);
+    const manifest = fetch(`${MANIFEST_PATH}?ts=${Date.now()}`, { cache: 'no-store' })
       .then((r) => (r.ok ? r.text() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((t) => parseManifest(t))
-      .then((b) => (b ? [b, ...DEFAULT_AUDIO_BRANCHES] : DEFAULT_AUDIO_BRANCHES))
+      .then((b) => (b ? [b] : []))
+      .catch(() => []);
+    branchesPromise = Promise.all([deployments, manifest])
+      .then(([deployed, fromManifest]) =>
+        mergeBranches([deployed, fromManifest, DEFAULT_AUDIO_BRANCHES]))
       .catch(() => DEFAULT_AUDIO_BRANCHES);
   }
   return branchesPromise;
+}
+
+/** Absolute raw URL for any repo path (no /docs/ prefix) — dashboards, dubs. */
+export function rawRepoUrl(branch, path) {
+  return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${branch}/` +
+    String(path || '').split('/').map(encodeURIComponent).join('/');
 }
 
 export function audioCandidates(path) {

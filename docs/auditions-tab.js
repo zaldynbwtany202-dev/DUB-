@@ -212,7 +212,7 @@ function initAuditions() {
       const data = parseCurrentSelection(res.status, await res.text());
       box.innerHTML = data
         ? describeSelection(data)
-        : 'لا يوجد اختيار بعد — اسمع العينات أدناه، اختر، وأرسل؛ سيظهر الاختيار هنا فوراً.';
+        : 'لا يوجد اختيار بعد — اضغط «اختر» عند أي عينة أدناه ويصلني اختيارك تلقائياً.';
     } catch (err) {
       box.textContent = err.message;
     }

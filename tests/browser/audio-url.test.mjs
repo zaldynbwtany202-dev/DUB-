@@ -11,7 +11,7 @@
  * Run: node tests/browser/audio-url.test.mjs
  */
 import {
-  rawDocsUrl, audioCandidatesFor, parseManifest,
+  rawDocsUrl, rawRepoUrl, audioCandidatesFor, parseManifest, parseDeployments,
   audioBranches, DEFAULT_AUDIO_BRANCHES, MANIFEST_PATH,
 } from '../../docs/audio-url.js';
 import { readFileSync, existsSync } from 'fs';
@@ -33,6 +33,20 @@ const cands = audioCandidatesFor(['a', 'b', 'a', '', '  ', 'b', 'c'], 'x.mp3');
 ok(cands.length === 3, 'deduped and blank-free');
 ok(cands[0].includes('/a/') && cands[2].includes('/c/'), 'order preserved');
 ok(audioCandidatesFor(null, 'x').length === 0, 'null branches → no candidates');
+
+// ── deployments parsing: the live branch discovered, never guessed ───────
+ok(parseDeployments('[{"ref":"arena/new-dub"},{"ref":"arena/old-dub"},{"ref":"arena/new-dub"}]')
+   .join(',') === 'arena/new-dub,arena/old-dub', 'deployment refs deduped, order kept');
+ok(parseDeployments('[]').length === 0, 'empty deployments → empty list');
+ok(parseDeployments('[{"sha":"x"}]').length === 0, 'refs without names dropped');
+ok(parseDeployments('garbage').length === 0, 'broken JSON → empty, never a throw');
+ok(parseDeployments('[{"ref":"  "}]').length === 0, 'blank refs dropped');
+
+// ── rawRepoUrl: same verbatim rule, no /docs/ prefix ─────────────────────
+ok(rawRepoUrl('arena/x-dub', 'dubs/a/b.mp4')
+   === 'https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/x-dub/dubs/a/b.mp4',
+   'rawRepoUrl keeps the repo root path');
+ok(!rawRepoUrl('b', 'x').includes('/docs/'), 'rawRepoUrl has no docs prefix');
 
 // ── manifest parsing: the branch comes from the file, never a guess ──────
 ok(parseManifest('{"branch":"arena/new-dub"}') === 'arena/new-dub', 'valid manifest parses');

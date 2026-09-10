@@ -41,7 +41,8 @@ ok(shop.includes('rawDocs(s.preview_url)'), 'shop preview plays through rawDocs'
 ok(!/new Audio\(relative\(/.test(shop), 'no shop Audio element points at the Pages origin');
 ok(!shop.includes('github.io/raw') && !shop.includes('github.io/voice-shop'),
    'no shop audio URL targets github.io');
-ok(lib.includes('rawDocs(r.audio)'), 'library audio plays through rawDocs');
+ok(lib.includes("data-audio=") && lib.includes('audioCandidates(el.dataset.audio)'),
+   'library audio plays through the candidate list (rawDocs retired there)');
 ok(shop.includes("from './audio-url.js'") && lib.includes("from './audio-url.js'"),
    'both pages resolve the audio host through the shared audio-url module');
 ok(shop.includes('audioBranches()') && lib.includes('audioBranches()'),
@@ -50,6 +51,19 @@ ok(!/raw\.githubusercontent\.com[^`]*encodeURIComponent/.test(shop) &&
    !/raw\.githubusercontent\.com[^`]*encodeURIComponent/.test(lib),
    'no raw URL in either page encodes its branch (raw 404s %2F)');
 ok(shop.includes('rawDocsUrl(next, s.preview_url)'), 'shop falls back to the next branch on error');
+ok(lib.includes('wireAudio') && lib.includes('audioCandidates(el.dataset.audio)'),
+   'library players walk the candidate list too');
+ok(lib.includes('data-audio='), 'library audio elements carry their path for wiring');
+const dash = read('docs/dashboard.html');
+ok(dash.includes("from './audio-url.js'") && dash.includes('rawRepoUrl(br,f.path)'),
+   'dashboard videos resolve through the shared module from the deployed branch');
+ok(!/raw\.githubusercontent\.com[^`\n]*encodeURIComponent\(BRANCH\)/.test(dash),
+   'no dashboard raw URL encodes its branch');
+const studioSrc = read('docs/studio.js');
+ok(studioSrc.includes('translation-preflight.yml غير موجود'),
+   'the preflight button explains a missing workflow instead of HTTP 404');
+ok(read('docs/index.html').includes('غير مثبّت في هذا المستودع حالياً'),
+   'the settings hint states the workflow is not installed');
 
 // ── the choice channel: writer and reader agree ──────────────────────────
 ok(shop.includes('commitTextFile') && lib.includes('commitTextFile'),

@@ -235,8 +235,9 @@ def main() -> None:
         raise SystemExit(f"تعذّر القراءة من GitHub: {exc}")
 
     if data is None:
-        print(f"لا يوجد اختيار بعد — {SELECTION_PATH} غير موجود على {args.branch}.")
-        print("أرسله من docs/voices.html بالزر «أرسل الاختيار إلى الوكيل».")
+        print(f"لا يوجد اختيار بعد — لا {SELECTION_PATH} ولا {SHOP_CHOICE_PATH} على {args.branch}.")
+        print("الاختيار تلقائي الآن: ضغطة «اختر» في أي صفحة أصوات على الموقع تثبّت الاختيار"
+              " فوراً (تحتاج رمز GitHub محفوظاً في المتصفح).")
         raise SystemExit(3)
 
     errors = validate_selection(data)

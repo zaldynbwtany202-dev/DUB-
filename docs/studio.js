@@ -1073,7 +1073,14 @@ function init() {
   $('saveDefaults').onclick = () => { localStorage.setItem(DEFAULTS_KEY, JSON.stringify(readDefaultsForm())); setStatus($('defaultsStatus'), 'تم الحفظ', 'ok'); };
   $('runPreflight').onclick = async () => {
     try { needToken(); await api(`/repos/${OWNER}/${REPO}/actions/workflows/translation-preflight.yml/dispatches`, { method: 'POST', body: JSON.stringify({ ref: BRANCH, inputs: { source_lang: 'ar', target_lang: $('dTarget').value.trim() || 'en' } }) }); setStatus($('preflightStatus'), 'انطلق الفحص — النتيجة في Actions خلال دقيقة', 'ok'); }
-    catch (e) { setStatus($('preflightStatus'), e.message, 'err'); }
+    catch (e) {
+      // The workflow was never committed to this repo (checked main too), so
+      // a 404 here is the expected answer until it is installed — say that
+      // plainly instead of surfacing a bare HTTP 404.
+      setStatus($('preflightStatus'), String(e.message).includes('404')
+        ? 'فحص الترجمة غير مثبّت في هذا المستودع (translation-preflight.yml غير موجود) — الترجمة تُضبط من أسرار المستودع مباشرة.'
+        : e.message, 'err');
+    }
   };
 
   fullRefresh(true).then(schedule);

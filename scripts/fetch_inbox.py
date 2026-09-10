@@ -27,8 +27,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-REPO = os.environ.get("GITHUB_REPOSITORY", "dhiyaddineb-hue/prostudio")
-BRANCH = os.environ.get("GITHUB_REF_NAME", "main")
+REPO = os.environ.get("GITHUB_REPOSITORY", "zaldynbwtany202-dev/DUB-")
+BRANCH = os.environ.get("GITHUB_REF_NAME", "arena/01a07c69-dub")
 MEDIA = {".mp4", ".mkv", ".webm", ".mov", ".m4v", ".avi",
          ".mp3", ".wav", ".m4a", ".aac", ".ogg", ".flac"}
 

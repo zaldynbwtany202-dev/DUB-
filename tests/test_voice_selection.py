@@ -226,3 +226,27 @@ def test_commit_text_file_declares_blob_encoding():
     base64-of-JSON and nothing could read it."""
     js = (ROOT / "docs" / "github-upload.js").read_text(encoding="utf-8")
     assert "encoding: 'base64', content: btoa" in js
+
+
+def test_reader_empty_message_names_both_channels():
+    """Nothing-found must point at the auto-send behavior and both file paths,
+    not at the removed manual send button."""
+    src = (ROOT / "scripts" / "fetch_voice_selection.py").read_text(encoding="utf-8")
+    assert "voice-choice.json" in src
+    assert "الاختيار تلقائي الآن" in src
+
+
+def test_fetch_inbox_defaults_to_this_repo():
+    """The inbox reader defaulted to a different repository from an old
+    project — attachments would land here and be read from there."""
+    import importlib.util as ilu
+    import sys
+    src = (ROOT / "scripts" / "fetch_inbox.py").read_text(encoding="utf-8")
+    assert '"zaldynbwtany202-dev/DUB-"' in src
+    assert '"dhiyaddineb-hue/prostudio"' not in src
+    assert '"arena/01a07c69-dub"' in src
+
+
+def test_auditions_empty_card_points_at_auto_send():
+    js = (ROOT / "docs" / "auditions-tab.js").read_text(encoding="utf-8")
+    assert "يصلني اختيارك تلقائياً" in js

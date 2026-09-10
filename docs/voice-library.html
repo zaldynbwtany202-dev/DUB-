@@ -59,6 +59,7 @@ a{color:#7cc0ff}
 <script type="module">
 import { commitTextFile, loadToken, saveToken, forgetToken, checkToken, TOKEN_URL,
          OWNER, REPO, BRANCH } from './github-upload.js';
+import { audioCandidates } from './audio-url.js';
 import { audioBranches, rawDocsUrl } from './audio-url.js';
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -152,6 +153,18 @@ async function pick(row){
   } catch (err) { say('ما قدرتش أكتب في المستودع: ' + err.message + ' — الاختيار فاضل في المتصفح.', 'err'); }
 }
 
+function wireAudio(root){
+  // Every player walks the branch candidates (deployed → manifest → upload)
+  // and slides to the next one on error, so a stale manifest can't silence it.
+  root.querySelectorAll('audio[data-audio]').forEach(el => {
+    audioCandidates(el.dataset.audio).then(urls => {
+      let i = 0;
+      el.onerror = () => { i += 1; if (i < urls.length) el.src = urls[i]; };
+      el.src = urls[0];
+    });
+  });
+}
+
 function render(){
   const q = $('q').value.trim(), v = vb.value, st = $('s').value;
   const b = $('b'); b.innerHTML = ''; let n = 0;
@@ -164,7 +177,8 @@ function render(){
     tr.className = (r.status === 'generated' ? 'gen' : (r.status === 'failed_silent' ? 'bad' : 'pen'))
                  + (r.id === current ? ' sel' : '');
     const a = r.status === 'generated'
-      ? `<audio controls preload="none" src="${rawDocs(r.audio)}"></audio>` : '<span class="mut">لسه ما تولّدش</span>';
+      ? `<audio controls preload="none" data-audio="${esc(r.audio)}"></audio>`
+      : '<span class="mut">لسه ما تولّدش</span>';
     tr.innerHTML = `<td>${r.id}<br><span class="mut">${esc(r.paragraph)}</span></td>
       <td><code>${esc(r.voice_id)}</code><br><span class="mut">${esc(r.battle_batch||'')}</span></td>
       <td>${a}</td>
@@ -179,6 +193,7 @@ function render(){
     b.appendChild(tr);
   });
   $('c').textContent = `معرض ${n} · مُولَّدة ${ROWS.filter(r=>r.status==='generated').length}/${ROWS.length}`;
+  wireAudio(b);
 }
 ['q','s'].forEach(i=>$(i).addEventListener('input',render));
 vb.addEventListener('input',render);
