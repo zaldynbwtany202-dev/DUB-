@@ -1014,7 +1014,8 @@ function init() {
   $('repoLink').href = `${REPO_URL}/tree/${encodeURIComponent(BRANCH)}`;
   $('actionsLink').href = `${REPO_URL}/actions`;
   $('tokenLink').href = TOKEN_URL;
-  $('preflightLink').href = `${REPO_URL}/actions/workflows/translation-preflight.yml`;
+  const preflightLink = $('preflightLink');
+  if (preflightLink) preflightLink.href = `${REPO_URL}/actions/workflows/translation-preflight.yml`;
   state.token = loadToken(); $('token').value = state.token; setConnection();
   fillDefaultsForm(defaults());
 
