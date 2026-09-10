@@ -46,6 +46,7 @@
   .chip:hover{background:rgba(232,184,109,.2)}
   .chip.copied{color:#1a1208;background:var(--ok);border-color:var(--ok)}
   .vid{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--muted);direction:ltr;unicode-bidi:embed}
+  audio{width:200px;height:34px;direction:ltr}
   .tag{display:inline-block;font-size:12px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);color:var(--muted)}
   .tag.deep{color:var(--gold);border-color:rgba(232,184,109,.4)}
   .tag.base{color:var(--ok);border-color:rgba(125,206,160,.4)}
@@ -75,6 +76,7 @@
   <h1>سجل شيفرات الأصوات</h1>
   <p class="lede">كل صوت فيه شيفرة هوية ثابتة. اطلب أي عمل تعليق باسم الشيفرة، وتعرف بالظبط الصوت اللي تقصده.
   المس على أي شيفرة لنسخها.</p>
+  <p class="lede" style="color:var(--gold-2)">🎧 كل الأصوات بتقول <b>نفس الجملة بالظبط</b> — شغّلهم بالتتابع وقارن العمق والنبرة، واختار اللي قلك «ده هو».</p>
 
   <div class="stats">
     <div class="stat"><b>12</b><span>صوت مسجّل</span></div>
@@ -85,32 +87,32 @@
 
   <section>
     <h2>أصوات عميقة — نمط حفيظ دراجي</h2>
-    <p class="hint">اتسمعت على إسمعته الدرامية: «الوحوش العملاقة».</p>
+    <p class="hint">الجملة: «قعدوا يحكون إن في زمان، كان فيه وحوش كبيرة بتتحكم في المدينة. بس ظهر يوم واحد، راجل عملاق زي الجبل، قال كلمة واحدة بس... وفوق الأرض كلها سكتت.»</p>
     <table>
-      <thead><tr><th>الشيفرة</th><th>المعرّف الداخلي</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
+      <thead><tr><th>الشيفرة</th><th>المعرّف</th><th>المعاينة</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
       <tbody>
-        <tr><td><span class="chip" data-code="الجبل-5">الجبل-5 (JABEL-5)</span></td><td class="vid">voice-04</td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-6">الجبل-6 (JABEL-6)</span></td><td class="vid">voice-05</td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-7">الجبل-7 (JABEL-7)</span></td><td class="vid">voice-06</td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-8">الجبل-8 (JABEL-8)</span></td><td class="vid">voice-07</td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-9">الجبل-9 (JABEL-9)</span></td><td class="vid">voice-10</td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-10">الجبل-10 (JABEL-10)</span></td><td class="vid">voice-11</td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-11">الجبل-11 (JABEL-11)</span></td><td class="vid">voice-12</td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
-        <tr><td><span class="chip" data-code="الجبل-12">الجبل-12 (JABEL-12)</span></td><td class="vid">voice-13</td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-5">الجبل-5 (JABEL-5)</span></td><td class="vid">voice-04</td><td><audio controls preload="none" src="samples-registry/voice-04.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-6">الجبل-6 (JABEL-6)</span></td><td class="vid">voice-05</td><td><audio controls preload="none" src="samples-registry/voice-05.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-7">الجبل-7 (JABEL-7)</span></td><td class="vid">voice-06</td><td><audio controls preload="none" src="samples-registry/voice-06.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-8">الجبل-8 (JABEL-8)</span></td><td class="vid">voice-07</td><td><audio controls preload="none" src="samples-registry/voice-07.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-9">الجبل-9 (JABEL-9)</span></td><td class="vid">voice-10</td><td><audio controls preload="none" src="samples-registry/voice-10.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-10">الجبل-10 (JABEL-10)</span></td><td class="vid">voice-11</td><td><audio controls preload="none" src="samples-registry/voice-11.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-11">الجبل-11 (JABEL-11)</span></td><td class="vid">voice-12</td><td><audio controls preload="none" src="samples-registry/voice-12.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
+        <tr><td><span class="chip" data-code="الجبل-12">الجبل-12 (JABEL-12)</span></td><td class="vid">voice-13</td><td><audio controls preload="none" src="samples-registry/voice-13.mp3"></audio></td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
       </tbody>
     </table>
   </section>
 
   <section>
     <h2>الاختيارات الأولى</h2>
-    <p class="hint">أصوات مصرية طبيعية لتعليق ملخصات الأفلام.</p>
+    <p class="hint">أصوات مصرية طبيعية لتعليق ملخصات الأفلام — نفس الجملة للمقارنة.</p>
     <table>
-      <thead><tr><th>الشيفرة</th><th>المعرّف الداخلي</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
+      <thead><tr><th>الشيفرة</th><th>المعرّف</th><th>المعاينة</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
       <tbody>
-        <tr><td><span class="chip" data-code="خشن-1">خشن-1 (KHUSHN-1)</span></td><td class="vid">voice-00</td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الأول</td></tr>
-        <tr><td><span class="chip" data-code="مرشد-2">مرشد-2 (MURSHID-2)</span></td><td class="vid">voice-01</td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الثاني</td></tr>
-        <tr><td><span class="chip" data-code="خشن-3">خشن-3 (KHUSHN-3)</span></td><td class="vid">voice-02</td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الثالث)</td></tr>
-        <tr><td><span class="chip" data-code="مرشد-4">مرشد-4 (MURSHID-4)</span></td><td class="vid">voice-03</td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الرابع)</td></tr>
+        <tr><td><span class="chip" data-code="خشن-1">خشن-1 (KHUSHN-1)</span></td><td class="vid">voice-00</td><td><audio controls preload="none" src="samples-registry/voice-00.mp3"></audio></td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الأول</td></tr>
+        <tr><td><span class="chip" data-code="مرشد-2">مرشد-2 (MURSHID-2)</span></td><td class="vid">voice-01</td><td><audio controls preload="none" src="samples-registry/voice-01.mp3"></audio></td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الثاني</td></tr>
+        <tr><td><span class="chip" data-code="خشن-3">خشن-3 (KHUSHN-3)</span></td><td class="vid">voice-02</td><td><span class="hint">قريبًا</span></td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الثالث)</td></tr>
+        <tr><td><span class="chip" data-code="مرشد-4">مرشد-4 (MURSHID-4)</span></td><td class="vid">voice-03</td><td><span class="hint">قريبًا</span></td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الرابع)</td></tr>
       </tbody>
     </table>
   </section>
