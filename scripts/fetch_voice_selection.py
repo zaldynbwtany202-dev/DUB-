@@ -28,6 +28,10 @@ ROOT = Path(__file__).resolve().parent.parent
 REPO = os.environ.get("GITHUB_REPOSITORY", "zaldynbwtany202-dev/DUB-")
 BRANCH = os.environ.get("VOICE_SELECTION_BRANCH", "arena/01a07c69-dub")
 SELECTION_PATH = "inbox/voice-selection.json"
+# The voice shop (docs/voice-shop.html) and the raw voice library
+# (docs/voice-library.html) write a second channel — same branch, one commit
+# per click — naming the catalog slot the agent must obey.
+SHOP_CHOICE_PATH = "docs/voice-choice.json"
 
 # Kept in lockstep with docs/voice-select.js DIALECT_CODES.
 DIALECT_CODES = {"فصحى": "ar", "مصرية": "ar-EG", "شامية": "ar-Levantine"}
@@ -62,10 +66,38 @@ def read_remote(repo: str = REPO, branch: str = BRANCH,
 
 
 def validate_selection(data: object) -> list[str]:
-    """Every way a payload could reach the agent and still be unusable."""
-    errors: list[str] = []
+    """Every way a payload could reach the agent and still be unusable.
+
+    Two shapes arrive on this branch: the samples tab writes `kind:
+    voice-selection` with one entry per role; the voice shop and the raw
+    library write `schema: 1` with a single `sample_id` naming a catalog
+    slot. Both are accepted; anything else is refused.
+    """
     if not isinstance(data, dict):
         return ["الاختيار ليس كائن JSON"]
+    if data.get("schema") == 1 or ("sample_id" in data and "roles" not in data):
+        return _validate_shop_choice(data)
+    return _validate_roles_choice(data)
+
+
+def _validate_shop_choice(data: dict) -> list[str]:
+    """The shop's contract: sample_id names the slot, source_catalog says
+    which catalog to obey. chain is advisory — set_voice_choice.py re-reads
+    the catalog itself and never trusts a filter string from the browser."""
+    errors: list[str] = []
+    if data.get("schema") != 1:
+        errors.append(f"schema غير صحيح: {data.get('schema')!r} — المتوقع 1")
+    if data.get("sample_id") in (None, ""):
+        errors.append("sample_id مفقود — لا خانة في الكتالوج")
+    if not str(data.get("source_catalog") or "").strip():
+        errors.append("source_catalog مفقود — أي كتالوج؟")
+    if not str(data.get("chosen_at") or data.get("created_at") or "").strip():
+        errors.append("لا طابع زمني (chosen_at)")
+    return errors
+
+
+def _validate_roles_choice(data: dict) -> list[str]:
+    errors: list[str] = []
     if data.get("kind") != "voice-selection":
         errors.append(f"kind غير صحيح: {data.get('kind')!r} — المتوقع voice-selection")
     if not data.get("selection_id"):
@@ -98,9 +130,26 @@ def validate_selection(data: object) -> list[str]:
 
 def describe(data: dict) -> str:
     """Arabic summary the agent reads aloud to itself at session start."""
+    source = str(data.get("_source_path") or "").strip()
+    if data.get("schema") == 1 or ("sample_id" in data and "roles" not in data):
+        lines = [
+            f"اختيار من متجر الأصوات ({data.get('sample_id', '؟')}) — "
+            f"{data.get('chosen_at') or data.get('created_at') or '؟'}"
+            + (f" — من {source}" if source else ""),
+        ]
+        for field in ("title", "base_voice", "dialect", "age", "tone"):
+            if data.get(field):
+                lines.append(f"  • {field}: {data[field]}")
+        if data.get("source_catalog"):
+            lines.append(f"  • الكتالوج: {data['source_catalog']}")
+        if data.get("how_to_apply"):
+            lines.append(f"  • التطبيق: {data['how_to_apply']}")
+        return "\n".join(lines)
+
     lines = [
         f"اختيار صوت من الصفحة ({data.get('selection_id', '؟')}) — "
-        f"{data.get('created_at', '؟')}",
+        f"{data.get('created_at', '؟')}"
+        + (f" — من {source}" if source else ""),
     ]
     for role in data.get("roles", []):
         code = role.get("dialect_code") or "؟"
@@ -120,7 +169,7 @@ def save_local(data: dict, dest_dir: Path) -> Path:
     latest.write_text(
         json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
-    sid = str(data.get("selection_id") or "unknown")
+    sid = str(data.get("selection_id") or data.get("sample_id") or "unknown")
     bad = set('<>:"/\\|?*')
     safe_id = "".join(c for c in sid if c not in bad) or "unknown"
     archived = dest_dir / f"{safe_id}.json"

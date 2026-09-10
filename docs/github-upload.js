@@ -120,6 +120,39 @@ async function api(path, token, options = {}) {
 }
 
 /**
+ * Commit a small text file (JSON choice, config) in one commit.
+ *
+ * The voice shop and the voice library write the user's pick this way —
+ * `docs/voice-choice.json` on the branch the agent reads — instead of keeping
+ * a preference that dies inside localStorage. Same commit shape as
+ * commitFile above: one blob, one tree on the current head, one ref move.
+ */
+export async function commitTextFile(path, text, message, token) {
+  const t = token || loadToken();
+  if (!t) throw new Error('لا يوجد رمز GitHub محفوظ — أضِفه أولًا.');
+  const sha = await api(`/repos/${OWNER}/${REPO}/git/blobs`, t, {
+    method: 'POST',
+    body: JSON.stringify({ content: btoa(unescape(encodeURIComponent(text))) }),
+  });
+  const ref = await api(`/repos/${OWNER}/${REPO}/git/ref/heads/${BRANCH}`, t);
+  const head = ref.object.sha;
+  const parent = await api(`/repos/${OWNER}/${REPO}/git/commits/${head}`, t);
+  const tree = await api(`/repos/${OWNER}/${REPO}/git/trees`, t, {
+    method: 'POST',
+    body: JSON.stringify({ base_tree: parent.tree.sha, tree: [{ path, mode: '100644', type: 'blob', sha: sha.sha }] }),
+  });
+  const commit = await api(`/repos/${OWNER}/${REPO}/git/commits`, t, {
+    method: 'POST',
+    body: JSON.stringify({ message, tree: tree.sha, parents: [head] }),
+  });
+  await api(`/repos/${OWNER}/${REPO}/git/refs/heads/${BRANCH}`, t, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha: commit.sha }),
+  });
+  return { path, commit: commit.sha, url: `https://github.com/${OWNER}/${REPO}/commit/${commit.sha}` };
+}
+
+/**
  * Confirm a token can actually write, before a long upload fails halfway.
  *
  * The check is a tiny real write — a one-byte blob — rather than a look at

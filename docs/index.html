@@ -33,6 +33,8 @@
   <button class="tab" data-tab="dubs" role="tab" aria-selected="false">المدبلجة <span id="countDubs" class="count">0</span></button>
   <button class="tab" data-tab="runs" role="tab" aria-selected="false">التشغيلات <span id="countRuns" class="count">0</span></button>
   <button class="tab" data-tab="voices" role="tab" aria-selected="false">الأصوات <span id="countVoices" class="count">0</span></button>
+  <button class="tab" data-tab="shop" role="tab" aria-selected="false">مئة صوت</button>
+  <button class="tab" data-tab="lib100" role="tab" aria-selected="false">المكتبة الخام</button>
   <button class="tab" data-tab="auditions" role="tab" aria-selected="false">العينات <span id="countAuditions" class="count">0</span></button>
   <button class="tab" data-tab="settings" role="tab" aria-selected="false">الإعدادات</button>
 </nav>
@@ -149,6 +151,29 @@
       <div id="voiceStatus" class="status"></div>
     </div>
     <div id="voicesGrid" class="grid"></div>
+  </section>
+
+  <!-- ============================== مئة عينة صوت (المتجر) ============================== -->
+  <section id="tab-shop" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">اختيار يوصل للمستودع</p>
+      <h2>مئة عينة صوت</h2>
+      <p>لكل عينة زر «اختر هذه العينة» يكتب <code>docs/voice-choice.json</code> في الفرع،
+         فتُبنى الدبلجة بالصوت المختار وسلسلة فلاتره المعلنة. الصفحة مستقلة ومفتوحة أيضًا على
+         <a href="voice-shop.html">voice-shop.html</a>.</p></div></div>
+    <iframe src="voice-shop.html" title="مئة عينة صوت"
+            style="width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#07080c"></iframe>
+  </section>
+
+  <!-- ============================== مكتبة المئة عينة الخام ============================== -->
+  <section id="tab-lib100" class="panel" role="tabpanel">
+    <div class="section-head"><div><p class="eyebrow">كلها مولَّدة في الجلسة، بلا فلاتر</p>
+      <h2>مكتبة المئة عينة</h2>
+      <p>100 خانة، كل واحدة نص مختلف وصوت مختلف، وخرج الأداة زي ما هو
+         (<code>anull</code> — لا pitch ولا موسيقى ولا حشو سكون). زر «اختر هذه العينة» يكتب
+         <code>docs/voice-choice.json</code> في الفرع. الصفحة مستقلة كمان على
+         <a href="voice-library.html">voice-library.html</a>.</p></div></div>
+    <iframe src="voice-library.html" title="مكتبة المئة عينة"
+            style="width:100%;height:78vh;border:1px solid var(--line);border-radius:14px;background:#07080c"></iframe>
   </section>
 
   <!-- ============================== العينات: اسمع واختر ============================== -->
