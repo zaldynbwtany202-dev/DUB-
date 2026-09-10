@@ -5,20 +5,14 @@
   "generated": 28,
   "pending": 72,
   "distinct_voices": 13,
+  "library_medians": {
+    "f0_spread": 6.8,
+    "level_dbfs": -19.7,
+    "low_band_share_under_200hz": 0.09
+  },
   "audio_files_on_disk": 28,
-  "audio_files_tracked": 18,
-  "untracked_audio": [
-    "docs/voice-library/voice-00-027.mp3",
-    "docs/voice-library/voice-01-028.mp3",
-    "docs/voice-library/voice-04-018.mp3",
-    "docs/voice-library/voice-06-020.mp3",
-    "docs/voice-library/voice-07-021.mp3",
-    "docs/voice-library/voice-08-022.mp3",
-    "docs/voice-library/voice-09-023.mp3",
-    "docs/voice-library/voice-10-024.mp3",
-    "docs/voice-library/voice-11-025.mp3",
-    "docs/voice-library/voice-12-026.mp3"
-  ],
+  "audio_files_tracked": 28,
+  "untracked_audio": [],
   "distinct_texts": 100,
   "audio_rules": "كل ملف هو خرج أداة الصوت مباشرة: no filtering, no pitch, no music, no silence padding. أي لهجة غير ar/ar-EG مرفوضة من المنصة فتُترك كملاحظة مش كفلتر.",
   "pace_budget": {
@@ -30,81 +24,133 @@
   "voices": {
     "voice-00": {
       "clips": 3,
-      "words_per_sec_mean": 2.381,
-      "min": 1.961,
-      "max": 2.594
+      "words": 31,
+      "speech_seconds": 13.45,
+      "words_per_sec": 2.305,
+      "clips_below_the_2.507_target": 1,
+      "clip_min": 1.961,
+      "clip_max": 2.594,
+      "fits_round3_words": false
     },
     "voice-01": {
       "clips": 3,
-      "words_per_sec_mean": 2.66,
-      "min": 2.006,
-      "max": 3.504
+      "words": 34,
+      "speech_seconds": 12.87,
+      "words_per_sec": 2.642,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 2.006,
+      "clip_max": 3.504,
+      "fits_round3_words": true
     },
     "voice-02": {
       "clips": 2,
-      "words_per_sec_mean": 2.022,
-      "min": 1.957,
-      "max": 2.087
+      "words": 21,
+      "speech_seconds": 10.35,
+      "words_per_sec": 2.029,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.957,
+      "clip_max": 2.087,
+      "fits_round3_words": false
     },
     "voice-03": {
       "clips": 2,
-      "words_per_sec_mean": 1.656,
-      "min": 1.33,
-      "max": 1.982
+      "words": 21,
+      "speech_seconds": 13.56,
+      "words_per_sec": 1.549,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.33,
+      "clip_max": 1.982,
+      "fits_round3_words": false
     },
     "voice-04": {
       "clips": 2,
-      "words_per_sec_mean": 1.948,
-      "min": 1.687,
-      "max": 2.208
+      "words": 21,
+      "speech_seconds": 11.47,
+      "words_per_sec": 1.831,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.687,
+      "clip_max": 2.208,
+      "fits_round3_words": false
     },
     "voice-05": {
       "clips": 2,
-      "words_per_sec_mean": 2.118,
-      "min": 1.933,
-      "max": 2.302
+      "words": 27,
+      "speech_seconds": 12.64,
+      "words_per_sec": 2.136,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.933,
+      "clip_max": 2.302,
+      "fits_round3_words": false
     },
     "voice-06": {
       "clips": 2,
-      "words_per_sec_mean": 2.21,
-      "min": 1.923,
-      "max": 2.496
+      "words": 26,
+      "speech_seconds": 11.73,
+      "words_per_sec": 2.217,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.923,
+      "clip_max": 2.496,
+      "fits_round3_words": false
     },
     "voice-07": {
       "clips": 2,
-      "words_per_sec_mean": 2.094,
-      "min": 2.091,
-      "max": 2.096
+      "words": 13,
+      "speech_seconds": 6.21,
+      "words_per_sec": 2.093,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 2.091,
+      "clip_max": 2.096,
+      "fits_round3_words": false
     },
     "voice-08": {
       "clips": 2,
-      "words_per_sec_mean": 2.168,
-      "min": 2.115,
-      "max": 2.222
+      "words": 18,
+      "speech_seconds": 8.35,
+      "words_per_sec": 2.156,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 2.115,
+      "clip_max": 2.222,
+      "fits_round3_words": false
     },
     "voice-09": {
       "clips": 2,
-      "words_per_sec_mean": 2.001,
-      "min": 1.966,
-      "max": 2.036
+      "words": 16,
+      "speech_seconds": 8.0,
+      "words_per_sec": 2.0,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 1.966,
+      "clip_max": 2.036,
+      "fits_round3_words": false
     },
     "voice-10": {
       "clips": 2,
-      "words_per_sec_mean": 2.243,
-      "min": 2.081,
-      "max": 2.405
+      "words": 31,
+      "speech_seconds": 13.99,
+      "words_per_sec": 2.216,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 2.081,
+      "clip_max": 2.405,
+      "fits_round3_words": false
     },
     "voice-11": {
       "clips": 2,
-      "words_per_sec_mean": 2.327,
-      "min": 1.887,
-      "max": 2.766
+      "words": 19,
+      "speech_seconds": 7.88,
+      "words_per_sec": 2.411,
+      "clips_below_the_2.507_target": 1,
+      "clip_min": 1.887,
+      "clip_max": 2.766,
+      "fits_round3_words": false
     },
     "voice-12": {
       "clips": 2,
-      "words_per_sec_mean": 2.085,
-      "min": 2.036,
-      "max": 2.134
+      "words": 16,
+      "speech_seconds": 7.7,
+      "words_per_sec": 2.078,
+      "clips_below_the_2.507_target": 2,
+      "clip_min": 2.036,
+      "clip_max": 2.134,
+      "fits_round3_words": false
     }
   },
   "samples": [
@@ -124,7 +170,7 @@
       "bytes": 28173,
       "post_processing": "anull",
       "words_per_sec": 1.961,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.961 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أوسع نبرة من وسيط المكتبة (6.8) · أثخن نطاقًا من وسيط المكتبة (0.09) · 1.961 ك/ث — يقطع 396 كلمة · الأداة بتلصق 0.8 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.92,
         "sample_rate": 24000,
@@ -158,7 +204,7 @@
       "bytes": 18093,
       "post_processing": "anull",
       "words_per_sec": 3.504,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 3.504 ك/ث — يبلع ميزانية الجولة التالتة",
+      "delivery_measured": "3.504 ك/ث — يدّوز 1633 كلمة · الأداة بتلصق 0.69 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.4,
         "sample_rate": 24000,
@@ -192,7 +238,7 @@
       "bytes": 21453,
       "post_processing": "anull",
       "words_per_sec": 1.957,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.957 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "1.957 ك/ث — يقطع 399 كلمة · الأداة بتلصق 0.64 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.24,
         "sample_rate": 24000,
@@ -226,7 +272,7 @@
       "bytes": 40173,
       "post_processing": "anull",
       "words_per_sec": 1.33,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.33 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 1.33 ك/ث — يقطع 794 كلمة · الأداة بتلصق 0.9 ث سكون بعد الكلام",
       "facts": {
         "seconds": 9.92,
         "sample_rate": 24000,
@@ -260,7 +306,7 @@
       "bytes": 36621,
       "post_processing": "anull",
       "words_per_sec": 1.687,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.687 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "1.687 ك/ث — يقطع 569 كلمة · الأداة بتلصق 0.74 ث سكون بعد الكلام",
       "facts": {
         "seconds": 9.04,
         "sample_rate": 24000,
@@ -294,7 +340,7 @@
       "bytes": 25869,
       "post_processing": "anull",
       "words_per_sec": 1.933,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.933 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 1.933 ك/ث — يقطع 414 كلمة · الأداة بتلصق 0.67 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.36,
         "sample_rate": 24000,
@@ -328,7 +374,7 @@
       "bytes": 27309,
       "post_processing": "anull",
       "words_per_sec": 2.496,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.496 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 2.496 ك/ث — يقطع 59 كلمة · الأداة بتلصق 0.71 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.72,
         "sample_rate": 24000,
@@ -362,7 +408,7 @@
       "bytes": 14541,
       "post_processing": "anull",
       "words_per_sec": 2.091,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.091 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أضيق نبرة من وسيط المكتبة (6.8) · أنظف نطاقًا من وسيط المكتبة (0.09) · 2.091 ك/ث — يقطع 314 كلمة · الأداة بتلصق 0.65 ث سكون بعد الكلام",
       "facts": {
         "seconds": 3.52,
         "sample_rate": 24000,
@@ -396,7 +442,7 @@
       "bytes": 15981,
       "post_processing": "anull",
       "words_per_sec": 2.222,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.222 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "2.222 ك/ث — يقطع 232 كلمة · الأداة بتلصق 0.73 ث سكون بعد الكلام",
       "facts": {
         "seconds": 3.88,
         "sample_rate": 24000,
@@ -430,7 +476,7 @@
       "bytes": 20013,
       "post_processing": "anull",
       "words_per_sec": 1.966,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.966 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "1.966 ك/ث — يقطع 393 كلمة · الأداة بتلصق 0.81 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.88,
         "sample_rate": 24000,
@@ -464,7 +510,7 @@
       "bytes": 36333,
       "post_processing": "anull",
       "words_per_sec": 2.081,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.081 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 2.081 ك/ث — يقطع 321 كلمة · الأداة بتلصق 0.79 ث سكون بعد الكلام",
       "facts": {
         "seconds": 8.96,
         "sample_rate": 24000,
@@ -498,7 +544,7 @@
       "bytes": 22701,
       "post_processing": "anull",
       "words_per_sec": 2.766,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.766 ك/ث — يبلع ميزانية الجولة التالتة",
+      "delivery_measured": "أوسع نبرة من وسيط المكتبة (6.8) · أنظف نطاقًا من وسيط المكتبة (0.09) · 2.766 ك/ث — يدّوز 1633 كلمة · الأداة بتلصق 0.86 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.56,
         "sample_rate": 24000,
@@ -532,7 +578,7 @@
       "bytes": 16749,
       "post_processing": "anull",
       "words_per_sec": 2.134,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.134 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 2.134 ك/ث — يقطع 287 كلمة · الأداة بتلصق 0.8 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.08,
         "sample_rate": 24000,
@@ -566,7 +612,7 @@
       "bytes": 15309,
       "post_processing": "anull",
       "words_per_sec": 2.589,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.589 ك/ث — يبلع ميزانية الجولة التالتة",
+      "delivery_measured": "2.589 ك/ث — يقطع 0 كلمة · الأداة بتلصق 0.63 ث سكون بعد الكلام",
       "facts": {
         "seconds": 3.72,
         "sample_rate": 24000,
@@ -600,7 +646,7 @@
       "bytes": 26061,
       "post_processing": "anull",
       "words_per_sec": 2.469,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.469 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أضيق نبرة من وسيط المكتبة (6.8) · أثخن نطاقًا من وسيط المكتبة (0.09) · 2.469 ك/ث — يقطع 76 كلمة · الأداة بتلصق 0.73 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.4,
         "sample_rate": 24000,
@@ -634,7 +680,7 @@
       "bytes": 26829,
       "post_processing": "anull",
       "words_per_sec": 2.087,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.087 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أضيق نبرة من وسيط المكتبة (6.8) · 2.087 ك/ث — يقطع 317 كلمة · الأداة بتلصق 0.85 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.6,
         "sample_rate": 24000,
@@ -668,7 +714,7 @@
       "bytes": 21261,
       "post_processing": "anull",
       "words_per_sec": 1.982,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.982 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 1.982 ك/ث — يقطع 383 كلمة · الأداة بتلصق 0.66 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.2,
         "sample_rate": 24000,
@@ -702,7 +748,7 @@
       "bytes": 16653,
       "post_processing": "anull",
       "words_per_sec": 2.208,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.208 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 2.208 ك/ث — يقطع 241 كلمة · الأداة بتلصق 0.87 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.04,
         "sample_rate": 24000,
@@ -736,7 +782,7 @@
       "bytes": 31053,
       "post_processing": "anull",
       "words_per_sec": 2.302,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.302 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 2.302 ك/ث — يقطع 181 كلمة · الأداة بتلصق 0.69 ث سكون بعد الكلام",
       "facts": {
         "seconds": 7.64,
         "sample_rate": 24000,
@@ -770,7 +816,7 @@
       "bytes": 26061,
       "post_processing": "anull",
       "words_per_sec": 1.923,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.923 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 1.923 ك/ث — يقطع 420 كلمة · الأداة بتلصق 0.68 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.4,
         "sample_rate": 24000,
@@ -804,7 +850,7 @@
       "bytes": 16461,
       "post_processing": "anull",
       "words_per_sec": 2.096,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.096 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 2.096 ك/ث — يقطع 311 كلمة · الأداة بتلصق 0.66 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.0,
         "sample_rate": 24000,
@@ -838,7 +884,7 @@
       "bytes": 23373,
       "post_processing": "anull",
       "words_per_sec": 2.115,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.115 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 2.115 ك/ث — يقطع 299 كلمة · الأداة بتلصق 0.52 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.72,
         "sample_rate": 24000,
@@ -872,7 +918,7 @@
       "bytes": 18861,
       "post_processing": "anull",
       "words_per_sec": 2.036,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.036 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 2.036 ك/ث — يقطع 349 كلمة · الأداة بتلصق 0.67 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.6,
         "sample_rate": 24000,
@@ -906,7 +952,7 @@
       "bytes": 26541,
       "post_processing": "anull",
       "words_per_sec": 2.405,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.405 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أثخن نطاقًا من وسيط المكتبة (0.09) · 2.405 ك/ث — يقطع 116 كلمة · الأداة بتلصق 0.7 ث سكون بعد الكلام",
       "facts": {
         "seconds": 6.52,
         "sample_rate": 24000,
@@ -940,7 +986,7 @@
       "bytes": 16173,
       "post_processing": "anull",
       "words_per_sec": 1.887,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 1.887 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "1.887 ك/ث — يقطع 443 كلمة · الأداة بتلصق 0.74 ث سكون بعد الكلام",
       "facts": {
         "seconds": 3.92,
         "sample_rate": 24000,
@@ -974,7 +1020,7 @@
       "bytes": 20781,
       "post_processing": "anull",
       "words_per_sec": 2.036,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.036 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أنظف نطاقًا من وسيط المكتبة (0.09) · 2.036 ك/ث — يقطع 349 كلمة · الأداة بتلصق 0.66 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.08,
         "sample_rate": 24000,
@@ -1008,7 +1054,7 @@
       "bytes": 20493,
       "post_processing": "anull",
       "words_per_sec": 2.594,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.594 ك/ث — يبلع ميزانية الجولة التالتة",
+      "delivery_measured": "2.594 ك/ث — يدّوز 1633 كلمة · الأداة بتلصق 0.76 ث سكون بعد الكلام",
       "facts": {
         "seconds": 5.0,
         "sample_rate": 24000,
@@ -1042,7 +1088,7 @@
       "bytes": 17133,
       "post_processing": "anull",
       "words_per_sec": 2.006,
-      "delivery_measured": "حركة نبرة واسعة، سرعته 2.006 ك/ث — أبطأ من 2.507 ك/ث",
+      "delivery_measured": "أخفض جهارة من وسيط المكتبة (-19.7) · أنظف نطاقًا من وسيط المكتبة (0.09) · 2.006 ك/ث — يقطع 368 كلمة · الأداة بتلصق 0.67 ث سكون بعد الكلام",
       "facts": {
         "seconds": 4.16,
         "sample_rate": 24000,
