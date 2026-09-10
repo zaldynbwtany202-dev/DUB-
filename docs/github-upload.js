@@ -132,7 +132,7 @@ export async function commitTextFile(path, text, message, token) {
   if (!t) throw new Error('لا يوجد رمز GitHub محفوظ — أضِفه أولًا.');
   const sha = await api(`/repos/${OWNER}/${REPO}/git/blobs`, t, {
     method: 'POST',
-    body: JSON.stringify({ content: btoa(unescape(encodeURIComponent(text))) }),
+    body: JSON.stringify({ encoding: 'base64', content: btoa(unescape(encodeURIComponent(text))) }), // encoding MUST be declared: without it the API stores the encoded string literally and the file lands as base64-of-JSON (measured 2026-09-10).
   });
   const ref = await api(`/repos/${OWNER}/${REPO}/git/ref/heads/${BRANCH}`, t);
   const head = ref.object.sha;

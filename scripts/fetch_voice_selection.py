@@ -46,13 +46,32 @@ def _gh(path: str) -> str:
     return res.stdout
 
 
-def read_remote(repo: str = REPO, branch: str = BRANCH,
-                path: str = SELECTION_PATH) -> dict | None:
-    """Return the committed selection, or None when nothing was sent yet.
+def _decode_blob_payload(raw: str) -> dict:
+    """Blob content → dict, tolerating the legacy double encoding.
 
-    Read through the blobs endpoint (like fetch_inbox.py) rather than trusting
-    the contents endpoint, whose body comes back empty above ~1 MB.
+    Choices written before the encoding=base64 fix store base64-of-JSON as
+    the literal file text (the blobs API defaulted to utf-8 and kept the
+    encoded string). New writes are plain JSON. Rule: try once; if the first
+    decode is still base64 whose decode parses as JSON, accept that — and
+    nothing else, so a corrupt file stays an error, never a guess.
     """
+    import base64
+
+    once = base64.b64decode(raw).decode("utf-8")
+    try:
+        return json.loads(once)
+    except json.JSONDecodeError:
+        pass
+    stripped = once.strip()
+    if stripped and all(c.isalnum() or c in "+/=" for c in stripped):
+        twice = base64.b64decode(stripped).decode("utf-8")
+        return json.loads(twice)
+    raise json.JSONDecodeError("not JSON after one decode", once, 0)
+
+
+def read_remote_blob(repo: str, branch: str, path: str) -> dict | None:
+    """One committed JSON file, or None on 404. Blobs endpoint so the body
+    never comes back empty the way large contents responses do."""
     try:
         meta = json.loads(_gh(f"repos/{repo}/contents/{path}?ref={branch}"))
     except RuntimeError as exc:
@@ -60,9 +79,22 @@ def read_remote(repo: str = REPO, branch: str = BRANCH,
             return None
         raise
     blob = json.loads(_gh(f"repos/{repo}/git/blobs/{meta['sha']}"))
-    import base64
+    return _decode_blob_payload(blob["content"])
 
-    return json.loads(base64.b64decode(blob["content"]).decode("utf-8"))
+
+def read_remote(repo: str = REPO, branch: str = BRANCH,
+                path: str = SELECTION_PATH) -> dict | None:
+    """Read either choice channel: the samples tab (inbox/voice-selection.json)
+    first, then the voice shop / library (docs/voice-choice.json). Whichever
+    exists wins, tagged with its source path for the summary."""
+    data = read_remote_blob(repo, branch, path)
+    if data is not None:
+        data["_source_path"] = path
+        return data
+    data = read_remote_blob(repo, branch, SHOP_CHOICE_PATH)
+    if data is not None:
+        data["_source_path"] = SHOP_CHOICE_PATH
+    return data
 
 
 def validate_selection(data: object) -> list[str]:
@@ -137,9 +169,15 @@ def describe(data: dict) -> str:
             f"{data.get('chosen_at') or data.get('created_at') or '؟'}"
             + (f" — من {source}" if source else ""),
         ]
-        for field in ("title", "base_voice", "dialect", "age", "tone"):
+        for field in ("title", "base_voice", "voice_id", "dialect", "age", "tone"):
             if data.get(field):
                 lines.append(f"  • {field}: {data[field]}")
+        if data.get("chain"):
+            lines.append(f"  • السلسلة: {data['chain']}")
+        if data.get("text"):
+            lines.append(f"  • النص: {data['text']}")
+        if data.get("project"):
+            lines.append(f"  • المشروع: {data['project']}")
         if data.get("source_catalog"):
             lines.append(f"  • الكتالوج: {data['source_catalog']}")
         if data.get("how_to_apply"):

@@ -201,3 +201,28 @@ def test_success_message_tells_the_user_one_word():
     assert "«اخترت»" in html
     shop = (ROOT / "docs" / "voice-shop.html").read_text(encoding="utf-8")
     assert "«اخترت»" in shop
+
+
+def test_blob_payload_double_decode_legacy():
+    """Choices written before the encoding=base64 fix land as base64-of-JSON.
+    The reader decodes twice for those and once for normal files — both must
+    parse, a corrupt file must stay an error."""
+    import base64
+    payload = json.dumps(valid_selection(), ensure_ascii=False).encode("utf-8")
+    legacy = base64.b64encode(base64.b64encode(payload)).decode("ascii")
+    obj = fvs._decode_blob_payload(legacy)
+    assert obj["kind"] == "voice-selection"
+    normal = base64.b64encode(payload).decode("ascii")
+    assert fvs._decode_blob_payload(normal)["kind"] == "voice-selection"
+    import pytest
+    garbage = base64.b64encode("not json at all {{{".encode()).decode()
+    with pytest.raises(Exception):
+        fvs._decode_blob_payload(garbage)
+
+
+def test_commit_text_file_declares_blob_encoding():
+    """Without encoding=base64 the blobs API stores the encoded string
+    literally (measured 2026-09-10): the committed choice file was
+    base64-of-JSON and nothing could read it."""
+    js = (ROOT / "docs" / "github-upload.js").read_text(encoding="utf-8")
+    assert "encoding: 'base64', content: btoa" in js
