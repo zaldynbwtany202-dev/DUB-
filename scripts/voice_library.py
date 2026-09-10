@@ -175,10 +175,20 @@ def measure(path: Path) -> dict:
     from youtube_auto_dub import affect
 
     stats = affect.pitch_stats(x, rate)
+    # Rate has to be measured on the speech span, not the file length: the engine pads the ends,
+    # and counting that padding as "slow narrator" is exactly the silence-padding the user banned.
+    live = np.where(peaks > max(np.percentile(peaks, 40) + 1e-6, 10 ** (SILENT_FLOOR / 20)))[0] if len(peaks) else []
+    first = int(live[0]) if len(live) else 0
+    last = int(live[-1]) if len(live) else 0
+    span = round(max((last - first) * frame / rate, 1e-3), 2) if len(live) else seconds
     facts = {"seconds": seconds, "sample_rate": int(rate), "peak_dbfs": round(20 * math.log10(max(peak, 1e-9)), 2),
              "level_dbfs": level, "voiced_share": round(float(voiced.mean()), 3) if len(voiced) else 0.0,
              "low_band_share_under_200hz": low, "clipped": bool(peak >= 0.999),
-             "silent": bool(level < SILENT_FLOOR)}
+             "silent": bool(level < SILENT_FLOOR),
+             "speech_span_seconds": span,
+             "engine_padding_seconds": round(max(seconds - span, 0.0), 2),
+             "leading_silence_seconds": round(first * frame / rate, 2),
+             "trailing_silence_seconds": round(max((len(peaks) - last - 1) * frame / rate, 0.0), 2)}
     for key in ("f0_mean", "f0_spread", "f0_range"):
         value = stats.get(key)
         if isinstance(value, (int, float)) and math.isfinite(float(value)):
@@ -216,7 +226,7 @@ def cmd_ingest(args) -> int:
             rows.append(row)
             continue
         facts = measure(path)
-        rate = round(it["words"] / facts["seconds"], 3) if facts["seconds"] else None
+        rate = round(it["words"] / facts["speech_span_seconds"], 3) if facts["speech_span_seconds"] else None
         row.update({"status": "generated" if not facts["silent"] else "failed_silent",
                     "sha256": sha256(path), "bytes": path.stat().st_size,
                     "post_processing": "anull", "words_per_sec": rate,
