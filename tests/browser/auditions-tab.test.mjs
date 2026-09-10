@@ -12,7 +12,7 @@
  */
 import {
   verdict, halfStepsOff, groupSamples, picksLine,
-  parseCurrentSelection, describeSelection,
+  parseCurrentSelection, describeSelection, sampleAudioUrl,
 } from '../../docs/auditions-tab.js';
 import { readFileSync } from 'fs';
 
@@ -115,6 +115,8 @@ for (const cls of ['.audition-row', '.audition-group', '.audition-current', '.au
 const moduleSrc = readFileSync(new URL('../../docs/auditions-tab.js', import.meta.url), 'utf8');
 ok(/if \(typeof document !== 'undefined'/.test(moduleSrc),
    'DOM init is guarded so node can import the helpers');
+ok(moduleSrc.includes('player.onerror'), 'audio errors surface a message, not silence');
+ok(moduleSrc.includes('sampleAudioUrl(s.mp3)'), 'the play handler uses the raw URL builder');
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

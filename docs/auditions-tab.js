@@ -15,10 +15,22 @@
 import {
   buildSelection, commitSelection, SELECTION_BRANCH, SELECTION_PATH,
 } from './voice-select.js';
-import { OWNER, REPO, loadToken } from './github-upload.js';
+import { OWNER, REPO, BRANCH, loadToken } from './github-upload.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+// Sample audio is played from raw.githubusercontent.com, not from the Pages
+// origin: on 2026-09-10 the live Pages host answered HTTP 500 for an mp3 that
+// the same build serves fine as JSON — while the voice-bank cards, which have
+// always played from raw, never failed. Same origin as the rest of the
+// studio's audio, same branch the uploads land on.
+const RAW_DOCS = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/`;
+
+/** Absolute raw URL for a sample path from samples.json (e.g. samples/x.mp3). */
+export function sampleAudioUrl(mp3) {
+  return RAW_DOCS + String(mp3 || '').split('/').map(encodeURIComponent).join('/');
+}
 
 // ── pure helpers ─────────────────────────────────────────────────────────
 
@@ -106,6 +118,9 @@ function initAuditions() {
   const player = new Audio();
   let playingBtn = null;
   const chosen = {};
+  player.onerror = () => {
+    say('تعذّر تحميل الملف الصوتي — تحقق من الاتصال ثم اضغط ▶ من جديد.', 'err');
+  };
 
   const stop = () => {
     player.pause();
@@ -152,7 +167,7 @@ function initAuditions() {
         play.onclick = () => {
           if (playingBtn === play) { stop(); return; }
           stop();
-          player.src = s.mp3;
+          player.src = sampleAudioUrl(s.mp3);
           player.play().then(() => { play.textContent = '⏸'; playingBtn = play; })
                        .catch(() => { play.textContent = '⚠'; });
         };

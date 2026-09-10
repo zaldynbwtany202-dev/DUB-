@@ -166,6 +166,11 @@ const player = new Audio();
 let playingBtn = null;
 const chosen = {};
 
+// Play from raw.githubusercontent.com: the Pages host was measured returning
+// HTTP 500 for these same mp3s (2026-09-10), while raw serves them always.
+const RAW_DOCS = 'https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c69-dub/docs/';
+const sampleUrl = (mp3) => RAW_DOCS + encodeURIComponent(mp3 || '');
+
 function stop() {
   player.pause();
   if (playingBtn) { playingBtn.textContent = '▶'; playingBtn = null; }
@@ -213,7 +218,7 @@ function render(samples) {
       btn.onclick = () => {
         if (playingBtn === btn) { stop(); return; }
         stop();
-        player.src = s.mp3;
+        player.src = sampleUrl(s.mp3);
         player.play().then(() => { btn.textContent = '⏸'; playingBtn = btn; })
                      .catch(() => { btn.textContent = '⚠'; });
       };

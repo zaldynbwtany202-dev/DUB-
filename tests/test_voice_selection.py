@@ -156,6 +156,17 @@ def test_page_wires_send_to_the_module():
     assert "أرسل الاختيار إلى الوكيل" in html
 
 
+def test_samples_play_from_raw_not_pages():
+    """github.io returned HTTP 500 for the sample mp3s (2026-09-10); raw serves
+    them. Both players must build raw URLs, never point at the Pages host."""
+    html = (ROOT / "docs" / "voices.html").read_text(encoding="utf-8")
+    assert "raw.githubusercontent.com" in html
+    assert "sampleUrl(s.mp3)" in html
+    js = (ROOT / "docs" / "auditions-tab.js").read_text(encoding="utf-8")
+    assert "raw.githubusercontent.com" in js
+    assert "/docs/" in js
+
+
 def test_dialect_codes_match_js_mapping():
     js = (ROOT / "docs" / "voice-select.js").read_text(encoding="utf-8")
     for name, code in fvs.DIALECT_CODES.items():
