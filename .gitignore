@@ -77,3 +77,8 @@ voice-audit/
 # these files, so they live in the repo. Same reason docs/samples is excepted above.
 !docs/voice-shop/
 !docs/voice-shop/*.mp3
+
+# The generated voice library is the product the page plays, exactly like the shop
+# previews: without this the manifest gets committed and the audio it hashes does not.
+!docs/voice-library/
+!docs/voice-library/*.mp3

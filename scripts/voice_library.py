@@ -25,6 +25,7 @@ import hashlib
 import json
 import math
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -241,9 +242,21 @@ def cmd_ingest(args) -> int:
     voices = {vid: {"clips": len(v), "words_per_sec_mean": round(sum(v) / len(v), 3),
                     "min": round(min(v), 3), "max": round(max(v), 3)}
               for vid, v in sorted(by_voice.items())}
+    # A manifest that hashes files git never stored is a lie waiting for the next sandbox reset:
+    # that is exactly how 19 approved clips vanished while their JSON survived the commit.
+    tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "docs/voice-library"],
+                             capture_output=True, text=True).stdout.split()
+    on_disk = [str(r.relative_to(ROOT / "docs")) for r in (ROOT / "docs" / "voice-library").glob("*.mp3")]
+    untracked = sorted(set(on_disk) - set(tracked))
+    if untracked:
+        print(f"WARNING: {len(untracked)} generated file(s) are NOT tracked by git "
+              f"(.gitignore is swallowing them): {untracked[:4]}", file=sys.stderr)
+
     out = {"built_by": "scripts/voice_library.py", "project": "hajj-dream-2108415",
            "total_slots": len(rows), "generated": generated, "pending": pending,
            "distinct_voices": len({r["voice_id"] for r in rows}),
+           "audio_files_on_disk": len(on_disk), "audio_files_tracked": len([t for t in tracked if t.endswith(".mp3")]),
+           "untracked_audio": untracked,
            "distinct_texts": len({r["text"] for r in rows}),
            "audio_rules": ("كل ملف هو خرج أداة الصوت مباشرة: no filtering, no pitch, no music, "
                            "no silence padding. أي لهجة غير ar/ar-EG مرفوضة من المنصة فتُترك "
