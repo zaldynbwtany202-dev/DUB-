@@ -1,0 +1,199 @@
+name: Arena dub â€” voice clone on GitHub
+
+# The "one body" pipeline.
+#   BRAIN (the agent): pushes a small request file .arena/run.json to the branch.
+#   BODY (GitHub Actions): transcribes (faster-whisper, real model, full internet),
+#   clones the voice (XTTS v2 from a repo reference sample), tempo-fits, renders,
+#   and publishes the result as an artifact the brain downloads.
+#
+#   INSTALL (one time, human step â€” GitHub App tokens are not allowed to create
+#   workflow files): copy this file's content to  .github/workflows/arena_dub.yml
+#   from the repo UI (Settings is not needed, just the file tree).
+#   After that the loop is 100% automatic: every push that touches .arena/run.json
+#   starts a run.
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_url:
+        description: "Direct URL of the source video (mp4)"
+        required: true
+      reference_audio:
+        description: "Repo-relative path to a clean 6-20s voice reference"
+        required: false
+        default: "docs/samples-registry/voice-11.mp3"
+      src_lang:
+        description: "Source language ISO code (ar, en, ...)"
+        required: false
+        default: "ar"
+      whisper_model:
+        description: "Whisper model size (base = good speed/quality for <3min)"
+        type: choice
+        options: [tiny, base, small]
+        default: base
+  push:
+    branches: [arena/01a08cfe-dub]
+    paths: [".arena/run.json"]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  dub:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve run config (dispatch inputs or .arena/run.json)
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            VIDEO_URL="${{ inputs.video_url }}"
+            REF_AUDIO="${{ inputs.reference_audio }}"
+            [ -z "$REF_AUDIO" ] && REF_AUDIO="docs/samples-registry/voice-11.mp3"
+            SRC_LANG="${{ inputs.src_lang }}"
+            [ -z "$SRC_LANG" ] && SRC_LANG="ar"
+            WHISPER_MODEL="${{ inputs.whisper_model }}"
+            [ -z "$WHISPER_MODEL" ] && WHISPER_MODEL="base"
+          else
+            VIDEO_URL=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('video_url',''))")
+            REF_AUDIO=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('reference_audio','docs/samples-registry/voice-11.mp3'))")
+            SRC_LANG=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('src_lang','ar'))")
+            WHISPER_MODEL=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('whisper_model','base'))")
+          fi
+          [ -z "$VIDEO_URL" ] && { echo "no video_url â€” aborting"; exit 1; }
+          {
+            echo "VIDEO_URL=$VIDEO_URL"
+            echo "REF_AUDIO=$REF_AUDIO"
+            echo "SRC_LANG=$SRC_LANG"
+            echo "WHISPER_MODEL=$WHISPER_MODEL"
+          } >> "$GITHUB_ENV"
+          echo "config resolved: $VIDEO_URL | $REF_AUDIO | $SRC_LANG | $WHISPER_MODEL"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Install Python deps (CPU torch first, keeps runner light)
+        run: |
+          pip install --upgrade pip
+          pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
+          pip install faster-whisper TTS numpy soundfile
+
+      - name: Download source video
+        run: |
+          curl -fL "$VIDEO_URL" -o input.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 input.mp4 > input_duration.txt
+          echo "video duration: $(cat input_duration.txt)s"
+
+      - name: Transcribe (faster-whisper, real model, full internet)
+        env:
+          SRC_LANG: ${{ env.SRC_LANG }}
+          WHISPER_MODEL: ${{ env.WHISPER_MODEL }}
+        run: |
+          python3 - <<'PY'
+          import os, json
+          from faster_whisper import WhisperModel
+          lang = os.environ.get("SRC_LANG") or "ar"
+          model = WhisperModel(os.environ.get("WHISPER_MODEL") or "base", device="cpu", compute_type="int8")
+          segments, info = model.transcribe("input.mp4", language=lang, vad_filter=True)
+          segs = [(round(s.start, 2), round(s.end, 2), s.text.strip()) for s in segments]
+          text = " ".join(t for _, _, t in segs)
+          json.dump({"lang": info.language, "duration": round(info.duration, 2),
+                     "segments": segs, "text": text},
+                    open("transcript.json", "w"), ensure_ascii=False, indent=1)
+          print("TRANSCRIPT_TEXT_START")
+          print(text)
+          print("TRANSCRIPT_TEXT_END")
+          PY
+
+      - name: Synthesize â€” XTTS v2 voice clone
+        env:
+          COQUI_TOS_AGREED: "1"
+          REF_AUDIO: ${{ env.REF_AUDIO }}
+          SRC_LANG: ${{ env.SRC_LANG }}
+        run: |
+          python3 - <<'PY'
+          import os, re, json
+          import numpy as np
+          import torch
+          import soundfile as sf
+          from TTS.api import TTS
+
+          ref = os.environ["REF_AUDIO"]
+          lang = os.environ.get("SRC_LANG") or "ar"
+          assert os.path.exists(ref), f"reference audio not found: {ref}"
+          print("loading XTTS v2 (first run downloads ~2GB from HF)...")
+          tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2")
+          for attr in ("gpt", "dcp_model"):
+              try:
+                  getattr(tts, attr).half_precision = False
+              except Exception:
+                  pass
+
+          text = json.load(open("transcript.json"))["text"]
+          parts = re.split(r'(?<=[.!?ØŸ])\s+', text)
+          chunks, cur = [], ""
+          for p in parts:
+              if len(cur) + len(p) > 200 and cur:
+                  chunks.append(cur.strip())
+                  cur = p
+              else:
+                  cur = (cur + " " + p).strip()
+          if cur.strip():
+              chunks.append(cur.strip())
+          chunks = [c for c in chunks if c]
+          print(f"{len(chunks)} chunks to synthesize")
+
+          def to_waveform(a):
+              if isinstance(a, (list, tuple)):
+                  a = a[0]
+              if torch.is_tensor(a):
+                  a = a.detach().cpu().numpy()
+              a = np.asarray(a, dtype="float32")
+              if a.ndim > 1:
+                  a = a.mean(axis=0)
+              return a
+
+          for i, ch in enumerate(chunks):
+              try:
+                  audio = tts.infer(ch, voice=ref, language=lang)
+              except Exception:
+                  audio = tts.tts(ch, speaker=ref, language=lang)
+              sf.write(f"chunk_{i:02d}.wav", to_waveform(audio), 22050)
+              print(f"chunk {i} ok ({len(ch)} chars)")
+          PY
+          { for f in chunk_*.wav; do echo "file '$f'"; done; } > concat.txt
+          ffmpeg -y -f concat -safe 0 -i concat.txt -c copy tts_full.wav
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 tts_full.wav > tts_duration.txt
+          echo "tts duration: $(cat tts_duration.txt)s"
+
+      - name: Mix â€” tempo-fit and replace audio
+        run: |
+          VIDEO_DUR=$(cat input_duration.txt)
+          TTS_DUR=$(cat tts_duration.txt)
+          TEMP=$(python3 -c "r = max(0.85, min(1.25, float('$TTS_DUR') / float('$VIDEO_DUR'))); print(f'{r:.4f}')")
+          echo "atempo=$TEMP"
+          ffmpeg -y -i input.mp4 -i tts_full.wav \
+            -filter_complex "[1:a]atempo=$TEMP[a]" \
+            -map 0:v -map "[a]" -c:v copy -c:a aac -b:a 160k -shortest dubbed.mp4
+          ls -la dubbed.mp4
+
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: dubbed-arena
+          path: dubbed.mp4
+          retention-days: 14
+
+      - name: Upload transcript
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: transcript
+          path: transcript.json
+          retention-days: 14
