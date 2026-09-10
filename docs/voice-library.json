@@ -2,21 +2,30 @@
   "built_by": "scripts/voice_library.py",
   "project": "hajj-dream-2108415",
   "total_slots": 100,
-  "generated": 9,
-  "pending": 91,
+  "generated": 18,
+  "pending": 82,
   "distinct_voices": 13,
-  "audio_files_on_disk": 9,
-  "audio_files_tracked": 0,
+  "audio_files_on_disk": 18,
+  "audio_files_tracked": 9,
   "untracked_audio": [
     "voice-library/voice-00-001.mp3",
+    "voice-library/voice-00-014.mp3",
     "voice-library/voice-01-002.mp3",
+    "voice-library/voice-01-015.mp3",
     "voice-library/voice-02-003.mp3",
+    "voice-library/voice-02-016.mp3",
     "voice-library/voice-03-004.mp3",
+    "voice-library/voice-03-017.mp3",
     "voice-library/voice-04-005.mp3",
     "voice-library/voice-05-006.mp3",
+    "voice-library/voice-05-019.mp3",
+    "voice-library/voice-06-007.mp3",
     "voice-library/voice-07-008.mp3",
     "voice-library/voice-08-009.mp3",
-    "voice-library/voice-09-010.mp3"
+    "voice-library/voice-09-010.mp3",
+    "voice-library/voice-10-011.mp3",
+    "voice-library/voice-11-012.mp3",
+    "voice-library/voice-12-013.mp3"
   ],
   "distinct_texts": 100,
   "audio_rules": "كل ملف هو خرج أداة الصوت مباشرة: no filtering, no pitch, no music, no silence padding. أي لهجة غير ar/ar-EG مرفوضة من المنصة فتُترك كملاحظة مش كفلتر.",
@@ -28,28 +37,28 @@
   },
   "voices": {
     "voice-00": {
-      "clips": 1,
-      "words_per_sec_mean": 1.961,
+      "clips": 2,
+      "words_per_sec_mean": 2.275,
       "min": 1.961,
-      "max": 1.961
+      "max": 2.589
     },
     "voice-01": {
-      "clips": 1,
-      "words_per_sec_mean": 3.504,
-      "min": 3.504,
+      "clips": 2,
+      "words_per_sec_mean": 2.986,
+      "min": 2.469,
       "max": 3.504
     },
     "voice-02": {
-      "clips": 1,
-      "words_per_sec_mean": 1.957,
+      "clips": 2,
+      "words_per_sec_mean": 2.022,
       "min": 1.957,
-      "max": 1.957
+      "max": 2.087
     },
     "voice-03": {
-      "clips": 1,
-      "words_per_sec_mean": 1.33,
+      "clips": 2,
+      "words_per_sec_mean": 1.656,
       "min": 1.33,
-      "max": 1.33
+      "max": 1.982
     },
     "voice-04": {
       "clips": 1,
@@ -58,10 +67,16 @@
       "max": 1.687
     },
     "voice-05": {
-      "clips": 1,
-      "words_per_sec_mean": 1.933,
+      "clips": 2,
+      "words_per_sec_mean": 2.118,
       "min": 1.933,
-      "max": 1.933
+      "max": 2.302
+    },
+    "voice-06": {
+      "clips": 1,
+      "words_per_sec_mean": 2.496,
+      "min": 2.496,
+      "max": 2.496
     },
     "voice-07": {
       "clips": 1,
@@ -80,6 +95,24 @@
       "words_per_sec_mean": 1.966,
       "min": 1.966,
       "max": 1.966
+    },
+    "voice-10": {
+      "clips": 1,
+      "words_per_sec_mean": 2.081,
+      "min": 2.081,
+      "max": 2.081
+    },
+    "voice-11": {
+      "clips": 1,
+      "words_per_sec_mean": 2.766,
+      "min": 2.766,
+      "max": 2.766
+    },
+    "voice-12": {
+      "clips": 1,
+      "words_per_sec_mean": 2.134,
+      "min": 2.134,
+      "max": 2.134
     }
   },
   "samples": [
@@ -298,7 +331,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-06-007.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "f427884101d001ca4762eaac8b248795b041bd1e44946e0733640a1f85b1fa15",
+      "bytes": 27309,
+      "post_processing": "anull",
+      "words_per_sec": 2.496,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.496 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 6.72,
+        "sample_rate": 24000,
+        "peak_dbfs": -3.32,
+        "level_dbfs": -19.93,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.053,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 6.01,
+        "engine_padding_seconds": 0.71,
+        "leading_silence_seconds": 0.29,
+        "trailing_silence_seconds": 0.41,
+        "f0_mean": 176.47,
+        "f0_spread": 7.24
+      }
     },
     {
       "id": "lib-008",
@@ -413,7 +467,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-10-011.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "9501a13559d78c47ef7e619fdb24cc297b5cc3d84e47145d5f84f3732b888420",
+      "bytes": 36333,
+      "post_processing": "anull",
+      "words_per_sec": 2.081,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.081 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 8.96,
+        "sample_rate": 24000,
+        "peak_dbfs": -5.29,
+        "level_dbfs": -19.32,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.123,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 8.17,
+        "engine_padding_seconds": 0.79,
+        "leading_silence_seconds": 0.28,
+        "trailing_silence_seconds": 0.5,
+        "f0_mean": 139.53,
+        "f0_spread": 6.91
+      }
     },
     {
       "id": "lib-012",
@@ -426,7 +501,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-11-012.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "98a291c8fd202081cb8f9aa47a00e784ab8d362aae940d093cd1522ee7b5872c",
+      "bytes": 22701,
+      "post_processing": "anull",
+      "words_per_sec": 2.766,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.766 ك/ث — يبلع ميزانية الجولة التالتة",
+      "facts": {
+        "seconds": 5.56,
+        "sample_rate": 24000,
+        "peak_dbfs": -2.66,
+        "level_dbfs": -19.8,
+        "voiced_share": 0.399,
+        "low_band_share_under_200hz": 0.063,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 4.7,
+        "engine_padding_seconds": 0.86,
+        "leading_silence_seconds": 0.31,
+        "trailing_silence_seconds": 0.54,
+        "f0_mean": 164.97,
+        "f0_spread": 7.79
+      }
     },
     {
       "id": "lib-013",
@@ -439,7 +535,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-12-013.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "d646585dbfc0d103f453c2d7854def9914efcf7c42e0569ba88330d08dfc00f5",
+      "bytes": 16749,
+      "post_processing": "anull",
+      "words_per_sec": 2.134,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.134 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 4.08,
+        "sample_rate": 24000,
+        "peak_dbfs": -2.0,
+        "level_dbfs": -19.78,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.075,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 3.28,
+        "engine_padding_seconds": 0.8,
+        "leading_silence_seconds": 0.29,
+        "trailing_silence_seconds": 0.5,
+        "f0_mean": 176.47,
+        "f0_spread": 6.85
+      }
     },
     {
       "id": "lib-014",
@@ -452,7 +569,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-00-014.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "735d600eff1d04f6bfffea8a4ecd9b3def7fff907f58cc290f9ae0093422715d",
+      "bytes": 15309,
+      "post_processing": "anull",
+      "words_per_sec": 2.589,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.589 ك/ث — يبلع ميزانية الجولة التالتة",
+      "facts": {
+        "seconds": 3.72,
+        "sample_rate": 24000,
+        "peak_dbfs": -3.85,
+        "level_dbfs": -19.43,
+        "voiced_share": 0.401,
+        "low_band_share_under_200hz": 0.092,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 3.09,
+        "engine_padding_seconds": 0.63,
+        "leading_silence_seconds": 0.28,
+        "trailing_silence_seconds": 0.34,
+        "f0_mean": 166.67,
+        "f0_spread": 7.39
+      }
     },
     {
       "id": "lib-015",
@@ -465,7 +603,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-01-015.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "7be95844d9b5d1eec39652bae955238901209ff0334b110f1bd1c1df6f9f94fc",
+      "bytes": 26061,
+      "post_processing": "anull",
+      "words_per_sec": 2.469,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.469 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 6.4,
+        "sample_rate": 24000,
+        "peak_dbfs": -3.61,
+        "level_dbfs": -19.39,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.114,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 5.67,
+        "engine_padding_seconds": 0.73,
+        "leading_silence_seconds": 0.29,
+        "trailing_silence_seconds": 0.43,
+        "f0_mean": 149.07,
+        "f0_spread": 5.92
+      }
     },
     {
       "id": "lib-016",
@@ -478,7 +637,28 @@
       "paragraph": "p0",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-02-016.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "66e2cd3184f730805f23cd82f90575e195cfb9acabf6a98aab2571f86a363f52",
+      "bytes": 26829,
+      "post_processing": "anull",
+      "words_per_sec": 2.087,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.087 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 6.6,
+        "sample_rate": 24000,
+        "peak_dbfs": -2.21,
+        "level_dbfs": -19.25,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.089,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 5.75,
+        "engine_padding_seconds": 0.85,
+        "leading_silence_seconds": 0.31,
+        "trailing_silence_seconds": 0.53,
+        "f0_mean": 164.38,
+        "f0_spread": 5.8
+      }
     },
     {
       "id": "lib-017",
@@ -491,7 +671,28 @@
       "paragraph": "p1",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-03-017.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "7274b0845c7d5ee7e0f08a656d2e425f451fd53e1a5a809a1bdfbcb5e61efacd",
+      "bytes": 21261,
+      "post_processing": "anull",
+      "words_per_sec": 1.982,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 1.982 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 5.2,
+        "sample_rate": 24000,
+        "peak_dbfs": -1.41,
+        "level_dbfs": -19.65,
+        "voiced_share": 0.4,
+        "low_band_share_under_200hz": 0.099,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 4.54,
+        "engine_padding_seconds": 0.66,
+        "leading_silence_seconds": 0.29,
+        "trailing_silence_seconds": 0.36,
+        "f0_mean": 129.73,
+        "f0_spread": 6.9
+      }
     },
     {
       "id": "lib-018",
@@ -517,7 +718,28 @@
       "paragraph": "p1",
       "source_line": "script.ar-EG.txt",
       "audio": "voice-library/voice-05-019.mp3",
-      "status": "pending"
+      "status": "generated",
+      "sha256": "cffe9bf53de0fde47de40e44e4ca686f6a32dfae0ae6319cf269bdf00cc0a8dc",
+      "bytes": 31053,
+      "post_processing": "anull",
+      "words_per_sec": 2.302,
+      "delivery_measured": "حركة نبرة واسعة، سرعته 2.302 ك/ث — أبطأ من 2.507 ك/ث",
+      "facts": {
+        "seconds": 7.64,
+        "sample_rate": 24000,
+        "peak_dbfs": -5.6,
+        "level_dbfs": -19.38,
+        "voiced_share": 0.401,
+        "low_band_share_under_200hz": 0.129,
+        "clipped": false,
+        "silent": false,
+        "speech_span_seconds": 6.95,
+        "engine_padding_seconds": 0.69,
+        "leading_silence_seconds": 0.27,
+        "trailing_silence_seconds": 0.41,
+        "f0_mean": 161.07,
+        "f0_spread": 7.07
+      }
     },
     {
       "id": "lib-020",
