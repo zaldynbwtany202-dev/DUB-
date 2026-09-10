@@ -9,8 +9,9 @@
 5. **عند بدء أي عمل دبلجة: شغّل القارئ أولاً واحترم الاختيار الموجود** — هو إعلان المستخدم عن الصوت المطلوب، بديل عن كتابته في الشات. ملاحظة `note` فيه سياق الاختيار.
 6. تغيير الاختيار = يختار من جديد في الصفحة ويضغط إرسال (الكوميت الجديد يستبدل الملف، والتاريخ محفوظ في Git).
 7. `dialect_code` في الملف استرشادي (فصحى=ar، مصرية=ar-EG، شامية=ar-Levantine) — القرار النهائي للهجة مع العينة والملاحظة.
-8. العقود مثبتة باختبارات: `tests/test_voice_selection.py` (14) و`tests/browser/voice-select.test.mjs` (33) و`tests/browser/auditions-tab.test.mjs` (43).
-9. **Pages تنشر الآن من `arena/01a08cae-dub:/docs` (build_type legacy) — بلا أي دمج، بإعداد نقره المستخدم في Settings→Pages (2026-09-10).** الصفحة الحية: https://zaldynbwtany202-dev.github.io/DUB-/voices.html — تحقق منها (عينات + زر الإرسال ظاهران). انتبه: فرع الجلسة يتبدل بين جلسات أرينا؛ **في بداية كل جلسة جديدة اطلب من المستخدم تحديث مصدر Pages إلى فرع الجلسة الحالي بنقرة واحدة** (Settings→Pages→Branch)، ولا تدمج أبداً. صلاحيات تشغيل workflows وتعديل إعدادات Pages عبر `gh` محجوبة عن رمز الجلسة (403) — لا تعد المحاولة.
+8. **مقاس 2026-09-10: خادم github.io يرجع HTTP 500 لملفات mp3 في الموقع (بينما json/css تُخدم طبيعياً و404 الحقيقي يعطي صفحة Not Found)**. لذلك تشغيل العينات يتم دائماً من `raw.githubusercontent.com/…/arena/01a07c69-dub/docs/` عبر `sampleAudioUrl` في `auditions-tab.js` و`sampleUrl` في voices.html — لا ترجع للتشغيل النسبي من Pages. أي ملف صوتي جديد على الموقع: نفس القاعدة.
+9. العقود مثبتة باختبارات: `tests/test_voice_selection.py` (14) و`tests/browser/voice-select.test.mjs` (33) و`tests/browser/auditions-tab.test.mjs` (43).
+10. **Pages تنشر الآن من `arena/01a08cae-dub:/docs` (build_type legacy) — بلا أي دمج، بإعداد نقره المستخدم في Settings→Pages (2026-09-10).** الصفحة الحية: https://zaldynbwtany202-dev.github.io/DUB-/voices.html — تحقق منها (عينات + زر الإرسال ظاهران). انتبه: فرع الجلسة يتبدل بين جلسات أرينا؛ **في بداية كل جلسة جديدة اطلب من المستخدم تحديث مصدر Pages إلى فرع الجلسة الحالي بنقرة واحدة** (Settings→Pages→Branch)، ولا تدمج أبداً. صلاحيات تشغيل workflows وتعديل إعدادات Pages عبر `gh` محجوبة عن رمز الجلسة (403) — لا تعد المحاولة.
 
 ## طلب إصلاح المزامنة — لا تعتبر النسخة السابقة مرضية
 
