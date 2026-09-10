@@ -1037,7 +1037,7 @@ function init() {
   $('overviewRefresh').onclick = () => fullRefresh(true);
   $('projectBack').onclick = () => { state.currentProjectSlug = ''; showTab('overview'); };
   $('dubBack').onclick = () => { const item = state.library.find((value) => value.slug === state.currentProjectSlug); item ? openProjectWorkspace(item) : showTab('overview'); };
-  const initial = location.hash.replace('#', ''); if (['overview', 'library', 'dubs', 'runs', 'voices', 'settings'].includes(initial)) showTab(initial); else showTab('overview');
+  const initial = location.hash.replace('#', ''); if (['overview', 'library', 'dubs', 'runs', 'voices', 'auditions', 'settings'].includes(initial)) showTab(initial); else showTab('overview');
   $('voiceUpload').onclick = uploadVoiceSample;
   $('voiceFile').onchange = () => previewVoiceFile($('voiceFile').files[0]);
   $('modalClose').onclick = closeModal; $('modal').addEventListener('click', (e) => { if (e.target === $('modal')) closeModal(); });
