@@ -157,6 +157,7 @@
 <script type="module">
 import { buildSelection, commitSelection, SELECTION_BRANCH, SELECTION_PATH }
   from './voice-select.js';
+import { audioCandidates } from './audio-url.js';
 import { checkToken, loadToken, saveToken, forgetToken, TOKEN_URL }
   from './github-upload.js';
 
@@ -165,11 +166,6 @@ import { checkToken, loadToken, saveToken, forgetToken, TOKEN_URL }
 const player = new Audio();
 let playingBtn = null;
 const chosen = {};
-
-// Play from raw.githubusercontent.com: the Pages host was measured returning
-// HTTP 500 for these same mp3s (2026-09-10), while raw serves them always.
-const RAW_DOCS = 'https://raw.githubusercontent.com/zaldynbwtany202-dev/DUB-/arena/01a07c69-dub/docs/';
-const sampleUrl = (mp3) => RAW_DOCS + encodeURIComponent(mp3 || '');
 
 function stop() {
   player.pause();
@@ -218,9 +214,21 @@ function render(samples) {
       btn.onclick = () => {
         if (playingBtn === btn) { stop(); return; }
         stop();
-        player.src = sampleUrl(s.mp3);
-        player.play().then(() => { btn.textContent = '⏸'; playingBtn = btn; })
-                     .catch(() => { btn.textContent = '⚠'; });
+        const playThrough = (urls, i = 0) => {
+          if (i >= urls.length) { btn.textContent = '⚠'; return; }
+          let moved = false;
+          const onErr = () => {
+            if (moved) return;
+            moved = true;
+            player.removeEventListener('error', onErr);
+            playThrough(urls, i + 1);
+          };
+          player.addEventListener('error', onErr);
+          player.src = urls[i];
+          player.play().then(() => { btn.textContent = '⏸'; playingBtn = btn; })
+                       .catch(() => { /* the error event drives the fallback */ });
+        };
+        audioCandidates(s.mp3).then((urls) => playThrough(urls));
       };
 
       row.querySelector('.pick').onclick = () => {

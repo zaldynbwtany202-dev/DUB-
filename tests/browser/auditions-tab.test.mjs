@@ -12,7 +12,7 @@
  */
 import {
   verdict, halfStepsOff, groupSamples, picksLine,
-  parseCurrentSelection, describeSelection, sampleAudioUrl,
+  parseCurrentSelection, describeSelection,
 } from '../../docs/auditions-tab.js';
 import { readFileSync } from 'fs';
 
@@ -42,7 +42,7 @@ const groups = groupSamples([
 ]);
 ok(groups.length === 2, 'two roles from mixed list');
 ok(groups[0].role === 'راغنار' && groups[0].samples.length === 2, 'first-seen role keeps its order');
-ok(groups[1].role === 'فلوکی'.replace('ی', 'ي') || groups[1].role === 'فلوكي', 'second role follows');
+ok(groups[1].role === 'فلوكي', 'second role follows');
 ok(groupSamples([]).length === 0, 'empty input → no groups');
 ok(groupSamples(null).length === 0, 'null input → no groups');
 
@@ -115,8 +115,8 @@ for (const cls of ['.audition-row', '.audition-group', '.audition-current', '.au
 const moduleSrc = readFileSync(new URL('../../docs/auditions-tab.js', import.meta.url), 'utf8');
 ok(/if \(typeof document !== 'undefined'/.test(moduleSrc),
    'DOM init is guarded so node can import the helpers');
-ok(moduleSrc.includes('player.onerror'), 'audio errors surface a message, not silence');
-ok(moduleSrc.includes('sampleAudioUrl(s.mp3)'), 'the play handler uses the raw URL builder');
+ok(moduleSrc.includes('playThrough'), 'playback walks a candidate list');
+ok(moduleSrc.includes("from './audio-url.js'"), 'the tab resolves audio via audio-url.js');
 
 console.log(`\n${pass} passed, ${fail} failed`);
 process.exit(fail ? 1 : 0);

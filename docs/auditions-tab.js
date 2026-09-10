@@ -15,22 +15,13 @@
 import {
   buildSelection, commitSelection, SELECTION_BRANCH, SELECTION_PATH,
 } from './voice-select.js';
-import { OWNER, REPO, BRANCH, loadToken } from './github-upload.js';
+import { OWNER, REPO, loadToken } from './github-upload.js';
+import { audioCandidates } from './audio-url.js';
 
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-// Sample audio is played from raw.githubusercontent.com, not from the Pages
-// origin: on 2026-09-10 the live Pages host answered HTTP 500 for an mp3 that
-// the same build serves fine as JSON — while the voice-bank cards, which have
-// always played from raw, never failed. Same origin as the rest of the
-// studio's audio, same branch the uploads land on.
-const RAW_DOCS = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/`;
 
-/** Absolute raw URL for a sample path from samples.json (e.g. samples/x.mp3). */
-export function sampleAudioUrl(mp3) {
-  return RAW_DOCS + String(mp3 || '').split('/').map(encodeURIComponent).join('/');
-}
 
 // ── pure helpers ─────────────────────────────────────────────────────────
 
@@ -167,9 +158,27 @@ function initAuditions() {
         play.onclick = () => {
           if (playingBtn === play) { stop(); return; }
           stop();
-          player.src = sampleAudioUrl(s.mp3);
-          player.play().then(() => { play.textContent = '⏸'; playingBtn = play; })
-                       .catch(() => { play.textContent = '⚠'; });
+          // Branch comes from the deployed manifest (audio-branch.json); on
+          // error the next candidate branch is tried before giving up.
+          audioCandidates(s.mp3).then((urls) => playThrough(urls));
+        };
+        const playThrough = (urls, i = 0) => {
+          if (i >= urls.length) {
+            say('تعذّر تحميل الملف الصوتي من كل الفروع — تحقق من الاتصال ثم أعد المحاولة.', 'err');
+            play.textContent = '⚠';
+            return;
+          }
+          let moved = false;
+          const onErr = () => {
+            if (moved) return;
+            moved = true;
+            player.removeEventListener('error', onErr);
+            playThrough(urls, i + 1);
+          };
+          player.addEventListener('error', onErr);
+          player.src = urls[i];
+          player.play().then(() => { playingBtn = play; play.textContent = '⏸'; })
+                       .catch(() => { /* a refused play keeps the error path in charge */ });
         };
         row.querySelector('.pick').onclick = () => {
           rolesBox.querySelectorAll(`.audition-row[data-role="${CSS.escape(s.role)}"]`)

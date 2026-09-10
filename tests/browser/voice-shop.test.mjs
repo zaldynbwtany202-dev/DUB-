@@ -3,15 +3,15 @@
  *
  * Both pages came over from main as plain files; what could silently break is
  * everything this session learned the hard way: mp3 playback must go through
- * raw.githubusercontent.com (the Pages host answered 500 for audio), the
- * choice must land on the branch the agent reads, and index.html must expose
- * the tabs so #shop opens them. The Python reader side is pinned from the
- * pytest suite; here it is the browser half plus the cross-file contracts.
+ * raw.githubusercontent.com with the branch VERBATIM (the Pages host 500s on
+ * audio, and %2F-encoded branches 404 on raw), the choice must land on the
+ * branch the agent reads, and index.html must expose the tabs so #shop opens
+ * them. The Python reader side is pinned from the pytest suite; here it is
+ * the browser half plus the cross-file contracts.
  *
  * Run: node tests/browser/voice-shop.test.mjs
  */
 import { readFileSync, existsSync, readdirSync } from 'fs';
-import { execFileSync } from 'child_process';
 
 let pass = 0, fail = 0;
 const ok = (c, m) => { c ? pass++ : (fail++, console.log('FAIL:', m)); };
@@ -36,18 +36,23 @@ ok(libAudio.length === 28, `28 raw library takes present (got ${libAudio.length}
 ok(catalog.total_slots === 100 && catalog.ready === 85, 'catalog says 100 slots, 85 ready');
 ok(catalog.samples.length === 100, 'catalog carries 100 entries');
 
-// ── the mp3-500 lesson: audio from raw, never from the Pages host ────────
+// ── the audio-host lessons: raw origin, branch verbatim ──────────────────
 ok(shop.includes('rawDocs(s.preview_url)'), 'shop preview plays through rawDocs');
-ok(shop.includes('raw.githubusercontent.com') && !/new Audio\(relative\(/.test(shop),
-   'no shop Audio element points at the Pages origin');
+ok(!/new Audio\(relative\(/.test(shop), 'no shop Audio element points at the Pages origin');
+ok(!shop.includes('github.io/raw') && !shop.includes('github.io/voice-shop'),
+   'no shop audio URL targets github.io');
 ok(lib.includes('rawDocs(r.audio)'), 'library audio plays through rawDocs');
-ok(/const RAW_DOCS = `https:\/\/raw\.githubusercontent\.com\/\$\{OWNER\}\/\$\{REPO\}\/\$\{encodeURIComponent\(BRANCH\)\}\/docs\/`/.test(shop),
-   'shop raw base derives from the shared OWNER/REPO/BRANCH');
-ok(/const RAW_DOCS = `https:\/\/raw\.githubusercontent\.com/.test(lib),
-   'library raw base derives from the shared constants');
+ok(shop.includes("from './audio-url.js'") && lib.includes("from './audio-url.js'"),
+   'both pages resolve the audio host through the shared audio-url module');
+ok(shop.includes('audioBranches()') && lib.includes('audioBranches()'),
+   'both pages read the deployed manifest');
+ok(!/raw\.githubusercontent\.com[^`]*encodeURIComponent/.test(shop) &&
+   !/raw\.githubusercontent\.com[^`]*encodeURIComponent/.test(lib),
+   'no raw URL in either page encodes its branch (raw 404s %2F)');
+ok(shop.includes('rawDocsUrl(next, s.preview_url)'), 'shop falls back to the next branch on error');
 
 // ── the choice channel: writer and reader agree ──────────────────────────
-ok(shop.includes("commitTextFile") && lib.includes("commitTextFile"),
+ok(shop.includes('commitTextFile') && lib.includes('commitTextFile'),
    'both pages commit the choice through commitTextFile');
 ok(upload.includes('export async function commitTextFile'),
    'github-upload.js exports commitTextFile on this branch');
@@ -58,10 +63,6 @@ ok(!/localStorage\.getItem\(BRANCH_KEY\)/.test(upload),
 ok(shop.includes("CHOICE_PATH = 'docs/voice-choice.json'"), 'shop writes the agreed path');
 ok(lib.includes("CHOICE_PATH = 'docs/voice-choice.json'"), 'library writes the agreed path');
 
-// The shop reads its saved choice from raw on BRANCH first — the comment in
-// the file says why: a relative read would show a stale branch's choice.
-ok(shop.includes('`${CHOICE_PATH.split(\'/\').pop()}?ts=') , 'fallback still reads locally last');
-
 // ── the studio exposes both, and #shop resolves ──────────────────────────
 ok(index.includes('data-tab="shop"') && index.includes('id="tab-shop"'), 'shop tab exists');
 ok(index.includes('data-tab="lib100"') && index.includes('id="tab-lib100"'), 'library tab exists');
@@ -70,7 +71,7 @@ ok(index.includes('src="voice-shop.html"') && index.includes('src="voice-library
 ok(studio.includes("'shop'") && studio.includes("'lib100'"),
    'studio.js accepts #shop and #lib100 as initial hashes');
 ok(index.indexOf('src="studio.js"') < index.indexOf('auditions-tab.js'),
-   'studio.js still loads before the auditions module');
+   'studio.js loads first, so its tab handlers exist before the tab module runs');
 
 // ── the catalog facts the agent relies on ────────────────────────────────
 const ready = catalog.samples.filter((s) => s.status === 'ready');

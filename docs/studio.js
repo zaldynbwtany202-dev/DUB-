@@ -20,7 +20,9 @@ import {
 
 const API = 'https://api.github.com';
 const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
-const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/`;
+// Branch verbatim — encoding its slashes into %2F makes raw return 404 for
+// every file (the reason voice-bank audio never played until 2026-09-10).
+const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
 const WORKFLOW = 'dub.yml';
 const PART_BYTES = 18 * 1024 * 1024;           // measured blob ceiling minus base64 overhead
 const VIDEO_RE = /\.(mp4|mkv|webm|mov)$/i;

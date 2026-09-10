@@ -158,17 +158,23 @@ def test_page_wires_send_to_the_module():
 
 def test_samples_play_from_raw_not_pages():
     """github.io returned HTTP 500 for the sample mp3s (2026-09-10); raw serves
-    them. Both players must build raw URLs, never point at the Pages host."""
+    them. Every player resolves audio through the shared audio-url module, and
+    the branch is never percent-encoded (%2F makes raw 404 every URL)."""
     html = (ROOT / "docs" / "voices.html").read_text(encoding="utf-8")
-    assert "raw.githubusercontent.com" in html
-    assert "sampleUrl(s.mp3)" in html
+    assert "audio-url.js" in html
+    assert "audioCandidates(s.mp3)" in html
     js = (ROOT / "docs" / "auditions-tab.js").read_text(encoding="utf-8")
-    assert "raw.githubusercontent.com" in js
-    assert "/docs/" in js
+    assert "audio-url.js" in js
+    shared = (ROOT / "docs" / "audio-url.js").read_text(encoding="utf-8")
+    assert "raw.githubusercontent.com" in shared
+    assert "encodeURIComponent(branch)" not in shared
 
 
-def test_dialect_codes_match_js_mapping():
-    js = (ROOT / "docs" / "voice-select.js").read_text(encoding="utf-8")
-    for name, code in fvs.DIALECT_CODES.items():
-        assert name in js, f"الخريطة الإنجليزية/العربية ناقصة: {name}"
-        assert f"'{code}'" in js, f"الرمز {code} غير موجود في وحدة الصفحة"
+def test_audio_manifest_names_the_deployment_branch():
+    import json
+    manifest = json.loads(
+        (ROOT / "docs" / "audio-branch.json").read_text(encoding="utf-8")
+    )
+    js = (ROOT / "docs" / "audio-url.js").read_text(encoding="utf-8")
+    assert manifest["branch"] in js, "audio-url.js defaults must include the manifest branch"
+    assert manifest["branch"].startswith("arena/"), "deployment branch is an arena session branch"

@@ -160,6 +160,7 @@
 <script type="module">
 import { commitTextFile, loadToken, saveToken, forgetToken, checkToken, TOKEN_URL,
          OWNER, REPO, BRANCH } from './github-upload.js';
+import { audioBranches, rawDocsUrl } from './audio-url.js';
 
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -177,7 +178,7 @@ let data = null, base = new URL('.', location.href), playing = null;
 const CANDIDATES = [
   `voice-shop.json?ts=${Date.now()}`,
   `../docs/voice-shop.json?ts=${Date.now()}`,
-  `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/voice-shop.json?ts=${Date.now()}`,
+  `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/docs/voice-shop.json?ts=${Date.now()}`,
 ];
 
 async function fetchFirst(paths) {
@@ -197,11 +198,14 @@ function relative(url) {
 }
 
 /* Sample audio plays from raw.githubusercontent.com, never from the Pages
-   origin: on 2026-09-10 that host answered HTTP 500 for mp3 files it serves
-   fine as JSON (measured on this very site), while raw serves every branch's
-   bytes plainly. Same files, same branch — only the host differs. */
-const RAW_DOCS = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/docs/`;
-const rawDocs = (p) => RAW_DOCS + String(p || '').split('/').map(encodeURIComponent).join('/');
+   origin (that host answers HTTP 500 for mp3 — measured 2026-09-10). The
+   branch comes from the deployed manifest audio-branch.json: the files live
+   on the branch Pages deploys, which the fixed upload branch cannot carry.
+   Until the manifest resolves, the deployment branch from audio-url.js is
+   used; after it resolves the page re-points to whatever it names. */
+let AUDIO_BRANCHES = null;
+audioBranches().then((list) => { AUDIO_BRANCHES = list; });
+const rawDocs = (p) => rawDocsUrl((AUDIO_BRANCHES || [])[0], p);
 
 function fmt(n, digits = 1) {
   return (typeof n === 'number' && isFinite(n)) ? n.toFixed(digits) : '—';
@@ -278,7 +282,16 @@ function card(s) {
     window.__voice = audio; playing = s.id; render();
     audio.play();
     audio.onended = () => { if (playing === s.id) { playing = null; render(); } };
-    audio.onerror = () => say('الملف الصوتي ما اتقريش — جرب تفتح الصفحة من رابط GitHub Pages.', 'err');
+    audio.onerror = () => {
+      const next = (AUDIO_BRANCHES || []).filter((b) => !audio.dataset.triedBr?.includes(b))[0];
+      if (next) {
+        audio.dataset.triedBr = (audio.dataset.triedBr || '') + next + ',';
+        audio.src = rawDocsUrl(next, s.preview_url);
+        audio.play().catch(() => {});
+      } else {
+        say('الملف الصوتي ما اتقريش من أي فرع — جرب تحديث الصفحة أو راجع الاتصال.', 'err');
+      }
+    };
   };
   el.querySelector('[data-pick]').onclick = () => pick(s);
   const cp = el.querySelector('[data-copy]');
@@ -329,7 +342,7 @@ async function loadSavedChoice() {
     // The branch first: that is where a click writes. Once this page is served from
     // main, a relative read would show main's older choice instead of the live one.
     const { text, url } = await fetchFirst([
-      `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/${CHOICE_PATH}?ts=${Date.now()}`,
+      `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${CHOICE_PATH}?ts=${Date.now()}`,
       `${CHOICE_PATH.split('/').pop()}?ts=${Date.now()}`,
       `../${CHOICE_PATH}?ts=${Date.now()}`,
     ]);
