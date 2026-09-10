@@ -246,7 +246,7 @@ def cmd_ingest(args) -> int:
     # that is exactly how 19 approved clips vanished while their JSON survived the commit.
     tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "docs/voice-library"],
                              capture_output=True, text=True).stdout.split()
-    on_disk = [str(r.relative_to(ROOT / "docs")) for r in (ROOT / "docs" / "voice-library").glob("*.mp3")]
+    on_disk = sorted(str(r.relative_to(ROOT)) for r in (ROOT / "docs" / "voice-library").glob("*.mp3"))
     untracked = sorted(set(on_disk) - set(tracked))
     if untracked:
         print(f"WARNING: {len(untracked)} generated file(s) are NOT tracked by git "
