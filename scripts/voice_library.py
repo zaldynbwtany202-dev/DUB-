@@ -197,20 +197,40 @@ def measure(path: Path) -> dict:
     return facts
 
 
-def delivery_label(facts: dict, rate_words: float | None) -> str:
-    """Measured, not claimed: what the numbers say the read actually did."""
+def _median(values: list[float]) -> float:
+    v = sorted(values)
+    if not v:
+        return 0.0
+    mid = len(v) // 2
+    return v[mid] if len(v) % 2 else (v[mid - 1] + v[mid]) / 2
+
+
+def delivery_label(facts: dict, rate_words: float | None, ref: dict | None = None) -> str:
+    """Measured, not claimed - and comparative, because a fixed threshold that every row passes
+
+    is the same blind meter this repo already deleted once (`level_sd_db` on silent frames,
+    f0 spread measured only where the estimator gates). Against the library median, a row can
+    only say "wider/narrower/louder" if it actually differs by more than a tenth.
+    """
+    ref = ref or {}
     bits = []
-    if facts.get("level_dbfs", -99) > -18:
-        bits.append("أعلى من متوسط الكلام")
-    elif facts.get("level_dbfs", 0) < -24:
-        bits.append("أخفض من متوسط الكلام")
-    spread = facts.get("f0_spread")
-    if isinstance(spread, (int, float)):
-        bits.append("حركة نبرة واسعة" if spread >= 4.0 else "حركة نبرة ضيّقة")
+    for key, word_hi, word_lo in (("f0_spread", "أوسع نبرة", "أضيق نبرة"),
+                                  ("level_dbfs", "أعلى جهارة", "أخفض جهارة"),
+                                  ("low_band_share_under_200hz", "أثخن نطاقًا", "أنظف نطاقًا")):
+        value, base = facts.get(key), ref.get(key)
+        if not isinstance(value, (int, float)) or not isinstance(base, (int, float)):
+            continue
+        if abs(value - base) <= 0.1 * max(abs(base), 1e-6):
+            continue
+        bits.append(f"{word_hi} من وسيط المكتبة ({base})" if value > base
+                    else f"{word_lo} من وسيط المكتبة ({base})")
     if isinstance(rate_words, float):
-        fit = "يبلع ميزانية الجولة التالتة" if rate_words >= 2.507 else "أبطأ من 2.507 ك/ث"
-        bits.append(f"سرعته {rate_words} ك/ث — {fit}")
-    return "، ".join(bits) if bits else "مقيس بلا فوارق تُذكر"
+        fit = "يدّوز 1633 كلمة" if rate_words * 630.6 >= 1633 else f"يقطع {round(1633 - rate_words * 630.6)} كلمة"
+        bits.append(f"{rate_words} ك/ث — {fit}")
+    pad = facts.get("engine_padding_seconds")
+    if isinstance(pad, (int, float)) and pad > 0:
+        bits.append(f"الأداة بتلصق {pad} ث سكون بعد الكلام")
+    return " · ".join(bits) if bits else "زي وسيط المكتبة في كل المقاييس"
 
 
 def cmd_ingest(args) -> int:
@@ -235,13 +255,31 @@ def cmd_ingest(args) -> int:
         if row["status"] == "generated":
             generated += 1
         rows.append(row)
+    # Median of the whole library first, so the labels below are relative to what exists.
+    gen = [r for r in rows if r.get("facts")]
+    ref = {k: round(_median([r["facts"][k] for r in gen if isinstance(r["facts"].get(k), (int, float))]), 2)
+           for k in ("f0_spread", "level_dbfs", "low_band_share_under_200hz")}
+    for row in gen:
+        row["delivery_measured"] = delivery_label(row["facts"], row.get("words_per_sec"), ref)
+
+    # A rate is words over speech, aggregated per voice - not the mean of per-clip ratios,
+    # which a six-word sentence can swing by half a second per word.
     by_voice: dict[str, dict] = {}
     for row in rows:
-        if row.get("words_per_sec"):
-            by_voice.setdefault(row["voice_id"], []).append(row["words_per_sec"])
-    voices = {vid: {"clips": len(v), "words_per_sec_mean": round(sum(v) / len(v), 3),
-                    "min": round(min(v), 3), "max": round(max(v), 3)}
-              for vid, v in sorted(by_voice.items())}
+        facts = row.get("facts") or {}
+        if facts.get("speech_span_seconds") and row.get("words"):
+            by_voice.setdefault(row["voice_id"], []).append(
+                (row["words"], facts["speech_span_seconds"], row["words_per_sec"]))
+    voices = {}
+    for vid, v in sorted(by_voice.items()):
+        words = sum(x[0] for x in v)
+        span = sum(x[1] for x in v)
+        rates = sorted(x[2] for x in v)
+        voices[vid] = {"clips": len(v), "words": words, "speech_seconds": round(span, 2),
+                       "words_per_sec": round(words / span, 3) if span else None,
+                       "clips_below_the_2.507_target": sum(1 for r in rates if r < 2.507),
+                       "clip_min": round(rates[0], 3), "clip_max": round(rates[-1], 3),
+                       "fits_round3_words": bool(span and words / span * 630.6 >= 1633)}
     # A manifest that hashes files git never stored is a lie waiting for the next sandbox reset:
     # that is exactly how 19 approved clips vanished while their JSON survived the commit.
     tracked = subprocess.run(["git", "-C", str(ROOT), "ls-files", "docs/voice-library"],
@@ -255,6 +293,7 @@ def cmd_ingest(args) -> int:
     out = {"built_by": "scripts/voice_library.py", "project": "hajj-dream-2108415",
            "total_slots": len(rows), "generated": generated, "pending": pending,
            "distinct_voices": len({r["voice_id"] for r in rows}),
+           "library_medians": ref,
            "audio_files_on_disk": len(on_disk), "audio_files_tracked": len([t for t in tracked if t.endswith(".mp3")]),
            "untracked_audio": untracked,
            "distinct_texts": len({r["text"] for r in rows}),
