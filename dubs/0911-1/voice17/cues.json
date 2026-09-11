@@ -1,0 +1,43 @@
+{
+  "video": "../../../library/0911-1/source.mp4",
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "min_tempo": 0.85,
+  "max_tempo": 1.12,
+  "sample_rate": 24000,
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 9.72,
+      "text": "فضل يضحك ويبتسم. بعد سنين طويلة وهو يشرب مية من الطين في أرض المعركة، أخيرا لقى مية نضيفة.",
+      "audio": "seg-0000.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 1,
+      "start": 9.72,
+      "end": 17.76,
+      "text": "والدفعة دي كانت رفاهية على البطن. وعلى ما الليل جه، أخد قراره إنه يعمل كل اللي يقدر عليه.",
+      "audio": "seg-0001.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 2,
+      "start": 17.76,
+      "end": 27.78,
+      "text": "ويدي المكان فرصة أخيرة. لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت هنا.",
+      "audio": "seg-0002.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 3,
+      "start": 27.78,
+      "end": 32.25,
+      "text": "ويدور على قرية تانية، ومعاه وصية أهله.",
+      "audio": "seg-0003.mp3",
+      "speaker": "NARRATOR"
+    }
+  ]
+}

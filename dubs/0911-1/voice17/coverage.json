@@ -1,0 +1,6 @@
+{
+  "source_speech_quiet_total_seconds": 0.38,
+  "longest_quiet_run_seconds": 0.14,
+  "speech_truncated": false,
+  "tempos": [1.035, 0.921, 0.869, 0.85]
+}

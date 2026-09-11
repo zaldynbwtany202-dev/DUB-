@@ -1,0 +1,21 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "status": "complete",
+  "source": "library/0911-1/source.mp4",
+  "source_sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
+  "previous_versions": [
+    "dubs/0911-1/final-dub-voice02.mp4",
+    "dubs/0911-1/voice06/final-dub-voice06.mp4"
+  ],
+  "min_tempo": 0.85,
+  "max_tempo": 1.12,
+  "spelling": "TTS-safer Egyptian to reduce strained pronunciation",
+  "takes": [
+    {"index": 0, "start": 0.0, "end": 9.72, "audio": "voice17/seg-0000.mp3", "text": "فضل يضحك ويبتسم. بعد سنين طويلة وهو يشرب مية من الطين في أرض المعركة، أخيرا لقى مية نضيفة."},
+    {"index": 1, "start": 9.72, "end": 17.76, "audio": "voice17/seg-0001.mp3", "text": "والدفعة دي كانت رفاهية على البطن. وعلى ما الليل جه، أخد قراره إنه يعمل كل اللي يقدر عليه."},
+    {"index": 2, "start": 17.76, "end": 27.78, "audio": "voice17/seg-0002.mp3", "text": "ويدي المكان فرصة أخيرة. لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت هنا."},
+    {"index": 3, "start": 27.78, "end": 32.25, "audio": "voice17/seg-0003.mp3", "text": "ويدور على قرية تانية، ومعاه وصية أهله."}
+  ]
+}
