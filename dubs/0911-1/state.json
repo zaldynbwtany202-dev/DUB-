@@ -1,20 +1,15 @@
 {
-  "status": "complete_voice17",
+  "status": "complete_voice17_natural_tempo",
   "source": "library/0911-1/source.mp4",
-  "source_sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
   "voice_backend": "agent",
   "voice_id": "voice-17",
   "language": "ar-EG",
-  "final_file": "dubs/0911-1/voice17/final-dub-voice17.mp4",
-  "previous_rejected": [
-    "dubs/0911-1/final-dub-voice02.mp4",
-    "dubs/0911-1/voice06/final-dub-voice06.mp4"
-  ],
-  "duration": 32.25,
-  "segments": 4,
+  "final_file": "dubs/0911-1/voice17/final-dub-voice17-natural.mp4",
+  "slow_version_archived": "dubs/0911-1/voice17/final-dub-voice17-slow-archive.mp4",
+  "tempo_policy": {"min": 1.0, "max": 1.08},
+  "tempos": [1.035, 1.0, 1.0, 1.0],
   "speech_truncated": false,
-  "source_speech_quiet_total_seconds": 0.38,
-  "longest_quiet_run_seconds": 0.14,
+  "duration": 32.25,
   "session_branch": "arena/01a0922c-dub",
   "merge": false
 }

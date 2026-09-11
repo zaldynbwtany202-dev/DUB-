@@ -31,11 +31,11 @@
     "detected_language": "ar"
   },
   "dubbing": {
-    "status": "complete_voice17",
+    "status": "complete_voice17_natural_tempo",
     "voice_backend": "agent",
     "voice_id": "voice-17",
     "language": "ar-EG",
-    "final": "dubs/0911-1/voice17/final-dub-voice17.mp4",
+    "final": "dubs/0911-1/voice17/final-dub-voice17-natural.mp4",
     "previous_rejected": [
       "dubs/0911-1/final-dub-voice02.mp4",
       "dubs/0911-1/voice06/final-dub-voice06.mp4"

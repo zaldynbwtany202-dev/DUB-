@@ -3,8 +3,8 @@
   "voice_backend": "agent",
   "voice_id": "voice-17",
   "language": "ar-EG",
-  "min_tempo": 0.85,
-  "max_tempo": 1.12,
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
   "sample_rate": 24000,
   "segments": [
     {
