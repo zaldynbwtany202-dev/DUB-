@@ -75,14 +75,14 @@ def test_long_take_must_not_be_truncated_to_fit(tmp_path):
         agent.fit_take(cue(audio, 0, 0.5), tmp_path, 0)
 
 
-def test_short_take_preserves_natural_rate_instead_of_stretching_to_fill(tmp_path):
+def test_short_take_keeps_natural_rate_instead_of_slowing_to_fill(tmp_path):
     sr = 24000
     audio = tmp_path / "short.wav"
     samples = np.sin(2 * np.pi * 440 * np.arange(sr) / sr).astype(np.float32) * 0.3
     sf.write(audio, samples, sr)
     result, report = agent.fit_take(cue(audio, 0, 4), tmp_path, 0)
-    assert report["tempo"] == 0.88
-    assert len(result) / sr < 1.2
+    assert report["tempo"] == 1.0
+    assert abs(len(result) / sr - 1.0) < 0.12
     assert report["speech_truncated"] is False
 
 

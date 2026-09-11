@@ -37,9 +37,17 @@ def main() -> int:
     if args.cmd == "plan":
         raw = json.loads(args.segments.read_text(encoding="utf-8"))
         segs = raw["segments"] if isinstance(raw, dict) else raw
-        sheet = cues_from_segments(
-            args.video, segs, voice_id=args.voice_id, language=args.language, audio_dir=args.audio_dir,
+        from youtube_auto_dub.source_sync import load_policy, plan_from_asr
+        policy = load_policy()
+        sheet = plan_from_asr(
+            segs,
+            words_per_second=float(policy["words_per_second"]),
+            min_tempo=float(policy["min_tempo"]),
+            max_tempo=float(policy["max_tempo"]),
+            audio_dir=str(args.audio_dir),
         )
+        sheet["voice_id"] = args.voice_id
+        sheet["language"] = args.language
         sheet["video"] = os.path.relpath(args.video.resolve(), args.out.parent.resolve())
         write_cues(args.out, sheet)
         print(json.dumps({"cues": str(args.out), "lines": len(sheet["segments"])}, ensure_ascii=False))

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "session_branch": "arena/01a0922c-dub",
+  "merge": "forbidden",
+  "merge_targets_forbidden": ["main", "master", "arena/01a07c92-dub"],
+  "voice_backend": "agent",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "every_source_utterance_needs_a_dubbed_utterance": true,
+  "fit_by": "rewrite_text_to_word_budget",
+  "words_per_second": 1.7,
+  "uncovered_source_speech_warn_seconds": 0.4,
+  "uncovered_source_speech_fail_seconds": 1.5
+}

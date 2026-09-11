@@ -121,8 +121,8 @@ def trim_silence(samples: np.ndarray, sr: int) -> tuple[np.ndarray, dict]:
                                        "trailing_silence_removed": (len(samples) - end) / sr}
 
 
-def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 0.88,
-             max_tempo: float = 1.6, sample_rate: int = SR_TTS) -> tuple[np.ndarray, dict]:
+def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 1.0,
+             max_tempo: float = 1.08, sample_rate: int = SR_TTS) -> tuple[np.ndarray, dict]:
     sr = sample_rate
     decoded = subprocess.run([ffmpeg_exe(), "-v", "error", "-i", str(seg["audio"]),
                               "-vn", "-ar", str(sr), "-ac", "1", "-f", "f32le", "-"],
@@ -195,10 +195,12 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
     sr = int(cues.get("sample_rate", SR_TTS))
     if sr not in {24000, 44100, 48000}:
         raise ValueError("Unsupported narration sample rate")
-    min_tempo = float(cues.get("min_tempo", .88))
-    max_tempo = float(cues.get("max_tempo", 1.6))
-    if not all(math.isfinite(t) for t in (min_tempo,max_tempo)) or not .5 <= min_tempo <= 1 <= max_tempo <= 1.6:
+    min_tempo = float(cues.get("min_tempo", 1.0))
+    max_tempo = float(cues.get("max_tempo", 1.08))
+    if not all(math.isfinite(t) for t in (min_tempo, max_tempo)) or not .5 <= min_tempo <= 1 <= max_tempo <= 1.6:
         raise ValueError("Invalid narration tempo policy")
+    if cues.get("timing_mode") == "source_audio" and min_tempo < 1.0:
+        raise ValueError("source-audio sync refuses slowdown; rewrite the line")
     timeline = np.zeros(round(duration * sr), dtype=np.float32)
     placed = []
     for i, seg in enumerate(segments):
@@ -246,6 +248,12 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         "video_codec": "copy", "target_lufs": -16, "speech_truncated": False,
         "tempo_policy": {"min": min_tempo, "max": max_tempo}, "narration_sample_rate": sr,
         "loudness_normalization": json.loads(meter[0]) if meter else None, "placements": placed,
+        "timing_mode": cues.get("timing_mode") or "cues",
+        "slowed": any(float(p["tempo"]) < 0.999 for p in placed),
     }
+    if cues.get("timing_mode") == "source_audio":
+        from youtube_auto_dub.source_sync import coverage_from_placements
+        windows = [(float(s["start"]), float(s["end"])) for s in segments]
+        report["source_audio_coverage"] = coverage_from_placements(windows, placed)
     write_cues(output.with_suffix(".agent.json"), report)
     return output
