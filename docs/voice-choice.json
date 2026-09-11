@@ -1,1 +1,19 @@
-ewogICJzY2hlbWEiOiAxLAogICJzYW1wbGVfaWQiOiAibGliLTAxNiIsCiAgInNvdXJjZV9jYXRhbG9nIjogImRvY3Mvdm9pY2UtbGlicmFyeS5qc29uIiwKICAidm9pY2VfaWQiOiAidm9pY2UtMDIiLAogICJ0ZXh0IjogItmI2LnYp9im2LTYqSDYqNiq2LHYudmJINin2YTYqNmC2LHYjCDZiNiq2LLYsdi5INmI2KrYqNmK2Lkg2YXZhiDYpdmG2KrYp9is2YfZhSDYudi02KfZhiDYqtiz2KfYudivINmB2Yog2YXYtdin2LHZitmBINin2YTYqNmK2KouIiwKICAid29yZHMiOiAxMiwKICAid29yZHNfcGVyX3NlYyI6IDIuMDg3LAogICJkZWxpdmVyeV9tZWFzdXJlZCI6ICLYo9i22YrZgiDZhtio2LHYqSDZhdmGINmI2LPZiti3INin2YTZhdmD2KrYqNipICg2LjgpIMK3IDIuMDg3INmDL9irIOKAlCDZitmC2LfYuSAzMTcg2YPZhNmF2Kkgwrcg2KfZhNij2K/Yp9ipINio2KrZhNi12YIgMC44NSDYqyDYs9mD2YjZhiDYqNi52K8g2KfZhNmD2YTYp9mFIiwKICAiYXVkaW8iOiAidm9pY2UtbGlicmFyeS92b2ljZS0wMi0wMTYubXAzIiwKICAic2hhMjU2IjogIjY2ZTJjZDMxODRmNzMwODA1ZjIzY2Q4MmY5MDU3NWUxOTVjZmI5YWNhYmY2YTk4YWFiMjU3MWY4NmEzNjNmNTIiLAogICJjaGFpbiI6ICJhbnVsbCIsCiAgIm5vdGUiOiAi2K7YsdisINij2K/Yp9ipINin2YTYtdmI2Kog2LLZiiDZhdinINmH2Yg6INmE2Kcg2YHZhNiq2LEg2YjZhNinIHBpdGNoINmI2YTYpyDZhdmI2LPZitmC2Ykg2YjZhNinINit2LTZiCDYs9mD2YjZhi4iLAogICJwcm9qZWN0IjogImhhamotZHJlYW0tMjEwODQxNSIsCiAgImNob3Nlbl9hdCI6ICIyMDI2LTA5LTEwVDE5OjUxOjE1LjU1MFoiLAogICJjaG9zZW5fYnkiOiAiZG9jcy92b2ljZS1saWJyYXJ5Lmh0bWwiLAogICJicmFuY2giOiAiYXJlbmEvMDFhMDdjNjktZHViIiwKICAiaG93X3RvX2FwcGx5IjogInNjcmlwdHMvc2V0X3ZvaWNlX2Nob2ljZS5weSAtLWNhdGFsb2cgZG9jcy92b2ljZS1saWJyYXJ5Lmpzb24iCn0K
+{
+  "schema": 1,
+  "sample_id": "lib-016",
+  "source_catalog": "docs/voice-library.json",
+  "voice_id": "voice-02",
+  "text": "وعائشة بترعى البقر، وتزرع وتبيع من إنتاجهم عشان تساعد في مصاريف البيت.",
+  "words": 12,
+  "words_per_sec": 2.087,
+  "delivery_measured": "أضيق نبرة من وسيط المكتبة (6.8) · 2.087 ك/ث — يقطع 317 كلمة · الأداة بتلصق 0.85 ث سكون بعد الكلام",
+  "audio": "voice-library/voice-02-016.mp3",
+  "sha256": "66e2cd3184f730805f23cd82f90575e195cfb9acabf6a98aab2571f86a363f52",
+  "chain": "anull",
+  "note": "خرج أداة الصوت زي ما هو: لا فلتر ولا pitch ولا موسيقى ولا حشو سكون.",
+  "project": "hajj-dream-2108415",
+  "chosen_at": "2026-09-11T19:39:27.383Z",
+  "chosen_by": "docs/voice-library.html",
+  "branch": "arena/01a07c69-dub",
+  "how_to_apply": "scripts/set_voice_choice.py --catalog docs/voice-library.json"
+}
