@@ -1,0 +1,91 @@
+{
+  "video": "../../../../library/0911-1/source.mp4",
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "sample_rate": 24000,
+  "timing": "Phrase-for-phrase meaning order at natural rate. No slowdown. Uniform 4.7% speedup so every source sentence has a dubbed sentence without overlapping or padding silence.",
+  "source_meaning_windows": [
+    [0.0, 5.32],
+    [5.32, 9.72],
+    [9.72, 13.84],
+    [13.84, 17.76],
+    [17.76, 22.2],
+    [22.2, 27.78],
+    [27.78, 32.25]
+  ],
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 6.665,
+      "source_start": 0.0,
+      "source_end": 5.32,
+      "text": "فضل يضحك ويبتسم بعد سنين يشرب مية طين في",
+      "audio": "seg-0000.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 1,
+      "start": 6.665,
+      "end": 11.382,
+      "source_start": 5.32,
+      "source_end": 9.72,
+      "text": "أرض المعركة. أخيرا لقى مية نضيفة يشربها.",
+      "audio": "seg-0001.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 2,
+      "start": 11.382,
+      "end": 15.03,
+      "source_start": 9.72,
+      "source_end": 13.84,
+      "text": "اعتبرها رفاهية. والليل جه أخد",
+      "audio": "seg-0002.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 3,
+      "start": 15.03,
+      "end": 18.792,
+      "source_start": 13.84,
+      "source_end": 17.76,
+      "text": "قراره يعمل كل اللي يقدر ويدي المكان فرصة",
+      "audio": "seg-0003.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 4,
+      "start": 18.792,
+      "end": 23.395,
+      "source_start": 17.76,
+      "source_end": 22.2,
+      "text": "أخيرة. لو الدنيا مقفلة بعد يومين هيسيب",
+      "audio": "seg-0004.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 5,
+      "start": 23.395,
+      "end": 28.341,
+      "source_start": 22.2,
+      "source_end": 27.78,
+      "text": "المكان قبل ما يموت هنا. هيدور على قرية تانية بأي",
+      "audio": "seg-0005.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 6,
+      "start": 28.341,
+      "end": 32.25,
+      "source_start": 27.78,
+      "source_end": 32.25,
+      "text": "طريقة، علشان يفضل دايما معاه وصية أهله.",
+      "audio": "seg-0006.mp3",
+      "speaker": "NARRATOR"
+    }
+  ]
+}
