@@ -1,0 +1,102 @@
+{
+  "voice_backend": "agent",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 5.32,
+      "source_text": "فدل يتحك ويبتسم لانه بعد ما قد صنين طويلة وهو بيشرب مية تنية في",
+      "text": "فدل يتحك ويبتسم لانه بعد ما قد صنين طويلة وهو يشرب مية من الطين في",
+      "word_budget": 8,
+      "source_word_count": 14,
+      "audio": "./seg-0000.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 1,
+      "start": 5.32,
+      "end": 9.72,
+      "source_text": "ارض المعركة اخيرا بقا قدامه مية نضيفة بيقدر انه هو يشربها ودفحة",
+      "text": "ارض المعركة اخيرا بقا قدامه مية نضيفة بيقدر انه هو يشربها ودفحة",
+      "word_budget": 7,
+      "source_word_count": 12,
+      "audio": "./seg-0001.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 2,
+      "start": 9.72,
+      "end": 13.84,
+      "source_text": "دي زتعة اعتبر رفهية بالنسبة للبطنة وعلى ما الليلجة داسكن اخد",
+      "text": "دي زتعة اعتبر رفهية بالنسبة للبطنة وعلى ما الليلجة داسكن اخد",
+      "word_budget": 6,
+      "source_word_count": 11,
+      "audio": "./seg-0002.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 3,
+      "start": 13.84,
+      "end": 17.76,
+      "source_text": "كراره وقالي نفسه انه هو هيعمل كل اللي يقدر عليه ويدي المكان ده فرصة",
+      "text": "كراره وقالي نفسه انه هو هيعمل كل اللي يقدر عليه ويدي المكان ده فرصة",
+      "word_budget": 6,
+      "source_word_count": 14,
+      "audio": "./seg-0003.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 4,
+      "start": 17.76,
+      "end": 22.2,
+      "source_text": "اخيرة لكن لو داني فدلت مقفلة وضل مفوشه بعد يومين هيمشو هيسيب",
+      "text": "اخيرة لكن لو داني فدلت مقفلة وضل مفوشه بعد يومين هيمشو هيسيب",
+      "word_budget": 7,
+      "source_word_count": 12,
+      "audio": "./seg-0004.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 5,
+      "start": 22.2,
+      "end": 27.78,
+      "source_text": "المكان ابل ما يموت هنا ولو وصلت لي كده هيدور على اي قرية تنية ويحاولي فدهم بأي",
+      "text": "المكان ابل ما يموت هنا ولو وصلت لي كده هيدور على اي قرية تنية ويحاولي فدهم بأي",
+      "word_budget": 9,
+      "source_word_count": 17,
+      "audio": "./seg-0005.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 6,
+      "start": 27.78,
+      "end": 29.34,
+      "source_text": "طريقة علشان يفضل دايما",
+      "text": "طريقة علشان يفضل دايما",
+      "word_budget": 2,
+      "source_word_count": 4,
+      "audio": "./seg-0006.mp3",
+      "speaker": "NARRATOR"
+    },
+    {
+      "index": 7,
+      "start": 29.34,
+      "end": 32.252,
+      "source_text": "معقى وصيت اهلو الاخيرة ابل ما يموته وعلى الاسفل",
+      "text": "معقى وصيت اهلو الاخيرة ابل ما يموته وعلى الاسفل",
+      "word_budget": 4,
+      "source_word_count": 9,
+      "audio": "./seg-0007.mp3",
+      "speaker": "NARRATOR"
+    }
+  ],
+  "video": "../../../../library/0911-1/source.mp4",
+  "voice_id": "voice-17",
+  "language": "ar-EG"
+}

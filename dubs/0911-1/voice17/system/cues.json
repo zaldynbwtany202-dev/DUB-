@@ -1,0 +1,23 @@
+{
+  "video": "../../../../library/0911-1/source.mp4",
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "sample_rate": 24000,
+  "segments": [
+    {"index": 0, "start": 0.0, "end": 5.32, "text": "فضل يضحك بعد سنين يشرب مية طين", "audio": "seg-0000.mp3", "speaker": "NARRATOR"},
+    {"index": 1, "start": 5.32, "end": 9.72, "text": "أرض المعركة. أخيرا لقى مية نضيفة.", "audio": "seg-0001.mp3", "speaker": "NARRATOR"},
+    {"index": 2, "start": 9.72, "end": 14.2, "text": "اعتبرها رفاهية. والليل جه أخد", "audio": "seg-0002.mp3", "speaker": "NARRATOR"},
+    {"index": 3, "start": 14.2, "end": 17.76, "text": "قراره يعمل كل اللي يقدر.", "audio": "seg-0003.mp3", "speaker": "NARRATOR"},
+    {"index": 4, "start": 17.76, "end": 22.7, "text": "أخيرة. لو الدنيا مقفلة بعد يومين هيسيب", "audio": "seg-0004.mp3", "speaker": "NARRATOR"},
+    {"index": 5, "start": 22.7, "end": 27.78, "text": "المكان قبل ما يموت هنا. ويدور على قرية تانية.", "audio": "seg-0005.mp3", "speaker": "NARRATOR"},
+    {"index": 6, "start": 27.78, "end": 29.5, "text": "طريقة دايما", "audio": "seg-0006.mp3", "speaker": "NARRATOR"},
+    {"index": 7, "start": 29.5, "end": 32.25, "text": "معاه وصية أهله الأخيرة", "audio": "seg-0007.mp3", "speaker": "NARRATOR"}
+  ]
+}

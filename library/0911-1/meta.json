@@ -35,7 +35,7 @@
     "voice_backend": "agent",
     "voice_id": "voice-17",
     "language": "ar-EG",
-    "final": "dubs/0911-1/voice17/final-dub-voice17-audio-sync.mp4",
+    "final": "dubs/0911-1/voice17/final-dub-system.mp4",
     "previous_rejected": [
       "dubs/0911-1/final-dub-voice02.mp4",
       "dubs/0911-1/voice06/final-dub-voice06.mp4"

@@ -1,0 +1,20 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "merge": "forbidden",
+  "source": "library/0911-1/source.mp4",
+  "lines": [
+    {"index": 0, "start": 0.0, "end": 5.32, "word_budget": 8, "text": "فضل يضحك ويبتسم بعد سنين يشرب مية طين"},
+    {"index": 1, "start": 5.32, "end": 9.72, "word_budget": 7, "text": "أرض المعركة. أخيرا لقى مية نضيفة يشربها."},
+    {"index": 2, "start": 9.72, "end": 13.84, "word_budget": 6, "text": "اعتبرها رفاهية. والليل جه أخد"},
+    {"index": 3, "start": 13.84, "end": 17.76, "word_budget": 6, "text": "قراره يعمل كل اللي يقدر."},
+    {"index": 4, "start": 17.76, "end": 22.2, "word_budget": 7, "text": "أخيرة. لو الدنيا مقفلة بعد يومين هيسيب"},
+    {"index": 5, "start": 22.2, "end": 27.78, "word_budget": 9, "text": "المكان قبل ما يموت هنا. ويدور على قرية تانية."},
+    {"index": 6, "start": 27.78, "end": 29.34, "word_budget": 2, "text": "طريقة دايما"},
+    {"index": 7, "start": 29.34, "end": 32.25, "word_budget": 4, "text": "معاه وصية أهله الأخيرة"}
+  ]
+}
