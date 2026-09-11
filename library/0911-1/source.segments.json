@@ -1,0 +1,1117 @@
+{
+  "schema_version": 1,
+  "status": "transcribed",
+  "review_required": true,
+  "source": {
+    "path": "library/0911-1/source.mp4",
+    "bytes": 24678579,
+    "sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac"
+  },
+  "asr": {
+    "engine": "whisper.cpp",
+    "model": "small",
+    "multilingual": true,
+    "device": "cpu",
+    "requested_language": "auto",
+    "detected_language": "ar",
+    "language_probability": 0.992086,
+    "runner": "local",
+    "word_timing_method": "grouped native token boundaries; DTW points retained when present",
+    "model_sha256": "1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b",
+    "dtw_model": "small"
+  },
+  "duration": 32.2525,
+  "elapsed_seconds": 47.765,
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 5.32,
+      "text": "فدل يتحك ويبتسم لانه بعد ما قد صنين طويلة وهو بيشرب مية تنية في",
+      "words": [
+        {
+          "word": "فدل",
+          "start": 0.0,
+          "end": 0.45,
+          "probability": 0.0762553,
+          "dtw_points": [
+            0.9,
+            1.1,
+            1.18
+          ]
+        },
+        {
+          "word": "يتحك",
+          "start": 0.45,
+          "end": 1.05,
+          "probability": 0.490124,
+          "dtw_points": [
+            1.28,
+            1.34,
+            1.42,
+            1.56
+          ]
+        },
+        {
+          "word": "ويبتسم",
+          "start": 1.05,
+          "end": 1.94,
+          "probability": 0.754714,
+          "dtw_points": [
+            1.66,
+            1.72,
+            1.8,
+            1.86,
+            2.08
+          ]
+        },
+        {
+          "word": "لانه",
+          "start": 2.0,
+          "end": 2.38,
+          "probability": 0.640358,
+          "dtw_points": [
+            2.44,
+            2.58,
+            2.68
+          ]
+        },
+        {
+          "word": "بعد",
+          "start": 2.38,
+          "end": 2.68,
+          "probability": 0.939005,
+          "dtw_points": [
+            2.82
+          ]
+        },
+        {
+          "word": "ما",
+          "start": 2.68,
+          "end": 2.88,
+          "probability": 0.749141,
+          "dtw_points": [
+            2.98
+          ]
+        },
+        {
+          "word": "قد",
+          "start": 2.88,
+          "end": 3.07,
+          "probability": 0.768152,
+          "dtw_points": [
+            3.12,
+            3.18
+          ]
+        },
+        {
+          "word": "صنين",
+          "start": 3.07,
+          "end": 3.45,
+          "probability": 0.269244,
+          "dtw_points": [
+            3.3,
+            3.42,
+            3.5
+          ]
+        },
+        {
+          "word": "طويلة",
+          "start": 3.45,
+          "end": 4.0,
+          "probability": 0.810047,
+          "dtw_points": [
+            3.64,
+            3.72,
+            3.86,
+            3.94
+          ]
+        },
+        {
+          "word": "وهو",
+          "start": 4.0,
+          "end": 4.16,
+          "probability": 0.468063,
+          "dtw_points": [
+            4.04,
+            4.16
+          ]
+        },
+        {
+          "word": "بيشرب",
+          "start": 4.16,
+          "end": 4.42,
+          "probability": 0.300378,
+          "dtw_points": [
+            4.32,
+            4.36,
+            4.44,
+            4.56
+          ]
+        },
+        {
+          "word": "مية",
+          "start": 4.44,
+          "end": 4.83,
+          "probability": 0.75969,
+          "dtw_points": [
+            4.68,
+            4.8
+          ]
+        },
+        {
+          "word": "تنية",
+          "start": 4.91,
+          "end": 5.2,
+          "probability": 0.609447,
+          "dtw_points": [
+            4.98,
+            5.04,
+            5.18
+          ]
+        },
+        {
+          "word": "في",
+          "start": 5.2,
+          "end": 5.25,
+          "probability": 0.415738,
+          "dtw_points": [
+            5.34
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 5.32,
+      "end": 9.72,
+      "text": "ارض المعركة اخيرا بقا قدامه مية نضيفة بيقدر انه هو يشربها ودفحة",
+      "words": [
+        {
+          "word": "ارض",
+          "start": 5.32,
+          "end": 5.54,
+          "probability": 0.447564,
+          "dtw_points": [
+            5.42,
+            5.52
+          ]
+        },
+        {
+          "word": "المعركة",
+          "start": 5.54,
+          "end": 6.05,
+          "probability": 0.818316,
+          "dtw_points": [
+            5.68,
+            5.78,
+            5.94,
+            6.16
+          ]
+        },
+        {
+          "word": "اخيرا",
+          "start": 6.06,
+          "end": 6.42,
+          "probability": 0.666513,
+          "dtw_points": [
+            6.4,
+            6.44,
+            6.58,
+            6.66
+          ]
+        },
+        {
+          "word": "بقا",
+          "start": 6.42,
+          "end": 6.6,
+          "probability": 0.320223,
+          "dtw_points": [
+            6.76,
+            6.86,
+            6.88
+          ]
+        },
+        {
+          "word": "قدامه",
+          "start": 6.63,
+          "end": 6.99,
+          "probability": 0.244052,
+          "dtw_points": [
+            7.0,
+            7.06,
+            7.2,
+            7.3
+          ]
+        },
+        {
+          "word": "مية",
+          "start": 6.99,
+          "end": 7.21,
+          "probability": 0.594037,
+          "dtw_points": [
+            7.36,
+            7.52
+          ]
+        },
+        {
+          "word": "نضيفة",
+          "start": 7.21,
+          "end": 7.57,
+          "probability": 0.353757,
+          "dtw_points": [
+            7.62,
+            7.7,
+            7.78,
+            7.9
+          ]
+        },
+        {
+          "word": "بيقدر",
+          "start": 7.64,
+          "end": 7.93,
+          "probability": 0.953859,
+          "dtw_points": [
+            8.0,
+            8.04,
+            8.14,
+            8.26
+          ]
+        },
+        {
+          "word": "انه",
+          "start": 7.93,
+          "end": 8.15,
+          "probability": 0.833157,
+          "dtw_points": [
+            8.38,
+            8.48
+          ]
+        },
+        {
+          "word": "هو",
+          "start": 8.15,
+          "end": 8.58,
+          "probability": 0.633013,
+          "dtw_points": [
+            8.64
+          ]
+        },
+        {
+          "word": "يشربها",
+          "start": 8.58,
+          "end": 9.0,
+          "probability": 0.590404,
+          "dtw_points": [
+            8.74,
+            8.82,
+            8.98,
+            9.14
+          ]
+        },
+        {
+          "word": "ودفحة",
+          "start": 9.0,
+          "end": 9.72,
+          "probability": 0.552046,
+          "dtw_points": [
+            9.48,
+            9.56,
+            9.62,
+            9.74,
+            9.78
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 9.72,
+      "end": 13.84,
+      "text": "دي زتعة اعتبر رفهية بالنسبة للبطنة وعلى ما الليلجة داسكن اخد",
+      "words": [
+        {
+          "word": "دي",
+          "start": 9.72,
+          "end": 9.86,
+          "probability": 0.259925,
+          "dtw_points": [
+            9.86,
+            9.94
+          ]
+        },
+        {
+          "word": "زتعة",
+          "start": 9.86,
+          "end": 10.15,
+          "probability": 0.452104,
+          "dtw_points": [
+            9.96,
+            10.04,
+            10.18
+          ]
+        },
+        {
+          "word": "اعتبر",
+          "start": 10.15,
+          "end": 10.47,
+          "probability": 0.539846,
+          "dtw_points": [
+            10.28,
+            10.34,
+            10.52
+          ]
+        },
+        {
+          "word": "رفهية",
+          "start": 10.59,
+          "end": 10.87,
+          "probability": 0.458219,
+          "dtw_points": [
+            10.68,
+            10.74,
+            10.82,
+            10.96
+          ]
+        },
+        {
+          "word": "بالنسبة",
+          "start": 10.88,
+          "end": 11.4,
+          "probability": 0.96082,
+          "dtw_points": [
+            11.1,
+            11.2,
+            11.3,
+            11.4
+          ]
+        },
+        {
+          "word": "للبطنة",
+          "start": 11.4,
+          "end": 11.83,
+          "probability": 0.298154,
+          "dtw_points": [
+            11.5,
+            11.62,
+            11.7,
+            11.82,
+            12.1
+          ]
+        },
+        {
+          "word": "وعلى",
+          "start": 11.83,
+          "end": 12.12,
+          "probability": 0.337671,
+          "dtw_points": [
+            12.32,
+            12.44,
+            12.48
+          ]
+        },
+        {
+          "word": "ما",
+          "start": 12.12,
+          "end": 12.27,
+          "probability": 0.898884,
+          "dtw_points": [
+            12.62
+          ]
+        },
+        {
+          "word": "الليلجة",
+          "start": 12.27,
+          "end": 12.98,
+          "probability": 0.691752,
+          "dtw_points": [
+            12.74,
+            12.88,
+            13.0,
+            13.08
+          ]
+        },
+        {
+          "word": "داسكن",
+          "start": 13.07,
+          "end": 13.56,
+          "probability": 0.377268,
+          "dtw_points": [
+            13.38,
+            13.48,
+            13.66
+          ]
+        },
+        {
+          "word": "اخد",
+          "start": 13.56,
+          "end": 13.84,
+          "probability": 0.353491,
+          "dtw_points": [
+            13.82,
+            13.84,
+            13.96
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 13.84,
+      "end": 17.76,
+      "text": "كراره وقالي نفسه انه هو هيعمل كل اللي يقدر عليه ويدي المكان ده فرصة",
+      "words": [
+        {
+          "word": "كراره",
+          "start": 13.84,
+          "end": 14.16,
+          "probability": 0.645546,
+          "dtw_points": [
+            14.1,
+            14.18,
+            14.28,
+            14.44
+          ]
+        },
+        {
+          "word": "وقالي",
+          "start": 14.25,
+          "end": 14.54,
+          "probability": 0.440532,
+          "dtw_points": [
+            14.52,
+            14.52,
+            14.56,
+            14.66
+          ]
+        },
+        {
+          "word": "نفسه",
+          "start": 14.54,
+          "end": 14.82,
+          "probability": 0.588682,
+          "dtw_points": [
+            14.7,
+            14.82,
+            14.94
+          ]
+        },
+        {
+          "word": "انه",
+          "start": 14.82,
+          "end": 15.03,
+          "probability": 0.443878,
+          "dtw_points": [
+            14.94,
+            15.06
+          ]
+        },
+        {
+          "word": "هو",
+          "start": 15.03,
+          "end": 15.12,
+          "probability": 0.788689,
+          "dtw_points": [
+            15.16
+          ]
+        },
+        {
+          "word": "هيعمل",
+          "start": 15.25,
+          "end": 15.52,
+          "probability": 0.585893,
+          "dtw_points": [
+            15.32,
+            15.46,
+            15.54
+          ]
+        },
+        {
+          "word": "كل",
+          "start": 15.52,
+          "end": 15.58,
+          "probability": 0.975052,
+          "dtw_points": [
+            15.72
+          ]
+        },
+        {
+          "word": "اللي",
+          "start": 15.67,
+          "end": 15.94,
+          "probability": 0.63923,
+          "dtw_points": [
+            15.88,
+            15.9
+          ]
+        },
+        {
+          "word": "يقدر",
+          "start": 15.94,
+          "end": 16.22,
+          "probability": 0.993595,
+          "dtw_points": [
+            16.0,
+            16.1,
+            16.22
+          ]
+        },
+        {
+          "word": "عليه",
+          "start": 16.22,
+          "end": 16.51,
+          "probability": 0.820101,
+          "dtw_points": [
+            16.48
+          ]
+        },
+        {
+          "word": "ويدي",
+          "start": 16.51,
+          "end": 16.79,
+          "probability": 0.468712,
+          "dtw_points": [
+            16.86,
+            16.92,
+            17.02
+          ]
+        },
+        {
+          "word": "المكان",
+          "start": 16.79,
+          "end": 17.32,
+          "probability": 0.952924,
+          "dtw_points": [
+            17.2,
+            17.34
+          ]
+        },
+        {
+          "word": "ده",
+          "start": 17.32,
+          "end": 17.44,
+          "probability": 0.598508,
+          "dtw_points": [
+            17.54,
+            17.56
+          ]
+        },
+        {
+          "word": "فرصة",
+          "start": 17.44,
+          "end": 17.76,
+          "probability": 0.514877,
+          "dtw_points": [
+            17.7,
+            17.74,
+            17.86,
+            17.94
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 17.76,
+      "end": 22.2,
+      "text": "اخيرة لكن لو داني فدلت مقفلة وضل مفوشه بعد يومين هيمشو هيسيب",
+      "words": [
+        {
+          "word": "اخيرة",
+          "start": 17.76,
+          "end": 18.21,
+          "probability": 0.818591,
+          "dtw_points": [
+            18.04,
+            18.06,
+            18.26
+          ]
+        },
+        {
+          "word": "لكن",
+          "start": 18.21,
+          "end": 18.48,
+          "probability": 0.808889,
+          "dtw_points": [
+            18.64
+          ]
+        },
+        {
+          "word": "لو",
+          "start": 18.48,
+          "end": 18.49,
+          "probability": 0.989999,
+          "dtw_points": [
+            18.84
+          ]
+        },
+        {
+          "word": "داني",
+          "start": 18.69,
+          "end": 19.02,
+          "probability": 0.512382,
+          "dtw_points": [
+            19.02,
+            19.08,
+            19.14
+          ]
+        },
+        {
+          "word": "فدلت",
+          "start": 19.02,
+          "end": 19.38,
+          "probability": 0.778682,
+          "dtw_points": [
+            19.26,
+            19.36,
+            19.44,
+            19.54
+          ]
+        },
+        {
+          "word": "مقفلة",
+          "start": 19.38,
+          "end": 19.83,
+          "probability": 0.311685,
+          "dtw_points": [
+            19.62,
+            19.72,
+            19.8,
+            19.92,
+            19.98
+          ]
+        },
+        {
+          "word": "وضل",
+          "start": 19.83,
+          "end": 20.1,
+          "probability": 0.422593,
+          "dtw_points": [
+            20.06,
+            20.14,
+            20.16
+          ]
+        },
+        {
+          "word": "مفوشه",
+          "start": 20.1,
+          "end": 20.55,
+          "probability": 0.368217,
+          "dtw_points": [
+            20.3,
+            20.4,
+            20.5,
+            20.62,
+            20.82
+          ]
+        },
+        {
+          "word": "بعد",
+          "start": 20.55,
+          "end": 20.82,
+          "probability": 0.961997,
+          "dtw_points": [
+            21.16
+          ]
+        },
+        {
+          "word": "يومين",
+          "start": 20.82,
+          "end": 21.27,
+          "probability": 0.934137,
+          "dtw_points": [
+            21.34,
+            21.44,
+            21.6
+          ]
+        },
+        {
+          "word": "هيمشو",
+          "start": 21.27,
+          "end": 21.84,
+          "probability": 0.390361,
+          "dtw_points": [
+            21.7,
+            21.8,
+            21.92,
+            21.98
+          ]
+        },
+        {
+          "word": "هيسيب",
+          "start": 21.84,
+          "end": 22.18,
+          "probability": 0.412012,
+          "dtw_points": [
+            22.06,
+            22.18,
+            22.18,
+            22.18,
+            22.18
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 22.2,
+      "end": 27.78,
+      "text": "المكان ابل ما يموت هنا ولو وصلت لي كده هيدور على اي قرية تنية ويحاولي فدهم بأي",
+      "words": [
+        {
+          "word": "المكان",
+          "start": 22.2,
+          "end": 22.74,
+          "probability": 0.962825,
+          "dtw_points": [
+            22.48,
+            22.72
+          ]
+        },
+        {
+          "word": "ابل",
+          "start": 22.74,
+          "end": 22.93,
+          "probability": 0.419221,
+          "dtw_points": [
+            22.9,
+            22.98
+          ]
+        },
+        {
+          "word": "ما",
+          "start": 23.13,
+          "end": 23.19,
+          "probability": 0.828357,
+          "dtw_points": [
+            23.16
+          ]
+        },
+        {
+          "word": "يموت",
+          "start": 23.19,
+          "end": 23.48,
+          "probability": 0.892098,
+          "dtw_points": [
+            23.22,
+            23.3,
+            23.36
+          ]
+        },
+        {
+          "word": "هنا",
+          "start": 23.61,
+          "end": 23.82,
+          "probability": 0.723389,
+          "dtw_points": [
+            23.56
+          ]
+        },
+        {
+          "word": "ولو",
+          "start": 23.82,
+          "end": 24.09,
+          "probability": 0.710902,
+          "dtw_points": [
+            24.08,
+            24.18
+          ]
+        },
+        {
+          "word": "وصلت",
+          "start": 24.09,
+          "end": 24.37,
+          "probability": 0.930985,
+          "dtw_points": [
+            24.32,
+            24.46,
+            24.6
+          ]
+        },
+        {
+          "word": "لي",
+          "start": 24.54,
+          "end": 24.63,
+          "probability": 0.176084,
+          "dtw_points": [
+            24.72
+          ]
+        },
+        {
+          "word": "كده",
+          "start": 24.63,
+          "end": 24.9,
+          "probability": 0.699895,
+          "dtw_points": [
+            24.82,
+            24.94,
+            25.18
+          ]
+        },
+        {
+          "word": "هيدور",
+          "start": 24.9,
+          "end": 25.35,
+          "probability": 0.515208,
+          "dtw_points": [
+            25.32,
+            25.38,
+            25.48,
+            25.58
+          ]
+        },
+        {
+          "word": "على",
+          "start": 25.35,
+          "end": 25.62,
+          "probability": 0.800431,
+          "dtw_points": [
+            25.82
+          ]
+        },
+        {
+          "word": "اي",
+          "start": 25.62,
+          "end": 25.8,
+          "probability": 0.902846,
+          "dtw_points": [
+            25.92,
+            26.0
+          ]
+        },
+        {
+          "word": "قرية",
+          "start": 25.8,
+          "end": 26.16,
+          "probability": 0.628501,
+          "dtw_points": [
+            26.16,
+            26.24,
+            26.34
+          ]
+        },
+        {
+          "word": "تنية",
+          "start": 26.16,
+          "end": 26.52,
+          "probability": 0.45705,
+          "dtw_points": [
+            26.54,
+            26.54,
+            26.66
+          ]
+        },
+        {
+          "word": "ويحاولي",
+          "start": 26.52,
+          "end": 27.15,
+          "probability": 0.386738,
+          "dtw_points": [
+            26.76,
+            26.8,
+            26.92,
+            26.98,
+            27.06,
+            27.18
+          ]
+        },
+        {
+          "word": "فدهم",
+          "start": 27.15,
+          "end": 27.45,
+          "probability": 0.785062,
+          "dtw_points": [
+            27.28,
+            27.36,
+            27.48
+          ]
+        },
+        {
+          "word": "بأي",
+          "start": 27.52,
+          "end": 27.78,
+          "probability": 0.274822,
+          "dtw_points": [
+            27.6,
+            27.66,
+            27.74
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    },
+    {
+      "start": 27.78,
+      "end": 29.34,
+      "text": "طريقة علشان يفضل دايما",
+      "words": [
+        {
+          "word": "طريقة",
+          "start": 27.78,
+          "end": 28.23,
+          "probability": 0.852679,
+          "dtw_points": [
+            27.94,
+            28.0,
+            28.32
+          ]
+        },
+        {
+          "word": "علشان",
+          "start": 28.23,
+          "end": 28.72,
+          "probability": 0.689621,
+          "dtw_points": [
+            28.58,
+            28.7,
+            28.78
+          ]
+        },
+        {
+          "word": "يفضل",
+          "start": 28.72,
+          "end": 29.0,
+          "probability": 0.613735,
+          "dtw_points": [
+            28.88,
+            28.94,
+            29.0,
+            29.06
+          ]
+        },
+        {
+          "word": "دايما",
+          "start": 29.0,
+          "end": 29.34,
+          "probability": 0.568037,
+          "dtw_points": [
+            29.14,
+            29.24,
+            29.28
+          ]
+        }
+      ],
+      "review_warnings": []
+    },
+    {
+      "start": 29.34,
+      "end": 32.2525,
+      "text": "معقى وصيت اهلو الاخيرة ابل ما يموته وعلى الاسفل",
+      "words": [
+        {
+          "word": "معقى",
+          "start": 29.34,
+          "end": 29.64,
+          "probability": 0.252282,
+          "dtw_points": [
+            29.48,
+            29.64,
+            29.74
+          ]
+        },
+        {
+          "word": "وصيت",
+          "start": 29.64,
+          "end": 29.9,
+          "probability": 0.575118,
+          "dtw_points": [
+            29.86,
+            29.98,
+            30.12
+          ]
+        },
+        {
+          "word": "اهلو",
+          "start": 29.96,
+          "end": 30.23,
+          "probability": 0.293987,
+          "dtw_points": [
+            30.28,
+            30.34,
+            30.4,
+            30.48
+          ]
+        },
+        {
+          "word": "الاخيرة",
+          "start": 30.27,
+          "end": 30.77,
+          "probability": 0.657561,
+          "dtw_points": [
+            30.52,
+            30.68,
+            30.84
+          ]
+        },
+        {
+          "word": "ابل",
+          "start": 30.77,
+          "end": 31.0,
+          "probability": 0.611963,
+          "dtw_points": [
+            31.0,
+            31.1
+          ]
+        },
+        {
+          "word": "ما",
+          "start": 31.0,
+          "end": 31.08,
+          "probability": 0.976876,
+          "dtw_points": [
+            31.26
+          ]
+        },
+        {
+          "word": "يموته",
+          "start": 31.17,
+          "end": 31.51,
+          "probability": 0.617161,
+          "dtw_points": [
+            31.32,
+            31.42,
+            31.52,
+            31.68
+          ]
+        },
+        {
+          "word": "وعلى",
+          "start": 31.61,
+          "end": 31.98,
+          "probability": 0.926652,
+          "dtw_points": [
+            31.9,
+            32.04,
+            32.06
+          ]
+        },
+        {
+          "word": "الاسفل",
+          "start": 31.98,
+          "end": 32.58,
+          "probability": 0.0714738,
+          "dtw_points": [
+            32.16,
+            32.22,
+            32.22,
+            32.22
+          ]
+        }
+      ],
+      "review_warnings": [
+        "low_confidence_words"
+      ]
+    }
+  ]
+}

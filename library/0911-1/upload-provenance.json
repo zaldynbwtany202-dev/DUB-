@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "kind": "verified_github_sendbox_split_upload",
+  "repository": "zaldynbwtany202-dev/DUB-",
+  "upload_branch": "arena/01a07c69-dub",
+  "upload_commit": "2e03006f9c370d320b48910797d1e4e231a3b8f3",
+  "uploaded_at": "2026-09-11T19:36:48Z",
+  "original_name": "0911(1).mp4",
+  "size": 24678579,
+  "sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
+  "parts": [
+    {
+      "index": 1,
+      "path": "inbox/0911(1).mp4.part01of02",
+      "bytes": 18874368,
+      "git_blob_sha": "7601b526a847abbe8ea99c0d55c720db018fc9aa",
+      "sha256": "60a1408217ba8ef851401d3843606ff0e7f4e5f0de621d42208daf892c242eb3"
+    },
+    {
+      "index": 2,
+      "path": "inbox/0911(1).mp4.part02of02",
+      "bytes": 5804211,
+      "git_blob_sha": "b587ef62adf2759f31fe1db36eb19806d15455cc",
+      "sha256": "0d656e71ec4822b83e8e17b7f306f2f774a4983e98b3d032b6d344d87e677294"
+    }
+  ],
+  "verification": "Both Git blob IDs, both uploader SHA-256 checksums, ordered concatenation and total size verified. No transcoding.",
+  "source": "library/0911-1/source.mp4",
+  "media_info": {
+    "duration": 32.25,
+    "width": 1280,
+    "height": 720,
+    "fps": "30",
+    "video_codec": "h264",
+    "audio_streams": 1,
+    "audio_codec": "aac",
+    "audio_sample_rate": 44100,
+    "audio_channels": 2
+  },
+  "full_decode_errors": 0,
+  "session_branch": "arena/01a0922c-dub",
+  "imported_without_merge": true
+}

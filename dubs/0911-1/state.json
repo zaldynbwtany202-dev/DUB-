@@ -1,0 +1,17 @@
+{
+  "status": "complete",
+  "source": "library/0911-1/source.mp4",
+  "source_sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
+  "voice_backend": "agent",
+  "voice_id": "voice-02",
+  "language": "ar-EG",
+  "final_file": "dubs/0911-1/final-dub-voice02.mp4",
+  "duration": 32.25,
+  "segments": 2,
+  "speech_truncated": false,
+  "tempo": [1.01, 1.0],
+  "background": "original_center_channel_estimate",
+  "video_codec": "copy",
+  "session_branch": "arena/01a0922c-dub",
+  "merge": false
+}

@@ -199,8 +199,13 @@ def cpp_result(native: dict, source: Path, *, duration: float, elapsed: float,
         if not row["text"].strip():
             continue
         start, end = float(row["offsets"]["from"]) / 1000, float(row["offsets"]["to"]) / 1000
-        if not all(math.isfinite(t) for t in (start, end, duration)) or start < 0 or end <= start or end > duration + 0.2:
+        if not all(math.isfinite(t) for t in (start, end, duration)) or start < 0 or end <= start:
             raise ValueError(f"ASR interval outside source: {start}..{end}")
+        # whisper.cpp can slightly overrun the last sample; clamp tiny tail drift.
+        if end > duration:
+            if start >= duration or end - duration > 0.5:
+                raise ValueError(f"ASR interval outside source: {start}..{end}")
+            end = duration
         if segments and start < segments[-1]["end"]:
             raise ValueError("Overlapping/out-of-order native ASR segments")
         words = cpp_words(row.get("tokens", []), multilingual=multilingual)

@@ -1,0 +1,41 @@
+{
+  "slug": "0911-1",
+  "title": "0911(1)",
+  "original_name": "0911(1).mp4",
+  "size": 24678579,
+  "sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
+  "duration": 32.25,
+  "width": 1280,
+  "height": 720,
+  "fps": "30",
+  "parts": 2,
+  "source": "library/0911-1/source.mp4",
+  "source_lang": "auto",
+  "uploaded_at": "2026-09-11T19:36:48Z",
+  "received_at": "2026-09-11T20:36:00+00:00",
+  "status": "uploaded",
+  "uploaded_with": "sendbox_split_verified_import",
+  "original_upload_parts": 2,
+  "poster": "poster.jpg",
+  "verification": {
+    "all_part_sha256_match": true,
+    "all_git_blob_ids_match": true,
+    "total_size_matches": true,
+    "reencoded": false,
+    "full_decode_errors": 0
+  },
+  "transcription": {
+    "status": "draft_reviewed",
+    "engine": "whisper.cpp",
+    "model": "small",
+    "detected_language": "ar"
+  },
+  "dubbing": {
+    "status": "complete",
+    "voice_backend": "agent",
+    "voice_id": "voice-02",
+    "language": "ar-EG",
+    "final": "dubs/0911-1/final-dub-voice02.mp4",
+    "duration": 32.25
+  }
+}

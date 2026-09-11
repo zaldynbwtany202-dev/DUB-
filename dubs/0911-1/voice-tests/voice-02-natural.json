@@ -1,0 +1,12 @@
+{
+  "voice_id": "voice-02",
+  "language": "ar-EG",
+  "gender": "masculine",
+  "use_case": "narration",
+  "audition_index": 2,
+  "tempo": 1.0,
+  "effects": "none",
+  "purpose": "Longer natural-speed pilot from the real 0911-1 script before generating the full 32s dub.",
+  "text": "فضل يضحك ويبتسم، لأنه بعد سنين طويلة وهو بيشرب مية طينية في أرض المعركة. أخيراً بقى قدامه مية نضيفة يقدر يشربها. والدفعة دي اعتبرها رفاهية للبطن. وعلى ما الليل جه، أخد قراره وقال لنفسه: هعمل كل اللي أقدر عليه، وأدي المكان ده فرصة أخيرة.",
+  "file": "dubs/0911-1/voice-tests/voice-02-natural.wav"
+}

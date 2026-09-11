@@ -1,0 +1,30 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-02",
+  "language": "ar-EG",
+  "status": "complete",
+  "source": "library/0911-1/source.mp4",
+  "source_sha256": "db847e0bc9c43dc908599053801d9706671d3bc51606757f079d45de4c0fdaac",
+  "duration": 32.25,
+  "min_tempo": 1.0,
+  "max_tempo": 1.12,
+  "sample_rate": 24000,
+  "takes": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 22.2,
+      "audio": "voice-tests/voice-02-natural.wav",
+      "status": "generated",
+      "text": "فضل يضحك ويبتسم، لأنه بعد سنين طويلة وهو بيشرب مية طينية في أرض المعركة. أخيراً بقى قدامه مية نضيفة يقدر يشربها. والدفعة دي اعتبرها رفاهية للبطن. وعلى ما الليل جه، أخد قراره وقال لنفسه: هعمل كل اللي أقدر عليه، وأدي المكان ده فرصة أخيرة."
+    },
+    {
+      "index": 1,
+      "start": 22.2,
+      "end": 32.25,
+      "audio": "agent_voice/seg-0001b.mp3",
+      "status": "generated",
+      "text": "لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت. وهيدور على قرية تانية، ومعاه وصية أهله."
+    }
+  ]
+}

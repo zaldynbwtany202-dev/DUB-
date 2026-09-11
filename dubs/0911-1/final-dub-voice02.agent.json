@@ -1,0 +1,65 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "voice-02",
+  "language": "ar-EG",
+  "video": "/home/user/DUB-/library/0911-1/source.mp4",
+  "output": "dubs/0911-1/final-dub-voice02.mp4",
+  "source_duration": 32.25,
+  "duration": 32.25,
+  "status": "complete",
+  "segments": 2,
+  "mix_background": true,
+  "background_method": "approximate_source_separation_not_guaranteed_speech_free",
+  "video_codec": "copy",
+  "target_lufs": -16,
+  "speech_truncated": false,
+  "tempo_policy": {
+    "min": 1.0,
+    "max": 1.12
+  },
+  "narration_sample_rate": 24000,
+  "loudness_normalization": {
+    "input_i": "-18.93",
+    "input_tp": "-1.06",
+    "input_lra": "2.90",
+    "input_thresh": "-29.18",
+    "output_i": "-16.71",
+    "output_tp": "-1.50",
+    "output_lra": "2.20",
+    "output_thresh": "-26.89",
+    "normalization_type": "dynamic",
+    "target_offset": "0.71"
+  },
+  "placements": [
+    {
+      "index": 0,
+      "start": 0.0,
+      "end": 22.2,
+      "audio": "/home/user/DUB-/dubs/0911-1/voice-tests/voice-02-natural.wav",
+      "audio_start": 0.0,
+      "audio_end": 22.88,
+      "natural_seconds": 22.35,
+      "tempo": 1.0103978300180831,
+      "fitted_seconds": 22.121333333333332,
+      "text": "فضل يضحك ويبتسم، لأنه بعد سنين طويلة وهو بيشرب مية طينية في أرض المعركة. أخيراً بقى قدامه مية نضيفة يقدر يشربها. والدفعة دي اعتبرها رفاهية للبطن. وعلى ما الليل جه، أخد قراره وقال لنفسه: هعمل كل اللي أقدر عليه، وأدي المكان ده فرصة أخيرة.",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.21,
+      "trailing_silence_removed": 0.32
+    },
+    {
+      "index": 1,
+      "start": 22.2,
+      "end": 32.25,
+      "audio": "/home/user/DUB-/dubs/0911-1/agent_voice/seg-0001b.mp3",
+      "audio_start": 0.0,
+      "audio_end": 10.16,
+      "natural_seconds": 9.63,
+      "tempo": 1.0,
+      "fitted_seconds": 9.63,
+      "text": "لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت. وهيدور على قرية تانية، ومعاه وصية أهله.",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.18,
+      "trailing_silence_removed": 0.35
+    }
+  ]
+}
