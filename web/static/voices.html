@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>سجل الأصوات — ProStudio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--bg:#07080c;--ink:#f4efe4;--muted:#b7b0a3;--line:rgba(244,239,228,.12);
+        --card:rgba(16,17,23,.78);--gold:#e8b86d;--gold-2:#f3d7a3;--ok:#7dcea0;--bad:#ef8b7a}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);
+       font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+       background-image:radial-gradient(circle at 12% 6%,rgba(232,184,109,.15),transparent 38%),
+                        radial-gradient(circle at 90% 88%,rgba(90,140,255,.10),transparent 34%)}
+  header{padding:24px 6vw 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px}
+  .mark{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+        background:linear-gradient(160deg,var(--gold),#9a6a2c);color:#1a1208;font-weight:700}
+  .brand strong{display:block}.brand small{color:var(--muted)}
+  nav a{color:var(--muted);text-decoration:none;font-size:14.5px;margin-inline-start:16px}
+  nav a:hover,nav a.on{color:var(--gold)}
+  main{max-width:980px;margin:0 auto;padding:26px 6vw 70px}
+  h1{font-size:clamp(24px,4vw,34px);margin:14px 0 8px}
+  .eyebrow{color:var(--gold);font-size:14px;letter-spacing:.06em;margin:0}
+  .lede{color:var(--muted);margin:0 0 26px;font-size:16.5px;line-height:1.9}
+  .stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 18px;min-width:120px}
+  .stat b{display:block;font-size:24px;color:var(--gold-2)}
+  .stat span{color:var(--muted);font-size:13px}
+  section{margin-bottom:30px}
+  h2{font-size:19px;margin:0 0 12px;color:var(--gold-2)}
+  .hint{color:var(--muted);font-size:13.5px;margin:-6px 0 12px}
+  table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);
+        border-radius:16px;overflow:hidden}
+  th{color:var(--muted);font-size:13px;text-align:right;padding:12px 16px;border-bottom:1px solid var(--line);
+     background:rgba(255,255,255,.03)}
+  td{padding:13px 16px;border-bottom:1px solid var(--line);font-size:14.5px;vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(232,184,109,.05)}
+  .chip{display:inline-block;font-family:ui-monospace,monospace;font-size:13px;color:var(--gold);
+        background:rgba(232,184,109,.1);border:1px solid rgba(232,184,109,.35);border-radius:8px;
+        padding:4px 10px;cursor:pointer;transition:.15s}
+  .chip:hover{background:rgba(232,184,109,.2)}
+  .chip.copied{color:#1a1208;background:var(--ok);border-color:var(--ok)}
+  .vid{font-family:ui-monospace,monospace;font-size:12.5px;color:var(--muted);direction:ltr;unicode-bidi:embed}
+  .tag{display:inline-block;font-size:12px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);color:var(--muted)}
+  .tag.deep{color:var(--gold);border-color:rgba(232,184,109,.4)}
+  .tag.base{color:var(--ok);border-color:rgba(125,206,160,.4)}
+  .usage p{color:var(--muted);line-height:1.9;font-size:15px;margin:0 0 10px}
+  .usage code{font-family:ui-monospace,monospace;color:var(--gold);font-size:13.5px;
+              background:rgba(232,184,109,.08);padding:2px 8px;border-radius:6px}
+  footer{padding:0 6vw 40px;color:var(--muted);font-size:12.5px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <span class="mark">PS</span>
+    <div><strong>ProStudio</strong><small>سجل أصوات التعليق</small></div>
+  </div>
+  <nav>
+    <a href="/">الاستوديو</a>
+    <a href="/studio">مصمّم الأصوات</a>
+    <a href="/send">إرسال ملف</a>
+    <a href="/projects">المشاريع</a>
+    <a href="/voices" class="on">الأصوات</a>
+  </nav>
+</header>
+
+<main>
+  <p class="eyebrow">Voice Registry — شيفرات هوية الأصوات</p>
+  <h1>سجل أصوات التعليق</h1>
+  <p class="lede">كل صوت فيه شيفرة هوية ثابتة. اطلب أي عمل تلوين/تعليق باسم الشيفرة، وتعرف بالظبط الصوت اللي تقصده.
+  المس على أي شيفرة لنسخها.</p>
+
+  <div class="stats">
+    <div class="stat"><b>12</b><span>صوت مسجّل</span></div>
+    <div class="stat"><b>8</b><span>أصوات عميقة (نمط حفيظ دراجي)</span></div>
+    <div class="stat"><b>4</b><span>اختيارات أولى</span></div>
+    <div class="stat"><b>2</b><span>مرفوض (مستثنى)</span></div>
+  </div>
+
+  <section>
+    <h2>أصوات عميقة — نمط حفيظ دراجي</h2>
+    <p class="hint">اتسمعت على إسمعته الدرامية: «الوحوش العملاقة».</p>
+    <table>
+      <thead><tr><th>الشيفرة</th><th>المعرّف الداخلي</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip" data-code="جبل-5">الجبل-5 (JABEL-5)</span></td><td class="vid">voice-04</td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
+        <tr><td><span class="chip" data-code="جبل-6">الجبل-6 (JABEL-6)</span></td><td class="vid">voice-05</td><td><span class="tag deep">عميق</span></td><td>اختيار من الإسمعّة الأولى للعمق</td></tr>
+        <tr><td><span class="chip" data-code="جبل-7">الجبل-7 (JABEL-7)</span></td><td class="vid">voice-06</td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
+        <tr><td><span class="chip" data-code="جبل-8">الجبل-8 (JABEL-8)</span></td><td class="vid">voice-07</td><td><span class="tag deep">عميق</span></td><td>وصفه المستخدم: «تحسّن ملحوظ»</td></tr>
+        <tr><td><span class="chip" data-code="جبل-9">الجبل-9 (JABEL-9)</span></td><td class="vid">voice-10</td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
+        <tr><td><span class="chip" data-code="جبل-10">الجبل-10 (JABEL-10)</span></td><td class="vid">voice-11</td><td><span class="tag deep">عميق</span></td><td>بعد ملاحظة «مش عميقين كفاية»</td></tr>
+        <tr><td><span class="chip" data-code="جبل-11">الجبل-11 (JABEL-11)</span></td><td class="vid">voice-12</td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
+        <tr><td><span class="chip" data-code="جبل-12">الجبل-12 (JABEL-12)</span></td><td class="vid">voice-13</td><td><span class="tag deep">عميق</span></td><td>جولة «عينات تانية»</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>الاختيارات الأولى</h2>
+    <p class="hint">أصوات مصرية طبيعية لتعليق ملخصات الأفلام.</p>
+    <table>
+      <thead><tr><th>الشيفرة</th><th>المعرّف الداخلي</th><th>التصنيف</th><th>ملاحظات</th></tr></thead>
+      <tbody>
+        <tr><td><span class="chip" data-code="خشن-1">خشن-1 (KHUSHN-1)</span></td><td class="vid">voice-00</td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الأول</td></tr>
+        <tr><td><span class="chip" data-code="مرشد-2">مرشد-2 (MURSHID-2)</span></td><td class="vid">voice-01</td><td><span class="tag base">أساسي</span></td><td>الصوت المختار الثاني</td></tr>
+        <tr><td><span class="chip" data-code="خشن-3">خشن-3 (KHUSHN-3)</span></td><td class="vid">voice-02</td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الثالث)</td></tr>
+        <tr><td><span class="chip" data-code="مرشد-4">مرشد-4 (MURSHID-4)</span></td><td class="vid">voice-03</td><td><span class="tag base">أساسي</span></td><td>صوت جديد (الدور الرابع)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="usage">
+    <h2>طريقة الاستخدام</h2>
+    <p>اطلب بأية صيغة زي دي:</p>
+    <p>«اكتب ملخص فيلم <code>X</code> بصوت <code>الجبل-7</code>»</p>
+    <p>«ولّد التعليق بالشيفرة <code>MURSHID-2</code>»</p>
+    <p>أي تعديل (صوت جديد أو تغيير أسماء) بيتحسب في السجل وفي الصفحة دي.</p>
+  </section>
+</main>
+
+<footer>المصدر: voice-registry.md — محدّث 2026-09-10</footer>
+
+<script>
+  document.querySelectorAll('.chip').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var code = el.getAttribute('data-code');
+      (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(function () {
+        var old = el.textContent;
+        el.classList.add('copied');
+        el.textContent = 'تم النسخ ✓';
+        setTimeout(function () { el.classList.remove('copied'); el.textContent = old; }, 1200);
+      }).catch(function () {});
+    });
+  });
+</script>
+</body>
+</html>

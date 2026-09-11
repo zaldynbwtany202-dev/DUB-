@@ -20,7 +20,9 @@ import {
 
 const API = 'https://api.github.com';
 const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
-const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${encodeURIComponent(BRANCH)}/`;
+// Branch verbatim — encoding its slashes into %2F makes raw return 404 for
+// every file (the reason voice-bank audio never played until 2026-09-10).
+const RAW = `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/`;
 const WORKFLOW = 'dub.yml';
 const PART_BYTES = 18 * 1024 * 1024;           // measured blob ceiling minus base64 overhead
 const VIDEO_RE = /\.(mp4|mkv|webm|mov)$/i;
@@ -1012,7 +1014,8 @@ function init() {
   $('repoLink').href = `${REPO_URL}/tree/${encodeURIComponent(BRANCH)}`;
   $('actionsLink').href = `${REPO_URL}/actions`;
   $('tokenLink').href = TOKEN_URL;
-  $('preflightLink').href = `${REPO_URL}/actions/workflows/translation-preflight.yml`;
+  const preflightLink = $('preflightLink');
+  if (preflightLink) preflightLink.href = `${REPO_URL}/actions/workflows/translation-preflight.yml`;
   state.token = loadToken(); $('token').value = state.token; setConnection();
   fillDefaultsForm(defaults());
 
@@ -1037,7 +1040,7 @@ function init() {
   $('overviewRefresh').onclick = () => fullRefresh(true);
   $('projectBack').onclick = () => { state.currentProjectSlug = ''; showTab('overview'); };
   $('dubBack').onclick = () => { const item = state.library.find((value) => value.slug === state.currentProjectSlug); item ? openProjectWorkspace(item) : showTab('overview'); };
-  const initial = location.hash.replace('#', ''); if (['overview', 'library', 'dubs', 'runs', 'voices', 'settings'].includes(initial)) showTab(initial); else showTab('overview');
+  const initial = location.hash.replace('#', ''); if (['overview', 'library', 'dubs', 'runs', 'voices', 'shop', 'lib100', 'auditions', 'settings'].includes(initial)) showTab(initial); else showTab('overview');
   $('voiceUpload').onclick = uploadVoiceSample;
   $('voiceFile').onchange = () => previewVoiceFile($('voiceFile').files[0]);
   $('modalClose').onclick = closeModal; $('modal').addEventListener('click', (e) => { if (e.target === $('modal')) closeModal(); });
@@ -1071,7 +1074,14 @@ function init() {
   $('saveDefaults').onclick = () => { localStorage.setItem(DEFAULTS_KEY, JSON.stringify(readDefaultsForm())); setStatus($('defaultsStatus'), 'تم الحفظ', 'ok'); };
   $('runPreflight').onclick = async () => {
     try { needToken(); await api(`/repos/${OWNER}/${REPO}/actions/workflows/translation-preflight.yml/dispatches`, { method: 'POST', body: JSON.stringify({ ref: BRANCH, inputs: { source_lang: 'ar', target_lang: $('dTarget').value.trim() || 'en' } }) }); setStatus($('preflightStatus'), 'انطلق الفحص — النتيجة في Actions خلال دقيقة', 'ok'); }
-    catch (e) { setStatus($('preflightStatus'), e.message, 'err'); }
+    catch (e) {
+      // The workflow was never committed to this repo (checked main too), so
+      // a 404 here is the expected answer until it is installed — say that
+      // plainly instead of surfacing a bare HTTP 404.
+      setStatus($('preflightStatus'), String(e.message).includes('404')
+        ? 'فحص الترجمة غير مثبّت في هذا المستودع (translation-preflight.yml غير موجود) — الترجمة تُضبط من أسرار المستودع مباشرة.'
+        : e.message, 'err');
+    }
   };
 
   fullRefresh(true).then(schedule);

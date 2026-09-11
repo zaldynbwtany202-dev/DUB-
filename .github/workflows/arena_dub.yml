@@ -1,0 +1,102 @@
+name: Arena dub — transcribe & publish (word-level)
+
+on:
+  push:
+    branches: [arena/01a08cfe-dub]
+    paths:
+      - ".arena/run.json"
+      - ".github/workflows/arena_dub.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve run config
+        run: |
+          set -e
+          VU=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('video_url',''))")
+          SL=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('src_lang','ar'))")
+          WM=$(python3 -c "import json;print(json.load(open('.arena/run.json')).get('whisper_model','base'))")
+          [ -n "$VU" ] || { echo "ERROR: video_url missing in .arena/run.json"; exit 1; }
+          echo "video_url=$VU" >> "$GITHUB_ENV"
+          echo "src_lang=$SL" >> "$GITHUB_ENV"
+          echo "whisper_model=$WM" >> "$GITHUB_ENV"
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Install faster-whisper
+        run: python -m pip install --quiet --upgrade pip faster-whisper
+
+      - name: Download source video
+        run: curl -fL --retry 3 -o work_video.mp4 "$video_url"
+
+      - name: Transcribe (word-level timestamps)
+        run: |
+          set -e
+          python - <<'PY'
+          import json, os
+          from faster_whisper import WhisperModel
+          m = WhisperModel(os.environ.get("whisper_model", "base"), device="cpu", compute_type="int8")
+          segs, info = m.transcribe("work_video.mp4", language=os.environ.get("src_lang") or None,
+                                    vad_filter=True, beam_size=5, word_timestamps=True)
+          ss, full = [], []
+          for s in segs:
+              ss.append({"start": round(s.start, 2), "end": round(s.end, 2), "text": s.text.strip(),
+                         "words": [{"w": w.word.strip(), "start": round(w.start, 2), "end": round(w.end, 2)}
+                                   for w in (s.words or [])]})
+              full.append(s.text.strip())
+          t = {"video_url": os.environ["video_url"], "lang": info.language,
+               "duration": round(info.duration, 2), "text": " ".join(full), "segments": ss}
+          json.dump(t, open(".arena/transcript.json", "w"), ensure_ascii=False, indent=2)
+          print("TRANSCRIPT_TEXT_START"); print(t["text"]); print("TRANSCRIPT_TEXT_END")
+          PY
+
+      - name: "Publish transcript to branch (issue fallback)"
+        run: |
+          git config user.name "arena-body"
+          git config user.email "arena-body@users.noreply.github.com"
+          git add .arena/transcript.json
+          git commit -m "arena(transcribe): transcript (word-level)"
+          git pull --rebase origin arena/01a08cfe-dub || true
+          if git push origin HEAD:arena/01a08cfe-dub; then
+            echo "PUBLISHED: .arena/transcript.json committed to branch"
+            exit 0
+          fi
+          echo "push failed, trying issue..."
+          python - <<'PY' || echo "issue fallback failed too (text remains in the log above)"
+          import json, os, urllib.request
+          t = json.load(open(".arena/transcript.json"))
+          body = json.dumps({"title": "arena: transcript ready",
+                             "body": "```\n" + t["text"] + "\n```"}).encode()
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/issues",
+              data=body, method="POST",
+              headers={"Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
+                       "Accept": "application/vnd.github+json",
+                       "Content-Type": "application/json"})
+          urllib.request.urlopen(req, timeout=60)
+          print("PUBLISHED: transcript posted as issue")
+          PY
+
+      - name: Upload transcript artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: transcript
+          path: .arena/transcript.json
+          retention-days: 14

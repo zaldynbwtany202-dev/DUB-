@@ -335,6 +335,11 @@ async def projects_page() -> FileResponse:
     return FileResponse(STATIC / "projects.html")
 
 
+@app.get("/voices", response_class=HTMLResponse)
+async def voices_page() -> FileResponse:
+    return FileResponse(STATIC / "voices.html")
+
+
 @app.get("/studio", response_class=HTMLResponse)
 async def studio_page() -> FileResponse:
     """Voice designer: describe a voice, move the mixer, or match a reference."""
