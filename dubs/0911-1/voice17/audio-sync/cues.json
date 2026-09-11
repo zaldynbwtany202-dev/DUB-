@@ -1,0 +1,19 @@
+{
+  "video": "../../../../library/0911-1/source.mp4",
+  "voice_backend": "agent",
+  "voice_id": "voice-17",
+  "language": "ar-EG",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "sample_rate": 24000,
+  "timing": "Cue bounds are original soundtrack speech windows, not picture. Dub starts when original speech starts. No slowdown.",
+  "segments": [
+    {"index": 0, "start": 0.0, "end": 5.32, "text": "فضل يضحك ويبتسم لأنه بعد سنين طويلة.", "audio": "seg-0000.mp3", "speaker": "NARRATOR"},
+    {"index": 1, "start": 5.32, "end": 9.72, "text": "في أرض المعركة لقى مية نضيفة.", "audio": "seg-0001.mp3", "speaker": "NARRATOR"},
+    {"index": 2, "start": 9.72, "end": 13.84, "text": "اعتبرها رفاهية. والليل جه.", "audio": "seg-0002.mp3", "speaker": "NARRATOR"},
+    {"index": 3, "start": 13.84, "end": 17.76, "text": "أخد قراره يعمل كل اللي يقدر.", "audio": "seg-0003.mp3", "speaker": "NARRATOR"},
+    {"index": 4, "start": 17.76, "end": 22.2, "text": "فرصة أخيرة. لو الدنيا فضلت مقفلة هيسيب.", "audio": "seg-0004.mp3", "speaker": "NARRATOR"},
+    {"index": 5, "start": 22.2, "end": 27.78, "text": "هيسيب المكان قبل ما يموت هنا ويدور على قرية تانية.", "audio": "seg-0005.mp3", "speaker": "NARRATOR"},
+    {"index": 6, "start": 27.78, "end": 32.25, "text": "بأي طريقة ومعاه وصية أهله.", "audio": "seg-0006.mp3", "speaker": "NARRATOR"}
+  ]
+}
