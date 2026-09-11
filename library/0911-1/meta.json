@@ -31,11 +31,12 @@
     "detected_language": "ar"
   },
   "dubbing": {
-    "status": "complete",
+    "status": "complete_voice06_sync_repair",
     "voice_backend": "agent",
-    "voice_id": "voice-02",
+    "voice_id": "voice-06",
     "language": "ar-EG",
-    "final": "dubs/0911-1/final-dub-voice02.mp4",
+    "final": "dubs/0911-1/voice06/final-dub-voice06.mp4",
+    "previous_rejected": "dubs/0911-1/final-dub-voice02.mp4",
     "duration": 32.25
   }
 }

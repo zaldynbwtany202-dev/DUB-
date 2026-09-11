@@ -1,0 +1,13 @@
+{
+  "voice_id": "voice-06",
+  "language": "ar-EG",
+  "gender": "masculine",
+  "use_case": "narration",
+  "audition_index": 6,
+  "tempo": 1.0,
+  "effects": "none",
+  "purpose": "Longer natural-speed pilot after user rejected voice-02 full mix. Do not replace final-dub-voice02 until this sample is approved.",
+  "previous_rejected": "voice-02",
+  "text": "فضل يضحك ويبتسم، لأنه بعد سنين طويلة وهو بيشرب مية طينية في أرض المعركة. أخيراً بقى قدامه مية نضيفة يقدر يشربها. والدفعة دي اعتبرها رفاهية للبطن. وعلى ما الليل جه، أخد قراره وقال لنفسه: هعمل كل اللي أقدر عليه، وأدي المكان ده فرصة أخيرة.",
+  "file": "dubs/0911-1/voice-tests/voice-06-natural.wav"
+}

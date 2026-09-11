@@ -1,0 +1,7 @@
+{
+  "source_speech_quiet_total_seconds": 0.46,
+  "longest_quiet_run_seconds": 0.18,
+  "speech_truncated": false,
+  "tempos": [0.85, 0.898, 0.85, 0.87],
+  "cue_bounds": "reviewed source ASR meaning windows"
+}
