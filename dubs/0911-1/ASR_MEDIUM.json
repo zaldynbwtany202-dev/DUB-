@@ -2,562 +2,659 @@
   "slug": "0911-1",
   "source": "library/0911-1/source.mp4",
   "engine": "faster-whisper",
-  "model": "medium",
+  "model": "large-v3",
   "language": "ar",
   "duration": 32.252,
-  "text": "فادل يضحك ويبتسم لأنه بعد ما قضى صنين طويلة وهو بيشرب مية طنية في أرض المعركة أخيراً بقى قدامه مية نظيفة بيقدر أنه يشربها وديف حد زاتها تعتبر رفاهية بالنسبة لبطنة وعلى ما اللي لجه داسكن أخذ قراره وقال لنفسه أنه هيعمل كل اللي يقدر عليه ويدل المكان ده فرصة أخيرة لكن لو الدنيا فضلت مأفلة وظلم في وشه بعد يومين هيمشو هيسيب المكان قبل ما يموت هنا ولو وصلت لكده هيدور على أي قرية تنية ويحاول يفدهم بأي طريقة علشان يفضل دايماً محقق وصيد أهله الأخيرة قبل ما يموتو",
+  "text": "الارض بتاعته فضل يضحك ويبتسم لانه بعد ما قضى سنين طويلة وهو بيشرب مية تنية في ارض المعركة اخيرا بقى قدامه مية نظيفة بيقدر ان هو يشربها ودي في حد ذاتها تعتبر رفاهية بالنسبة لبطنه وعلى ما اللي الجاه داس كان اخد قراره وقال لنفسه ان هو هيعمل كل اللي يقدر عليه ويدي المكان ده فرصة اخيرة لكن لو الدنيا فضلت مقفلة وظالمة في وشه بعد يومين هيمشي وهيسيب المكان قبل ما يموت هنا ولو وصلت لكده هيدور على اي قرية تانية ويحاول يفيدهم باي طريقة علشان يفضل دايما ما حقق وصية اهله الاخيرة قبل ما يموتوا وعلى",
   "segments": [
     {
       "start": 0.0,
-      "end": 18.38,
-      "text": "فادل يضحك ويبتسم لأنه بعد ما قضى صنين طويلة وهو بيشرب مية طنية في أرض المعركة أخيراً بقى قدامه مية نظيفة بيقدر أنه يشربها وديف حد زاتها تعتبر رفاهية بالنسبة لبطنة وعلى ما اللي لجه داسكن أخذ قراره وقال لنفسه أنه هيعمل كل اللي يقدر عليه ويدل المكان ده فرصة أخيرة",
+      "end": 4.1,
+      "text": "الارض بتاعته فضل يضحك ويبتسم لانه بعد ما قضى سنين طويلة وهو",
       "words": [
         {
-          "word": "فادل",
+          "word": "الارض",
           "start": 0.0,
-          "end": 1.24,
-          "probability": 0.3251
+          "end": 0.2,
+          "probability": 0.6973
+        },
+        {
+          "word": "بتاعته",
+          "start": 0.2,
+          "end": 0.64,
+          "probability": 0.9339
+        },
+        {
+          "word": "فضل",
+          "start": 0.64,
+          "end": 1.1,
+          "probability": 0.797
         },
         {
           "word": "يضحك",
-          "start": 1.24,
-          "end": 1.62,
-          "probability": 0.8732
+          "start": 1.1,
+          "end": 1.5,
+          "probability": 0.9763
         },
         {
           "word": "ويبتسم",
-          "start": 1.62,
-          "end": 2.28,
-          "probability": 0.9355
+          "start": 1.5,
+          "end": 1.98,
+          "probability": 0.9955
         },
         {
-          "word": "لأنه",
-          "start": 2.28,
-          "end": 2.74,
-          "probability": 0.7768
+          "word": "لانه",
+          "start": 1.98,
+          "end": 2.58,
+          "probability": 0.9735
         },
         {
           "word": "بعد",
-          "start": 2.74,
-          "end": 2.92,
-          "probability": 0.9869
+          "start": 2.58,
+          "end": 2.76,
+          "probability": 0.9971
         },
         {
           "word": "ما",
-          "start": 2.92,
-          "end": 3.1,
-          "probability": 0.4405
+          "start": 2.76,
+          "end": 2.92,
+          "probability": 0.9716
         },
         {
           "word": "قضى",
-          "start": 3.1,
-          "end": 3.32,
-          "probability": 0.7246
+          "start": 2.92,
+          "end": 3.14,
+          "probability": 0.7503
         },
         {
-          "word": "صنين",
-          "start": 3.32,
-          "end": 3.56,
-          "probability": 0.8413
+          "word": "سنين",
+          "start": 3.14,
+          "end": 3.44,
+          "probability": 0.9965
         },
         {
           "word": "طويلة",
-          "start": 3.56,
-          "end": 3.98,
-          "probability": 0.9396
+          "start": 3.44,
+          "end": 3.86,
+          "probability": 0.9974
         },
         {
           "word": "وهو",
-          "start": 3.98,
-          "end": 4.24,
-          "probability": 0.7998
-        },
-        {
-          "word": "بيشرب",
-          "start": 4.24,
-          "end": 4.58,
-          "probability": 0.9586
-        },
-        {
-          "word": "مية",
-          "start": 4.58,
-          "end": 4.84,
-          "probability": 0.5699
-        },
-        {
-          "word": "طنية",
-          "start": 4.84,
-          "end": 5.24,
-          "probability": 0.7775
-        },
-        {
-          "word": "في",
-          "start": 5.24,
-          "end": 5.36,
-          "probability": 0.7665
-        },
-        {
-          "word": "أرض",
-          "start": 5.36,
-          "end": 5.56,
-          "probability": 0.708
-        },
-        {
-          "word": "المعركة",
-          "start": 5.56,
-          "end": 6.28,
-          "probability": 0.9569
-        },
-        {
-          "word": "أخيراً",
-          "start": 6.28,
-          "end": 6.78,
-          "probability": 0.8024
-        },
-        {
-          "word": "بقى",
-          "start": 6.78,
-          "end": 6.92,
-          "probability": 0.8892
-        },
-        {
-          "word": "قدامه",
-          "start": 6.92,
-          "end": 7.34,
-          "probability": 0.8308
-        },
-        {
-          "word": "مية",
-          "start": 7.34,
-          "end": 7.56,
-          "probability": 0.8923
-        },
-        {
-          "word": "نظيفة",
-          "start": 7.56,
-          "end": 7.96,
-          "probability": 0.8576
-        },
-        {
-          "word": "بيقدر",
-          "start": 7.96,
-          "end": 8.32,
-          "probability": 0.9701
-        },
-        {
-          "word": "أنه",
-          "start": 8.32,
-          "end": 8.54,
-          "probability": 0.5934
-        },
-        {
-          "word": "يشربها",
-          "start": 8.54,
-          "end": 9.42,
-          "probability": 0.8103
-        },
-        {
-          "word": "وديف",
-          "start": 9.42,
-          "end": 9.72,
-          "probability": 0.8181
-        },
-        {
-          "word": "حد",
-          "start": 9.72,
-          "end": 9.92,
-          "probability": 0.7829
-        },
-        {
-          "word": "زاتها",
-          "start": 9.92,
-          "end": 10.26,
-          "probability": 0.5296
-        },
-        {
-          "word": "تعتبر",
-          "start": 10.26,
-          "end": 10.6,
-          "probability": 0.9591
-        },
-        {
-          "word": "رفاهية",
-          "start": 10.6,
-          "end": 11.02,
-          "probability": 0.857
-        },
-        {
-          "word": "بالنسبة",
-          "start": 11.02,
-          "end": 11.48,
-          "probability": 0.9902
-        },
-        {
-          "word": "لبطنة",
-          "start": 11.48,
-          "end": 12.3,
-          "probability": 0.7627
-        },
-        {
-          "word": "وعلى",
-          "start": 12.3,
-          "end": 12.58,
-          "probability": 0.9474
-        },
-        {
-          "word": "ما",
-          "start": 12.58,
-          "end": 12.76,
-          "probability": 0.6388
-        },
-        {
-          "word": "اللي",
-          "start": 12.76,
-          "end": 13.0,
-          "probability": 0.4587
-        },
-        {
-          "word": "لجه",
-          "start": 13.0,
-          "end": 13.26,
-          "probability": 0.7863
-        },
-        {
-          "word": "داسكن",
-          "start": 13.26,
-          "end": 13.68,
-          "probability": 0.7828
-        },
-        {
-          "word": "أخذ",
-          "start": 13.68,
-          "end": 14.0,
-          "probability": 0.7465
-        },
-        {
-          "word": "قراره",
-          "start": 14.0,
-          "end": 14.48,
-          "probability": 0.9636
-        },
-        {
-          "word": "وقال",
-          "start": 14.48,
-          "end": 14.62,
-          "probability": 0.7827
-        },
-        {
-          "word": "لنفسه",
-          "start": 14.62,
-          "end": 15.04,
-          "probability": 0.8414
-        },
-        {
-          "word": "أنه",
-          "start": 15.04,
-          "end": 15.14,
-          "probability": 0.7675
-        },
-        {
-          "word": "هيعمل",
-          "start": 15.14,
-          "end": 15.6,
-          "probability": 0.7269
-        },
-        {
-          "word": "كل",
-          "start": 15.6,
-          "end": 15.8,
-          "probability": 0.9878
-        },
-        {
-          "word": "اللي",
-          "start": 15.8,
-          "end": 15.96,
-          "probability": 0.7698
-        },
-        {
-          "word": "يقدر",
-          "start": 15.96,
-          "end": 16.28,
-          "probability": 0.9966
-        },
-        {
-          "word": "عليه",
-          "start": 16.28,
-          "end": 16.58,
-          "probability": 0.9616
-        },
-        {
-          "word": "ويدل",
-          "start": 16.58,
-          "end": 17.12,
-          "probability": 0.6227
-        },
-        {
-          "word": "المكان",
-          "start": 17.12,
-          "end": 17.44,
-          "probability": 0.9726
-        },
-        {
-          "word": "ده",
-          "start": 17.44,
-          "end": 17.6,
-          "probability": 0.9326
-        },
-        {
-          "word": "فرصة",
-          "start": 17.6,
-          "end": 18.02,
-          "probability": 0.9867
-        },
-        {
-          "word": "أخيرة",
-          "start": 18.02,
-          "end": 18.38,
-          "probability": 0.955
+          "start": 3.86,
+          "end": 4.1,
+          "probability": 0.9884
         }
       ]
     },
     {
-      "start": 18.38,
-      "end": 31.86,
-      "text": "لكن لو الدنيا فضلت مأفلة وظلم في وشه بعد يومين هيمشو هيسيب المكان قبل ما يموت هنا ولو وصلت لكده هيدور على أي قرية تنية ويحاول يفدهم بأي طريقة علشان يفضل دايماً محقق وصيد أهله الأخيرة قبل ما يموتو",
+      "start": 4.1,
+      "end": 7.84,
+      "text": "بيشرب مية تنية في ارض المعركة اخيرا بقى قدامه مية نظيفة",
       "words": [
         {
-          "word": "لكن",
-          "start": 18.38,
-          "end": 18.7,
-          "probability": 0.5728
+          "word": "بيشرب",
+          "start": 4.1,
+          "end": 4.5,
+          "probability": 0.9959
         },
         {
-          "word": "لو",
-          "start": 18.7,
-          "end": 18.92,
-          "probability": 0.8526
-        },
-        {
-          "word": "الدنيا",
-          "start": 18.92,
-          "end": 19.24,
-          "probability": 0.9274
-        },
-        {
-          "word": "فضلت",
-          "start": 19.24,
-          "end": 19.62,
-          "probability": 0.7997
-        },
-        {
-          "word": "مأفلة",
-          "start": 19.62,
-          "end": 20.0,
-          "probability": 0.8249
-        },
-        {
-          "word": "وظلم",
-          "start": 20.0,
-          "end": 20.28,
-          "probability": 0.7833
-        },
-        {
-          "word": "في",
-          "start": 20.28,
-          "end": 20.48,
-          "probability": 0.4229
-        },
-        {
-          "word": "وشه",
-          "start": 20.48,
-          "end": 21.0,
-          "probability": 0.8447
-        },
-        {
-          "word": "بعد",
-          "start": 21.0,
-          "end": 21.28,
-          "probability": 0.7464
-        },
-        {
-          "word": "يومين",
-          "start": 21.28,
-          "end": 21.64,
-          "probability": 0.9726
-        },
-        {
-          "word": "هيمشو",
-          "start": 21.64,
-          "end": 22.04,
-          "probability": 0.7548
-        },
-        {
-          "word": "هيسيب",
-          "start": 22.04,
-          "end": 22.44,
-          "probability": 0.856
-        },
-        {
-          "word": "المكان",
-          "start": 22.44,
-          "end": 22.8,
-          "probability": 0.9826
-        },
-        {
-          "word": "قبل",
-          "start": 22.8,
-          "end": 23.06,
-          "probability": 0.9881
-        },
-        {
-          "word": "ما",
-          "start": 23.06,
-          "end": 23.18,
-          "probability": 0.9258
-        },
-        {
-          "word": "يموت",
-          "start": 23.18,
-          "end": 23.42,
-          "probability": 0.9792
-        },
-        {
-          "word": "هنا",
-          "start": 23.42,
-          "end": 23.86,
-          "probability": 0.9575
-        },
-        {
-          "word": "ولو",
-          "start": 23.86,
-          "end": 24.24,
-          "probability": 0.9309
-        },
-        {
-          "word": "وصلت",
-          "start": 24.24,
-          "end": 24.7,
-          "probability": 0.9783
-        },
-        {
-          "word": "لكده",
-          "start": 24.7,
-          "end": 25.2,
-          "probability": 0.7813
-        },
-        {
-          "word": "هيدور",
-          "start": 25.2,
-          "end": 25.68,
-          "probability": 0.7855
-        },
-        {
-          "word": "على",
-          "start": 25.68,
-          "end": 25.88,
-          "probability": 0.8814
-        },
-        {
-          "word": "أي",
-          "start": 25.88,
-          "end": 26.1,
-          "probability": 0.8754
-        },
-        {
-          "word": "قرية",
-          "start": 26.1,
-          "end": 26.42,
-          "probability": 0.9091
+          "word": "مية",
+          "start": 4.5,
+          "end": 4.76,
+          "probability": 0.8268
         },
         {
           "word": "تنية",
-          "start": 26.42,
-          "end": 26.74,
-          "probability": 0.5366
+          "start": 4.76,
+          "end": 5.08,
+          "probability": 0.7671
         },
         {
-          "word": "ويحاول",
-          "start": 26.74,
-          "end": 27.14,
-          "probability": 0.9784
+          "word": "في",
+          "start": 5.08,
+          "end": 5.26,
+          "probability": 0.9462
         },
         {
-          "word": "يفدهم",
-          "start": 27.14,
-          "end": 27.54,
-          "probability": 0.8869
+          "word": "ارض",
+          "start": 5.26,
+          "end": 5.44,
+          "probability": 0.9925
         },
         {
-          "word": "بأي",
-          "start": 27.54,
-          "end": 27.84,
-          "probability": 0.895
+          "word": "المعركة",
+          "start": 5.44,
+          "end": 6.0,
+          "probability": 0.961
         },
         {
-          "word": "طريقة",
-          "start": 27.84,
-          "end": 28.5,
-          "probability": 0.9872
+          "word": "اخيرا",
+          "start": 6.0,
+          "end": 6.58,
+          "probability": 0.9926
         },
         {
-          "word": "علشان",
-          "start": 28.5,
-          "end": 28.84,
-          "probability": 0.9586
+          "word": "بقى",
+          "start": 6.58,
+          "end": 6.82,
+          "probability": 0.9454
         },
         {
-          "word": "يفضل",
-          "start": 28.84,
-          "end": 29.14,
-          "probability": 0.9647
+          "word": "قدامه",
+          "start": 6.82,
+          "end": 7.22,
+          "probability": 0.993
         },
         {
-          "word": "دايماً",
-          "start": 29.14,
-          "end": 29.48,
-          "probability": 0.6927
+          "word": "مية",
+          "start": 7.22,
+          "end": 7.44,
+          "probability": 0.9652
         },
         {
-          "word": "محقق",
-          "start": 29.48,
-          "end": 29.84,
-          "probability": 0.7453
+          "word": "نظيفة",
+          "start": 7.44,
+          "end": 7.84,
+          "probability": 0.9335
+        }
+      ]
+    },
+    {
+      "start": 7.84,
+      "end": 11.34,
+      "text": "بيقدر ان هو يشربها ودي في حد ذاتها تعتبر رفاهية بالنسبة",
+      "words": [
+        {
+          "word": "بيقدر",
+          "start": 7.84,
+          "end": 8.18,
+          "probability": 0.9992
         },
         {
-          "word": "وصيد",
-          "start": 29.84,
-          "end": 30.2,
-          "probability": 0.6647
+          "word": "ان",
+          "start": 8.18,
+          "end": 8.3,
+          "probability": 0.999
         },
         {
-          "word": "أهله",
-          "start": 30.2,
-          "end": 30.62,
-          "probability": 0.7763
+          "word": "هو",
+          "start": 8.3,
+          "end": 8.46,
+          "probability": 0.4525
         },
         {
-          "word": "الأخيرة",
-          "start": 30.62,
-          "end": 30.92,
-          "probability": 0.86
+          "word": "يشربها",
+          "start": 8.46,
+          "end": 9.08,
+          "probability": 0.9976
         },
         {
-          "word": "قبل",
-          "start": 30.92,
-          "end": 31.18,
-          "probability": 0.9931
+          "word": "ودي",
+          "start": 9.08,
+          "end": 9.48,
+          "probability": 0.8708
+        },
+        {
+          "word": "في",
+          "start": 9.48,
+          "end": 9.62,
+          "probability": 0.82
+        },
+        {
+          "word": "حد",
+          "start": 9.62,
+          "end": 9.76,
+          "probability": 0.9981
+        },
+        {
+          "word": "ذاتها",
+          "start": 9.76,
+          "end": 10.08,
+          "probability": 0.9565
+        },
+        {
+          "word": "تعتبر",
+          "start": 10.08,
+          "end": 10.46,
+          "probability": 0.9881
+        },
+        {
+          "word": "رفاهية",
+          "start": 10.46,
+          "end": 10.92,
+          "probability": 0.9938
+        },
+        {
+          "word": "بالنسبة",
+          "start": 10.92,
+          "end": 11.34,
+          "probability": 0.9992
+        }
+      ]
+    },
+    {
+      "start": 11.34,
+      "end": 15.02,
+      "text": "لبطنه وعلى ما اللي الجاه داس كان اخد قراره وقال لنفسه ان هو",
+      "words": [
+        {
+          "word": "لبطنه",
+          "start": 11.34,
+          "end": 11.88,
+          "probability": 0.7721
+        },
+        {
+          "word": "وعلى",
+          "start": 11.88,
+          "end": 12.42,
+          "probability": 0.9729
         },
         {
           "word": "ما",
-          "start": 31.18,
-          "end": 31.3,
-          "probability": 0.977
+          "start": 12.42,
+          "end": 12.54,
+          "probability": 0.722
         },
         {
-          "word": "يموتو",
-          "start": 31.3,
-          "end": 31.86,
-          "probability": 0.8627
+          "word": "اللي",
+          "start": 12.54,
+          "end": 12.76,
+          "probability": 0.7995
+        },
+        {
+          "word": "الجاه",
+          "start": 12.76,
+          "end": 13.0,
+          "probability": 0.5374
+        },
+        {
+          "word": "داس",
+          "start": 13.0,
+          "end": 13.42,
+          "probability": 0.9266
+        },
+        {
+          "word": "كان",
+          "start": 13.42,
+          "end": 13.56,
+          "probability": 0.5444
+        },
+        {
+          "word": "اخد",
+          "start": 13.56,
+          "end": 13.88,
+          "probability": 0.9007
+        },
+        {
+          "word": "قراره",
+          "start": 13.88,
+          "end": 14.32,
+          "probability": 0.9973
+        },
+        {
+          "word": "وقال",
+          "start": 14.32,
+          "end": 14.54,
+          "probability": 0.9725
+        },
+        {
+          "word": "لنفسه",
+          "start": 14.54,
+          "end": 14.84,
+          "probability": 0.9288
+        },
+        {
+          "word": "ان",
+          "start": 14.84,
+          "end": 14.94,
+          "probability": 0.9966
+        },
+        {
+          "word": "هو",
+          "start": 14.94,
+          "end": 15.02,
+          "probability": 0.6866
+        }
+      ]
+    },
+    {
+      "start": 15.02,
+      "end": 18.76,
+      "text": "هيعمل كل اللي يقدر عليه ويدي المكان ده فرصة اخيرة لكن لو",
+      "words": [
+        {
+          "word": "هيعمل",
+          "start": 15.02,
+          "end": 15.48,
+          "probability": 0.9976
+        },
+        {
+          "word": "كل",
+          "start": 15.48,
+          "end": 15.66,
+          "probability": 0.9995
+        },
+        {
+          "word": "اللي",
+          "start": 15.66,
+          "end": 15.86,
+          "probability": 0.9958
+        },
+        {
+          "word": "يقدر",
+          "start": 15.86,
+          "end": 16.16,
+          "probability": 0.9991
+        },
+        {
+          "word": "عليه",
+          "start": 16.16,
+          "end": 16.34,
+          "probability": 0.9997
+        },
+        {
+          "word": "ويدي",
+          "start": 16.34,
+          "end": 16.98,
+          "probability": 0.9068
+        },
+        {
+          "word": "المكان",
+          "start": 16.98,
+          "end": 17.3,
+          "probability": 0.9996
+        },
+        {
+          "word": "ده",
+          "start": 17.3,
+          "end": 17.5,
+          "probability": 0.9587
+        },
+        {
+          "word": "فرصة",
+          "start": 17.5,
+          "end": 17.82,
+          "probability": 0.999
+        },
+        {
+          "word": "اخيرة",
+          "start": 17.82,
+          "end": 18.22,
+          "probability": 0.9977
+        },
+        {
+          "word": "لكن",
+          "start": 18.22,
+          "end": 18.54,
+          "probability": 0.9952
+        },
+        {
+          "word": "لو",
+          "start": 18.54,
+          "end": 18.76,
+          "probability": 0.9995
+        }
+      ]
+    },
+    {
+      "start": 18.76,
+      "end": 22.28,
+      "text": "الدنيا فضلت مقفلة وظالمة في وشه بعد يومين هيمشي وهيسيب",
+      "words": [
+        {
+          "word": "الدنيا",
+          "start": 18.76,
+          "end": 19.12,
+          "probability": 0.9904
+        },
+        {
+          "word": "فضلت",
+          "start": 19.12,
+          "end": 19.5,
+          "probability": 0.9919
+        },
+        {
+          "word": "مقفلة",
+          "start": 19.5,
+          "end": 19.92,
+          "probability": 0.9869
+        },
+        {
+          "word": "وظالمة",
+          "start": 19.92,
+          "end": 20.26,
+          "probability": 0.751
+        },
+        {
+          "word": "في",
+          "start": 20.26,
+          "end": 20.38,
+          "probability": 0.945
+        },
+        {
+          "word": "وشه",
+          "start": 20.38,
+          "end": 20.66,
+          "probability": 0.9835
+        },
+        {
+          "word": "بعد",
+          "start": 20.66,
+          "end": 21.02,
+          "probability": 0.8856
+        },
+        {
+          "word": "يومين",
+          "start": 21.02,
+          "end": 21.5,
+          "probability": 0.994
+        },
+        {
+          "word": "هيمشي",
+          "start": 21.5,
+          "end": 21.88,
+          "probability": 0.9164
+        },
+        {
+          "word": "وهيسيب",
+          "start": 21.88,
+          "end": 22.28,
+          "probability": 0.9396
+        }
+      ]
+    },
+    {
+      "start": 22.28,
+      "end": 26.3,
+      "text": "المكان قبل ما يموت هنا ولو وصلت لكده هيدور على اي قرية",
+      "words": [
+        {
+          "word": "المكان",
+          "start": 22.28,
+          "end": 22.7,
+          "probability": 0.5885
+        },
+        {
+          "word": "قبل",
+          "start": 22.7,
+          "end": 22.94,
+          "probability": 0.9904
+        },
+        {
+          "word": "ما",
+          "start": 22.94,
+          "end": 23.08,
+          "probability": 0.9811
+        },
+        {
+          "word": "يموت",
+          "start": 23.08,
+          "end": 23.34,
+          "probability": 0.9854
+        },
+        {
+          "word": "هنا",
+          "start": 23.34,
+          "end": 23.46,
+          "probability": 0.9946
+        },
+        {
+          "word": "ولو",
+          "start": 23.46,
+          "end": 24.12,
+          "probability": 0.9512
+        },
+        {
+          "word": "وصلت",
+          "start": 24.12,
+          "end": 24.58,
+          "probability": 0.9982
+        },
+        {
+          "word": "لكده",
+          "start": 24.58,
+          "end": 25.0,
+          "probability": 0.9329
+        },
+        {
+          "word": "هيدور",
+          "start": 25.0,
+          "end": 25.54,
+          "probability": 0.8858
+        },
+        {
+          "word": "على",
+          "start": 25.54,
+          "end": 25.72,
+          "probability": 0.9907
+        },
+        {
+          "word": "اي",
+          "start": 25.72,
+          "end": 25.96,
+          "probability": 0.9052
+        },
+        {
+          "word": "قرية",
+          "start": 25.96,
+          "end": 26.3,
+          "probability": 0.9969
+        }
+      ]
+    },
+    {
+      "start": 26.3,
+      "end": 30.06,
+      "text": "تانية ويحاول يفيدهم باي طريقة علشان يفضل دايما ما حقق وصية",
+      "words": [
+        {
+          "word": "تانية",
+          "start": 26.3,
+          "end": 26.62,
+          "probability": 0.9956
+        },
+        {
+          "word": "ويحاول",
+          "start": 26.62,
+          "end": 27.02,
+          "probability": 0.9974
+        },
+        {
+          "word": "يفيدهم",
+          "start": 27.02,
+          "end": 27.42,
+          "probability": 0.8916
+        },
+        {
+          "word": "باي",
+          "start": 27.42,
+          "end": 27.6,
+          "probability": 0.8256
+        },
+        {
+          "word": "طريقة",
+          "start": 27.6,
+          "end": 28.08,
+          "probability": 0.9964
+        },
+        {
+          "word": "علشان",
+          "start": 28.08,
+          "end": 28.7,
+          "probability": 0.9916
+        },
+        {
+          "word": "يفضل",
+          "start": 28.7,
+          "end": 29.0,
+          "probability": 0.9979
+        },
+        {
+          "word": "دايما",
+          "start": 29.0,
+          "end": 29.24,
+          "probability": 0.9911
+        },
+        {
+          "word": "ما",
+          "start": 29.24,
+          "end": 29.38,
+          "probability": 0.4367
+        },
+        {
+          "word": "حقق",
+          "start": 29.38,
+          "end": 29.66,
+          "probability": 0.9911
+        },
+        {
+          "word": "وصية",
+          "start": 29.66,
+          "end": 30.06,
+          "probability": 0.9891
+        }
+      ]
+    },
+    {
+      "start": 30.06,
+      "end": 32.02,
+      "text": "اهله الاخيرة قبل ما يموتوا وعلى",
+      "words": [
+        {
+          "word": "اهله",
+          "start": 30.06,
+          "end": 30.4,
+          "probability": 0.9589
+        },
+        {
+          "word": "الاخيرة",
+          "start": 30.4,
+          "end": 30.82,
+          "probability": 0.9949
+        },
+        {
+          "word": "قبل",
+          "start": 30.82,
+          "end": 31.06,
+          "probability": 0.9993
+        },
+        {
+          "word": "ما",
+          "start": 31.06,
+          "end": 31.18,
+          "probability": 0.9995
+        },
+        {
+          "word": "يموتوا",
+          "start": 31.18,
+          "end": 31.56,
+          "probability": 0.8443
+        },
+        {
+          "word": "وعلى",
+          "start": 31.56,
+          "end": 32.02,
+          "probability": 0.9663
         }
       ]
     }
