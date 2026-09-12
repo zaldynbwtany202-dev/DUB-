@@ -1,0 +1,36 @@
+{
+  "voice_id": "voice-27",
+  "clone_method": "praat_f0_formant_from_original_vocals",
+  "max_semitones": 2.0,
+  "words": "full-video-srt-cues-44-56-phrases",
+  "clone": {
+    "pitch_semitones": 1.6169555006378022,
+    "formant_ratio": 1.0938797965140006
+  },
+  "layout": {
+    "tempo": 1.0342,
+    "slowed": false,
+    "speech_truncated": false,
+    "dub_islands": 3,
+    "original_islands": 12,
+    "speech_seconds": 32.21,
+    "placements": [
+      {
+        "start": 0.0,
+        "end": 23.546
+      },
+      {
+        "start": 23.546,
+        "end": 24.397
+      },
+      {
+        "start": 24.437,
+        "end": 32.25
+      }
+    ]
+  },
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "merge": "forbidden",
+  "output": "dubs/0911-1/clone/real-dub/from-full-srt/nateq/final-dub-nateq.mp4"
+}
