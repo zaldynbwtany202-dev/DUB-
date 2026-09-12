@@ -2,6 +2,7 @@
   "schema_version": 1,
   "session_branch": "arena/01a0922c-dub",
   "merge": "forbidden",
+  "session_log": "dubs/0911-1/SESSION_LOG.md",
   "merge_targets_forbidden": ["main", "master", "arena/01a07c92-dub"],
   "voice_backend": "agent",
   "timing_mode": "source_audio",
