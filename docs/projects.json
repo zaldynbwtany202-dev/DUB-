@@ -2,6 +2,22 @@
   "projects": [
     {
       "slug": "0911-1",
+      "title": "0911-1 — نطق طبيعي",
+      "video": "../dubs/0911-1/clone/real-dub/natural/final-dub-natural.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/natural/final-dub-natural.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/natural/final-dub-natural.srt",
+      "size": 24562386,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "voice-22" },
+      "metrics": {
+        "cues": 8,
+        "duration": 32.25,
+        "overlaps": 0,
+        "min_gap": 0
+      }
+    },
+    {
+      "slug": "0911-1-pronounce",
       "title": "0911-1 — الكلمات من الأصل",
       "video": "../dubs/0911-1/clone/real-dub/pronounce/final-dub-pronounce.mp4",
       "srt": "../dubs/0911-1/clone/real-dub/pronounce/final-dub-pronounce.srt",
