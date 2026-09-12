@@ -1,0 +1,111 @@
+name: Arena ASR — faster-whisper medium
+run-name: ASR medium · ${{ github.ref_name }}
+
+on:
+  push:
+    branches: [arena/01a0922c-dub]
+    paths:
+      - .github/workflows/arena_asr.yml
+      - .arena/run.json
+      - library/0911-1/source.mp4
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: asr-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  transcribe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONUNBUFFERED: "1"
+      HF_HUB_DISABLE_PROGRESS_BARS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install faster-whisper
+        run: python -m pip install --upgrade pip faster-whisper
+
+      - name: Transcribe original audio with medium
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          from faster_whisper import WhisperModel
+
+          src = Path("library/0911-1/source.mp4")
+          if not src.is_file():
+              raise SystemExit(f"missing {src}")
+          model_name = "medium"
+          cfg = Path(".arena/run.json")
+          if cfg.is_file():
+              model_name = json.loads(cfg.read_text()).get("whisper_model") or model_name
+          model = WhisperModel(model_name, device="cpu", compute_type="int8")
+          segs, info = model.transcribe(
+              str(src), language="ar", vad_filter=True,
+              beam_size=8, best_of=8, word_timestamps=True,
+          )
+          segments, full = [], []
+          for s in segs:
+              text = (s.text or "").strip()
+              full.append(text)
+              segments.append({
+                  "start": round(float(s.start), 3),
+                  "end": round(float(s.end), 3),
+                  "text": text,
+                  "words": [
+                      {
+                          "word": (w.word or "").strip(),
+                          "start": round(float(w.start), 3),
+                          "end": round(float(w.end), 3),
+                          "probability": round(float(getattr(w, "probability", 0) or 0), 4),
+                      }
+                      for w in (s.words or [])
+                  ],
+              })
+          payload = {
+              "slug": "0911-1",
+              "source": str(src),
+              "engine": "faster-whisper",
+              "model": model_name,
+              "language": getattr(info, "language", "ar"),
+              "duration": round(float(getattr(info, "duration", 0) or 0), 3),
+              "text": " ".join(t for t in full if t),
+              "segments": segments,
+          }
+          Path(".arena").mkdir(exist_ok=True)
+          Path(".arena/transcript.json").write_text(
+              json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          dest = Path("dubs/0911-1/ASR_MEDIUM.json")
+          dest.parent.mkdir(parents=True, exist_ok=True)
+          dest.write_text(Path(".arena/transcript.json").read_text(encoding="utf-8"), encoding="utf-8")
+          print("TRANSCRIPT_TEXT_START")
+          print(payload["text"])
+          print("TRANSCRIPT_TEXT_END")
+          print(f"segments={len(segments)} chars={len(payload['text'])}")
+          PY
+
+      - name: Publish transcript to this branch
+        run: |
+          git config user.name "arena-body"
+          git config user.email "arena-body@users.noreply.github.com"
+          git add -- .arena/transcript.json dubs/0911-1/ASR_MEDIUM.json
+          if git diff --cached --quiet; then
+            echo "no transcript changes"
+            exit 0
+          fi
+          git commit -m "arena(transcribe): faster-whisper medium for 0911-1"
+          git pull --rebase origin arena/01a0922c-dub || true
+          git push origin HEAD:arena/01a0922c-dub
