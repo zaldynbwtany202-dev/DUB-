@@ -1,41 +1,10 @@
 {
   "voice_id": "voice-27",
-  "clone_method": "praat_f0_formant_from_original_vocals",
-  "max_semitones": 2.0,
-  "words": "full-video-srt-cues-44-56-phrases",
-  "clone": {
-    "pitch_semitones": 0.8343760179943109,
-    "formant_ratio": 1.1149331999997802
-  },
-  "layout": {
-    "tempo": 1.031,
-    "slowed": false,
-    "speech_truncated": false,
-    "dub_islands": 4,
-    "original_islands": 9,
-    "speech_seconds": 32.21,
-    "placements": [
-      {
-        "start": 0.0,
-        "end": 4.985
-      },
-      {
-        "start": 5.025,
-        "end": 23.56
-      },
-      {
-        "start": 23.56,
-        "end": 24.413
-      },
-      {
-        "start": 24.413,
-        "end": 32.25
-      }
-    ]
-  },
-  "min_tempo": 1.0,
-  "max_tempo": 1.08,
+  "source_mix": "final-dub-nateq-bleed.mp4",
+  "note": "Same fluent take as the approved mix. Original narrator subtracted only in leak frames; speech not re-chopped word-by-word.",
+  "leak_frames": 233,
   "merge": "forbidden",
   "original_voice_removed": true,
+  "speech_relaid": false,
   "output": "dubs/0911-1/clone/real-dub/from-full-srt/nateq/final-dub-nateq.mp4"
 }
