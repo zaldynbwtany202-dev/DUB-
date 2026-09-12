@@ -40,10 +40,20 @@ web = [
     "uvicorn>=0.30",
     "python-multipart>=0.0.9",
 ]
+whisper = []
+demucs = []
+google = []
+xtts = []
+piper = []
+chatterbox = []
+f5 = []
+minimax = []
+elevenlabs = []
 
 [project.scripts]
 youtube-auto-dub = "youtube_auto_dub.cli:main"
 prostudio = "web.server:main"
+dub = "youtube_auto_dub.actions_dub:main"
 
 [tool.setuptools.packages.find]
 include = ["youtube_auto_dub*", "web*"]
