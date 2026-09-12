@@ -2,15 +2,15 @@
   "projects": [
     {
       "slug": "0911-1",
-      "title": "0911-1 — النص المقفول",
-      "video": "../dubs/0911-1/clone/real-dub/locked/final-dub-locked.mp4",
-      "srt": "../dubs/0911-1/clone/real-dub/locked/final-dub-locked.srt",
-      "vtt": "../dubs/0911-1/clone/real-dub/locked/final-dub-locked.srt",
-      "size": 24558866,
+      "title": "0911-1 — استنساخ الراوي + كلام الـ SRT",
+      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/final-dub-clone-srt.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/final-dub-clone-srt.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/final-dub-clone-srt.srt",
+      "size": 24560198,
       "dialect": "egy",
-      "cast": { "NARRATOR": "voice-22" },
+      "cast": { "NARRATOR": "voice-27-clone-original" },
       "metrics": {
-        "cues": 8,
+        "cues": 9,
         "duration": 32.25,
         "overlaps": 0,
         "min_gap": 0

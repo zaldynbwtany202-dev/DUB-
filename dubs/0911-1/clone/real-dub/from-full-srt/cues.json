@@ -1,0 +1,26 @@
+{
+  "video": "../../../../../library/0911-1/source.mp4",
+  "background_audio": "../stems/music.wav",
+  "voice_backend": "agent",
+  "voice_id": "voice-27",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "sample_rate": 24000,
+  "note": "Words from the full-video SRT the user provided. Timing from large-v3 onsets.",
+  "segments": [
+    {"index": 0, "start": 0.0, "end": 4.1, "text": "الارض بتاعته فضل يضحك ويبتسم لانه بعد ما قضى سنين طويله وهو", "audio": "v27/seg-0000.mp3", "speaker": "NARRATOR"},
+    {"index": 1, "start": 4.1, "end": 7.84, "text": "بيشرب ميه طينيه في ارض المعركه اخيرا بقى قدامه ميه نظيفه", "audio": "seg-0001.mp3", "speaker": "NARRATOR"},
+    {"index": 2, "start": 7.84, "end": 11.34, "text": "بيقدر ان هو يشربها ودي في حد ذاتها تعتبر رفاهيه بالنسبه", "audio": "seg-0002.mp3", "speaker": "NARRATOR"},
+    {"index": 3, "start": 11.34, "end": 15.02, "text": "لبطلنا وعلى ما الليل جا داس كان اخد قراره وقال لنفسه ان هو", "audio": "seg-0003.mp3", "speaker": "NARRATOR"},
+    {"index": 4, "start": 15.02, "end": 18.76, "text": "هيعمل كل اللي يقدر عليه ويدي المكان ده فرصه اخيره لكن لو", "audio": "seg-0004.mp3", "speaker": "NARRATOR"},
+    {"index": 5, "start": 18.76, "end": 22.28, "text": "الدنيا فضلت مقفله وضلمه في وشه بعد يومين هيمشي وهيسيب", "audio": "seg-0005.mp3", "speaker": "NARRATOR"},
+    {"index": 6, "start": 22.28, "end": 26.3, "text": "المكان قبل ما يموت هنا ولو وصلت لكده هيدور على اي قريه", "audio": "seg-0006.mp3", "speaker": "NARRATOR"},
+    {"index": 7, "start": 26.3, "end": 30.06, "text": "ثانيه ويحاول يفيدهم باي طريقه علشان يفضل دايما محقق وصيه", "audio": "seg-0007.mp3", "speaker": "NARRATOR"},
+    {"index": 8, "start": 30.06, "end": 32.25, "text": "اهله الاخيره قبل ما يموتوا وعلى", "audio": "seg-0008.mp3", "speaker": "NARRATOR"}
+  ]
+}

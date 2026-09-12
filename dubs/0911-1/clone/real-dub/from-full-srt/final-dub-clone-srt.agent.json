@@ -1,0 +1,119 @@
+{
+  "voice_id": "voice-27",
+  "clone_method": "praat_f0_formant_from_original_vocals",
+  "words": "full-video-srt-cues-44-56",
+  "clone": {
+    "pitch_semitones": 3.991695609819247,
+    "formant_ratio": 1.054701829859945
+  },
+  "layout": {
+    "tempo": 1.0441,
+    "slowed": false,
+    "speech_truncated": false,
+    "dub_islands": 24,
+    "original_islands": 12,
+    "speech_seconds": 32.21,
+    "placements": [
+      {
+        "start": 0.0,
+        "end": 0.833
+      },
+      {
+        "start": 0.833,
+        "end": 2.165
+      },
+      {
+        "start": 2.165,
+        "end": 4.176
+      },
+      {
+        "start": 4.176,
+        "end": 6.589
+      },
+      {
+        "start": 6.589,
+        "end": 8.562
+      },
+      {
+        "start": 8.562,
+        "end": 9.798
+      },
+      {
+        "start": 9.798,
+        "end": 12.71
+      },
+      {
+        "start": 12.71,
+        "end": 13.485
+      },
+      {
+        "start": 13.485,
+        "end": 14.606
+      },
+      {
+        "start": 14.606,
+        "end": 15.219
+      },
+      {
+        "start": 15.219,
+        "end": 17.211
+      },
+      {
+        "start": 17.211,
+        "end": 18.102
+      },
+      {
+        "start": 18.102,
+        "end": 18.734
+      },
+      {
+        "start": 18.734,
+        "end": 20.161
+      },
+      {
+        "start": 20.161,
+        "end": 21.943
+      },
+      {
+        "start": 21.943,
+        "end": 22.46
+      },
+      {
+        "start": 22.46,
+        "end": 23.398
+      },
+      {
+        "start": 23.398,
+        "end": 24.212
+      },
+      {
+        "start": 24.212,
+        "end": 25.122
+      },
+      {
+        "start": 25.122,
+        "end": 26.827
+      },
+      {
+        "start": 26.827,
+        "end": 28.618
+      },
+      {
+        "start": 28.618,
+        "end": 31.377
+      },
+      {
+        "start": 31.377,
+        "end": 31.98
+      },
+      {
+        "start": 32.02,
+        "end": 32.25
+      }
+    ]
+  },
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "merge": "forbidden",
+  "output": "dubs/0911-1/clone/real-dub/from-full-srt/final-dub-clone-srt.mp4"
+}
