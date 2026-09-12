@@ -1,0 +1,59 @@
+name: Clone original 0911-1 narrator (XTTS-v2)
+
+# Push-triggered on this session branch only. Never merge.
+on:
+  push:
+    branches: [arena/01a0922c-dub]
+    paths:
+      - ".github/workflows/xtts_clone.yml"
+      - "dubs/0911-1/clone/**"
+      - "youtube_auto_dub/xtts_clone.py"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+
+      - name: Install torch CPU + XTTS
+        run: |
+          python -m pip install --upgrade pip
+          pip install "torch==2.4.1" "torchaudio==2.4.1" --index-url https://download.pytorch.org/whl/cpu
+          pip install "TTS==0.22.0" soundfile numpy pydub
+
+      - name: Clone original narrator
+        env:
+          COQUI_TOS_AGREED: "1"
+        run: python dubs/0911-1/clone/run_xtts.py
+
+      - name: Mux onto source windows
+        run: |
+          python scripts/agent_dub.py sync \
+            --cues dubs/0911-1/clone/cues.json \
+            --output dubs/0911-1/clone/final-dub-clone.mp4 \
+            --work-dir dubs/0911-1/clone/work
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 0911-1-clone
+          path: |
+            dubs/0911-1/clone/seg-*.wav
+            dubs/0911-1/clone/cues.json
+            dubs/0911-1/clone/final-dub-clone.mp4
+            dubs/0911-1/clone/final-dub-clone.agent.json
+            dubs/0911-1/clone/final-dub-clone.srt
+            dubs/0911-1/clone/final-dub-clone.mp3
+          retention-days: 14
