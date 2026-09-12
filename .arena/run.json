@@ -2,5 +2,5 @@
   "slug": "0911-1",
   "source": "library/0911-1/source.mp4",
   "src_lang": "ar",
-  "whisper_model": "medium"
+  "whisper_model": "large-v3"
 }
