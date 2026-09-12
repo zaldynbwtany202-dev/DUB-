@@ -1,8 +1,7 @@
 {
   "voice_id": "voice-27",
   "source_mix": "final-dub-nateq-bleed.mp4",
-  "note": "Same fluent take as the approved mix. Original narrator subtracted only in leak frames; speech not re-chopped word-by-word.",
-  "leak_frames": 233,
+  "note": "Fluent approved take. Original narrator Wiener-suppressed in the speech band; not re-chopped.",
   "merge": "forbidden",
   "original_voice_removed": true,
   "speech_relaid": false,

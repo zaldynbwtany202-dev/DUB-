@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep the approved nateq performance; remove leaked original narrator only."""
+"""Keep the approved fluent nateq take; kill original narrator in the bed."""
 from __future__ import annotations
 
 import json
@@ -19,7 +19,15 @@ os.environ.setdefault(
 )
 
 from youtube_auto_dub.ffmpeg_bin import ffmpeg_exe  # noqa: E402
-from youtube_auto_dub.stem_split import decode_stereo, split_center  # noqa: E402
+from youtube_auto_dub.stem_split import (  # noqa: E402
+    N_FFT,
+    HOP,
+    _istft,
+    _smooth,
+    _stft,
+    decode_stereo,
+    split_center,
+)
 
 HERE = Path(__file__).resolve().parent
 BLEED = HERE / "final-dub-nateq-bleed.mp4"
@@ -41,53 +49,72 @@ def decode(path: Path, sr: int = SR) -> np.ndarray:
     return audio
 
 
-def smooth(x: np.ndarray, win: int) -> np.ndarray:
-    if win < 2:
-        return x
-    k = np.ones(win, dtype=np.float32) / win
-    return np.convolve(x, k, mode="same")
+def kill_original(bleed: np.ndarray, voice: np.ndarray, sr: int) -> np.ndarray:
+    """Wiener-suppress original vocals in the speech band; keep loud dubbed speech."""
+    n = min(len(bleed), len(voice))
+    bleed = bleed[:n].astype(np.float32)
+    voice = voice[:n].astype(np.float32)
+    b_spec = _stft(bleed)
+    v_spec = _stft(voice)
+    mag_b = np.abs(b_spec)
+    mag_v = np.abs(v_spec)
+    freqs = np.fft.rfftfreq(N_FFT, 1.0 / sr)
+    speech = ((freqs >= 140.0) & (freqs <= 4500.0))[:, None]
+    # If the original dominates a bin, mute it. If the dub is louder, keep it.
+    ratio = (mag_v ** 2) / (mag_b ** 2 + 1e-8)
+    suppress = np.clip(1.0 - 2.8 * ratio, 0.02, 1.0)
+    # Extra: bins where original is clearly present and mix is not much louder.
+    leak = speech & (mag_v > 0.004) & (mag_b < mag_v * 1.15)
+    suppress = np.where(leak, 0.02, suppress)
+    suppress = np.where(speech, suppress, 1.0)
+    suppress = _smooth(suppress.astype(np.float32), frames=3)
+    cleaned = _istft(b_spec * suppress, n)
+
+    # Time-domain residual: project remaining original out of quiet frames.
+    frame = int(sr * 0.02)
+    out = cleaned.copy()
+    v_peak = float(np.max(np.abs(voice)) or 1.0)
+    for start in range(0, n - frame, frame):
+        sl = slice(start, start + frame)
+        v = voice[sl]
+        c = out[sl]
+        v_rms = float(np.sqrt(np.mean(v ** 2)))
+        c_rms = float(np.sqrt(np.mean(c ** 2)))
+        if v_rms < v_peak * 0.04:
+            continue
+        denom = float(np.dot(v, v) + 1e-12)
+        proj = (np.dot(c, v) / denom) * v
+        # Always remove the parallel original component; stronger in quiet beds.
+        amount = 1.0 if c_rms < v_rms * 0.8 else 0.65
+        out[sl] = c - amount * proj
+    return out.astype(np.float32)
 
 
 def main() -> int:
     bleed = decode(BLEED)
-    orig = decode(VIDEO)
     left, right = decode_stereo(VIDEO, SR)
-    voice, _ = split_center(left, right, SR, strength=1.6)
-    n = min(len(bleed), len(orig), len(voice), int(round(DURATION * SR)))
-    bleed, orig, voice = bleed[:n], orig[:n], voice[:n]
+    voice, residual = split_center(left, right, SR, strength=2.0)
+    n = min(len(bleed), len(voice), int(round(DURATION * SR)))
+    clean = kill_original(bleed[:n], voice[:n], SR)
 
-    frame = int(SR * 0.02)
-    nframes = n // frame
-    gain = np.zeros(nframes, dtype=np.float32)
-    leak_frames = 0
-    for i in range(nframes):
-        a, b = i * frame, (i + 1) * frame
-        o = orig[a:b]
-        m = bleed[a:b]
-        v = voice[a:b]
-        o_rms = float(np.sqrt(np.mean(o ** 2)) + 1e-12)
-        m_rms = float(np.sqrt(np.mean(m ** 2)) + 1e-12)
-        v_rms = float(np.sqrt(np.mean(v ** 2)) + 1e-12)
-        if v_rms > 0.02 and m_rms < v_rms * 0.55:
-            gain[i] = min(m_rms / o_rms, 0.35)
-            leak_frames += 1
-        elif v_rms > 0.03:
-            # Original is under the dub at low level — shave only a little.
-            gain[i] = 0.08
-        else:
-            gain[i] = 0.0
-    gain = smooth(gain, 5)
-    env = np.repeat(gain, frame)
-    if len(env) < n:
-        env = np.pad(env, (0, n - len(env)))
-    env = env[:n]
-    clean = bleed - orig * env
-    peak = float(np.max(np.abs(clean)) or 1.0)
+    # Add a speech-gated score bed so the mix is not dry after killing leak.
+    bed = residual[:n].astype(np.float32)
+    b_spec = _stft(bed)
+    v_spec = _stft(voice[:n])
+    freqs = np.fft.rfftfreq(N_FFT, 1.0 / SR)
+    speech = ((freqs >= 160.0) & (freqs <= 4200.0))[:, None]
+    mag_v, mag_b = np.abs(v_spec), np.abs(b_spec)
+    mask = np.ones_like(mag_b, dtype=np.float32)
+    mask[speech & (mag_v > mag_b * 0.25)] = 0.03
+    mask = _smooth(mask, frames=4)
+    bed = _istft(b_spec * mask, n)
+    mixed = clean + bed * 0.22
+    peak = float(np.max(np.abs(mixed)) or 1.0)
     if peak > 0.95:
-        clean = clean * (0.95 / peak)
+        mixed = mixed * (0.95 / peak)
 
     wav = HERE / "stripped.wav"
-    sf.write(wav, clean.astype(np.float32), SR, subtype="PCM_24")
+    sf.write(wav, mixed, SR, subtype="PCM_24")
     subprocess.run(
         [
             ffmpeg_exe(), "-y", "-v", "error",
@@ -109,8 +136,7 @@ def main() -> int:
     meta = {
         "voice_id": "voice-27",
         "source_mix": "final-dub-nateq-bleed.mp4",
-        "note": "Same fluent take as the approved mix. Original narrator subtracted only in leak frames; speech not re-chopped word-by-word.",
-        "leak_frames": leak_frames,
+        "note": "Fluent approved take. Original narrator Wiener-suppressed in the speech band; not re-chopped.",
         "merge": "forbidden",
         "original_voice_removed": True,
         "speech_relaid": False,
@@ -119,7 +145,7 @@ def main() -> int:
     (HERE / "final-dub-nateq.agent.json").write_text(
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
-    print("wrote", OUT, "size", OUT.stat().st_size, "leak_frames", leak_frames)
+    print("wrote", OUT, "size", OUT.stat().st_size)
     return 0
 
 
