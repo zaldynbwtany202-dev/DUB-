@@ -1,9 +1,9 @@
 {
   "voice_id": "voice-27",
+  "note": "Restored the mix the user called amazing. Later stacked DSP wrecked it. Original voice still quietly in the bed — do not restack filters.",
   "source_mix": "final-dub-nateq-bleed.mp4",
-  "note": "Fluent approved take. Original narrator Wiener-suppressed in the speech band; not re-chopped.",
-  "merge": "forbidden",
-  "original_voice_removed": true,
   "speech_relaid": false,
+  "stacked_processing": false,
+  "merge": "forbidden",
   "output": "dubs/0911-1/clone/real-dub/from-full-srt/nateq/final-dub-nateq.mp4"
 }
