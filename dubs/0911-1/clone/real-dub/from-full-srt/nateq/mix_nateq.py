@@ -47,6 +47,67 @@ PHRASES = [
 ]
 
 
+def write_clean_stems() -> None:
+    """Rebuild vocals + a speech-free bed from the original stereo mix."""
+    from youtube_auto_dub.stem_split import decode_stereo, split_center, _stft, _istft
+
+    VOCALS.parent.mkdir(parents=True, exist_ok=True)
+    left, right = decode_stereo(VIDEO, 44100)
+    voice, residual = split_center(left, right, 44100, strength=2.0)
+    # Spectral gate: wherever the narrator dominates a bin, mute it in the bed.
+    v_spec = _stft(voice)
+    r_spec = _stft(residual)
+    mag_v, mag_r = np.abs(v_spec), np.abs(r_spec)
+    kill = mag_v > (mag_r * 0.35)
+    freqs = np.fft.rfftfreq(v_spec.shape[0] * 2 - 2 if False else 4096, 1.0 / 44100)
+    # stem_split N_FFT is 4096
+    from youtube_auto_dub.stem_split import N_FFT
+    freqs = np.fft.rfftfreq(N_FFT, 1.0 / 44100)
+    speech = ((freqs >= 160.0) & (freqs <= 4200.0))[:, None]
+    mask = np.ones_like(mag_r, dtype=np.float32)
+    mask[kill & speech] = 0.04
+    bed = _istft(r_spec * mask, len(residual))
+    bed = _duck_original_voice(bed, voice, 44100)
+    sf.write(VOCALS, voice.astype(np.float32), 44100)
+    sf.write(MUSIC, bed.astype(np.float32), 44100)
+    print(
+        "stems",
+        "voice_peak",
+        float(np.max(np.abs(voice))),
+        "bed_peak",
+        float(np.max(np.abs(bed))),
+        "bed_rms",
+        float(np.sqrt(np.mean(bed ** 2))),
+    )
+
+
+def _duck_original_voice(bed: np.ndarray, voice: np.ndarray, sr: int) -> np.ndarray:
+    """Attenuate 180–3800 Hz in the bed while the original narrator is speaking."""
+    n = min(len(bed), len(voice))
+    bed = bed[:n].astype(np.float32)
+    voice = voice[:n].astype(np.float32)
+    frame = max(1, int(sr * 0.02))
+    hop = frame
+    n_fft = 2048
+    window = np.hanning(n_fft).astype(np.float32)
+    freqs = np.fft.rfftfreq(n_fft, 1.0 / sr)
+    speech = (freqs >= 180.0) & (freqs <= 3800.0)
+    v_peak = float(np.max(np.abs(voice)) or 1.0)
+    out = bed.copy()
+    for start in range(0, n - n_fft, hop):
+        v = voice[start:start + n_fft]
+        rms = float(np.sqrt(np.mean(v ** 2)))
+        if rms < v_peak * 0.04:
+            continue
+        block = out[start:start + n_fft] * window
+        spec = np.fft.rfft(block)
+        # 26–32 dB down in the speech band; keep bass/air for the score.
+        spec[speech] *= 0.03
+        recon = np.fft.irfft(spec, n=n_fft).astype(np.float32) * window
+        out[start:start + n_fft] = out[start:start + n_fft] * (1.0 - window) + recon
+    return out
+
+
 def decode(path: Path, sr: int = SR) -> np.ndarray:
     raw = subprocess.run(
         [ffmpeg_exe(), "-v", "error", "-i", str(path), "-ar", str(sr), "-ac", "1", "-f", "f32le", "-"],
@@ -153,6 +214,7 @@ def layout(dub: np.ndarray, original: np.ndarray) -> tuple[np.ndarray, dict]:
 
 
 def main() -> int:
+    write_clean_stems()
     parts = []
     for i in range(10):
         take = decode(HERE / f"seg-{i:04d}.mp3")
@@ -187,7 +249,7 @@ def main() -> int:
         if dub_rms > 1e-6:
             aligned = aligned * (orig_rms / dub_rms) * 1.05
 
-    mixed = aligned + music * 0.42
+    mixed = aligned + music * 0.55
     peak = float(np.max(np.abs(mixed)) or 1.0)
     if peak > 0.95:
         mixed = mixed * (0.95 / peak)
