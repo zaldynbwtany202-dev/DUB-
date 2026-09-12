@@ -38,7 +38,7 @@ DURATION = 32.25
 # Original narrator is faster than this TTS. Matching soundtrack
 # needs a bit over 1.08; never slow down, never chop words.
 MIN_TEMPO = 1.0
-MAX_TEMPO = 1.22
+MAX_TEMPO = 1.28
 
 PHRASES = [
     {
@@ -89,7 +89,7 @@ def clause_audio(take: np.ndarray) -> np.ndarray:
     islands = speech_islands(trimmed, SR, floor_db=-36.0, min_dur=0.12, merge_gap=0.28)
     if not islands:
         raise RuntimeError("no speech")
-    gap = np.zeros(int(SR * 0.06), dtype=np.float32)
+    gap = np.zeros(int(SR * 0.08), dtype=np.float32)
     parts: list[np.ndarray] = []
     for i, (a, b) in enumerate(islands):
         if i:
@@ -129,29 +129,19 @@ def clean_bed(sr: int, n: int) -> np.ndarray:
 def main() -> int:
     phrases = [clause_audio(decode(HERE / f"seg-{i:04d}.mp3")) for i in range(4)]
     n = int(round(DURATION * SR))
+    pause = int(SR * 0.45)
     speech_len = sum(len(p) for p in phrases)
-    room = n - int(SR * 0.04)
-    needed = (speech_len / SR) / (room / SR)
+    room = n - 3 * pause - int(SR * 0.06)
+    needed = (speech_len / SR) / max(room / SR, 1e-6)
     if needed > MAX_TEMPO:
         raise RuntimeError(f"needs {needed:.3f}x; cap {MAX_TEMPO}")
     tempo = MIN_TEMPO if needed <= MIN_TEMPO else needed
     scaled = [scale_audio(p, tempo) for p in phrases]
-    starts_sec = [p["start"] for p in PHRASES]
-    starts = [int(s * SR) for s in starts_sec]
-    for i in range(1, 4):
-        min_start = starts[i - 1] + len(scaled[i - 1])
-        if starts[i] < min_start:
-            starts[i] = min_start
-    last = starts[-1] + len(scaled[-1])
-    if last > n:
-        shift = last - n
-        starts = [max(0, s - shift) for s in starts]
-        for i in range(1, 4):
-            min_start = starts[i - 1] + len(scaled[i - 1])
-            if starts[i] < min_start:
-                starts[i] = min_start
-        if starts[-1] + len(scaled[-1]) > n:
-            raise RuntimeError("overrun; refusing to truncate")
+    starts = [int(SR * 0.04)]
+    for i in range(3):
+        starts.append(starts[-1] + len(scaled[i]) + pause)
+    if starts[-1] + len(scaled[-1]) > n:
+        raise RuntimeError("overrun; refusing to truncate")
 
     aligned = np.zeros(n, dtype=np.float32)
     placed = []
@@ -168,8 +158,7 @@ def main() -> int:
     aligned[:fade] *= np.linspace(0, 1, fade)
     aligned[-fade:] *= np.linspace(1, 0, fade)
 
-    bed = clean_bed(SR, n)
-    mixed = aligned + bed * 0.25
+    mixed = aligned.copy()
     peak = float(np.max(np.abs(mixed)) or 1.0)
     if peak > 0.95:
         mixed *= 0.95 / peak
@@ -216,6 +205,21 @@ def main() -> int:
         json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print("tempo", round(tempo, 4), "wrote", OUT, "size", OUT.stat().st_size)
+    from youtube_auto_dub.stem_split import decode_stereo, split_center
+    from youtube_auto_dub.island_sync import speech_islands as _islands
+
+    left, right = decode_stereo(VIDEO, SR)
+    voice, _ = split_center(left, right, SR, strength=1.8)
+    nn = min(len(mixed), len(voice))
+    a = mixed[:nn] - mixed[:nn].mean()
+    v = voice[:nn] - voice[:nn].mean()
+    corr = float(np.dot(a, v) / (np.linalg.norm(a) * np.linalg.norm(v) + 1e-12))
+    isl = _islands(mixed, SR, floor_db=-36.0, min_dur=0.12, merge_gap=0.20)
+    print("verify corr", round(corr, 4), "islands", len(isl), [ (round(x/SR,2), round(y/SR,2)) for x,y in isl ])
+    if abs(corr) > 0.05:
+        raise RuntimeError(f"original still in mix corr={corr:.3f}")
+    if not 3 <= len(isl) <= 8:
+        raise RuntimeError(f"expected 3-8 fluent phrases, got {len(isl)} islands")
     return 0
 
 
