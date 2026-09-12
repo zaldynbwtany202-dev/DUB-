@@ -1,3 +1,68 @@
 {
-  "projects": []
+  "projects": [
+    {
+      "slug": "0911-1",
+      "title": "0911-1 — الكلمات من الأصل",
+      "video": "../dubs/0911-1/clone/real-dub/pronounce/final-dub-pronounce.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/pronounce/final-dub-pronounce.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/pronounce/final-dub-pronounce.srt",
+      "size": 24594261,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "voice-21" },
+      "metrics": {
+        "cues": 8,
+        "duration": 32.25,
+        "overlaps": 0,
+        "min_gap": 0
+      }
+    },
+    {
+      "slug": "0911-1-endings",
+      "title": "0911-1 — أواخر الكلمات",
+      "video": "../dubs/0911-1/clone/real-dub/endings/final-dub-endings.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/endings/final-dub-endings.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/endings/final-dub-endings.srt",
+      "size": 24583800,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "voice-20" },
+      "metrics": {
+        "cues": 8,
+        "duration": 32.25,
+        "overlaps": 0,
+        "min_gap": 0
+      }
+    },
+    {
+      "slug": "0911-1-real",
+      "title": "0911-1 — الدبلجة الحقيقية",
+      "video": "../dubs/0911-1/clone/real-dub/final-dub-real.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/final-dub-real.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/final-dub-real.srt",
+      "size": 24583145,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "voice-20" },
+      "metrics": {
+        "cues": 8,
+        "duration": 32.25,
+        "overlaps": 0,
+        "min_gap": 0
+      }
+    },
+    {
+      "slug": "0911-1-source",
+      "title": "0911-1 — الأصل",
+      "video": "../library/0911-1/source.mp4",
+      "srt": "../library/0911-1/source.srt",
+      "vtt": "../library/0911-1/source.srt",
+      "size": 24678579,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "الأصل" },
+      "metrics": {
+        "cues": 8,
+        "duration": 32.25,
+        "overlaps": 0,
+        "min_gap": 0
+      }
+    }
+  ]
 }
