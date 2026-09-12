@@ -18,6 +18,7 @@ def speech_islands(
     floor_db: float = -40.0,
     min_dur: float = 0.12,
     merge_gap: float = 0.18,
+    end_margin: float = 0.0,
 ) -> list[tuple[int, int]]:
     """Return [begin, end) sample index pairs for audible speech."""
     if audio.size < int(sr * min_dur):
@@ -49,7 +50,8 @@ def speech_islands(
             merged[-1][1] = end
         elif end - start >= min_samples:
             merged.append([start, min(end, len(audio))])
-    return [(a, b) for a, b in merged if b > a]
+    pad = int(max(0.0, end_margin) * sr)
+    return [(a, min(b + pad, len(audio))) for a, b in merged if b > a]
 
 
 def _tempo_fit(length: int, room: int, *, min_tempo: float, max_tempo: float, sr: int) -> tuple[int, float]:
