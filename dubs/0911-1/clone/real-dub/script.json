@@ -1,0 +1,18 @@
+{
+  "voice_backend": "agent",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "merge": "forbidden",
+  "note": "Full informal Egyptian covering every original utterance. This is a dub, not the original stem.",
+  "lines": [
+    {"index": 0, "start": 0.9, "end": 5.42, "text": "فضل يضحك ويبتسم لأنه بعد سنين طويلة وهو يشرب مية من الطين"},
+    {"index": 1, "start": 5.42, "end": 9.86, "text": "في أرض المعركة. أخيرا بقى قدامه مية نضيفة يقدر يشربها."},
+    {"index": 2, "start": 9.86, "end": 14.1, "text": "الدفعة دي اعتبرها رفاهية على البطن. وعلى ما الليل جه أخد"},
+    {"index": 3, "start": 14.1, "end": 18.04, "text": "قراره وقال لنفسه إنه هيعمل كل اللي يقدر عليه ويدي المكان فرصة"},
+    {"index": 4, "start": 18.04, "end": 22.48, "text": "أخيرة. لكن لو الدنيا فضلت مقفلة بعد يومين هيسيب"},
+    {"index": 5, "start": 22.48, "end": 27.94, "text": "المكان قبل ما يموت هنا. ولو وصلت لكده هيدور على قرية تانية ويحاول يفهمهم بأي"},
+    {"index": 6, "start": 27.94, "end": 29.48, "text": "طريقة علشان يفضل دايما"},
+    {"index": 7, "start": 29.48, "end": 32.25, "text": "معاه وصية أهله الأخيرة قبل ما يموت"}
+  ]
+}

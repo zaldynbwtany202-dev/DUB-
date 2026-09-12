@@ -1,0 +1,157 @@
+{
+  "video": "../../../library/0911-1/source.mp4",
+  "background_audio": "stems/music.wav",
+  "voice_backend": "agent",
+  "voice_id": "voice-20",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "sample_rate": 24000,
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.9,
+      "end": 9.86,
+      "text": "فضل يضحك ويبتسم لأنه بعد سنين طويلة وهو يشرب مية من الطين في أرض المعركة. أخيرا بقى قدامه مية نضيفة يقدر يشربها.",
+      "audio": "group-0000.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    },
+    {
+      "index": 1,
+      "start": 9.86,
+      "end": 22.48,
+      "text": "الدفعة دي اعتبرها رفاهية على البطن. وعلى ما الليل جه أخد قراره وقال لنفسه إنه هيعمل كل اللي يقدر عليه ويدي المكان فرصة أخيرة. لكن لو الدنيا فضلت مقفلة بعد يومين هيسيب",
+      "audio": "group-0001.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    },
+    {
+      "index": 2,
+      "start": 22.48,
+      "end": 32.25,
+      "text": "المكان قبل ما يموت هنا. ولو وصلت لكده هيدور على قرية تانية ويحاول يفهمهم بأي طريقة علشان يفضل دايما معاه وصية أهله الأخيرة قبل ما يموت",
+      "audio": "group-0002.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    }
+  ],
+  "conversions": [
+    {
+      "index": 0,
+      "tempo": 1.040268456375839,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 5,
+      "original_islands": 3,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 1.461
+        },
+        {
+          "start": 1.461,
+          "end": 3.067
+        },
+        {
+          "start": 3.067,
+          "end": 4.672
+        },
+        {
+          "start": 4.672,
+          "end": 5.874
+        },
+        {
+          "start": 5.894,
+          "end": 8.96
+        }
+      ],
+      "speech_seconds": 8.94,
+      "file": "group-0000.wav"
+    },
+    {
+      "index": 1,
+      "tempo": 1.05,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 8,
+      "original_islands": 5,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 2.952
+        },
+        {
+          "start": 2.952,
+          "end": 4.476
+        },
+        {
+          "start": 4.476,
+          "end": 5.01
+        },
+        {
+          "start": 5.01,
+          "end": 7.8
+        },
+        {
+          "start": 7.8,
+          "end": 9.019
+        },
+        {
+          "start": 9.019,
+          "end": 9.476
+        },
+        {
+          "start": 9.476,
+          "end": 12.038
+        },
+        {
+          "start": 12.058,
+          "end": 12.62
+        }
+      ],
+      "speech_seconds": 12.6,
+      "file": "group-0001.wav"
+    },
+    {
+      "index": 2,
+      "tempo": 1.0584615384615386,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 6,
+      "original_islands": 4,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 1.493
+        },
+        {
+          "start": 1.493,
+          "end": 2.494
+        },
+        {
+          "start": 2.494,
+          "end": 5.366
+        },
+        {
+          "start": 5.366,
+          "end": 7.388
+        },
+        {
+          "start": 7.388,
+          "end": 9.013
+        },
+        {
+          "start": 9.033,
+          "end": 9.77
+        }
+      ],
+      "speech_seconds": 9.75,
+      "file": "group-0002.wav"
+    }
+  ]
+}
