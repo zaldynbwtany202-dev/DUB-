@@ -1,0 +1,167 @@
+{
+  "video": "../../../library/0911-1/source.mp4",
+  "background_audio": "../original/music.wav",
+  "voice_backend": "agent",
+  "voice_id": "clone-original-fullwords",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "sample_rate": 24000,
+  "align": "original_speech_islands",
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.9,
+      "end": 9.86,
+      "text": "فضل يضحك ويبتسم. بعد سنين طويلة وهو يشرب مية من الطين في أرض المعركة، أخيرا لقى مية نضيفة.",
+      "audio": "seg-0000.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    },
+    {
+      "index": 1,
+      "start": 9.86,
+      "end": 18.04,
+      "text": "والدفعة دي كانت رفاهية على البطن. وعلى ما الليل جه، أخد قراره إنه يعمل كل اللي يقدر عليه.",
+      "audio": "seg-0001.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    },
+    {
+      "index": 2,
+      "start": 18.04,
+      "end": 27.94,
+      "text": "ويدي المكان فرصة أخيرة. لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت هنا.",
+      "audio": "seg-0002.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    },
+    {
+      "index": 3,
+      "start": 27.94,
+      "end": 32.25,
+      "text": "ويدور على قرية تانية، ومعاه وصية أهله.",
+      "audio": "seg-0003.wav",
+      "speaker": "NARRATOR",
+      "pre_aligned": true
+    }
+  ],
+  "conversions": [
+    {
+      "index": 0,
+      "pitch_semitones": 2.7862011533626303,
+      "formant_ratio": 1.1483489523228303,
+      "tempo": 1.0,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 5,
+      "original_islands": 3,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 1.81
+        },
+        {
+          "start": 1.81,
+          "end": 4.61
+        },
+        {
+          "start": 5.7,
+          "end": 7.12
+        },
+        {
+          "start": 7.16,
+          "end": 7.8
+        },
+        {
+          "start": 7.84,
+          "end": 8.96
+        }
+      ],
+      "speech_seconds": 7.79,
+      "file": "seg-0000.wav"
+    },
+    {
+      "index": 1,
+      "pitch_semitones": 1.3220229446200995,
+      "formant_ratio": 1.105766495527322,
+      "tempo": 1.0,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 3,
+      "original_islands": 4,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 2.46
+        },
+        {
+          "start": 2.46,
+          "end": 3.35
+        },
+        {
+          "start": 3.44,
+          "end": 6.07
+        }
+      ],
+      "speech_seconds": 5.98,
+      "file": "seg-0001.wav"
+    },
+    {
+      "index": 2,
+      "pitch_semitones": -3.3875971172275516,
+      "formant_ratio": 1.078599779601519,
+      "tempo": 1.0,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 4,
+      "original_islands": 4,
+      "placements": [
+        {
+          "start": 0.03,
+          "end": 1.9
+        },
+        {
+          "start": 3.01,
+          "end": 4.96
+        },
+        {
+          "start": 5.94,
+          "end": 6.74
+        },
+        {
+          "start": 7.2,
+          "end": 9.36
+        }
+      ],
+      "speech_seconds": 6.78,
+      "file": "seg-0002.wav"
+    },
+    {
+      "index": 3,
+      "pitch_semitones": 0.9231776515601419,
+      "formant_ratio": 1.2,
+      "tempo": 1.0,
+      "slowed": false,
+      "speech_truncated": false,
+      "dub_islands": 2,
+      "original_islands": 2,
+      "placements": [
+        {
+          "start": 0.0,
+          "end": 1.61
+        },
+        {
+          "start": 1.61,
+          "end": 2.94
+        }
+      ],
+      "speech_seconds": 2.94,
+      "file": "seg-0003.wav"
+    }
+  ]
+}

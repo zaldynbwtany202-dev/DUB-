@@ -134,6 +134,17 @@ def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 1.0,
     if not all(math.isfinite(t) for t in (audio_start, audio_end)) or audio_start < 0 or audio_end <= audio_start or audio_end > source_duration + 0.001:
         raise ValueError("Invalid take slice; do not cut spoken words to fit a cue")
     samples = original[round(audio_start * sr):round(audio_end * sr)]
+    if seg.get("pre_aligned"):
+        window = float(seg["end"]) - float(seg["start"])
+        if len(samples) > round(window * sr) + 1:
+            raise ValueError(f"Pre-aligned cue {seg.get('index', order)} overruns its window; refusing to truncate speech")
+        return samples.astype(np.float32, copy=False), {
+            "index": seg.get("index", order), "start": float(seg["start"]), "end": float(seg["end"]),
+            "audio": str(seg["audio"]), "audio_start": audio_start, "audio_end": audio_end,
+            "natural_seconds": len(samples) / sr, "tempo": 1.0, "fitted_seconds": len(samples) / sr,
+            "text": seg["text"], "speech_truncated": False, "leading_silence_removed": 0.0,
+            "trailing_silence_removed": 0.0, "pre_aligned": True,
+        }
     samples, silence = trim_silence(samples, sr)
     natural_duration = len(samples) / sr
     window = float(seg["end"]) - float(seg["start"])

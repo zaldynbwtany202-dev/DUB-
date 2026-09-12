@@ -1,0 +1,33 @@
+{
+  "lines": [
+    {
+      "index": 0,
+      "start": 0.9,
+      "end": 9.86,
+      "audio_src": "/home/user/DUB-/dubs/0911-1/voice17/seg-0000.mp3",
+      "text": "فضل يضحك ويبتسم. بعد سنين طويلة وهو يشرب مية من الطين في أرض المعركة، أخيرا لقى مية نضيفة."
+    },
+    {
+      "index": 1,
+      "start": 9.86,
+      "end": 18.04,
+      "audio_src": "/home/user/DUB-/dubs/0911-1/voice17/seg-0001.mp3",
+      "text": "والدفعة دي كانت رفاهية على البطن. وعلى ما الليل جه، أخد قراره إنه يعمل كل اللي يقدر عليه."
+    },
+    {
+      "index": 2,
+      "start": 18.04,
+      "end": 27.94,
+      "audio_src": "/home/user/DUB-/dubs/0911-1/voice17/seg-0002.mp3",
+      "text": "ويدي المكان فرصة أخيرة. لكن لو الدنيا فضلت مقفلة، بعد يومين هيسيب المكان قبل ما يموت هنا."
+    },
+    {
+      "index": 3,
+      "start": 27.94,
+      "end": 32.25,
+      "audio_src": "/home/user/DUB-/dubs/0911-1/voice17/seg-0003.mp3",
+      "text": "ويدور على قرية تانية، ومعاه وصية أهله."
+    }
+  ],
+  "note": "fuller story than the 8-line cut; last line still misses طريقة/قبل ما يموت"
+}
