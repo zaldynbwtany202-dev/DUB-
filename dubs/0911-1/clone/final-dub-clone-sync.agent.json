@@ -1,0 +1,200 @@
+{
+  "voice_backend": "agent",
+  "voice_id": "clone-original",
+  "language": "ar-EG",
+  "video": "library/0911-1/source.mp4",
+  "output": "dubs/0911-1/clone/final-dub-clone-sync.mp4",
+  "source_duration": 32.25,
+  "duration": 32.25,
+  "status": "complete",
+  "segments": 8,
+  "mix_background": true,
+  "background_method": "approximate_source_separation_not_guaranteed_speech_free",
+  "video_codec": "copy",
+  "target_lufs": -16,
+  "speech_truncated": false,
+  "tempo_policy": {
+    "min": 1.0,
+    "max": 1.08
+  },
+  "narration_sample_rate": 24000,
+  "loudness_normalization": {
+    "input_i": "-20.16",
+    "input_tp": "-0.43",
+    "input_lra": "3.90",
+    "input_thresh": "-30.27",
+    "output_i": "-16.97",
+    "output_tp": "-1.50",
+    "output_lra": "3.20",
+    "output_thresh": "-27.05",
+    "normalization_type": "dynamic",
+    "target_offset": "0.97"
+  },
+  "placements": [
+    {
+      "index": 0,
+      "start": 0.9,
+      "end": 5.42,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0000.wav",
+      "audio_start": 0.0,
+      "audio_end": 4.36,
+      "natural_seconds": 3.83,
+      "tempo": 1.0,
+      "fitted_seconds": 3.83,
+      "text": "فضل يضحك بعد سنين يشرب مية طين",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.2,
+      "trailing_silence_removed": 0.33
+    },
+    {
+      "index": 1,
+      "start": 5.42,
+      "end": 9.86,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0001.wav",
+      "audio_start": 0.0,
+      "audio_end": 4.44,
+      "natural_seconds": 3.98,
+      "tempo": 1.0,
+      "fitted_seconds": 3.98,
+      "text": "أرض المعركة. أخيرا لقى مية نضيفة.",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.2,
+      "trailing_silence_removed": 0.26
+    },
+    {
+      "index": 2,
+      "start": 9.86,
+      "end": 14.1,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0002.wav",
+      "audio_start": 0.0,
+      "audio_end": 4.52,
+      "natural_seconds": 4.37,
+      "tempo": 1.0504807692307692,
+      "fitted_seconds": 4.17,
+      "text": "اعتبرها رفاهية. والليل جه أخد",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.15,
+      "trailing_silence_removed": 0.0
+    },
+    {
+      "index": 3,
+      "start": 14.1,
+      "end": 18.04,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0003.wav",
+      "audio_start": 0.0,
+      "audio_end": 2.84,
+      "natural_seconds": 2.34,
+      "tempo": 1.0,
+      "fitted_seconds": 2.34,
+      "text": "قراره يعمل كل اللي يقدر.",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.24,
+      "trailing_silence_removed": 0.26
+    },
+    {
+      "index": 4,
+      "start": 18.04,
+      "end": 22.48,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0004.wav",
+      "audio_start": 0.0,
+      "audio_end": 4.68,
+      "natural_seconds": 4.18,
+      "tempo": 1.0,
+      "fitted_seconds": 4.18,
+      "text": "أخيرة. لو الدنيا مقفلة بعد يومين هيسيب",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.23,
+      "trailing_silence_removed": 0.27
+    },
+    {
+      "index": 5,
+      "start": 22.48,
+      "end": 27.94,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0005.wav",
+      "audio_start": 0.0,
+      "audio_end": 4.0,
+      "natural_seconds": 3.63,
+      "tempo": 1.0,
+      "fitted_seconds": 3.63,
+      "text": "المكان قبل ما يموت هنا. ويدور على قرية تانية.",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.17,
+      "trailing_silence_removed": 0.2
+    },
+    {
+      "index": 6,
+      "start": 27.94,
+      "end": 29.48,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0006.wav",
+      "audio_start": 0.0,
+      "audio_end": 1.6,
+      "natural_seconds": 1.17,
+      "tempo": 1.0,
+      "fitted_seconds": 1.17,
+      "text": "طريقة دايما",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.15,
+      "trailing_silence_removed": 0.28
+    },
+    {
+      "index": 7,
+      "start": 29.48,
+      "end": 32.25,
+      "audio": "/home/user/DUB-/dubs/0911-1/clone/seg-0007.wav",
+      "audio_start": 0.0,
+      "audio_end": 2.76,
+      "natural_seconds": 2.32,
+      "tempo": 1.0,
+      "fitted_seconds": 2.32,
+      "text": "معاه وصية أهله الأخيرة",
+      "speech_truncated": false,
+      "leading_silence_removed": 0.17,
+      "trailing_silence_removed": 0.27
+    }
+  ],
+  "timing_mode": "source_audio",
+  "slowed": false,
+  "source_audio_coverage": {
+    "source_windows": 8,
+    "uncovered_seconds": 5.73,
+    "longest_uncovered_seconds": 1.83,
+    "holes": [
+      {
+        "start": 0.9,
+        "end": 5.42,
+        "uncovered": 0.69
+      },
+      {
+        "start": 5.42,
+        "end": 9.86,
+        "uncovered": 0.46
+      },
+      {
+        "start": 14.1,
+        "end": 18.04,
+        "uncovered": 1.6
+      },
+      {
+        "start": 18.04,
+        "end": 22.48,
+        "uncovered": 0.26
+      },
+      {
+        "start": 22.48,
+        "end": 27.94,
+        "uncovered": 1.83
+      },
+      {
+        "start": 27.94,
+        "end": 29.48,
+        "uncovered": 0.37
+      },
+      {
+        "start": 29.48,
+        "end": 32.25,
+        "uncovered": 0.45
+      }
+    ],
+    "slowed": false
+  }
+}

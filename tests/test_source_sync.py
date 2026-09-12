@@ -8,6 +8,8 @@ from youtube_auto_dub.source_sync import (
     forbid_merge,
     load_policy,
     plan_from_asr,
+    soundtrack_onset,
+    soundtrack_windows,
     tts_safe_egyptian,
     word_budget,
 )
@@ -68,6 +70,39 @@ def test_plan_follows_source_soundtrack_windows():
     assert sheet["segments"][0]["start"] == 0.0
     assert sheet["segments"][1]["start"] == 5.32
     assert sheet["segments"][0]["word_budget"] == word_budget(5.32)
+
+
+def test_soundtrack_onset_uses_dtw_not_asr_padding():
+    raw = {
+        "start": 0.0,
+        "end": 5.32,
+        "text": "فدل يتحك",
+        "words": [
+            {"word": "فدل", "start": 0.0, "end": 0.45, "dtw_points": [0.9, 1.1]},
+            {"word": "يتحك", "start": 0.45, "end": 1.05, "dtw_points": [1.28]},
+        ],
+    }
+    assert soundtrack_onset(raw) == pytest.approx(0.9)
+    windows = soundtrack_windows([
+        raw,
+        {"start": 5.32, "end": 9.72, "text": "ارض", "words": [
+            {"word": "ارض", "start": 5.32, "end": 5.54, "dtw_points": [5.42, 5.52]},
+        ]},
+    ], duration=9.72)
+    assert windows[0] == (0.9, 5.42)
+    assert windows[1][0] == 5.42
+
+
+def test_plan_with_dtw_places_cues_on_soundtrack_onsets():
+    sheet = plan_from_asr([
+        {"start": 0.0, "end": 5.32, "text": "فدل يتحك ويبتسم",
+         "words": [{"word": "فدل", "start": 0.0, "end": 0.45, "dtw_points": [0.9]}]},
+        {"start": 5.32, "end": 9.72, "text": "ارض المعركة",
+         "words": [{"word": "ارض", "start": 5.32, "end": 5.54, "dtw_points": [5.42]}]},
+    ], duration=9.72)
+    assert sheet["segments"][0]["start"] == 0.9
+    assert sheet["segments"][0]["end"] == 5.42
+    assert sheet["segments"][1]["start"] == 5.42
 
 
 def test_overlapping_source_windows_are_rejected():

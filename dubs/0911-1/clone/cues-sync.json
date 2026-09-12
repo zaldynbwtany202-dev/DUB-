@@ -1,0 +1,162 @@
+{
+  "video": "../../../library/0911-1/source.mp4",
+  "voice_backend": "agent",
+  "voice_id": "clone-original",
+  "language": "ar-EG",
+  "timing_mode": "source_audio",
+  "min_tempo": 1.0,
+  "max_tempo": 1.08,
+  "never_slow_to_fill": true,
+  "never_truncate_speech": true,
+  "merge": "forbidden",
+  "sample_rate": 24000,
+  "segments": [
+    {
+      "index": 0,
+      "start": 0.9,
+      "end": 5.42,
+      "text": "فضل يضحك بعد سنين يشرب مية طين",
+      "audio": "seg-0000.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 0.0,
+      "asr_end": 5.32
+    },
+    {
+      "index": 1,
+      "start": 5.42,
+      "end": 9.86,
+      "text": "أرض المعركة. أخيرا لقى مية نضيفة.",
+      "audio": "seg-0001.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 5.32,
+      "asr_end": 9.72
+    },
+    {
+      "index": 2,
+      "start": 9.86,
+      "end": 14.1,
+      "text": "اعتبرها رفاهية. والليل جه أخد",
+      "audio": "seg-0002.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 9.72,
+      "asr_end": 13.84
+    },
+    {
+      "index": 3,
+      "start": 14.1,
+      "end": 18.04,
+      "text": "قراره يعمل كل اللي يقدر.",
+      "audio": "seg-0003.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 13.84,
+      "asr_end": 17.76
+    },
+    {
+      "index": 4,
+      "start": 18.04,
+      "end": 22.48,
+      "text": "أخيرة. لو الدنيا مقفلة بعد يومين هيسيب",
+      "audio": "seg-0004.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 17.76,
+      "asr_end": 22.2
+    },
+    {
+      "index": 5,
+      "start": 22.48,
+      "end": 27.94,
+      "text": "المكان قبل ما يموت هنا. ويدور على قرية تانية.",
+      "audio": "seg-0005.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 22.2,
+      "asr_end": 27.78
+    },
+    {
+      "index": 6,
+      "start": 27.94,
+      "end": 29.48,
+      "text": "طريقة دايما",
+      "audio": "seg-0006.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 27.78,
+      "asr_end": 29.34
+    },
+    {
+      "index": 7,
+      "start": 29.48,
+      "end": 32.25,
+      "text": "معاه وصية أهله الأخيرة",
+      "audio": "seg-0007.wav",
+      "speaker": "NARRATOR",
+      "asr_start": 29.34,
+      "asr_end": 32.2525
+    }
+  ],
+  "clone_method": "praat_f0_formant_from_original_vocals",
+  "original_profile": {
+    "f0_median": 175.9690254413048,
+    "f0_iqr": 37.654240269210135,
+    "f1": 475.2491088192207,
+    "f2": 1422.77362089076,
+    "f3": 2735.9466938154455
+  },
+  "conversions": [
+    {
+      "index": 0,
+      "file": "seg-0000.wav",
+      "pitch_semitones": 2.934874657655621,
+      "formant_ratio": 1.1085516328089773,
+      "seconds": 4.36
+    },
+    {
+      "index": 1,
+      "file": "seg-0001.wav",
+      "pitch_semitones": 3.7782017530415333,
+      "formant_ratio": 1.1215713494657862,
+      "seconds": 4.44
+    },
+    {
+      "index": 2,
+      "file": "seg-0002.wav",
+      "pitch_semitones": 4.0,
+      "formant_ratio": 1.0807063659442815,
+      "seconds": 4.52
+    },
+    {
+      "index": 3,
+      "file": "seg-0003.wav",
+      "pitch_semitones": -4.0,
+      "formant_ratio": 1.0355335889311226,
+      "seconds": 2.84
+    },
+    {
+      "index": 4,
+      "file": "seg-0004.wav",
+      "pitch_semitones": -1.465480383653098,
+      "formant_ratio": 1.1043205249147723,
+      "seconds": 4.68
+    },
+    {
+      "index": 5,
+      "file": "seg-0005.wav",
+      "pitch_semitones": 0.833437903424757,
+      "formant_ratio": 1.0563150964434636,
+      "seconds": 4.0
+    },
+    {
+      "index": 6,
+      "file": "seg-0006.wav",
+      "pitch_semitones": 1.154476169038774,
+      "formant_ratio": 1.1402074043622301,
+      "seconds": 1.6
+    },
+    {
+      "index": 7,
+      "file": "seg-0007.wav",
+      "pitch_semitones": 2.1190646043299037,
+      "formant_ratio": 1.0556991958748614,
+      "seconds": 2.76
+    }
+  ],
+  "align": "soundtrack_dtw_onset"
+}

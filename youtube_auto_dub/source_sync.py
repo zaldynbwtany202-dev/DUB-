@@ -102,6 +102,81 @@ def evaluate_take(
     }
 
 
+def soundtrack_onset(raw: dict[str, Any]) -> float:
+    """When the original narrator actually starts this utterance.
+
+    Whisper's segment ``start`` is often padded silence. DTW word points track
+    the soundtrack; falling back to the first word time, then the ASR bound.
+    """
+    words = raw.get("words") or []
+    for word in words[:4]:
+        points = [float(p) for p in (word.get("dtw_points") or []) if _finite_time(p)]
+        if points:
+            return min(points)
+    if words and _finite_time(words[0].get("start")):
+        return float(words[0]["start"])
+    return float(raw["start"])
+
+
+def _finite_time(value: Any) -> bool:
+    try:
+        return math.isfinite(float(value))
+    except (TypeError, ValueError):
+        return False
+
+
+def soundtrack_windows(
+    segments: list[dict[str, Any]],
+    *,
+    duration: float | None = None,
+) -> list[tuple[float, float]]:
+    """One [onset, next-onset) interval per original utterance.
+
+    Dubbed speech is placed on these onsets so it starts with the narrator,
+    not with ASR padding. The end is the next utterance so takes never overlap.
+    """
+    if not segments:
+        return []
+    if not any(raw.get("words") for raw in segments):
+        windows: list[tuple[float, float]] = []
+        previous_end = 0.0
+        for raw in segments:
+            start, end = float(raw["start"]), float(raw["end"])
+            if not all(math.isfinite(t) for t in (start, end)) or end <= start:
+                raise ValueError(f"invalid source speech interval {start}..{end}")
+            if start < previous_end - 0.001:
+                raise ValueError("source speech windows overlap")
+            if duration is not None:
+                end = min(end, float(duration))
+            windows.append((round(start, 3), round(end, 3)))
+            previous_end = end
+        return windows
+    onsets = [soundtrack_onset(raw) for raw in segments]
+    last = duration
+    if last is None:
+        last = float(segments[-1]["end"])
+        words = segments[-1].get("words") or []
+        dtw = [float(p) for w in words for p in (w.get("dtw_points") or []) if _finite_time(p)]
+        if dtw:
+            last = max(last, max(dtw))
+    windows: list[tuple[float, float]] = []
+    previous_end = 0.0
+    for i, onset in enumerate(onsets):
+        if not math.isfinite(onset):
+            raise ValueError(f"invalid source speech onset {onset}")
+        end = onsets[i + 1] if i + 1 < len(onsets) else last
+        if not math.isfinite(end) or end <= onset:
+            end = float(segments[i]["end"])
+        if duration is not None:
+            end = min(float(end), float(duration))
+            onset = min(float(onset), float(duration))
+        if onset < previous_end - 0.001:
+            raise ValueError("source speech windows overlap")
+        windows.append((round(float(onset), 3), round(float(end), 3)))
+        previous_end = end
+    return windows
+
+
 def plan_from_asr(
     segments: list[dict[str, Any]],
     *,
@@ -109,24 +184,21 @@ def plan_from_asr(
     min_tempo: float = 1.0,
     max_tempo: float = 1.08,
     audio_dir: str = "agent_voice",
+    duration: float | None = None,
 ) -> dict[str, Any]:
     """One cue per original soundtrack utterance, with a word budget."""
+    windows = soundtrack_windows(segments, duration=duration)
     cues = []
-    previous_end = 0.0
-    for i, raw in enumerate(segments):
-        start, end = float(raw["start"]), float(raw["end"])
-        if not all(math.isfinite(t) for t in (start, end)) or end <= start:
-            raise ValueError(f"invalid source speech interval {start}..{end}")
-        if start < previous_end - 0.001:
-            raise ValueError("source speech windows overlap")
+    for i, (start, end) in enumerate(windows):
+        raw = segments[i]
         source = str(raw.get("text") or raw.get("source_text") or "").strip()
         if not source:
             continue
         window = end - start
         cues.append({
             "index": len(cues),
-            "start": round(start, 3),
-            "end": round(end, 3),
+            "start": start,
+            "end": end,
             "source_text": source,
             "text": tts_safe_egyptian(str(raw.get("dub_text") or source)),
             "word_budget": word_budget(window, words_per_second=words_per_second),
@@ -134,7 +206,6 @@ def plan_from_asr(
             "audio": f"{audio_dir}/seg-{len(cues):04d}.mp3",
             "speaker": raw.get("speaker") or "NARRATOR",
         })
-        previous_end = end
     if not cues:
         raise ValueError("no source speech to dub")
     return {
