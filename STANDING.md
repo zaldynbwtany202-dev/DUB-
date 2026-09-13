@@ -21,4 +21,6 @@
 - كليب 0911-1: الكلمات من `LOCKED_TRANSCRIPT.json` فقط. Whisper ليس مصدر الكلمات.
 - الفيديو الكامل (حكاية داس، 52:22): نفس الصوت `voice-33`. المصدر `library/das-full/source.mp4`.
 - **ممنوع تسجيل Whisper.** التفريغ الآلي توقيت فقط. الكلمات من سكربت المستخدم. `dubs/das-full/part1/final-dub-part1.mp4` مرفوض: كلشي خاطئ.
-- سكربت الكامل من يوتيوب `NB2YcTh_L6k` (نفس المدة 52:22، قناة ملخص انمى كامل): `library/das-full/youtube/` — `unique.txt` + `NB2YcTh_L6k.srt` + `NB2YcTh_L6k.words.srt`. ليس Whisper. json3/timedtext يوتيوب يرجع 500؛ التوقيت من نوافذ الكابشن ثم توزيع كلمة بكلمة داخل النافذة.
+- سكربت الكامل من يوتيوب `NB2YcTh_L6k` (نفس المدة 52:22، قناة ملخص انمى كامل): `library/das-full/youtube/unique.txt`. ليس Whisper.
+- `NB2YcTh_L6k.words.srt` مرفوض: توزيع داخل نافذة 30 ثانية ليس وقت النطق.
+- كلمة بكلمة مع وقت النطق: `NB2YcTh_L6k.spoken.srt` — الكلمات من يوتيوب، الأوقات من الصوت (`full.wav` / whisper.cpp توقيت فقط).
