@@ -6,12 +6,12 @@
       "video": "../dubs/0911-1/clone/real-dub/from-full-srt/fresh/final-dub-fresh.mp4",
       "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/fresh/final-dub-fresh.srt",
       "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/fresh/final-dub-fresh.srt",
-      "size": 24568133,
+      "size": 4123591,
       "dialect": "egy",
       "cast": { "NARRATOR": "voice-27-clone-original" },
       "metrics": {
-        "cues": 10,
-        "duration": 32.25,
+        "cues": 4,
+        "duration": 45.95,
         "overlaps": 0,
         "min_gap": 0
       }

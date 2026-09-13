@@ -1,33 +1,12 @@
 {
   "voice_id": "voice-27",
-  "phrases": 4,
-  "tempo": 1.2652,
-  "slowed": false,
-  "speech_truncated": false,
+  "method": "natural_speed_stretch_picture_dub_only",
+  "duration": 45.95,
+  "tempo": 1.0,
+  "corr_original_vocals": -0.0058,
+  "audio_streams": 1,
   "original_voice_in_mix": false,
-  "word_by_word_islands": false,
+  "word_chopping": false,
   "merge": "forbidden",
-  "placements": [
-    {
-      "start": 0.04,
-      "end": 8.37,
-      "text": "الارض بتاعته فضل يضحك ويبتسم لانه بعد ما قضى سنين طويله وهو بيشرب ميه طينيه في ارض المعركه اخيرا بقى قدامه ميه نظيفه بيقدر ان هو يشربها"
-    },
-    {
-      "start": 8.82,
-      "end": 16.123,
-      "text": "ودي في حد ذاتها تعتبر رفاهيه بالنسبه لبطلنا وعلى ما الليل جا داس كان اخد قراره وقال لنفسه ان هو هيعمل كل اللي يقدر عليه"
-    },
-    {
-      "start": 16.573,
-      "end": 23.829,
-      "text": "ويدي المكان ده فرصه اخيره لكن لو الدنيا فضلت مقفله وضلمه في وشه بعد يومين هيمشي وهيسيب المكان قبل ما يموت هنا"
-    },
-    {
-      "start": 24.279,
-      "end": 32.23,
-      "text": "ولو وصلت لكده هيدور على اي قريه ثانيه ويحاول يفيدهم باي طريقه علشان يفضل دايما محقق وصيه اهله الاخيره قبل ما يموتوا وعلى"
-    }
-  ],
   "output": "dubs/0911-1/clone/real-dub/from-full-srt/fresh/final-dub-fresh.mp4"
 }

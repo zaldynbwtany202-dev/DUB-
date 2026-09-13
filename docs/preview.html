@@ -199,7 +199,7 @@ function show(p) {
 
   player.pause();
   player.innerHTML = '';
-  player.src = p.video;
+  player.src = p.video + (p.video.includes('?') ? '&' : '?') + 'v=' + (p.size || Date.now());
   if (p.vtt) {
     const tr = document.createElement('track');
     tr.kind = 'subtitles'; tr.srclang = 'ar'; tr.label = 'العربية';
