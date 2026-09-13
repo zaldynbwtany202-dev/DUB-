@@ -1,0 +1,11 @@
+{
+  "slug": "das-full",
+  "title": "حكاية داس — ملخص أنمي كامل",
+  "source": "library/das-full/source.mp4",
+  "duration": 3142.38,
+  "voice_id": "voice-33",
+  "locked_voice": "dubs/0911-1/LOCKED_VOICE.json",
+  "language": "ar-EG",
+  "note": "Full video of the 0911-1 32s experiment. Always generate with voice-33. No DSP. No merge.",
+  "parent_clip": "library/0911-1/source.mp4"
+}

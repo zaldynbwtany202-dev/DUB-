@@ -30,7 +30,7 @@ const PAGE_PATH = typeof location !== 'undefined' ? location.pathname.split('/')
 const ON_GITHUB_PAGES = PAGE_HOST.endsWith('.github.io');
 export const OWNER = ON_GITHUB_PAGES ? PAGE_HOST.split('.')[0] : 'zaldynbwtany202-dev';
 export const REPO = ON_GITHUB_PAGES ? (PAGE_PATH[0] || `${OWNER}.github.io`) : 'DUB-';
-export const BRANCH = 'arena/01a07c69-dub';
+export const BRANCH = 'arena/01a0922c-dub';
 export const TOKEN_URL =
   'https://github.com/settings/tokens/new?scopes=public_repo&description=ProStudio%20upload';
 

@@ -18,4 +18,5 @@
 
 ## النص
 
-- الكلمات من `LOCKED_TRANSCRIPT.json` فقط. Whisper ليس مصدر الكلمات.
+- كليب 0911-1: الكلمات من `LOCKED_TRANSCRIPT.json` فقط. Whisper ليس مصدر الكلمات.
+- الفيديو الكامل (حكاية داس، 52:22): نفس الصوت `voice-33`. المصدر `library/das-full/source.mp4`.
