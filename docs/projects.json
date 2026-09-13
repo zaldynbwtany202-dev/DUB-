@@ -2,16 +2,16 @@
   "projects": [
     {
       "slug": "0911-1",
-      "title": "0911-1 — العينة كما هي",
-      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.mp4",
-      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.srt",
-      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.srt",
-      "size": 4139167,
+      "title": "0911-1 — نفس صوت العينة",
+      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.srt",
+      "size": 4064644,
       "dialect": "egy",
       "cast": { "NARRATOR": "voice-31" },
       "metrics": {
         "cues": 4,
-        "duration": 45.78,
+        "duration": 45.0,
         "overlaps": 0,
         "min_gap": 0
       }

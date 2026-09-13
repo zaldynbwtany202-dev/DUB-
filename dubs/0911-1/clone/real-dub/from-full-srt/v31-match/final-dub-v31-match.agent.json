@@ -1,0 +1,12 @@
+{
+  "voice_id": "voice-31",
+  "processing": "none",
+  "tempo": 1.0,
+  "duration": 45.0,
+  "corr_original_vocals": -0.0078,
+  "lagged_corr": -0.0143,
+  "audio_streams": 1,
+  "original_voice_in_mix": false,
+  "merge": "forbidden",
+  "output": "dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.mp4"
+}
