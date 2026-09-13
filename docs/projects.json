@@ -2,13 +2,13 @@
   "projects": [
     {
       "slug": "0911-1",
-      "title": "0911-1 — دبلجة voice-30",
-      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v30/final-dub-v30.mp4",
-      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v30/final-dub-v30.srt",
-      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v30/final-dub-v30.srt",
-      "size": 4169905,
+      "title": "0911-1 — استنساخ الراوي",
+      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v30-clone/final-dub-v30-clone.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v30-clone/final-dub-v30-clone.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v30-clone/final-dub-v30-clone.srt",
+      "size": 4123448,
       "dialect": "egy",
-      "cast": { "NARRATOR": "voice-30" },
+      "cast": { "NARRATOR": "voice-30-clone-original" },
       "metrics": {
         "cues": 4,
         "duration": 46.51,
