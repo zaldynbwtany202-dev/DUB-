@@ -20,3 +20,4 @@
 
 - كليب 0911-1: الكلمات من `LOCKED_TRANSCRIPT.json` فقط. Whisper ليس مصدر الكلمات.
 - الفيديو الكامل (حكاية داس، 52:22): نفس الصوت `voice-33`. المصدر `library/das-full/source.mp4`.
+- **ممنوع تسجيل Whisper.** التفريغ الآلي توقيت فقط. الكلمات من سكربت المستخدم. `dubs/das-full/part1/final-dub-part1.mp4` مرفوض: كلشي خاطئ.
