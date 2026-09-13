@@ -1,0 +1,12 @@
+{
+  "voice_id": "voice-33",
+  "processing": "none",
+  "tempo": 1.0,
+  "duration": 44.16,
+  "corr_original_vocals": 0.0001,
+  "lagged_corr": -0.012,
+  "audio_streams": 1,
+  "original_voice_in_mix": false,
+  "merge": "forbidden",
+  "output": "dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4"
+}

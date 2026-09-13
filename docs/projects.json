@@ -2,16 +2,16 @@
   "projects": [
     {
       "slug": "0911-1",
-      "title": "0911-1 — نفس صوت العينة",
-      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.mp4",
-      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.srt",
-      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-match/final-dub-v31-match.srt",
-      "size": 4064644,
+      "title": "0911-1 — العينة المختارة",
+      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.srt",
+      "size": 4042329,
       "dialect": "egy",
-      "cast": { "NARRATOR": "voice-31" },
+      "cast": { "NARRATOR": "voice-33" },
       "metrics": {
         "cues": 4,
-        "duration": 45.0,
+        "duration": 44.16,
         "overlaps": 0,
         "min_gap": 0
       }
