@@ -21,7 +21,7 @@
 ## أين نحن الآن
 
 - **التاريخ:** 2026-09-13
-- **الحالة:** الصوت مقفول دائماً: `voice-33`. المرجع `LOCKED_VOICE.json`. الميكس المعتمد `v33/final-dub-v33.mp4`.
+- **الحالة:** الصوت نفسه محفوظ في `library/voices/locked-narrator/` (`voice-33-bank.mp3` + 4 مقاطع). التوليد دائماً `voice-33`.
 - **الملف:** `dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4`
 - **لم يُدمج شيء.**
 
