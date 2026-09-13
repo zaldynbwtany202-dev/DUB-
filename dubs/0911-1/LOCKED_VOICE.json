@@ -1,0 +1,22 @@
+{
+  "slug": "0911-1",
+  "status": "locked",
+  "voice_id": "voice-33",
+  "backend": "agent",
+  "language": "ar",
+  "gender": "masculine",
+  "use_case": "narration",
+  "locked_at": "2026-09-13",
+  "user": "جيد الان احفظ هذا الصوت لاننا سنستخدمه دائما",
+  "rule": "Always use voice-33. Never swap voices. Never run pitch/formant/clone DSP on takes. Mux only.",
+  "forbidden_voices": ["voice-18", "voice-19", "voice-28", "voice-29", "voice-32"],
+  "approved_mix": "dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4",
+  "takes": [
+    "dubs/0911-1/clone/real-dub/from-full-srt/v33/seg-0000.mp3",
+    "dubs/0911-1/clone/real-dub/from-full-srt/v33/seg-0001.mp3",
+    "dubs/0911-1/clone/real-dub/from-full-srt/v33/seg-0002.mp3",
+    "dubs/0911-1/clone/real-dub/from-full-srt/v33/seg-0003.mp3"
+  ],
+  "processing": "none",
+  "merge": "forbidden"
+}

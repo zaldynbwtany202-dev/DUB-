@@ -1,8 +1,9 @@
 {
-  "status": "complete_system_source_audio",
+  "status": "locked_voice_33",
   "source": "library/0911-1/source.mp4",
-  "voice_id": "voice-17",
-  "final_file": "dubs/0911-1/voice17/final-dub-system.mp4",
+  "voice_id": "voice-33",
+  "final_file": "dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4",
+  "locked_voice": "dubs/0911-1/LOCKED_VOICE.json",
   "timing_mode": "source_audio",
   "min_tempo": 1.0,
   "max_tempo": 1.08,
