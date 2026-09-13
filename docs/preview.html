@@ -218,7 +218,7 @@ function show(p) {
   loadCues(p.vtt);
 }
 
-fetch('projects.json')
+fetch('projects.json?v=' + Date.now())
   .then(r => r.json())
   .then(({ projects }) => {
     if (!projects.length) { document.getElementById('title').textContent = 'لا توجد دبلجة بعد.'; return; }
