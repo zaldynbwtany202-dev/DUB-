@@ -1,6 +1,17 @@
 {
   "projects": [
     {
+      "slug": "das-full-part1",
+      "title": "حكاية داس — الجزء المتفرّغ",
+      "video": "../dubs/das-full/part1/final-dub-part1.mp4",
+      "srt": "../dubs/das-full/part1/final-dub-part1.srt",
+      "vtt": "../dubs/das-full/part1/final-dub-part1.srt",
+      "size": 48276461,
+      "dialect": "egy",
+      "cast": { "NARRATOR": "voice-33" },
+      "metrics": { "cues": 7, "duration": 723.6, "overlaps": 0, "min_gap": 0 }
+    },
+    {
       "slug": "0911-1",
       "title": "0911-1 — الصوت المقفل voice-33",
       "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4",

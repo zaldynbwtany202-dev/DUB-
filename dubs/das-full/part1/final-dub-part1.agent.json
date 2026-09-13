@@ -1,0 +1,11 @@
+{
+  "voice_id": "voice-33",
+  "processing": "none",
+  "cut_end": 679.7,
+  "duration": 723.6,
+  "takes": 7,
+  "corr_original_vocals": -0.001,
+  "audio_streams": 1,
+  "original_voice_in_mix": false,
+  "merge": "forbidden"
+}
