@@ -9,6 +9,8 @@
   "locked_voice_file": "dubs/0911-1/LOCKED_VOICE.json",
   "never_replace_locked_voice": true,
   "never_dsp_locked_takes": true,
+  "standing_memory": "STANDING.md",
+  "always_generate_with": "voice-33",
   "timing_mode": "source_audio",
   "min_tempo": 1.0,
   "max_tempo": 1.08,

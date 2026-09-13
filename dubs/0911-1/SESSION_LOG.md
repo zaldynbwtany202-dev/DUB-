@@ -14,14 +14,14 @@
 3. **ممنوع الإبطاء** لملء الفراغ (`min_tempo=1.0`). أقصى تسريع 1.08. لا قص كلام منطوق.
 4. الميكسات المرفوضة **تُحفظ على القرص** ولا تُحذف.
 5. الوكيل هو المنفّذ. GitHub مساحة العمل فقط.
-6. **الصوت المقفل `voice-33`.** لا يُستبدل. لا DSP على تسجيلاته.
+6. **الصوت المقفل `voice-33`.** لا يُستبدل. لا DSP على تسجيلاته. الذاكرة الدائمة: `STANDING.md`. بنك الصوت: `library/voices/locked-narrator/voice-33-bank.mp3`.
 
 ---
 
 ## أين نحن الآن
 
 - **التاريخ:** 2026-09-13
-- **الحالة:** الصوت نفسه محفوظ في `library/voices/locked-narrator/` (`voice-33-bank.mp3` + 4 مقاطع). التوليد دائماً `voice-33`.
+- **الحالة:** الصوت الدائم `voice-33` في الملفات **وفي الذاكرة**. `STANDING.md` + `LOCKED_VOICE.json` + `library/voices/locked-narrator/`.
 - **الملف:** `dubs/0911-1/clone/real-dub/from-full-srt/v33/final-dub-v33.mp4`
 - **لم يُدمج شيء.**
 
@@ -34,6 +34,20 @@
 ---
 
 ## الخط الزمني (الأحدث أولاً)
+
+### جولة 2026-09-13 — الذاكرة أيضاً
+
+- **الطلب:** احفظ هذا في الذاكرة اللعينة ايضا.
+- **ماذا فعلنا:** عقد دائم `STANDING.md`: الصوت `voice-33` دائماً. يُقرأ قبل أي عمل.
+- **النتيجة:** `STANDING.md`
+- **لم يُدمج شيء.**
+
+### جولة 2026-09-13 — حفظ الصوت نفسه
+
+- **الطلب:** انا اتحدث عن الصوت هل فهمت اريد حفظه للاستخدام الدائم.
+- **ماذا فعلنا:** نسخ التسجيلات إلى `library/voices/locked-narrator/voice-33-bank.mp3`.
+- **النتيجة:** `library/voices/locked-narrator/`
+- **لم يُدمج شيء.**
 
 ### جولة 2026-09-13 — قفل الصوت دائماً
 
@@ -220,6 +234,9 @@
 
 ## خريطة الملفات المهمة
 
+- الذاكرة الدائمة: `STANDING.md`
+- الصوت المقفل: `dubs/0911-1/LOCKED_VOICE.json` (`voice-33`)
+- بنك الصوت: `library/voices/locked-narrator/voice-33-bank.mp3`
 - سياسة: `config/dub-policy.json`
 - منع الدمج: `scripts/never_merge.py`
 - نوافذ الساوند: `youtube_auto_dub/source_sync.py` (`soundtrack_onset`, `soundtrack_windows`)
