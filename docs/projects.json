@@ -2,11 +2,11 @@
   "projects": [
     {
       "slug": "0911-1",
-      "title": "0911-1 — صوت أفضل voice-31",
-      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v31/final-dub-v31.mp4",
-      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31/final-dub-v31.srt",
-      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31/final-dub-v31.srt",
-      "size": 4112671,
+      "title": "0911-1 — العينة كما هي",
+      "video": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.mp4",
+      "srt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.srt",
+      "vtt": "../dubs/0911-1/clone/real-dub/from-full-srt/v31-raw/final-dub-v31-raw.srt",
+      "size": 4139167,
       "dialect": "egy",
       "cast": { "NARRATOR": "voice-31" },
       "metrics": {
