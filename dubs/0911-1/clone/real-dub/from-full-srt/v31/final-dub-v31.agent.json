@@ -1,0 +1,43 @@
+{
+  "voice_id": "voice-31",
+  "clone_method": "praat_f0_formant_blend_dry",
+  "tempo": 1.0,
+  "duration": 45.78,
+  "corr_original_vocals": -0.0019,
+  "lagged_corr": -0.0129,
+  "audio_streams": 1,
+  "original_voice_in_mix": false,
+  "conversions": [
+    {
+      "index": 0,
+      "pitch_semitones": 0.6602317314543438,
+      "formant_ratio": 1.0658687742332629,
+      "dry_mix": 0.38,
+      "skipped": false
+    },
+    {
+      "index": 1,
+      "pitch_semitones": 1.8,
+      "formant_ratio": 1.0230589387675717,
+      "dry_mix": 0.38,
+      "skipped": false
+    },
+    {
+      "index": 2,
+      "pitch_semitones": 0.6330907033759025,
+      "formant_ratio": 1.0502380787083683,
+      "dry_mix": 0.38,
+      "skipped": false
+    },
+    {
+      "index": 3,
+      "pitch_semitones": -1.8,
+      "formant_ratio": 1.056082273667637,
+      "dry_mix": 0.38,
+      "skipped": false
+    }
+  ],
+  "merge": "forbidden",
+  "output": "dubs/0911-1/clone/real-dub/from-full-srt/v31/final-dub-v31.mp4",
+  "target_f0": 166.5
+}
