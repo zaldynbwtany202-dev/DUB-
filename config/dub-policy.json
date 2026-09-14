@@ -89,6 +89,12 @@
     "voice33_reference_chars_per_s": 11.58,
     "takes_dir": "dubs/das-full/takes-v2",
     "recorded_groups": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      8,
       10,
       11,
       12,
@@ -105,7 +111,27 @@
       1.3559
     ],
     "one_voice_per_output": true,
-    "groups_0_9_status": "recorded with voice-33; must be re-recorded with voice-00 before the final publish",
-    "locked_voice33_assets_untouched": true
+    "groups_0_9_status": "0-4 and 8 re-recorded in voice-00; 5,6,7,9 pending (per-turn clip cap)",
+    "locked_voice33_assets_untouched": true,
+    "recorded_count": 16,
+    "missing_groups": [
+      5,
+      6,
+      7,
+      9
+    ],
+    "interim_check": {
+      "output": "dubs/das-full/matched/final-dub-voice00-opening-check.mp4",
+      "groups": "0-4",
+      "video_seconds": 119.337,
+      "coverage_ratio": 0.9963,
+      "tempo_range": [
+        1.1709,
+        1.4842
+      ],
+      "max_overrun_s": 0.0,
+      "corr_original_vocals": -0.0008,
+      "note": "pipeline verification on the new voice, not a deliverable"
+    }
   }
 }
