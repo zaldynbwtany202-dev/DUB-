@@ -9,6 +9,7 @@
 - الملفات: `library/voices/locked-narrator/` (`voice-33-bank.mp3` + `seg-0000`…`seg-0003`).
 - القفل: `dubs/0911-1/LOCKED_VOICE.json`
 - أي `generate_speech` بعد الآن: `voice_id=voice-33` فقط.
+- **قيد واقعي مسجَّل 2026-09-14:** `voice_id` مرتبط بالجلسة التي اختير فيها؛ في جلسة `arena/01a09fa1-dub` ترجع الأداة «Unknown voice_id voice-33». إذن تسجيل أي كلام جديد يستلزم `add_voice` واختيار المستخدم، مع مقارنة العينة المحفوظة `library/voices/locked-narrator/voice-33-bank.mp3`. المستخدم فوّض الاختيار بقوله «اختر الأنسب، المهم النظام يشتغل». التسجيلات العشر المقفولة تبقى كما هي ولا تُمس.
 - ممنوع: `add_voice` لراوي 0911-1، ممنوع voice-18/19/28/29/31/32، ممنوع تحويل طبقة/formant/clone DSP على هذا الصوت.
 - بعد التسجيل: لصق في الفيديو فقط.
 
