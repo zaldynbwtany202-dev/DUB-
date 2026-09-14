@@ -3,7 +3,11 @@
   "session_branch": "arena/01a0922c-dub",
   "merge": "forbidden",
   "session_log": "dubs/0911-1/SESSION_LOG.md",
-  "merge_targets_forbidden": ["main", "master", "arena/01a07c92-dub"],
+  "merge_targets_forbidden": [
+    "main",
+    "master",
+    "arena/01a07c92-dub"
+  ],
   "voice_backend": "agent",
   "locked_voice_id": "voice-33",
   "locked_voice_file": "dubs/0911-1/LOCKED_VOICE.json",
@@ -20,5 +24,28 @@
   "fit_by": "rewrite_text_to_word_budget",
   "words_per_second": 1.7,
   "uncovered_source_speech_warn_seconds": 0.4,
-  "uncovered_source_speech_fail_seconds": 1.5
+  "uncovered_source_speech_fail_seconds": 1.5,
+  "approved_pacing_das_full": {
+    "approved_at": "2026-09-14",
+    "user_choice": "matched",
+    "mode": "match_original_onsets",
+    "reference_mix": "dubs/das-full/preview-1min/final-dub-preview-matched.mp4",
+    "dsp": "atempo only (pitch preserving). No pitch/formant/clone on locked takes.",
+    "measured_voice33_chars_per_s": {
+      "mean": 11.58,
+      "min": 10.12,
+      "max": 12.71
+    },
+    "tempo_ceiling_observed": 1.535,
+    "tempo_ceiling_allowed": 1.6,
+    "predicted_tempo_median_all_groups": 1.34,
+    "groups_needing_reboundary": [
+      10,
+      25,
+      124,
+      125
+    ],
+    "note": "Overrides max_tempo=1.08 for das-full only. min_tempo stays 1.0: never slow speech to fill a window. Words stay YouTube unique.txt; never Whisper.",
+    "blocked_reason_no_new_takes": "voice-33 is session-scoped and unknown in arena/01a09fa1-dub; recording groups 10-133 needs explicit user permission for add_voice."
+  }
 }
