@@ -1,0 +1,66 @@
+{
+  "voice_id": "voice-33",
+  "takes_from": "dubs/das-full/youtube-v33/seg-0000..0002.mp3 (committed, no re-generation)",
+  "words_from": "youtube unique.txt",
+  "times_from": "NB2YcTh_L6k.spoken.srt",
+  "dsp": "atempo only in variant matched; none in variant natural",
+  "original_narrator_kept": false,
+  "background_music_kept": false,
+  "merge": "forbidden",
+  "groups_covered": [
+    0,
+    1,
+    2
+  ],
+  "source_window_s": [
+    0.16,
+    71.694
+  ],
+  "variants": [
+    {
+      "variant": "natural",
+      "output": "dubs/das-full/preview-1min/final-dub-preview-natural.mp4",
+      "bytes": 9869981,
+      "audio_seconds": 92.971,
+      "video_seconds": 93.0,
+      "audio_streams": 1,
+      "corr_original_vocals": -0.0032,
+      "original_voice_in_mix": false,
+      "tempo": 1.0,
+      "drift_at_end_s": 20.76
+    },
+    {
+      "variant": "matched",
+      "output": "dubs/das-full/preview-1min/final-dub-preview-matched.mp4",
+      "bytes": 8368669,
+      "audio_seconds": 72.128,
+      "video_seconds": 72.194,
+      "audio_streams": 1,
+      "corr_original_vocals": 0.0039,
+      "original_voice_in_mix": false,
+      "tempo_per_take": [
+        1.135,
+        1.185,
+        1.535
+      ],
+      "drift_at_end_s": 0.0
+    },
+    {
+      "variant": "uniform",
+      "output": "dubs/das-full/preview-1min/final-dub-preview-uniform.mp4",
+      "bytes": 8374875,
+      "audio_seconds": 72.64,
+      "video_seconds": 72.824,
+      "audio_streams": 1,
+      "corr_original_vocals": -0.0023,
+      "original_voice_in_mix": false,
+      "tempo": 1.28,
+      "per_take_end_offset_s": [
+        -2.77,
+        -4.41,
+        0.43
+      ],
+      "drift_at_end_s": 0.43
+    }
+  ]
+}
