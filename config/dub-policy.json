@@ -79,5 +79,33 @@
       "audio_streams": 1,
       "tests": "42 passed (agent_tts, agent_sync, source_sync, stretch_budget, speech_coverage_recovery)"
     }
+  },
+  "das_full_narrator": {
+    "voice_id": "voice-00",
+    "selected_at": "2026-09-14",
+    "selected_by": "user audition (opening line of the recap, ar-EG masculine narration)",
+    "reason": "voice-33 is session-scoped and unknown in arena/01a09fa1-dub; user delegated the choice",
+    "measured_chars_per_s": 11.64,
+    "voice33_reference_chars_per_s": 11.58,
+    "takes_dir": "dubs/das-full/takes-v2",
+    "recorded_groups": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "tempo_observed": [
+      1.2743,
+      1.3559
+    ],
+    "one_voice_per_output": true,
+    "groups_0_9_status": "recorded with voice-33; must be re-recorded with voice-00 before the final publish",
+    "locked_voice33_assets_untouched": true
   }
 }

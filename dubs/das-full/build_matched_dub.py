@@ -88,6 +88,8 @@ def main() -> int:
     p.add_argument("--source", type=Path, default=ROOT / ".cache/das-full/source.mp4")
     p.add_argument("--out-dir", type=Path, default=HERE / "matched")
     p.add_argument("--takes-dir", type=Path, action="append", default=None)
+    p.add_argument("--from-group", type=int, default=None,
+                   help="first group to place; the video is cut from its onset")
     p.add_argument("--until-group", type=int, default=None)
     p.add_argument("--until-time", type=float, default=None)
     p.add_argument("--max-tempo", type=float, default=1.60)
@@ -105,11 +107,17 @@ def main() -> int:
 
     selected = []
     for g in groups:
+        if args.from_group is not None and g["i"] < args.from_group:
+            continue
         if args.until_group is not None and g["i"] > args.until_group:
             break
         if args.until_time is not None and g["t0"] > args.until_time:
             break
         selected.append(g)
+    if not selected:
+        raise SystemExit("no groups in the requested range")
+    # One voice per output: a run of groups is only coherent if its takes share a voice.
+    origin = selected[0]["t0"] if args.from_group is not None else 0.0
 
     placements: list[tuple[float, np.ndarray, dict]] = []
     rows: list[dict] = []
@@ -133,7 +141,7 @@ def main() -> int:
                 "re-record shorter text or widen the window — speech is never truncated")
         fit = atempo(samples, rate)
         placed = len(fit) / SR
-        placements.append((g["t0"], fit, g))
+        placements.append((g["t0"] - origin, fit, g))
         rows.append({"i": g["i"], "t0": g["t0"], "t1": g["t1"], "window": round(window, 3),
                      "chars": g["chars"], "take": str(take.relative_to(ROOT)),
                      "natural_s": round(natural, 3), "tempo": round(rate, 4),
@@ -146,6 +154,7 @@ def main() -> int:
         raise SystemExit("no takes found for the selected groups")
 
     end_time = max(s + len(a) / SR for s, a, _ in placements) + 0.5
+    span = end_time
     track = np.zeros(int(round(end_time * SR)), dtype=np.float32)
     for start, audio, _ in placements:
         i = int(round(start * SR))
@@ -160,8 +169,9 @@ def main() -> int:
     sf.write(wav, track, SR, subtype="PCM_24")
 
     out = args.out_dir / f"final-dub-{args.tag}.mp4"
+    seek = ["-ss", f"{origin:.3f}"] if origin > 0 else []
     subprocess.run(
-        [ffmpeg_exe(), "-y", "-v", "error", "-i", str(args.source), "-t", f"{end_time:.3f}",
+        [ffmpeg_exe(), "-y", "-v", "error", *seek, "-i", str(args.source), "-t", f"{span:.3f}",
          "-i", str(wav), "-map", "0:v:0", "-map", "1:a:0",
          "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
          "-c:a", "aac", "-b:a", "160k", "-ar", "48000",
@@ -172,12 +182,12 @@ def main() -> int:
     with srt.open("w", encoding="utf-8") as fh:
         for k, r in enumerate(rows, 1):
             text = next(g["text"] for g in selected if g["i"] == r["i"])
-            fh.write(f"{k}\n{srt_stamp(r['t0'])} --> {srt_stamp(r['ends_at'])}\n{text}\n\n")
+            fh.write(f"{k}\n{srt_stamp(r['t0'] - origin)} --> {srt_stamp(r['ends_at'] - origin)}\n{text}\n\n")
 
     # ---- verification -------------------------------------------------------
     out_audio = decode(out)
     stereo = subprocess.run(
-        [ffmpeg_exe(), "-v", "error", "-i", str(args.source), "-t", f"{end_time:.3f}",
+        [ffmpeg_exe(), "-v", "error", *seek, "-i", str(args.source), "-t", f"{span:.3f}",
          "-ar", str(SR), "-ac", "2", "-f", "f32le", "-"], capture_output=True, check=True).stdout
     st = np.frombuffer(stereo, dtype=np.float32)
     left, right = st[0::2], st[1::2]
@@ -190,10 +200,12 @@ def main() -> int:
                              capture_output=True, text=True).stderr
     n_audio = streams.count("Audio:")
 
-    horizon = selected[-1]["t1"] if selected else end_time
+    horizon = selected[-1]["t1"]
     covered = sum(min(r["ends_at"], r["t1"]) - r["t0"] for r in rows if r["ends_at"] > r["t0"])
     report = {
         "tag": args.tag, "voice_id": plan.get("voice_id"), "pacing": plan.get("processing"),
+        "groups_from": selected[0]["i"], "groups_to": selected[-1]["i"],
+        "source_window_s": [round(origin, 3), round(origin + span, 3)],
         "output": str(out.relative_to(ROOT)), "srt": str(srt.relative_to(ROOT)),
         "bytes": out.stat().st_size, "audio_seconds": round(len(out_audio) / SR, 3),
         "video_seconds": round(end_time, 3), "audio_streams": n_audio,
