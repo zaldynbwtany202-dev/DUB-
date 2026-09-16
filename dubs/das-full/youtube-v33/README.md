@@ -6,4 +6,4 @@
 - Not word-by-word TTS. Groups in `groups.json` (~24s / ~380 chars).
 - Place each take at `t0`. Do not stretch speech. Do not keep original narrator.
 
-134 groups. `seg-0000`…`seg-0009` = first ~4 minutes of narration.
+134 groups. `seg-0000`…`seg-0019` recorded (`voice-33`). ~0:00–7:47 of narration. 114 groups left.
