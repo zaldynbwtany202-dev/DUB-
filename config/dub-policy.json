@@ -112,7 +112,11 @@
       20,
       21,
       22,
-      23
+      23,
+      25,
+      26,
+      29,
+      30
     ],
     "tempo_observed": [
       1.2743,
@@ -121,7 +125,7 @@
     "one_voice_per_output": true,
     "groups_0_9_status": "re-recorded in voice-00; the voice-33 takes stay untouched in youtube-v33/",
     "locked_voice33_assets_untouched": true,
-    "recorded_count": 24,
+    "recorded_count": 28,
     "missing_groups": [
       24,
       25,
@@ -252,6 +256,127 @@
       "corr_original_vocals": 0.0018,
       "audio_streams": 1,
       "single_voice": true
-    }
+    },
+    "plan": "dubs/das-full/youtube-v33/groups-v3.json",
+    "lost_uncommitted_takes": [
+      24,
+      27,
+      28,
+      31
+    ],
+    "loss_cause": "an interrupted turn does not snapshot its new files; only commits are durable",
+    "group_30_note": "content moderation blocks the whole text and three of its splits; recorded as 4 parts (a, b1, b2a, b2b) joined with 0.12s gaps, words unchanged",
+    "deliverable": {
+      "output": "dubs/das-full/matched/final-dub-das-voice00-0-23-fixed.mp4",
+      "video_seconds": 564.146,
+      "bytes": 41271818,
+      "groups": 24,
+      "coverage_ratio": 0.9964,
+      "tempo_range": [
+        1.1709,
+        1.4842
+      ],
+      "max_overrun_s": 0.0,
+      "corr_original_vocals": 0.0023,
+      "audio_streams": 1,
+      "single_voice": true,
+      "script": "corrected (groups-v3)"
+    },
+    "withdrawn": [
+      {
+        "output": "dubs/das-full/matched/final-dub-das-voice00-0-23.mp4",
+        "reason": "names inconsistent (الانه/طور/مور)",
+        "recover": "git checkout 2bf3a62 -- dubs/das-full/matched/final-dub-das-voice00-0-23.mp4"
+      }
+    ]
+  },
+  "script_corrections": {
+    "approved_by": "user defect report 2026-09-16: the hero's name changed mid-video",
+    "root_cause": "unique.txt comes from YouTube auto-captions, which wrote one character under several spellings; the voice reads whatever the script says",
+    "tool": "scripts/apply_script_corrections.py",
+    "plan": "dubs/das-full/youtube-v33/groups-v3.json (windows/onsets copied verbatim from groups-v2.json)",
+    "diff_record": "dubs/das-full/youtube-v33/script-corrections-diff.md",
+    "rules": {
+      "names": [
+        [
+          "دس",
+          "داس"
+        ],
+        [
+          "دايس",
+          "داس"
+        ],
+        [
+          "داساني",
+          "داس"
+        ],
+        [
+          "الانه",
+          "الانا"
+        ],
+        [
+          "مور",
+          "مول"
+        ],
+        [
+          "طور",
+          "تور"
+        ],
+        [
+          "الفاز",
+          "الفاس"
+        ]
+      ],
+      "typos_from_group_32_or_redo": [
+        [
+          "اكث",
+          "اكثر"
+        ],
+        [
+          "اتغازوا",
+          "اتغاظوا"
+        ],
+        [
+          "سعترد",
+          "سعها رد"
+        ],
+        [
+          "الصحه",
+          "صحى"
+        ],
+        [
+          "مؤنو",
+          "مؤنه"
+        ]
+      ]
+    },
+    "clitic_aware": "و ف ب ل ك may attach without a space (والانه، واتغازوا); a bare word boundary missed 7 of 34 occurrences",
+    "never_touched": [
+      "الامور",
+      "الاسطوري",
+      "دسوا",
+      "انا (ضمير متكلم)"
+    ],
+    "ambiguous_left_for_user": [
+      "متبرجل",
+      "كحب",
+      "قورتها",
+      "قفشت",
+      "غلب ومنهده",
+      "الوز",
+      "بتكذب",
+      "سبيشيال"
+    ],
+    "groups_changed": 44,
+    "recorded_groups_redone": [
+      10,
+      20,
+      23,
+      25,
+      26,
+      29,
+      30
+    ],
+    "invariant": "timing never changes, so alignment cannot drift and unaffected takes stay valid"
   }
 }
