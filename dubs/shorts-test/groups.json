@@ -1,0 +1,34 @@
+{
+  "slug": "shorts-test",
+  "source": "library/shorts-test/source.mp4",
+  "words_from": "SRT supplied by the user (asr.srt)",
+  "times_from": "SRT cue offsets, checked against the measured audio duration",
+  "voice_id": "voice-00",
+  "pacing": "matched (per-take atempo onto original onsets)",
+  "chars_per_s": 11.79,
+  "tempo_ceiling": 1.6,
+  "min_tempo": 1.0,
+  "cues": 13,
+  "groups": [
+    {
+      "i": 0,
+      "t0": 0.0,
+      "t1": 22.68,
+      "window": 22.68,
+      "cues": 11,
+      "chars": 288,
+      "predicted_tempo": 1.081,
+      "text": "أسوأ تلت طرق للإعدام في العالم أتخليك تحس أن الإعدام شنكان دا زي البراءة مثلا عايزك بس تعمل اشترك وليك للفيديو دا علشان فيديو هاد جاية كتير رقم واحد الإعدام الكهربائي بيتم موضع الشخص في كرس كهربائي وبوصلوا بشوحنات كهربائية عالية لحد ما قلبوا يوقف رقم اتنين وهو طور النحاسي وهو هاي كلمين النحاس أو الحديد بيتخل المزن فيه وبيشعروا النار تحته لحد ما يتفحم"
+    },
+    {
+      "i": 1,
+      "t0": 22.68,
+      "t1": 33.08,
+      "window": 10.4,
+      "cues": 2,
+      "chars": 128,
+      "predicted_tempo": 1.052,
+      "text": "رقم ثلاثة وهو الخزوء وما قد رو كما الخزوء يا صديق يدبوا عصايا كبيرة وبيدخلوا في حتى ومشاقل منين بجد اي دا يخربت المعنى واللي با من وجهة نظرة كيئس وأطريقة من دول"
+    }
+  ]
+}

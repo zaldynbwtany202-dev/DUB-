@@ -1,7 +1,7 @@
 {
   "slug": "shorts-test",
   "title": "مقطع الاختبار القصير (33 ث)",
-  "original_name": "_shorts.mp4",
+  "original_name": "source.mp4",
   "size": 974416,
   "sha256": "4a99eab1c1b49dc0c5dd2798111a192bd791853fe639e18cf41c52029f4fcb61",
   "duration": 33.2,
@@ -23,5 +23,8 @@
     "speech_map": "dubs/shorts-test/speech-windows.json",
     "finding": "continuous soundtrack: 33.00s of 33.20s above -40 dB, L/R correlation 0.981, energy never drops below 0.086 rms, so background music runs under the whole clip and energy VAD finds no pauses"
   },
-  "source_sha256_verified": "4a99eab1c1b49dc0c5dd2798111a192bd791853fe639e18cf41c52029f4fcb61"
+  "source_sha256_verified": "4a99eab1c1b49dc0c5dd2798111a192bd791853fe639e18cf41c52029f4fcb61",
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "intake": "scripts/intake_new_video.py"
 }
