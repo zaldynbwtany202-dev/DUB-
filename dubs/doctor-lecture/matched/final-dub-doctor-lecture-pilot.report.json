@@ -1,0 +1,78 @@
+{
+  "tag": "doctor-lecture-pilot",
+  "voice_id": "voice-01",
+  "pacing": null,
+  "groups_from": 0,
+  "groups_to": 2,
+  "source_window_s": [
+    0.0,
+    72.211
+  ],
+  "output": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot.mp4",
+  "srt": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot.srt",
+  "bytes": 5680589,
+  "audio_seconds": 72.213,
+  "video_seconds": 72.211,
+  "audio_streams": 1,
+  "corr_original_vocals": 0.0049,
+  "original_narrator_in_mix": false,
+  "peak_gain_db": 0.0,
+  "groups_selected": 3,
+  "groups_placed": 3,
+  "groups_missing_takes": [
+    3
+  ],
+  "source_speech_covered_s": 71.51,
+  "source_speech_in_scope_s": 71.75,
+  "coverage_ratio": 0.9966,
+  "tempo_min": 1.286,
+  "tempo_max": 1.3261,
+  "max_overrun_s": 0.0,
+  "takes": [
+    {
+      "i": 0,
+      "t0": 0.03,
+      "t1": 23.96,
+      "window": 23.93,
+      "chars": 282,
+      "take": "dubs/doctor-lecture/takes/seg-0000.mp3",
+      "natural_s": 30.67,
+      "tempo": 1.286,
+      "placed_s": 23.852,
+      "ends_at": 23.882,
+      "overrun_s": 0.0,
+      "leading_silence_removed": 0.27,
+      "trailing_silence_removed": 0.78
+    },
+    {
+      "i": 1,
+      "t0": 23.97,
+      "t1": 47.83,
+      "window": 23.86,
+      "chars": 291,
+      "take": "dubs/doctor-lecture/takes/seg-0001.mp3",
+      "natural_s": 31.42,
+      "tempo": 1.3213,
+      "placed_s": 23.786,
+      "ends_at": 47.756,
+      "overrun_s": 0.0,
+      "leading_silence_removed": 0.22,
+      "trailing_silence_removed": 0.0
+    },
+    {
+      "i": 2,
+      "t0": 47.84,
+      "t1": 71.78,
+      "window": 23.94,
+      "chars": 258,
+      "take": "dubs/doctor-lecture/takes/seg-0002.mp3",
+      "natural_s": 31.64,
+      "tempo": 1.3261,
+      "placed_s": 23.871,
+      "ends_at": 71.711,
+      "overrun_s": 0.0,
+      "leading_silence_removed": 0.27,
+      "trailing_silence_removed": 0.21
+    }
+  ]
+}
