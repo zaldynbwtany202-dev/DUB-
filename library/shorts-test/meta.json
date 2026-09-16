@@ -11,7 +11,17 @@
   "source": "library/shorts-test/source.mp4",
   "source_lang": "ar",
   "uploaded_at": "2026-09-06T14:06:30+00:00",
-  "status": "uploaded",
+  "status": "in_progress",
   "uploaded_with": "migration",
-  "note": "اختُبرت عليه إصلاحات التوقيت واستعادة الكلام غير المفرَّغ (التشغيلات #155–#157)"
+  "note": "اختُبرت عليه إصلاحات التوقيت واستعادة الكلام غير المفرَّغ (التشغيلات #155–#157)",
+  "dub_started": "2026-09-16",
+  "dub_plan": {
+    "voice": "voice-00",
+    "pacing": "matched",
+    "words_from": "user-supplied transcript (pending)",
+    "times_from": "whisper-small on the source audio (timing only, never a word source)",
+    "speech_map": "dubs/shorts-test/speech-windows.json",
+    "finding": "continuous soundtrack: 33.00s of 33.20s above -40 dB, L/R correlation 0.981, energy never drops below 0.086 rms, so background music runs under the whole clip and energy VAD finds no pauses"
+  },
+  "source_sha256_verified": "4a99eab1c1b49dc0c5dd2798111a192bd791853fe639e18cf41c52029f4fcb61"
 }
