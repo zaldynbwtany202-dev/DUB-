@@ -1,0 +1,20 @@
+{
+  "slug": "doctor-lecture",
+  "title": "الدكتور بيقتل اي طالب يحاول يخرج من المحاضرة — ملخص فيلم",
+  "original_name": "الدكتور بيقتل اي طالب يحاول يخرج من المحاضرة حتى لو كان مش موجود معاهم أصلاً .. ملخص فيلم.mp4",
+  "size": 55925364,
+  "sha256": "684188ac531317a51e9dadbdef4ff7bed58daa0a9581a1c25f316ca015dec8a8",
+  "duration": 1160.3,
+  "width": 854,
+  "height": 480,
+  "source": "library/doctor-lecture/source.mp4",
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "intake": "scripts/intake_new_video.py",
+  "status": "intake",
+  "source_lang": "ar (يُتحقق منه من التفريغ)",
+  "uploaded_by": "browser upload to the preview host",
+  "uploaded_at": "2026-09-16",
+  "words_from": "pending: YouTube transcript by link, or user SRT, or ASR draft to approve",
+  "times_from": "whisper-small segment offsets (timing only)"
+}

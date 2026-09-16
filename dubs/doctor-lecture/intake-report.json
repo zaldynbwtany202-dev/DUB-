@@ -1,0 +1,14 @@
+{
+  "slug": "doctor-lecture",
+  "source": "library/doctor-lecture/source.mp4",
+  "sha256": "684188ac531317a51e9dadbdef4ff7bed58daa0a9581a1c25f316ca015dec8a8",
+  "duration_s": 1160.3,
+  "width": 854,
+  "height": 480,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "decodes": true,
+  "audio_wav": ".cache/doctor-lecture/audio-16k.wav"
+}
