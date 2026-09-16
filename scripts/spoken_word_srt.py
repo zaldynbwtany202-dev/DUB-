@@ -6,6 +6,7 @@ Final words come from the YouTube unique transcript (NB2YcTh_L6k), not Whisper.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import subprocess
@@ -22,6 +23,11 @@ YT = ROOT / "library/das-full/youtube/unique.txt"
 WORK = ROOT / "library/das-full/align"
 CHUNK = 45.0  # short slices keep Arabic; 5-min slices collapsed language
 VIDEO_END = 3142.38
+OUT_DIR = ROOT / "library/das-full/youtube"
+PREFIX = "NB2YcTh_L6k"
+# The constants above are the das-full defaults. --slug/--wav/--yt/--work/--end
+# rebind them so the same word-from-YouTube / times-from-audio alignment runs on
+# any project (doctor-lecture, shorts-test, ...). Nothing else changes.
 
 
 def stamp(sec: float) -> str:
@@ -167,6 +173,30 @@ def write_srt(words: list[dict], path: Path) -> None:
 
 
 def main() -> int:
+    global WAV, YT, WORK, CHUNK, VIDEO_END, OUT_DIR, PREFIX
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--wav", type=Path, help="16k mono audio to time (default: das-full full.wav)")
+    ap.add_argument("--yt", type=Path, help="flowing transcript whose WORDS are authoritative")
+    ap.add_argument("--work", type=Path, help="scratch dir for chunk wavs + per-chunk ASR json")
+    ap.add_argument("--end", type=float, help="audio duration in seconds")
+    ap.add_argument("--chunk", type=float, default=CHUNK, help="slice seconds (45 keeps Arabic)")
+    ap.add_argument("--out-dir", type=Path, help="where <prefix>.spoken.srt/.json are written")
+    ap.add_argument("--prefix", default=PREFIX, help="output file prefix")
+    a = ap.parse_args()
+    if a.wav: WAV = a.wav
+    if a.yt: YT = a.yt
+    if a.work: WORK = a.work
+    if a.end: VIDEO_END = a.end
+    if a.chunk: CHUNK = a.chunk
+    if a.out_dir: OUT_DIR = a.out_dir
+    if a.prefix: PREFIX = a.prefix
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(
+        f"wav={WAV}\nyt={YT}\nwork={WORK}\nend={VIDEO_END} chunk={CHUNK}\n"
+        f"out={OUT_DIR / (PREFIX + '.spoken.srt')}",
+        flush=True,
+    )
+
     yt = YT.read_text(encoding="utf-8").split()
     chunks = split_chunks()
     spoken: list[dict] = []
@@ -184,10 +214,10 @@ def main() -> int:
         )
 
     aligned = align(spoken, yt)
-    out_dir = ROOT / "library/das-full/youtube"
-    write_srt(aligned, out_dir / "NB2YcTh_L6k.spoken.srt")
+    out_dir = OUT_DIR
+    write_srt(aligned, out_dir / f"{PREFIX}.spoken.srt")
     payload = {
-        "source_video": "NB2YcTh_L6k / library/das-full/source.mp4",
+        "source_video": f"{PREFIX} / {WAV}",
         "words_from": "youtube-watch-page-unique",
         "times_from": "whisper.cpp-small-max-len-1-on-full.wav",
         "not_whisper_script": True,
@@ -199,7 +229,7 @@ def main() -> int:
             for i, w in enumerate(aligned)
         ],
     }
-    (out_dir / "NB2YcTh_L6k.spoken.json").write_text(
+    (out_dir / f"{PREFIX}.spoken.json").write_text(
         json.dumps(payload, ensure_ascii=False, indent=0) + "\n", encoding="utf-8"
     )
     print(
