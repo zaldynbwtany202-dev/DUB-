@@ -1,0 +1,160 @@
+{
+  "source": "library/shorts-test/source.mp4",
+  "duration_s": 33.2,
+  "times_from": "whisper-small (ggml-small.bin) segment offsets — timing only, never a word source",
+  "words_from": "user-supplied transcript (pending)",
+  "voice": {
+    "id": "voice-00",
+    "chars_per_s": 11.79,
+    "tempo_ceiling": 1.6
+  },
+  "speech_total_s": 33.08,
+  "segments": 13,
+  "over_ceiling": [],
+  "asr_used_for_words": false,
+  "segments_detail": [
+    {
+      "i": 0,
+      "t0": 0.0,
+      "t1": 2.08,
+      "text": "أسوأ تلت طرق للإعدام في العالم",
+      "window": 2.08,
+      "chars": 25,
+      "predicted_tempo": 1.019,
+      "chars_min": 25,
+      "chars_max": 39
+    },
+    {
+      "i": 1,
+      "t0": 2.08,
+      "t1": 5.24,
+      "text": "أتخليك تحس أن الإعدام شنكان دا زي البراءة مثلا",
+      "window": 3.16,
+      "chars": 38,
+      "predicted_tempo": 1.02,
+      "chars_min": 37,
+      "chars_max": 60
+    },
+    {
+      "i": 2,
+      "t0": 5.24,
+      "t1": 6.76,
+      "text": "عايزك بس تعمل اشترك",
+      "window": 1.52,
+      "chars": 16,
+      "predicted_tempo": 0.893,
+      "chars_min": 18,
+      "chars_max": 29
+    },
+    {
+      "i": 3,
+      "t0": 6.76,
+      "t1": 7.84,
+      "text": "وليك للفيديو دا",
+      "window": 1.08,
+      "chars": 13,
+      "predicted_tempo": 1.021,
+      "chars_min": 13,
+      "chars_max": 20
+    },
+    {
+      "i": 4,
+      "t0": 7.84,
+      "t1": 9.2,
+      "text": "علشان فيديو هاد جاية كتير",
+      "window": 1.36,
+      "chars": 21,
+      "predicted_tempo": 1.31,
+      "chars_min": 16,
+      "chars_max": 26
+    },
+    {
+      "i": 5,
+      "t0": 9.2,
+      "t1": 10.96,
+      "text": "رقم واحد الإعدام الكهربائي",
+      "window": 1.76,
+      "chars": 23,
+      "predicted_tempo": 1.108,
+      "chars_min": 21,
+      "chars_max": 33
+    },
+    {
+      "i": 6,
+      "t0": 10.96,
+      "t1": 13.0,
+      "text": "بيتم موضع الشخص في كرس كهربائي",
+      "window": 2.04,
+      "chars": 25,
+      "predicted_tempo": 1.039,
+      "chars_min": 24,
+      "chars_max": 38
+    },
+    {
+      "i": 7,
+      "t0": 13.0,
+      "t1": 15.84,
+      "text": "وبوصلوا بشوحنات كهربائية عالية لحد ما قلبوا يوقف",
+      "window": 2.84,
+      "chars": 41,
+      "predicted_tempo": 1.224,
+      "chars_min": 33,
+      "chars_max": 54
+    },
+    {
+      "i": 8,
+      "t0": 15.84,
+      "t1": 17.64,
+      "text": "رقم اتنين وهو طور النحاسي",
+      "window": 1.8,
+      "chars": 21,
+      "predicted_tempo": 0.99,
+      "chars_min": 21,
+      "chars_max": 34
+    },
+    {
+      "i": 9,
+      "t0": 17.64,
+      "t1": 19.56,
+      "text": "وهو هاي كلمين النحاس أو الحديد",
+      "window": 1.92,
+      "chars": 25,
+      "predicted_tempo": 1.104,
+      "chars_min": 23,
+      "chars_max": 36
+    },
+    {
+      "i": 10,
+      "t0": 19.56,
+      "t1": 22.68,
+      "text": "بيتخل المزن فيه وبيشعروا النار تحته لحد ما يتفحم",
+      "window": 3.12,
+      "chars": 40,
+      "predicted_tempo": 1.087,
+      "chars_min": 37,
+      "chars_max": 59
+    },
+    {
+      "i": 11,
+      "t0": 22.68,
+      "t1": 30.6,
+      "text": "رقم ثلاثة وهو الخزوء وما قد رو كما الخزوء يا صديق يدبوا عصايا كبيرة وبيدخلوا في حتى ومشاقل منين بجد اي دا يخربت المعنى",
+      "window": 7.92,
+      "chars": 95,
+      "predicted_tempo": 1.017,
+      "chars_min": 93,
+      "chars_max": 149
+    },
+    {
+      "i": 12,
+      "t0": 30.6,
+      "t1": 33.08,
+      "text": "واللي با من وجهة نظرة كيئس وأطريقة من دول",
+      "window": 2.48,
+      "chars": 33,
+      "predicted_tempo": 1.129,
+      "chars_min": 29,
+      "chars_max": 47
+    }
+  ]
+}
