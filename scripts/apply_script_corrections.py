@@ -37,6 +37,7 @@ NAME_FIXES = [
     ("مور", "مول", "زعيمة القرية — مجموعة 25"),
     ("طور", "تور", "الثور — مجموعة 23 (والجمع «تيران» صحيح فبقي)"),
     ("الفاز", "الفاس", "سلاحه — مجموعة 32"),
+    ("التران", "التيران", "جمع الثور — المجموعة 24 تكتبها بشكل ثان؛ والنص المجلوب من يوتيوب يجمع بين «طور» و«تور» في جملتين متتاليتين فيؤكد الخطأ"),
 ]
 
 # Truncated or garbled tokens whose intended word is unambiguous in context.
@@ -49,7 +50,8 @@ TYPO_FIXES = [
 ]
 
 # Flagged for the user, never auto-changed: the intended word is a guess.
-AMBIGUOUS = ["متبرجل", "كحب", "قورتها", "قفشت", "غلب ومنهده", "الوز", "بتكذب", "سبيشيال"]
+AMBIGUOUS = ["متبرجل", "كحب", "قورتها", "قفشت", "غلب ومنهده", "الوز", "بتكذب", "سبيشيال",
+             "قلقنا"]  # مجموعة 24: السياق يقول إنها «مول» (بعدها «بعد لما مول سمعت») لكن الصوتيات بعيدة، فلا أخمن
 
 MAX_CHARS_SOFT = 380   # what the planner aimed for
 MAX_CHARS_HARD = 420   # beyond this a single take stops being reliable
