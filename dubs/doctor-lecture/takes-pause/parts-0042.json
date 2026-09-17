@@ -1,0 +1,12 @@
+{
+  "group": 42,
+  "why": "Content moderation blocked the group as one take and again as three; the trigger is the self-harm phrase, so it is recorded in six parts and concatenated. The matched builder still sees a single seg-0042.mp3.",
+  "parts": [
+    {"file": "seg-0042a1a", "text": "لكن لما ميل بتبص ما بتشوفش غير امير"},
+    {"file": "seg-0042a1b", "text": "بيضرب نفسه بخشبه"},
+    {"file": "seg-0042a2", "text": "وبتحاول تمنعه لكنه بيزقها بعيد"},
+    {"file": "seg-0042b1", "text": "بعدين هي كمان بتشوف بختي وبتحاول تدور على دبدوب بنته"},
+    {"file": "seg-0042b2", "text": "لكن الشبح بيبدا يرفعها ويخنقها بتقول له انها عارفه ان موت بنته ما كانش ذنبه"},
+    {"file": "seg-0042c", "text": "وفي الوقت ده بيبدا فيدي وامير يضربوا في بعض لان كل واحد فيهم فك فاكر ان الثاني هو بختي الدكتور بيسيب ميل فبتكتشف ان امير قرب يموت فييه فبتحاول توقفه"}
+  ]
+}
