@@ -63,6 +63,21 @@ FEATURED = [
 ]
 
 
+# Subtitle files worth handing to the user, newest/most useful first.
+SUBTITLES = [
+    ("library/doctor-lecture/youtube/kOrz0WAb2P8.groups.srt",
+     "doctor-lecture — SRT عباري (49 cue) · كلمات يوتيوب × أزمنة مقاسة من الصوت · النص المصحَّح"),
+    ("library/doctor-lecture/youtube/kOrz0WAb2P8.spoken-fixed.srt",
+     "doctor-lecture — SRT على مستوى الكلمة (2880 cue) · أزمنة مُصلَحة"),
+    ("library/doctor-lecture/asr-full.srt",
+     "doctor-lecture — تفريغ الصوت الخام (236 مقطعاً) · للتوقيت فقط، ليس مصدر كلمات"),
+    ("dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot-pause.srt",
+     "doctor-lecture — ترجمة التجربة المُصلَحة (72 ث)"),
+    ("library/das-full/youtube/NB2YcTh_L6k.spoken-fixed.srt",
+     "das-full — SRT على مستوى الكلمة · النص المعتمد"),
+]
+
+
 def page() -> str:
     live = []
     for f in FEATURED:
@@ -83,6 +98,12 @@ def page() -> str:
         f'{f["label"]} — {(ROOT / f["path"]).stat().st_size // 1048576} م.ب</option>'
         for f in live
     )
+    subs = "".join(
+        f'<a class="dl" style="background:#1f6feb;display:block;margin:6px 0" href="{path}" download>'
+        f'تنزيل</a><div class="sub" style="margin:-2px 0 10px">{label}'
+        f'<div class="mono">{path} · {(ROOT / path).stat().st_size // 1024} ك.ب</div></div>'
+        for path, label in SUBTITLES if (ROOT / path).is_file()
+    ) or '<div class="sub">لا توجد ملفات ترجمة بعد.</div>'
     return f"""<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
@@ -140,6 +161,12 @@ def page() -> str:
  <div class="chaps" id="chaps"></div>
 
  <div class="card" id="facts"></div>
+
+ <h2>٣ — ملفات الترجمة (SRT)</h2>
+ <div class="sub">ملف يوتيوب المُوقَّت نفسه غير قابل للجلب (يحتاج توقيع المشغّل، ويوتيوب يحجب
+ الطرفيات العامة) — لذلك هذه الملفات مبنية بالطريقة المعتمدة: <b>الكلمات من نص يوتيوب</b>
+ و<b>الأزمنة مقاسة من الصوت الذي رفعتَه</b>.</div>
+ {subs}
 </div>
 <script>
  var CMP='', DUB='';
