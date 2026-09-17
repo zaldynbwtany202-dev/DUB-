@@ -38,28 +38,46 @@ MAX_UPLOAD = 600 * 1024 * 1024
 ALLOWED_EXT = {".mp4", ".webm", ".mov", ".mkv", ".m4v", ".srt", ".vtt", ".txt",
                ".json", ".mp3", ".wav", ".m4a", ".aac", ".ogg"}
 
-CHAPTERS = [
-    ("0:00", 0.2, "بداية السرد — أهدأ مقطع (1.17x)"),
-    ("0:48", 47.9, "أسرع مقطع في النسخة (1.48x)"),
-    ("2:23", 143.0, "مقطع سريع (1.36x)"),
-    ("3:58", 237.9, "مقطع سريع (1.36x)"),
-    ("5:00", 300.0, "منتصف النسخة"),
-    ("7:00", 420.0, "الدقيقة السابعة"),
-    ("9:00", 540.0, "النهاية — 9:24"),
+# Curated, not discovered: dubs/ holds 44 mp4s and most are historical or
+# explicitly rejected (das-full/part1 is rejected forever), so a glob would bury
+# the deliverable and invite playing a rejected cut. Newest work first.
+FEATURED = [
+    {"path": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot.mp4",
+     "label": "doctor-lecture — تجربة الدقيقة الأولى (72 ث)",
+     "note": "3 مجموعات (0→71.78 ث) · voice-01 · 8.69 حرف/ث مقاسًا · atempo ثم دمج فقط",
+     "compare": "library/doctor-lecture/source.mp4"},
+    {"path": "library/doctor-lecture/source.mp4",
+     "label": "doctor-lecture — الأصل 19:20 (للمقارنة)",
+     "note": "الأصل كما وصل بالرفع · 854×480 · sha256 684188ac…"},
+    {"path": "dubs/das-full/matched/final-dub-das-voice00-0-23-fixed.mp4",
+     "label": "das-full — 9:24 بالنص المصحَّح",
+     "note": "24 مجموعة · voice-00 · النص المصحَّح groups-v3 · مزامنة على توقيت الأصل",
+     "compare": "library/das-full/source.mp4"},
+    {"path": "library/das-full/source.mp4",
+     "label": "das-full — الأصل 52:22 (للمقارنة)",
+     "note": "الأصل الكامل المستعاد بالبصمة"},
 ]
 
 
 def page() -> str:
-    vids = sorted(ROOT.glob("*.mp4"), key=lambda p: p.stat().st_mtime, reverse=True)
-    main = vids[0].name if vids else ""
+    live = []
+    for f in FEATURED:
+        if not (ROOT / f["path"]).is_file():
+            continue
+        f = dict(f)
+        # das-full's original is restored on demand and is not on disk now, so its
+        # A/B pair is absent: blank it rather than show a button that 404s.
+        if f.get("compare") and not (ROOT / f["compare"]).is_file():
+            f["compare"] = ""
+        live.append(f)
+    main = live[0]["path"] if live else ""
+    main_cmp = live[0].get("compare", "") if live else ""
+    note = live[0]["note"] if live else ""
     opts = "".join(
-        f'<option value="{p.name}"{" selected" if p.name == main else ""}>{p.name}'
-        f" — {p.stat().st_size // 1048576} م.ب</option>"
-        for p in vids
-    )
-    chap = "".join(
-        f'<button onclick="j({t})">{lab}<small>{note}</small></button>'
-        for lab, t, note in CHAPTERS
+        f'<option value="{f["path"]}" data-cmp="{f.get("compare", "")}"'
+        f' data-note="{f["note"]}"{" selected" if f["path"] == main else ""}>'
+        f'{f["label"]} — {(ROOT / f["path"]).stat().st_size // 1048576} م.ب</option>'
+        for f in live
     )
     return f"""<!doctype html>
 <html lang="ar" dir="rtl">
@@ -107,34 +125,60 @@ def page() -> str:
   <div id="have"></div>
  </div>
 
- <h2>٢ — النسخة المدبلجة الجاهزة</h2>
- <div class="sub">24 مجموعة · صوت واحد <b>voice-00</b> · مزامنة على توقيت الفيديو الأصلي · صفر تجاوز · النص المصحَّح <b>groups-v3</b></div>
+ <h2>٢ — النسخة المدبلجة</h2>
+ <div class="sub" id="note">{note}</div>
  <div class="bar">
   <select id="f" onchange="load(this.value)">{opts}</select>
+  <button class="go" id="ab" onclick="ab()" style="display:{'inline-block' if main_cmp else 'none'}">الأصل ⇄ النسخة عند نفس اللحظة</button>
   <a class="dl" id="dl" href="{main}" download>تنزيل الملف</a>
  </div>
  <video id="v" controls preload="metadata" src="{main}"></video>
- <div class="chaps">{chap}</div>
+ <div class="chaps" id="chaps"></div>
 
- <div class="card">
-  <b>ماذا تفحص</b>
-  <table>
-   <tr><th>البند</th><th>القيمة</th><th>الحكم</th></tr>
-   <tr><td>مدة النسخة</td><td>9:24 (564 ث)</td><td class="ok">سليم</td></tr>
-   <tr><td>أسماء الشخصيات</td><td>موحَّدة: داس · الانا · مول · تور · الفاس · التيران</td><td class="ok">أُصلح «دس» و«الانه» و«التران»</td></tr>
-   <tr><td>تغطية كلام الأصل</td><td>99.64%</td><td class="ok">سليم</td></tr>
-   <tr><td>تجاوز عن النوافذ</td><td>0.00 ث</td><td class="ok">سليم</td></tr>
-   <tr><td>أثر الراوي الأصلي</td><td>corr 0.0023 (الحد 0.08)</td><td class="ok">لا شيء</td></tr>
-   <tr><td>سرعة الكلام</td><td>1.17x – 1.48x (وسط 1.30x)</td><td class="warn">أسرع من الطبيعي — ثمن إيقاع المطابقة</td></tr>
-   <tr><td>موسيقى/مؤثرات الأصل</td><td>غير مضمّنة</td><td class="warn">قرار لم يُتخذ — يمكن إضافتها</td></tr>
-   <tr><td>المسارات</td><td>1 فيديو + 1 صوت</td><td class="ok">سليم</td></tr>
-  </table>
- </div>
+ <div class="card" id="facts"></div>
 </div>
 <script>
- function j(t){{var v=document.getElementById('v'); v.currentTime=t; v.play();}}
- function load(n){{var v=document.getElementById('v'); v.src=n; v.load(); v.play();
-   document.getElementById('dl').href=n;}}
+ var CMP='', DUB='';
+ function fmt(s){{s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}}
+ function setSrc(p,t){{var v=document.getElementById('v');v.src=p;v.load();
+   v.addEventListener('loadedmetadata',function once(){{if(t!=null)v.currentTime=t;v.play();
+     v.removeEventListener('loadedmetadata',once);}});
+   document.getElementById('dl').href=p;facts(p);}}
+ function load(n){{var sel=document.getElementById('f'),o=sel.options[sel.selectedIndex];
+   DUB=n;CMP=o.getAttribute('data-cmp')||'';
+   document.getElementById('note').textContent=o.getAttribute('data-note')||'';
+   document.getElementById('ab').style.display=CMP?'inline-block':'none';
+   setSrc(n,null);}}
+ function ab(){{var v=document.getElementById('v');if(!CMP)return;
+   setSrc(v.currentSrc.indexOf(DUB)>=0?CMP:DUB,v.currentTime);}}
+ function chapters(){{var v=document.getElementById('v'),d=v.duration,box=document.getElementById('chaps');
+   if(!isFinite(d)||d<=1)return;box.innerHTML='';
+   [[0,'البداية'],[0.25,'٢٥٪'],[0.5,'المنتصف'],[0.75,'٧٥٪'],[0.97,'النهاية']].forEach(function(p){{
+     var b=document.createElement('button');b.innerHTML=fmt(d*p[0])+'<small>'+p[1]+'</small>';
+     b.onclick=function(){{v.currentTime=d*p[0];v.play();}};box.appendChild(b);}});}}
+ function row(k,val,cls){{cls=cls||'ok';return '<tr><td>'+k+'</td><td>'+val+'</td><td class="'+cls+'">'+
+   (cls==='warn'?'انتبه':'سليم')+'</td></tr>';}}
+ function facts(p){{var box=document.getElementById('facts'),rp=p.replace(/\.mp4$/,'.report.json');
+   box.innerHTML='<b>تقرير البناء</b><div class="mono">'+rp+'</div>';
+   fetch(rp).then(function(r){{return r.ok?r.json():null;}}).then(function(d){{
+     if(!d){{box.innerHTML+='<div class="sub">لا يوجد تقرير بناء لهذا الملف — فهو أصل، أو نسخة سابقة لنظام التقارير.</div>';return;}}
+     var miss=(d.groups_missing_takes||[]);
+     var t='<table><tr><th>البند</th><th>القيمة</th><th>الحكم</th></tr>';
+     t+=row('مدة النسخة',fmt(d.video_seconds)+' ('+Math.round(d.video_seconds||0)+' ث)');
+     t+=row('الصوت',d.voice_id||'—');
+     t+=row('الإيقاع',d.pacing||'—');
+     t+=row('المجموعات',(d.groups_placed||0)+' موضوعة من '+(d.groups_selected||0)+' مختارة'+
+       (miss.length?' · بلا تسجيل: '+miss.join('،'):''),miss.length?'warn':'ok');
+     t+=row('تغطية كلام الأصل',((d.coverage_ratio||0)*100).toFixed(2)+'%',(d.coverage_ratio||0)>=0.99?'ok':'warn');
+     t+=row('سرعة الكلام',(d.tempo_min||0)+'x – '+(d.tempo_max||0)+'x (السقف 1.60)',(d.tempo_max||0)<=1.35?'ok':'warn');
+     t+=row('تجاوز عن النوافذ',(d.max_overrun_s||0).toFixed(2)+' ث',(d.max_overrun_s||0)<=0.05?'ok':'warn');
+     t+=row('أثر الراوي الأصلي','corr '+(d.corr_original_vocals||0)+' (الحد 0.08)',(d.corr_original_vocals||0)<=0.08?'ok':'warn');
+     t+=row('مسار الصوت',(d.audio_streams||1)+' مسار',(d.audio_streams||1)===1?'ok':'warn');
+     box.innerHTML+='<br>'+t;
+   }}).catch(function(){{box.innerHTML+='<div class="err">تعذّر قراءة التقرير</div>';}});}}
+ function boot(){{var v=document.getElementById('v'),sel=document.getElementById('f');
+   v.addEventListener('loadedmetadata',chapters);
+   if(sel.value){{DUB=sel.value;CMP=sel.options[sel.selectedIndex].getAttribute('data-cmp')||'';facts(DUB);}}}}
  function list(){{fetch('/uploads').then(r=>r.json()).then(d=>{{
    document.getElementById('have').innerHTML = d.files.length
      ? '<b>وصل حتى الآن:</b><div class="mono">'+d.files.map(f=>f.name+' — '+(f.bytes/1048576).toFixed(1)+' م.ب').join('<br>')+'</div>'
@@ -157,7 +201,7 @@ def page() -> str:
      list();}};
    x.onerror=function(){{btn.disabled=false; msg.innerHTML='<span class="err">✗ فشل الاتصال</span>';}};
    x.send(f);}}
- list();
+ list();boot();
 </script>
 </body>
 </html>"""
