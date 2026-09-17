@@ -48,7 +48,11 @@ SUFFIXED_FIXES = [
     (r"بيلمع(هم|ها|ه|كم|نا)?", "بيلمح", "«بيلمع» في كل مواضعه هنا بمعنى يلمح/ينتبه، ولم يرد بمعنى يلمع"),
 ]
 TYPO_FIXES = [
-    ("اكث", "اكثر", "حرف ناقص — «مرعبه اكت من المعتاد»، «بتسوق اكث»"),
+    ("اكث", "اكثر", "حرف ناقص — «بتسوق اكث»"),
+    # the same truncation written with a ت: «هبته المره دي مرعبه اكت من المعتاد».
+    # Neither «اكثر» nor «اكتر» appears at that spot in the caption track, and the
+    # matcher is token-exact, so «اكتشف» / «بيكتشف» are untouched.
+    ("اكت", "اكثر", "حرف ناقص — «مرعبه اكت من المعتاد»"),
 ]
 # literal phrases — word-level rules would damage legitimate lookalikes
 PHRASE_FIXES = [

@@ -41,6 +41,51 @@ MIN_GAP = 0.15       # a silence at least this long is a legitimate cut point
 BREATH_FRAC = 0.40   # leave this fraction of the boundary pause as real silence
 BREATH_MAX = 0.25    # ...but never more than this, it would cost too much tempo
 MIN_WORDS = 3        # never emit a group shorter than this
+
+# A silence in the audio is a *necessary* condition for a cut, not a sufficient
+# one. Narrators breathe inside phrases too, and cutting there strands a word
+# that grammatically demands a continuation -- «وفي نفس | الوقت» reads as a real
+# 0.26 s pause but the take sounds chopped, which is exactly the defect the user
+# reported. So a candidate break is rejected when its last word cannot end an
+# utterance. Only function words are listed: content words (nouns, verbs,
+# adverbs, demonstratives) can all end a take, even mid-phrase.
+CANNOT_END = {
+    # prepositions
+    "في", "من", "على", "الي", "عن", "مع", "ب", "ل", "ك", "زي", "مثل", "شبه",
+    "ورا", "قدام", "جنب", "تحت", "فوق", "بين", "حوالين", "وسط", "طول",
+    "بعد", "قبل", "داخل", "خارج", "خلال", "اثناء", "ضد", "نحو", "تجاه",
+    "عبر", "منذ", "غير", "الا", "نفس", "اول", "اخر", "نص", "ربع", "بمجرد",
+    # conjunctions and subordinatorss
+    "و", "ف", "ثم", "او", "ام", "بل", "لكن", "بس", "لان", "لانه", "بسبب",
+    "حتى", "اما", "بينما", "حيث", "بحيث", "كما", "رغم", "لما", "كلما",
+    "لو", "اذا", "علشان", "عشان", "كمان",
+    # negation and future particles
+    "ما", "لا", "ولا", "لم", "لن", "مش", "سوف", "ه", "ها", "هت", "ان",
+    # relatives
+    "اللي", "اللى", "ال", "بتاع", "تبع",
+    # quantifiers that need a complement
+    "كل", "بعض", "اي", "معظم", "جميع",
+}
+
+# Clitics attach without a space, so the surface form hides the function word:
+# «وفي» is really و + «في». Strip ONE prefix (never lstrip, which eats every
+# leading clitic and collapses «وفي» to "", falling back to a token that is not
+# in the set -- that is how «وفي ⟂ الوقت» slipped through the first version).
+# Object pronouns attach on the right the same way: «وراه» = «ورا» + ه.
+CLITIC_PREFIXES = "وفبلك"
+PRONOUN_SUFFIXES = ("ها", "هم", "ه", "نا")
+
+
+def is_dangling(word: str) -> bool:
+    """True if `word` cannot end a take."""
+    if word in CANNOT_END:
+        return True
+    if len(word) > 1 and word[1:] in CANNOT_END:      # وفي -> في
+        return True
+    for suf in PRONOUN_SUFFIXES:                       # وراه -> ورا
+        if word.endswith(suf) and word[: -len(suf)] in CANNOT_END:
+            return True
+    return False
 MIN_TAKE = 3.0       # a group shorter than this is merged into its neighbour
 MIN_CHARS = 30       # ...or too small to be worth a clip on its own
 EDGE_SLACK = 0.08    # a take must land this far inside its window (builder's rule)
@@ -111,11 +156,15 @@ def plan(words: list[dict], cands: list[dict], *, max_span: float, max_span_hard
                 "break_drift_s": drift, "breath_kept_s": round(breath, 3),
                 "text": tts_safe_egyptian(" ".join(w["w"] for w in words[i:k + 1]).strip())}
 
+    dangling = 0
     while ci < n:
         feasible: list[dict] = []
         for c in cands:
             if c["k"] < ci + MIN_WORDS - 1:
                 continue
+            if is_dangling(words[c["k"]]["w"]):
+                dangling += 1
+                continue       # a real silence, but the take would end mid-phrase
             g = make(ci, c["k"], c, floor)
             if g["window"] > max_span_hard or g["chars"] > max_chars:
                 break          # both only grow with k, so nothing later can fit
@@ -138,10 +187,11 @@ def plan(words: list[dict], cands: list[dict], *, max_span: float, max_span_hard
                     break
                 k += 1
             inner = [c for c in cands if ci + MIN_WORDS - 1 <= c["k"] <= k]
-            if inner:
-                c = max(inner, key=lambda x: x["dur"])
+            clean = [c for c in inner if not is_dangling(words[c["k"]]["w"])]
+            if clean or inner:
+                c = max(clean or inner, key=lambda x: x["dur"])
                 pick = make(ci, c["k"], c, floor)
-                pick["break_kind"] = "silence-short-group"
+                pick["break_kind"] = "silence-short-group" if clean else "silence-dangling"
                 floor = c["end"]
             else:
                 # clamp: the tail of the video can hold fewer than MIN_WORDS words
@@ -178,6 +228,8 @@ def plan(words: list[dict], cands: list[dict], *, max_span: float, max_span_hard
         "forced_cuts_no_silence": [g["i"] for g in groups if g["break_kind"] == "forced"],
         "breaks_on_silence": sum(1 for g in groups if g["break_kind"].startswith("silence")),
         "break_drift_over_tol": [g["i"] for g in groups if g["break_kind"] == "silence-drift"],
+        "silences_rejected_as_dangling": dangling,
+        "breaks_still_dangling": [g["i"] for g in groups if g["break_kind"] == "silence-dangling"],
         "min_break_pause_s": min((g["break_pause_s"] for g in groups[:-1]), default=0.0),
         "median_break_pause_s": sorted(g["break_pause_s"] for g in groups)[len(groups) // 2],
         "breath_kept_total_s": round(sum(g["breath_kept_s"] for g in groups), 2),
