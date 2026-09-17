@@ -166,7 +166,12 @@ def write_srt(words: list[dict], path: Path) -> None:
         if i < len(words):
             nxt = max(float(words[i]["t0"]), t0 + 0.04)
             t1 = min(t1, max(t0 + 0.04, nxt - 0.01))
-        w["t0"], w["t1"] = t0, t1
+        # Deliberately NOT writing t0/t1 back into w. This used to mutate the
+        # aligned words, and main() writes spoken.json afterwards, so the file
+        # inherited squeezed times with every gap exactly 0.01s. Those gaps are
+        # the only record of where the narrator actually breathed, and without
+        # them the planner cuts groups mid-phrase: a take then ends on a chopped
+        # word and the next take starts a new one 10 ms later.
         prev = t1
         lines.append(f"{i}\n{stamp(t0)} --> {stamp(t1)}\n{w['w']}\n")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")

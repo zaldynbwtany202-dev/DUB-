@@ -42,9 +42,13 @@ ALLOWED_EXT = {".mp4", ".webm", ".mov", ".mkv", ".m4v", ".srt", ".vtt", ".txt",
 # explicitly rejected (das-full/part1 is rejected forever), so a glob would bury
 # the deliverable and invite playing a rejected cut. Newest work first.
 FEATURED = [
+    {"path": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot-pause.mp4",
+     "label": "doctor-lecture — التجربة المُصلَحة: حدود على السكتات (72 ث)",
+     "note": "3 مجموعات · voice-01 · كل حدّ داخل سكتة حقيقية · نَفَس 0.15-0.33 ث بين المقاطع · سرعة 1.21-1.33",
+     "compare": "library/doctor-lecture/source.mp4"},
     {"path": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot.mp4",
-     "label": "doctor-lecture — تجربة الدقيقة الأولى (72 ث)",
-     "note": "3 مجموعات (0→71.78 ث) · voice-01 · 8.69 حرف/ث مقاسًا · atempo ثم دمج فقط",
+     "label": "doctor-lecture — التجربة السابقة (حدود في منتصف العبارة)",
+     "note": "للمقارنة فقط: الفجوة بين المجموعات كانت 0.010 ث فتُقطع الكلمة («بقى لها» ⟂ «وقت طويل»)",
      "compare": "library/doctor-lecture/source.mp4"},
     {"path": "library/doctor-lecture/source.mp4",
      "label": "doctor-lecture — الأصل 19:20 (للمقارنة)",

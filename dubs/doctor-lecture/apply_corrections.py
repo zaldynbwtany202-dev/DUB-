@@ -59,6 +59,9 @@ PHRASE_FIXES = [
     ("بيعرف عرف ينطق", "بيعرف ينطق", "كلمة مكررة مشوهة"),
     ("عايش ش فيه", "عايش فيه", "حرف زائد — «البيت اللي بختي كان عايش ش فيه»"),
     ("نيسه بنت الصغيره", "نيسه بنته الصغيره", "الهاء ناقصة؛ السياق: أبوها الدكتور بختي"),
+    ("7:00", "سبعه", "«للساعه 7:00 بالليل» و«لحد الساعه ما تيجي 7:00» — رقم بعلامتين يقرأه المولّد حرفياً"),
+    ("من 20 سنه", "من عشرين سنه", "«ما فيش طالب ساقط عنده من 20 سنه»"),
+    ("[تنحنُح]", "", "وسم صوتي من مولّد الترجمة (تنحنح) وليس كلمة منطوقة — يُحذف لا يُقرأ"),
 ]
 AMBIGUOUS = [
     ("بتروح ملكان", "لعلها «بتروح ميل مكان» أو «بتروح مل كان» — لا أخمن"),
@@ -125,8 +128,11 @@ def main() -> int:
 
     if not a.dry_run:
         a.out.write_text(json.dumps(plan, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        # text files are named after the plan, so two plans (the old mid-phrase cut
+        # and the pause-snapped one) never overwrite each other's recording sheets
+        stem = a.out.stem
         for g in groups:
-            (HERE / f"text-v2-{g['i']:04d}.txt").write_text(g["text"] + "\n", encoding="utf-8")
+            (HERE / f"text-{stem}-{g['i']:04d}.txt").write_text(g["text"] + "\n", encoding="utf-8")
         (HERE / "corrections-diff.md").write_text(
             "# تصحيحات نص doctor-lecture (kOrz0WAb2P8)\n\n"
             f"الكلمات من نص يوتيوب؛ الأزمنة من الصوت. تغيّرت {changed} مجموعة من {len(groups)}.\n"
