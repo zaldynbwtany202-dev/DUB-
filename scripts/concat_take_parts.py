@@ -23,7 +23,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]     # this file lives in scripts/
 FF = next((ROOT / ".venv/lib/python3.11/site-packages/imageio_ffmpeg/binaries").glob("ffmpeg-linux-*"), None)
 
 
