@@ -42,6 +42,10 @@ ALLOWED_EXT = {".mp4", ".webm", ".mov", ".mkv", ".m4v", ".srt", ".vtt", ".txt",
 # explicitly rejected (das-full/part1 is rejected forever), so a glob would bury
 # the deliverable and invite playing a rejected cut. Newest work first.
 FEATURED = [
+    {"path": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-full.mp4",
+     "label": "doctor-lecture — الفيلم الكامل 19:20 مدبلَّجاً (49 مجموعة)",
+     "note": "voice-01 · كل الحدود على سكتات حقيقية · سرعة 1.02-1.42 · أقصي تجاوز 0.0 ث · atempo فقط ثم دمج، بلا أي معالجة أخرى · 19:20.24 مقابل أصل 19:20.30",
+     "compare": "library/doctor-lecture/source.mp4"},
     {"path": "dubs/doctor-lecture/matched/final-dub-doctor-lecture-pilot-pause.mp4",
      "label": "doctor-lecture — التجربة المُصلَحة: حدود على السكتات (72 ث)",
      "note": "3 مجموعات · voice-01 · كل حدّ داخل سكتة حقيقية · نَفَس 0.15-0.33 ث بين المقاطع · سرعة 1.21-1.33",
@@ -65,6 +69,8 @@ FEATURED = [
 
 # Subtitle files worth handing to the user, newest/most useful first.
 SUBTITLES = [
+    ("dubs/doctor-lecture/matched/final-dub-doctor-lecture-full.srt",
+     "doctor-lecture — ترجمة الفيلم الكامل المدبلَج (49 cue) · مطابقة لمواضع الصوت الفعلية"),
     ("library/doctor-lecture/youtube/kOrz0WAb2P8.groups.srt",
      "doctor-lecture — SRT عباري (49 cue) · كلمات يوتيوب × أزمنة مقاسة من الصوت · النص المصحَّح"),
     ("library/doctor-lecture/youtube/kOrz0WAb2P8.spoken-fixed.srt",
