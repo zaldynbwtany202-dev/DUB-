@@ -63,6 +63,15 @@ def atempo(samples: np.ndarray, rate: float) -> np.ndarray:
     return out.astype(np.float32)
 
 
+def source_duration(path: Path) -> float:
+    """Media duration in seconds, read from ffmpeg's banner (no ffprobe here)."""
+    err = subprocess.run([ffmpeg_exe(), "-i", str(path)], capture_output=True, text=True).stderr
+    if "Duration: " not in err:
+        raise SystemExit(f"cannot read the duration of {path}")
+    h, m, s = err.split("Duration: ")[1].split(",")[0].split(":")
+    return int(h) * 3600 + int(m) * 60 + float(s)
+
+
 def find_take(index: int, dirs: list[Path]) -> Path | None:
     for d in dirs:
         p = d / f"seg-{index:04d}.mp3"
@@ -154,8 +163,14 @@ def main() -> int:
         raise SystemExit("no takes found for the selected groups")
 
     end_time = max(s + len(a) / SR for s, a, _ in placements) + 0.5
-    span = end_time
-    track = np.zeros(int(round(end_time * SR)), dtype=np.float32)
+    # Never shorten the picture. The narration usually stops before the video
+    # does -- an end card, music, a channel outro -- and `-t span` plus
+    # `-shortest` would cut those last seconds off the film (the 19:20
+    # doctor-lecture came out 19:17.51). Pad the dub track with silence to the
+    # full source length instead: the picture stays whole and the tail is quiet.
+    src_dur = source_duration(args.source)
+    span = max(end_time, src_dur - origin)
+    track = np.zeros(int(round(span * SR)), dtype=np.float32)
     for start, audio, _ in placements:
         i = int(round(start * SR))
         track[i:i + len(audio)] += audio
@@ -186,16 +201,39 @@ def main() -> int:
 
     # ---- verification -------------------------------------------------------
     out_audio = decode(out)
-    stereo = subprocess.run(
+    del track            # 222 MB of float32 we no longer need
+    # Read the source stereo in 60 s chunks. Decoding all 19 minutes at once
+    # (~445 MB) on top of the dub track and the output decode is what got this
+    # step OOM-killed (exit 137) after the mp4 was already written.
+    CHUNK = 60 * SR
+    proc = subprocess.Popen(
         [ffmpeg_exe(), "-v", "error", *seek, "-i", str(args.source), "-t", f"{span:.3f}",
-         "-ar", str(SR), "-ac", "2", "-f", "f32le", "-"], capture_output=True, check=True).stdout
-    st = np.frombuffer(stereo, dtype=np.float32)
-    left, right = st[0::2], st[1::2]
-    original_voice, _ = split_center(left, right, SR, strength=1.8)
-    n = min(len(out_audio), len(original_voice))
-    a = out_audio[:n] - out_audio[:n].mean()
-    b = original_voice[:n] - original_voice[:n].mean()
-    corr = float(np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b) + 1e-12))
+         "-ar", str(SR), "-ac", "2", "-f", "f32le", "-"],
+        stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    dot = na = nb = 0.0
+    pos = 0
+    while pos < len(out_audio):
+        raw = proc.stdout.read(2 * CHUNK * 4)
+        if not raw:
+            break
+        st = np.frombuffer(raw[: len(raw) // 8 * 8], dtype=np.float32)
+        left, right = st[0::2], st[1::2]
+        voice, _ = split_center(left, right, SR, strength=1.8)
+        m = min(len(voice), len(out_audio) - pos)
+        if m <= 0:
+            break
+        a = out_audio[pos:pos + m]
+        b = voice[:m]
+        a = a - a.mean()
+        b = b - b.mean()
+        dot += float(np.dot(a, b))
+        na += float(np.dot(a, a))
+        nb += float(np.dot(b, b))
+        pos += m
+    if proc.stdout:
+        proc.stdout.close()
+    proc.wait()
+    corr = float(dot / (np.sqrt(na * nb) + 1e-12))
     streams = subprocess.run([ffmpeg_exe(), "-hide_banner", "-i", str(out)],
                              capture_output=True, text=True).stderr
     n_audio = streams.count("Audio:")
