@@ -173,6 +173,20 @@ def page() -> str:
  الطرفيات العامة) — لذلك هذه الملفات مبنية بالطريقة المعتمدة: <b>الكلمات من نص يوتيوب</b>
  و<b>الأزمنة مقاسة من الصوت الذي رفعتَه</b>.</div>
  {subs}
+
+ <h2>٤ — الصوت المقفل لدبلجة الأفلام</h2>
+ <div class="sub">قرارك 2026-09-17: هذا الصوت لكل دبلجات الأفلام. المرجع الدائم هو <b>هذا الملف
+ الصوتي</b> لا اسم المعرّف، لأن <span class="mono">voice_id</span> مرتبط بالجلسة التي اختير فيها
+ ولا يعمل في جلسة لاحقة. <b>الأذن هي الحكم</b>: لا بوابة آلية موثوقة — قِسنا سبع ميزات طيفية على
+ 1176 زوجًا من الصوت نفسه و1568 زوجًا من صوت مختلف، فأفضل هامش 0.55× وخطأ متساوٍ 5.1٪.</div>
+ <audio controls preload="none" src="library/voices/film-dub-narrator/voice-film-bank.mp3"
+        style="width:100%"></audio>
+ <div class="sub">البنك المرجعي 1:58 — المجموعات 0 و12 و24 و47 من الفيلم ·
+  <a class="dl" href="library/voices/film-dub-narrator/voice-film-bank.mp3" download>تنزيل</a> ·
+  الإيقاع المقاس <b>9.21 حرف/ث</b> (8.19–10.89) · القفل
+  <span class="mono">library/voices/film-dub-narrator/LOCKED_VOICE.json</span></div>
+ <div class="sub">لمقارنة عيّنة جديدة به: <span class="mono">python scripts/verify_voice.py --ab
+  &lt;الملف&gt;</span> فيُنشأ ملف فيه البنك ثم العيّنة، ويُسمع من <span class="mono">/ab/</span>.</div>
 </div>
 <script>
  var CMP='', DUB='';

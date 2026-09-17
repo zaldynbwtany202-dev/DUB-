@@ -71,3 +71,6 @@ voice-audit/
 !library/**
 !dubs/
 !dubs/**
+
+# generated A/B listening files (rebuild: python scripts/verify_voice.py --ab FILE)
+.preview/ab/

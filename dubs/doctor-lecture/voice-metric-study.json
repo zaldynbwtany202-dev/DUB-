@@ -1,0 +1,86 @@
+[
+  {
+    "feature": "A mfcc mean+std+centroid",
+    "same_voice_max": 12.99,
+    "other_voice_min": 7.13,
+    "margin": 0.549,
+    "eer_threshold": 9.379,
+    "eer": 0.0508,
+    "false_rejects": 76,
+    "false_accepts": 58,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "B mfcc std+centroid+f0",
+    "same_voice_max": 10.223,
+    "other_voice_min": 5.284,
+    "margin": 0.517,
+    "eer_threshold": 7.708,
+    "eer": 0.0531,
+    "false_rejects": 53,
+    "false_accepts": 96,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "C mfcc mean only",
+    "same_voice_max": 10.388,
+    "other_voice_min": 2.103,
+    "margin": 0.202,
+    "eer_threshold": 6.009,
+    "eer": 0.1763,
+    "false_rejects": 189,
+    "false_accepts": 301,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "D ltas mel standardised",
+    "same_voice_max": 14.956,
+    "other_voice_min": 4.239,
+    "margin": 0.283,
+    "eer_threshold": 8.558,
+    "eer": 0.2059,
+    "false_rejects": 248,
+    "false_accepts": 315,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "E ltas mel raw",
+    "same_voice_max": 15.122,
+    "other_voice_min": 4.664,
+    "margin": 0.308,
+    "eer_threshold": 8.571,
+    "eer": 0.1939,
+    "false_rejects": 249,
+    "false_accepts": 276,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "F spectral shape (7)",
+    "same_voice_max": 11.483,
+    "other_voice_min": 1.097,
+    "margin": 0.096,
+    "eer_threshold": 4.484,
+    "eer": 0.1709,
+    "false_rejects": 204,
+    "false_accepts": 264,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  },
+  {
+    "feature": "G ltas std + mfcc std",
+    "same_voice_max": 16.14,
+    "other_voice_min": 7.478,
+    "margin": 0.463,
+    "eer_threshold": 11.381,
+    "eer": 0.0999,
+    "false_rejects": 103,
+    "false_accepts": 176,
+    "pairs_same": 1176,
+    "pairs_other": 1568
+  }
+]
