@@ -74,3 +74,10 @@ voice-audit/
 
 # generated A/B listening files (rebuild: python scripts/verify_voice.py --ab FILE)
 .preview/ab/
+
+# Intake by the preview server: a source bigger than GitHub's 100 MB blob limit
+# is committed as parts under library/<slug>/parts/, and the assembled copy stays
+# local as *.local.* (rebuild it with scripts/join_parts.py). In-flight slices
+# live in .parts/ and are joined and deleted on finish.
+library/*/*.local.*
+library/*/.parts/

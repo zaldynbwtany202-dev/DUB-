@@ -6,37 +6,211 @@ Why this exists: the sandbox cannot reach YouTube (TLS blocked), and the user ha
 a video to hand in. The preview host is the one channel that goes the other way,
 so uploads land here and the intake script picks them up.
 
-Two jobs, one server:
-  GET  /            player page + upload form (newest build selected by default)
-  GET  /<file>      range-aware file serving, so a 40 MB MP4 seeks properly
-  POST /upload?name=<filename>   raw body streamed to the inbox directory
+Routes:
+  GET  /               player page + upload form (newest build selected first)
+  GET  /<file>         range-aware file serving, so a 40 MB MP4 seeks properly
+  GET  /uploads        the intake projects now sitting in library/
+  GET  /upload-status  which chunks of a file already arrived (resume support)
+  POST /upload-chunk   one slice, raw body; the browser runs six in parallel
+  POST /upload-finish  join the slices, digest them, commit and push
+  POST /upload         one-shot upload, kept for curl and small files
 
-Uploads use a raw body rather than multipart because the browser can send a File
-directly with fetch/XHR, and streaming keeps a 150 MB source out of memory.
+Uploads go straight into the repository at library/<slug>/ and are committed and
+pushed as soon as they are whole. The user asked for exactly that (2026-09-18)
+after a scratch-inbox upload was lost to a sandbox reset: only a commit survives.
+A source over 95 MB is committed as parts, because GitHub refuses a 100 MB blob;
+the assembled copy stays local and is named *.local.* so .gitignore keeps it out.
+
+Chunking is also the answer to the slow upload: the preview proxy limits one
+stream, so the browser opens six and resumes whatever already landed.
+
+Raw bodies rather than multipart, because the browser can send a File slice
+directly with fetch, and streaming keeps a 600 MB source out of memory.
 Names are sanitised and extensions whitelisted: this URL is reachable by anyone
 who has it.
 
-Usage: python .preview/serve.py <serve-dir> <port> [upload-dir]
+Usage: python .preview/serve.py <serve-dir> <port>
+       DUB_UPLOAD_NOGIT=1 exercises the intake without touching git.
 """
 
 from __future__ import annotations
 
+import hashlib
 import http.server
 import json
 import mimetypes
+import os
 import re
+import shutil
 import socketserver
+import subprocess
 import sys
+import threading
+import time
 import urllib.parse
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
 PORT = int(sys.argv[2]) if len(sys.argv) > 2 else 8000
-UPLOAD_DIR = Path(sys.argv[3]).resolve() if len(sys.argv) > 3 else ROOT
 
 MAX_UPLOAD = 600 * 1024 * 1024
 ALLOWED_EXT = {".mp4", ".webm", ".mov", ".mkv", ".m4v", ".srt", ".vtt", ".txt",
                ".json", ".mp3", ".wav", ".m4a", ".aac", ".ogg"}
+
+# Uploads land in the repository, not in a scratch inbox: the user asked for the
+# video to be moved straight into its own folder here (2026-09-18), and only a
+# commit survives the sandbox dying -- inbox/ had already cost one upload.
+LIBRARY = ROOT / "library"
+BRANCH = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=ROOT,
+                        capture_output=True, text=True).stdout.strip() or "HEAD"
+GIT_LOCK = ROOT / ".cache" / "upload-git.lock"          # .cache/ is gitignored
+NOGIT = os.environ.get("DUB_UPLOAD_NOGIT") == "1"       # tests only
+
+# GitHub refuses a blob of 100 MB, so a bigger source is committed as parts and
+# the assembled copy stays local (library/*/*.local.* is gitignored).
+PART_LIMIT = 95 * 1024 * 1024
+CHUNK_MAX = 64 * 1024 * 1024                            # one POSTed chunk
+
+
+def slugify(raw: str) -> str | None:
+    """A folder name for the project: letters, digits, hyphens, Arabic kept."""
+    s = re.sub(r"[\s_]+", "-", (raw or "").strip().lower())
+    s = re.sub(r"[^\w\-\u0600-\u06ff]", "", s)
+    s = re.sub(r"-{2,}", "-", s).strip("-")[:60].strip("-")
+    return s or None
+
+
+def project_dir(slug: str) -> Path:
+    return LIBRARY / slug
+
+
+def chunks_dir(slug: str, name: str) -> Path:
+    return project_dir(slug) / ".parts" / name
+
+
+def sha256_file(path: Path, block: int = 1 << 21) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as fh:
+        for chunk in iter(lambda: fh.read(block), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def git_commit(paths: list[Path], message: str) -> dict:
+    """add + commit + push, under a lock so a slow upload cannot collide with an
+    agent-side commit. Only the named paths are committed: a 200 MB source must
+    never be swept in by an unrelated `git add -A` elsewhere. Failure is
+    reported, never raised -- bytes already on disk are worth more than a push."""
+    if NOGIT:
+        return {"state": "skipped", "why": "DUB_UPLOAD_NOGIT=1"}
+    GIT_LOCK.parent.mkdir(parents=True, exist_ok=True)
+    rel = [str(p.relative_to(ROOT)) for p in paths]
+    try:
+        with GIT_LOCK.open("w") as lock:
+            lock.write(str(os.getpid()))
+            for step in (["git", "add", "--", *rel],
+                         ["git", "commit", "-q", "-m", message, "--", *rel],
+                         ["git", "push", "-q", "origin", BRANCH]):
+                r = subprocess.run(step, cwd=ROOT, capture_output=True, text=True,
+                                   timeout=1800)
+                out = (r.stdout + r.stderr).strip()
+                if r.returncode and "nothing to commit" not in out:
+                    return {"state": "failed", "step": step[1], "error": out[:400]}
+            rev = subprocess.run(["git", "rev-parse", "--short", "HEAD"], cwd=ROOT,
+                                 capture_output=True, text=True).stdout.strip()
+        return {"state": "committed", "commit": rev, "branch": BRANCH}
+    except subprocess.TimeoutExpired:
+        return {"state": "failed", "step": "timeout", "error": "جاوز 1800 ث"}
+    except OSError as exc:
+        return {"state": "failed", "step": "lock", "error": str(exc)[:200]}
+    finally:
+        GIT_LOCK.unlink(missing_ok=True)
+
+
+def assemble(slug: str, name: str) -> dict:
+    """Join the posted chunks into the project folder, then commit them.
+
+    Layout depends on size, because GitHub rejects a 100 MB blob:
+      <= 95 MB   library/<slug>/<name>                     committed as one file
+      >  95 MB   library/<slug>/parts/<name>.part-NNN      committed as parts
+                 library/<slug>/<stem>.local<ext>          assembled, gitignored
+    INTAKE.json records which layout, the digest, and what to feed ffmpeg.
+    """
+    cdir = chunks_dir(slug, name)
+    parts = sorted(cdir.glob("chunk-*"), key=lambda p: int(p.name.split("-")[1]))
+    if not parts:
+        return {"ok": False, "error": "لا مقاطع مرفوعة"}
+    gap = [i for i in range(int(parts[-1].name.split("-")[1]) + 1)
+           if not (cdir / f"chunk-{i:06d}").is_file()]
+    if gap:
+        return {"ok": False, "error": f"مقاطع ناقصة: {gap[:8]}{'…' if len(gap) > 8 else ''}",
+                "missing": gap}
+
+    dest_dir = project_dir(slug)
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    total = sum(p.stat().st_size for p in parts)
+    dest = dest_dir / name
+    t0 = time.time()
+    with dest.open("wb") as out:
+        for p in parts:
+            with p.open("rb") as fh:
+                shutil.copyfileobj(fh, out, 1 << 22)
+    joined_s = time.time() - t0
+    shutil.rmtree(cdir, ignore_errors=True)
+    try:
+        cdir.parent.rmdir()                 # .parts/ once nothing else is in it
+    except OSError:
+        pass
+
+    digest = sha256_file(dest)
+    big = total > PART_LIMIT
+    git_paths: list[Path] = []
+    if big:
+        pdir = dest_dir / "parts"
+        pdir.mkdir(exist_ok=True)
+        stem, ext = dest.stem, dest.suffix
+        local = dest_dir / f"{stem}.local{ext}"
+        n = 0
+        with dest.open("rb") as src, local.open("wb") as keep:
+            while True:
+                block = src.read(PART_LIMIT)
+                if not block:
+                    break
+                part = pdir / f"{name}.part-{n:03d}"
+                part.write_bytes(block)
+                keep.write(block)
+                git_paths.append(part)
+                n += 1
+        dest.unlink()                       # the single big file cannot be pushed
+        fed = local
+        layout = f"parts×{n}"
+    else:
+        git_paths.append(dest)
+        fed = dest
+        layout = "single"
+
+    intake = {
+        "slug": slug, "name": name, "bytes": total, "sha256": digest,
+        "chunks": len(parts), "layout": layout, "uploaded_at":
+            datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "fed_to_pipeline": str(fed.relative_to(ROOT)),
+        "joined_in_s": round(joined_s, 2),
+        "git": {"state": "running"},
+    }
+    manifest = dest_dir / "INTAKE.json"
+    manifest.write_text(json.dumps(intake, ensure_ascii=False, indent=2) + "\n", "utf-8")
+    git_paths.append(manifest)
+
+    def push() -> None:
+        res = git_commit(git_paths, f"Take in {slug}: {name} ({total} bytes, sha256 {digest[:12]})")
+        intake["git"] = res
+        manifest.write_text(json.dumps(intake, ensure_ascii=False, indent=2) + "\n", "utf-8")
+
+    threading.Thread(target=push, daemon=True, name=f"git-{slug}").start()
+    return {"ok": True, "slug": slug, "path": str(fed.relative_to(ROOT)),
+            "bytes": total, "sha256": digest, "layout": layout,
+            "joined_in_s": round(joined_s, 2), "git": "يعمل في الخلفية"}
 
 # Curated, not discovered: dubs/ holds 44 mp4s and most are historical or
 # explicitly rejected (das-full/part1 is rejected forever), so a glob would bury
@@ -147,12 +321,15 @@ def page() -> str:
  <div class="card">
   <div class="bar">
    <input type="file" id="pick" accept=".mp4,.webm,.mov,.mkv,.m4v,.srt,.vtt,.txt,.json,.mp3,.wav,.m4a">
+   <input type="text" id="slug" placeholder="اسم المجلد (اختياري)" style="width:190px;background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:8px;padding:7px 10px">
    <button class="go" id="up" onclick="send()">رفع</button>
   </div>
   <progress id="prog" value="0" max="100" style="display:none"></progress>
   <div id="msg" class="mono"></div>
-  <div class="sub">يصل الملف إلى <span class="mono">{UPLOAD_DIR}</span> داخل الـsandbox. الحد {MAX_UPLOAD // 1048576} م.ب.
-  الامتدادات المسموحة: فيديو، srt/vtt، txt/json، صوت.</div>
+  <div class="sub">يصل الملف <b>مباشرة إلى المستودع</b> في مجلده الخاص <span class="mono">library/&lt;الاسم&gt;/</span>
+  ويُدفَع فور اكتماله — لا صندوق مؤقت يضيع مع انقطاع الـsandbox.
+  يُرفع مقاطع ٨ م.ب على <b>٦ اتصالات متوازية</b>، ويستأنف ما وصل إن انقطع. الحد {MAX_UPLOAD // 1048576} م.ب.
+  ما فوق ٩٥ م.ب يُحفَظ أجزاءً (حدّ GitHub للملف الواحد) مع بصمة sha256 في <span class="mono">INTAKE.json</span>.</div>
   <div id="have"></div>
  </div>
 
@@ -231,27 +408,65 @@ def page() -> str:
    v.addEventListener('loadedmetadata',chapters);
    if(sel.value){{DUB=sel.value;CMP=sel.options[sel.selectedIndex].getAttribute('data-cmp')||'';facts(DUB);}}}}
  function list(){{fetch('/uploads').then(r=>r.json()).then(d=>{{
-   document.getElementById('have').innerHTML = d.files.length
-     ? '<b>وصل حتى الآن:</b><div class="mono">'+d.files.map(f=>f.name+' — '+(f.bytes/1048576).toFixed(1)+' م.ب').join('<br>')+'</div>'
+   var ps=d.projects||[];
+   document.getElementById('have').innerHTML = ps.length
+     ? '<b>في المستودع:</b><div class="mono">'+ps.map(function(p){{
+         var g=(p.intake&&p.intake.git)||{{}}, sz=(p.intake&&p.intake.bytes)||0;
+         var st=g.state==='committed'?'<span class="ok">مدفوع '+(g.commit||'')+'</span>'
+               :(g.state==='failed'?'<span class="err">فشل الدفع: '+(g.error||'')+'</span>'
+               :(g.state==='running'?'<span class="warn">يُدفَع الآن…</span>':'<span class="sub">غير مدفوع</span>'));
+         return p.slug+'/ — '+(sz/1048576).toFixed(1)+' م.ب · '+st;}}).join('<br>')+'</div>'
      : '<span class="sub">لم يصل شيء بعد.</span>';}});}}
+ var CHUNK=8*1048576, PAR=6;
+ function slugOf(n){{return n.replace(/\\.[^.]+$/,'').toLowerCase().replace(/[\\s_]+/g,'-')
+   .replace(/[^\\w\\-\\u0600-\\u06ff]/g,'').replace(/-{{2,}}/g,'-').slice(0,60);}}
+ function postJSON(url,body){{return fetch(url,{{method:'POST',body:body}}).then(function(r){{return r.json();}});}}
  function send(){{
    var inp=document.getElementById('pick'), msg=document.getElementById('msg'),
-       btn=document.getElementById('up'), pr=document.getElementById('prog');
+       btn=document.getElementById('up'), pr=document.getElementById('prog'),
+       sl=document.getElementById('slug');
    if(!inp.files.length){{msg.innerHTML='<span class="err">اختر ملفاً أولاً</span>';return;}}
-   var f=inp.files[0], x=new XMLHttpRequest();
+   var f=inp.files[0];
+   var slug=(sl.value||'').trim()||slugOf(f.name);
+   if(!slug){{msg.innerHTML='<span class="err">اسم المجلد غير صالح</span>';return;}}
+   var qs='slug='+encodeURIComponent(slug)+'&name='+encodeURIComponent(f.name);
+   var n=Math.ceil(f.size/CHUNK), done=0, sent=0, failed=0, i=0, active=0, t0=Date.now();
    btn.disabled=true; pr.style.display='block'; pr.value=0;
-   msg.textContent='يرفع '+f.name+' ('+(f.size/1048576).toFixed(1)+' م.ب)…';
-   x.open('POST','/upload?name='+encodeURIComponent(f.name));
-   x.upload.onprogress=function(e){{if(e.lengthComputable) pr.value=Math.round(e.loaded/e.total*100);}};
-   x.onload=function(){{
-     btn.disabled=false;
-     try{{var r=JSON.parse(x.responseText);
-       msg.innerHTML = r.ok ? '<span class="ok">✓ وصل: '+r.path+' ('+(r.bytes/1048576).toFixed(1)+' م.ب)</span>'
-                             : '<span class="err">✗ '+r.error+'</span>';}}
-     catch(e){{msg.innerHTML='<span class="err">✗ '+x.status+'</span>';}}
-     list();}};
-   x.onerror=function(){{btn.disabled=false; msg.innerHTML='<span class="err">✗ فشل الاتصال</span>';}};
-   x.send(f);}}
+   msg.textContent='يرفع '+f.name+' → library/'+slug+'/ ('+(f.size/1048576).toFixed(1)+' م.ب، '+n+' مقطعًا)…';
+   fetch('/upload-status?'+qs).then(function(r){{return r.json();}}).then(function(st){{
+     var have=(st&&st.chunks_have)||{{}}, skip=0;
+     for(var k in have){{ if(have[k]>0){{ done++; sent+=have[k]; skip++; }} }}
+     if(skip) msg.textContent='استئناف: '+skip+' مقطعًا ('+(sent/1048576).toFixed(1)+' م.ب) وصلت سابقًا…';
+     pump();
+   }}).catch(pump);
+   function pump(){{ while(active<PAR && i<n) start(i++); if(done>=n && active===0) finish(); }}
+   function start(idx){{
+     active++;
+     postJSON('/upload-chunk?'+qs+'&index='+idx, f.slice(idx*CHUNK, Math.min(f.size,(idx+1)*CHUNK)))
+       .then(function(r){{ active--; if(r&&r.ok){{done++;sent+=r.bytes;}} else failed++; tick(); pump(); }})
+       .catch(function(){{ active--; failed++; tick(); pump(); }});
+   }}
+   function tick(){{
+     pr.value=Math.round(sent/f.size*100);
+     var s=(Date.now()-t0)/1000, rate=s>1?(sent/1048576/s):0;
+     msg.textContent='library/'+slug+'/ ← '+f.name+' · '+(sent/1048576).toFixed(1)+' من '+(f.size/1048576).toFixed(1)
+       +' م.ب · '+rate.toFixed(1)+' م.ب/ث · '+done+'/'+n+' مقطعًا'+(failed?' · '+failed+' فشل':'');
+   }}
+   function finish(){{
+     if(done<n){{ btn.disabled=false;
+       msg.innerHTML='<span class="err">✗ وصل '+done+' من '+n+' مقطعًا — اضغط «رفع» ثانيةً ليستأنف</span>'; return; }}
+     pr.value=100; msg.textContent='اكتمل النقل · يُجمَّع وتُحسب البصمة ويُدفَع إلى المستودع…';
+     postJSON('/upload-finish?'+qs,'').then(function(r){{
+       btn.disabled=false;
+       msg.innerHTML = (r&&r.ok)
+         ? '<span class="ok">✓ في المستودع: '+r.path+' · '+(r.bytes/1048576).toFixed(1)+' م.ب · '+r.layout
+           +' · sha256 '+r.sha256.slice(0,16)+'… · جُمع في '+r.joined_in_s+'ث · الدفع يعمل في الخلفية</span>'
+         : '<span class="err">✗ '+((r&&r.error)||'فشل التجميع')+'</span>';
+       list();
+     }}).catch(function(){{ btn.disabled=false; msg.innerHTML='<span class="err">✗ فشل الاتصال عند التجميع</span>'; }});
+   }}
+ }}
+ setInterval(list, 5000);
  list();boot();
 </script>
 </body>
@@ -286,43 +501,82 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self._serve(send_body=False)
 
     def do_GET(self):
-        path = self.path.split("?", 1)[0]
+        path, _, qs = self.path.partition("?")
+        query = urllib.parse.parse_qs(qs)
         if path == "/uploads":
-            UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-            files = sorted(
-                ({"name": p.name, "bytes": p.stat().st_size,
-                  "mtime": int(p.stat().st_mtime)}
-                 for p in UPLOAD_DIR.iterdir() if p.is_file() and not p.name.startswith(".")),
-                key=lambda d: -d["mtime"])
-            return self._json({"dir": str(UPLOAD_DIR), "files": files})
+            projects = []
+            if LIBRARY.is_dir():
+                for d in sorted(LIBRARY.iterdir(), key=lambda p: -p.stat().st_mtime):
+                    if not d.is_dir() or d.name.startswith("."):
+                        continue
+                    man = d / "INTAKE.json"
+                    if not man.is_file():
+                        continue          # a library folder, not an intake target
+                    try:
+                        intake = json.loads(man.read_text("utf-8"))
+                    except (OSError, ValueError):
+                        intake = None
+                    projects.append({"slug": d.name, "intake": intake,
+                                     "files": sorted((p.name for p in d.rglob("*")
+                                                      if p.is_file()), key=len)[:6]})
+            return self._json({"dir": str(LIBRARY), "projects": projects,
+                               "branch": BRANCH})
+        if path == "/upload-status":
+            slug = slugify((query.get("slug") or [""])[0])
+            name = safe_name((query.get("name") or [""])[0])
+            if not slug or not name:
+                return self._json({"ok": False, "error": "slug أو اسم غير صالح"}, 400)
+            cdir = chunks_dir(slug, name)
+            have = ({int(p.name.split("-")[1]): p.stat().st_size
+                     for p in cdir.glob("chunk-*")} if cdir.is_dir() else {})
+            return self._json({"ok": True, "slug": slug, "name": name,
+                               "chunks_have": have, "bytes_have": sum(have.values())})
         self._serve()
 
     def do_POST(self):
-        path = self.path.split("?", 1)[0]
-        if path != "/upload":
+        path, _, qs = self.path.partition("?")
+        query = urllib.parse.parse_qs(qs)
+        if path not in ("/upload", "/upload-chunk", "/upload-finish"):
             return self._json({"ok": False, "error": "unknown route"}, 404)
-        query = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
-        name = safe_name((query.get("name") or ["upload.bin"])[0])
+        name = safe_name((query.get("name") or [""])[0])
         if not name:
             return self._json({"ok": False, "error": "اسم أو امتداد غير مسموح"}, 400)
+        slug = slugify((query.get("slug") or [""])[0]) or slugify(Path(name).stem) or "upload"
+
+        if path == "/upload-finish":
+            self._drain()
+            res = assemble(slug, name)
+            return self._json(res, 200 if res.get("ok") else 400)
+
         try:
             length = int(self.headers.get("Content-Length") or 0)
         except ValueError:
             length = 0
         if length <= 0:
             return self._json({"ok": False, "error": "لا محتوى"}, 400)
-        if length > MAX_UPLOAD:
-            return self._json({"ok": False, "error": f"أكبر من {MAX_UPLOAD // 1048576} م.ب"}, 413)
+        limit = CHUNK_MAX if path == "/upload-chunk" else MAX_UPLOAD
+        if length > limit:
+            return self._json({"ok": False, "error": f"أكبر من {limit // 1048576} م.ب"}, 413)
 
-        UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
-        dest = UPLOAD_DIR / name
-        tmp = dest.with_suffix(dest.suffix + ".part")
+        index = 0
+        if path == "/upload-chunk":
+            try:
+                index = int((query.get("index") or ["-1"])[0])
+            except ValueError:
+                index = -1
+            if index < 0:
+                return self._json({"ok": False, "error": "index مطلوب (0..n-1)"}, 400)
+
+        cdir = chunks_dir(slug, name)
+        cdir.mkdir(parents=True, exist_ok=True)
+        final = cdir / f"chunk-{index:06d}"
+        tmp = final.with_suffix(".receiving")
         written = 0
         try:
             with tmp.open("wb") as fh:
                 left = length
                 while left > 0:
-                    chunk = self.rfile.read(min(1 << 20, left))
+                    chunk = self.rfile.read(min(1 << 21, left))
                     if not chunk:
                         break
                     fh.write(chunk)
@@ -331,11 +585,27 @@ class Handler(http.server.BaseHTTPRequestHandler):
             if written != length:
                 tmp.unlink(missing_ok=True)
                 return self._json({"ok": False, "error": f"وصل {written} من {length} بايت"}, 400)
-            tmp.replace(dest)
+            tmp.replace(final)
         except OSError as exc:
             tmp.unlink(missing_ok=True)
-            return self._json({"ok": False, "error": str(exc)}, 500)
-        return self._json({"ok": True, "path": str(dest), "name": dest.name, "bytes": written})
+            return self._json({"ok": False, "error": str(exc)[:200]}, 500)
+        if path == "/upload-chunk":
+            return self._json({"ok": True, "index": index, "bytes": written})
+        res = assemble(slug, name)          # single-shot /upload, kept for curl
+        return self._json(res, 200 if res.get("ok") else 400)
+
+    def _drain(self) -> None:
+        """A body we are not going to read must still be consumed, or the next
+        request on this keep-alive connection reads our reply as its own."""
+        try:
+            left = int(self.headers.get("Content-Length") or 0)
+        except ValueError:
+            left = 0
+        while left > 0:
+            block = self.rfile.read(min(1 << 20, left))
+            if not block:
+                return
+            left -= len(block)
 
     def _serve(self, send_body: bool = True) -> None:
         path = self.path.split("?", 1)[0].split("#", 1)[0]
@@ -407,6 +677,8 @@ class Server(socketserver.ThreadingTCPServer):
 
 
 if __name__ == "__main__":
-    print(f"serving {ROOT} on 0.0.0.0:{PORT} · uploads → {UPLOAD_DIR}", flush=True)
+    print(f"serving {ROOT} on 0.0.0.0:{PORT} · uploads → {LIBRARY}/<slug>/ "
+          f"· git push origin {BRANCH}"
+          f"{' (معطَّل للاختبار: DUB_UPLOAD_NOGIT=1)' if NOGIT else ''}", flush=True)
     with Server(("0.0.0.0", PORT), Handler) as httpd:
         httpd.serve_forever()
