@@ -81,3 +81,9 @@ voice-audit/
 # live in .parts/ and are joined and deleted on finish.
 library/*/*.local.*
 library/*/.parts/
+
+# Recorded dub takes are shipped assets, not scratch audio. Synthesis is the
+# slowest and most rate-limited step in the pipeline, so a take that is lost
+# has to be paid for again at ten clips per turn. Keep the takes alongside the
+# plan they were recorded from.
+!work/*/takes/*.mp3
