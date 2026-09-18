@@ -24,13 +24,18 @@
     "groups_recorded": 49
   },
   "speaking_rate": {
-    "chars_per_s": 9.21,
+    "chars_per_s": 11.65,
     "range": [
-      8.19,
-      10.89
+      11.25,
+      12.62
     ],
-    "sample": "49 تسجيلًا، المدة الطبيعية قبل أي atempo",
-    "use": "هذا هو المعدل الذي يُتنبأ به سرعة المجموعة في التخطيط (predicted_tempo). التقدير الأولي كان 8.69 حرف/ث وصُحِّح بالقياس؛ أي تخطيط جديد يبدأ من 9.21."
+    "sample": "4 عيّنات من نص السندباد بصوت voice-05، المدة الطبيعية قبل أي atempo",
+    "use": "هذا الرقم هو ما يُمرَّر إلى plan_pause_groups.py --chars-per-s. الرقم السابق 9.21 (وقبله 8.69) قِيس على doctor-lecture ولا ينطبق على voice-05؛ استعماله يرفع تقدير atempo من 1.38 إلى 1.81 فيُفعّل منطق التجاوز بلا سبب.",
+    "supersedes": {
+      "chars_per_s": 9.21,
+      "planner_default": 8.69,
+      "note": "9.21 يخص صوت doctor-lecture. voice-05 أسرع؛ القياس المباشر هو المرجع."
+    }
   },
   "voice_bank": "library/voices/film-dub-narrator/voice-film-bank.mp3",
   "voice_bank_contents": "أربع عيّنات من الفيلم (المجموعات 0 و12 و24 و47) مدتها 1:58 — مرجع الأذن الأول.",
