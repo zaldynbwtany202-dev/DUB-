@@ -1,0 +1,14 @@
+{
+  "slug": "intake-selftest",
+  "name": "selftest.txt",
+  "bytes": 93,
+  "sha256": "4308a132b8fd002d687659f81dcd2158ba385e7663f4e880ce846fb8a8c6b369",
+  "chunks": 1,
+  "layout": "single",
+  "uploaded_at": "2026-09-18T12:08:54+00:00",
+  "fed_to_pipeline": "library/intake-selftest/selftest.txt",
+  "joined_in_s": 0.0,
+  "git": {
+    "state": "running"
+  }
+}
