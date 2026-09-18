@@ -90,6 +90,18 @@ def chunks_dir(slug: str, name: str) -> Path:
     return project_dir(slug) / ".parts" / name
 
 
+def read_meta(cdir: Path) -> dict:
+    """The slice geometry of an upload in progress: chunk size, file size, count."""
+    try:
+        return json.loads((cdir / ".meta.json").read_text("utf-8"))
+    except (OSError, ValueError):
+        return {}
+
+
+def write_meta(cdir: Path, meta: dict) -> None:
+    (cdir / ".meta.json").write_text(json.dumps(meta, ensure_ascii=False), "utf-8")
+
+
 def sha256_file(path: Path, block: int = 1 << 21) -> str:
     h = hashlib.sha256()
     with path.open("rb") as fh:
@@ -151,6 +163,11 @@ def assemble(slug: str, name: str) -> dict:
     dest_dir = project_dir(slug)
     dest_dir.mkdir(parents=True, exist_ok=True)
     total = sum(p.stat().st_size for p in parts)
+    meta = read_meta(cdir)
+    if meta.get("size") and total != meta["size"]:
+        return {"ok": False, "total": total, "declared": meta["size"],
+                "error": f"المجموع {total} بايت لا يطابق الحجم المعلَن {meta['size']} — "
+                         "المقاطع كاملة العدد لكنها ناقصة المحتوى"}
     dest = dest_dir / name
     t0 = time.time()
     with dest.open("wb") as out:
@@ -328,7 +345,7 @@ def page() -> str:
  <h2>١ — ارفع الفيديو الجديد أو ملف الترجمة</h2>
  <div class="card">
   <div class="bar">
-   <input type="file" id="pick" accept=".mp4,.webm,.mov,.mkv,.m4v,.srt,.vtt,.txt,.json,.mp3,.wav,.m4a">
+   <input type="file" id="pick" onchange="send()" accept=".mp4,.webm,.mov,.mkv,.m4v,.srt,.vtt,.txt,.json,.mp3,.wav,.m4a">
    <input type="text" id="slug" placeholder="اسم المجلد (اختياري)" style="width:190px;background:#161b22;color:#e6edf3;border:1px solid #30363d;border-radius:8px;padding:7px 10px">
    <button class="go" id="up" onclick="send()">رفع</button>
   </div>
@@ -336,7 +353,9 @@ def page() -> str:
   <div id="msg" class="mono"></div>
   <div class="sub">يصل الملف <b>مباشرة إلى المستودع</b> في مجلده الخاص <span class="mono">library/&lt;الاسم&gt;/</span>
   ويُدفَع فور اكتماله — لا صندوق مؤقت يضيع مع انقطاع الـsandbox.
-  يُرفع مقاطع ٨ م.ب على <b>٦ اتصالات متوازية</b>، ويستأنف ما وصل إن انقطع. الحد {MAX_UPLOAD // 1048576} م.ب.
+  يُرفع مقاطع ٨ م.ب على <b>٤ اتصالات متوازية</b>، وكل مقطع <b>يُعاد تلقائيًا</b> حتى يصل (٥ محاولات)،
+  والتقدّم يُقرأ من القرص كل جولة لا من عدّاد المتصفح — فوكيل المعاينة يُسقط بعض الطلبات المتوازية.
+  الحد {MAX_UPLOAD // 1048576} م.ب.
   ما فوق ٩٥ م.ب يُحفَظ أجزاءً (حدّ GitHub للملف الواحد) مع بصمة sha256 في <span class="mono">INTAKE.json</span>.</div>
   <div id="have"></div>
  </div>
@@ -425,53 +444,93 @@ def page() -> str:
                :(g.state==='running'?'<span class="warn">يُدفَع الآن…</span>':'<span class="sub">غير مدفوع</span>'));
          return p.slug+'/ — '+(sz/1048576).toFixed(1)+' م.ب · '+st;}}).join('<br>')+'</div>'
      : '<span class="sub">لم يصل شيء بعد.</span>';}});}}
- var CHUNK=8*1048576, PAR=6;
+ var CHUNK=8*1048576, PAR=4, RETRY=5;
  function slugOf(n){{return n.replace(/\\.[^.]+$/,'').toLowerCase().replace(/[\\s_]+/g,'-')
    .replace(/[^\\w\\-\\u0600-\\u06ff]/g,'').replace(/-{{2,}}/g,'-').slice(0,60);}}
- function postJSON(url,body){{return fetch(url,{{method:'POST',body:body}}).then(function(r){{return r.json();}});}}
+ function sleep(ms){{return new Promise(function(r){{setTimeout(r,ms);}});}}
+ function postJSON(url,body){{return fetch(url,{{method:'POST',body:body}}).then(function(r){{
+   if(!r.ok) throw new Error('HTTP '+r.status); return r.json();}});}}
  function send(){{
    var inp=document.getElementById('pick'), msg=document.getElementById('msg'),
        btn=document.getElementById('up'), pr=document.getElementById('prog'),
        sl=document.getElementById('slug');
    if(!inp.files.length){{msg.innerHTML='<span class="err">اختر ملفاً أولاً</span>';return;}}
    var f=inp.files[0];
+   /* The page's own video is an 82 MB stream on the same origin through the same
+      proxy, and it competes with the upload for connections -- the likeliest
+      reason the first six slices died. Stop it before sending anything. */
+   var vv=document.getElementById('v');
+   if(vv){{ try{{ vv.pause(); vv.removeAttribute('src'); vv.load(); }}catch(e){{}} }}
    var slug=(sl.value||'').trim()||slugOf(f.name);
    if(!slug){{msg.innerHTML='<span class="err">اسم المجلد غير صالح</span>';return;}}
    var qs='slug='+encodeURIComponent(slug)+'&name='+encodeURIComponent(f.name);
-   var n=Math.ceil(f.size/CHUNK), done=0, sent=0, failed=0, i=0, active=0, t0=Date.now();
+   var CH=CHUNK, n=Math.ceil(f.size/CH), fails=0, pass=0, lastGot=-1, stalled=0, t0=Date.now();
    btn.disabled=true; pr.style.display='block'; pr.value=0;
-   msg.textContent='يرفع '+f.name+' → library/'+slug+'/ ('+(f.size/1048576).toFixed(1)+' م.ب، '+n+' مقطعًا)…';
-   fetch('/upload-status?'+qs).then(function(r){{return r.json();}}).then(function(st){{
-     var have=(st&&st.chunks_have)||{{}}, skip=0;
-     for(var k in have){{ if(have[k]>0){{ done++; sent+=have[k]; skip++; }} }}
-     if(skip) msg.textContent='استئناف: '+skip+' مقطعًا ('+(sent/1048576).toFixed(1)+' م.ب) وصلت سابقًا…';
-     pump();
-   }}).catch(pump);
-   function pump(){{ while(active<PAR && i<n) start(i++); if(done>=n && active===0) finish(); }}
-   function start(idx){{
-     active++;
-     postJSON('/upload-chunk?'+qs+'&index='+idx, f.slice(idx*CHUNK, Math.min(f.size,(idx+1)*CHUNK)))
-       .then(function(r){{ active--; if(r&&r.ok){{done++;sent+=r.bytes;}} else failed++; tick(); pump(); }})
-       .catch(function(){{ active--; failed++; tick(); pump(); }});
+   msg.textContent='library/'+slug+'/ ← '+f.name+' · '+(f.size/1048576).toFixed(1)+' م.ب · '+n+' مقطعًا';
+   loop();
+   /* Truth comes from the server each pass, not from a local counter: the proxy
+      drops some parallel POSTs, and a counter would happily march past them. */
+   function loop(){{
+     pass++;
+     fetch('/upload-status?'+qs).then(function(r){{return r.json();}}).then(function(st){{
+       /* An earlier pass may have sliced differently (an older page, another
+          tab). Adopt what the server recorded -- an index is a byte offset, so
+          mixing two slice sizes would join garbage. */
+       if(st&&st.meta&&st.meta.chunk&&st.meta.chunk!==CH){{ CH=st.meta.chunk; n=Math.ceil(f.size/CH); }}
+       var have=(st&&st.chunks_have)||{{}}, missing=[], got=0, sent=0;
+       for(var k=0;k<n;k++){{ if(have[k]){{got++;sent+=have[k];}} else missing.push(k); }}
+       tick(got,sent,missing.length);
+       if(!missing.length) return finish();
+       stalled = (got===lastGot) ? stalled+1 : 0;
+       lastGot=got;
+       if(stalled>=8){{ btn.disabled=false;
+         msg.innerHTML='<span class="err">✗ توقّف التقدّم عند '+got+' من '+n
+           +' مقطعًا بعد 8 محاولات — قل لي فأصغّر المقاطع أو أغيّر الطريقة</span>'; return; }}
+       return sendMissing(missing).then(function(){{return sleep(250);}}).then(loop);
+     }}).catch(function(e){{ btn.disabled=false;
+       msg.innerHTML='<span class="err">✗ تعذّرت قراءة الحالة: '+e+'</span>'; }});
    }}
-   function tick(){{
+   function sendMissing(list){{
+     var idx=0, active=0;
+     return new Promise(function(resolve){{
+       function next(){{
+         while(active<PAR && idx<list.length) start(list[idx++]);
+         if(active===0 && idx>=list.length) resolve();
+       }}
+       function start(i){{ active++; attempt(i,0).then(function(){{active--;next();}},
+                                                          function(){{active--;next();}}); }}
+       function attempt(i,k){{
+         return postJSON('/upload-chunk?'+qs+'&index='+i+'&chunk='+CH+'&size='+f.size+'&n='+n,
+                         f.slice(i*CH, Math.min(f.size,(i+1)*CH)))
+           .then(function(r){{ if(!r||!r.ok) throw new Error((r&&r.error)||'رُفض'); return r; }})
+           .catch(function(){{ fails++;
+             if(k<RETRY) return sleep(350*(k+1)).then(function(){{return attempt(i,k+1);}});
+             return null; }});
+       }}
+       next();
+     }});
+   }}
+   function tick(got,sent,missing){{
      pr.value=Math.round(sent/f.size*100);
      var s=(Date.now()-t0)/1000, rate=s>1?(sent/1048576/s):0;
-     msg.textContent='library/'+slug+'/ ← '+f.name+' · '+(sent/1048576).toFixed(1)+' من '+(f.size/1048576).toFixed(1)
-       +' م.ب · '+rate.toFixed(1)+' م.ب/ث · '+done+'/'+n+' مقطعًا'+(failed?' · '+failed+' فشل':'');
+     msg.textContent='library/'+slug+'/ ← '+f.name+' · '+(sent/1048576).toFixed(1)+' من '
+       +(f.size/1048576).toFixed(1)+' م.ب · '+rate.toFixed(2)+' م.ب/ث · '+got+'/'+n+' مقطعًا'
+       +(missing?' · ناقص '+missing:'')+(fails?' · '+fails+' محاولة فاشلة أُعيدت':'')
+       +' · الجولة '+pass;
    }}
    function finish(){{
-     if(done<n){{ btn.disabled=false;
-       msg.innerHTML='<span class="err">✗ وصل '+done+' من '+n+' مقطعًا — اضغط «رفع» ثانيةً ليستأنف</span>'; return; }}
      pr.value=100; msg.textContent='اكتمل النقل · يُجمَّع وتُحسب البصمة ويُدفَع إلى المستودع…';
      postJSON('/upload-finish?'+qs,'').then(function(r){{
+       if(r&&r.ok){{ btn.disabled=false;
+         msg.innerHTML='<span class="ok">✓ في المستودع: '+r.path+' · '+(r.bytes/1048576).toFixed(1)
+           +' م.ب · '+r.layout+' · sha256 '+r.sha256.slice(0,16)+'… · جُمع في '+r.joined_in_s
+           +'ث · يُدفَع الآن في الخلفية</span>';
+         list(); return; }}
        btn.disabled=false;
-       msg.innerHTML = (r&&r.ok)
-         ? '<span class="ok">✓ في المستودع: '+r.path+' · '+(r.bytes/1048576).toFixed(1)+' م.ب · '+r.layout
-           +' · sha256 '+r.sha256.slice(0,16)+'… · جُمع في '+r.joined_in_s+'ث · الدفع يعمل في الخلفية</span>'
-         : '<span class="err">✗ '+((r&&r.error)||'فشل التجميع')+'</span>';
-       list();
-     }}).catch(function(){{ btn.disabled=false; msg.innerHTML='<span class="err">✗ فشل الاتصال عند التجميع</span>'; }});
+       if(r&&r.missing&&r.missing.length){{ msg.textContent='ناقص '+r.missing.length+' مقطعًا، يُعاد…'; return loop(); }}
+       msg.innerHTML='<span class="err">✗ '+((r&&r.error)||'فشل التجميع')+'</span>';
+     }}).catch(function(e){{ btn.disabled=false;
+       msg.innerHTML='<span class="err">✗ فشل التجميع: '+e+'</span>'; }});
    }}
  }}
  setInterval(list, 5000);
@@ -545,33 +604,48 @@ class Handler(http.server.BaseHTTPRequestHandler):
             have = ({int(p.name.split("-")[1]): p.stat().st_size
                      for p in cdir.glob("chunk-*")} if cdir.is_dir() else {})
             return self._json({"ok": True, "slug": slug, "name": name,
-                               "chunks_have": have, "bytes_have": sum(have.values())})
+                               "chunks_have": have, "bytes_have": sum(have.values()),
+                               "meta": read_meta(cdir)})
         self._serve()
 
     def do_POST(self):
         path, _, qs = self.path.partition("?")
         query = urllib.parse.parse_qs(qs)
-        if path not in ("/upload", "/upload-chunk", "/upload-finish"):
-            return self._json({"ok": False, "error": "unknown route"}, 404)
-        name = safe_name((query.get("name") or [""])[0])
-        if not name:
-            return self._json({"ok": False, "error": "اسم أو امتداد غير مسموح"}, 400)
-        slug = slugify((query.get("slug") or [""])[0]) or slugify(Path(name).stem) or "upload"
-
-        if path == "/upload-finish":
-            self._drain()
-            res = assemble(slug, name)
-            return self._json(res, 200 if res.get("ok") else 400)
-
         try:
             length = int(self.headers.get("Content-Length") or 0)
         except ValueError:
             length = 0
+
+        def refuse(obj: dict, status: int = 400):
+            """A refusal must not leave the request body unread. The client is
+            still sending on a keep-alive connection, so answering over the top
+            of it desynchronises the socket and the browser reports a broken
+            pipe -- which is how a rejected chunk turns into a lost one. Bodies
+            up to 64 MB are swallowed; bigger ones are dropped by closing."""
+            if 0 < length <= (64 << 20):
+                self._drain(length)
+            else:
+                self.close_connection = True
+            return self._json(obj, status)
+
+        if path not in ("/upload", "/upload-chunk", "/upload-finish"):
+            return refuse({"ok": False, "error": "unknown route"}, 404)
+        name = safe_name((query.get("name") or [""])[0])
+        if not name:
+            return refuse({"ok": False, "error": "اسم أو امتداد غير مسموح"}, 400)
+        slug = slugify((query.get("slug") or [""])[0]) or slugify(Path(name).stem) or "upload"
+
+        if path == "/upload-finish":
+            if length:
+                self._drain(length)
+            res = assemble(slug, name)
+            return self._json(res, 200 if res.get("ok") else 400)
+
         if length <= 0:
-            return self._json({"ok": False, "error": "لا محتوى"}, 400)
+            return refuse({"ok": False, "error": "لا محتوى"}, 400)
         limit = CHUNK_MAX if path == "/upload-chunk" else MAX_UPLOAD
         if length > limit:
-            return self._json({"ok": False, "error": f"أكبر من {limit // 1048576} م.ب"}, 413)
+            return refuse({"ok": False, "error": f"أكبر من {limit // 1048576} م.ب"}, 413)
 
         index = 0
         if path == "/upload-chunk":
@@ -580,10 +654,41 @@ class Handler(http.server.BaseHTTPRequestHandler):
             except ValueError:
                 index = -1
             if index < 0:
-                return self._json({"ok": False, "error": "index مطلوب (0..n-1)"}, 400)
+                return refuse({"ok": False, "error": "index مطلوب (0..n-1)"}, 400)
 
         cdir = chunks_dir(slug, name)
         cdir.mkdir(parents=True, exist_ok=True)
+
+        if path == "/upload-chunk":
+            # Slice geometry is recorded once, then enforced. An index is a byte
+            # offset, so a chunk posted at a different slice size than its
+            # neighbours would join into garbage -- and a page from before this
+            # rule, or a second tab, is exactly how that happens.
+            want = {}
+            for key in ("chunk", "size", "n"):
+                try:
+                    want[key] = int((query.get(key) or ["0"])[0])
+                except ValueError:
+                    want[key] = 0
+            meta = read_meta(cdir)
+            if meta:
+                if any(want[k] and meta.get(k) != want[k] for k in ("chunk", "size", "n")):
+                    return refuse({"ok": False, "meta": meta,
+                                   "error": f"رفع سابق بنفس الاسم بمقاطع {meta.get('chunk')} بايت "
+                                            f"— تبنَّ ذلك الحجم أو احذف المجلد"}, 409)
+            elif all(want.values()):
+                meta = want
+                write_meta(cdir, meta)
+            if meta.get("chunk") and meta.get("size") and meta.get("n"):
+                last = meta["n"] - 1
+                if index >= meta["n"]:
+                    return refuse({"ok": False, "meta": meta,
+                                   "error": f"المؤشر {index} خارج الحدود (عدد المقاطع {meta['n']})"}, 400)
+                expect = (meta["size"] - last * meta["chunk"]) if index == last else meta["chunk"]
+                if length != expect:
+                    return refuse({"ok": False, "meta": meta,
+                                   "error": f"طول المقطع {index} هو {length} والمتوقَّع {expect}"}, 400)
+
         final = cdir / f"chunk-{index:06d}"
         tmp = final.with_suffix(".receiving")
         written = 0
@@ -599,28 +704,26 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     left -= len(chunk)
             if written != length:
                 tmp.unlink(missing_ok=True)
+                self._drain(length - written)       # keep the socket in step
                 return self._json({"ok": False, "error": f"وصل {written} من {length} بايت"}, 400)
             tmp.replace(final)
         except OSError as exc:
             tmp.unlink(missing_ok=True)
+            self._drain(length - written)
             return self._json({"ok": False, "error": str(exc)[:200]}, 500)
         if path == "/upload-chunk":
             return self._json({"ok": True, "index": index, "bytes": written})
         res = assemble(slug, name)          # single-shot /upload, kept for curl
         return self._json(res, 200 if res.get("ok") else 400)
 
-    def _drain(self) -> None:
-        """A body we are not going to read must still be consumed, or the next
-        request on this keep-alive connection reads our reply as its own."""
-        try:
-            left = int(self.headers.get("Content-Length") or 0)
-        except ValueError:
-            left = 0
-        while left > 0:
-            block = self.rfile.read(min(1 << 20, left))
+    def _drain(self, remaining: int) -> None:
+        """Consume a body we are not going to keep, or the next request on this
+        keep-alive connection reads our reply as its own request line."""
+        while remaining > 0:
+            block = self.rfile.read(min(1 << 20, remaining))
             if not block:
                 return
-            left -= len(block)
+            remaining -= len(block)
 
     def _serve(self, send_body: bool = True) -> None:
         path = self.path.split("?", 1)[0].split("#", 1)[0]
