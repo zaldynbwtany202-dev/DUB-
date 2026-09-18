@@ -106,10 +106,15 @@ def main():
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--end", type=int, default=10 ** 9)
     ap.add_argument("--music", default=None, help="separated music bed to mix underneath")
-    ap.add_argument("--gain-db", type=float, default=2.0, help="boost applied to the music bed")
-    ap.add_argument("--limit", type=float, default=0.89,
-                    help="output ceiling; 0.89 keeps the peak near -1 dBFS so the "
-                         "limiter never has to work hard enough to audibly pump")
+    ap.add_argument("--gain-db", type=float, default=0.0,
+                    help="boost applied to the music bed. Zero is the faithful choice: "
+                         "the bed is the original music at its original level, so the mix "
+                         "reproduces the source balance. Measured on this film, +2 dB "
+                         "clips the sum to 0.0 dBFS while +0 lands at -1.2 dBFS.")
+    ap.add_argument("--limit", type=float, default=0.95,
+                    help="safety ceiling only. It is not a substitute for setting the "
+                         "music gain correctly -- alimiter barely moved the peak once the "
+                         "sum had already reached full scale.")
     ap.add_argument("--max-tempo", type=float, default=1.80)
     ap.add_argument("--pieces", default=None,
                     help='JSON map of group index -> ordered take names, e.g. \'{"5": ["g005a","g005c"]}\'')
