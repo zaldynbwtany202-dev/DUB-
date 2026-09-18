@@ -65,6 +65,7 @@ LIBRARY = ROOT / "library"
 BRANCH = subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=ROOT,
                         capture_output=True, text=True).stdout.strip() or "HEAD"
 GIT_LOCK = ROOT / ".cache" / "upload-git.lock"          # .cache/ is gitignored
+STATUS_DIR = ROOT / ".cache" / "intake-status"          # mutable, never committed
 NOGIT = os.environ.get("DUB_UPLOAD_NOGIT") == "1"       # tests only
 
 # GitHub refuses a blob of 100 MB, so a bigger source is committed as parts and
@@ -190,22 +191,29 @@ def assemble(slug: str, name: str) -> dict:
         fed = dest
         layout = "single"
 
+    # INTAKE.json carries only immutable facts, because it is committed: a
+    # mutable git-state field gets rewritten after the commit and would leave the
+    # working tree permanently dirty. The state lives in .cache/intake-status/.
     intake = {
         "slug": slug, "name": name, "bytes": total, "sha256": digest,
-        "chunks": len(parts), "layout": layout, "uploaded_at":
-            datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "chunks": len(parts), "layout": layout,
+        "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "fed_to_pipeline": str(fed.relative_to(ROOT)),
         "joined_in_s": round(joined_s, 2),
-        "git": {"state": "running"},
     }
     manifest = dest_dir / "INTAKE.json"
     manifest.write_text(json.dumps(intake, ensure_ascii=False, indent=2) + "\n", "utf-8")
     git_paths.append(manifest)
 
+    STATUS_DIR.mkdir(parents=True, exist_ok=True)
+    status = STATUS_DIR / f"{slug}.json"
+    status.write_text(json.dumps({"slug": slug, "git": {"state": "running"}},
+                                 ensure_ascii=False), "utf-8")
+
     def push() -> None:
         res = git_commit(git_paths, f"Take in {slug}: {name} ({total} bytes, sha256 {digest[:12]})")
-        intake["git"] = res
-        manifest.write_text(json.dumps(intake, ensure_ascii=False, indent=2) + "\n", "utf-8")
+        status.write_text(json.dumps({"slug": slug, "name": name, "bytes": total,
+                                      "git": res}, ensure_ascii=False), "utf-8")
 
     threading.Thread(target=push, daemon=True, name=f"git-{slug}").start()
     return {"ok": True, "slug": slug, "path": str(fed.relative_to(ROOT)),
@@ -516,6 +524,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         intake = json.loads(man.read_text("utf-8"))
                     except (OSError, ValueError):
                         intake = None
+                    st = STATUS_DIR / f"{d.name}.json"
+                    if st.is_file():
+                        try:
+                            intake = dict(intake or {})
+                            intake["git"] = json.loads(st.read_text("utf-8")).get("git")
+                        except (OSError, ValueError):
+                            pass
                     projects.append({"slug": d.name, "intake": intake,
                                      "files": sorted((p.name for p in d.rglob("*")
                                                       if p.is_file()), key=len)[:6]})
