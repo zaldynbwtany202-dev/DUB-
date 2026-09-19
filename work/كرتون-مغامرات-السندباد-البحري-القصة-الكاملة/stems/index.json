@@ -18,5 +18,13 @@
   "04": {
     "music": "music-04.mp3",
     "vocal": "vocal-04.mp3"
+  },
+  "05": {
+    "music": "music-05.mp3",
+    "vocal": "vocal-05.mp3"
+  },
+  "06": {
+    "music": "music-06.mp3",
+    "vocal": "vocal-06.mp3"
   }
 }
