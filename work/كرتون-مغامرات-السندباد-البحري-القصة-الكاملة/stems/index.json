@@ -6,5 +6,13 @@
   "01": {
     "music": "music-01.mp3",
     "vocal": "vocal-01.mp3"
+  },
+  "02": {
+    "music": "music-02.mp3",
+    "vocal": "vocal-02.mp3"
+  },
+  "03": {
+    "music": "music-03.mp3",
+    "vocal": "vocal-03.mp3"
   }
 }
