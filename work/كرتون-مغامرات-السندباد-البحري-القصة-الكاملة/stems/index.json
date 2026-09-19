@@ -42,5 +42,9 @@
   "10": {
     "music": "music-10.mp3",
     "vocal": "vocal-10.mp3"
+  },
+  "11": {
+    "music": "music-11.mp3",
+    "vocal": "vocal-11.mp3"
   }
 }
