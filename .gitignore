@@ -92,3 +92,7 @@ library/*/.parts/
 # seventy minutes of inference vanished three times over and had to be redone
 # each time. Stems are inputs to mixing, not scratch.
 !work/*/stems/*.mp3
+# Previews are what the user is asked to judge. Losing one means asking them to
+# listen to something again that they have already listened to, and the build
+# behind it may not be reproducible.
+!previews/*.mp4
