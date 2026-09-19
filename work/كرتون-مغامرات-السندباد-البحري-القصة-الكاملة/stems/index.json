@@ -1,0 +1,10 @@
+{
+  "00": {
+    "music": "music-00.mp3",
+    "vocal": "vocal-00.mp3"
+  },
+  "01": {
+    "music": "music-01.mp3",
+    "vocal": "vocal-01.mp3"
+  }
+}
