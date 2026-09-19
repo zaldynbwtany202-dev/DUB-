@@ -66,5 +66,13 @@
   "16": {
     "music": "music-16.mp3",
     "vocal": "vocal-16.mp3"
+  },
+  "17": {
+    "music": "music-17.mp3",
+    "vocal": "vocal-17.mp3"
+  },
+  "18": {
+    "music": "music-18.mp3",
+    "vocal": "vocal-18.mp3"
   }
 }
