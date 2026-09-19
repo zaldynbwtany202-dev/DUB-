@@ -87,3 +87,8 @@ library/*/.parts/
 # has to be paid for again at ten clips per turn. Keep the takes alongside the
 # plan they were recorded from.
 !work/*/takes/*.mp3
+# Separated stems likewise. The blanket *.mp3 rule above silently dropped an
+# entire separation: the checkpoints committed their index and nothing else, so
+# seventy minutes of inference vanished three times over and had to be redone
+# each time. Stems are inputs to mixing, not scratch.
+!work/*/stems/*.mp3
