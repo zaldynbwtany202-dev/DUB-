@@ -94,6 +94,11 @@ def main():
         key = f"{i:02d}"
         voc = seg / f"work-{key}" / "estimated-dialogue.wav"
         if not voc.exists():
+            # .cache is scratch and a wipe clears it; the committed stems are the
+            # durable copy. mp3 round-tripping costs 0.05 s per segment, well
+            # under the resolution that matters here.
+            voc = Path("work") / a.slug / "stems" / f"vocal-{key}.mp3"
+        if not voc.exists():
             print(f"  [{key}] لا ملف — تخطّي")
             continue
         if key in done:
