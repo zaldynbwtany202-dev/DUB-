@@ -96,3 +96,4 @@ library/*/.parts/
 # listen to something again that they have already listened to, and the build
 # behind it may not be reproducible.
 !previews/*.mp4
+incoming/
