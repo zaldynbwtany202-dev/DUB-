@@ -68,26 +68,50 @@ def words_with_dtw(path: Path) -> list[dict]:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("whisper_json", type=Path)
-    ap.add_argument("out", type=Path)
+    ap.add_argument("whisper_json", type=Path, nargs="?")
+    ap.add_argument("out", type=Path, nargs="?")
+    ap.add_argument("--chunks", type=Path, default=None,
+                    help="directory of chunk-N.json files, each carrying its own origin")
+    ap.add_argument("--stride", type=float, default=290.0,
+                    help="seconds of audio per chunk; chunk N shifts by N*stride")
     ap.add_argument("--slug", default="into-the-wild")
     ap.add_argument("--script", type=Path, default=None,
                     help="plain-text script; word tokens are written for the aligner")
     ap.add_argument("--script-out", type=Path, default=None)
     a = ap.parse_args()
 
-    ws = words_with_dtw(a.whisper_json)
+    if a.chunks:
+        # A film is transcribed in chunks so a wipe costs one chunk rather than
+        # the whole run. Each chunk's timestamps start at zero, so they are
+        # shifted onto the film's own clock before the words are joined.
+        ws, files = [], sorted(a.chunks.glob("chunk-*.json"))
+        for f in files:
+            i = int(f.stem.split("-")[1])
+            off = i * a.stride
+            part = words_with_dtw(f) or words_from_whisper(f)
+            for w in part:
+                w["t0"] = round(w["t0"] + off, 3)
+                w["t1"] = round(w["t1"] + off, 3)
+            print(f"  [جزء {i}] {len(part):4d} كلمة · عند {off:.0f}ث")
+            ws.extend(part)
+        ws.sort(key=lambda w: w["t0"])
+        dup = sum(1 for i in range(1, len(ws)) if ws[i]["t0"] < ws[i - 1]["t0"] - 1e-6)
+        if dup:
+            print(f"  تحذير: {dup} كلمة بتوقيت غير متزايد")
+    else:
+        ws = words_with_dtw(a.whisper_json) or words_from_whisper(a.whisper_json)
+
     if not ws:
-        ws = words_from_whisper(a.whisper_json)
+        print("لا كلمات", file=sys.stderr)
+        return 1
     a.out.parent.mkdir(parents=True, exist_ok=True)
     a.out.write_bytes(json.dumps(
         {"slug": a.slug, "model": "ggml-small", "beam": 5, "dtw": True,
          "segments": [{"segment": "00", "offset_s": 0.0, "words": ws}]},
         ensure_ascii=False, indent=1).encode("utf-8", "surrogateescape"))
-    span = (ws[-1]["t1"] - ws[0]["t0"]) if ws else 0.0
-    print(f"  {len(ws)} كلمة · آخر توقيت {ws[-1]['t1']:.1f}ث" if ws else "  لا كلمات")
-    if ws and span:
-        print(f"  معدل {len(ws) / span:.2f} كلمة/ثانية")
+    span = ws[-1]["t1"] - ws[0]["t0"]
+    print(f"  {len(ws)} كلمة · آخر توقيت {ws[-1]['t1']:.1f}ث")
+    print(f"  معدل {len(ws) / span:.2f} كلمة/ثانية")
 
     if a.script and a.script_out:
         text = a.script.read_text(encoding="utf-8")
