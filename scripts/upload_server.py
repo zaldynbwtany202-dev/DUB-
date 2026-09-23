@@ -29,6 +29,14 @@ INCOMING = ROOT / "incoming"
 PREVIEWS = ROOT / "previews"
 CHUNK = 1 << 20
 
+def safe_name(name):
+    """Keep the name inside incoming/ and survive odd characters."""
+    name = os.path.basename(name.replace("\\", "/").strip())
+    name = name.lstrip(".") or "upload"
+    INCOMING.mkdir(parents=True, exist_ok=True)
+    return INCOMING / name
+
+
 def _human(n):
     for unit in ("بايت", "ك.بايت", "م.بايت", "ج.بايت"):
         if n < 1024 or unit == "ج.بايت":
@@ -90,6 +98,9 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  .err{color:#f87171;font-size:13px;margin-top:12px}
  .done{color:#9aa0a6;font-size:13px;margin-top:26px;border-top:1px solid #2a2e36;padding-top:16px}
  .done li{margin:4px 0}
+ .probe{margin-top:20px;font-size:12px;color:#9aa0a6}
+ .probe.good{color:#4ade80}
+ .probe.bad{color:#f87171}
  .prev{margin-top:30px;border-top:1px solid #2a2e36;padding-top:20px}
  .prev h2{font-size:16px;margin:0 0 14px;color:#e8eaed}
  .card{background:#1b1e24;border:1px solid #2a2e36;border-radius:12px;padding:12px;margin-bottom:16px}
@@ -108,6 +119,7 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
    <div class="bar"><div class="fill" id="fill"></div></div>
    <div class="meta"><span id="pct">0%</span><span id="spd"></span></div>
  </div>
+ <div id="probe" class="probe">أتحقق من الاتصال…</div>
  <div class="ok" id="ok"></div>
  <div class="err" id="err"></div>
  <div class="done" id="done"></div>
@@ -130,55 +142,113 @@ function human(b){const u=['B','KB','MB','GB'];let i=0;while(b>=1024&&i<3){b/=10
 
 function status(name){return fetch('/status?name='+encodeURIComponent(name)).then(r=>r.json())}
 
+// One request per chunk, not one request for the film.
+//
+// Sending the whole file in a single POST looked fine against a local server
+// and stalled against the preview proxy: the page showed one percent and then
+// nothing, and the server never saw a request at all. Whatever sits in front of
+// the sandbox will not carry an arbitrary body, so nothing larger than a couple
+// of megabytes goes out per request, and a chunk that times out is retried from
+// the last byte the server confirms it holds -- which also means an interrupted
+// upload resumes instead of restarting. If a chunk keeps failing the size is
+// halved, down to a quarter of a megabyte, so the client finds a size the
+// connection accepts instead of dying at a fixed guess.
+const CHUNK_MAX=2097152, CHUNK_MIN=262144;
+let chunk=CHUNK_MAX;
+
 function send(f){
   if(busy)return; busy=true;
   ok.style.display='none'; err.textContent=''; row.style.display='block'; nm.textContent=f.name;
-  let off=0, t0=Date.now();
+  let off=0, fails=0, tries=0, t0=Date.now();
+  const setBar=n=>{
+    const p=Math.min(100,n/f.size*100);
+    fill.style.width=p+'%'; pct.textContent=p.toFixed(1)+'%';
+    const sec=(Date.now()-t0)/1000;
+    if(sec>0.5&&n>0){const r=n/sec;
+      spd.textContent=human(r)+'/ث · بقي '+Math.max(0,Math.round((f.size-n)/r))+'ث'}
+  };
+  setBar(0);
   status(f.name).then(s=>{
-    off = s.done ? 0 : s.bytes;
-    if(off>0){ const r=confirm('يوجد '+human(off)+' مرفوع مسبقًا من هذا الملف. استئناف من حيث توقف؟'); if(!r) off=0; }
-    pump();
+    off=s.done?0:s.bytes;
+    if(off>0){const r=confirm('يوجد '+human(off)+' مرفوع مسبقًا. استئناف من حيث توقف؟'); if(!r)off=0}
+    setBar(off); pump();
   }).catch(()=>pump());
 
   function pump(){
+    if(off>=f.size) return verify();
+    const from=off, to=Math.min(off+chunk,f.size);
     const xhr=new XMLHttpRequest();
-    xhr.open('POST','/upload?name='+encodeURIComponent(f.name)+'&offset='+off);
+    xhr.open('POST','/upload?name='+encodeURIComponent(f.name)+
+                    '&offset='+from+'&total='+f.size);
     xhr.setRequestHeader('Content-Type','application/octet-stream');
-    let base=off;
-    xhr.upload.onprogress=e=>{
-      const now=base+e.loaded, p=Math.min(100,now/f.size*100);
-      fill.style.width=p+'%'; pct.textContent=p.toFixed(1)+'%';
-      const sec=(Date.now()-t0)/1000;
-      if(sec>0.5){const rate=now/sec;spd.textContent=human(rate)+'/ث · بقي '+Math.max(0,Math.round((f.size-now)/rate))+'ث'}
-    };
+    xhr.timeout=180000;
+    xhr.upload.onprogress=e=>setBar(from+e.loaded);
     xhr.onload=()=>{
-      if(xhr.status===200){
-        fill.style.width='100%'; pct.textContent='100%';
-        ok.style.display='block';
-        ok.innerHTML='✓ اكتمل الرفع: <b>'+f.name+'</b> ('+human(f.size)+')<br>'+
+      if(xhr.status===200){off=to; fails=0; setBar(off); pump()}
+      else {tries++; if(tries>40)return fail('رفض الخادم الجزء ('+xhr.status+').');
+            retry(from)}
+    };
+    xhr.onerror=()=>{tries++; if(tries>40)return fail('انقطع الاتصال بعد محاولات كثيرة.'); retry(from)};
+    xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. جرّب رابطًا مباشرًا بالأسفل.');
+                       retry(from)};
+    xhr.send(f.slice(from,to));
+  }
+
+  function retry(from){
+    fails++;
+    if(fails%3===0&&chunk>CHUNK_MIN) chunk=Math.max(CHUNK_MIN,Math.floor(chunk/2));
+    status(f.name).then(s=>{off=Math.max(0,s.bytes); setBar(off); setTimeout(pump,500)})
+      .catch(()=>{off=from; setTimeout(pump,900)});
+  }
+
+  function verify(){
+    status(f.name).then(s=>{
+      if(s.done){
+        fill.style.width='100%'; pct.textContent='100%'; ok.style.display='block';
+        ok.innerHTML='✓ اكتمل الرفع: <b>'+f.name+'</b> ('+human(s.size)+')<br>'+
           'قل لي «ابدأ الدبلجة» وسأعالجه.';
         busy=false; list();
-      } else { fail(xhr.responseText||('خطأ '+xhr.status)) }
-    };
-    xhr.onerror=()=>{
-      status(f.name).then(s=>{
-        if(s.bytes>off){ off=s.bytes; base=off; setTimeout(pump,700); }
-        else fail('انقطع الاتصال. أعد المحاولة.');
-      }).catch(()=>fail('انقطع الاتصال.'));
-    };
-    xhr.send(f.slice(off));
+      } else { off=Math.max(0,s.bytes); setBar(off);
+               if(++tries>40)return fail('لم يكتمل الرفع.'); setTimeout(pump,600) }
+    }).catch(()=>fail('تعذّر التأكد من الاكتمال.'));
   }
-  function fail(m){ err.textContent='✗ '+m; busy=false }
+  function fail(m){err.textContent='✗ '+m; busy=false}
 }
+
 
 function list(){
   fetch('/files').then(r=>r.json()).then(d=>{
     if(!d.files.length){done.innerHTML='';return}
-    done.innerHTML='<b>الملفات المرفوعة:</b><ul>'+
+    done.innerHTML='<b>الملفات في الاستقبال:</b><ul>'+
       d.files.map(x=>'<li>'+x.name+' — '+human(x.size)+'</li>').join('')+'</ul>';
   }).catch(()=>{})
 }
 list();
+
+// Can this page reach the server with a body at all?
+//
+// The point is to answer that in the page instead of in a conversation. The
+// first attempt at uploading a film stalled at one percent with nothing in the
+// server log, which took a round trip to establish; a 32 KB body that succeeds
+// or fails on load says the same thing in a second.
+const probe=document.getElementById('probe');
+(function preflight(){
+  const body=new Uint8Array(32768), name='_probe.bin';
+  const xhr=new XMLHttpRequest();
+  xhr.open('POST','/upload?name='+name+'&offset=0&total='+body.length);
+  xhr.setRequestHeader('Content-Type','application/octet-stream');
+  xhr.timeout=20000;
+  const done=(ok,txt)=>{probe.textContent=txt; probe.className='probe '+(ok?'good':'bad')};
+  xhr.onload=()=>{
+    fetch('/delete?name='+name,{method:'POST'}).catch(()=>{});
+    if(xhr.status===200) done(true,'الاتصال جاهز: الرفع يعمل ✓');
+    else done(false,'الرفع لا يعمل عبر هذه الصفحة (رمز '+xhr.status+') — أرفق الفيديو في المحادثة.');
+  };
+  xhr.onerror=()=>done(false,'الرفع لا يعمل عبر هذه الصفحة — أرفق الفيديو في المحادثة.');
+  xhr.ontimeout=()=>done(false,'الرفع يتجمّد — أرفق الفيديو في المحادثة.');
+  xhr.send(body);
+})();
+
 </script>
 </html>
 """
@@ -189,6 +259,13 @@ class Handler(BaseHTTPRequestHandler):
 
     def log_message(self, *a):
         pass
+
+    def log_request(self, code="-", size="-"):
+        # Kept on: when an upload stalls the first question is whether the
+        # request ever arrived, and this answers it without another round trip.
+        rng = self.headers.get("Range")
+        sys.stderr.write("[http] %s %s%s -> %s\n" % (
+            self.command, self.path, " " + rng if rng else "", code))
 
     def _send(self, code, body=b"", ctype="text/plain; charset=utf-8"):
         if isinstance(body, str):
@@ -201,11 +278,7 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(body)
 
     def _safe(self, name):
-        """Keep the name inside incoming/ and survive odd characters."""
-        name = os.path.basename(name.replace("\\", "/").strip())
-        name = name.lstrip(".") or "upload"
-        INCOMING.mkdir(parents=True, exist_ok=True)
-        return INCOMING / name
+        return safe_name(name)
 
     def do_GET(self):
         u = urllib.parse.urlparse(self.path)
@@ -266,6 +339,12 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         u = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(u.query)
+        if u.path == "/delete":
+            tgt = self._safe(q.get("name", [""])[0])
+            for f in (tgt, Path(str(tgt) + ".part")):
+                if f.is_file() and INCOMING in f.resolve().parents:
+                    f.unlink()
+            return self._send(200, "ok")
         if u.path != "/upload":
             return self._send(404, "غير موجود")
         name = q.get("name", [""])[0]
