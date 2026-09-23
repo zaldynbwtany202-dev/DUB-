@@ -1,0 +1,279 @@
+{
+ "slug": "into-the-wild",
+ "limit": 1000000000,
+ "rows": [
+  {
+   "group": 0,
+   "chars": 365,
+   "text_words": 74,
+   "heard_words": 73,
+   "matched": 74,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 1,
+   "chars": 399,
+   "text_words": 78,
+   "heard_words": 75,
+   "matched": 78,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 2,
+   "chars": 438,
+   "text_words": 88,
+   "heard_words": 85,
+   "matched": 87,
+   "coverage": 0.989,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 3,
+   "chars": 411,
+   "text_words": 77,
+   "heard_words": 75,
+   "matched": 76,
+   "coverage": 0.987,
+   "tail_coverage": 0.938
+  },
+  {
+   "group": 4,
+   "chars": 420,
+   "text_words": 78,
+   "heard_words": 76,
+   "matched": 78,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 5,
+   "chars": 394,
+   "text_words": 79,
+   "heard_words": 76,
+   "matched": 79,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 6,
+   "chars": 424,
+   "text_words": 85,
+   "heard_words": 83,
+   "matched": 85,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 7,
+   "chars": 447,
+   "text_words": 81,
+   "heard_words": 80,
+   "matched": 81,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 8,
+   "chars": 324,
+   "text_words": 59,
+   "heard_words": 58,
+   "matched": 59,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 9,
+   "chars": 412,
+   "text_words": 75,
+   "heard_words": 75,
+   "matched": 75,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 10,
+   "chars": 442,
+   "text_words": 79,
+   "heard_words": 75,
+   "matched": 78,
+   "coverage": 0.987,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 11,
+   "chars": 460,
+   "text_words": 85,
+   "heard_words": 82,
+   "matched": 83,
+   "coverage": 0.976,
+   "tail_coverage": 0.941
+  },
+  {
+   "group": 12,
+   "chars": 406,
+   "text_words": 80,
+   "heard_words": 63,
+   "matched": 65,
+   "coverage": 0.812,
+   "tail_coverage": 0.125
+  },
+  {
+   "group": 13,
+   "chars": 429,
+   "text_words": 84,
+   "heard_words": 80,
+   "matched": 83,
+   "coverage": 0.988,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 14,
+   "chars": 415,
+   "text_words": 79,
+   "heard_words": 73,
+   "matched": 79,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 15,
+   "chars": 414,
+   "text_words": 71,
+   "heard_words": 71,
+   "matched": 71,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 16,
+   "chars": 441,
+   "text_words": 88,
+   "heard_words": 88,
+   "matched": 87,
+   "coverage": 0.989,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 17,
+   "chars": 423,
+   "text_words": 81,
+   "heard_words": 80,
+   "matched": 80,
+   "coverage": 0.988,
+   "tail_coverage": 0.941
+  },
+  {
+   "group": 18,
+   "chars": 484,
+   "text_words": 92,
+   "heard_words": 93,
+   "matched": 92,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 19,
+   "chars": 390,
+   "text_words": 78,
+   "heard_words": 75,
+   "matched": 78,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 20,
+   "chars": 287,
+   "text_words": 56,
+   "heard_words": 55,
+   "matched": 56,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 21,
+   "chars": 504,
+   "text_words": 92,
+   "heard_words": 90,
+   "matched": 92,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 22,
+   "chars": 447,
+   "text_words": 84,
+   "heard_words": 80,
+   "matched": 84,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 23,
+   "chars": 379,
+   "text_words": 71,
+   "heard_words": 71,
+   "matched": 71,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 24,
+   "chars": 413,
+   "text_words": 84,
+   "heard_words": 87,
+   "matched": 84,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 25,
+   "chars": 411,
+   "text_words": 76,
+   "heard_words": 74,
+   "matched": 76,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 26,
+   "chars": 329,
+   "text_words": 65,
+   "heard_words": 66,
+   "matched": 65,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 27,
+   "chars": 383,
+   "text_words": 72,
+   "heard_words": 68,
+   "matched": 72,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 28,
+   "chars": 419,
+   "text_words": 82,
+   "heard_words": 77,
+   "matched": 81,
+   "coverage": 0.988,
+   "tail_coverage": 1.0
+  },
+  {
+   "group": 29,
+   "chars": 403,
+   "text_words": 78,
+   "heard_words": 77,
+   "matched": 78,
+   "coverage": 1.0,
+   "tail_coverage": 1.0
+  }
+ ],
+ "incomplete": [
+  12
+ ]
+}
