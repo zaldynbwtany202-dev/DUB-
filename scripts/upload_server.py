@@ -29,6 +29,10 @@ INCOMING = ROOT / "incoming"
 PREVIEWS = ROOT / "previews"
 CHUNK = 1 << 20
 
+# Bumped whenever the page changes. The stamp is printed in the page so a stale
+# copy is visible at a glance instead of costing a round trip to rule out.
+BUILD = "5"
+
 def safe_name(name):
     """Keep the name inside incoming/ and survive odd characters."""
     name = os.path.basename(name.replace("\\", "/").strip())
@@ -70,7 +74,8 @@ def render_previews():
 
 
 def page():
-    return PAGE.replace("<!--PREVIEWS-->", render_previews())
+    return (PAGE.replace("<!--PREVIEWS-->", render_previews())
+                .replace("<!--BUILD-->", BUILD))
 
 
 PAGE = """<!doctype html><html dir="rtl" lang="ar">
@@ -98,6 +103,7 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  .err{color:#f87171;font-size:13px;margin-top:12px}
  .done{color:#9aa0a6;font-size:13px;margin-top:26px;border-top:1px solid #2a2e36;padding-top:16px}
  .done li{margin:4px 0}
+ .build{color:#5f646b;font-size:11px;margin-top:22px;text-align:center}
  .probe{margin-top:20px;font-size:12px;color:#9aa0a6}
  .probe.good{color:#4ade80}
  .probe.bad{color:#f87171}
@@ -123,6 +129,7 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  <div class="ok" id="ok"></div>
  <div class="err" id="err"></div>
  <div class="done" id="done"></div>
+ <p class="build">إصدار الصفحة <!--BUILD--></p>
  <!--PREVIEWS-->
 </div>
 <script>
@@ -185,11 +192,17 @@ function send(f){
     xhr.upload.onprogress=e=>setBar(from+e.loaded);
     xhr.onload=()=>{
       if(xhr.status===200){off=to; fails=0; setBar(off); pump()}
+      else if(xhr.status===413){
+        // The proxy refused the body size outright. No point retrying the
+        // same size -- go straight to the smallest chunk that can work.
+        if(chunk<=CHUNK_MIN) return fail('الوسيط يرفض حتى أصغر حجم. أرفق الفيديو في المحادثة.');
+        chunk=CHUNK_MIN; retry(from);
+      }
       else {tries++; if(tries>40)return fail('رفض الخادم الجزء ('+xhr.status+').');
             retry(from)}
     };
     xhr.onerror=()=>{tries++; if(tries>40)return fail('انقطع الاتصال بعد محاولات كثيرة.'); retry(from)};
-    xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. جرّب رابطًا مباشرًا بالأسفل.');
+    xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. أعد تحميل الصفحة أو أرفق الفيديو في المحادثة.');
                        retry(from)};
     xhr.send(f.slice(from,to));
   }
@@ -231,6 +244,7 @@ list();
 // first attempt at uploading a film stalled at one percent with nothing in the
 // server log, which took a round trip to establish; a 32 KB body that succeeds
 // or fails on load says the same thing in a second.
+const BUILD='<!--BUILD-->';
 const probe=document.getElementById('probe');
 (function preflight(){
   const body=new Uint8Array(32768), name='_probe.bin';
@@ -241,7 +255,7 @@ const probe=document.getElementById('probe');
   const done=(ok,txt)=>{probe.textContent=txt; probe.className='probe '+(ok?'good':'bad')};
   xhr.onload=()=>{
     fetch('/delete?name='+name,{method:'POST'}).catch(()=>{});
-    if(xhr.status===200) done(true,'الاتصال جاهز: الرفع يعمل ✓');
+    if(xhr.status===200) done(true,'الاتصال جاهز: الرفع يعمل ✓ · إصدار '+BUILD);
     else done(false,'الرفع لا يعمل عبر هذه الصفحة (رمز '+xhr.status+') — أرفق الفيديو في المحادثة.');
   };
   xhr.onerror=()=>done(false,'الرفع لا يعمل عبر هذه الصفحة — أرفق الفيديو في المحادثة.');
@@ -273,6 +287,14 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(len(body)))
+        # The page is code, and a cached copy of it did real damage once: the
+        # browser kept running the version that sent a film as one request, so
+        # every upload died at the proxy while the server log stayed silent and
+        # the fix looked like it had not worked. A page that must not be stale
+        # has to say so in its headers, not hope.
+        self.send_header("Cache-Control", "no-store, no-cache, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
         self.end_headers()
         if self.command != "HEAD":
             self.wfile.write(body)
