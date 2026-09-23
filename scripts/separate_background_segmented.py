@@ -102,11 +102,16 @@ def main() -> int:
         for s in stems:
             inputs += ["-i", str(s)]
         chain = "".join(f"[{k}:a]" for k in range(len(stems)))
-        filt = (f"{chain}acrossfade=d={a.crossfade}:c1=nofade:c2=nofade"
+        filt = (f"{chain}acrossfade=d={a.crossfade}:c1=nofade:c2=nofade[out]"
                 if len(stems) == 2 else
                 _chain_crossfade(len(stems), a.crossfade))
+        # The map is not optional. Every output of the filtergraph is labelled,
+        # so ffmpeg finds nothing unlabelled to select automatically and fails
+        # with 'Filter acrossfade has an unconnected output' -- after the whole
+        # separation has run, which is the worst possible time to lose it.
         subprocess.run([ff, "-y", "-v", "error", *inputs,
-                        "-filter_complex", filt, "-ar", "44100", "-ac", "2",
+                        "-filter_complex", filt, "-map", "[out]",
+                        "-ar", "44100", "-ac", "2",
                         "-c:a", "pcm_s16le", str(a.out)], check=True)
 
     dur = probe_duration(a.out)

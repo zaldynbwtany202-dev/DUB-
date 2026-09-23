@@ -1,0 +1,11 @@
+{
+  "source": "library/into-the-wild/source.local.mp4",
+  "output": "work/into-the-wild/stems/music.wav",
+  "source_duration_s": 1739.99,
+  "output_duration_s": 1739.99,
+  "segments": 7,
+  "segment_s": 280.0,
+  "crossfade_s": 0.5,
+  "elapsed_s": 2.5,
+  "per_segment": []
+}
