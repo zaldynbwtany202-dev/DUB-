@@ -16,6 +16,7 @@ dies at 80 percent does not have to start again.
 """
 from __future__ import annotations
 
+import html
 import json
 import os
 import sys
@@ -25,10 +26,46 @@ from pathlib import Path
 
 ROOT = Path("/home/user/DUB-").resolve()
 INCOMING = ROOT / "incoming"
+PREVIEWS = ROOT / "previews"
 CHUNK = 1 << 20
 
-PAGE = """<!doctype html>
-<html dir="rtl" lang="ar">
+def _human(n):
+    for unit in ("بايت", "ك.بايت", "م.بايت", "ج.بايت"):
+        if n < 1024 or unit == "ج.بايت":
+            return f"{n:.0f} {unit}" if unit == "بايت" else f"{n:.1f} {unit}"
+        n /= 1024.0
+
+
+def render_previews():
+    """Players for the finished cuts, so the preview frame shows the work and
+    not only the door. Reads the directory on every request: a new cut appears
+    on refresh instead of needing a restart."""
+    try:
+        cuts = sorted(PREVIEWS.glob("*.mp4"), key=lambda p: p.name)
+    except OSError:
+        cuts = []
+    if not cuts:
+        return ('<div class="prev"><h2>العيّنات الجاهزة</h2>'
+                '<p class="m">لا عيّنات بعد.</p></div>')
+    cards = []
+    for c in cuts:
+        url = "/previews/" + urllib.parse.quote(c.name)
+        cards.append(
+            '<div class="card">'
+            f'<p class="t">{html.escape(c.stem)}</p>'
+            f'<video controls preload="metadata" src="{url}"></video>'
+            f'<p class="m">{_human(c.stat().st_size)}</p>'
+            f'<a href="{url}" download>تنزيل</a>'
+            f'<a href="{url}" target="_blank">فتح في نافذة جديدة</a>'
+            '</div>')
+    return ('<div class="prev"><h2>العيّنات الجاهزة</h2>' + "".join(cards) + '</div>')
+
+
+def page():
+    return PAGE.replace("<!--PREVIEWS-->", render_previews())
+
+
+PAGE = """<!doctype html><html dir="rtl" lang="ar">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>رفع فيديو للدبلجة</title>
@@ -53,6 +90,13 @@ PAGE = """<!doctype html>
  .err{color:#f87171;font-size:13px;margin-top:12px}
  .done{color:#9aa0a6;font-size:13px;margin-top:26px;border-top:1px solid #2a2e36;padding-top:16px}
  .done li{margin:4px 0}
+ .prev{margin-top:30px;border-top:1px solid #2a2e36;padding-top:20px}
+ .prev h2{font-size:16px;margin:0 0 14px;color:#e8eaed}
+ .card{background:#1b1e24;border:1px solid #2a2e36;border-radius:12px;padding:12px;margin-bottom:16px}
+ .card video{width:100%;border-radius:8px;display:block;background:#000}
+ .card .t{font-size:14px;font-weight:600;margin:0 0 4px}
+ .card .m{font-size:12px;color:#9aa0a6;margin:6px 0 0}
+ .card a{color:#5b8cff;font-size:12px;text-decoration:none;margin-inline-end:14px}
 </style>
 <div class="wrap">
  <h1>رفع فيديو للدبلجة</h1>
@@ -67,6 +111,7 @@ PAGE = """<!doctype html>
  <div class="ok" id="ok"></div>
  <div class="err" id="err"></div>
  <div class="done" id="done"></div>
+ <!--PREVIEWS-->
 </div>
 <script>
 const drop=document.getElementById('drop'),file=document.getElementById('file');
@@ -167,7 +212,7 @@ class Handler(BaseHTTPRequestHandler):
         q = urllib.parse.parse_qs(u.query)
         if u.path in ("/upload", "/", "/index.html"):
             # The preview frame opens at '/', so the door has to be there too.
-            return self._send(200, PAGE, "text/html; charset=utf-8")
+            return self._send(200, page(), "text/html; charset=utf-8")
         if u.path == "/status":
             p = self._safe(q.get("name", [""])[0])
             part = p.with_suffix(p.suffix + ".part") if p.suffix else Path(str(p) + ".part")
