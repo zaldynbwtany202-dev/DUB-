@@ -54,7 +54,8 @@ LOOKBACK = 18          # words to scan back for a clause opener
 
 
 def plan(words: list[dict], cps: float, ceiling: float,
-         duration: float) -> tuple[list[dict], dict]:
+         duration: float, max_chars: int = MAX_CHARS,
+         max_span: float = MAX_SPAN) -> tuple[list[dict], dict]:
     # NOTE: the ceiling is deliberately not used to stop accumulation. Tempo is
     # set by local density (chars per second of video), not by group size, so
     # halting as soon as a partial span looks too dense does not make the group
@@ -73,7 +74,7 @@ def plan(words: list[dict], cps: float, ceiling: float,
             chars = sum(len(w["w"]) for w in words[i:j])
             end_t = words[j - 1]["t1"]
             span = end_t - start_t
-            if chars > MAX_CHARS or span > MAX_SPAN:
+            if chars > max_chars or span > max_span:
                 break
             last_ok = j
         if last_ok == i:                      # a single long word: take it anyway
@@ -139,6 +140,14 @@ def main() -> int:
     ap.add_argument("--chars-per-s", type=float, default=11.65)
     ap.add_argument("--ceiling", type=float, default=CEILING)
     ap.add_argument("--duration", type=float, default=None)
+    # Group size is the one lever on sync that the measurements singled out:
+    # under 20 s measured 0.14 s median offset against 0.37 s for 25-30 s. It is
+    # exposed per run so a film can be cut to the accuracy it needs rather than
+    # to whatever the constants happened to be.
+    ap.add_argument("--max-span", type=float, default=MAX_SPAN,
+                    help=f"longest group in seconds of video (default {MAX_SPAN})")
+    ap.add_argument("--max-chars", type=int, default=MAX_CHARS,
+                    help=f"most characters in one take (default {MAX_CHARS})")
     a = ap.parse_args()
 
     payload = json.loads(a.words.read_text(encoding="utf-8"))
@@ -148,7 +157,8 @@ def main() -> int:
         return 2
     duration = a.duration or words[-1]["t1"]
 
-    groups, stats = plan(words, a.chars_per_s, a.ceiling, duration)
+    groups, stats = plan(words, a.chars_per_s, a.ceiling, duration,
+                         a.max_chars, a.max_span)
 
     out = {
         "slug": a.slug,
@@ -158,8 +168,8 @@ def main() -> int:
         "chars_per_s": a.chars_per_s,
         "tempo_ceiling": a.ceiling,
         "min_tempo": 1.0,
-        "max_chars": MAX_CHARS,
-        "max_span": MAX_SPAN,
+        "max_chars": a.max_chars,
+        "max_span": a.max_span,
         "breath_margin_s": BREATH,
         "words_from": "YouTube caption track FvWDRz8WP5s",
         "times_from": "whisper.cpp small, max-len 1, split-on-word; anchor-run repair",
