@@ -51,6 +51,8 @@ def main():
     ap.add_argument("slug")
     ap.add_argument("--seconds", type=int, default=120)
     ap.add_argument("--timings", default=None)
+    ap.add_argument("--save-pairs", default=None,
+                    help="write every matched word and its offset, for per-group analysis")
     ap.add_argument("--threads", type=int, default=4)
     a = ap.parse_args()
 
@@ -97,6 +99,21 @@ def main():
     h = n // 2
     if h > 20:
         print(f"    النصف الأول {st.median(d[:h]):+.2f}ث · الثاني {st.median(d[h:]):+.2f}ث")
+
+    if a.save_pairs:
+        # Per word, so a bad group can be named instead of inferred: a uniform
+        # shift inside one group means that take's placement, a spread across
+        # all of them means the timings the plan was built on.
+        rows = [{"word": targets[j]["w"], "target_s": round(targets[j]["t0"], 3),
+                 "heard_s": round(got[i]["t0"], 3), "offset_s": round(o, 3)}
+                for o, j, i in offs]
+        p = Path(a.save_pairs)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+        worst = sorted(rows, key=lambda r: -abs(r["offset_s"]))[:5]
+        print(f"    → {p}  ({len(rows)} كلمة)")
+        print("    أكبر 5 انحرافات: " + " · ".join(
+            f"{r['word']} {r['offset_s']:+.2f}ث" for r in worst))
     return 0
 
 
