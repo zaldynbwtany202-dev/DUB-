@@ -134,7 +134,11 @@ def main() -> int:
         # A film is transcribed in chunks so a wipe costs one chunk rather than
         # the whole run. Each chunk's timestamps start at zero, so they are
         # shifted onto the film's own clock before the words are joined.
-        ws, files = [], sorted(a.chunks.glob("chunk-*.json"))
+        # Two naming schemes exist: the raw-mix pass wrote chunk-N.json over
+        # fixed windows, the dialogue pass wrote seg-NN.json over separated
+        # stems. Both are "a numbered piece with its own clock".
+        files = sorted(list(a.chunks.glob("chunk-*.json")) + list(a.chunks.glob("seg-*.json")))
+        ws = []
         for f in files:
             i = int(f.stem.split("-")[1])
             off = i * a.stride
@@ -142,7 +146,7 @@ def main() -> int:
             for w in part:
                 w["t0"] = round(w["t0"] + off, 3)
                 w["t1"] = round(w["t1"] + off, 3)
-            print(f"  [جزء {i}] {len(part):4d} كلمة · عند {off:.0f}ث")
+            print(f"  [{f.stem}] {len(part):4d} كلمة · عند {off:.0f}ث")
             ws.extend(part)
         ws.sort(key=lambda w: w["t0"])
         dup = sum(1 for i in range(1, len(ws)) if ws[i]["t0"] < ws[i - 1]["t0"] - 1e-6)
