@@ -33,7 +33,7 @@ fi
 # read by the studio config; onnxruntime runs the separator; cmake builds
 # whisper.cpp.
 need=()
-for pkg in imageio-ffmpeg numpy soundfile pyyaml onnxruntime cmake; do
+for pkg in imageio-ffmpeg numpy scipy soundfile pyyaml onnxruntime cmake; do
   .venv/bin/python -c "import ${pkg//-/_}" 2>/dev/null || need+=("$pkg")
 done
 if [ "${#need[@]}" -gt 0 ]; then
