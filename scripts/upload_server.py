@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "7"
+BUILD = "9"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -46,6 +46,14 @@ LABELS = {
                             "المجموعات 30–39 · دبلجة فوق موسيقى الفيلم"),
     "into-the-wild-part1": ("Into the Wild — أول 11:37 دقيقة",
                             "المجموعات 0–29 · دبلجة فوق موسيقى الفيلم"),
+    "audition-voice-07": ("المتسابق 07 — النص نفسه",
+                          "أسرع الثلاثة قراءةً · 10.43 حرف/ث"),
+    "audition-voice-08": ("المتسابق 08 — النص نفسه",
+                          "أعمق الثلاثة · 9.96 حرف/ث"),
+    "audition-voice-05": ("الصوت الحالي 05 — النص نفسه",
+                          "للمقارنة · 9.63 حرف/ث"),
+    "voice-compare": ("مقارنة الأصوات الثلاثة — النص نفسه",
+                      "05 الحالي · ثم 07 · ثم 08 · بينها صمت قصير"),
     "into-the-wild-pilot": ("Into the Wild — العيّنة الأولى (55 ثانية)",
                             "مقياس المزامنة: وسيط الفرق 0.15 ث · 93% داخل 0.5 ث"),
     "sindbad-6min": ("السندباد — ست دقائق",
@@ -83,10 +91,11 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice-B-professional", "voice-A-current",
+            "voice-compare", "audition-voice-07", "audition-voice-08",
+            "audition-voice-05", "voice-B-professional", "voice-A-current",
             "into-the-wild-part2", "into-the-wild-part1", "into-the-wild-pilot",
             "sindbad-6min"])}
-        cuts = sorted(PREVIEWS.glob("*.mp4"),
+        cuts = sorted(list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3")),
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
     except OSError:
         cuts = []
@@ -97,10 +106,15 @@ def render_previews():
     for c in cuts:
         url = "/previews/" + urllib.parse.quote(c.name)
         title, note = LABELS.get(c.stem, (c.stem, "دبلجة عربية بصوت واحد فوق موسيقى الفيلم"))
+        # An audition is audio and a cut is video; the page shows whichever it is
+        # rather than forcing every sample to carry a picture it does not need.
+        player = ('<audio controls preload="metadata" src="{}"></audio>'.format(url)
+                  if c.suffix == ".mp3" else
+                  '<video controls preload="metadata" src="{}"></video>'.format(url))
         cards.append(
             '<div class="card">'
             f'<p class="t">{html.escape(title)}</p>'
-            f'<video controls preload="metadata" src="{url}"></video>'
+            f'{player}'
             f'<p class="m">{html.escape(note)} · {_human(c.stat().st_size)}</p>'
             f'<a href="{url}" download>تنزيل</a>'
             f'<a href="{url}" target="_blank">فتح في نافذة جديدة</a>'

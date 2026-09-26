@@ -1,0 +1,6 @@
+file '/home/user/DUB-/work/into-the-wild/auditions/gap.wav'
+file '/home/user/DUB-/work/into-the-wild/auditions/v05.wav'
+file '/home/user/DUB-/work/into-the-wild/auditions/gap.wav'
+file '/home/user/DUB-/work/into-the-wild/auditions/v07.wav'
+file '/home/user/DUB-/work/into-the-wild/auditions/gap.wav'
+file '/home/user/DUB-/work/into-the-wild/auditions/v08.wav'
