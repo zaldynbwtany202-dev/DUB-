@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "19"
+BUILD = "20"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -133,7 +133,12 @@ def render_previews():
             # with the narrator's own voice, not with an imitation of it.
             "into-the-wild-cloned", "voice-clone-attempt",
             "sindbad-6min"])}
-        cuts = sorted(list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3")),
+        # Hidden on the user's instruction: attempts that were rejected by ear.
+        # The files stay on disk and in the repository history; they simply do not
+        # appear here. One name removed from this set is all it takes to show one.
+        HIDDEN = {"into-the-wild-cloned", "voice-clone-attempt"}
+        cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
+                       if c.stem not in HIDDEN],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
     except OSError:
         cuts = []
@@ -141,7 +146,7 @@ def render_previews():
         return ('<div class="prev"><h2>العيّنات الجاهزة</h2>'
                 '<p class="m">لا عيّنات بعد.</p></div>')
     cards = []
-    for c in cuts:
+    for number, c in enumerate(cuts, 1):
         url = "/previews/" + urllib.parse.quote(c.name)
         title, note = LABELS.get(c.stem, (c.stem, "دبلجة عربية بصوت واحد فوق موسيقى الفيلم"))
         # An audition is audio and a cut is video; the page shows whichever it is
@@ -151,7 +156,7 @@ def render_previews():
                   '<video controls preload="metadata" src="{}"></video>'.format(url))
         cards.append(
             '<div class="card">'
-            f'<p class="t">{html.escape(title)}</p>'
+            f'<p class="t"><span class="num">{number}</span> {html.escape(title)}</p>'
             f'{player}'
             f'<p class="m">{html.escape(note)} · {_human(c.stat().st_size)}</p>'
             f'<a href="{url}" download>تنزيل</a>'
@@ -197,6 +202,8 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  .prev{margin-top:30px;border-top:1px solid #2a2e36;padding-top:20px}
  .prev h2{font-size:16px;margin:0 0 14px;color:#e8eaed}
  .card{background:#1b1e24;border:1px solid #2a2e36;border-radius:12px;padding:12px;margin-bottom:16px}
+ .num{display:inline-block;min-width:26px;height:26px;line-height:26px;text-align:center;
+      background:#5b8cff;color:#0d1014;border-radius:50%;font-weight:700;font-size:14px;margin-inline-end:8px}
  .card video{width:100%;border-radius:8px;display:block;background:#000}
  .card .t{font-size:14px;font-weight:600;margin:0 0 4px}
  .card .m{font-size:12px;color:#9aa0a6;margin:6px 0 0}
