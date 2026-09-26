@@ -1,0 +1,371 @@
+{
+ "slug": "into-the-wild",
+ "target": "/home/user/DUB-/work/into-the-wild/stems/vocal-00.mp3",
+ "f0_target_hz": 168.3,
+ "formant": "shifted",
+ "strength": 1.0,
+ "cepstra": 40,
+ "takes": [
+  {
+   "take": "g000",
+   "f0_before": 111.9,
+   "f0_after": 160.9,
+   "semitone_shift": 8.58,
+   "envelope_before_db": 1.963,
+   "envelope_after_db": 0.157,
+   "closed_pct": 92
+  },
+  {
+   "take": "g001",
+   "f0_before": 138.7,
+   "f0_after": 167.0,
+   "semitone_shift": 4.0,
+   "envelope_before_db": 1.938,
+   "envelope_after_db": 0.211,
+   "closed_pct": 89
+  },
+  {
+   "take": "g002",
+   "f0_before": 116.7,
+   "f0_after": 162.1,
+   "semitone_shift": 6.35,
+   "envelope_before_db": 1.95,
+   "envelope_after_db": 0.185,
+   "closed_pct": 91
+  },
+  {
+   "take": "g003",
+   "f0_before": 103.5,
+   "f0_after": 165.8,
+   "semitone_shift": 9.44,
+   "envelope_before_db": 1.839,
+   "envelope_after_db": 0.157,
+   "closed_pct": 91
+  },
+  {
+   "take": "g004",
+   "f0_before": 128.2,
+   "f0_after": 164.6,
+   "semitone_shift": 4.71,
+   "envelope_before_db": 2.07,
+   "envelope_after_db": 0.185,
+   "closed_pct": 91
+  },
+  {
+   "take": "g005",
+   "f0_before": 106.0,
+   "f0_after": 167.0,
+   "semitone_shift": 8.65,
+   "envelope_before_db": 2.136,
+   "envelope_after_db": 0.181,
+   "closed_pct": 92
+  },
+  {
+   "take": "g006",
+   "f0_before": 137.0,
+   "f0_after": 164.6,
+   "semitone_shift": 3.57,
+   "envelope_before_db": 1.861,
+   "envelope_after_db": 0.208,
+   "closed_pct": 89
+  },
+  {
+   "take": "g007",
+   "f0_before": 108.1,
+   "f0_after": 164.6,
+   "semitone_shift": 8.57,
+   "envelope_before_db": 1.984,
+   "envelope_after_db": 0.163,
+   "closed_pct": 92
+  },
+  {
+   "take": "g008",
+   "f0_before": 125.3,
+   "f0_after": 165.8,
+   "semitone_shift": 5.76,
+   "envelope_before_db": 1.909,
+   "envelope_after_db": 0.152,
+   "closed_pct": 92
+  },
+  {
+   "take": "g009",
+   "f0_before": 129.7,
+   "f0_after": 165.8,
+   "semitone_shift": 4.51,
+   "envelope_before_db": 1.926,
+   "envelope_after_db": 0.176,
+   "closed_pct": 91
+  },
+  {
+   "take": "g010",
+   "f0_before": 138.7,
+   "f0_after": 165.8,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 1.922,
+   "envelope_after_db": 0.215,
+   "closed_pct": 89
+  },
+  {
+   "take": "g011",
+   "f0_before": 137.0,
+   "f0_after": 165.8,
+   "semitone_shift": 3.57,
+   "envelope_before_db": 2.126,
+   "envelope_after_db": 0.253,
+   "closed_pct": 88
+  },
+  {
+   "take": "g012",
+   "f0_before": 128.2,
+   "f0_after": 162.1,
+   "semitone_shift": 5.86,
+   "envelope_before_db": 2.061,
+   "envelope_after_db": 0.189,
+   "closed_pct": 91
+  },
+  {
+   "take": "g013",
+   "f0_before": 138.7,
+   "f0_after": 167.0,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 2.049,
+   "envelope_after_db": 0.21,
+   "closed_pct": 90
+  },
+  {
+   "take": "g014",
+   "f0_before": 119.8,
+   "f0_after": 167.0,
+   "semitone_shift": 6.66,
+   "envelope_before_db": 1.806,
+   "envelope_after_db": 0.166,
+   "closed_pct": 91
+  },
+  {
+   "take": "g015",
+   "f0_before": 120.5,
+   "f0_after": 164.6,
+   "semitone_shift": 6.69,
+   "envelope_before_db": 1.974,
+   "envelope_after_db": 0.171,
+   "closed_pct": 91
+  },
+  {
+   "take": "g016",
+   "f0_before": 126.0,
+   "f0_after": 164.6,
+   "semitone_shift": 7.53,
+   "envelope_before_db": 2.109,
+   "envelope_after_db": 0.179,
+   "closed_pct": 91
+  },
+  {
+   "take": "g017",
+   "f0_before": 135.3,
+   "f0_after": 159.8,
+   "semitone_shift": 3.78,
+   "envelope_before_db": 2.084,
+   "envelope_after_db": 0.226,
+   "closed_pct": 89
+  },
+  {
+   "take": "g018",
+   "f0_before": 111.4,
+   "f0_after": 165.8,
+   "semitone_shift": 7.8,
+   "envelope_before_db": 2.117,
+   "envelope_after_db": 0.196,
+   "closed_pct": 91
+  },
+  {
+   "take": "g019",
+   "f0_before": 128.9,
+   "f0_after": 162.1,
+   "semitone_shift": 4.61,
+   "envelope_before_db": 1.885,
+   "envelope_after_db": 0.202,
+   "closed_pct": 89
+  },
+  {
+   "take": "g020",
+   "f0_before": 119.2,
+   "f0_after": 167.0,
+   "semitone_shift": 6.5,
+   "envelope_before_db": 2.069,
+   "envelope_after_db": 0.185,
+   "closed_pct": 91
+  },
+  {
+   "take": "g021",
+   "f0_before": 126.7,
+   "f0_after": 163.3,
+   "semitone_shift": 5.43,
+   "envelope_before_db": 1.997,
+   "envelope_after_db": 0.184,
+   "closed_pct": 91
+  },
+  {
+   "take": "g022",
+   "f0_before": 135.3,
+   "f0_after": 170.9,
+   "semitone_shift": 4.43,
+   "envelope_before_db": 1.993,
+   "envelope_after_db": 0.182,
+   "closed_pct": 91
+  },
+  {
+   "take": "g023",
+   "f0_before": 117.9,
+   "f0_after": 165.8,
+   "semitone_shift": 6.68,
+   "envelope_before_db": 2.105,
+   "envelope_after_db": 0.211,
+   "closed_pct": 90
+  },
+  {
+   "take": "g024",
+   "f0_before": 121.8,
+   "f0_after": 167.0,
+   "semitone_shift": 6.12,
+   "envelope_before_db": 1.902,
+   "envelope_after_db": 0.173,
+   "closed_pct": 91
+  },
+  {
+   "take": "g025",
+   "f0_before": 126.7,
+   "f0_after": 164.6,
+   "semitone_shift": 5.43,
+   "envelope_before_db": 1.848,
+   "envelope_after_db": 0.19,
+   "closed_pct": 90
+  },
+  {
+   "take": "g026",
+   "f0_before": 121.8,
+   "f0_after": 167.0,
+   "semitone_shift": 6.75,
+   "envelope_before_db": 2.0,
+   "envelope_after_db": 0.159,
+   "closed_pct": 92
+  },
+  {
+   "take": "g027",
+   "f0_before": 118.5,
+   "f0_after": 163.3,
+   "semitone_shift": 7.22,
+   "envelope_before_db": 2.015,
+   "envelope_after_db": 0.187,
+   "closed_pct": 91
+  },
+  {
+   "take": "g028",
+   "f0_before": 129.7,
+   "f0_after": 163.3,
+   "semitone_shift": 5.16,
+   "envelope_before_db": 1.942,
+   "envelope_after_db": 0.176,
+   "closed_pct": 91
+  },
+  {
+   "take": "g029",
+   "f0_before": 127.5,
+   "f0_after": 163.3,
+   "semitone_shift": 6.21,
+   "envelope_before_db": 1.992,
+   "envelope_after_db": 0.162,
+   "closed_pct": 92
+  },
+  {
+   "take": "g030",
+   "f0_before": 117.9,
+   "f0_after": 160.9,
+   "semitone_shift": 7.56,
+   "envelope_before_db": 2.028,
+   "envelope_after_db": 0.194,
+   "closed_pct": 90
+  },
+  {
+   "take": "g031",
+   "f0_before": 140.4,
+   "f0_after": 163.3,
+   "semitone_shift": 3.13,
+   "envelope_before_db": 2.011,
+   "envelope_after_db": 0.241,
+   "closed_pct": 88
+  },
+  {
+   "take": "g032",
+   "f0_before": 132.0,
+   "f0_after": 164.6,
+   "semitone_shift": 4.72,
+   "envelope_before_db": 1.989,
+   "envelope_after_db": 0.178,
+   "closed_pct": 91
+  },
+  {
+   "take": "g033",
+   "f0_before": 125.3,
+   "f0_after": 160.9,
+   "semitone_shift": 5.11,
+   "envelope_before_db": 2.052,
+   "envelope_after_db": 0.194,
+   "closed_pct": 91
+  },
+  {
+   "take": "g034",
+   "f0_before": 143.2,
+   "f0_after": 163.3,
+   "semitone_shift": 2.8,
+   "envelope_before_db": 1.986,
+   "envelope_after_db": 0.298,
+   "closed_pct": 85
+  },
+  {
+   "take": "g035",
+   "f0_before": 116.1,
+   "f0_after": 162.7,
+   "semitone_shift": 7.09,
+   "envelope_before_db": 2.137,
+   "envelope_after_db": 0.174,
+   "closed_pct": 92
+  },
+  {
+   "take": "g036",
+   "f0_before": 114.2,
+   "f0_after": 164.6,
+   "semitone_shift": 7.23,
+   "envelope_before_db": 1.77,
+   "envelope_after_db": 0.154,
+   "closed_pct": 91
+  },
+  {
+   "take": "g037",
+   "f0_before": 134.5,
+   "f0_after": 158.6,
+   "semitone_shift": 3.89,
+   "envelope_before_db": 2.007,
+   "envelope_after_db": 0.221,
+   "closed_pct": 89
+  },
+  {
+   "take": "g038",
+   "f0_before": 128.9,
+   "f0_after": 164.6,
+   "semitone_shift": 5.26,
+   "envelope_before_db": 2.033,
+   "envelope_after_db": 0.215,
+   "closed_pct": 89
+  },
+  {
+   "take": "g039",
+   "f0_before": 129.7,
+   "f0_after": 164.6,
+   "semitone_shift": 4.51,
+   "envelope_before_db": 2.047,
+   "envelope_after_db": 0.188,
+   "closed_pct": 91
+  }
+ ],
+ "method": "cepstral long-term spectral envelope transfer + pitch match"
+}

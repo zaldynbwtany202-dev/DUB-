@@ -149,12 +149,19 @@ def tighten(src, dst, tmpdir, pause_keep=0.25, min_pause=0.32,
 def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubberband",
                 tighten_takes=True, pause_keep=0.25):
     """Return (path to the fitted wav, reported tempo)."""
+    def find(name):
+        # Converted takes are wav and generated takes are mp3; the assembly should
+        # not care which, because the conversion is a step before it rather than a
+        # different kind of take.
+        for ext in (".wav", ".mp3"):
+            p = Path(take_dir) / f"{name}{ext}"
+            if p.exists():
+                return p
+        raise SystemExit(f"missing take: {Path(take_dir) / name}.[wav|mp3]")
+
     pieces = []
     for name in names:
-        src = take_dir / f"{name}.mp3"
-        if not src.exists():
-            raise SystemExit(f"missing take: {src}")
-        pieces.append(src)
+        pieces.append(find(name))
 
     if len(pieces) == 1:
         natural_src = pieces[0]
