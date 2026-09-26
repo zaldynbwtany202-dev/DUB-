@@ -108,6 +108,10 @@ def apply_loudnorm_second_pass(path: Path, out: Path, target_i: float, tp: float
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--voice", type=Path, required=True, help="assembled voice track")
+    ap.add_argument("--plain-voice", action="store_true",
+                    help="no EQ, de-esser or compression on the voice -- for a human "
+                         "recording, which has already been mixed by someone who knew "
+                         "what they were doing. Shaping it again only makes it worse.")
     ap.add_argument("--music", type=Path, default=None, help="music bed; omit to master voice alone")
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--lufs", type=float, default=-16.0, help="integrated loudness target")
@@ -140,7 +144,7 @@ def main() -> int:
         print(f"    المقاس: {m.get('input_i')} LUFS · قمة {m.get('input_tp')} dBTP · "
               f"مدى {m.get('input_lra')}", flush=True)
     apply_loudnorm_second_pass(a.voice, voice_mastered, a.lufs, a.tp, a.lra, m,
-                               extra=VOICE_CHAIN)
+                               extra="" if a.plain_voice else VOICE_CHAIN)
 
     if not a.music:
         run(["-i", str(voice_mastered), "-ar", "48000", "-ac", "2",
@@ -164,7 +168,7 @@ def main() -> int:
     # The voice is split: one copy is heard, the other drives the compressor and
     # is never mixed, which is the whole point of a sidechain.
     fc = (
-        f"[0:a]{VOICE_CHAIN},loudnorm=I={a.lufs}:TP={a.tp}:LRA={a.lra}"
+        f"[0:a]{'' if a.plain_voice else VOICE_CHAIN + ','}loudnorm=I={a.lufs}:TP={a.tp}:LRA={a.lra}"
         f":measured_I={m.get('input_i', a.lufs)}:measured_TP={m.get('input_tp', a.tp)}"
         f":measured_LRA={m.get('input_lra', a.lra)}:measured_thresh={m.get('input_thresh', -70)}"
         f":offset={m.get('target_offset', 0)}:linear=true[voice];"
