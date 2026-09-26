@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "18"
+BUILD = "19"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -52,14 +52,14 @@ LABELS = {
     "into-the-wild-mastered": ("★ الفيلم كاملًا بصوت راويه + موسيقى الفيلم — 29 دقيقة",
                                "نفس الصوت · الموسيقى تنسحب تحت كلامه · "
                                "-16 LUFS (الفيلم الأصلي يقصّ عند +2.51 dBTP)"),
-    "into-the-wild-cloned": ("★ Into the Wild — استنساخ الصوت (22:38 دقيقة)",
-                             "الستون مجموعة الأولى بصوت مستنسخ عن الراوي: "
-                             "الطابع أُغلق 91% · الطبقة 164.6 مقابل 168.3 هرتز · "
-                             "الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP · "
-                             "لا كلام فوق كلام (وضع الرصف) · النسخ الأقصر في تاريخ المستودع"),
-    "voice-clone-attempt": ("محاولة الاستنساخ — الراوي ثم المستنسخ ثم الخام (90 ثانية)",
-                            "نقل الطابع بالقياس: أقرب 52% في الطابع، والنبرة "
-                            "163 مقابل 168 هرتز — بلا أوزان عصبية"),
+    "into-the-wild-cloned": ("✗ محاولة استنساخ بالقياس — صوت صناعي بطابع مُستعار، ليست صوت الراوي",
+                             "رفضتها أذنك وهي محقّة: الأساس صوت مُصنَّع (voice-05)، غُيِّر شكله "
+                             "لينحرف نحو قناة الراوي بالقياس، فأُغلق 91% من مسافة الطابع. "
+                             "**طابع مُقلَّد، لا صوت مستنسخ** — ولا يجوز أن يُسمّى استنساخًا. "
+                             "الصوت الحقيقي هو الراوي نفسه في رأس هذه الصفحة. محفوظة للمقارنة فقط، "
+                             "وأُوقف تسجيل بقية المجموعات بهذه الطريقة."),
+    "voice-clone-attempt": ("✗ محاولة استنساخ بالقياس — 90 ثانية (الراوي ثم المحوَّل ثم الخام)",
+                            "نفس السبب: تقليد طابع لا استنساخ صوت. محفوظة للمقارنة فقط."),
     "narrator-A": ("راوي الفيلم نفسه — بلا موسيقى (دقيقتان)",
                    "صوت الراوي الأصلي معزولًا · بلا تسريع ولا تشكيل · -16 LUFS"),
     "narrator-B": ("راوي الفيلم نفسه — فوق موسيقى الفيلم (دقيقتان)",
@@ -124,10 +124,14 @@ def render_previews():
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
             "into-the-wild-narration", "into-the-wild-mastered",
-            "into-the-wild-cloned", "voice-clone-attempt", "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed", "voice-compare-2", "audition-voice-09", "audition-voice-10",
+            "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
+            "voice-compare-2", "audition-voice-09", "audition-voice-10",
             "voice-compare", "audition-voice-07", "audition-voice-08",
             "audition-voice-05", "voice-B-professional", "voice-A-current",
             "into-the-wild-part2", "into-the-wild-part1", "into-the-wild-pilot",
+            # Attempts that the ear rejected go last on purpose: the page leads
+            # with the narrator's own voice, not with an imitation of it.
+            "into-the-wild-cloned", "voice-clone-attempt",
             "sindbad-6min"])}
         cuts = sorted(list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3")),
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
