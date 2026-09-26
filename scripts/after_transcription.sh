@@ -52,7 +52,7 @@ fi
 
 echo "=== فحص كل تسجيل مقابل نصه ==="
 .venv/bin/python scripts/verify_takes.py into-the-wild --threads 2 2>&1 | tail -45
-git add -A "$W/take-check.json" .cache/takecheck 2>/dev/null
+git add -A "$W/take-check.json" "$W/takecheck" 2>/dev/null
 git commit -q -m "Check every take against its own text, all forty" 2>/dev/null
 git push -q origin arena/01a09fa1-dub 2>/dev/null && echo "  ✓ فُحص ورُفع" || true
 

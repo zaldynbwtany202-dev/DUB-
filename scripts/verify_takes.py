@@ -33,7 +33,6 @@ from asr_to_words import words_with_dtw  # noqa: E402
 
 WHISPER = ".cache/tools/whisper.cpp/build/bin/whisper-cli"
 MODEL = ".cache/models/whisper-ggml/ggml-small.bin"
-TMP = Path(".cache/takecheck")
 
 
 def main() -> int:
@@ -48,14 +47,15 @@ def main() -> int:
     work = Path("work") / a.slug
     groups_path = Path(a.groups) if a.groups else (work / "groups.json")
     groups = json.loads(groups_path.read_text(encoding="utf-8"))["groups"]
-    TMP.mkdir(parents=True, exist_ok=True)
+    tmp = Path("work") / a.slug / "takecheck"
+    tmp.mkdir(parents=True, exist_ok=True)
 
     rows, bad = [], []
     for g in groups[: a.limit]:
         take = work / "takes" / f"g{g['i']:03d}.mp3"
         if not take.is_file():
             continue
-        out = TMP / f"check-{g['i']:03d}.json"
+        out = tmp / f"check-{g['i']:03d}.json"
         if not out.is_file():
             subprocess.run([WHISPER, "-m", MODEL, "-f", str(take), "-l", "ar",
                             "-t", str(a.threads), "-ojf", "-dtw", "small",

@@ -51,13 +51,45 @@ say "[بيئة] ffmpeg: $(.venv/bin/python -c 'import imageio_ffmpeg;print(image
 WCLI=.cache/tools/whisper.cpp/build/bin/whisper-cli
 MODEL=.cache/models/whisper-ggml/ggml-small.bin
 
-if [ -s "$WCLI" ] && [ -s "$MODEL" ]; then
-  say "[whisper] موجود: $(stat -c%s "$MODEL") بايت"
+if [ -s "$MODEL" ]; then
+  say "[whisper] النموذج موجود: $(stat -c%s "$MODEL") بايت"
 else
-  say "[whisper] بناء من المصدر المثبَّت (الدقائق القادمة)"
-  .venv/bin/python scripts/bootstrap_local_whisper.py || {
-    say "فشل بناء whisper"; exit 1; }
+  say "[whisper] جلب النموذج المثبَّت ببصمة (465 م.بايت، الدقائق القادمة)"
+  .venv/bin/python scripts/bootstrap_local_whisper.py --model-only 2>/dev/null \
+    || .venv/bin/python scripts/bootstrap_local_whisper.py || {
+      say "فشل جلب النموذج"; exit 1; }
   say "[whisper] النموذج: $(stat -c%s "$MODEL" 2>/dev/null) بايت"
+fi
+
+# The built binary is committed under tools/ precisely so this step is a copy and
+# not a compile. Compiling whisper.cpp takes minutes and needs cmake; the binary
+# and its three shared libraries are 2.9 MB together, which is a price worth
+# paying once to stop paying the compile on every wipe. The layout it is restored
+# into is the one its RUNPATH already points at, so no script has to change.
+STORE=1
+if [ -s "$WCLI" ]; then
+  say "[whisper] المحرك موجود"
+elif [ -s tools/whisper-1.7.6/bin/whisper-cli ]; then
+  say "[whisper] استرجاع المحرك المحفوظ (بلا تصريف)"
+  mkdir -p "$(dirname "$WCLI")" .cache/tools/whisper.cpp/build/src .cache/tools/whisper.cpp/build/ggml/src
+  cp -a tools/whisper-1.7.6/bin/whisper-cli "$WCLI"
+  cp -a tools/whisper-1.7.6/src/. .cache/tools/whisper.cpp/build/src/
+  cp -a tools/whisper-1.7.6/ggml-src/. .cache/tools/whisper.cpp/build/ggml/src/
+  chmod +x "$WCLI"
+  # Run it, because a binary that exists and cannot load its libraries is not a
+  # restored toolchain -- it is a file that will fail an hour into a job.
+  if "$WCLI" --help >/dev/null 2>&1; then
+    say "[whisper] ✓ المحرك يعمل"
+  else
+    say "[whisper] المحرك المحفوظ لا يعمل — سأبني من المصدر"
+    STORE=0
+  fi
+else
+  STORE=0
+fi
+if [ "$STORE" = 0 ]; then
+  say "[whisper] بناء من المصدر المثبَّت (الدقائق القادمة)"
+  .venv/bin/python scripts/bootstrap_local_whisper.py || { say "فشل بناء whisper"; exit 1; }
   say "[whisper] المحرك: $WCLI"
 fi
 
