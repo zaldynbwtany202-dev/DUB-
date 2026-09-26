@@ -107,6 +107,14 @@ incoming/
 previews/into-the-wild-narration.mp4
 previews/into-the-wild-mastered.mp4
 
+# The cloned-voice cut grows a batch of takes at a time, so it crossed the same
+# 100 MB limit at group 50 and cannot be tracked either. Everything it is made of
+# is tracked -- the takes in work/into-the-wild/takes/, the narrator's isolated
+# voice in work/into-the-wild/stems/, and scripts/clone_takes.py -- and
+# `bash scripts/rebuild_deliverables.sh --clone` rebuilds it in 4m30s, measured.
+# It stays on disk for the preview server either way.
+previews/into-the-wild-cloned.mp4
+
 # The cloned takes are a derived artifact: 74 MB of WAV rebuilt in ~75 seconds by
 # scripts/clone_takes.py from work/<slug>/takes/*.mp3 (tracked) plus the narrator's
 # running voice in work/<slug>/stems/. Rebuild rather than track.
