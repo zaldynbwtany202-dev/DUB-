@@ -7,6 +7,7 @@ build/
 .pytest_cache/
 *.egg
 .venv/
+.venv-*/
 .mypy_cache/
 .ruff_cache/
 
@@ -97,3 +98,11 @@ library/*/.parts/
 # behind it may not be reproducible.
 !previews/*.mp4
 incoming/
+
+# The two finished 29-minute films are 138 MB each, over GitHub's 100 MB per-file
+# limit, so the films themselves are not tracked -- but everything they are made
+# of is: the source picture in library/<slug>/parts/, and the exact AAC audio
+# stream in work/<slug>/deliver/*.m4a. Both are rebuilt byte-identically by
+# scripts/rebuild_deliverables.sh, which copies the streams rather than encoding.
+previews/into-the-wild-narration.mp4
+previews/into-the-wild-mastered.mp4
