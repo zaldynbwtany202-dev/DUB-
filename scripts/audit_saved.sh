@@ -52,7 +52,10 @@ else
 fi
 
 echo "=== ٣. ما يتجاهله git: هل كل صنف يُعاد بناؤه بسكربت؟ ==="
-known=".venv/ .cache/ library/into-the-wild/source.local.mp4 scripts/__pycache__/"
+known=".venv/ .cache/ library/into-the-wild/source.local.mp4 scripts/__pycache__/ "
+known="$known previews/into-the-wild-narration.mp4 previews/into-the-wild-mastered.mp4 "
+known="$known previews/into-the-wild-cloned.mp4 "
+known="$known work/into-the-wild/takes-clone/ work/into-the-wild/build/"
 for entry in $(git status --porcelain --ignored 2>/dev/null | awk '$1=="!!" {print $2}'); do
   case "$known" in
     *"$entry "*) ;;
@@ -64,6 +67,18 @@ done
 [ -d .venv ] && say "$(size_of .venv)  .venv/ — يُعاد بناؤه: bash scripts/rebuild_env.sh"
 [ -d .cache/models ] && say "$(size_of .cache/models)  .cache/models/ — يُعاد بناؤه: نموذج مثبَّت بالبصمة في config/whisper-small-ggml.json"
 [ -d .cache/tools ] && say "$(size_of .cache/tools)  .cache/tools/ — يُسترجَع من tools/whisper-1.7.6 بلا تصريف"
+# The films are too big to track, so each one has to name the script that
+# rebuilds it -- an unclassified ignored file is the thing this audit exists to
+# catch, and a 139 MB film with no recipe would be exactly that.
+for f in previews/into-the-wild-narration.mp4 previews/into-the-wild-mastered.mp4; do
+  [ -f "$f" ] && say "$(size_of "$f")  $f — يُعاد بناؤه: bash scripts/rebuild_deliverables.sh"
+done
+[ -f previews/into-the-wild-cloned.mp4 ] && \
+  say "$(size_of previews/into-the-wild-cloned.mp4)  previews/into-the-wild-cloned.mp4 — يُعاد بناؤه: bash scripts/rebuild_deliverables.sh --clone (4 د 30 ث)"
+[ -d work/into-the-wild/takes-clone ] && \
+  say "$(size_of work/into-the-wild/takes-clone)  takes-clone/ — يُعاد بناؤه: scripts/clone_takes.py من takes/ وstems/ (75 ثانية)"
+[ -d work/into-the-wild/build ] && \
+  say "$(size_of work/into-the-wild/build)  build/ — سكراتش: المسار الصوتي والمزيج قبل mux"
 for sub in .cache/itw .cache/separation .cache/takecheck; do
   [ -e "$sub" ] && say "$(size_of "$sub")  $sub/ — سكراتش"
 done
