@@ -106,3 +106,8 @@ incoming/
 # scripts/rebuild_deliverables.sh, which copies the streams rather than encoding.
 previews/into-the-wild-narration.mp4
 previews/into-the-wild-mastered.mp4
+
+# The cloned takes are a derived artifact: 74 MB of WAV rebuilt in ~75 seconds by
+# scripts/clone_takes.py from work/<slug>/takes/*.mp3 (tracked) plus the narrator's
+# running voice in work/<slug>/stems/. Rebuild rather than track.
+work/into-the-wild/takes-clone/
