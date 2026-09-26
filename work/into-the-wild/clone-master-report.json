@@ -9,27 +9,27 @@
  "music_db": -4.0,
  "voice_chain": "highpass=f=85,equalizer=f=250:width_type=q:w=1:g=-2.5,equalizer=f=3200:width_type=q:w=1.2:g=+2.5,deesser=i=0.4:m=0.5:f=0.5,acompressor=threshold=-18dB:ratio=3:attack=5:release=150:makeup=2",
  "measured_voice": {
-  "input_i": "-16.59",
+  "input_i": "-16.74",
   "input_tp": "3.92",
   "input_lra": "4.30",
-  "input_thresh": "-26.66",
-  "output_i": "-15.95",
+  "input_thresh": "-26.80",
+  "output_i": "-16.09",
   "output_tp": "-1.50",
-  "output_lra": "4.20",
-  "output_thresh": "-26.02",
+  "output_lra": "4.30",
+  "output_thresh": "-26.15",
   "normalization_type": "dynamic",
-  "target_offset": "-0.05"
+  "target_offset": "0.09"
  },
  "measured_mix": {
-  "input_i": "-16.01",
+  "input_i": "-15.92",
   "input_tp": "-1.33",
   "input_lra": "1.90",
-  "input_thresh": "-26.03",
-  "output_i": "-16.10",
+  "input_thresh": "-25.93",
+  "output_i": "-16.12",
   "output_tp": "-1.50",
-  "output_lra": "2.00",
-  "output_thresh": "-26.11",
+  "output_lra": "1.90",
+  "output_thresh": "-26.13",
   "normalization_type": "dynamic",
-  "target_offset": "0.10"
+  "target_offset": "0.12"
  }
 }

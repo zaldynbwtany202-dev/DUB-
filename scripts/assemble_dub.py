@@ -147,8 +147,13 @@ def tighten(src, dst, tmpdir, pause_keep=0.25, min_pause=0.32,
 
 
 def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubberband",
-                tighten_takes=True, pause_keep=0.25):
-    """Return (path to the fitted wav, reported tempo)."""
+                tighten_takes=True, pause_keep=0.25, avail=None):
+    """Return (path to the fitted wav, tempo, natural length).
+
+    `avail` is the time the group actually has. It differs from `window` only in
+    packed mode, where a late group starts after its own t0 and takes the tempo
+    that lands it back on its own end.
+    """
     def find(name):
         # Converted takes are wav and generated takes are mp3; the assembly should
         # not care which, because the conversion is a step before it rather than a
@@ -197,19 +202,23 @@ def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubb
         except SystemExit as exc:
             print(f"  ! #{index}: {exc} — استخدام التسجيل كما هو", file=sys.stderr)
 
-    tempo = natural / window
+    room = window if avail is None else avail
+    tempo = natural / room
     if tempo < 1.0:
         tempo = 1.0  # never slow the locked voice below natural
     if tempo > max_tempo:
-        print(f"  ! #{index}: needs {natural / window:.3f}x, clamped to {max_tempo}x "
-              f"— will overrun by {natural / max_tempo - window:.2f}s", file=sys.stderr)
+        # Without packing this is where a group's last words land on top of the
+        # next group's first words: the audio overruns its slot and amix plays
+        # both at once. Say it loudly; the caller decides what to do about it.
+        print(f"  ! #{index}: needs {natural / room:.3f}x, clamped to {max_tempo}x "
+              f"— will overrun by {natural / max_tempo - room:.2f}s", file=sys.stderr)
         tempo = max_tempo
 
     out = tmpdir / f"g{index:03d}-fit.wav"
     run(["-i", str(fit_src),
          "-af", STRETCHERS[stretch].format(t=f"{tempo:.6f}"),
          "-ar", "44100", "-ac", "2", "-c:a", "pcm_s16le", "-y", str(out)])
-    return out, tempo
+    return out, tempo, natural
 
 
 def main():
@@ -235,6 +244,11 @@ def main():
                          "music gain correctly -- alimiter barely moved the peak once the "
                          "sum had already reached full scale.")
     ap.add_argument("--max-tempo", type=float, default=1.80)
+    ap.add_argument("--pack", action="store_true",
+                    help="place each group as soon as the previous one ends instead of at "
+                         "its own t0, so a group that cannot fit inside the ceiling pushes "
+                         "the next one late rather than speaking over it; the next group "
+                         "that has room takes it back to its own end (default: off)")
     ap.add_argument("--takes", default=None,
                     help="directory of takes; defaults to work/<slug>/takes. A second "
                          "narrator's takes live beside the first rather than replacing "
@@ -257,21 +271,37 @@ def main():
     filters = []
     placed = []
 
+    cursor = None          # where the previous group's audio actually ends
+    worst = (0.0, None)    # worst lateness, and the group it happened at
     for g in sel:
         i = g["i"]
         names = pieces_map.get(str(i), [f"g{i:03d}"])
-        fitted, tempo = build_group(take_dir, i, names, g["window"], tmpdir,
-                                    a.max_tempo, a.stretch,
-                                    not a.no_tighten, a.pause_keep)
-        delay_ms = int(round(g["t0"] * 1000))
+        t0, window = g["t0"], g["window"]
+        start = max(t0, cursor) if (a.pack and cursor is not None) else t0
+        avail = max(0.05, t0 + window - start)
+        fitted, tempo, natural = build_group(take_dir, i, names, window, tmpdir,
+                                             a.max_tempo, a.stretch,
+                                             not a.no_tighten, a.pause_keep,
+                                             avail=avail if a.pack else None)
+        end = start + natural / tempo
+        if cursor is None or end > cursor:
+            cursor = end
+        late = start - t0
+        if late > worst[0]:
+            worst = (late, i, end > t0 + window + 0.01)
+        delay_ms = int(round(start * 1000))
         inputs += ["-i", str(fitted)]
         filters.append(f"[{len(placed)}:a]adelay={delay_ms}|{delay_ms}[d{len(placed)}]")
         placed.append(f"[d{len(placed)}]")
-        print(f"  #{i:3d}  t0={g['t0']:8.2f}s  window={g['window']:6.2f}s  tempo={tempo:.3f}")
+        mark = "" if late < 0.01 else f"  late {late:5.2f}s"
+        print(f"  #{i:3d}  t0={t0:8.2f}s  window={window:6.2f}s  tempo={tempo:.3f}{mark}")
+    if a.pack and worst[1] is not None:
+        print(f"  أقصى تأخير: {worst[0]:.2f} ثانية عند المجموعة #{worst[1]}", file=sys.stderr)
 
     chain = ";".join(filters)
     n = len(placed)
-    total = sel[-1]["t0"] + sel[-1]["window"]
+    nominal = sel[-1]["t0"] + sel[-1]["window"]
+    total = max(nominal, cursor or 0.0)
     dub = tmpdir / "dub.wav"
     run(inputs + ["-filter_complex",
                   f"{chain};{''.join(placed)}amix=inputs={n}:normalize=0:duration=longest:"

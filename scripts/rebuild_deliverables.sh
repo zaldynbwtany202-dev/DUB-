@@ -83,7 +83,7 @@ PY
     echo "  تجميع المسار الصوتي ($END مجموعة)"
     .venv/bin/python scripts/assemble_dub.py work/into-the-wild \
       --out work/into-the-wild/build/clone-voice.wav \
-      --start 0 --end "$END" --stretch rubberband \
+      --start 0 --end "$END" --stretch rubberband --pack \
       --takes work/into-the-wild/takes-clone || exit 1
     SECS="$(.venv/bin/python - <<'PY'
 import soundfile as sf

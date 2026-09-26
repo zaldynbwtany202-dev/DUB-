@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "17"
+BUILD = "18"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -52,11 +52,11 @@ LABELS = {
     "into-the-wild-mastered": ("★ الفيلم كاملًا بصوت راويه + موسيقى الفيلم — 29 دقيقة",
                                "نفس الصوت · الموسيقى تنسحب تحت كلامه · "
                                "-16 LUFS (الفيلم الأصلي يقصّ عند +2.51 dBTP)"),
-    "into-the-wild-cloned": ("★ Into the Wild — استنساخ الصوت (19:00 دقيقة)",
-                             "المجموعات الخمسون الأولى بصوت مستنسخ عن الراوي: "
+    "into-the-wild-cloned": ("★ Into the Wild — استنساخ الصوت (22:38 دقيقة)",
+                             "الستون مجموعة الأولى بصوت مستنسخ عن الراوي: "
                              "الطابع أُغلق 91% · الطبقة 164.6 مقابل 168.3 هرتز · "
                              "الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP · "
-                             "نسخة الـ15 دقيقة محفوظة في تاريخ المستودع"),
+                             "لا كلام فوق كلام (وضع الرصف) · النسخ الأقصر في تاريخ المستودع"),
     "voice-clone-attempt": ("محاولة الاستنساخ — الراوي ثم المستنسخ ثم الخام (90 ثانية)",
                             "نقل الطابع بالقياس: أقرب 52% في الطابع، والنبرة "
                             "163 مقابل 168 هرتز — بلا أوزان عصبية"),
