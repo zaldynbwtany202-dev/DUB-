@@ -1,0 +1,16 @@
+{
+ "target": "work/into-the-wild/stems/vocal-00.mp3",
+ "source": "work/into-the-wild/takes-v13/g000.mp3",
+ "out": "/tmp/clone-v1.wav",
+ "f0_target_hz": 168.3,
+ "f0_source_hz": 123.2,
+ "f0_out_hz": 162.7,
+ "pitch_correction": "+5.40 نصف نغمة (formant=preserved)",
+ "cepstra": 40,
+ "strength": 1.0,
+ "envelope_distance_before_db": 1.377,
+ "envelope_distance_after_db": 0.661,
+ "frames_target": 9936,
+ "frames_source": 2066,
+ "method": "cepstral long-term spectral envelope transfer"
+}
