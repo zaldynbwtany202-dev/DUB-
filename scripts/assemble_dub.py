@@ -56,7 +56,19 @@ def duration(path):
             os.remove(tmp)
 
 
-def build_group(take_dir, index, names, window, tmpdir, max_tempo):
+# Two time-stretchers with different failure modes. atempo is fast and pitch
+# correct, but it does not preserve formants, so at 1.5x the narrator starts to
+# sound like a smaller, thinner person -- which is the single most audible thing
+# about a sped-up dub. rubberband preserves formants: the voice is the same voice
+# reading faster. It costs about three times the CPU and nothing else.
+STRETCHERS = {
+    "rubberband": "rubberband=tempo={t}:formant=preserved:pitchq=quality"
+                  ":transients=crisp:detector=soft:window=long:smoothing=on",
+    "atempo": "atempo={t}",
+}
+
+
+def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubberband"):
     """Return (path to the fitted wav, reported tempo)."""
     pieces = []
     for name in names:
@@ -94,7 +106,8 @@ def build_group(take_dir, index, names, window, tmpdir, max_tempo):
         tempo = max_tempo
 
     out = tmpdir / f"g{index:03d}-fit.wav"
-    run(["-i", str(tmpdir / f"g{index:03d}-nat.wav"), "-af", f"atempo={tempo:.6f}",
+    run(["-i", str(tmpdir / f"g{index:03d}-nat.wav"),
+         "-af", STRETCHERS[stretch].format(t=f"{tempo:.6f}"),
          "-ar", "44100", "-ac", "2", "-c:a", "pcm_s16le", "-y", str(out)])
     return out, tempo
 
@@ -103,6 +116,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("work_dir")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--stretch", choices=sorted(STRETCHERS), default="rubberband",
+                    help="time-stretcher; rubberband preserves formants (default)")
     ap.add_argument("--start", type=int, default=0)
     ap.add_argument("--end", type=int, default=10 ** 9)
     ap.add_argument("--music", default=None, help="separated music bed to mix underneath")
@@ -137,7 +152,8 @@ def main():
     for g in sel:
         i = g["i"]
         names = pieces_map.get(str(i), [f"g{i:03d}"])
-        fitted, tempo = build_group(take_dir, i, names, g["window"], tmpdir, a.max_tempo)
+        fitted, tempo = build_group(take_dir, i, names, g["window"], tmpdir,
+                                    a.max_tempo, a.stretch)
         delay_ms = int(round(g["t0"] * 1000))
         inputs += ["-i", str(fitted)]
         filters.append(f"[{len(placed)}:a]adelay={delay_ms}|{delay_ms}[d{len(placed)}]")

@@ -31,11 +31,17 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "6"
+BUILD = "7"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "voice-B-professional": ("الصوت الاحترافي — نفس القارئ، أنقى وأثبت",
+                             "مُمدَّد بـrubberband يحفظ الفورمانت · تنقية وتوازن · "
+                             "الموسيقى تنسحب تحت الكلام · -16 LUFS"),
+    "voice-A-current": ("الصوت الحالي — للمقارنة",
+                        "atempo · موسيقى بمستوى ثابت · قمة الصوت تتجاوز الحدّ ومدى "
+                        "ديناميكي 25 د.ب"),
     "into-the-wild-part2": ("Into the Wild — الدقائق 11:37 إلى 15:15",
                             "المجموعات 30–39 · دبلجة فوق موسيقى الفيلم"),
     "into-the-wild-part1": ("Into the Wild — أول 11:37 دقيقة",
@@ -77,6 +83,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
+            "voice-B-professional", "voice-A-current",
             "into-the-wild-part2", "into-the-wild-part1", "into-the-wild-pilot",
             "sindbad-6min"])}
         cuts = sorted(PREVIEWS.glob("*.mp4"),
