@@ -131,12 +131,16 @@ def main():
                          "music gain correctly -- alimiter barely moved the peak once the "
                          "sum had already reached full scale.")
     ap.add_argument("--max-tempo", type=float, default=1.80)
+    ap.add_argument("--takes", default=None,
+                    help="directory of takes; defaults to work/<slug>/takes. A second "
+                         "narrator's takes live beside the first rather than replacing "
+                         "them, so both can be assembled and compared.")
     ap.add_argument("--pieces", default=None,
                     help='JSON map of group index -> ordered take names, e.g. \'{"5": ["g005a","g005c"]}\'')
     a = ap.parse_args()
 
     work = Path(a.work_dir)
-    take_dir = work / "takes"
+    take_dir = Path(a.takes) if a.takes else (work / "takes")
     groups = json.loads((work / "groups.json").read_text(encoding="utf-8"))["groups"]
     pieces_map = json.loads(a.pieces) if a.pieces else {}
 
