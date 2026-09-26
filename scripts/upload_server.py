@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "21"
+BUILD = "22"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -60,6 +60,9 @@ LABELS = {
                              "وأُوقف تسجيل بقية المجموعات بهذه الطريقة."),
     "voice-clone-attempt": ("✗ محاولة استنساخ بالقياس — 90 ثانية (الراوي ثم المحوَّل ثم الخام)",
                             "نفس السبب: تقليد طابع لا استنساخ صوت. محفوظة للمقارنة فقط."),
+    "voice07-opening": ("★ الافتتاحية بصوت 07 — الصوت الذي اخترته (3:49)",
+                        "المجموعات العشر الأولى بصوت 07 كما هو، بلا أي تحويل طابع: "
+                        "وتيرة 1.28–1.42× · الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP"),
     "ident-voices": ("أصوات هذه المحادثة مرقَّمة — الجملة نفسها (54 ثانية)",
                      "00 الراوي · 01 voice-05 · 02 voice-06 · 03 voice-07 · "
                      "04 voice-08 · 05 voice-09 · 06 voice-10 · 07 voice-13 · 08 voice-14 — "
@@ -128,7 +131,7 @@ def render_previews():
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
             "into-the-wild-narration", "into-the-wild-mastered",
-            "ident-voices",
+            "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
             "voice-compare-2", "audition-voice-09", "audition-voice-10",
             "voice-compare", "audition-voice-07", "audition-voice-08",
