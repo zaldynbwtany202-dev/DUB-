@@ -31,7 +31,21 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "5"
+BUILD = "6"
+
+# What each preview actually covers. The newest cut is the one being discussed,
+# so the frame sorts by time and this tells the viewer what they are watching.
+LABELS = {
+    "into-the-wild-part2": ("Into the Wild — الدقائق 11:37 إلى 15:15",
+                            "المجموعات 30–39 · دبلجة فوق موسيقى الفيلم"),
+    "into-the-wild-part1": ("Into the Wild — أول 11:37 دقيقة",
+                            "المجموعات 0–29 · دبلجة فوق موسيقى الفيلم"),
+    "into-the-wild-pilot": ("Into the Wild — العيّنة الأولى (55 ثانية)",
+                            "مقياس المزامنة: وسيط الفرق 0.15 ث · 93% داخل 0.5 ث"),
+    "sindbad-6min": ("السندباد — ست دقائق",
+                     "الفيلم السابق، لتقارن الأسلوب"),
+}
+
 
 def safe_name(name):
     """Keep the name inside incoming/ and survive odd characters."""
@@ -51,9 +65,22 @@ def _human(n):
 def render_previews():
     """Players for the finished cuts, so the preview frame shows the work and
     not only the door. Reads the directory on every request: a new cut appears
-    on refresh instead of needing a restart."""
+    on refresh instead of needing a restart.
+
+    Newest first, because the newest cut is the one being discussed, and the
+    filename of a take is not what it is. LABELS says what each cut actually
+    covers so the frame needs no explanation beside it.
+    """
     try:
-        cuts = sorted(PREVIEWS.glob("*.mp4"), key=lambda p: p.name)
+        # Explicit order, newest cut first. Sorting by modification time looked
+        # right and was not: restoring the repository rewrites every file at the
+        # same instant, so the order came out arbitrary. A cut that matters gets
+        # a place in this list; anything else follows, newest first among itself.
+        rank = {stem: i for i, stem in enumerate([
+            "into-the-wild-part2", "into-the-wild-part1", "into-the-wild-pilot",
+            "sindbad-6min"])}
+        cuts = sorted(PREVIEWS.glob("*.mp4"),
+                      key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
     except OSError:
         cuts = []
     if not cuts:
@@ -62,11 +89,12 @@ def render_previews():
     cards = []
     for c in cuts:
         url = "/previews/" + urllib.parse.quote(c.name)
+        title, note = LABELS.get(c.stem, (c.stem, "دبلجة عربية بصوت واحد فوق موسيقى الفيلم"))
         cards.append(
             '<div class="card">'
-            f'<p class="t">{html.escape(c.stem)}</p>'
+            f'<p class="t">{html.escape(title)}</p>'
             f'<video controls preload="metadata" src="{url}"></video>'
-            f'<p class="m">{_human(c.stat().st_size)}</p>'
+            f'<p class="m">{html.escape(note)} · {_human(c.stat().st_size)}</p>'
             f'<a href="{url}" download>تنزيل</a>'
             f'<a href="{url}" target="_blank">فتح في نافذة جديدة</a>'
             '</div>')
@@ -281,7 +309,18 @@ class Handler(BaseHTTPRequestHandler):
         sys.stderr.write("[http] %s %s%s -> %s\n" % (
             self.command, self.path, " " + rng if rng else "", code))
 
-    def _send(self, code, body=b"", ctype="text/plain; charset=utf-8"):
+    def do_HEAD(self):
+        """Answer liveness checks with the same headers a GET would send.
+
+        Plain http.server refuses HEAD with 501, and a proxy that probes the
+        preview with HEAD reads that as a dead app rather than as a method the
+        server does not implement. _send already omits the body for HEAD, so
+        answering is just a matter of routing it like a GET.
+        """
+        self.do_GET()
+
+    def _send(self, code, body=b"", ctype="text/plain; charset=utf-8",
+              body_only_headers: bool = False):
         if isinstance(body, str):
             body = body.encode()
         self.send_response(code)
