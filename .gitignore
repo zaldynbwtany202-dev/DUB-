@@ -101,6 +101,7 @@ library/*/.parts/
 # listen to something again that they have already listened to, and the build
 # behind it may not be reproducible.
 !previews/*.mp4
+!previews/*.mp3
 incoming/
 
 # The two finished 29-minute films are 138 MB each, over GitHub's 100 MB per-file
