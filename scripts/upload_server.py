@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "22"
+BUILD = "24"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -63,6 +63,12 @@ LABELS = {
     "voice07-opening": ("★ الافتتاحية بصوت 07 — الصوت الذي اخترته (3:49)",
                         "المجموعات العشر الأولى بصوت 07 كما هو، بلا أي تحويل طابع: "
                         "وتيرة 1.28–1.42× · الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP"),
+    "clone-original-voice": ("★ استنساخ صوت الراوي الأصلي — من كلماته هو (8.8 ثانية)",
+                             "١) جملته الحقيقية كاملة «بقول لك ايه تيجي نهرب» — للمقارنة · "
+                             "٢–٤) جمل لم يقلها في الفيلم، مجموعة من كلماته هو بنبرته هو: "
+                             "«السعاده مش في الفلوس» · «الانسان محتاج الناس عشان يعيش» · "
+                             "«انت عايز تعيش لوحدك» — بلا صوت صناعي وبلا تحويل طابع. "
+                             "الحدّ: لا ينطق كلمة لم يقلها، والنبرة مسطّحة كلمة كلمة"),
     "ident-voices": ("أصوات هذه المحادثة مرقَّمة — الجملة نفسها (54 ثانية)",
                      "00 الراوي · 01 voice-05 · 02 voice-06 · 03 voice-07 · "
                      "04 voice-08 · 05 voice-09 · 06 voice-10 · 07 voice-13 · 08 voice-14 — "
@@ -141,18 +147,19 @@ def render_previews():
             # with the narrator's own voice, not with an imitation of it.
             "into-the-wild-cloned", "voice-clone-attempt",
             "sindbad-6min"])}
-        # Hidden on the user's instruction: attempts that were rejected by ear.
-        # The files stay on disk and in the repository history; they simply do not
-        # appear here. One name removed from this set is all it takes to show one.
-        HIDDEN = {"into-the-wild-cloned", "voice-clone-attempt"}
+        # The page was emptied on the user's instruction: it carries what the
+        # work is about right now and nothing else. Everything else stays on disk
+        # and in the repository history -- and comes back by adding one name here.
+        PAGE_ALLOW = {"clone-original-voice"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
-                       if c.stem not in HIDDEN],
+                       if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
     except OSError:
         cuts = []
     if not cuts:
         return ('<div class="prev"><h2>العيّنات الجاهزة</h2>'
-                '<p class="m">لا عيّنات بعد.</p></div>')
+                '<p class="m">الصفحة فارغة بطلبك. العيّنات القديمة كلها محفوظة في المستودع، '
+                'ولا تظهر هنا إلا ما نعمل عليه الآن.</p></div>')
     cards = []
     for number, c in enumerate(cuts, 1):
         url = "/previews/" + urllib.parse.quote(c.name)
