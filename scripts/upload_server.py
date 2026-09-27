@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "32"
+BUILD = "33"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -74,6 +74,10 @@ LABELS = {
                         "02 05 · 03 06 · 04 07 · 05 08 · 06 10 · 07 13 · 08 14 — "
                         "كل مرشَّح مشكَّل على الراوي: نبرته مضبوطة على نبرته، وطابعه منقول إليه. "
                         "قل الرقم فقط، وأكمل الفيلم بالصوت الذي تختاره"),
+    "voice13-opening": ("★ الافتتاحية بالصوت الذي اخترته — عيّنة 03 (2:17)",
+                        "نفس معالجة العيّنة التي أعجبتك: حفظ الفورمانت والنبرة 164.6 هرتز "
+                        "(عيّنتك 163.9) · وتيرة 1.21–1.35× · الموسيقى تنسحب تحت الكلام · "
+                        "-16 LUFS وسقف -1.5 dBTP · الصورة منسوخة"),
     "pitch-choices": ("★ النبرة — اختر المستوى الأقرب لراوي الفيلم (38 ثانية)",
                       "سبب صوت السنجاب: مقياسي كان مضاعفًا — الراوي 95 هرتز لا 168، "
                       "وكل تشكيل سابق رفع الصوت إلى نحو 165–180. "
@@ -181,7 +185,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"pitch-choices"}
+        PAGE_ALLOW = {"voice13-opening"}   # what the user chose; nothing else
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
