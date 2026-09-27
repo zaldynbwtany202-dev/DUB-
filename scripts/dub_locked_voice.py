@@ -41,6 +41,10 @@ def main() -> int:
     ap.add_argument("--source", type=Path, default=None,
                     help="source film; defaults to library/<slug>/source.local.mp4")
     ap.add_argument("--music", type=Path, default=None, help="music bed; omit for voice alone")
+    ap.add_argument("--video-start", type=float, default=None,
+                    help="seconds into the film where this run of groups begins; "
+                         "defaults to the first group's own t0, so a middle run is "
+                         "cut from the right place instead of always from 0:00")
     ap.add_argument("--report", type=Path, default=None)
     ap.add_argument("--check", action="store_true", help="print the recipe and stop")
     a = ap.parse_args()
@@ -49,6 +53,12 @@ def main() -> int:
     work = Path("work") / a.slug
     build = work / "build"
     build.mkdir(parents=True, exist_ok=True)
+
+    offset = a.video_start
+    if offset is None and (work / "groups.json").exists():
+        grp = json.loads((work / "groups.json").read_text(encoding="utf-8"))["groups"]
+        offset = float(grp[a.start]["t0"]) if a.start < len(grp) else 0.0
+    offset = max(0.0, float(offset or 0.0))
 
     print(f"  الصوت المعتمد: {lock['voice_id']} · {lock['name']}")
     for step, cfg in (("التجميع", lock["assembly"]), ("الماستر", lock["mastering"])):
@@ -81,7 +91,8 @@ def main() -> int:
         cmd.append("--plain-voice")         # the chain is for human recordings only
     if a.music:
         secs = _duration(voice)
-        cmd += ["--music", str(a.music), "--music-start", "0", "--music-dur", f"{secs:.3f}",
+        cmd += ["--music", str(a.music), "--music-start", f"{offset:.3f}",
+                "--music-dur", f"{secs:.3f}",
                 "--duck-db", str(mst["duck_db"]), "--music-db", str(mst["music_db"])]
     if a.report:
         cmd += ["--report", str(a.report)]
@@ -92,9 +103,20 @@ def main() -> int:
         src = a.source or Path("library") / a.slug / "source.local.mp4"
         if not src.exists():
             raise SystemExit(f"  ✗ لا يوجد فيلم مصدر: {src}")
-        secs = _duration(voice)
-        print(f"  اللصق بالصورة (-c:v copy · aac 192k · {secs:.2f} ثانية)")
-        run(_ffmpeg() + ["-y", "-v", "error", "-i", str(src), "-i", str(mastered),
+        # assemble_dub writes a film-aligned track: a run that starts at 2:16 has
+        # 2:16 of silence in front of it. So the audio is trimmed to the run while
+        # the picture is seeked to the same second -- never the other way round,
+        # or the voice would sit a whole run-length away from the picture.
+        secs = _duration(mastered) - offset if offset > 0.05 else _duration(voice)
+        audio = mastered
+        if offset > 0.05:
+            audio = build / f"{a.slug}-master-seg.wav"
+            run(_ffmpeg() + ["-y", "-v", "error", "-ss", f"{offset:.3f}",
+                             "-i", str(mastered), "-c:a", "pcm_s16le", str(audio)])
+        print(f"  اللصق بالصورة (-c:v copy · aac 192k · {secs:.2f} ثانية · "
+              f"من الثانية {offset:.2f} في الفيلم)")
+        run(_ffmpeg() + ["-y", "-v", "error", "-ss", f"{offset:.3f}", "-i", str(src),
+                         "-i", str(audio),
                          "-t", f"{secs:.3f}", "-map", "0:v:0", "-map", "1:a:0",
                          "-c:v", "copy", "-c:a", "aac",
                          "-b:a", lock["mux"]["audio_bitrate"], str(a.out)])

@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "42"
+BUILD = "43"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -101,6 +101,11 @@ LABELS = {
                      "07 عرض ProStudio العربي · 08 مقطع الاختبار القصير. "
                      "كلها بمستوى واحد وبلا أي معالجة: لا EQ ولا ضغط ولا تسريع ولا تغيير نبرة. "
                      "الشبكة الخارجية مسدودة بالكامل عندي (كل المواقع ترد 000) فالعيّنات مأخوذة من ملفاتك أنت."),
+    "voice13-created": ("★ الصوت أُنشئ — المجموعات 6 → 15 بوصفة القفل (3:54)",
+                       "عشر مجموعات جديدة بصوت 13 كما هو: أخذة خام بلا تحويل طابع، ضغط زمني atempo فقط "
+                       "(1.44–1.59×)، بلا قصّ صمت، وماستر مستوى فقط (−16 LUFS · −1.5 dBTP)، والصورة منسوخة. "
+                       "القياس: كل مجموعة يبدأ كلامها بعد نافذتها بـ0.11–0.22 ثانية (المتوسط 0.19 — نفس رقم الملف الذي أجزه)، "
+                       "وإطار أول الصورة مطابق تمامًا لإطار الفيلم عند الثانية 136.6 (فرق PSNR لا نهائي). الفيلم الآن 16 من 78."),
     "voice13-synced": ("★ صوتك النهائي — جُرّب كل بديل ورُفض، وبقي هذا (2:17)",
                        "هذا هو الصوت الذي أجزه: صوت 13 كما يخرج من المحرك، بلا تحويل طابع "
                        "وبلا EQ وبلا ضغط، والفارق الوحيد ضغط زمني atempo ليقع الكلام في وقته. "
@@ -236,7 +241,10 @@ def render_previews():
         # The only thing on the page: the accepted voice, kept for whatever
         # film comes next. The audition the ear rejected is off the page but
         # stays on disk (previews/new-voices.mp3) and in the repository.
-        PAGE_ALLOW = {"human-voices", "voice13-synced"}
+        # What the work is about right now: the created voice of the film, and
+        # the run he already accepted. The human samples stay on disk and come
+        # back with one word in this set.
+        PAGE_ALLOW = {"voice13-created", "voice13-synced"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
