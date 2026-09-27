@@ -99,6 +99,8 @@ def main() -> int:
     pol = json.loads(POLICY.read_text(encoding="utf-8"))
     pit, tgt = pol["pitch"], pol["pitch"]["target"]
     hard, lvl, tim = pol["pitch"]["hard"], pol["level"], pol["timing"]
+    att = pol["pitch"].get("attention", {"max_deviation_semitone": 2.5,
+                                         "max_step_semitone": 2.6})
     target = a.target or float(pit["target_hz"])
     work = Path("work") / a.slug
     takes = Path(a.takes)
@@ -147,19 +149,29 @@ def main() -> int:
         ("silence_gap", max_gap <= float(tim["max_silence_gap_seconds"]),
          f"أطول صمت بين مجموعتين {max_gap:.2f} ث (السقف {tim['max_silence_gap_seconds']})"),
         ("pitch_hard_band", float(np.abs(semis).max()) <= float(hard["max_deviation_semitone"]),
-         f"أقصى بُعد {np.abs(semis).max():.2f} نصف نغمة (الحدّ {hard['max_deviation_semitone']})"),
+         f"أقصى بُعد {np.abs(semis).max():.2f} نصف نغمة (الحدّ المطلق {hard['max_deviation_semitone']})"),
         ("step_hard_band", float(steps.max()) <= float(hard["max_step_semitone"]),
-         f"أقصى قفزة {steps.max():.2f} نصف نغمة (الحدّ {hard['max_step_semitone']})"),
+         f"أقصى قفزة {steps.max():.2f} نصف نغمة (الحدّ المطلق {hard['max_step_semitone']})"),
+        ("pitch_attention_band",
+         float(np.abs(semis).max()) <= float(att["max_deviation_semitone"]),
+         f"أقصى بُعد {np.abs(semis).max():.2f} نصف نغمة (سقف ما أجازه المستمع "
+         f"{att['max_deviation_semitone']})"),
+        ("step_attention_band", float(steps.max()) <= float(att["max_step_semitone"]),
+         f"أقصى قفزة {steps.max():.2f} نصف نغمة (سقف ما أجازه المستمع {att['max_step_semitone']})"),
         ("level_spread", level_spread <= float(lvl["max_spread_db"]),
          f"تفاوت المستوى {level_spread:.2f} د.ب (السقف {lvl['max_spread_db']})"),
     ]
-    failed = [c for c, ok, _ in checks if not ok]
+    hard_names = set(pol["gate"]["block_build_on"])
+    failed = [c for c, ok, _ in checks if not ok and c in hard_names]
+    attention = [c for c, ok, _ in checks
+                 if not ok and c not in hard_names and c.endswith("attention_band")]
 
     print(f"تدقيق الجودة — {a.slug} · المجموعات {idx[0]}–{idx[-1]} · الهدف {target} هرتز · "
           f"سياسة v{pol.get('version', 1)}\n")
     if a.gate:
         for name, ok, msg in checks:
-            print(f"  {'✓' if ok else '✗'} {name:<16} {msg}")
+            mark = "✓" if ok else ("✗" if name in hard_names else "!")
+            print(f"  {mark} {name:<22} {msg}")
     else:
         print(f"{'مجموعة':>8}{'نبرة':>9}{'بعده':>9}{'انزياح':>9}{'ثوان':>8}{'سرعة':>8}"
               f"{'تأخير':>9}{'صمت':>7}{'مستوى':>9}   الحكم")
@@ -183,7 +195,8 @@ def main() -> int:
                   + " ".join(flags))
         print()
         for name, ok, msg in checks:
-            print(f"  {'✓' if ok else '✗'} {name:<16} {msg}")
+            mark = "✓" if ok else ("✗" if name in hard_names else "!")
+            print(f"  {mark} {name:<22} {msg}")
 
     worst_step = int(np.argmax(steps)) if len(steps) else 0
     print(f"\n  النبرة: مدى {semis.min():+.2f}…{semis.max():+.2f} نصف نغمة · "
@@ -219,7 +232,12 @@ def main() -> int:
         print("  ✓ النبرة داخل المدى المطلوب — لا مرشحين مطلوبين.")
 
     verdict = ("مرفوض: شرط صارم" if failed else "يحتاج مرشحين" if plan else "جاهز للبناء")
+    if attention and not failed:
+        verdict = "يُبنى بتحفّظ: مدى غير نهائي"
     print(f"\n  الحكم: {verdict}" + (f" ({'، '.join(failed)})" if failed else ""))
+    if attention:
+        print("  ! تنبيه: نبرة خارج سقف ما أجازه المستمع — المرشحات إلزامية للجولة القادمة، "
+              "ولا يُسمّى هذا العمل مُجازًا.")
 
     if a.json:
         out = Path(a.json)
@@ -228,6 +246,7 @@ def main() -> int:
             {"slug": a.slug, "range": [idx[0], idx[-1]], "target": target,
              "policy_version": pol.get("version", 1), "rows": rows, "missing": missing,
              "plan": plan, "verdict": verdict, "failed": failed,
+             "attention": attention,
              "checks": [{"name": n, "ok": ok, "detail": m} for n, ok, m in checks],
              "steps_mean": round(float(steps.mean()), 3),
              "steps_max": round(float(steps.max()), 3),

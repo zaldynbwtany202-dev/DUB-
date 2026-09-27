@@ -63,6 +63,47 @@ def ffmpeg() -> str:
 
 FF = ffmpeg()
 
+def measure_file(path: Path) -> dict:
+    """Measure the file that was written, independently of loudnorm's own report.
+
+    The old print said «بعد الضبط: -16.0 LUFS» because it echoed the *target* it
+    had asked for. Measured on the finished file, the run of groups 0-35 came out
+    at -15.4 LUFS and -1.0 dBTP: loudnorm's two-pass linear gain had been refused
+    (the programme's range was too wide for a single gain that still respects the
+    peak ceiling), so it silently fell back to dynamic mode and missed. That is
+    exactly what a delivery gate exists to catch, and it did.
+    """
+    out = run(["-i", str(path), "-af", "ebur128=peak=true", "-f", "null", "-"]).stderr
+    i = re.findall(r"I:\s*(-?[\d.]+)\s*LUFS", out)
+    pk = re.findall(r"Peak:\s*(-?[\d.]+)\s*dBFS", out)
+    return {"lufs": float(i[-1]) if i else None, "true_peak": float(pk[-1]) if pk else None}
+
+
+def closed_loop_level(path: Path, target_i: float, tp_ceiling: float,
+                      tries: int = 4) -> dict:
+    """Correct the written file until it measures what the policy asks for.
+
+    Gain only -- no EQ, no compression, nothing that touches timbre -- and the
+    true-peak ceiling wins over the loudness target when the two disagree.
+    """
+    m = measure_file(path)
+    for _ in range(tries):
+        if m["lufs"] is None:
+            break
+        gain = target_i - m["lufs"]
+        if m["true_peak"] is not None and m["true_peak"] + gain > tp_ceiling:
+            gain = tp_ceiling - m["true_peak"]
+        if abs(gain) <= 0.1:
+            break
+        tmp = path.with_suffix(".level.wav")
+        run(["-i", str(path), "-af", f"volume={gain:.2f}dB", "-ar", "48000", "-ac", "2",
+             "-c:a", "pcm_s16le", "-y", str(tmp)])
+        tmp.replace(path)
+        m = measure_file(path)
+    return m
+
+
+
 
 def run(args: list[str]) -> subprocess.CompletedProcess:
     """Always captured, always text: the loudness report arrives on stderr and is
@@ -149,7 +190,9 @@ def main() -> int:
     if not a.music:
         run(["-i", str(voice_mastered), "-ar", "48000", "-ac", "2",
              "-c:a", "pcm_s16le", "-y", str(a.out)])
-        print(f"  ✓ صوت مُعالَج بلا موسيقى → {a.out}", flush=True)
+        fin = closed_loop_level(a.out, a.lufs, a.tp)
+        print(f"  ✓ صوت مُعالَج بلا موسيقى → {a.out} "
+              f"({fin['lufs']:.2f} LUFS مقيسة · قمة {fin['true_peak']:.2f} dBTP)", flush=True)
         return 0
 
     # --- the bed: static level, then ducked by the voice ----------------------
@@ -189,8 +232,12 @@ def main() -> int:
         print(f"    قبل الضبط: {mm.get('input_i')} LUFS · قمة {mm.get('input_tp')} dBTP", flush=True)
     apply_loudnorm_second_pass(mix, a.out, a.lufs, a.tp, a.lra, mm,
                                extra="alimiter=limit=0.94:attack=5:release=50")
-    if mm:
-        print(f"    بعد الضبط: {a.lufs} LUFS · سقف {a.tp} dBTP", flush=True)
+    # Then measure the file itself and close the loop: the numbers above are what
+    # was asked for, these are what was delivered.
+    fin = closed_loop_level(a.out, a.lufs, a.tp)
+    if fin["lufs"] is not None:
+        print(f"    بعد الضبط (مقيسة على الملف): {fin['lufs']:.2f} LUFS · "
+              f"قمة {fin['true_peak']:.2f} dBTP", flush=True)
 
     if a.report:
         a.report.write_text(json.dumps({
@@ -198,6 +245,7 @@ def main() -> int:
             "target_lufs": a.lufs, "true_peak_dbtp": a.tp, "loudness_range": a.lra,
             "duck_db": a.duck_db, "music_db": a.music_db,
             "voice_chain": VOICE_CHAIN, "measured_voice": m, "measured_mix": mm,
+            "measured_output": fin, "target_offset_note": "measured_output هو القياس على الملف المكتوب، لا هدف الطلب",
         }, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     print(f"  ✓ المزيج المُعالَج → {a.out}", flush=True)
     return 0
