@@ -1,0 +1,101 @@
+{
+ "slug": "into-the-wild",
+ "target": "/home/user/DUB-/work/into-the-wild/stems/vocal-00.mp3",
+ "f0_target_hz": 168.3,
+ "formant": "shifted",
+ "strength": 1.0,
+ "cepstra": 40,
+ "takes": [
+  {
+   "take": "g000",
+   "f0_before": 123.9,
+   "f0_after": 167.0,
+   "semitone_shift": 5.31,
+   "envelope_before_db": 1.898,
+   "envelope_after_db": 0.198,
+   "closed_pct": 90
+  },
+  {
+   "take": "g001",
+   "f0_before": 138.7,
+   "f0_after": 164.6,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 2.198,
+   "envelope_after_db": 0.287,
+   "closed_pct": 87
+  },
+  {
+   "take": "g002",
+   "f0_before": 138.7,
+   "f0_after": 168.3,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 2.106,
+   "envelope_after_db": 0.285,
+   "closed_pct": 86
+  },
+  {
+   "take": "g003",
+   "f0_before": 126.0,
+   "f0_after": 168.3,
+   "semitone_shift": 5.01,
+   "envelope_before_db": 2.105,
+   "envelope_after_db": 0.222,
+   "closed_pct": 89
+  },
+  {
+   "take": "g004",
+   "f0_before": 159.8,
+   "f0_after": 168.3,
+   "semitone_shift": 0.9,
+   "envelope_before_db": 2.11,
+   "envelope_after_db": 0.387,
+   "closed_pct": 82
+  },
+  {
+   "take": "g005",
+   "f0_before": 141.3,
+   "f0_after": 167.0,
+   "semitone_shift": 3.02,
+   "envelope_before_db": 2.292,
+   "envelope_after_db": 0.284,
+   "closed_pct": 88
+  },
+  {
+   "take": "g006",
+   "f0_before": 137.0,
+   "f0_after": 167.0,
+   "semitone_shift": 3.57,
+   "envelope_before_db": 2.057,
+   "envelope_after_db": 0.251,
+   "closed_pct": 88
+  },
+  {
+   "take": "g007",
+   "f0_before": 149.0,
+   "f0_after": 167.0,
+   "semitone_shift": 2.11,
+   "envelope_before_db": 2.259,
+   "envelope_after_db": 0.339,
+   "closed_pct": 85
+  },
+  {
+   "take": "g008",
+   "f0_before": 155.3,
+   "f0_after": 167.0,
+   "semitone_shift": 1.4,
+   "envelope_before_db": 2.242,
+   "envelope_after_db": 0.384,
+   "closed_pct": 83
+  },
+  {
+   "take": "g009",
+   "f0_before": 151.0,
+   "f0_after": 167.0,
+   "semitone_shift": 1.88,
+   "envelope_before_db": 2.254,
+   "envelope_after_db": 0.355,
+   "closed_pct": 84
+  }
+ ],
+ "method": "cepstral long-term spectral envelope transfer + pitch match"
+}

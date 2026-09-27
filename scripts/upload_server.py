@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "26"
+BUILD = "27"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -63,6 +63,11 @@ LABELS = {
     "voice07-opening": ("★ الافتتاحية بصوت 07 — الصوت الذي اخترته (3:49)",
                         "المجموعات العشر الأولى بصوت 07 كما هو، بلا أي تحويل طابع: "
                         "وتيرة 1.28–1.42× · الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP"),
+    "clone-voice07-demo": ("★ المستنسخ: الراوي الحقيقي ثم صوت 07 خام ثم 07 مستنسخ (47 ثانية)",
+                          "الكلام من إنشائي (صوت 07) والطابع من الراوي: النبرة 140 ← 167 هرتز "
+                          "مقابل 168.3 له، وأُغلق 86% من فرق الطابع الصوتي، لكل أخذة على حدة. "
+                          "١) الراوي نفسه — الهدف · ٢) صوت 07 قبل التحويل · ٣) بعد التحويل. "
+                          "الحدّ: تشكيل قناة صوتية بالقياس لا نموذج عصبي"),
     "clone-original-voice": ("★ استنساخ صوت الراوي الأصلي من الفيديو — (13 ثانية)",
                              "١) جملته الحقيقية «بقول لك ايه تيجي نهرب» للمقارنة · "
                              "٢–٦) خمس جمل لم يقلها، بصوته هو من تسجيلاته: «انت عايز تعيش لوحدك» · "
@@ -153,7 +158,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = set()   # emptied again: the word-by-word cut was rejected
+        PAGE_ALLOW = {"clone-voice07-demo"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
