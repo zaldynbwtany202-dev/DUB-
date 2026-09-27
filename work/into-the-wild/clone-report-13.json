@@ -1,0 +1,65 @@
+{
+ "slug": "into-the-wild",
+ "target": "/home/user/DUB-/work/into-the-wild/stems/vocal-00.mp3",
+ "f0_target_hz": 168.3,
+ "formant": "shifted",
+ "strength": 1.0,
+ "cepstra": 40,
+ "takes": [
+  {
+   "take": "g000",
+   "f0_before": 125.3,
+   "f0_after": 164.6,
+   "semitone_shift": 5.11,
+   "envelope_before_db": 1.494,
+   "envelope_after_db": 0.214,
+   "closed_pct": 86
+  },
+  {
+   "take": "g001",
+   "f0_before": 138.7,
+   "f0_after": 164.6,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 1.61,
+   "envelope_after_db": 0.265,
+   "closed_pct": 84
+  },
+  {
+   "take": "g002",
+   "f0_before": 138.7,
+   "f0_after": 164.6,
+   "semitone_shift": 3.35,
+   "envelope_before_db": 1.499,
+   "envelope_after_db": 0.26,
+   "closed_pct": 83
+  },
+  {
+   "take": "g003",
+   "f0_before": 154.2,
+   "f0_after": 167.0,
+   "semitone_shift": 1.52,
+   "envelope_before_db": 1.604,
+   "envelope_after_db": 0.391,
+   "closed_pct": 76
+  },
+  {
+   "take": "g004",
+   "f0_before": 137.8,
+   "f0_after": 165.8,
+   "semitone_shift": 3.46,
+   "envelope_before_db": 1.49,
+   "envelope_after_db": 0.247,
+   "closed_pct": 83
+  },
+  {
+   "take": "g005",
+   "f0_before": 143.2,
+   "f0_after": 163.3,
+   "semitone_shift": 2.8,
+   "envelope_before_db": 1.582,
+   "envelope_after_db": 0.277,
+   "closed_pct": 82
+  }
+ ],
+ "method": "cepstral long-term spectral envelope transfer + pitch match"
+}
