@@ -1,0 +1,35 @@
+{
+ "voice": "work/into-the-wild/build/v13sync.wav",
+ "music": "work/into-the-wild/stems/background-80k.mp3",
+ "out": "work/into-the-wild/build/v13sync-master.wav",
+ "target_lufs": -16.0,
+ "true_peak_dbtp": -1.5,
+ "loudness_range": 11.0,
+ "duck_db": 10.0,
+ "music_db": -4.0,
+ "voice_chain": "highpass=f=85,equalizer=f=250:width_type=q:w=1:g=-2.5,equalizer=f=3200:width_type=q:w=1.2:g=+2.5,deesser=i=0.4:m=0.5:f=0.5,acompressor=threshold=-18dB:ratio=3:attack=5:release=150:makeup=2",
+ "measured_voice": {
+  "input_i": "-19.87",
+  "input_tp": "-5.40",
+  "input_lra": "2.20",
+  "input_thresh": "-30.25",
+  "output_i": "-16.04",
+  "output_tp": "-1.50",
+  "output_lra": "2.10",
+  "output_thresh": "-26.40",
+  "normalization_type": "dynamic",
+  "target_offset": "0.04"
+ },
+ "measured_mix": {
+  "input_i": "-16.00",
+  "input_tp": "-1.53",
+  "input_lra": "2.10",
+  "input_thresh": "-26.39",
+  "output_i": "-16.04",
+  "output_tp": "-1.50",
+  "output_lra": "2.10",
+  "output_thresh": "-26.40",
+  "normalization_type": "dynamic",
+  "target_offset": "0.04"
+ }
+}
