@@ -21,7 +21,9 @@
 # four minutes, not twenty.
 #
 #     bash scripts/rebuild_deliverables.sh            # the two 29-minute films
-#     bash scripts/rebuild_deliverables.sh --clone    # also the cloned cut
+#     bash scripts/rebuild_deliverables.sh --clone    # also the (rejected) cloned cut
+#
+# After a wipe, the whole recovery is one command: bash scripts/serve.sh
 set -u
 cd /home/user/DUB-
 W=work/into-the-wild
@@ -56,7 +58,10 @@ done
 # تُبنى عند الطلب (--clone) أو إذا كان الفيلم مفقودًا، لأن تحويل الطابع هو
 # الخطوة المكلفة (~75 ثانية لأربعين تسجيلًا) ولا معنى لإعادتها بلا سبب.
 CLONE=previews/into-the-wild-cloned.mp4
-if [ "${1:-}" = "--clone" ] || [ ! -s "$CLONE" ]; then
+# On request only. This cut was rejected by ear and is hidden from the page, so a
+# wipe must not spend six minutes of the machine rebuilding a thing nobody is
+# listening to. --clone still builds it, and it is still in the history.
+if [ "${1:-}" = "--clone" ]; then
   END="$(.venv/bin/python - <<'PY'
 import re, pathlib
 n = [int(m.group(1)) for p in pathlib.Path("work/into-the-wild/takes").glob("g*.mp3")
