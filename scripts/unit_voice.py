@@ -78,6 +78,36 @@ def load_index(slug: str) -> dict[str, list[dict]]:
     return out
 
 
+# Connectors that may stand as a one-letter piece at the start of a word.
+LEAD = {"و", "ف", "ب", "ل", "ال", "وال", "فال", "بال"}
+
+
+def decompose(word: str, idx: dict, max_parts: int = 3) -> list[str] | None:
+    """Split a word he never said into words he did.
+
+    "وتعيش" becomes "و" + "تعيش" when both are in his vocabulary, so the clone can
+    say a word the film does not contain -- stitched from its own pieces rather
+    than invented. Fewest pieces wins; up to `max_parts` are allowed.
+    """
+    n = len(word)
+    best: dict[int, list[str]] = {0: []}
+    for i in range(n):
+        if i not in best:
+            continue
+        if len(best[i]) >= max_parts:
+            continue
+        for j in range(i + 1, min(n, i + 12) + 1):
+            piece = word[i:j]
+            if piece not in idx:
+                continue
+            if j - i < 2 and not (i == 0 and piece in LEAD):
+                continue                      # a bare letter is not a word
+            cand = best[i] + [piece]
+            if j not in best or len(cand) < len(best[j]):
+                best[j] = cand
+    return best.get(n)
+
+
 def choose(instances: list[dict]) -> dict:
     """The instance closest to the word's median length, preferring measured ones."""
     dur = sorted(i["t1"] - i["t0"] for i in instances)
@@ -109,7 +139,7 @@ def cut(stem_cache: dict, t0: float, t1: float) -> np.ndarray:
     return seg * min(4.0, 0.06 / rms)
 
 
-def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict):
+def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict, allow_split=True):
     pieces, missing = [], []
     for raw in text.split():
         key = norm(raw)
@@ -120,7 +150,18 @@ def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict):
                     found, key = idx[key[len(drop):]], key[len(drop):]
                     break
         if not found:
-            missing.append(raw)
+            split = decompose(key, idx) if allow_split else None
+            if not split:
+                missing.append(raw)
+                continue
+            # Inside a word the join must be tighter than between words, or the
+            # split is audible as two separate words.
+            tiny = np.zeros(int(0.012 * SR), dtype="float32")
+            word_part = None
+            for piece in split:
+                seg = cut(stem_cache, choose(idx[piece])["t0"], choose(idx[piece])["t1"])
+                word_part = seg if word_part is None else np.concatenate([word_part, tiny, seg])
+            pieces.append(word_part)
             continue
         u = choose(found)
         pieces.append(cut(stem_cache, u["t0"], u["t1"]))
@@ -150,16 +191,22 @@ def main() -> None:
         raise SystemExit("  ✗ اكتب نصًا بـ--text أو --check")
 
     words = text.split()
-    found = [w for w in words if norm(w) in idx]
-    print(f"  التغطية: {len(found)}/{len(words)} كلمة ({100 * len(found) / len(words):.0f}%)")
-    miss = [w for w in words if norm(w) not in idx]
+    direct = [w for w in words if norm(w) in idx]
+    split_ok = [w for w in words if norm(w) not in idx and decompose(norm(w), idx)]
+    miss = [w for w in words if norm(w) not in idx and not decompose(norm(w), idx)]
+    cover = len(direct) + len(split_ok)
+    print(f"  التغطية: {cover}/{len(words)} كلمة ({100 * cover / len(words):.0f}%)"
+          f" — {len(direct)} بكلمة كاملة و{len(split_ok)} مقسَّمة")
+    if split_ok:
+        print("  مقسَّمة من كلماته: " + " · ".join(f"{w} = {'+'.join(decompose(norm(w), idx))}"
+                                                  for w in split_ok[:8]))
     if miss:
-        print(f"  لم يقلها في الفيلم: {' '.join(miss)}")
+        print(f"  لا تُنطق أصلًا: {' '.join(miss)}")
 
     if a.check:
-        # Exit code 0 only when every word is in his vocabulary -- the caller can
-        # gate a build on it.
-        sys.exit(0 if len(found) == len(words) else 1)
+        # Exit code 0 only when every word can be said -- the caller can gate a
+        # build on it.
+        sys.exit(0 if cover == len(words) else 1)
 
     stem_cache: dict[int, np.ndarray] = {}
     out, missing, n = synth(text, idx, stem_cache)
