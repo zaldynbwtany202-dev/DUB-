@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "27"
+BUILD = "28"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -68,6 +68,12 @@ LABELS = {
                           "مقابل 168.3 له، وأُغلق 86% من فرق الطابع الصوتي، لكل أخذة على حدة. "
                           "١) الراوي نفسه — الهدف · ٢) صوت 07 قبل التحويل · ٣) بعد التحويل. "
                           "الحدّ: تشكيل قناة صوتية بالقياس لا نموذج عصبي"),
+    "clone-candidates": ("★ لوحة الأصوات — اختر الأقرب لراوي الفيلم (56 ثانية)",
+                        "نفس الجملة يقولها الجميع، حتى الراوي في أولها، فتكون المقارنة عادلة: "
+                        "00 الراوي الحقيقي (الهدف) · 01 صوت 07 بلا تشكيل · "
+                        "02 05 · 03 06 · 04 07 · 05 08 · 06 10 · 07 13 · 08 14 — "
+                        "كل مرشَّح مشكَّل على الراوي: نبرته مضبوطة على نبرته، وطابعه منقول إليه. "
+                        "قل الرقم فقط، وأكمل الفيلم بالصوت الذي تختاره"),
     "clone-original-voice": ("★ استنساخ صوت الراوي الأصلي من الفيديو — (13 ثانية)",
                              "١) جملته الحقيقية «بقول لك ايه تيجي نهرب» للمقارنة · "
                              "٢–٦) خمس جمل لم يقلها، بصوته هو من تسجيلاته: «انت عايز تعيش لوحدك» · "
@@ -158,7 +164,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"clone-voice07-demo"}
+        PAGE_ALLOW = {"clone-candidates"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
