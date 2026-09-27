@@ -1,0 +1,58 @@
+{
+  "slug": "into-the-wild",
+  "out": "previews/voice13-created.mp4",
+  "checks": [
+    {
+      "name": "lateness",
+      "ok": true,
+      "detail": "أقصى تأخير 0.00 ث"
+    },
+    {
+      "name": "silence_gap",
+      "ok": true,
+      "detail": "أطول صمت 0.06 ث"
+    },
+    {
+      "name": "tempo_ceiling",
+      "ok": true,
+      "detail": "أقصى سرعة 1.80×"
+    },
+    {
+      "name": "duration",
+      "ok": true,
+      "detail": "الملف 467.53 ث · المتوقّع 467.46 ث"
+    },
+    {
+      "name": "loudness",
+      "ok": true,
+      "detail": "-16.00 LUFS (المطلوب -16.0±0.3)"
+    },
+    {
+      "name": "true_peak",
+      "ok": true,
+      "detail": "-1.50 dBTP (السقف -1.4)"
+    },
+    {
+      "name": "picture_copy",
+      "ok": true,
+      "detail": "أول إطار PSNR ∞"
+    }
+  ],
+  "measured": {
+    "max_late": 0.0,
+    "max_gap": 0.06,
+    "tempo_max": 1.796,
+    "clamped": [],
+    "last_end": 604.06,
+    "groups": 20,
+    "out_seconds": 467.53,
+    "lufs": -16.0,
+    "true_peak": -1.5,
+    "report": "work/into-the-wild/build/master-report-v13created4.json",
+    "report_mix_lufs": "-15.66",
+    "report_true_peak": "-1.50",
+    "first_frame_psnr": "inf"
+  },
+  "verdict": "pass",
+  "failed": []
+}

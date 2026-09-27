@@ -12,6 +12,17 @@ mastering, video copied.
         --start 0 --end 20 --out previews/my-film-dub.mp4 --music work/my-film/stems/background-80k.mp3
 
     python scripts/dub_locked_voice.py --slug my-film --takes ... --check   # recipe only
+
+The build is gated, in this order and with no exceptions for a delivered file:
+
+  1. scripts/audit_dub.py  -- takes vs config/dubbing-qa.json. A hard violation
+     (a take missing, a tempo above the locked ceiling, lateness, a silence gap,
+     a pitch jump past the hard band, level spread) stops the build here.
+  2. scripts/assemble_dub.py --placement ...  -- the run is written with a record
+     of where every group actually landed.
+  3. scripts/verify_dub.py  -- the finished file is measured: lateness, gaps,
+     duration, loudness, true peak, and that frame 0 is the source frame at the
+     same second (PSNR infinite). A failure stops delivery.
 """
 from __future__ import annotations
 
@@ -47,6 +58,9 @@ def main() -> int:
                          "cut from the right place instead of always from 0:00")
     ap.add_argument("--report", type=Path, default=None)
     ap.add_argument("--check", action="store_true", help="print the recipe and stop")
+    ap.add_argument("--no-gate", action="store_true",
+                    help="تجاوز بوابة الجودة (للتشخيص فقط — لا يُسلَّم عمل خرج من هنا)")
+    ap.add_argument("--qa", type=Path, default=Path("config/dubbing-qa.json"))
     a = ap.parse_args()
 
     lock = json.loads(LOCK.read_text(encoding="utf-8"))
@@ -69,6 +83,18 @@ def main() -> int:
     if not (work / "groups.json").exists():
         raise SystemExit(f"  ✗ لا توجد خطة: {work / 'groups.json'} — خطّط الفيلم أولًا")
 
+    if not a.no_gate:
+        print("\n  البوابة: تدقيق الأخذات قبل البناء")
+        aud = subprocess.run([sys.executable, str(HERE / "audit_dub.py"), "--slug", a.slug,
+                              "--takes", str(a.takes), "--start", str(a.start),
+                              "--end", str(a.end), "--gate",
+                              "--json", str(work / "qa" / f"audit-{a.start}-{a.end - 1}.json")])
+        if aud.returncode == 2:
+            raise SystemExit("  ✗ البوابة أوقفت البناء: شرط صارم مرفوض (انظر التدقيق أعلاه). "
+                             "ولّد مرشحين للمجموعات المرشّحة ثم أعد المحاولة.")
+        if aud.returncode != 0:
+            print("  ! التدقيق يرى مرشحين أفضل — البناء يمضي، والحكم في التقرير.", file=sys.stderr)
+
     voice = build / f"{a.slug}-voice.wav"
     asm = lock["assembly"]
     cmd = [sys.executable, str(HERE / "assemble_dub.py"), str(work),
@@ -79,6 +105,8 @@ def main() -> int:
         cmd.append("--no-tighten")          # cutting silence measurably changes the voice
     if asm["pack"]:
         cmd.append("--pack")
+    placement = build / f"{a.slug}-placement-{a.start}-{a.end - 1}.json"
+    cmd += ["--placement", str(placement)]
     print(f"\n  تجميع ({asm['stretcher']} · بلا قصّ صمت · بلا تحويل)")
     run(cmd)
 
@@ -121,6 +149,17 @@ def main() -> int:
                          "-c:v", "copy", "-c:a", "aac",
                          "-b:a", lock["mux"]["audio_bitrate"], str(a.out)])
         print(f"  ✓ {a.out}")
+
+        if not a.no_gate:
+            print("\n  البوابة: التحقّق من الملف الناتج")
+            ver = subprocess.run([sys.executable, str(HERE / "verify_dub.py"), "--slug", a.slug,
+                                  "--out", str(a.out), "--placement", str(placement),
+                                  "--master", str(audio), "--source", str(src),
+                                  "--offset", f"{offset:.3f}",
+                                  "--json", str(work / "qa" / f"verify-{a.start}-{a.end - 1}.json")]
+                                 + (["--report", str(a.report)] if a.report else []))
+            if ver.returncode != 0:
+                raise SystemExit("  ✗ الملف لم يجتز التحقّق — لا يُسلَّم. انظر التفاصيل أعلاه.")
     else:
         print(f"  ✓ {mastered}")
     return 0

@@ -253,6 +253,9 @@ def main():
                     help="directory of takes; defaults to work/<slug>/takes. A second "
                          "narrator's takes live beside the first rather than replacing "
                          "them, so both can be assembled and compared.")
+    ap.add_argument("--placement", default=None,
+                    help="اكتب ملف JSON بموضع كل مجموعة فعليًا (start/tempo/natural/end) "
+                         "ليتحقّق منه المدقّق بعد البناء")
     ap.add_argument("--pieces", default=None,
                     help='JSON map of group index -> ordered take names, e.g. \'{"5": ["g005a","g005c"]}\'')
     a = ap.parse_args()
@@ -270,6 +273,7 @@ def main():
     inputs = []
     filters = []
     placed = []
+    placements = []
 
     cursor = None          # where the previous group's audio actually ends
     worst = (0.0, None)    # worst lateness, and the group it happened at
@@ -295,6 +299,16 @@ def main():
         placed.append(f"[d{len(placed)}]")
         mark = "" if late < 0.01 else f"  late {late:5.2f}s"
         print(f"  #{i:3d}  t0={t0:8.2f}s  window={window:6.2f}s  tempo={tempo:.3f}{mark}")
+        placements.append({"group": i, "t0": round(float(t0), 3),
+                           "window": round(float(window), 3),
+                           "target": round(float(g["t0"]), 3),
+                           "start": round(float(start), 3),
+                           "late": round(float(late), 3),
+                           "natural": round(float(natural), 3),
+                           "tempo": round(float(tempo), 3),
+                           "end": round(float(end), 3),
+                           "clamped": bool(natural / max(tempo, 1e-9) > avail + 0.01)
+                           if a.pack else False})
     if a.pack and worst[1] is not None:
         print(f"  أقصى تأخير: {worst[0]:.2f} ثانية عند المجموعة #{worst[1]}", file=sys.stderr)
 
@@ -317,6 +331,14 @@ def main():
              "-ar", "44100", "-ac", "2", "-c:a", "pcm_s16le", "-y", a.out])
     else:
         run(["-i", str(dub), "-ar", "44100", "-ac", "2", "-c:a", "pcm_s16le", "-y", a.out])
+
+    if a.placement:
+        Path(a.placement).write_text(json.dumps(
+            {"total": round(float(total), 3), "pack": bool(a.pack),
+             "max_tempo": float(a.max_tempo), "groups": placements},
+            ensure_ascii=False, indent=2), encoding="utf-8")
+        worst_late = max([p["late"] for p in placements], default=0.0)
+        print(f"  موضع المجموعات → {a.placement} (أقصى تأخير {worst_late:.2f} ثانية)")
 
     print(f"\nwrote {a.out}  ({duration(a.out):.2f}s)")
 
