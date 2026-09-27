@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "53"
+BUILD = "54"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,18 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "pronunciation-test": ("★ النطق — أربع طرق على الجملة نفسها بصوت voice-15 (50.6 ث)",
+                          "الجملة واحدة، والصوت واحد (voice-15 الذي اخترتَه)، والفرق طريقة "
+                          "كتابة النص قبل التوليد. النغمات قبل كل مقطع = رقمه: نغمة = 01 "
+                          "ونغمتان = 02 وهكذا. 01 النص كما هو (ما سمعته وقلت إن نطقه سئ) · "
+                          "02 مُشكَّل بقاموس نطق مصري بنيته (بَقول · إيه · تِيجي · نِهْرَب · "
+                          "بِكَلِّمَك · مِش · إنْتَ · بِتُحِبَّها · كَمَّلْتش) مع فواصل نحوية "
+                          "(فاصلة ونقطة) لأن المحرك يستعملها في الوقفات · 03 مثل 02 لكن "
+                          "القاف تُكتب همزة في الأفعال المصرية (بَأُول) لأن نطقها الحقيقي "
+                          "همزة حنجرية لا قافًا فصحى · 04 تشكيل آلي من مكتبة عربية جاهزة "
+                          "(Mishkal) — للمقارنة: تشكّل كالفصحى (بُقولٌ لَك · مَشَّ · اُنْتُ) "
+                          "فهي الأسوأ لهجويًا. القاموس محفوظ في config/egy-pronunciation.json "
+                          "ويُطبَّق قبل كل توليد. اسمع وقل الرقم الذي نطقه صحيح."),
     "voice15-test": ("★ الصوت الجديد (voice-15) داخل الفيلم — أول ثلاث مجموعات (1:07)",
                       "تولّد هنا بمحرك الصوت الذي اخترته من الاستماع (نغمة/نغمتان) وليس من "
                       "مكتبتك. سمعته في الصحرا: أول 66 ثانية من الفيلم بالصوت الجديد على "
@@ -276,7 +288,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice15-test", "voice15-sample", "voice13-created",
+            "pronunciation-test", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -297,7 +309,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice15-test", "voice15-sample", "voice13-created"}
+        PAGE_ALLOW = {"pronunciation-test", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

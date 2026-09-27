@@ -1,0 +1,170 @@
+{
+ "version": 1,
+ "facts": [
+  {
+   "key": "film.progress",
+   "value": "46 من 78 مجموعة",
+   "since": "2026-09-27",
+   "source": "BUILD 49/50",
+   "status": "active",
+   "check": "takes:work/into-the-wild/takes-voice13",
+   "note": "need=26"
+  },
+  {
+   "key": "voice.locked",
+   "value": "voice-13 (مقفل ومُجاز)",
+   "since": "2026-09-17",
+   "source": "«حافظ على الصوت سنجربه في دبلجة فيديو جديد»",
+   "status": "active"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-15 (اختاره المستمع — النطق قيد الإصلاح)",
+   "since": "2026-09-27",
+   "source": "مسابقة استماع add_voice battle 15 + «هذا الصوت جيد voice-15 لكن النطق سئ»",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.preview",
+   "value": "previews/voice13-created.mp4",
+   "since": "2026-09-27",
+   "source": "BUILD 50",
+   "status": "active",
+   "check": "file:previews/voice13-created.mp4"
+  },
+  {
+   "key": "page.build",
+   "value": "53",
+   "since": "2026-09-27",
+   "source": "BUILD 53",
+   "status": "active",
+   "check": "build:53"
+  },
+  {
+   "key": "qa.policy",
+   "value": "config/dubbing-qa.json v3 (طبقات: مطلق 6.0 يمنع · انتباه 2.5/2.6 يُلزم · مطلوب 0.75/1.0)",
+   "since": "2026-09-27",
+   "source": "BUILD 48، مُعايَر على ما أجازه المستمع",
+   "status": "active"
+  },
+  {
+   "key": "qa.tools",
+   "value": "audit_dub.py · time_budget.py · pick_steady_takes.py · verify_dub.py · split_preview.py · build_cloned_samples.py · memory.py",
+   "since": "2026-09-27",
+   "source": "BUILD 46–53",
+   "status": "active"
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "اختيار طريقة النطق من previews/pronunciation-test.mp3 (4 طرق)",
+   "since": "2026-09-27",
+   "source": "طلب المستخدم: النطق سئ",
+   "status": "active"
+  },
+  {
+   "key": "open.film-decision",
+   "value": "هل يمضي الفيلم كله بـvoice-15 أم يعود إلى 13؟",
+   "since": "2026-09-27",
+   "source": "طلبه بعد سماع voice15-test.mp4",
+   "status": "active"
+  },
+  {
+   "key": "stand.confidentiality",
+   "value": "لا تُقدَّم نسخة معالجة/مُزاحة نبرة على أنها صوته المختار",
+   "since": "2026-09-17",
+   "source": "STANDING.md",
+   "status": "active"
+  },
+  {
+   "key": "build.53",
+   "value": "BUILD 53: الصوت الجديد voice-15 — تولّد هنا، وفيلم تجريبي بأول 3 مجموعات",
+   "since": "2026-09-27",
+   "source": "git dd8e853",
+   "status": "active"
+  },
+  {
+   "key": "build.52",
+   "value": "BUILD 52: عيّنات مستنسخة من الأصوات البشرية (8 أصوات) ليختار منها المستخدم",
+   "since": "2026-09-27",
+   "source": "git 2f6a094",
+   "status": "active"
+  },
+  {
+   "key": "build.50",
+   "value": "BUILD 50: انتقالات الراوي أسلس (1.34←1.00) + شريط عيّنات بشرية مختارة بالقياس",
+   "since": "2026-09-27",
+   "source": "git af8fe2e",
+   "status": "active"
+  },
+  {
+   "key": "build.49",
+   "value": "BUILD 49: 0→45 (46 من 78) + المعاينة تُحفظ أجزاءً موثّقة بالبصمة قبل حدّ GitHub",
+   "since": "2026-09-27",
+   "source": "git 8a56230",
+   "status": "active"
+  },
+  {
+   "key": "build.48",
+   "value": "BUILD 48: 0→35 (36 من 78) + بوابة المستوى تمسك تقريرًا كاذبًا وتُصلحه",
+   "since": "2026-09-27",
+   "source": "git 482704d",
+   "status": "active"
+  },
+  {
+   "key": "build.47",
+   "value": "BUILD 47: الدبلجة تبدأ من أول الفيلم — 0→25 بسلسلة أنظف (2.58 ← 1.96)",
+   "since": "2026-09-27",
+   "source": "git 78ec5ef",
+   "status": "active"
+  },
+  {
+   "key": "build.46",
+   "value": "BUILD 46: بوابة جودة تُمنع الخطأ قبل التسليم — 6→25 بلا تأخير ولا قصّ",
+   "since": "2026-09-27",
+   "source": "git 8bdc171",
+   "status": "active"
+  },
+  {
+   "key": "build.45",
+   "value": "BUILD 45: الدبلجة ماشية — المجموعات 16→25 (26 من 78)، مزامنة +0.19 وإطار مطابق",
+   "since": "2026-09-27",
+   "source": "git 7a99ea9",
+   "status": "active"
+  },
+  {
+   "key": "build.44",
+   "value": "BUILD 44: نبرة الصوت — قياس الانتشار 4.7 نصف نغمة وعلاجه باختيار الأخذة الأثبت (2.02 ← 0.80)",
+   "since": "2026-09-27",
+   "source": "git 0cd492e",
+   "status": "active"
+  },
+  {
+   "key": "build.43",
+   "value": "BUILD 43: الصوت أُنشئ — 10 مجموعات جديدة (6→15) بوصفة القفل، مزامنة +0.19 ث وإطار مطابق",
+   "since": "2026-09-27",
+   "source": "git 1626a79",
+   "status": "active"
+  },
+  {
+   "key": "build.42",
+   "value": "BUILD 42: ثمانية أصوات بشرية احترافية من المكتبة، مرقّمة بالنغمات، بلا أي معالجة",
+   "since": "2026-09-27",
+   "source": "git 4d4a00e",
+   "status": "active"
+  },
+  {
+   "key": "build.41",
+   "value": "BUILD 41: أُغلق بحث الصوت — السبعة المرفوضة خارج الصفحة، والصوت 13 هو النهائي",
+   "since": "2026-09-27",
+   "source": "git d6f9c08",
+   "status": "active"
+  },
+  {
+   "key": "build.40",
+   "value": "BUILD 40: بطاقة أصوات جديدة بلا تكرار + بطاقة مكرّرة أُزيلت",
+   "since": "2026-09-27",
+   "source": "git 11868d1",
+   "status": "active"
+  }
+ ]
+}

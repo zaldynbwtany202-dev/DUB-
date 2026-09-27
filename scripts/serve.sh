@@ -47,6 +47,7 @@ nohup "$PY" scripts/upload_server.py 8080 >/tmp/serve-preview.log 2>&1 &
 sleep 2
 if curl -s -o /dev/null --max-time 3 http://127.0.0.1:8080/; then
   say "✓ الصفحة تجيب على http://127.0.0.1:8080 (إصدار $(grep -o 'BUILD = "[0-9]*"' scripts/upload_server.py | grep -o '[0-9]*'))"
+  "$PY" scripts/memory.py --verify 2>/dev/null | tail -1 | sed "s/^/  [ذاكرة]/" || true
 else
   say "✗ الخدمة لم تُجب — راجع /tmp/serve-preview.log"; exit 1
 fi
