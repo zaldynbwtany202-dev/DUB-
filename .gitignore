@@ -41,6 +41,11 @@ samples/*.wav
 *.swo
 .DS_Store
 
+# الملف الكامل يتجاوز حدّ GitHub (100 م.بايت) بعد ~20 دقيقة من الفيلم، فنُقل
+# إلى أجزاء بايتية في previews/voice13-created.mp4.parts (+ manifest ببصمات).
+# الأصل يبقى على القرص ليخدمه العارض، ويعود من الأجزاء بـsplit_preview.py --restore
+previews/voice13-created.mp4
+
 # Dub projects: keep the recipe and deliverables, drop scratch and source media.
 projects/*/work/
 projects/*/source/

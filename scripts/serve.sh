@@ -56,6 +56,13 @@ if [ "${1:-}" = "--no-films" ]; then
   say "[3/3] تُخطّي بناء الفيلمين (--no-films)"
   exit 0
 fi
+# The full dub preview is stored as byte-range parts (GitHub refuses >100 MB), so
+# after a wipe the playable file comes back from them, bit for bit.
+if [ ! -s previews/voice13-created.mp4 ] && [ -d previews/voice13-created.mp4.parts ]; then
+  say "[3/3] إعادة تجميع المعاينة من أجزائها"
+  "$PY" scripts/split_preview.py --restore previews/voice13-created.mp4 || true
+fi
+
 missing=0
 for f in previews/into-the-wild-narration.mp4 previews/into-the-wild-mastered.mp4; do
   [ -s "$f" ] || missing=1

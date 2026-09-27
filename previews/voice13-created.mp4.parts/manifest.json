@@ -1,0 +1,18 @@
+{
+ "source": "voice13-created.mp4",
+ "bytes": 88025172,
+ "sha256": "d5f0854b454b82de446200697cc2bace74c1db28c13dc68ce3ce43f9622d52d0",
+ "parts": [
+  {
+   "file": "voice13-created.mp4.part001",
+   "bytes": 83886080,
+   "sha256": "310d8be1fe612a726790c08accd909aab4108656b09a1ec2a8b87b2c2d5e86d7"
+  },
+  {
+   "file": "voice13-created.mp4.part002",
+   "bytes": 4139092,
+   "sha256": "f939fa2de19d08e087aff136f188d2ffcaee13639099e89da6b7a74279b70233"
+  }
+ ],
+ "note": "GitHub يرفض ملفًا أكبر من 100 م.بايت؛ هذه الأجزاء هي الملف نفسه مقطّعة بايتات، وتُعاد بـ--restore بلا إعادة ترميز"
+}
