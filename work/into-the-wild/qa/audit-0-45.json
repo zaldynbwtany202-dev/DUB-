@@ -603,20 +603,20 @@
     },
     {
       "name": "g027",
-      "voiced": 0.28,
-      "median": 123.7,
-      "p10": 105.3,
-      "p90": 152.9,
-      "semis": -1.79,
-      "drift_hz": 28.8,
-      "drift_semis": 3.92,
-      "seconds": 33.52,
-      "rms_db": -20.37,
+      "voiced": 0.232,
+      "median": 154.8,
+      "p10": 128.3,
+      "p90": 186.0,
+      "semis": 2.09,
+      "drift_hz": 23.0,
+      "drift_semis": 2.65,
+      "seconds": 31.72,
+      "rms_db": -20.02,
       "group": 27,
       "window": 21.26,
       "room": 21.26,
-      "required_tempo": 1.577,
-      "tempo": 1.577,
+      "required_tempo": 1.492,
+      "tempo": 1.492,
       "start": 628.22,
       "end": 649.48,
       "late": 0.0,
@@ -889,20 +889,20 @@
     },
     {
       "name": "g040",
-      "voiced": 0.26,
-      "median": 167.8,
-      "p10": 131.1,
-      "p90": 193.5,
-      "semis": 3.49,
-      "drift_hz": 35.5,
-      "drift_semis": 3.7,
-      "seconds": 29.6,
-      "rms_db": -19.77,
+      "voiced": 0.284,
+      "median": 141.2,
+      "p10": 117.6,
+      "p90": 171.4,
+      "semis": 0.49,
+      "drift_hz": 21.7,
+      "drift_semis": 2.7,
+      "seconds": 29.0,
+      "rms_db": -20.05,
       "group": 40,
       "window": 20.3,
       "room": 20.3,
-      "required_tempo": 1.458,
-      "tempo": 1.458,
+      "required_tempo": 1.429,
+      "tempo": 1.429,
       "start": 915.12,
       "end": 935.42,
       "late": 0.0,
@@ -955,20 +955,20 @@
     },
     {
       "name": "g043",
-      "voiced": 0.191,
-      "median": 126.3,
-      "p10": 105.3,
-      "p90": 153.8,
-      "semis": -1.43,
-      "drift_hz": 25.1,
-      "drift_semis": 3.33,
-      "seconds": 35.4,
-      "rms_db": -20.32,
+      "voiced": 0.195,
+      "median": 129.0,
+      "p10": 110.6,
+      "p90": 156.9,
+      "semis": -1.06,
+      "drift_hz": 12.0,
+      "drift_semis": 1.6,
+      "seconds": 33.84,
+      "rms_db": -20.11,
       "group": 43,
       "window": 23.62,
       "room": 23.62,
-      "required_tempo": 1.499,
-      "tempo": 1.499,
+      "required_tempo": 1.433,
+      "tempo": 1.433,
       "start": 980.16,
       "end": 1003.78,
       "late": 0.0,
@@ -977,20 +977,20 @@
     },
     {
       "name": "g044",
-      "voiced": 0.213,
-      "median": 158.9,
-      "p10": 130.4,
-      "p90": 189.0,
-      "semis": 2.55,
-      "drift_hz": 29.4,
-      "drift_semis": 3.26,
-      "seconds": 34.52,
-      "rms_db": -19.88,
+      "voiced": 0.279,
+      "median": 139.5,
+      "p10": 117.6,
+      "p90": 164.4,
+      "semis": 0.29,
+      "drift_hz": 22.3,
+      "drift_semis": 2.79,
+      "seconds": 35.36,
+      "rms_db": -20.06,
       "group": 44,
       "window": 23.58,
       "room": 23.58,
-      "required_tempo": 1.464,
-      "tempo": 1.464,
+      "required_tempo": 1.5,
+      "tempo": 1.5,
       "start": 1003.84,
       "end": 1027.42,
       "late": 0.0,
@@ -1031,14 +1031,6 @@
       "urgency": 10.04
     },
     {
-      "group": 40,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": 3.49,
-      "step": 3.89,
-      "urgency": 8.54
-    },
-    {
       "group": 38,
       "candidates": 2,
       "needs": "انزياح+قفزة",
@@ -1047,28 +1039,12 @@
       "urgency": 7.98
     },
     {
-      "group": 44,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": 2.55,
-      "step": 3.98,
-      "urgency": 7.38
-    },
-    {
-      "group": 26,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": 2.21,
-      "step": 4.0,
-      "urgency": 6.95
-    },
-    {
       "group": 42,
       "candidates": 2,
       "needs": "انزياح+قفزة",
       "semis": 2.32,
-      "step": 3.75,
-      "urgency": 6.84
+      "step": 3.38,
+      "urgency": 6.47
     },
     {
       "group": 29,
@@ -1079,28 +1055,12 @@
       "urgency": 6.4
     },
     {
-      "group": 27,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": -1.79,
-      "step": 4.0,
-      "urgency": 6.39
-    },
-    {
       "group": 32,
       "candidates": 2,
       "needs": "انزياح+قفزة",
       "semis": 3.37,
       "step": 1.64,
       "urgency": 6.13
-    },
-    {
-      "group": 43,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": -1.43,
-      "step": 3.98,
-      "urgency": 5.89
     },
     {
       "group": 19,
@@ -1135,6 +1095,22 @@
       "urgency": 5.01
     },
     {
+      "group": 27,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": 2.09,
+      "step": 2.0,
+      "urgency": 4.79
+    },
+    {
+      "group": 43,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": -1.06,
+      "step": 3.38,
+      "urgency": 4.79
+    },
+    {
       "group": 37,
       "candidates": 1,
       "needs": "انزياح",
@@ -1143,20 +1119,28 @@
       "urgency": 4.63
     },
     {
-      "group": 39,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": -0.4,
-      "step": 3.89,
-      "urgency": 4.42
-    },
-    {
       "group": 17,
       "candidates": 2,
       "needs": "انزياح+قفزة",
       "semis": 1.76,
       "step": 1.96,
       "urgency": 4.31
+    },
+    {
+      "group": 39,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": -0.4,
+      "step": 3.65,
+      "urgency": 4.18
+    },
+    {
+      "group": 26,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": 2.21,
+      "step": 1.2,
+      "urgency": 4.15
     },
     {
       "group": 18,
@@ -1181,14 +1165,6 @@
       "semis": 2.09,
       "step": 1.18,
       "urgency": 3.97
-    },
-    {
-      "group": 41,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": 0.29,
-      "step": 3.2,
-      "urgency": 3.59
     },
     {
       "group": 35,
@@ -1223,14 +1199,6 @@
       "urgency": 3.05
     },
     {
-      "group": 45,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": -0.2,
-      "step": 2.75,
-      "urgency": 3.02
-    },
-    {
       "group": 13,
       "candidates": 2,
       "needs": "انزياح+قفزة",
@@ -1261,6 +1229,14 @@
       "semis": 1.01,
       "step": 1.2,
       "urgency": 2.55
+    },
+    {
+      "group": 41,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": 0.29,
+      "step": 2.03,
+      "urgency": 2.42
     },
     {
       "group": 11,
@@ -1301,6 +1277,14 @@
       "semis": 0.8,
       "step": 0.85,
       "urgency": 1.92
+    },
+    {
+      "group": 44,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": 0.29,
+      "step": 1.35,
+      "urgency": 1.74
     },
     {
       "group": 7,
@@ -1383,7 +1367,7 @@
     {
       "name": "step_hard_band",
       "ok": true,
-      "detail": "أقصى قفزة 4.00 نصف نغمة (الحدّ المطلق 6.0)"
+      "detail": "أقصى قفزة 3.65 نصف نغمة (الحدّ المطلق 6.0)"
     },
     {
       "name": "pitch_attention_band",
@@ -1393,7 +1377,7 @@
     {
       "name": "step_attention_band",
       "ok": false,
-      "detail": "أقصى قفزة 4.00 نصف نغمة (سقف ما أجازه المستمع 2.6)"
+      "detail": "أقصى قفزة 3.65 نصف نغمة (سقف ما أجازه المستمع 2.6)"
     },
     {
       "name": "level_spread",
@@ -1401,8 +1385,8 @@
       "detail": "تفاوت المستوى 1.32 د.ب (السقف 1.5)"
     }
   ],
-  "steps_mean": 1.336,
-  "steps_max": 4.0,
+  "steps_mean": 1.002,
+  "steps_max": 3.65,
   "level_spread": 1.32,
   "tempo_max": 1.796,
   "max_late": 0.0,

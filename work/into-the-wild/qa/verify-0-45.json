@@ -48,8 +48,8 @@
     "out_seconds": 1048.35,
     "lufs": -16.0,
     "true_peak": -1.6,
-    "report": "work/into-the-wild/build/master-report-v13created7.json",
-    "report_mix_lufs": "-16.00",
+    "report": "work/into-the-wild/build/master-report-v13created8.json",
+    "report_mix_lufs": "-16.01",
     "report_true_peak": "-1.50",
     "first_frame_psnr": "inf"
   },
