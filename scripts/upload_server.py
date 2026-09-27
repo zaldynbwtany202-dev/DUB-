@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "25"
+BUILD = "26"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -153,7 +153,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"clone-original-voice"}
+        PAGE_ALLOW = set()   # emptied again: the word-by-word cut was rejected
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

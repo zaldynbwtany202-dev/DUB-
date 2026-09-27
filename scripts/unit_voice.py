@@ -108,6 +108,38 @@ def decompose(word: str, idx: dict, max_parts: int = 3) -> list[str] | None:
     return best.get(n)
 
 
+def sequence(slug: str) -> list[str]:
+    """The film's words in order, normalised -- the substrate for run matching."""
+    words = json.loads((Path("work") / slug / "full-timed-vocal.json")
+                       .read_text(encoding="utf-8"))["words"]
+    return [norm(w["w"]) for w in words]
+
+
+def positions(seq: list[str]) -> dict[str, list[int]]:
+    out: dict[str, list[int]] = defaultdict(list)
+    for i, w in enumerate(seq):
+        out[w].append(i)
+    return out
+
+
+def longest_run(target: list[str], i: int, seq: list[str],
+                pos: dict[str, list[int]], cap: int = 14) -> tuple[int, int]:
+    """Longest run of target[i:] that appears contiguously in the film."""
+    if i >= len(target):
+        return 0, -1
+    best_len, best_at = 1, -1
+    for at in pos.get(target[i], ())[:600]:
+        n = 1
+        while (n < cap and i + n < len(target) and at + n < len(seq)
+               and seq[at + n] == target[i + n]):
+            n += 1
+        if n > best_len:
+            best_len, best_at = n, at
+            if n == cap:
+                break
+    return best_len, best_at
+
+
 def choose(instances: list[dict]) -> dict:
     """The instance closest to the word's median length, preferring measured ones."""
     dur = sorted(i["t1"] - i["t0"] for i in instances)
@@ -139,8 +171,36 @@ def cut(stem_cache: dict, t0: float, t1: float) -> np.ndarray:
     return seg * min(4.0, 0.06 / rms)
 
 
-def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict, allow_split=True):
-    pieces, missing = [], []
+def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict, allow_split=True,
+          words_meta: list[dict] | None = None, seq: list[str] | None = None,
+          pos: dict[str, list[int]] | None = None, spans: bool = True):
+    """Assemble the text from the narrator's own recording.
+
+    With `spans`, the longest run he said in one breath is taken whole; only the
+    seams between runs are joins. Without it every word is its own join, which is
+    what made the first version sound chopped.
+    """
+    pieces, missing, runs = [], [], 0
+    target = [norm(w) for w in text.split()]
+    if spans and words_meta and seq is not None and pos is not None:
+        i = 0
+        while i < len(target):
+            n, at = longest_run(target, i, seq, pos)
+            if n >= 2:
+                first, last = words_meta[at], words_meta[at + n - 1]
+                pieces.append(cut(stem_cache, first["t0"] - 0.05, last["t1"] + 0.08))
+                runs += 1
+                i += n
+                continue
+            w = target[i]
+            if w in idx:
+                u = choose(idx[w])
+                pieces.append(cut(stem_cache, u["t0"], u["t1"]))
+            else:
+                missing.append(text.split()[i])
+            i += 1
+        return _join(pieces), missing, len(pieces), runs
+
     for raw in text.split():
         key = norm(raw)
         found = idx.get(key)
@@ -165,13 +225,19 @@ def synth(text: str, idx: dict[str, list[dict]], stem_cache: dict, allow_split=T
             continue
         u = choose(found)
         pieces.append(cut(stem_cache, u["t0"], u["t1"]))
+    return _join(pieces), missing, len(pieces), 0
+
+
+def _join(pieces: list[np.ndarray]) -> np.ndarray:
     if not pieces:
-        return np.zeros(0, dtype="float32"), missing, 0
+        return np.zeros(0, dtype="float32")
+    # A run-to-run seam is a real break in the recording; keeping a short gap there
+    # is what stops two runs reading as one slurred sentence.
     gap = np.zeros(int(GAP * SR), dtype="float32")
     out = pieces[0]
     for p in pieces[1:]:
         out = np.concatenate([out, gap, p])
-    return out, missing, len(pieces)
+    return out
 
 
 def main() -> None:
@@ -208,8 +274,15 @@ def main() -> None:
         # build on it.
         sys.exit(0 if cover == len(words) else 1)
 
+    meta = json.loads((Path("work") / a.slug / "full-timed-vocal.json")
+                      .read_text(encoding="utf-8"))["words"]
+    seq = [norm(w["w"]) for w in meta]
+    pos = positions(seq)
+
     stem_cache: dict[int, np.ndarray] = {}
-    out, missing, n = synth(text, idx, stem_cache)
+    out, missing, n, runs = synth(text, idx, stem_cache, words_meta=meta, seq=seq, pos=pos)
+    print(f"  طريقة التركيب: {runs} مقطعًا متصلًا · {n - runs} كلمة مفردة · "
+          f"{max(0, n - 1)} وصلة لصق")
     if out.size == 0:
         raise SystemExit("  ✗ لم تُبنَ أي كلمة")
 
