@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "31"
+BUILD = "32"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -205,8 +205,10 @@ def render_previews():
             f'<p class="t"><span class="num">{number}</span> {html.escape(title)}</p>'
             f'{player}'
             f'<p class="m">{html.escape(note)} · {_human(c.stat().st_size)}</p>'
-            f'<a href="{url}" download>تنزيل</a>'
-            f'<a href="{url}" target="_blank">فتح في نافذة جديدة</a>'
+            # No "open in a new window" link: previews only play inside Arena's
+            # frame, so a raw file URL opens a "Preview Unavailable" page. The
+            # player above is the way in, and it always works.
+            '<p class="m">شغّله من المشغّل هنا مباشرة.</p>'
             '</div>')
     return ('<div class="prev"><h2>العيّنات الجاهزة</h2>' + "".join(cards) + '</div>')
 
