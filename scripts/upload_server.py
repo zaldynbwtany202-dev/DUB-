@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "33"
+BUILD = "34"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -74,10 +74,14 @@ LABELS = {
                         "02 05 · 03 06 · 04 07 · 05 08 · 06 10 · 07 13 · 08 14 — "
                         "كل مرشَّح مشكَّل على الراوي: نبرته مضبوطة على نبرته، وطابعه منقول إليه. "
                         "قل الرقم فقط، وأكمل الفيلم بالصوت الذي تختاره"),
-    "voice13-opening": ("★ الافتتاحية بالصوت الذي اخترته — عيّنة 03 (2:17)",
-                        "نفس معالجة العيّنة التي أعجبتك: حفظ الفورمانت والنبرة 164.6 هرتز "
-                        "(عيّنتك 163.9) · وتيرة 1.21–1.35× · الموسيقى تنسحب تحت الكلام · "
-                        "-16 LUFS وسقف -1.5 dBTP · الصورة منسوخة"),
+    "voice13-opening": ("★ الافتتاحية بالصوت الذي اخترته — بلا سلسلة الماستر (2:17)",
+                        "نفس معالجة عيّنتك بالضبط: حفظ الفورمانت · النبرة 164.6 هرتز "
+                        "(عيّنتك 163.9) · وبلا EQ ولا دي-إسر ولا ضغط · وتيرة 1.21–1.35× · "
+                        "الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP · الصورة منسوخة"),
+    "ab-mastering": ("سبب الخراب: سلسلة الماستر — عيّنتك قبلها وبعدها (17 ثانية)",
+                     "عيّنتك نفسها ثلاث مرات: 01 كما سمعتها · 02 بعد السلسلة القديمة "
+                     "(رفع +2.5 د.ب عند 3.2 كيلو + دي-إسر + ضغط 3:1) — هذا هو المشوّش · "
+                     "03 بلا أي سلسلة. القياس: الطاقة فوق 6 كيلو تضاعفت 0.072 ← 0.132."),
     "pitch-choices": ("★ النبرة — اختر المستوى الأقرب لراوي الفيلم (38 ثانية)",
                       "سبب صوت السنجاب: مقياسي كان مضاعفًا — الراوي 95 هرتز لا 168، "
                       "وكل تشكيل سابق رفع الصوت إلى نحو 165–180. "
@@ -85,10 +89,6 @@ LABELS = {
                       "02 نازل 3 (~154) · 03 نازل 6 (~137) · 04 نازل 9 (~121) · "
                       "05 نازل 12 (~108) — نفس الجملة ونفس الصوت، والفرق نبرة فقط. "
                       "قل الرقم وأكمل الفيلم به"),
-    "voice13-opening": ("★ الافتتاحية بصوت 13 — الذي اخترته (2:17)",
-                        "المجموعات الست الأولى بصوت 13 مشكَّلًا على الراوي: "
-                        "النبرة 138.7 ← 164.6 هرتز (هدفه 168.3) · أُغلق 83% من فرق الطابع · "
-                        "وتيرة 1.19–1.42× · الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP"),
     "voice-samples": ("★ عيّنات مقترحة — اختر الأقرب لراوي الفيلم (29 ثانية)",
                       "نفس الجملة يقولها الجميع، والراوي الحقيقي في أولها ليكون الهدف في أذنك: "
                       "00 الراوي (الهدف) · 01 صوت 07 · 02 صوت 10 · 03 صوت 13 · 04 صوت 14 — "
@@ -185,7 +185,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"voice13-opening"}   # what the user chose; nothing else
+        PAGE_ALLOW = {"voice13-opening", "ab-mastering"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
