@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "35"
+BUILD = "36"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -78,6 +78,14 @@ LABELS = {
                         "نفس معالجة عيّنتك بالضبط: حفظ الفورمانت · النبرة 164.6 هرتز "
                         "(عيّنتك 163.9) · وبلا EQ ولا دي-إسر ولا ضغط · وتيرة 1.21–1.35× · "
                         "الموسيقى تنسحب تحت الكلام · -16 LUFS وسقف -1.5 dBTP · الصورة منسوخة"),
+    "voice13-clean": ("★ بصوتك المختار — بلا موسيقى، بلا EQ، بلا ضغط (2:17)",
+                      "صوت 13 بنبرة 164.2 هرتز (ملفك المختار 163.9) · تسريع atempo الذي "
+                      "لا يغيّر النبرة · بلا أي معالجة صوتية · -16 LUFS وسقف -1.5 dBTP"),
+    "voice13-music": ("نفس الصوت فوق موسيقى الفيلم (2:17)",
+                      "الموسيقى تنسحب تحت الكلام · نفس الصوت بلا أي تغيير عليه"),
+    "voice-check": ("مقارنة: ملفك المختار ثم نفس الجملة داخل الفيلم (10 ثوان)",
+                    "لتسمع أن الصوت محفوظ: 163.9 هرتز في ملفك، و172.4 داخل الفيلم "
+                    "(فرق نصف نغمة، سببه التسريع الزمني)"),
     "approved-voice": ("★ الصوت الذي اخترته — كما هو، بلا أي معالجة (5 ثوان)",
                        "هذا هو الملف الذي أعجبك حرفيًا: صوت 13 بنبرة 163.9 هرتز، "
                        "لا تسريع ولا EQ ولا ضغط. المرجع الذي نقيس عليه كل شيء بعده."),
@@ -194,7 +202,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"approved-voice", "stretch-test"}
+        PAGE_ALLOW = {"voice13-clean", "voice13-music", "voice-check"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
