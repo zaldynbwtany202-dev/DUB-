@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "51"
+BUILD = "52"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,20 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "cloned-voices": ("★ عيّنات مستنسخة من الأصوات البشرية عندك — اختر صوت الدبلجة "
+                     "(98.7 ث · 8 أصوات · كلها تقول نفس السطر)",
+                       "ثمانية أصوات: محتواها نفسه (سطر واحد من الفيلم بصوت المحرك 13) لكن كل عيّنة "
+                       "لابسة طابع راوٍ بشري مختلف من مكتبتك. النغمات قبل المقطع = رقمه: نغمة = 01، "
+                       "نغمتان = 02 … ثماني نغمات = 08. الترتيب: 01 راوي الفيلم الأصلي · 02 راوي "
+                       "محاضرة «الدكتور» (الصوت الذي أجَزته، مرجعه من بنكه المعتمد) · 03 «حلم الحج» "
+                       "· 04 عرض استوديو · 05 الاختبار القصير · 06 راوي 0911 · 07 مخاطبة مباشرة · "
+                       "08 حقائق الحيوانات. القياس: النبرة نُقلت إلى نبرة المرجع (إزاحة بين -2.0 و "
+                       "+5.4 نصف نغمة، بحدّ ±6 حتى لا يتحوّل الصوت إلى شخص آخر)، والطابع أُغلق بنسبة "
+                       "56–77% من فرق الطابع (سيبسترال 40). وصراحةً: هذه ليست شبكة استنساخ عصبية — "
+                       "كل موفّريها محجوبون عني (كل المواقع ترد 000) — بل التحويل الكلاسيكي: كلمات "
+                       "المحرك + نبرة الراوي وطابعه. وتسجيلاتك البشرية لم تُمَسّ إطلاقًا: قُرِئت مرجعًا "
+                       "فقط. اسمع وقل أي رقم تريد أن تكون الدبلجة به. "
+),
     "human-voices-2": ("🎧 عيّنات بشرية جديدة — طبيعية وفيها تفاعل، بلهجة مصرية "
                        "(90.8 ث · 8 أصوات · اسمع هذا أولًا)",
                        "ثمانية أصوات بشرية من مكتبتك، أُعيد اختيار المقاطع منها بالقياس لا بالأذن: كل مقطع "
@@ -247,7 +261,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "human-voices-2", "voice13-created",
+            "cloned-voices", "human-voices-2", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -268,7 +282,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice13-created", "human-voices-2"}
+        PAGE_ALLOW = {"cloned-voices", "human-voices-2", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
