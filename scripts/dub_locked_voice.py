@@ -1,0 +1,118 @@
+#!/usr/bin/env python
+"""Dub a film with the locked voice -- the recipe that was approved, unchanged.
+
+The voice, and the way it is treated, are frozen in config/voice-lock.json. This
+script reads that file and does exactly what it says, nothing else. The point is
+that a new film gets the same voice the user approved without anyone re-deciding
+anything: no timbre conversion, no silence cutting, atempo for timing, plain
+mastering, video copied.
+
+    # what a new film needs first: work/<slug>/groups.json  (+ the source film)
+    python scripts/dub_locked_voice.py --slug my-film --takes work/my-film/takes \
+        --start 0 --end 20 --out previews/my-film-dub.mp4 --music work/my-film/stems/background-80k.mp3
+
+    python scripts/dub_locked_voice.py --slug my-film --takes ... --check   # recipe only
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+sys.path.insert(0, str(HERE))
+
+LOCK = Path("config/voice-lock.json")
+
+
+def run(cmd: list[str]) -> None:
+    subprocess.run(cmd, check=True)
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--slug", required=True)
+    ap.add_argument("--takes", required=True, help="directory of takes, one per group")
+    ap.add_argument("--start", type=int, default=0)
+    ap.add_argument("--end", type=int, default=10 ** 9)
+    ap.add_argument("--out", type=Path, default=None, help="mp4 to write; omit for audio only")
+    ap.add_argument("--source", type=Path, default=None,
+                    help="source film; defaults to library/<slug>/source.local.mp4")
+    ap.add_argument("--music", type=Path, default=None, help="music bed; omit for voice alone")
+    ap.add_argument("--report", type=Path, default=None)
+    ap.add_argument("--check", action="store_true", help="print the recipe and stop")
+    a = ap.parse_args()
+
+    lock = json.loads(LOCK.read_text(encoding="utf-8"))
+    work = Path("work") / a.slug
+    build = work / "build"
+    build.mkdir(parents=True, exist_ok=True)
+
+    print(f"  الصوت المعتمد: {lock['voice_id']} · {lock['name']}")
+    for step, cfg in (("التجميع", lock["assembly"]), ("الماستر", lock["mastering"])):
+        print(f"  {step}: " + " · ".join(f"{k}={v}" for k, v in cfg.items()))
+    if a.check:
+        return 0
+
+    if not (work / "groups.json").exists():
+        raise SystemExit(f"  ✗ لا توجد خطة: {work / 'groups.json'} — خطّط الفيلم أولًا")
+
+    voice = build / f"{a.slug}-voice.wav"
+    asm = lock["assembly"]
+    cmd = [sys.executable, str(HERE / "assemble_dub.py"), str(work),
+           "--out", str(voice), "--start", str(a.start), "--end", str(a.end),
+           "--stretch", asm["stretcher"], "--takes", str(a.takes),
+           "--max-tempo", str(asm["max_tempo"])]
+    if not asm["tighten"]:
+        cmd.append("--no-tighten")          # cutting silence measurably changes the voice
+    if asm["pack"]:
+        cmd.append("--pack")
+    print(f"\n  تجميع ({asm['stretcher']} · بلا قصّ صمت · بلا تحويل)")
+    run(cmd)
+
+    mst = lock["mastering"]
+    mastered = build / f"{a.slug}-master.wav"
+    cmd = [sys.executable, str(HERE / "master_dub.py"), "--voice", str(voice),
+           "--out", str(mastered), "--lufs", str(mst["lufs"]),
+           "--tp", str(mst["true_peak_dbtp"])]
+    if mst["plain_voice"]:
+        cmd.append("--plain-voice")         # the chain is for human recordings only
+    if a.music:
+        secs = _duration(voice)
+        cmd += ["--music", str(a.music), "--music-start", "0", "--music-dur", f"{secs:.3f}",
+                "--duck-db", str(mst["duck_db"]), "--music-db", str(mst["music_db"])]
+    if a.report:
+        cmd += ["--report", str(a.report)]
+    print("  المعالجة (plain — بلا EQ ولا ضغط)")
+    run(cmd)
+
+    if a.out:
+        src = a.source or Path("library") / a.slug / "source.local.mp4"
+        if not src.exists():
+            raise SystemExit(f"  ✗ لا يوجد فيلم مصدر: {src}")
+        secs = _duration(voice)
+        print(f"  اللصق بالصورة (-c:v copy · aac 192k · {secs:.2f} ثانية)")
+        run(_ffmpeg() + ["-y", "-v", "error", "-i", str(src), "-i", str(mastered),
+                         "-t", f"{secs:.3f}", "-map", "0:v:0", "-map", "1:a:0",
+                         "-c:v", "copy", "-c:a", "aac",
+                         "-b:a", lock["mux"]["audio_bitrate"], str(a.out)])
+        print(f"  ✓ {a.out}")
+    else:
+        print(f"  ✓ {mastered}")
+    return 0
+
+
+def _duration(path: Path) -> float:
+    import soundfile as sf
+    return float(sf.info(str(path)).duration)
+
+
+def _ffmpeg() -> list[str]:
+    import imageio_ffmpeg
+    return [imageio_ffmpeg.get_ffmpeg_exe()]
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

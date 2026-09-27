@@ -1,0 +1,40 @@
+{
+  "name": "صوت الدبلجة المعتمد",
+  "frozen_at": "2026-09-27",
+  "approved_by": "المستخدم — «النتيجة أصبحت أفضل قليلًا، حافظ على الصوت»",
+  "voice_id": "voice-13",
+  "notes": [
+    "هذا هو الصوت الذي أجازه المستخدم بعد سلسلة تجارب طويلة. لا يُبدَّل ولا يُحسَّن.",
+    "ما أعجبه هو الصوت كما يخرج من المحرك مباشرة: لا تحويل طابع، لا EQ، لا ضغط ديناميكي، لا قصّ صمت."
+  ],
+  "generation": {
+    "voice_id": "voice-13",
+    "timbre_conversion": false,
+    "reason_no_conversion": "قياس: التحويل يبعد الصوت عن الذي أعجبه (بُعد الطابع 2.355 dB/بن عن عيّنته)"
+  },
+  "assembly": {
+    "stretcher": "atempo",
+    "tighten": false,
+    "pack": true,
+    "max_tempo": 1.8,
+    "reason": "atempo لا يغيّر النبرة (163.9 هرتز قبل وبعد)، بخلاف rubberband بخياراته (173.6)"
+  },
+  "mastering": {
+    "chain": "plain",
+    "plain_voice": true,
+    "lufs": -16.0,
+    "true_peak_dbtp": -1.5,
+    "duck_db": 10,
+    "music_db": -4
+  },
+  "mux": {
+    "video": "copy",
+    "audio_codec": "aac",
+    "audio_bitrate": "192k"
+  },
+  "measured": {
+    "pitch_hz": 163.9,
+    "narrator_pitch_hz": 162.7,
+    "sync_offset_s": "0.16–0.20"
+  }
+}
