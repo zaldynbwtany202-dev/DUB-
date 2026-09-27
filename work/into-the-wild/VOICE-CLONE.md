@@ -76,3 +76,11 @@ bash scripts/prepare_voice_clone.sh
 python scripts/clone_project.py --slug into-the-wild \
   --reference work/into-the-wild/clone/reference.wav --lang ar --text "النص الجديد"
 ```
+
+
+## تنبيه قياسي (مهم)
+
+نبرة الراوي الحقيقية **~92 هرتز** (وسيط المسار الطويل)، لا 168.3. الرقم 168 كان
+**خطأ أوكتاف** في المقياس القديم، وترتيبه أن كل صوت شُكِّل عليه «استنسخ» إلى
+طبقة أعلى بأوكتاف فظهر بصوت سنجاب. أي قياس نبرة في هذا المشروع يُؤخذ بـ
+`voice_convert.median_f0` بعد إصلاحه، ويُراجَع بمقياس ثانٍ (Cepstrum) قبل البناء.

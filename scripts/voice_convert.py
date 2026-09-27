@@ -85,10 +85,40 @@ def f0_track(x, sr, hop=0.01):
 
 
 def median_f0(x, sr) -> float:
+    """Median fundamental, measured so it cannot land an octave high.
+
+    Chosen the hard way. The first estimator (below, still used for the frame-wise
+    track) locked onto the second harmonic on this narrator: it reported 168 Hz for
+    a voice whose true pitch is 99 Hz, and every voice shaped towards that number
+    came out a octave too high -- the "squirrel". Two independent measurements
+    agree on the real value: autocorrelation with an octave guard, and the peak of
+    the cepstrum. This is that autocorrelation, over the full human range.
+    """
     import numpy as np
-    t = f0_track(x, sr)
-    v = t[t > 0]
-    return float(np.median(v)) if v.size else 0.0
+    win = int(0.045 * sr)
+    hop = int(0.01 * sr)
+    lo, hi = int(sr / 400), int(sr / 65)
+    est = []
+    for i in range(0, max(1, len(x) - win), hop):
+        f = np.asarray(x[i:i + win], dtype=np.float64)
+        if np.sqrt(np.mean(f ** 2)) < 0.006:
+            continue
+        f = f - f.mean()
+        ac = np.correlate(f, f, "full")[win - 1:]
+        if ac[0] <= 0 or len(ac) <= hi:
+            continue
+        ac = ac / ac[0]
+        seg = ac[lo:hi]
+        k = int(np.argmax(seg)) + lo
+        if ac[k] < 0.30:
+            continue
+        # If twice the lag (half the frequency) is nearly as periodic, that is the
+        # true period: a subharmonic is stronger than the harmonic once you look
+        # for it, and a period doubler is exactly how this measurement lied.
+        if 2 * k < len(ac) and ac[2 * k] > 0.85 * ac[k]:
+            k *= 2
+        est.append(sr / k)
+    return float(np.median(est)) if est else 0.0
 
 
 def long_term_envelope(x, sr, n_fft=1024, cepstra=40):

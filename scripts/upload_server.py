@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "30"
+BUILD = "31"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -74,6 +74,13 @@ LABELS = {
                         "02 05 · 03 06 · 04 07 · 05 08 · 06 10 · 07 13 · 08 14 — "
                         "كل مرشَّح مشكَّل على الراوي: نبرته مضبوطة على نبرته، وطابعه منقول إليه. "
                         "قل الرقم فقط، وأكمل الفيلم بالصوت الذي تختاره"),
+    "pitch-choices": ("★ النبرة — اختر المستوى الأقرب لراوي الفيلم (38 ثانية)",
+                      "سبب صوت السنجاب: مقياسي كان مضاعفًا — الراوي 95 هرتز لا 168، "
+                      "وكل تشكيل سابق رفع الصوت إلى نحو 165–180. "
+                      "الترتيب: 00 الراوي (~95) · 01 صوت 13 كما هو (~165) · "
+                      "02 نازل 3 (~154) · 03 نازل 6 (~137) · 04 نازل 9 (~121) · "
+                      "05 نازل 12 (~108) — نفس الجملة ونفس الصوت، والفرق نبرة فقط. "
+                      "قل الرقم وأكمل الفيلم به"),
     "voice13-opening": ("★ الافتتاحية بصوت 13 — الذي اخترته (2:17)",
                         "المجموعات الست الأولى بصوت 13 مشكَّلًا على الراوي: "
                         "النبرة 138.7 ← 164.6 هرتز (هدفه 168.3) · أُغلق 83% من فرق الطابع · "
@@ -174,7 +181,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"voice13-opening"}
+        PAGE_ALLOW = {"pitch-choices"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

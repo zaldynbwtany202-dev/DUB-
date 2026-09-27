@@ -55,6 +55,13 @@ def main() -> int:
     ap.add_argument("--strength", type=float, default=1.0)
     ap.add_argument("--formant", choices=["preserved", "shifted"], default="preserved")
     ap.add_argument("--limit", type=int, default=10 ** 9)
+    ap.add_argument("--target-hz", type=float, default=None,
+                    help="pitch to aim every take at. Omit to measure the narrator "
+                         "stem -- which is right only if the measurement is right, and "
+                         "it once landed an octave high, so this exists to overrule it")
+    ap.add_argument("--max-shift", type=float, default=6.0,
+                    help="never move a take more than this many semitones from its "
+                         "own pitch; beyond it the voice stops sounding like itself")
     ap.add_argument("--report", type=Path, default=None)
     a = ap.parse_args()
 
@@ -77,7 +84,7 @@ def main() -> int:
     decode(target, tgt_wav, t=120.0, sr=a.sr)
     tgt, _ = sf.read(str(tgt_wav))
     tgt = np.asarray(tgt, float)
-    f_tgt = median_f0(tgt, a.sr)
+    f_tgt = a.target_hz if a.target_hz else median_f0(tgt, a.sr)
     env_t, frames_t = long_term_envelope(tgt, a.sr, cepstra=a.cepstra)
     print(f"  الهدف: {target.name} · النبرة {f_tgt:.1f} هرتز · الطابع من {frames_t} إطارًا")
     print(f"  التسجيلات: {len(takes)} · الوضع: formant={a.formant} · القوة {a.strength}")
@@ -103,6 +110,20 @@ def main() -> int:
             # against the result rather than assumed. Two attempts is enough; a
             # third has never been needed and would only cost time.
             factor = f_tgt / f_src
+            # Never drag a voice so far that it stops being itself. With the true
+            # pitch measured (~99 Hz for this narrator) some takes would otherwise
+            # be pulled 10 semitones down, which sounds like slow motion, not a
+            # person. The cap keeps the move inside the range where a voice stays
+            # recognisable; the report says when it bit.
+            cap = 2 ** (a.max_shift / 12.0)
+            if factor < 1 / cap:
+                print(f"  {p.stem}: المطلوب {12 * np.log2(factor):+.1f} نصف نغمة "
+                      f"— قُصّ إلى -{a.max_shift:.1f}", file=sys.stderr)
+                factor = 1 / cap
+            elif factor > cap:
+                print(f"  {p.stem}: المطلوب {12 * np.log2(factor):+.1f} نصف نغمة "
+                      f"— قُصّ إلى +{a.max_shift:.1f}", file=sys.stderr)
+                factor = cap
             for attempt in range(3):
                 if abs(12 * np.log2(factor)) < 0.05:
                     break
