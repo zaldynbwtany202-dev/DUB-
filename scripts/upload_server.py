@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "36"
+BUILD = "37"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -86,6 +86,15 @@ LABELS = {
     "voice-check": ("مقارنة: ملفك المختار ثم نفس الجملة داخل الفيلم (10 ثوان)",
                     "لتسمع أن الصوت محفوظ: 163.9 هرتز في ملفك، و172.4 داخل الفيلم "
                     "(فرق نصف نغمة، سببه التسريع الزمني)"),
+    "voice13-natural": ("★ صوتك بلا أي ضغط زمني — بسرعته الطبيعية (98 ثانية)",
+                       "صوت 13 كما خرج من المحرك حرفيًا: لا تسريع، لا قصّ صمت، لا EQ، "
+                       "لا ضغط، لا إزاحة. لهذا يحتاج الفيلم إلى ضغط 1.4× ليدخل في وقته — "
+                       "وهذه الصفحة تعرض الفرق. المتأخر 11 و21 ثانية لأن الكلام بطبيعته أطول."),
+    "ab-pipeline": ("نفس الكلمات أربع طرق — أيها صوتك؟ (45 ثانية)",
+                    "00 كما خرج من المحرك · 01 مضغوط 1.4× بـatempo · 02 مضغوط 1.4× "
+                    "بـrubberband · 03 كما كان الفيلم يخرجه (قصّ صمت + ضغط). "
+                    "كلها بمستوى واحد وبلا EQ ولا ضغط، والقياس: تغيّر الطابع عن الأصل "
+                    "1.18 · 1.56 · 1.49 dB/بن — أي أن الضغط والقصّ يغيّران الصوت فعلًا."),
     "approved-voice": ("★ الصوت الذي اخترته — كما هو، بلا أي معالجة (5 ثوان)",
                        "هذا هو الملف الذي أعجبك حرفيًا: صوت 13 بنبرة 163.9 هرتز، "
                        "لا تسريع ولا EQ ولا ضغط. المرجع الذي نقيس عليه كل شيء بعده."),
@@ -202,7 +211,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"voice13-clean", "voice13-music", "voice-check"}
+        PAGE_ALLOW = {"voice13-natural", "ab-pipeline"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
