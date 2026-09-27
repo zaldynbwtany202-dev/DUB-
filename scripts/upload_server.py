@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "39"
+BUILD = "40"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -86,16 +86,18 @@ LABELS = {
     "voice-check": ("مقارنة: ملفك المختار ثم نفس الجملة داخل الفيلم (10 ثوان)",
                     "لتسمع أن الصوت محفوظ: 163.9 هرتز في ملفك، و172.4 داخل الفيلم "
                     "(فرق نصف نغمة، سببه التسريع الزمني)"),
+    "new-voices": ("★ أصوات لم تسمعها بعد — للوصول إلى الصوت الأفضل (73 ثانية)",
+                   "00 الراوي (المرجع) · 01 الصوت المعتمد 13 · ثم سبعة أصوات جديدة: "
+                   "02=00 · 03=01 · 04=02 · 05=03 · 06=04 · 07=11 · 08=12. "
+                   "بلا تحويل ولا EQ، ومستوى واحد — فالفرق صوت لا معالجة. "
+                   "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
+                   "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
+                   "قل الرقم وأبني لك عيّنة كاملة به"),
     "voice13-synced": ("★ الصوت المعتمد — محفوظ ومقفل لاستعماله في أي فيلم (2:17)",
                        "هذا هو الصوت الذي أجزه: صوت 13 كما يخرج من المحرك، بلا تحويل طابع "
                        "وبلا EQ وبلا ضغط، والفارق الوحيد ضغط زمني atempo ليقع الكلام في وقته. "
                        "الوصفة مقفلة في config/voice-lock.json وينفّذها أمر واحد "
                        "(scripts/dub_locked_voice.py) على أي فيلم جديد — بلا إعادة قرار."),
-    "voice13-synced": ("★ الصوت والمزامنة معًا — صوتك بلا تحويل، والكلام في وقته (2:17)",
-                       "نفس الصوت الذي أعجبك حرفيًا (صوت 13 كما خرج من المحرك، بلا تحويل "
-                       "طابع وبلا EQ وبلا ضغط)، والفارق الوحيد ضغط زمني 1.36–1.56× بـatempo "
-                       "الذي لا يغيّر النبرة — فيدخل كل كلام في وقته: أول كلام يبدأ "
-                       "0.16–0.20 ثانية من وقته في المجموعات الست. -16 LUFS وسقف -1.5 dBTP"),
     "voice13-natural": ("★ صوتك بلا أي ضغط زمني — بسرعته الطبيعية (98 ثانية)",
                        "صوت 13 كما خرج من المحرك حرفيًا: لا تسريع، لا قصّ صمت، لا EQ، "
                        "لا ضغط، لا إزاحة. لهذا يحتاج الفيلم إلى ضغط 1.4× ليدخل في وقته — "
@@ -221,7 +223,7 @@ def render_previews():
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        PAGE_ALLOW = {"voice13-synced"}   # the approved reference; a new film adds its own
+        PAGE_ALLOW = {"new-voices", "voice13-synced"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
