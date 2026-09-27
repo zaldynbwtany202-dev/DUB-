@@ -1,0 +1,1163 @@
+{
+  "range": [
+    0,
+    25
+  ],
+  "anchor": 0.0,
+  "before": {
+    "mean_step": 0.894,
+    "max_step": 2.58,
+    "mean_dev": 1.344,
+    "excursion": 5.86,
+    "n": 26
+  },
+  "after": {
+    "mean_step": 0.689,
+    "max_step": 1.96,
+    "mean_dev": 1.018,
+    "excursion": 4.34,
+    "n": 26
+  },
+  "groups": [
+    {
+      "group": 0,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g000",
+          "voiced": 0.234,
+          "median": 118.8,
+          "p10": 103.0,
+          "p90": 146.3,
+          "semis": -2.49,
+          "drift_hz": 29.0,
+          "drift_semis": 4.12,
+          "path": "work/into-the-wild/takes-voice13/g000.mp3",
+          "cost": 3.9320000000000004
+        },
+        {
+          "name": "g000.alt1",
+          "voiced": 0.21,
+          "median": 115.4,
+          "p10": 98.0,
+          "p90": 138.7,
+          "semis": -3.0,
+          "drift_hz": 26.1,
+          "drift_semis": 3.88,
+          "path": "work/into-the-wild/takes-voice13/candidates/g000.alt1.mp3",
+          "cost": 4.358
+        },
+        {
+          "name": "g000.alt2",
+          "voiced": 0.235,
+          "median": 129.7,
+          "p10": 109.6,
+          "p90": 157.9,
+          "semis": -0.97,
+          "drift_hz": 17.0,
+          "drift_semis": 2.25,
+          "path": "work/into-the-wild/takes-voice13/candidates/g000.alt2.mp3",
+          "cost": 1.7574999999999998
+        }
+      ],
+      "chosen": {
+        "name": "g000.alt2",
+        "voiced": 0.235,
+        "median": 129.7,
+        "p10": 109.6,
+        "p90": 157.9,
+        "semis": -0.97,
+        "drift_hz": 17.0,
+        "drift_semis": 2.25,
+        "path": "work/into-the-wild/takes-voice13/candidates/g000.alt2.mp3",
+        "cost": 1.7574999999999998
+      }
+    },
+    {
+      "group": 1,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g001",
+          "voiced": 0.263,
+          "median": 137.9,
+          "p10": 116.5,
+          "p90": 166.7,
+          "semis": 0.09,
+          "drift_hz": 24.1,
+          "drift_semis": 2.95,
+          "path": "work/into-the-wild/takes-voice13/g001.mp3",
+          "cost": 1.1225
+        },
+        {
+          "name": "g001.alt1",
+          "voiced": 0.247,
+          "median": 171.4,
+          "p10": 140.4,
+          "p90": 200.0,
+          "semis": 3.86,
+          "drift_hz": 24.0,
+          "drift_semis": 2.47,
+          "path": "work/into-the-wild/takes-voice13/candidates/g001.alt1.mp3",
+          "cost": 4.7245
+        }
+      ],
+      "chosen": {
+        "name": "g001",
+        "voiced": 0.263,
+        "median": 137.9,
+        "p10": 116.5,
+        "p90": 166.7,
+        "semis": 0.09,
+        "drift_hz": 24.1,
+        "drift_semis": 2.95,
+        "path": "work/into-the-wild/takes-voice13/g001.mp3",
+        "cost": 1.1225
+      }
+    },
+    {
+      "group": 2,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g002",
+          "voiced": 0.275,
+          "median": 133.3,
+          "p10": 115.4,
+          "p90": 162.2,
+          "semis": -0.49,
+          "drift_hz": 25.4,
+          "drift_semis": 3.23,
+          "path": "work/into-the-wild/takes-voice13/g002.mp3",
+          "cost": 1.6204999999999998
+        },
+        {
+          "name": "g002.alt1",
+          "voiced": 0.295,
+          "median": 135.6,
+          "p10": 114.3,
+          "p90": 164.4,
+          "semis": -0.2,
+          "drift_hz": 34.2,
+          "drift_semis": 4.33,
+          "path": "work/into-the-wild/takes-voice13/candidates/g002.alt1.mp3",
+          "cost": 1.7154999999999998
+        }
+      ],
+      "chosen": {
+        "name": "g002.alt1",
+        "voiced": 0.295,
+        "median": 135.6,
+        "p10": 114.3,
+        "p90": 164.4,
+        "semis": -0.2,
+        "drift_hz": 34.2,
+        "drift_semis": 4.33,
+        "path": "work/into-the-wild/takes-voice13/candidates/g002.alt1.mp3",
+        "cost": 1.7154999999999998
+      }
+    },
+    {
+      "group": 3,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g003",
+          "voiced": 0.231,
+          "median": 153.8,
+          "p10": 128.3,
+          "p90": 184.6,
+          "semis": 1.98,
+          "drift_hz": 35.8,
+          "drift_semis": 4.08,
+          "path": "work/into-the-wild/takes-voice13/g003.mp3",
+          "cost": 3.408
+        },
+        {
+          "name": "g003.alt1",
+          "voiced": 0.251,
+          "median": 147.2,
+          "p10": 123.1,
+          "p90": 177.8,
+          "semis": 1.22,
+          "drift_hz": 36.4,
+          "drift_semis": 4.2,
+          "path": "work/into-the-wild/takes-voice13/candidates/g003.alt1.mp3",
+          "cost": 2.69
+        },
+        {
+          "name": "g003.alt2",
+          "voiced": 0.24,
+          "median": 134.8,
+          "p10": 115.9,
+          "p90": 166.7,
+          "semis": -0.3,
+          "drift_hz": 26.0,
+          "drift_semis": 3.37,
+          "path": "work/into-the-wild/takes-voice13/candidates/g003.alt2.mp3",
+          "cost": 1.4795
+        }
+      ],
+      "chosen": {
+        "name": "g003.alt2",
+        "voiced": 0.24,
+        "median": 134.8,
+        "p10": 115.9,
+        "p90": 166.7,
+        "semis": -0.3,
+        "drift_hz": 26.0,
+        "drift_semis": 3.37,
+        "path": "work/into-the-wild/takes-voice13/candidates/g003.alt2.mp3",
+        "cost": 1.4795
+      }
+    },
+    {
+      "group": 4,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g004",
+          "voiced": 0.283,
+          "median": 136.4,
+          "p10": 113.7,
+          "p90": 166.7,
+          "semis": -0.11,
+          "drift_hz": 25.1,
+          "drift_semis": 3.21,
+          "path": "work/into-the-wild/takes-voice13/g004.mp3",
+          "cost": 1.2335
+        },
+        {
+          "name": "g004.alt1",
+          "voiced": 0.263,
+          "median": 156.9,
+          "p10": 130.4,
+          "p90": 181.8,
+          "semis": 2.32,
+          "drift_hz": 15.8,
+          "drift_semis": 1.78,
+          "path": "work/into-the-wild/takes-voice13/candidates/g004.alt1.mp3",
+          "cost": 2.9429999999999996
+        }
+      ],
+      "chosen": {
+        "name": "g004",
+        "voiced": 0.283,
+        "median": 136.4,
+        "p10": 113.7,
+        "p90": 166.7,
+        "semis": -0.11,
+        "drift_hz": 25.1,
+        "drift_semis": 3.21,
+        "path": "work/into-the-wild/takes-voice13/g004.mp3",
+        "cost": 1.2335
+      }
+    },
+    {
+      "group": 5,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g005",
+          "voiced": 0.24,
+          "median": 140.4,
+          "p10": 118.8,
+          "p90": 169.0,
+          "semis": 0.39,
+          "drift_hz": 15.4,
+          "drift_semis": 1.88,
+          "path": "work/into-the-wild/takes-voice13/g005.mp3",
+          "cost": 1.048
+        }
+      ],
+      "chosen": {
+        "name": "g005",
+        "voiced": 0.24,
+        "median": 140.4,
+        "p10": 118.8,
+        "p90": 169.0,
+        "semis": 0.39,
+        "drift_hz": 15.4,
+        "drift_semis": 1.88,
+        "path": "work/into-the-wild/takes-voice13/g005.mp3",
+        "cost": 1.048
+      }
+    },
+    {
+      "group": 6,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g006",
+          "voiced": 0.282,
+          "median": 140.4,
+          "p10": 118.8,
+          "p90": 171.4,
+          "semis": 0.39,
+          "drift_hz": 21.5,
+          "drift_semis": 2.59,
+          "path": "work/into-the-wild/takes-voice13/g006.mp3",
+          "cost": 1.2965
+        },
+        {
+          "name": "g006.alt1",
+          "voiced": 0.282,
+          "median": 140.4,
+          "p10": 118.8,
+          "p90": 171.4,
+          "semis": 0.39,
+          "drift_hz": 21.5,
+          "drift_semis": 2.59,
+          "path": "work/into-the-wild/takes-voice13/candidates/g006.alt1.mp3",
+          "cost": 1.2965
+        }
+      ],
+      "chosen": {
+        "name": "g006",
+        "voiced": 0.282,
+        "median": 140.4,
+        "p10": 118.8,
+        "p90": 171.4,
+        "semis": 0.39,
+        "drift_hz": 21.5,
+        "drift_semis": 2.59,
+        "path": "work/into-the-wild/takes-voice13/g006.mp3",
+        "cost": 1.2965
+      }
+    },
+    {
+      "group": 7,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g007",
+          "voiced": 0.272,
+          "median": 144.6,
+          "p10": 119.4,
+          "p90": 169.0,
+          "semis": 0.91,
+          "drift_hz": 20.0,
+          "drift_semis": 2.37,
+          "path": "work/into-the-wild/takes-voice13/g007.mp3",
+          "cost": 1.7395
+        },
+        {
+          "name": "g007.alt1",
+          "voiced": 0.23,
+          "median": 147.2,
+          "p10": 122.2,
+          "p90": 176.5,
+          "semis": 1.22,
+          "drift_hz": 38.8,
+          "drift_semis": 4.68,
+          "path": "work/into-the-wild/takes-voice13/candidates/g007.alt1.mp3",
+          "cost": 2.8579999999999997
+        },
+        {
+          "name": "g007.alt2",
+          "voiced": 0.272,
+          "median": 144.6,
+          "p10": 119.4,
+          "p90": 169.0,
+          "semis": 0.91,
+          "drift_hz": 20.0,
+          "drift_semis": 2.37,
+          "path": "work/into-the-wild/takes-voice13/candidates/g007.alt2.mp3",
+          "cost": 1.7395
+        }
+      ],
+      "chosen": {
+        "name": "g007",
+        "voiced": 0.272,
+        "median": 144.6,
+        "p10": 119.4,
+        "p90": 169.0,
+        "semis": 0.91,
+        "drift_hz": 20.0,
+        "drift_semis": 2.37,
+        "path": "work/into-the-wild/takes-voice13/g007.mp3",
+        "cost": 1.7395
+      }
+    },
+    {
+      "group": 8,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g008",
+          "voiced": 0.239,
+          "median": 143.7,
+          "p10": 117.8,
+          "p90": 170.2,
+          "semis": 0.8,
+          "drift_hz": 33.9,
+          "drift_semis": 4.18,
+          "path": "work/into-the-wild/takes-voice13/g008.mp3",
+          "cost": 2.263
+        }
+      ],
+      "chosen": {
+        "name": "g008",
+        "voiced": 0.239,
+        "median": 143.7,
+        "p10": 117.8,
+        "p90": 170.2,
+        "semis": 0.8,
+        "drift_hz": 33.9,
+        "drift_semis": 4.18,
+        "path": "work/into-the-wild/takes-voice13/g008.mp3",
+        "cost": 2.263
+      }
+    },
+    {
+      "group": 9,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g009",
+          "voiced": 0.236,
+          "median": 150.9,
+          "p10": 124.4,
+          "p90": 180.5,
+          "semis": 1.65,
+          "drift_hz": 28.0,
+          "drift_semis": 3.24,
+          "path": "work/into-the-wild/takes-voice13/g009.mp3",
+          "cost": 2.784
+        },
+        {
+          "name": "g009.alt1",
+          "voiced": 0.262,
+          "median": 160.0,
+          "p10": 129.0,
+          "p90": 186.0,
+          "semis": 2.66,
+          "drift_hz": 21.4,
+          "drift_semis": 2.31,
+          "path": "work/into-the-wild/takes-voice13/candidates/g009.alt1.mp3",
+          "cost": 3.4685
+        }
+      ],
+      "chosen": {
+        "name": "g009",
+        "voiced": 0.236,
+        "median": 150.9,
+        "p10": 124.4,
+        "p90": 180.5,
+        "semis": 1.65,
+        "drift_hz": 28.0,
+        "drift_semis": 3.24,
+        "path": "work/into-the-wild/takes-voice13/g009.mp3",
+        "cost": 2.784
+      }
+    },
+    {
+      "group": 10,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g010",
+          "voiced": 0.285,
+          "median": 154.8,
+          "p10": 129.7,
+          "p90": 186.0,
+          "semis": 2.09,
+          "drift_hz": 29.0,
+          "drift_semis": 3.24,
+          "path": "work/into-the-wild/takes-voice13/g010.mp3",
+          "cost": 3.2239999999999998
+        },
+        {
+          "name": "g010.alt1",
+          "voiced": 0.289,
+          "median": 127.0,
+          "p10": 105.7,
+          "p90": 150.9,
+          "semis": -1.34,
+          "drift_hz": 27.0,
+          "drift_semis": 3.84,
+          "path": "work/into-the-wild/takes-voice13/candidates/g010.alt1.mp3",
+          "cost": 2.684
+        },
+        {
+          "name": "g010.alt2",
+          "voiced": 0.285,
+          "median": 154.8,
+          "p10": 129.7,
+          "p90": 186.0,
+          "semis": 2.09,
+          "drift_hz": 29.0,
+          "drift_semis": 3.24,
+          "path": "work/into-the-wild/takes-voice13/candidates/g010.alt2.mp3",
+          "cost": 3.2239999999999998
+        }
+      ],
+      "chosen": {
+        "name": "g010",
+        "voiced": 0.285,
+        "median": 154.8,
+        "p10": 129.7,
+        "p90": 186.0,
+        "semis": 2.09,
+        "drift_hz": 29.0,
+        "drift_semis": 3.24,
+        "path": "work/into-the-wild/takes-voice13/g010.mp3",
+        "cost": 3.2239999999999998
+      }
+    },
+    {
+      "group": 11,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g011",
+          "voiced": 0.195,
+          "median": 144.6,
+          "p10": 119.4,
+          "p90": 175.2,
+          "semis": 0.91,
+          "drift_hz": 26.8,
+          "drift_semis": 3.27,
+          "path": "work/into-the-wild/takes-voice13/g011.mp3",
+          "cost": 2.0545
+        },
+        {
+          "name": "g011.alt1",
+          "voiced": 0.195,
+          "median": 144.6,
+          "p10": 119.4,
+          "p90": 175.2,
+          "semis": 0.91,
+          "drift_hz": 26.8,
+          "drift_semis": 3.27,
+          "path": "work/into-the-wild/takes-voice13/candidates/g011.alt1.mp3",
+          "cost": 2.0545
+        },
+        {
+          "name": "g011.alt2",
+          "voiced": 0.245,
+          "median": 161.1,
+          "p10": 131.1,
+          "p90": 190.5,
+          "semis": 2.78,
+          "drift_hz": 20.8,
+          "drift_semis": 2.22,
+          "path": "work/into-the-wild/takes-voice13/candidates/g011.alt2.mp3",
+          "cost": 3.557
+        }
+      ],
+      "chosen": {
+        "name": "g011",
+        "voiced": 0.195,
+        "median": 144.6,
+        "p10": 119.4,
+        "p90": 175.2,
+        "semis": 0.91,
+        "drift_hz": 26.8,
+        "drift_semis": 3.27,
+        "path": "work/into-the-wild/takes-voice13/g011.mp3",
+        "cost": 2.0545
+      }
+    },
+    {
+      "group": 12,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g012",
+          "voiced": 0.287,
+          "median": 137.9,
+          "p10": 117.6,
+          "p90": 167.8,
+          "semis": 0.09,
+          "drift_hz": 33.4,
+          "drift_semis": 4.18,
+          "path": "work/into-the-wild/takes-voice13/g012.mp3",
+          "cost": 1.553
+        }
+      ],
+      "chosen": {
+        "name": "g012",
+        "voiced": 0.287,
+        "median": 137.9,
+        "p10": 117.6,
+        "p90": 167.8,
+        "semis": 0.09,
+        "drift_hz": 33.4,
+        "drift_semis": 4.18,
+        "path": "work/into-the-wild/takes-voice13/g012.mp3",
+        "cost": 1.553
+      }
+    },
+    {
+      "group": 13,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g013",
+          "voiced": 0.276,
+          "median": 148.1,
+          "p10": 122.4,
+          "p90": 175.2,
+          "semis": 1.33,
+          "drift_hz": 20.1,
+          "drift_semis": 2.3,
+          "path": "work/into-the-wild/takes-voice13/g013.mp3",
+          "cost": 2.135
+        }
+      ],
+      "chosen": {
+        "name": "g013",
+        "voiced": 0.276,
+        "median": 148.1,
+        "p10": 122.4,
+        "p90": 175.2,
+        "semis": 1.33,
+        "drift_hz": 20.1,
+        "drift_semis": 2.3,
+        "path": "work/into-the-wild/takes-voice13/g013.mp3",
+        "cost": 2.135
+      }
+    },
+    {
+      "group": 14,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g014",
+          "voiced": 0.241,
+          "median": 150.0,
+          "p10": 122.4,
+          "p90": 180.5,
+          "semis": 1.54,
+          "drift_hz": 30.9,
+          "drift_semis": 3.59,
+          "path": "work/into-the-wild/takes-voice13/g014.mp3",
+          "cost": 2.7965
+        },
+        {
+          "name": "g014.alt1",
+          "voiced": 0.244,
+          "median": 160.0,
+          "p10": 131.9,
+          "p90": 190.5,
+          "semis": 2.66,
+          "drift_hz": 23.0,
+          "drift_semis": 2.48,
+          "path": "work/into-the-wild/takes-voice13/candidates/g014.alt1.mp3",
+          "cost": 3.528
+        },
+        {
+          "name": "g014.alt2",
+          "voiced": 0.241,
+          "median": 150.0,
+          "p10": 122.4,
+          "p90": 180.5,
+          "semis": 1.54,
+          "drift_hz": 30.9,
+          "drift_semis": 3.59,
+          "path": "work/into-the-wild/takes-voice13/candidates/g014.alt2.mp3",
+          "cost": 2.7965
+        }
+      ],
+      "chosen": {
+        "name": "g014",
+        "voiced": 0.241,
+        "median": 150.0,
+        "p10": 122.4,
+        "p90": 180.5,
+        "semis": 1.54,
+        "drift_hz": 30.9,
+        "drift_semis": 3.59,
+        "path": "work/into-the-wild/takes-voice13/g014.mp3",
+        "cost": 2.7965
+      }
+    },
+    {
+      "group": 15,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g015",
+          "voiced": 0.313,
+          "median": 147.2,
+          "p10": 122.4,
+          "p90": 177.8,
+          "semis": 1.22,
+          "drift_hz": 29.4,
+          "drift_semis": 3.39,
+          "path": "work/into-the-wild/takes-voice13/g015.mp3",
+          "cost": 2.4065
+        }
+      ],
+      "chosen": {
+        "name": "g015",
+        "voiced": 0.313,
+        "median": 147.2,
+        "p10": 122.4,
+        "p90": 177.8,
+        "semis": 1.22,
+        "drift_hz": 29.4,
+        "drift_semis": 3.39,
+        "path": "work/into-the-wild/takes-voice13/g015.mp3",
+        "cost": 2.4065
+      }
+    },
+    {
+      "group": 16,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g016",
+          "voiced": 0.254,
+          "median": 135.6,
+          "p10": 115.4,
+          "p90": 164.4,
+          "semis": -0.2,
+          "drift_hz": 23.3,
+          "drift_semis": 3.02,
+          "path": "work/into-the-wild/takes-voice13/g016.mp3",
+          "cost": 1.257
+        }
+      ],
+      "chosen": {
+        "name": "g016",
+        "voiced": 0.254,
+        "median": 135.6,
+        "p10": 115.4,
+        "p90": 164.4,
+        "semis": -0.2,
+        "drift_hz": 23.3,
+        "drift_semis": 3.02,
+        "path": "work/into-the-wild/takes-voice13/g016.mp3",
+        "cost": 1.257
+      }
+    },
+    {
+      "group": 17,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g017",
+          "voiced": 0.277,
+          "median": 151.9,
+          "p10": 124.3,
+          "p90": 181.8,
+          "semis": 1.76,
+          "drift_hz": 25.2,
+          "drift_semis": 2.86,
+          "path": "work/into-the-wild/takes-voice13/g017.mp3",
+          "cost": 2.761
+        }
+      ],
+      "chosen": {
+        "name": "g017",
+        "voiced": 0.277,
+        "median": 151.9,
+        "p10": 124.3,
+        "p90": 181.8,
+        "semis": 1.76,
+        "drift_hz": 25.2,
+        "drift_semis": 2.86,
+        "path": "work/into-the-wild/takes-voice13/g017.mp3",
+        "cost": 2.761
+      }
+    },
+    {
+      "group": 18,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g018",
+          "voiced": 0.202,
+          "median": 155.8,
+          "p10": 131.9,
+          "p90": 184.6,
+          "semis": 2.21,
+          "drift_hz": 21.5,
+          "drift_semis": 2.37,
+          "path": "work/into-the-wild/takes-voice13/g018.mp3",
+          "cost": 3.0395
+        },
+        {
+          "name": "g018.alt1",
+          "voiced": 0.202,
+          "median": 155.8,
+          "p10": 131.9,
+          "p90": 184.6,
+          "semis": 2.21,
+          "drift_hz": 21.5,
+          "drift_semis": 2.37,
+          "path": "work/into-the-wild/takes-voice13/candidates/g018.alt1.mp3",
+          "cost": 3.0395
+        }
+      ],
+      "chosen": {
+        "name": "g018",
+        "voiced": 0.202,
+        "median": 155.8,
+        "p10": 131.9,
+        "p90": 184.6,
+        "semis": 2.21,
+        "drift_hz": 21.5,
+        "drift_semis": 2.37,
+        "path": "work/into-the-wild/takes-voice13/g018.mp3",
+        "cost": 3.0395
+      }
+    },
+    {
+      "group": 19,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g019",
+          "voiced": 0.321,
+          "median": 166.7,
+          "p10": 137.9,
+          "p90": 201.7,
+          "semis": 3.37,
+          "drift_hz": 29.8,
+          "drift_semis": 3.05,
+          "path": "work/into-the-wild/takes-voice13/g019.mp3",
+          "cost": 4.4375
+        },
+        {
+          "name": "g019.alt1",
+          "voiced": 0.321,
+          "median": 166.7,
+          "p10": 137.9,
+          "p90": 201.7,
+          "semis": 3.37,
+          "drift_hz": 29.8,
+          "drift_semis": 3.05,
+          "path": "work/into-the-wild/takes-voice13/candidates/g019.alt1.mp3",
+          "cost": 4.4375
+        },
+        {
+          "name": "g019.alt2",
+          "voiced": 0.296,
+          "median": 135.6,
+          "p10": 115.4,
+          "p90": 167.8,
+          "semis": -0.2,
+          "drift_hz": 25.1,
+          "drift_semis": 3.14,
+          "path": "work/into-the-wild/takes-voice13/candidates/g019.alt2.mp3",
+          "cost": 1.299
+        },
+        {
+          "name": "g019.alt3",
+          "voiced": 0.265,
+          "median": 134.8,
+          "p10": 114.3,
+          "p90": 161.1,
+          "semis": -0.3,
+          "drift_hz": 21.6,
+          "drift_semis": 2.84,
+          "path": "work/into-the-wild/takes-voice13/candidates/g019.alt3.mp3",
+          "cost": 1.2939999999999998
+        },
+        {
+          "name": "g019.alt4",
+          "voiced": 0.281,
+          "median": 122.4,
+          "p10": 103.4,
+          "p90": 149.1,
+          "semis": -1.97,
+          "drift_hz": 17.9,
+          "drift_semis": 2.5,
+          "path": "work/into-the-wild/takes-voice13/candidates/g019.alt4.mp3",
+          "cost": 2.8449999999999998
+        }
+      ],
+      "chosen": {
+        "name": "g019",
+        "voiced": 0.321,
+        "median": 166.7,
+        "p10": 137.9,
+        "p90": 201.7,
+        "semis": 3.37,
+        "drift_hz": 29.8,
+        "drift_semis": 3.05,
+        "path": "work/into-the-wild/takes-voice13/g019.mp3",
+        "cost": 4.4375
+      }
+    },
+    {
+      "group": 20,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g020",
+          "voiced": 0.293,
+          "median": 160.0,
+          "p10": 135.6,
+          "p90": 189.0,
+          "semis": 2.66,
+          "drift_hz": 23.9,
+          "drift_semis": 2.56,
+          "path": "work/into-the-wild/takes-voice13/g020.mp3",
+          "cost": 3.556
+        },
+        {
+          "name": "g020.alt1",
+          "voiced": 0.283,
+          "median": 154.8,
+          "p10": 131.1,
+          "p90": 192.0,
+          "semis": 2.09,
+          "drift_hz": 30.3,
+          "drift_semis": 3.47,
+          "path": "work/into-the-wild/takes-voice13/candidates/g020.alt1.mp3",
+          "cost": 3.3045
+        },
+        {
+          "name": "g020.alt2",
+          "voiced": 0.296,
+          "median": 167.8,
+          "p10": 139.5,
+          "p90": 200.2,
+          "semis": 3.49,
+          "drift_hz": 24.9,
+          "drift_semis": 2.59,
+          "path": "work/into-the-wild/takes-voice13/candidates/g020.alt2.mp3",
+          "cost": 4.3965
+        }
+      ],
+      "chosen": {
+        "name": "g020.alt1",
+        "voiced": 0.283,
+        "median": 154.8,
+        "p10": 131.1,
+        "p90": 192.0,
+        "semis": 2.09,
+        "drift_hz": 30.3,
+        "drift_semis": 3.47,
+        "path": "work/into-the-wild/takes-voice13/candidates/g020.alt1.mp3",
+        "cost": 3.3045
+      }
+    },
+    {
+      "group": 21,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g021",
+          "voiced": 0.227,
+          "median": 162.2,
+          "p10": 134.8,
+          "p90": 190.5,
+          "semis": 2.89,
+          "drift_hz": 29.8,
+          "drift_semis": 3.28,
+          "path": "work/into-the-wild/takes-voice13/g021.mp3",
+          "cost": 4.038
+        },
+        {
+          "name": "g021.alt1",
+          "voiced": 0.273,
+          "median": 146.3,
+          "p10": 121.2,
+          "p90": 172.7,
+          "semis": 1.12,
+          "drift_hz": 22.3,
+          "drift_semis": 2.64,
+          "path": "work/into-the-wild/takes-voice13/candidates/g021.alt1.mp3",
+          "cost": 2.044
+        },
+        {
+          "name": "g021.alt2",
+          "voiced": 0.227,
+          "median": 162.2,
+          "p10": 134.8,
+          "p90": 190.5,
+          "semis": 2.89,
+          "drift_hz": 29.8,
+          "drift_semis": 3.28,
+          "path": "work/into-the-wild/takes-voice13/candidates/g021.alt2.mp3",
+          "cost": 4.038
+        }
+      ],
+      "chosen": {
+        "name": "g021.alt1",
+        "voiced": 0.273,
+        "median": 146.3,
+        "p10": 121.2,
+        "p90": 172.7,
+        "semis": 1.12,
+        "drift_hz": 22.3,
+        "drift_semis": 2.64,
+        "path": "work/into-the-wild/takes-voice13/candidates/g021.alt1.mp3",
+        "cost": 2.044
+      }
+    },
+    {
+      "group": 22,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g022",
+          "voiced": 0.199,
+          "median": 160.0,
+          "p10": 131.4,
+          "p90": 190.5,
+          "semis": 2.66,
+          "drift_hz": 30.5,
+          "drift_semis": 3.26,
+          "path": "work/into-the-wild/takes-voice13/g022.mp3",
+          "cost": 3.801
+        },
+        {
+          "name": "g022.alt1",
+          "voiced": 0.251,
+          "median": 181.8,
+          "p10": 150.0,
+          "p90": 212.4,
+          "semis": 4.87,
+          "drift_hz": 26.5,
+          "drift_semis": 2.54,
+          "path": "work/into-the-wild/takes-voice13/candidates/g022.alt1.mp3",
+          "cost": 5.759
+        },
+        {
+          "name": "g022.alt2",
+          "voiced": 0.202,
+          "median": 137.1,
+          "p10": 117.1,
+          "p90": 166.7,
+          "semis": -0.01,
+          "drift_hz": 25.1,
+          "drift_semis": 3.14,
+          "path": "work/into-the-wild/takes-voice13/candidates/g022.alt2.mp3",
+          "cost": 1.109
+        }
+      ],
+      "chosen": {
+        "name": "g022.alt2",
+        "voiced": 0.202,
+        "median": 137.1,
+        "p10": 117.1,
+        "p90": 166.7,
+        "semis": -0.01,
+        "drift_hz": 25.1,
+        "drift_semis": 3.14,
+        "path": "work/into-the-wild/takes-voice13/candidates/g022.alt2.mp3",
+        "cost": 1.109
+      }
+    },
+    {
+      "group": 23,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g023",
+          "voiced": 0.322,
+          "median": 142.9,
+          "p10": 121.8,
+          "p90": 175.2,
+          "semis": 0.7,
+          "drift_hz": 13.5,
+          "drift_semis": 1.67,
+          "path": "work/into-the-wild/takes-voice13/g023.mp3",
+          "cost": 1.2845
+        }
+      ],
+      "chosen": {
+        "name": "g023",
+        "voiced": 0.322,
+        "median": 142.9,
+        "p10": 121.8,
+        "p90": 175.2,
+        "semis": 0.7,
+        "drift_hz": 13.5,
+        "drift_semis": 1.67,
+        "path": "work/into-the-wild/takes-voice13/g023.mp3",
+        "cost": 1.2845
+      }
+    },
+    {
+      "group": 24,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g024",
+          "voiced": 0.283,
+          "median": 145.5,
+          "p10": 124.1,
+          "p90": 177.8,
+          "semis": 1.01,
+          "drift_hz": 29.7,
+          "drift_semis": 3.57,
+          "path": "work/into-the-wild/takes-voice13/g024.mp3",
+          "cost": 2.2595
+        },
+        {
+          "name": "g024.alt1",
+          "voiced": 0.329,
+          "median": 147.2,
+          "p10": 125.3,
+          "p90": 175.8,
+          "semis": 1.22,
+          "drift_hz": 16.7,
+          "drift_semis": 1.94,
+          "path": "work/into-the-wild/takes-voice13/candidates/g024.alt1.mp3",
+          "cost": 1.899
+        },
+        {
+          "name": "g024.alt2",
+          "voiced": 0.283,
+          "median": 145.5,
+          "p10": 124.1,
+          "p90": 177.8,
+          "semis": 1.01,
+          "drift_hz": 29.7,
+          "drift_semis": 3.57,
+          "path": "work/into-the-wild/takes-voice13/candidates/g024.alt2.mp3",
+          "cost": 2.2595
+        }
+      ],
+      "chosen": {
+        "name": "g024",
+        "voiced": 0.283,
+        "median": 145.5,
+        "p10": 124.1,
+        "p90": 177.8,
+        "semis": 1.01,
+        "drift_hz": 29.7,
+        "drift_semis": 3.57,
+        "path": "work/into-the-wild/takes-voice13/g024.mp3",
+        "cost": 2.2595
+      }
+    },
+    {
+      "group": 25,
+      "target": 137.2,
+      "options": [
+        {
+          "name": "g025",
+          "voiced": 0.222,
+          "median": 145.5,
+          "p10": 123.1,
+          "p90": 175.2,
+          "semis": 1.01,
+          "drift_hz": 27.7,
+          "drift_semis": 3.27,
+          "path": "work/into-the-wild/takes-voice13/g025.mp3",
+          "cost": 2.1544999999999996
+        }
+      ],
+      "chosen": {
+        "name": "g025",
+        "voiced": 0.222,
+        "median": 145.5,
+        "p10": 123.1,
+        "p90": 175.2,
+        "semis": 1.01,
+        "drift_hz": 27.7,
+        "drift_semis": 3.27,
+        "path": "work/into-the-wild/takes-voice13/g025.mp3",
+        "cost": 2.1544999999999996
+      }
+    }
+  ]
+}
