@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "41"
+BUILD = "42"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,14 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "human-voices": ("★ عيّنات بشرية احترافية — ثمانية أصوات حقيقية من مكتبتك (92 ثانية)",
+                     "قبل كل عيّنة نغمات قصيرة بعددها: واحدة للعيّنة 1، اثنتان للعيّنة 2، وهكذا. "
+                     "01 راوي فيلم Into the Wild · 02 راوي ملخص «الدكتور بيقتل طالبه» · "
+                     "03 راوي ملخص Into the Wild (0911) · 04 دبلجة كرتون السندباد العربية · "
+                     "05 راوي قصة «حلم الحج» · 06 راوي «المرأة التي تدرك أنها ميتة» · "
+                     "07 عرض ProStudio العربي · 08 مقطع الاختبار القصير. "
+                     "كلها بمستوى واحد وبلا أي معالجة: لا EQ ولا ضغط ولا تسريع ولا تغيير نبرة. "
+                     "الشبكة الخارجية مسدودة بالكامل عندي (كل المواقع ترد 000) فالعيّنات مأخوذة من ملفاتك أنت."),
     "voice13-synced": ("★ صوتك النهائي — جُرّب كل بديل ورُفض، وبقي هذا (2:17)",
                        "هذا هو الصوت الذي أجزه: صوت 13 كما يخرج من المحرك، بلا تحويل طابع "
                        "وبلا EQ وبلا ضغط، والفارق الوحيد ضغط زمني atempo ليقع الكلام في وقته. "
@@ -228,7 +236,7 @@ def render_previews():
         # The only thing on the page: the accepted voice, kept for whatever
         # film comes next. The audition the ear rejected is off the page but
         # stays on disk (previews/new-voices.mp3) and in the repository.
-        PAGE_ALLOW = {"voice13-synced"}
+        PAGE_ALLOW = {"human-voices", "voice13-synced"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
