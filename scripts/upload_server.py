@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "52"
+BUILD = "53"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,21 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "voice15-test": ("★ الصوت الجديد (voice-15) داخل الفيلم — أول ثلاث مجموعات (1:07)",
+                      "تولّد هنا بمحرك الصوت الذي اخترته من الاستماع (نغمة/نغمتان) وليس من "
+                      "مكتبتك. سمعته في الصحرا: أول 66 ثانية من الفيلم بالصوت الجديد على "
+                      "الوصفة المقفلة نفسها — أخذة خام، atempo فقط، بلا قصّ صمت، ماستر "
+                      "−16 LUFS · −1.5 dBTP، وصورة منسوخة. القياس على أخذاته الثلاث: "
+                      "نبرته 92.6–108.1 هرتز (أعمق من راوي المكتبة 206 هرتز، وأعمق من 13)، "
+                      "وانتشار النبرة بين أخذاته 2.67 نصف نغمة فقط مقابل 6.44 للمحرك 13 — "
+                      "أي أهدأ بكثير. والتسليم اجتاز الفحص 7/7: تأخير 0.00 ث · أقصى سرعة "
+                      "1.55× · −16.00 LUFS · قمة −1.50 dBTP · أول إطار مطابق ∞. "
+                      "ثلاث مجموعات فقط الآن: الفيلم كله يُبنى به إذا قلت تمّ."),
+    "voice15-sample": ("★ الصوت الجديد — عيّنتان خامتان (61.5 ث)",
+                       "مقطعان من نص الفيلم نفسه بصوت voice-15: افتتاحية الفيلم، ثم مشهد "
+                       "البحر والخطر. بلا أي معالجة: لا EQ ولا ضغط ولا تسريع ولا تغيير نبرة "
+                       "— تسوية مستوى فقط. نبرة المقطع 95.9 هرتز (مدى 78–130). "
+                       "وللمقارنة الصريحة: 13 كان 137.2 هرتز وراوي مكتبتك 206 هرتز."),
     "cloned-voices": ("★ عيّنات مستنسخة من الأصوات البشرية عندك — اختر صوت الدبلجة "
                      "(98.7 ث · 8 أصوات · كلها تقول نفس السطر)",
                        "ثمانية أصوات: محتواها نفسه (سطر واحد من الفيلم بصوت المحرك 13) لكن كل عيّنة "
@@ -261,7 +276,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "cloned-voices", "human-voices-2", "voice13-created",
+            "voice15-test", "voice15-sample", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -282,7 +297,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"cloned-voices", "human-voices-2", "voice13-created"}
+        PAGE_ALLOW = {"voice15-test", "voice15-sample", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
