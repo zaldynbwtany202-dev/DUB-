@@ -1,0 +1,2 @@
+file '/home/user/DUB-/work/clip-happiness/card/card-seg.mp4'
+file '/home/user/DUB-/previews/clip-happiness-dub-v25.mp4'

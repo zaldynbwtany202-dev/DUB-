@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "65"
+BUILD = "66"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,17 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "clip-happiness-presented": ("★ التقديم — بطاقة عنوان عربية + صوتك المخصص (17.9 ث)",
+                                 "بطاقة العنوان التي طلبتها: «فنجان قهوة» كبيرة وتحتها «مهارة واختيار»، "
+                                 "تظهر بتلاشٍ ناعم في أول 3.6 ثانية من مقطعك ويُقرأ السطر بصوت "
+                                 "voice-25 — ثم يبدأ المقطع المدبلج بالصوت نفسه. البطاقة مبنية "
+                                 "بترجمة ASS (تشكيل عربي صحيح عبر libass/fribidi، خط DejaVu Sans "
+                                 "لأن تحميل خط عربي جديد محجوب في هذه البيئة) على صورة مقطعك مع "
+                                 "تعتيم تدريجي في البداية. الصوت: مقدمة ‎−16 LUFS مقيسة · قمة −4.90 "
+                                 "dBTP، والملف النهائي كله −16.0 LUFS وقمة −1.5 dBTP. ملاحظة اكتشفتها "
+                                 "بالعين: **مقطعك الأصلي يحمل ترجمة عربية مدمجة في الصورة** («الانسان "
+                                 "لو…») تظهر من الثانية 3.6 — ليست من عملنا، ويمكنني تغطيتها أو "
+                                 "تجميدها إن أردت. قياس السطر المقدَّم: 138.2 هرتز بلا أي انزياح."),
     "clip-pron": ("★ تحسين النطق — ثلاث طرق على سطر مقطعك بصوت 25 (48 ث)",
                   "النغمات قبل كل مقطع = رقمه: (01) النص كما هو — مطابقة 95% · خمسة أخطاء · "
                   "انزياح 1.86 · (02) النص بفواصل الجُمَل والنقطة — مطابقة 96% · "
@@ -429,7 +440,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -450,7 +461,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

@@ -487,11 +487,12 @@
    "value": "65",
    "since": "2026-09-28",
    "source": "BUILD 65 — clip-pron + voice25-run",
-   "status": "active",
+   "status": "superseded",
    "check": "build:65",
    "supersedes": [
     "64 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.clip-pron",
@@ -512,7 +513,43 @@
    "value": "التقديم: ينتظر توضيح المستخدم — هل يقصد افتتاحية مقروءة بصوت 25 أم تحسين بداية المقطع أم تقديم الفيديو للجمهور",
    "since": "2026-09-28",
    "source": "«اريد تحسين النطق و سلاسة الالقاء و التقديم»",
+   "status": "superseded",
+   "superseded_at": "2026-09-28"
+  },
+  {
+   "key": "page.build",
+   "value": "66",
+   "since": "2026-09-28",
+   "source": "BUILD 66 — clip-happiness-presented",
+   "status": "active",
+   "check": "build:66",
+   "supersedes": [
+    "65 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.clip-presented",
+   "value": "previews/clip-happiness-presented.mp4 — 17.95 ث · بطاقة عنوان ASS («فنجان قهوة / مهارة واختيار») + سطر بصوت 25 (138.2 هرتز) + المقطع المدبلج · −16.0 LUFS · قمة −1.5 dBTP",
+   "since": "2026-09-28",
+   "source": "BUILD 66 + «التقديم» = بطاقة عنوان",
    "status": "active"
+  },
+  {
+   "key": "finding.clip-subs",
+   "value": "مقطع المستخدم الأصلي يحمل ترجمة عربية مدمجة في الصورة (تبدأ 3.6 ث) — ليست من عملنا؛ عُرض عليه تغطيتها أو تجميدها",
+   "since": "2026-09-28",
+   "source": "فحص الإطارات عند الوصلة",
+   "status": "active"
+  },
+  {
+   "key": "open.presentation",
+   "value": "نُفِّذ (بطاقة عنوان) — ينتظر رأيه؛ والخيارات المفتوحة: تغطية الترجمة المدمجة · تعديل نص/زمن البطاقة",
+   "since": "2026-09-28",
+   "source": "BUILD 66",
+   "status": "active",
+   "supersedes": [
+    "التقديم: ينتظر توضيح المستخدم — هل يقصد افتتاحية مقروءة بصوت 25 أم تحسين بداية المقطع أم تقديم الفيديو للجمهور (منذ 2026-09-28)"
+   ]
   }
  ]
 }
