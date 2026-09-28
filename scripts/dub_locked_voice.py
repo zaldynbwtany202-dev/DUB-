@@ -105,6 +105,8 @@ def main() -> int:
         cmd.append("--no-tighten")          # cutting silence measurably changes the voice
     if asm["pack"]:
         cmd.append("--pack")
+    if float(asm.get("min_tempo", 1.0)) < 1.0:
+        cmd += ["--min-tempo", str(asm["min_tempo"])]
     placement = build / f"{a.slug}-placement-{a.start}-{a.end - 1}.json"
     cmd += ["--placement", str(placement)]
     print(f"\n  تجميع ({asm['stretcher']} · بلا قصّ صمت · بلا تحويل)")

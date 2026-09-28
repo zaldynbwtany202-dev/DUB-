@@ -1,10 +1,10 @@
 {
   "slug": "hajj-dream-2108415",
   "title": "رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!",
-  "original_name": "رجل كبير في العمر يحلم ان يحج بيت الله (الكعبة) فيبيع كل ابقاره وممتلكاته لكي يجمع المال، لكن!.mp4",
+  "original_name": "source.mp4",
   "size": 39320203,
   "sha256": "26a4dce57e2a780c4e32d57d13ea53d1bf01c8edc562680ca1561c04540cebb4",
-  "duration": 676.327619,
+  "duration": 676.33,
   "width": 854,
   "height": 480,
   "fps": "30",
@@ -13,7 +13,7 @@
   "source_lang": "auto",
   "uploaded_at": "2026-09-07T20:35:04Z",
   "received_at": "2026-09-07T20:48:03+00:00",
-  "status": "uploaded",
+  "status": "intake",
   "uploaded_with": "sendbox_split_verified_import",
   "original_upload_parts": 3,
   "poster": "poster.jpg",
@@ -41,5 +41,8 @@
     "completed_at": "2026-09-08T21:03:13+00:00",
     "candidate_voice_id": "voice-12",
     "timing_quality_approved": false
-  }
+  },
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "intake": "scripts/intake_new_video.py"
 }

@@ -147,6 +147,7 @@ def tighten(src, dst, tmpdir, pause_keep=0.25, min_pause=0.32,
 
 
 def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubberband",
+                min_tempo=1.0,
                 tighten_takes=True, pause_keep=0.25, avail=None):
     """Return (path to the fitted wav, tempo, natural length).
 
@@ -204,8 +205,12 @@ def build_group(take_dir, index, names, window, tmpdir, max_tempo, stretch="rubb
 
     room = window if avail is None else avail
     tempo = natural / room
-    if tempo < 1.0:
-        tempo = 1.0  # never slow the locked voice below natural
+    if tempo < min_tempo:
+        # A take shorter than its window leaves the next group's start as a hole
+        # of silence. atempo can stretch it back over the window without touching
+        # the tone (pitch is unchanged by atempo), so a slight slowdown is the one
+        # lever that closes a gap without editing the voice. 1.0 = never slow down.
+        tempo = min_tempo
     if tempo > max_tempo:
         # Without packing this is where a group's last words land on top of the
         # next group's first words: the audio overruns its slot and amix plays
@@ -243,6 +248,9 @@ def main():
                     help="safety ceiling only. It is not a substitute for setting the "
                          "music gain correctly -- alimiter barely moved the peak once the "
                          "sum had already reached full scale.")
+    ap.add_argument("--min-tempo", type=float, default=1.0,
+                    help="أبطأ تسريع مسموح: atempo يبطئ بلا تغيير النبرة، فيُستخدم لسدّ "
+                         "فراغ صمت ينشأ إذا كانت الأخذة أقصر من نافذة الأصل (1.0 = بلا تبطيء)")
     ap.add_argument("--max-tempo", type=float, default=1.80)
     ap.add_argument("--pack", action="store_true",
                     help="place each group as soon as the previous one ends instead of at "
@@ -284,7 +292,7 @@ def main():
         start = max(t0, cursor) if (a.pack and cursor is not None) else t0
         avail = max(0.05, t0 + window - start)
         fitted, tempo, natural = build_group(take_dir, i, names, window, tmpdir,
-                                             a.max_tempo, a.stretch,
+                                             a.max_tempo, a.stretch, a.min_tempo,
                                              not a.no_tighten, a.pause_keep,
                                              avail=avail if a.pack else None)
         end = start + natural / tempo

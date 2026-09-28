@@ -1,0 +1,9 @@
+{
+ "cues": 131,
+ "gap_mean": 1.88,
+ "gap_median": 1.88,
+ "gap_max": 1.88,
+ "gaps_over_0_4": [
+  1.88
+ ]
+}
