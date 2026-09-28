@@ -22,7 +22,8 @@
    "value": "voice-15 (اختاره المستمع — النطق قيد الإصلاح)",
    "since": "2026-09-27",
    "source": "مسابقة استماع add_voice battle 15 + «هذا الصوت جيد voice-15 لكن النطق سئ»",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-09-27"
   },
   {
    "key": "deliverable.preview",
@@ -59,7 +60,8 @@
    "value": "اختيار طريقة النطق من previews/pronunciation-test.mp3 (4 طرق)",
    "since": "2026-09-27",
    "source": "طلب المستخدم: النطق سئ",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-09-27"
   },
   {
    "key": "open.film-decision",
@@ -165,6 +167,26 @@
    "since": "2026-09-27",
    "source": "git 11868d1",
    "status": "active"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-16 (مُرشّح من استماع ثانٍ؛ المقارنة pronunciation-ab3)",
+   "since": "2026-09-27",
+   "source": "battle 16 + بناء المقارنة",
+   "status": "active",
+   "supersedes": [
+    "voice-15 (اختاره المستمع — النطق قيد الإصلاح) (منذ 2026-09-27)"
+   ]
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "مقارنة pronunciation-ab3 (13 · 15 · 16 · 16-بقاموس): ينتظر اختيار المستمع بالرقم",
+   "since": "2026-09-27",
+   "source": "شكوى: هذا نطق سئ جدا",
+   "status": "active",
+   "supersedes": [
+    "اختيار طريقة النطق من previews/pronunciation-test.mp3 (4 طرق) (منذ 2026-09-27)"
+   ]
   }
  ]
 }

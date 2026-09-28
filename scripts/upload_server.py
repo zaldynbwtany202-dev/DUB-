@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "54"
+BUILD = "56"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,25 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "pronunciation-ab3": ("★ النطق: أربع مقاطع، ثلاثة أصوات — أيّها مقبول؟ (74.9 ث)",
+                          "الجملة واحدة والنغمات قبل كل مقطع = رقمه: (01) voice-13 — الصوت "
+                          "الذي قبلتَ نطقه سابقًا · (02) voice-15 — الصوت الذي اخترته من "
+                          "الاستماع · (03) voice-16 — الصوت الذي اخترته الآن من الاستماع الثاني "
+                          "· (04) voice-16 بقاموس النطق المصري الذي بنيته. قياس التفريغ الآلي "
+                          "على الأربعة كلها يرى أخطاءً (المحرك يقرأ العربية بمنطق فصحوي لا "
+                          "مصري، وهو ما لا يُصلَح بكتابة النص)، ولذلك الحكم لك: اسمع الأربعة "
+                          "وقل رقمًا واحدًا — ومن يخرج الأول نمضي به، وإن كان 01 فلنرجع لصوت 13 "
+                          "ونكمل الفيلم به مع نظام ثبات النبرة الذي بنيناه."),
+    "pronunciation-ab2": ("★ النطق: خمسة مقاطع قصيرة — أيّها نطقه مقبول؟ (83.8 ث)",
+                          "الجملة واحدة والنص شبه واحد، والفرق الصوت وطريقة كتابة النص. النغمات "
+                          "قبل المقطع = رقمه: (01) voice-13 بنفس الجملة — نطق الصوت الذي قبلتَه "
+                          "سابقًا · (02) voice-15 بقاموس النطق المصري الذي بنيته · (03) نفس النص "
+                          "مع وسم اللغة ar-EG صراحةً · (04) voice-15 في ثلاثين ثانية من نص "
+                          "الفيلم بلا أي تشكيل أو تعديل · (05) تشكيل آلي جاهز لكي تسمع الفرق "
+                          "السيئ. والقياس يقول شيئًا مهمًا: تفريغ المحرك رأى في مقطع 13 "
+                          "«باولكي تجي نهرب» وفي مقطع 15 «بأقول لك إيه» — أي أن الخطأ موجود في "
+                          "الاثنين، والمحرك عربيته غير مصرية بطبعها. اسمع: هل 01 (صوت 13) "
+                          "نطقه مقبول؟ وهل 04 أفضل من غيره؟ وبعدها نختار صوتًا جديدًا بنطق أنظف."),
     "pronunciation-test": ("★ النطق — أربع طرق على الجملة نفسها بصوت voice-15 (50.6 ث)",
                           "الجملة واحدة، والصوت واحد (voice-15 الذي اخترتَه)، والفرق طريقة "
                           "كتابة النص قبل التوليد. النغمات قبل كل مقطع = رقمه: نغمة = 01 "
@@ -288,7 +307,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "pronunciation-test", "voice15-test", "voice13-created",
+            "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -309,7 +328,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"pronunciation-test", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
