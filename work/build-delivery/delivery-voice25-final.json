@@ -1,0 +1,117 @@
+{
+ "pron": [],
+ "run": {
+  "takes": [
+   {
+    "group": "g000",
+    "hz": 131.8,
+    "drift": 2.82,
+    "seconds": 28.39,
+    "file": "work/into-the-wild/takes-voice25/g000.mp3"
+   },
+   {
+    "group": "g001",
+    "hz": 127.5,
+    "drift": 3.07,
+    "seconds": 33.91,
+    "file": "work/into-the-wild/takes-voice25/g001.mp3"
+   },
+   {
+    "group": "g002",
+    "hz": 127.8,
+    "drift": 2.28,
+    "seconds": 32.95,
+    "file": "work/into-the-wild/takes-voice25/g002.mp3"
+   },
+   {
+    "group": "g003",
+    "hz": 127.8,
+    "drift": 2.67,
+    "seconds": 36.64,
+    "file": "work/into-the-wild/takes-voice25/g003.mp3"
+   },
+   {
+    "group": "g004",
+    "hz": 131.6,
+    "drift": 3.4,
+    "seconds": 35.1,
+    "file": "work/into-the-wild/takes-voice25/g004.mp3"
+   },
+   {
+    "group": "g005",
+    "hz": 128.6,
+    "drift": 2.78,
+    "seconds": 34.14,
+    "file": "work/into-the-wild/takes-voice25/g005.mp3"
+   },
+   {
+    "group": "g006",
+    "hz": 126.0,
+    "drift": 1.95,
+    "seconds": 35.42,
+    "file": "work/into-the-wild/takes-voice25/g006.mp3"
+   },
+   {
+    "group": "g007",
+    "hz": 124.2,
+    "drift": 2.37,
+    "seconds": 39.11,
+    "file": "work/into-the-wild/takes-voice25/g007.mp3"
+   },
+   {
+    "group": "g008",
+    "hz": 133.2,
+    "drift": 0.81,
+    "seconds": 29.27,
+    "file": "work/into-the-wild/takes-voice25/g008.mp3"
+   },
+   {
+    "group": "g009",
+    "hz": 131.2,
+    "drift": 3.74,
+    "seconds": 33.91,
+    "file": "work/into-the-wild/takes-voice25/g009.mp3"
+   }
+  ],
+  "steps": [
+   {
+    "between": "g000→g001",
+    "semitones": -0.57
+   },
+   {
+    "between": "g001→g002",
+    "semitones": 0.04
+   },
+   {
+    "between": "g002→g003",
+    "semitones": 0.0
+   },
+   {
+    "between": "g003→g004",
+    "semitones": 0.51
+   },
+   {
+    "between": "g004→g005",
+    "semitones": -0.4
+   },
+   {
+    "between": "g005→g006",
+    "semitones": -0.35
+   },
+   {
+    "between": "g006→g007",
+    "semitones": -0.25
+   },
+   {
+    "between": "g007→g008",
+    "semitones": 1.21
+   },
+   {
+    "between": "g008→g009",
+    "semitones": -0.26
+   }
+  ],
+  "mean_step": 0.4,
+  "max_step": 1.21
+ }
+}

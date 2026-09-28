@@ -1,0 +1,212 @@
+{
+ "pron": [
+  {
+   "label": "01 كما هو",
+   "file": "work/clip-happiness/takes-voice25/g000.mp3",
+   "hz": 119.5,
+   "drift": 1.86,
+   "seconds": 16.95,
+   "asr": "إن الإنسان لو مش هيبقى مبصود بفنجان أهوة عمرو ما هيبقى مبصود لو عنده حتى يخت يعني فكرة إن انت تستخلص الإنبصاط أو السعادة من الحاجة اللي انت بتمر بيها أو من الودع اللي انت فيه دلوقتي دي مهارة واختيار",
+   "score": {
+    "char_match": 0.95,
+    "word_errors": 5,
+    "diff": [
+     {
+      "expected": "مبسوط",
+      "heard": "مبصود"
+     },
+     {
+      "expected": "قهوه عمره",
+      "heard": "اهوه عمرو"
+     },
+     {
+      "expected": "مبسوط",
+      "heard": "مبصود"
+     },
+     {
+      "expected": "الانبساط",
+      "heard": "الانبصاط"
+     },
+     {
+      "expected": "الوضع",
+      "heard": "الودع"
+     }
+    ]
+   }
+  },
+  {
+   "label": "02 بفواصل",
+   "file": "work/clip-happiness/pron-test/punct.mp3",
+   "hz": 121.5,
+   "drift": 2.47,
+   "seconds": 15.26,
+   "asr": "إن الإنسان لو مش حيبقى مبسوط بفنجان أهوى عمره ما حيبقى مبسوط لو عنده حتى يخط يعني فكرة إن انت تستخلص الإنبساط أو السعادة من الحاجة اللي انت بتمر بيها أو من الوضع اللي انت فيدي الوقتي دي مهارة واختيار",
+   "score": {
+    "char_match": 0.959,
+    "word_errors": 5,
+    "diff": [
+     {
+      "expected": "هيبقي",
+      "heard": "حيبقي"
+     },
+     {
+      "expected": "قهوه",
+      "heard": "اهوي"
+     },
+     {
+      "expected": "هيبقي",
+      "heard": "حيبقي"
+     },
+     {
+      "expected": "يخت",
+      "heard": "يخط"
+     },
+     {
+      "expected": "فيه دلوقتي",
+      "heard": "فيدي الوقتي"
+     }
+    ]
+   }
+  },
+  {
+   "label": "03 بإملاء مصري",
+   "file": "work/clip-happiness/pron-test/egypt.mp3",
+   "hz": 123.5,
+   "drift": 2.5,
+   "seconds": 14.87,
+   "asr": "إن الإنسان لو مش هيبقاش مبسود بأهوة عمره ما هيبقاش مبسود لو عنده حتى يخت يعني فكرة إنك تستخلص الإنبساط أو السعادة من الحاجة اللي انت بتمر بيها أو من الوضع اللي انت فيه دلوقتي دي مهارة واختيار",
+   "score": {
+    "char_match": 0.939,
+    "word_errors": 3,
+    "diff": [
+     {
+      "expected": "هيبقي مبسوط بفنجان قهوه",
+      "heard": "هيبقاش مبسود باهوه"
+     },
+     {
+      "expected": "هيبقي مبسوط",
+      "heard": "هيبقاش مبسود"
+     },
+     {
+      "expected": "ان انت",
+      "heard": "انك"
+     }
+    ]
+   }
+  }
+ ],
+ "run": {
+  "takes": [
+   {
+    "group": "g000",
+    "hz": 131.8,
+    "drift": 2.82,
+    "seconds": 28.39,
+    "file": "work/into-the-wild/takes-voice25/g000.mp3"
+   },
+   {
+    "group": "g001",
+    "hz": 127.5,
+    "drift": 3.07,
+    "seconds": 33.91,
+    "file": "work/into-the-wild/takes-voice25/g001.mp3"
+   },
+   {
+    "group": "g002",
+    "hz": 127.8,
+    "drift": 2.28,
+    "seconds": 32.95,
+    "file": "work/into-the-wild/takes-voice25/g002.mp3"
+   },
+   {
+    "group": "g003",
+    "hz": 127.8,
+    "drift": 2.67,
+    "seconds": 36.64,
+    "file": "work/into-the-wild/takes-voice25/g003.mp3"
+   },
+   {
+    "group": "g004",
+    "hz": 131.6,
+    "drift": 3.4,
+    "seconds": 35.1,
+    "file": "work/into-the-wild/takes-voice25/g004.mp3"
+   },
+   {
+    "group": "g005",
+    "hz": 128.6,
+    "drift": 2.78,
+    "seconds": 34.14,
+    "file": "work/into-the-wild/takes-voice25/g005.mp3"
+   },
+   {
+    "group": "g006",
+    "hz": 126.0,
+    "drift": 1.95,
+    "seconds": 35.42,
+    "file": "work/into-the-wild/takes-voice25/g006.mp3"
+   },
+   {
+    "group": "g007",
+    "hz": 124.2,
+    "drift": 2.37,
+    "seconds": 39.11,
+    "file": "work/into-the-wild/takes-voice25/g007.mp3"
+   },
+   {
+    "group": "g008",
+    "hz": 134.5,
+    "drift": 2.43,
+    "seconds": 30.63,
+    "file": "work/into-the-wild/takes-voice25/g008.mp3"
+   },
+   {
+    "group": "g009",
+    "hz": 131.2,
+    "drift": 3.74,
+    "seconds": 33.91,
+    "file": "work/into-the-wild/takes-voice25/g009.mp3"
+   }
+  ],
+  "steps": [
+   {
+    "between": "g000→g001",
+    "semitones": -0.57
+   },
+   {
+    "between": "g001→g002",
+    "semitones": 0.04
+   },
+   {
+    "between": "g002→g003",
+    "semitones": 0.0
+   },
+   {
+    "between": "g003→g004",
+    "semitones": 0.51
+   },
+   {
+    "between": "g004→g005",
+    "semitones": -0.4
+   },
+   {
+    "between": "g005→g006",
+    "semitones": -0.35
+   },
+   {
+    "between": "g006→g007",
+    "semitones": -0.25
+   },
+   {
+    "between": "g007→g008",
+    "semitones": 1.38
+   },
+   {
+    "between": "g008→g009",
+    "semitones": -0.43
+   }
+  ],
+  "mean_step": 0.44,
+  "max_step": 1.38
+ }
+}

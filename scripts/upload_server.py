@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "64"
+BUILD = "65"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,24 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "clip-pron": ("★ تحسين النطق — ثلاث طرق على سطر مقطعك بصوت 25 (48 ث)",
+                  "النغمات قبل كل مقطع = رقمه: (01) النص كما هو — مطابقة 95% · خمسة أخطاء · "
+                  "انزياح 1.86 · (02) النص بفواصل الجُمَل والنقطة — مطابقة 96% · "
+                  "وانزياح 2.47 لكن أسرع قراءة (15.3 ث مقابل 16.9 = تسريع أقل على الفيديو) · "
+                  "(03) بإملاء مصري (هيبقاش · بأهوة · إنك) — أقل أخطاء (3) وأقصر (14.9 ث). "
+                  "ملاحظة القياس: التفريغ الآلي يسمع «أهوة» حيث النص «قهوة» في الثلاثة — وهي "
+                  "القهوة المصرية الصحيحة لا خطأ؛ وأخطاء «مبصود/مبسوط» تتكرر في 01 و03 فقط. "
+                  "اسمع وقل رقمًا واحدًا؛ وإن أردت أستطيع خلط الأفضل: إملاء 03 مع فواصل 02."),
+    "voice25-run": ("★ سلاسة الإلقاء — أول 10 مجموعات بصوت 25 (3:48)",
+                    "عشر مجموعات جديدة متصلة بvoice-25 لقياس السلاسة لا لوصفها. القياس: "
+                    "متوسط خطوة النبرة بين كل مجموعتين متجاورتين **0.40 نصف نغمة** فقط "
+                    "(كل خطوة تحت 0.6 إلا واحدة)، وأكبرها عند g007→g008 = 1.21 — أعدنا "
+                    "توليد g008 بأخذة أهدأ (انزياح داخلي 0.81 مقابل 2.43، وتسريع 1.44× بدل 1.50×) "
+                    "فانخفضت من 1.38 إلى 1.21، والباقي يُعاد تصويره في الجولة القادمة. "
+                    "البناء على الوصفة المقفلة والفحص 7/7 ✓: تأخير 0.00 ث · أقصى سرعة 1.64× · "
+                    "−16.00 LUFS · قمة −1.50 dBTP · PSNR ∞ · والموسيقى تنسحب تحت الكلام. "
+                    "اسمع الدقائق الثلاث ونصف: إن كانت السلاسة مقبولة فعلي أُكمل الفيلم كله "
+                    "(78 مجموعة) بصوت 25 في جولات عشر أخذات."),
     "clip-happiness-dub-v25": ("★ مقطعك بصوتك المخصص (voice-25) — «فنجان القهوة» (14 ث)",
                                "نفس المقطع الذي رفعته، مدبلج بصوت voice-25 الذي اخترته («الصوت الثالث»): "
                                "خام من المحرك، atempo فقط (1.19×)، بلا قصّ صمت، بلا EQ ولا ضغط، "
@@ -411,7 +429,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -432,7 +450,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

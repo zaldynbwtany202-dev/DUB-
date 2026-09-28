@@ -454,11 +454,12 @@
    "value": "64",
    "since": "2026-09-28",
    "source": "BUILD 64 — voice-25",
-   "status": "active",
+   "status": "superseded",
    "check": "build:64",
    "supersedes": [
     "63 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.clip-v25",
@@ -479,6 +480,38 @@
    "value": "ملف المستخدم المرفوع خارج git يضيع مع المسحات — الصورة استُعيدت من الملف المسلَّم (-c:v copy) ودفعت في library/clip-happiness/source.mp4 بـ-f؛ أي مقطع صغير يُدفع فورًا بنفس الطريقة",
    "since": "2026-09-28",
    "source": "المسحة السابعة",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "65",
+   "since": "2026-09-28",
+   "source": "BUILD 65 — clip-pron + voice25-run",
+   "status": "active",
+   "check": "build:65",
+   "supersedes": [
+    "64 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.clip-pron",
+   "value": "previews/clip-pron.mp3 — 3 طرق نطق بصوت 25 على سطر المقطع: 01 كما هو 95%/5 أخطاء · 02 بفواصل 96% وأسرع قراءة (تسريع أقل) · 03 إملاء مصري: أقل أخطاء (3) وأقصر",
+   "since": "2026-09-28",
+   "source": "«اريد تحسين النطق وسلاسة الإلقاء»",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.voice25run",
+   "value": "previews/voice25-run.mp4 — 228.58 ث (0→9) بصوت 25 · 7/7 ✓ · متوسط خطوة النبرة 0.40 نصف نغمة (بعد إعادة توليد g008: 0.44→0.40 وأكبرها 1.38→1.21) · atempo ≤1.64×",
+   "since": "2026-09-28",
+   "source": "BUILD 65",
+   "status": "active"
+  },
+  {
+   "key": "open.presentation",
+   "value": "التقديم: ينتظر توضيح المستخدم — هل يقصد افتتاحية مقروءة بصوت 25 أم تحسين بداية المقطع أم تقديم الفيديو للجمهور",
+   "since": "2026-09-28",
+   "source": "«اريد تحسين النطق و سلاسة الالقاء و التقديم»",
    "status": "active"
   }
  ]
