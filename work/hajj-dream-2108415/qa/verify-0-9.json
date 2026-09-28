@@ -15,7 +15,7 @@
     {
       "name": "tempo_ceiling",
       "ok": true,
-      "detail": "أقصى سرعة 1.16×"
+      "detail": "أقصى سرعة 1.09×"
     },
     {
       "name": "duration",
@@ -41,7 +41,7 @@
   "measured": {
     "max_late": 0.0,
     "max_gap": 0.0,
-    "tempo_max": 1.155,
+    "tempo_max": 1.086,
     "clamped": [],
     "last_end": 220.56,
     "groups": 10,

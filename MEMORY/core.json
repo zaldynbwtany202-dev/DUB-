@@ -557,11 +557,12 @@
    "value": "67",
    "since": "2026-09-28",
    "source": "BUILD 67 — voice25-run-0-17",
-   "status": "active",
+   "status": "superseded",
    "check": "build:67",
    "supersedes": [
     "66 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.voice25run17",
@@ -596,6 +597,38 @@
    "value": "أخذات مصرية بصياغتي (10) محفوظة في takes-superseded-mine · البناء القديم في build/preview-run-0-9-words-v1.mp4",
    "since": "2026-09-28",
    "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "68",
+   "since": "2026-09-28",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"68\"' scripts/upload_server.py",
+   "supersedes": [
+    "67 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.hajj-run-0-9",
+   "value": "previews/hajj-run-0-9.mp4 · 220.60 ث · 7/7 · صوت فقط بلا خلفية · إلقاء 0.93–1.09× · الكلمات = النص المصري المعتمد المدموج",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "pending.g006",
+   "value": "نبرة g006 شاذّة (116.7 مقابل ~133) — يُعاد توليدها بثلاث مرشحات في الجولة القادمة قبل ضمّها",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "recovery.wipe8",
+   "value": "مسح ثامن: كل شيء عاد من الريموت (d4e1965) · .venv و.cache أُعيد بناؤهما · الأخذات الصوتية غير المدفوعة تُعاد (hadj) · عمل جلسة أخرى عُثر عليه محفوظًا في stash ولم يُمس",
+   "since": "2026-09-28",
+   "source": "استعادة بعد مسح",
    "status": "active"
   }
  ]
