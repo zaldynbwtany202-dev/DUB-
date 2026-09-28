@@ -38,8 +38,9 @@
    "value": "53",
    "since": "2026-09-27",
    "source": "BUILD 53",
-   "status": "active",
-   "check": "build:53"
+   "status": "superseded",
+   "check": "build:53",
+   "superseded_at": "2026-09-27"
   },
   {
    "key": "qa.policy",
@@ -183,10 +184,39 @@
    "value": "مقارنة pronunciation-ab3 (13 · 15 · 16 · 16-بقاموس): ينتظر اختيار المستمع بالرقم",
    "since": "2026-09-27",
    "source": "شكوى: هذا نطق سئ جدا",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "اختيار طريقة النطق من previews/pronunciation-test.mp3 (4 طرق) (منذ 2026-09-27)"
+   ],
+   "superseded_at": "2026-09-27"
+  },
+  {
+   "key": "page.build",
+   "value": "57",
+   "since": "2026-09-27",
+   "source": "BUILD 57 — voice16-test على الفيلم",
+   "status": "active",
+   "check": "build:57",
+   "supersedes": [
+    "53 (منذ 2026-09-27)"
    ]
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "اختيار الصوت من الفيديو: previews/voice16-test.mp4 (1:07) مقابل voice15-test مقابل voice13-created — ينتظر قرار الأذن",
+   "since": "2026-09-27",
+   "source": "طلب: جرب على الفيديو لدقيقة",
+   "status": "active",
+   "supersedes": [
+    "مقارنة pronunciation-ab3 (13 · 15 · 16 · 16-بقاموس): ينتظر اختيار المستمع بالرقم (منذ 2026-09-27)"
+   ]
+  },
+  {
+   "key": "deliverable.voice16test",
+   "value": "previews/voice16-test.mp4 — 66.68 ث · ثلاث مجموعات بصوت 16 · 7/7 ✓ · −16.00 LUFS · −1.50 dBTP",
+   "since": "2026-09-27",
+   "source": "بناء B57 (takes-voice16 · placement-0-2 · verify-0-2-v16test)",
+   "status": "active"
   }
  ]
 }

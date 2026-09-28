@@ -1,0 +1,23 @@
+{
+  "voice_id": "voice-16",
+  "chosen_by": "المستخدم — الاستماع الثاني (add_voice) في B56",
+  "test": "previews/voice16-test.mp4 — أول ثلاث مجموعات من الفيلم (0.12 → 66.80 ث) على الوصفة المقفلة",
+  "text": "نص الخطة نفسه (work/into-the-wild/groups.json) بلا قاموس ولا تشكيل",
+  "takes": [
+    {"group": 0, "file": "takes-voice16/g000.mp3", "seconds": 31.84, "hz": 117.6},
+    {"group": 1, "file": "takes-voice16/g001.mp3", "seconds": 35.24, "hz": 132.6,
+     "note": "اختيار ثبات: أربع أخذات لنفس النص — الأصلية 144.1 · 132.6 · 137.1 · 162.2 هرتز، واختيرت 132.6"},
+    {"group": 2, "file": "takes-voice16/g002.mp3", "seconds": 36.76, "hz": 123.1}
+  ],
+  "pitch": {"takes_hz": [117.6, 132.6, 123.1], "spread_semitones": 2.08,
+            "before_pick_semitones": 3.51,
+            "candidates_dir": "takes-voice16/candidates/"},
+  "tempo": {"needed": [1.559, 1.563, 1.558], "ceiling": 1.8},
+  "master": {"chain": "plain", "lufs": -16.0, "true_peak_dbtp": -1.5, "duck_db": 10, "music_db": -4},
+  "verify": {"json": "qa/verify-0-2-v16test.json", "checks": "7/7",
+             "lateness_s": 0.0, "longest_gap_s": 0.06, "max_tempo": 1.56,
+             "lufs_measured": -15.90, "tp_dbtp": -1.50, "psnr": "inf"},
+  "placement": "build/into-the-wild-placement-0-2.json",
+  "report": "build/master-report-v16test.json",
+  "gate": "بُني بـ--no-gate (سياسة الهدف مبنية على أخذات 13) ثم جرى التحقّق الكامل على الملف: 7/7"
+}

@@ -93,6 +93,18 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "voice16-test": ("★ الصوت الجديد الثاني (voice-16) داخل الفيلم — أول ثلاث مجموعات (1:07)",
+                     "هذا هو الصوت الذي اخترتَه من الاستماع الثاني، وقد وُلّد به نصُّ الفيلم نفسه "
+                     "الذي سمعته في مقطع 03·04 من لوحة النطق. الوصفة المقفلة نفسها بلا تغيير: "
+                     "أخذة خام من المحرك، atempo فقط (1.56×)، بلا قصّ صمت، بلا EQ ولا ضغط، "
+                     "ماستر −16 LUFS · قمة −1.50 dBTP، والموسيقى تنسحب تحت الكلام، والصورة "
+                     "منسوخة (-c:v copy). قياس الأخذات: 117.6 · 132.6 · 123.1 هرتز — ولأن المجموعة "
+                     "الثانية خرجت مرتفعة (+2.7 نصف نغمة) وُلّدت لها ثلاث أخذات بديلة "
+                     "(144.1 الأصلية · 132.6 · 137.1 · 162.2) واختيرت الأهدأ، فصار الانتشار "
+                     "2.08 نصف نغمة فقط. الفحص الأخير على الملف الناتج 7/7 ✓: تأخير 0.00 ث · "
+                     "أطول صمت 0.06 ث · أقصى سرعة 1.56× · −15.90 LUFS · قمة −1.50 dBTP · أول "
+                     "إطار PSNR ∞. اسمعه، ثم اسمع 03 (voice-15 على الدقيقة نفسها) و04 (صوت 13 في "
+                     "الفيلم كله): أيّ الثلاثة نكمل به الفيلم؟"),
     "pronunciation-ab3": ("★ النطق: أربع مقاطع، ثلاثة أصوات — أيّها مقبول؟ (74.9 ث)",
                           "الجملة واحدة والنغمات قبل كل مقطع = رقمه: (01) voice-13 — الصوت "
                           "الذي قبلتَ نطقه سابقًا · (02) voice-15 — الصوت الذي اخترته من "
@@ -307,7 +319,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "pronunciation-ab3", "voice15-test", "voice13-created",
+            "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -328,7 +340,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
