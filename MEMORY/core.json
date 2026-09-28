@@ -252,20 +252,22 @@
    "value": "voice-17 — اختيار المستخدم «01voice-17» من لوحة pro-voices (BUILD 58)؛ هو صوت الفيلم من الآن",
    "since": "2026-09-28",
    "source": "ردّ المستخدم على لوحة الأصوات الاحترافية",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "voice-16 (مُرشّح من استماع ثانٍ؛ المقارنة pronunciation-ab3) (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "open.pronunciation",
    "value": "حُلَّت: اختار المستخدم 01 = voice-17 (مطابقة 97% · خطآن) ونمضي به",
    "since": "2026-09-28",
    "source": "«01voice-17»",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "اختيار الصوت من الفيديو: previews/voice16-test.mp4 (1:07) مقابل voice15-test مقابل voice13-created — ينتظر قرار الأذن (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "film.voice",
@@ -286,10 +288,49 @@
    "value": "59",
    "since": "2026-09-28",
    "source": "BUILD 59 — voice17-test",
-   "status": "active",
+   "status": "superseded",
    "check": "build:59",
    "supersedes": [
     "58 (منذ 2026-09-28)"
+   ],
+   "superseded_at": "2026-09-28"
+  },
+  {
+   "key": "page.build",
+   "value": "60",
+   "since": "2026-09-28",
+   "source": "BUILD 60 — voice-pro2",
+   "status": "active",
+   "check": "build:60",
+   "supersedes": [
+    "59 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "جولة أصوات ثانية: voice-pro2 (20 · 21 · 22 + شاهد بشري) — voice-17 رُفض بالسماع على الفيديو («نتيجة سيئة»)؛ معيار جديد بالقياس: السرعة الطبيعية (17 احتاج 1.59× · 20: 1.43× · 21: 1.54× · 22: 1.33×)",
+   "since": "2026-09-28",
+   "source": "«نتيجة سيئة اقترح عينة صوتية اخرى»",
+   "status": "active",
+   "supersedes": [
+    "حُلَّت: اختار المستخدم 01 = voice-17 (مطابقة 97% · خطآن) ونمضي به (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.voicepro2",
+   "value": "previews/voice-pro2.mp3 — 113 ث · 4 مقاطع (20 · 21 · 22 · راوي بشري) · افتتاحية الفيلم كاملة · قياس السرعة والنبرة والنطق في auditions/voice-pro2.json",
+   "since": "2026-09-28",
+   "source": "BUILD 60",
+   "status": "active"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-17 (مرفوض بالسماع على الفيديو) — البديل المرشّح: 20 أو 21 أو 22 من voice-pro2",
+   "since": "2026-09-28",
+   "source": "«نتيجة سيئة»",
+   "status": "active",
+   "supersedes": [
+    "voice-17 — اختيار المستخدم «01voice-17» من لوحة pro-voices (BUILD 58)؛ هو صوت الفيلم من الآن (منذ 2026-09-28)"
    ]
   }
  ]
