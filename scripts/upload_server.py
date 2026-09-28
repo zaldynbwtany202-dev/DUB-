@@ -512,7 +512,9 @@ function status(name){return fetch('/status?name='+encodeURIComponent(name)).the
 // upload resumes instead of restarting. If a chunk keeps failing the size is
 // halved, down to a quarter of a megabyte, so the client finds a size the
 // connection accepts instead of dying at a fixed guess.
-const CHUNK_MAX=2097152, CHUNK_MIN=262144;
+const CHUNK_MAX=1048576, CHUNK_MIN=262144;
+// 1 MiB instead of 2: a 254 MB film at 2 MiB chunks stalled after the first
+// chunk on this proxy and never resumed by itself; smaller bodies survive.
 let chunk=CHUNK_MAX;
 
 function send(f){
