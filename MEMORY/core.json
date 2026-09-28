@@ -604,11 +604,12 @@
    "value": "68",
    "since": "2026-09-28",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"68\"' scripts/upload_server.py",
    "supersedes": [
     "67 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.hajj-run-0-9",
@@ -629,6 +630,31 @@
    "value": "مسح ثامن: كل شيء عاد من الريموت (d4e1965) · .venv و.cache أُعيد بناؤهما · الأخذات الصوتية غير المدفوعة تُعاد (hadj) · عمل جلسة أخرى عُثر عليه محفوظًا في stash ولم يُمس",
    "since": "2026-09-28",
    "source": "استعادة بعد مسح",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "69",
+   "since": "2026-09-28",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"69\"' scripts/upload_server.py",
+   "supersedes": [
+    "68 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "feedback.eg-pronunciation",
+   "value": "«نطق اللهجة المصرية سئ» — رُفض النص المصري لفيلم حلم الحج؛ عُرضت ثلاثة أساليب على نفس المقطع: فصحى · لهجة الفيلم · لهجة بيضاء (previews/hajj-dialect-options.mp3) — بانتظار اختياره",
+   "since": "2026-09-28",
+   "source": "تصريح مباشر",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.hajj-dialect-options",
+   "value": "previews/hajj-dialect-options.mp3 · 42.53 ث · نفس المقطع بثلاثة أساليب بنبرة 139.6/132.4/135.7 هرتز · تذبذب 0.00",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
    "status": "active"
   }
  ]

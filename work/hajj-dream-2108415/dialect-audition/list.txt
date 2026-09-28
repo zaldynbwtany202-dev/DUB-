@@ -1,0 +1,5 @@
+file '/home/user/DUB-/work/hajj-dream-2108415/dialect-audition/opt1-msa.norm.mp3'
+file '/home/user/DUB-/work/hajj-dream-2108415/dialect-audition/gap.mp3'
+file '/home/user/DUB-/work/hajj-dream-2108415/dialect-audition/opt2-iraqi.norm.mp3'
+file '/home/user/DUB-/work/hajj-dream-2108415/dialect-audition/gap.mp3'
+file '/home/user/DUB-/work/hajj-dream-2108415/dialect-audition/opt3-white.norm.mp3'
