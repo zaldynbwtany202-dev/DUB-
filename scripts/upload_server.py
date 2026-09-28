@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "62"
+BUILD = "63"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,20 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "voice-personal": ("★ لوحة أصوات جديدة مخصّصة لك — ثلاثة أصوات على سطر مقطعك نفسه (82 ث)",
+                       "ثلاثة أصوات جديدة وُلّدت بعد الاستماع (23 · 24 · 25) وكل واحد يقول سطر "
+                       "المقطع الذي رفعته نفسه، ثم (04) voice-21 الصوت الحالي على السطر نفسه "
+                       "للمقارنة المباشرة، ثم (05) الراوي البشري شاهدًا على النطق الصحيح. "
+                       "النغمات قبل المقطع = رقمه. القياس على السطر نفسه: "
+                       "(01) voice-23: نبرة 156 هرتز · 10.1 حرف/ث · تسريع 1.10× · مطابقة 95% · "
+                       "(02) voice-24: 140 هرتز · 10.0 · 1.11× · 97% · "
+                       "(03) voice-25: 120 هرتز (الأعمق) · 10.3 · 1.08× · 98% · "
+                       "(04) voice-21 الحالي: 140 هرتز · 1.12× · 95%. "
+                       "ملاحظة القياس: التفريغ الآلي يسمع «أهوى» حيث النص «قهوة» في كل المرشّحين "
+                       "— وهذه هي القهوة المصرية الصحيحة (أهوة)، فليست خطأً. اسمع وقل رقمًا "
+                       "واحدًا — أو قل لي الوصف الذي تريده بالضبط (أعمق؟ أهدأ؟ أسرع؟ أجشّ؟) "
+                       "لأصنع الجولة القادمة عليه. وإن أردت صوتًا من صوتك أنت، أرسل تسجيلًا "
+                       "مقروءًا نظيفًا (5–10 دقائق) وأبني البنك منه — هذا هو الصوت المخصّص لك وحدك."),
     "clip-happiness-dub": ("★ دبلجة الفيديو الجديد — مقطع «فنجان القهوة» (14 ث) بصوت 21",
                           "الفيديو الذي رفعته (14.44 ث · 576×576) مدبلج بصوت voice-21 على "
                           "الوصفة المقفلة: خام من المحرك، atempo فقط (1.12×)، بلا قصّ صمت، "
@@ -382,7 +396,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -403,7 +417,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

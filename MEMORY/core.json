@@ -394,10 +394,36 @@
    "value": "62",
    "since": "2026-09-28",
    "source": "BUILD 62 — clip-happiness-dub",
-   "status": "active",
+   "status": "superseded",
    "check": "build:62",
    "supersedes": [
     "61 (منذ 2026-09-28)"
+   ],
+   "superseded_at": "2026-09-28"
+  },
+  {
+   "key": "open.voice",
+   "value": "يريد صوتًا آخر مخصّصًا له: لوحة previews/voice-personal.mp3 (23 · 24 · 25 + 21 + الراوي) — القياس: 25 الأعمق 120 هرتز والأفضل نطقًا 98% · 24: 97% · 23: 95% · التسريع المطلوب 1.08–1.11× للجميع",
+   "since": "2026-09-28",
+   "source": "«اريد صوت اخر اقترح عينات افضل مخصصة لي فقط»",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.voice-personal",
+   "value": "previews/voice-personal.mp3 — 5 مقاطع (3 أصوات جديدة على سطر المقطع + الصوت الحالي + الراوي البشري) · قياس كامل في work/personal-voices/personal-voices.json",
+   "since": "2026-09-28",
+   "source": "BUILD 63",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "63",
+   "since": "2026-09-28",
+   "source": "BUILD 63 — voice-personal",
+   "status": "active",
+   "check": "build:63",
+   "supersedes": [
+    "62 (منذ 2026-09-28)"
    ]
   }
  ]
