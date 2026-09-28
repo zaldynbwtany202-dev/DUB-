@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "60"
+BUILD = "61"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,17 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "voice21-test": ("★ الصوت الذي اخترته (voice-21) داخل الفيلم — أول ثلاث مجموعات (1:07)",
+                     "«الصوت الثاني هوا الجيد» — أي المقطع 02 = voice-21. هذا هو على الفيلم نفسه، "
+                     "أول 66 ثانية، على الوصفة المقفلة بلا تغيير: خام من المحرك، atempo فقط "
+                     "(1.45–1.56×)، بلا قصّ صمت، بلا EQ ولا ضغط، ماستر −16 LUFS، والموسيقى تنسحب "
+                     "تحت الكلام، والصورة منسوخة. لاختيار الأثبت وُلّدت ثلاث أخذات لكل مجموعة "
+                     "(تسع أخذات) واختير الأقرب لوسيط الجلسة: 128.3 · 138.7 · 129.0 هرتز — انتشار "
+                     "1.35 نصف نغمة (وأخذة واحدة استُبعدت لخطأ كتابي في نص التوليد). "
+                     "الفحص على الملف الناتج 7/7 ✓: تأخير 0.00 ث · أطول صمت 0.06 ث · أقصى سرعة "
+                     "1.56× · −16.00 LUFS · قمة −2.40 dBTP (تحت السقف) · أول إطار PSNR ∞. "
+                     "وهو مقابل المرفوض voice-17 الذي احتاج تسريع 1.59× — الأثقل في كل الجولات. "
+                     "إن أعجبك على الفيديو: أكمل الفيلم كله بصوت 21 من المجموعة 0، عشرة أخذات في الجولة."),
     "voice-pro2": ("★ جولة أصوات جديدة — ثلاثة أصوات تقول افتتاحية الفيلم كاملة (113 ث)",
                    "بعد أن قلت إن نتيجة voice-17 سيئة: ثلاثة أصوات جديدة (20 · 21 · 22) كل واحد "
                    "يقول افتتاحية الفيلم كاملة (365 حرفًا)، والنغمات قبل كل مقطع = رقمه، "
@@ -359,7 +370,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -380,7 +391,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

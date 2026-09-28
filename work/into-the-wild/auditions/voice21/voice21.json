@@ -1,0 +1,28 @@
+{
+  "voice_id": "voice-21",
+  "chosen_by": "المستخدم — «الصوت الثاني هوا الجيد» على لوحة previews/voice-pro2.mp3 (المقطع 02)",
+  "context": "voice-17 كان مختارًا قبلها ورُفض بالسماع على الفيديو («نتيجة سيئة»)؛ سببه المقيس: احتاج تسريع 1.59× (أعلى تسريع في كل الجولات)",
+  "test": "previews/voice21-test.mp4 — أول ثلاث مجموعات من الفيلم (0.12 → 66.80 ث) على الوصفة المقفلة",
+  "text": "نص الخطة نفسه (work/into-the-wild/groups.json) بلا قاموس ولا تشكيل",
+  "takes": [
+    {"group": 0, "file": "takes-voice21/g000.mp3", "seconds": 31.6, "hz": 128.3,
+     "note": "اختيرت alt2 (128.3) من ثلاث: 118.5 · 118.8 · 128.3"},
+    {"group": 1, "file": "takes-voice21/g001.mp3", "seconds": 35.16, "hz": 138.7,
+     "note": "الأصلية هي الأقرب لوسيط الجلسة (الأخريان 145.9 · 143.3)"},
+    {"group": 2, "file": "takes-voice21/g002.mp3", "seconds": 34.24, "hz": 129.0,
+     "note": "اختيرت alt1 (129.0) مقابل 127.7؛ وalt2 استُبعدت لخطأ كتابي في نص التوليد (نهارب)"}
+  ],
+  "pitch": {"takes_hz": [128.3, 138.7, 129.0], "spread_semitones": 1.35,
+            "session_median_hz": 128.7, "candidates_measured": 9},
+  "tempo": {"needed": [1.548, 1.56, 1.451], "ceiling": 1.8,
+            "natural_chars_per_s": 11.6, "window_chars_per_s": 18.0},
+  "master": {"chain": "plain", "lufs": -16.0, "true_peak_measured_dbtp": -2.40, "duck_db": 10, "music_db": -4},
+  "verify": {"json": "qa/verify-0-2-v21test.json", "checks": "7/7",
+             "lateness_s": 0.0, "longest_gap_s": 0.06, "max_tempo": 1.56,
+             "lufs_measured": -16.00, "tp_dbtp": -2.40, "psnr": "inf"},
+  "placement": "build/into-the-wild-placement-0-2.json",
+  "report": "build/master-report-v21test.json",
+  "selection": "build/voice21-selection.json (قياس التسع أخذات: نبرة · انزياح داخلي · استبعاد الأخذة ذات الخطأ الكتابي)",
+  "gate": "بُني بـ--no-gate (سياسة الهدف مبنية على أخذات 13) ثم جرى التحقّق الكامل على الملف: 7/7",
+  "plan": "voice-21 هو صوت الفيلم؛ إعادة البناء من المجموعة 0 (لا خلط أصوات في فيلم واحد)، والوصفة محدَّثة في config/voice-lock.json (voice-21 · previous=voice-13)"
+}

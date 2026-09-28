@@ -300,21 +300,23 @@
    "value": "60",
    "since": "2026-09-28",
    "source": "BUILD 60 — voice-pro2",
-   "status": "active",
+   "status": "superseded",
    "check": "build:60",
    "supersedes": [
     "59 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "open.pronunciation",
    "value": "جولة أصوات ثانية: voice-pro2 (20 · 21 · 22 + شاهد بشري) — voice-17 رُفض بالسماع على الفيديو («نتيجة سيئة»)؛ معيار جديد بالقياس: السرعة الطبيعية (17 احتاج 1.59× · 20: 1.43× · 21: 1.54× · 22: 1.33×)",
    "since": "2026-09-28",
    "source": "«نتيجة سيئة اقترح عينة صوتية اخرى»",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "حُلَّت: اختار المستخدم 01 = voice-17 (مطابقة 97% · خطآن) ونمضي به (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.voicepro2",
@@ -328,9 +330,48 @@
    "value": "voice-17 (مرفوض بالسماع على الفيديو) — البديل المرشّح: 20 أو 21 أو 22 من voice-pro2",
    "since": "2026-09-28",
    "source": "«نتيجة سيئة»",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "voice-17 — اختيار المستخدم «01voice-17» من لوحة pro-voices (BUILD 58)؛ هو صوت الفيلم من الآن (منذ 2026-09-28)"
+   ],
+   "superseded_at": "2026-09-28"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-21 — «الصوت الثاني هوا الجيد» (المقطع 02 من voice-pro2)؛ voice-17 مرفوض بالسماع على الفيديو",
+   "since": "2026-09-28",
+   "source": "BUILD 61 + قرار المستخدم",
+   "status": "active",
+   "supersedes": [
+    "voice-17 (مرفوض بالسماع على الفيديو) — البديل المرشّح: 20 أو 21 أو 22 من voice-pro2 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.voice21test",
+   "value": "previews/voice21-test.mp4 — 66.68 ث · ثلاث مجموعات بصوت 21 · 7/7 ✓ · −16.00 LUFS · قمة −2.40 dBTP · انتشار النبرة 1.35 نصف نغمة · atempo 1.45–1.56",
+   "since": "2026-09-28",
+   "source": "BUILD 61",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "61",
+   "since": "2026-09-28",
+   "source": "BUILD 61 — voice21-test",
+   "status": "active",
+   "check": "build:61",
+   "supersedes": [
+    "60 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "حُلَّت: voice-21 هو الصوت (بعد رفض 16 و17 بالسماع)؛ ينتظر تأكيده على الفيديو ثم إكمال الفيلم من المجموعة 0 بأخذات 10 في الجولة",
+   "since": "2026-09-28",
+   "source": "«الصوت الثاني هوا الجيد»",
+   "status": "active",
+   "supersedes": [
+    "جولة أصوات ثانية: voice-pro2 (20 · 21 · 22 + شاهد بشري) — voice-17 رُفض بالسماع على الفيديو («نتيجة سيئة»)؛ معيار جديد بالقياس: السرعة الطبيعية (17 احتاج 1.59× · 20: 1.43× · 21: 1.54× · 22: 1.33×) (منذ 2026-09-28)"
    ]
   }
  ]
