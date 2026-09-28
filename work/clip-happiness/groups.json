@@ -1,0 +1,24 @@
+{
+  "slug": "clip-happiness",
+  "source": "library/clip-happiness/source.mp4",
+  "words_from": "التفريغ الآلي ثم تصحيح المستخدم (ينتظر تأكيده)",
+  "times_from": "SRT cue offsets, checked against the measured audio duration",
+  "voice_id": "voice-00",
+  "pacing": "matched (per-take atempo onto original onsets)",
+  "chars_per_s": 11.62,
+  "tempo_ceiling": 1.6,
+  "min_tempo": 1.0,
+  "cues": 2,
+  "groups": [
+    {
+      "i": 0,
+      "t0": 0.0,
+      "t1": 14.24,
+      "window": 14.24,
+      "cues": 2,
+      "chars": 159,
+      "predicted_tempo": 0.972,
+      "text": "إن الإنسان لو مش هيبقى مبسوط بفنجان قهوة عمره ما هيبقى مبسوط لو عنده حتى يخت يعني فكرة ان انت تستخلص الانبساط أو السعادة من الحاجة اللي انت بتمر بيها أو من الوضع اللي انت فيه دلوقتي دي مهارة واختيار"
+    }
+  ]
+}

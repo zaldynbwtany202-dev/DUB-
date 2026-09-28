@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "61"
+BUILD = "62"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,18 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "clip-happiness-dub": ("★ دبلجة الفيديو الجديد — مقطع «فنجان القهوة» (14 ث) بصوت 21",
+                          "الفيديو الذي رفعته (14.44 ث · 576×576) مدبلج بصوت voice-21 على "
+                          "الوصفة المقفلة: خام من المحرك، atempo فقط (1.12×)، بلا قصّ صمت، "
+                          "بلا EQ ولا ضغط، ماستر −16 LUFS، والصورة منسوخة بلا إعادة ترميز. "
+                          "الكلمات من التفريغ الآلي ثم مراجعة: «بفنجان قهوة» (كانت «أهوى») و"
+                          "«الوضع اللي انت فيه دلوقتي» (كانت «فيدي الوقتي») و«حتى يخت». "
+                          "الخلفية: قياس الصمت في الأصل ‎−61 dB — أي لا موسيقى ولا خلفية "
+                          "تُحفظ، فالمقطع صوت فقط ولهذا نُفّذ طلبك «اترك الخلفية كما هي» "
+                          "بحرفيته. القياس: أخذتان واختير الأثبت (140.4 هرتز · انزياح 2.0 "
+                          "مقابل 130.4 · 3.6). الفحص على الملف الناتج 7/7 ✓: تأخير 0.00 ث · "
+                          "أقصى سرعة 1.12× · −16.00 LUFS · قمة −4.70 dBTP · PSNR ∞. "
+                          "اسمع، وإن كان في كلمة غلط قل لي الكلمة الصحيحة وأعيد التوليد فورًا."),
     "voice21-test": ("★ الصوت الذي اخترته (voice-21) داخل الفيلم — أول ثلاث مجموعات (1:07)",
                      "«الصوت الثاني هوا الجيد» — أي المقطع 02 = voice-21. هذا هو على الفيلم نفسه، "
                      "أول 66 ثانية، على الوصفة المقفلة بلا تغيير: خام من المحرك، atempo فقط "
@@ -370,7 +382,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -391,7 +403,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

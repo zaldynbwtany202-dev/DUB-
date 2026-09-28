@@ -1,0 +1,19 @@
+{
+  "total": 14.24,
+  "pack": true,
+  "max_tempo": 1.8,
+  "groups": [
+    {
+      "group": 0,
+      "t0": 0.0,
+      "window": 14.24,
+      "target": 0.0,
+      "start": 0.0,
+      "late": 0.0,
+      "natural": 15.92,
+      "tempo": 1.118,
+      "end": 14.24,
+      "clamped": false
+    }
+  ]
+}

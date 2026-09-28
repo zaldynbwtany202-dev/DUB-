@@ -358,11 +358,12 @@
    "value": "61",
    "since": "2026-09-28",
    "source": "BUILD 61 — voice21-test",
-   "status": "active",
+   "status": "superseded",
    "check": "build:61",
    "supersedes": [
     "60 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "open.pronunciation",
@@ -372,6 +373,31 @@
    "status": "active",
    "supersedes": [
     "جولة أصوات ثانية: voice-pro2 (20 · 21 · 22 + شاهد بشري) — voice-17 رُفض بالسماع على الفيديو («نتيجة سيئة»)؛ معيار جديد بالقياس: السرعة الطبيعية (17 احتاج 1.59× · 20: 1.43× · 21: 1.54× · 22: 1.33×) (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.clip-happiness",
+   "value": "previews/clip-happiness-dub.mp4 — 14.33 ث · 576×576 · دبلجة صوت 21 · 7/7 ✓ · −16.00 LUFS · قمة −4.70 dBTP",
+   "since": "2026-09-28",
+   "source": "BUILD 62 — الفيديو الجديد من المستخدم",
+   "status": "active"
+  },
+  {
+   "key": "slug.clip-happiness",
+   "value": "أول فيديو جديد يدبلج بصوت 21 · الكلمات من التفريغ الآلي + تصحيح (قهوة · فيه دلوقتي · يخت) · لا خلفية في الأصل (صمت −61 dB) · work/clip-happiness/ (groups.asr-draft + script-corrections)",
+   "since": "2026-09-28",
+   "source": "رفع المستخدم + scripts/dub_new_video.py",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "62",
+   "since": "2026-09-28",
+   "source": "BUILD 62 — clip-happiness-dub",
+   "status": "active",
+   "check": "build:62",
+   "supersedes": [
+    "61 (منذ 2026-09-28)"
    ]
   }
  ]
