@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "57"
+BUILD = "58"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,21 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "pro-voices": ("★ أصوات احترافية بنطق مصري — ثلاثة أصوات جديدة على الجملة نفسها (81.7 ث)",
+                   "ثلاثة أصوات وُلّدت هنا بعد الاستماع بوسم اللهجة المصرية ar-EG صراحةً، وكل "
+                   "صوت يقول مقطعين: الجملة التي اشتكيت من نطقها («بقول لك ايه تيجي نهرب…»)، "
+                   "ثم سطر سردي جديد. النغمات قبل كل مقطع = رقمه: (01) voice-17 الجملة · "
+                   "(02) voice-17 السرد · (03) voice-18 الجملة · (04) voice-18 السرد · "
+                   "(05) voice-19 الجملة · (06) voice-19 السرد · (07) الراوي البشري الأصلي "
+                   "— شاهد على «النطق الصحيح» لأنه نطق حقيقي بالتعريف (نص مختلف). والقياس "
+                   "لا الوصف: تفريغ آلي محلي لكل مقطع ومقارنته بالنص المكتوب — "
+                   "05 (voice-19) الأفضل: مطابقة 100% وخطأ واحد (كترت) · "
+                   "18: 98% وخمسة أخطاء (لكي · نه رب · صعب · مشكل · شغل) · "
+                   "17: 97% وخطآن (بقولكي تيقي · شغل) · والسرد: 99% للأصوات الثلاثة. "
+                   "النبرة: 148 · 164.6 · 124.6 · 136.1 · 119.8 · 130.5 هرتز — "
+                   "14 (voice-19) هو الأهدأ والأعمق وأقربها إلى نبرة راوي الفيلم (بعد تأكيد "
+                   "بالسماع). اسمع وقل رقمًا واحدًا — 01/02 أو 03/04 أو 05/06 — أو قل إن "
+                   "صوت 13/15/16 القديم أفضل ونكمل به."),
     "voice16-test": ("★ الصوت الجديد الثاني (voice-16) داخل الفيلم — أول ثلاث مجموعات (1:07)",
                      "هذا هو الصوت الذي اخترتَه من الاستماع الثاني، وقد وُلّد به نصُّ الفيلم نفسه "
                      "الذي سمعته في مقطع 03·04 من لوحة النطق. الوصفة المقفلة نفسها بلا تغيير: "
@@ -319,7 +334,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -340,7 +355,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

@@ -195,11 +195,12 @@
    "value": "57",
    "since": "2026-09-27",
    "source": "BUILD 57 — voice16-test على الفيلم",
-   "status": "active",
+   "status": "superseded",
    "check": "build:57",
    "supersedes": [
     "53 (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "open.pronunciation",
@@ -216,6 +217,31 @@
    "value": "previews/voice16-test.mp4 — 66.68 ث · ثلاث مجموعات بصوت 16 · 7/7 ✓ · −16.00 LUFS · −1.50 dBTP",
    "since": "2026-09-27",
    "source": "بناء B57 (takes-voice16 · placement-0-2 · verify-0-2-v16test)",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "58",
+   "since": "2026-09-28",
+   "source": "BUILD 58 — لوحة الأصوات الاحترافية pro-voices",
+   "status": "active",
+   "check": "build:58",
+   "supersedes": [
+    "57 (منذ 2026-09-27)"
+   ]
+  },
+  {
+   "key": "deliverable.provoices",
+   "value": "previews/pro-voices.mp3 — 81.7 ث · 6 مقاطع لثلاثة أصوات (17/18/19) + مرجع بشري · قياس: 19 الأفضل (مطابقة 100% · خطأ واحد) · 18: 98%/5 · 17: 97%/2",
+   "since": "2026-09-28",
+   "source": "طلب: اقترح عينات صوتية اخترافية بنطق صحيح",
+   "status": "active"
+  },
+  {
+   "key": "voice.pro-voices",
+   "value": "battle 17→voice-17 · 18→voice-18 · 19→voice-19 (استماع ar-EG؛ أفضل نطق مقيس: 19)",
+   "since": "2026-09-28",
+   "source": "add_voice ×3 + ASR مقارن",
    "status": "active"
   }
  ]
