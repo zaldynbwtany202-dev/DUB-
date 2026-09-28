@@ -664,11 +664,12 @@
    "value": "70",
    "since": "2026-09-28",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"70\"' scripts/upload_server.py",
    "supersedes": [
     "69 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "hajj.style",
@@ -706,6 +707,38 @@
    "value": "عشر أخذات مصرية + البناء القديم محفوظة (takes-superseded-eg · build/preview-run-0-9-words-v1.mp4 · previews/hajj-run-0-9.mp4)",
    "since": "2026-09-28",
    "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "71",
+   "since": "2026-09-28",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"71\"' scripts/upload_server.py",
+   "supersedes": [
+    "70 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.hajj-msa-run-0-11",
+   "value": "previews/hajj-msa-run-0-11.mp4 · 267.93 ث · 7/7 (فراغ 0.00) · فصحى صوت فقط · بديل 0→9 (باقٍ في المستودع خارج الصفحة)",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "pending.hajj-batch2",
+   "value": "يُعاد توليد g012 (نصّها وُسّع) وg015 (112.8 هرتز) بمرشحات · ثم g017–g024 · 0→16 جاهز لكنه لم يجتز (فراغ 1.16 ث عند g012)",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "recovery.wipe9",
+   "value": "مسح تاسع: عاد كل شيء من الريموت (720997a) · .venv/.cache أُعيد بناؤهما · الفيلم ببصمة مطابقة · عمل جلسة أخرى محفوظ في stash",
+   "since": "2026-09-28",
+   "source": "استعادة بعد مسح",
    "status": "active"
   }
  ]

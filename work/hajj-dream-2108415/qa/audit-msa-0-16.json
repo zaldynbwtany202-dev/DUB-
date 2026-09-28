@@ -1,0 +1,194 @@
+{
+ "pron": [],
+ "run": {
+  "takes": [
+   {
+    "group": "g000",
+    "hz": 129.7,
+    "drift": 2.72,
+    "seconds": 25.51,
+    "file": "work/hajj-dream-2108415/takes/g000.mp3"
+   },
+   {
+    "group": "g001",
+    "hz": 132.4,
+    "drift": 1.9,
+    "seconds": 26.95,
+    "file": "work/hajj-dream-2108415/takes/g001.mp3"
+   },
+   {
+    "group": "g002",
+    "hz": 140.0,
+    "drift": 1.1,
+    "seconds": 23.12,
+    "file": "work/hajj-dream-2108415/takes/g002.mp3"
+   },
+   {
+    "group": "g003",
+    "hz": 132.4,
+    "drift": 2.72,
+    "seconds": 24.31,
+    "file": "work/hajj-dream-2108415/takes/g003.mp3"
+   },
+   {
+    "group": "g004",
+    "hz": 125.6,
+    "drift": 2.3,
+    "seconds": 20.16,
+    "file": "work/hajj-dream-2108415/takes/g004.mp3"
+   },
+   {
+    "group": "g005",
+    "hz": 131.6,
+    "drift": 2.74,
+    "seconds": 25.43,
+    "file": "work/hajj-dream-2108415/takes/g005.mp3"
+   },
+   {
+    "group": "g006",
+    "hz": 132.4,
+    "drift": 2.93,
+    "seconds": 25.43,
+    "file": "work/hajj-dream-2108415/takes/g006.mp3"
+   },
+   {
+    "group": "g007",
+    "hz": 134.0,
+    "drift": 3.86,
+    "seconds": 24.15,
+    "file": "work/hajj-dream-2108415/takes/g007.mp3"
+   },
+   {
+    "group": "g008",
+    "hz": 132.4,
+    "drift": 3.39,
+    "seconds": 24.87,
+    "file": "work/hajj-dream-2108415/takes/g008.mp3"
+   },
+   {
+    "group": "g009",
+    "hz": 136.5,
+    "drift": 2.36,
+    "seconds": 25.27,
+    "file": "work/hajj-dream-2108415/takes/g009.mp3"
+   },
+   {
+    "group": "g010",
+    "hz": 131.8,
+    "drift": 2.7,
+    "seconds": 25.35,
+    "file": "work/hajj-dream-2108415/takes/g010.mp3"
+   },
+   {
+    "group": "g011",
+    "hz": 134.0,
+    "drift": 2.24,
+    "seconds": 28.07,
+    "file": "work/hajj-dream-2108415/takes/g011.mp3"
+   },
+   {
+    "group": "g012",
+    "hz": 124.9,
+    "drift": 1.82,
+    "seconds": 15.59,
+    "file": "work/hajj-dream-2108415/takes/g012.mp3"
+   },
+   {
+    "group": "g013",
+    "hz": 127.5,
+    "drift": 0.9,
+    "seconds": 19.83,
+    "file": "work/hajj-dream-2108415/takes/g013.mp3"
+   },
+   {
+    "group": "g014",
+    "hz": 129.3,
+    "drift": 1.65,
+    "seconds": 24.39,
+    "file": "work/hajj-dream-2108415/takes/g014.mp3"
+   },
+   {
+    "group": "g015",
+    "hz": 112.8,
+    "drift": 2.4,
+    "seconds": 21.66,
+    "file": "work/hajj-dream-2108415/takes/g015.mp3"
+   },
+   {
+    "group": "g016",
+    "hz": 129.1,
+    "drift": 2.84,
+    "seconds": 23.35,
+    "file": "work/hajj-dream-2108415/takes/g016.mp3"
+   }
+  ],
+  "steps": [
+   {
+    "between": "g000→g001",
+    "semitones": 0.36
+   },
+   {
+    "between": "g001→g002",
+    "semitones": 0.97
+   },
+   {
+    "between": "g002→g003",
+    "semitones": -0.97
+   },
+   {
+    "between": "g003→g004",
+    "semitones": -0.91
+   },
+   {
+    "between": "g004→g005",
+    "semitones": 0.81
+   },
+   {
+    "between": "g005→g006",
+    "semitones": 0.1
+   },
+   {
+    "between": "g006→g007",
+    "semitones": 0.21
+   },
+   {
+    "between": "g007→g008",
+    "semitones": -0.21
+   },
+   {
+    "between": "g008→g009",
+    "semitones": 0.53
+   },
+   {
+    "between": "g009→g010",
+    "semitones": -0.61
+   },
+   {
+    "between": "g010→g011",
+    "semitones": 0.29
+   },
+   {
+    "between": "g011→g012",
+    "semitones": -1.22
+   },
+   {
+    "between": "g012→g013",
+    "semitones": 0.36
+   },
+   {
+    "between": "g013→g014",
+    "semitones": 0.24
+   },
+   {
+    "between": "g014→g015",
+    "semitones": -2.36
+   },
+   {
+    "between": "g015→g016",
+    "semitones": 2.34
+   }
+  ],
+  "mean_step": 0.78,
+  "max_step": 2.36
+ }
+}
