@@ -1,0 +1,55 @@
+{
+  "slug": "into-the-wild",
+  "out": "previews/voice17-test.mp4",
+  "checks": [
+    {
+      "name": "lateness",
+      "ok": true,
+      "detail": "أقصى تأخير 0.00 ث"
+    },
+    {
+      "name": "silence_gap",
+      "ok": true,
+      "detail": "أطول صمت 0.06 ث"
+    },
+    {
+      "name": "tempo_ceiling",
+      "ok": true,
+      "detail": "أقصى سرعة 1.59×"
+    },
+    {
+      "name": "duration",
+      "ok": true,
+      "detail": "الملف 66.75 ث · المتوقّع 66.68 ث"
+    },
+    {
+      "name": "loudness",
+      "ok": true,
+      "detail": "-15.90 LUFS (المطلوب -16.0±0.3)"
+    },
+    {
+      "name": "true_peak",
+      "ok": true,
+      "detail": "-1.50 dBTP (السقف -1.4)"
+    },
+    {
+      "name": "picture_copy",
+      "ok": true,
+      "detail": "أول إطار PSNR ∞"
+    }
+  ],
+  "measured": {
+    "max_late": 0.0,
+    "max_gap": 0.06,
+    "tempo_max": 1.587,
+    "clamped": [],
+    "last_end": 66.8,
+    "groups": 3,
+    "out_seconds": 66.75,
+    "lufs": -15.9,
+    "true_peak": -1.5,
+    "first_frame_psnr": "inf"
+  },
+  "verdict": "pass",
+  "failed": []
+}

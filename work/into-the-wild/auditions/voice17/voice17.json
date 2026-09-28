@@ -1,0 +1,26 @@
+{
+  "voice_id": "voice-17",
+  "chosen_by": "المستخدم — «01voice-17» على لوحة previews/pro-voices.mp3 (BUILD 58)",
+  "test": "previews/voice17-test.mp4 — أول ثلاث مجموعات من الفيلم (0.12 → 66.80 ث) على الوصفة المقفلة",
+  "text": "نص الخطة نفسه (work/into-the-wild/groups.json) بلا قاموس ولا تشكيل",
+  "takes": [
+    {"group": 0, "file": "takes-voice17/g000.mp3", "seconds": 32.4, "hz": 133.3,
+     "note": "اختيرت alt1 (133.3) من ثلاث أخذات: 134.8 · 133.3 · 163.3 هرتز"},
+    {"group": 1, "file": "takes-voice17/g001.mp3", "seconds": 33.16, "hz": 127.0,
+     "note": "الأصلية هي الأثبت (البديلتان خرجتا 158.9 · 172.7 — انزياح المحرك)"},
+    {"group": 2, "file": "takes-voice17/g002.mp3", "seconds": 34.84, "hz": 132.6,
+     "note": "اختيرت alt1 (132.6) من ثلاث: 129.7 · 132.6 · 130.4"}
+  ],
+  "pitch": {"takes_hz": [133.3, 127.0, 132.6], "spread_semitones": 0.85,
+            "before_pick_semitones": 5.32,
+            "candidates_dir": "takes-voice17/candidates/ (تسع أخذات مقيسة)"},
+  "tempo": {"needed": [1.587, 1.471, 1.476], "ceiling": 1.8},
+  "master": {"chain": "plain", "lufs": -16.0, "true_peak_dbtp": -1.5, "duck_db": 10, "music_db": -4},
+  "verify": {"json": "qa/verify-0-2-v17test.json", "checks": "7/7",
+             "lateness_s": 0.0, "longest_gap_s": 0.06, "max_tempo": 1.59,
+             "lufs_measured": -15.90, "tp_dbtp": -1.50, "psnr": "inf"},
+  "placement": "build/into-the-wild-placement-0-2.json",
+  "report": "build/master-report-v17test.json",
+  "gate": "بُني بـ--no-gate (سياسة الهدف مبنية على أخذات 13) ثم جرى التحقّق الكامل على الملف: 7/7",
+  "plan": "voice-17 هو صوت الفيلم؛ إعادة البناء من المجموعة 0 (لا خلط أصوات في فيلم واحد)، والوصفة المقفلة محدَّثة في config/voice-lock.json (voice-17 · previous=voice-13)"
+}

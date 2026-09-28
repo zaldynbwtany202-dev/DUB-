@@ -174,10 +174,11 @@
    "value": "voice-16 (مُرشّح من استماع ثانٍ؛ المقارنة pronunciation-ab3)",
    "since": "2026-09-27",
    "source": "battle 16 + بناء المقارنة",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "voice-15 (اختاره المستمع — النطق قيد الإصلاح) (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "open.pronunciation",
@@ -207,10 +208,11 @@
    "value": "اختيار الصوت من الفيديو: previews/voice16-test.mp4 (1:07) مقابل voice15-test مقابل voice13-created — ينتظر قرار الأذن",
    "since": "2026-09-27",
    "source": "طلب: جرب على الفيديو لدقيقة",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "مقارنة pronunciation-ab3 (13 · 15 · 16 · 16-بقاموس): ينتظر اختيار المستمع بالرقم (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.voice16test",
@@ -224,11 +226,12 @@
    "value": "58",
    "since": "2026-09-28",
    "source": "BUILD 58 — لوحة الأصوات الاحترافية pro-voices",
-   "status": "active",
+   "status": "superseded",
    "check": "build:58",
    "supersedes": [
     "57 (منذ 2026-09-27)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.provoices",
@@ -243,6 +246,51 @@
    "since": "2026-09-28",
    "source": "add_voice ×3 + ASR مقارن",
    "status": "active"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-17 — اختيار المستخدم «01voice-17» من لوحة pro-voices (BUILD 58)؛ هو صوت الفيلم من الآن",
+   "since": "2026-09-28",
+   "source": "ردّ المستخدم على لوحة الأصوات الاحترافية",
+   "status": "active",
+   "supersedes": [
+    "voice-16 (مُرشّح من استماع ثانٍ؛ المقارنة pronunciation-ab3) (منذ 2026-09-27)"
+   ]
+  },
+  {
+   "key": "open.pronunciation",
+   "value": "حُلَّت: اختار المستخدم 01 = voice-17 (مطابقة 97% · خطآن) ونمضي به",
+   "since": "2026-09-28",
+   "source": "«01voice-17»",
+   "status": "active",
+   "supersedes": [
+    "اختيار الصوت من الفيديو: previews/voice16-test.mp4 (1:07) مقابل voice15-test مقابل voice13-created — ينتظر قرار الأذن (منذ 2026-09-27)"
+   ]
+  },
+  {
+   "key": "film.voice",
+   "value": "voice-17 — الفيلم كله بصوت واحد (لا خلط أصوات)، والبناء يعاد من المجموعة 0؛ نسخة 13 تبقى على القرص",
+   "since": "2026-09-28",
+   "source": "STANDING: لا خلط أصوات في فيلم واحد + قرار 01",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.voice17test",
+   "value": "previews/voice17-test.mp4 — 66.68 ث · ثلاث مجموعات بصوت 17 · 7/7 ✓ · −15.90 LUFS · قمة −1.50 dBTP · انتشار النبرة 0.85 نصف نغمة",
+   "since": "2026-09-28",
+   "source": "BUILD 59 (takes-voice17 · placement-0-2 · verify-0-2-v17test)",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "59",
+   "since": "2026-09-28",
+   "source": "BUILD 59 — voice17-test",
+   "status": "active",
+   "check": "build:59",
+   "supersedes": [
+    "58 (منذ 2026-09-28)"
+   ]
   }
  ]
 }
