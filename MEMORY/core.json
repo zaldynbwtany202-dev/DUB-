@@ -576,6 +576,27 @@
    "since": "2026-09-28",
    "source": "قياس السلاسة بعد البناء",
    "status": "active"
+  },
+  {
+   "key": "hajj.words",
+   "value": "النص المصري المعتمد من جلسة voice-12 مدموجًا بتفريغ الراوية الأصلية — جاهز للـ0→9 · mean tempo 1.00×",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "hajj.pipeline",
+   "value": "min_tempo=0.90 في assemble_dub: atempo يبطئ بلا تغيير النبرة فيسدّ فراغ الصمت · hajj-run-0-9 بُني 7/7 قبل تغيير الكلمات",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "hajj.superseded",
+   "value": "أخذات مصرية بصياغتي (10) محفوظة في takes-superseded-mine · البناء القديم في build/preview-run-0-9-words-v1.mp4",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
   }
  ]
 }
