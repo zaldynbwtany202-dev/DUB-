@@ -714,11 +714,12 @@
    "value": "71",
    "since": "2026-09-28",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"71\"' scripts/upload_server.py",
    "supersedes": [
     "70 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.hajj-msa-run-0-11",
@@ -737,6 +738,38 @@
   {
    "key": "recovery.wipe9",
    "value": "مسح تاسع: عاد كل شيء من الريموت (720997a) · .venv/.cache أُعيد بناؤهما · الفيلم ببصمة مطابقة · عمل جلسة أخرى محفوظ في stash",
+   "since": "2026-09-28",
+   "source": "استعادة بعد مسح",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "72",
+   "since": "2026-09-28",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"72\"' scripts/upload_server.py",
+   "supersedes": [
+    "71 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.hajj-msa-run-0-24",
+   "value": "previews/hajj-msa-run-0-24.mp4 · 534.63 ث (8:55) · 7/7 · فصحى صوت فقط · 25 مجموعة من 32 · أخذات g000–g024",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "pending.hajj-final",
+   "value": "توليد g025–g031 (7) + إصلاح نبرة g004 (125.6) وg015 (121.5) وg022 (124.8) وg024 (138.2) → البناء الكامل 0→31 (~11:16)",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "recovery.wipe10",
+   "value": "مسح عاشر: عاد كل شيء من الريموت (2f4fbc3) · .venv/.cache أُعيد بناؤهما · الفيلم ببصمة مطابقة",
    "since": "2026-09-28",
    "source": "استعادة بعد مسح",
    "status": "active"
