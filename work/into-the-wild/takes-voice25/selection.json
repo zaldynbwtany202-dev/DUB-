@@ -1,0 +1,27 @@
+{
+ "takes": [
+  {
+   "file": "work/into-the-wild/takes-voice25/g000.mp3",
+   "name": "g000.mp3",
+   "seconds": 28.39,
+   "hz": 131.8,
+   "drift": 2.82
+  },
+  {
+   "file": "work/into-the-wild/takes-voice25/g001.mp3",
+   "name": "g001.mp3",
+   "seconds": 33.91,
+   "hz": 127.5,
+   "drift": 3.07
+  },
+  {
+   "file": "work/into-the-wild/takes-voice25/g002.mp3",
+   "name": "g002.mp3",
+   "seconds": 32.95,
+   "hz": 127.8,
+   "drift": 2.28
+  }
+ ],
+ "session_median_hz": 127.8,
+ "spread_semitones": 0.57
+}
