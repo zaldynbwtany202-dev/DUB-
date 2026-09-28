@@ -521,11 +521,12 @@
    "value": "66",
    "since": "2026-09-28",
    "source": "BUILD 66 — clip-happiness-presented",
-   "status": "active",
+   "status": "superseded",
    "check": "build:66",
    "supersedes": [
     "65 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.clip-presented",
@@ -550,6 +551,31 @@
    "supersedes": [
     "التقديم: ينتظر توضيح المستخدم — هل يقصد افتتاحية مقروءة بصوت 25 أم تحسين بداية المقطع أم تقديم الفيديو للجمهور (منذ 2026-09-28)"
    ]
+  },
+  {
+   "key": "page.build",
+   "value": "67",
+   "since": "2026-09-28",
+   "source": "BUILD 67 — voice25-run-0-17",
+   "status": "active",
+   "check": "build:67",
+   "supersedes": [
+    "66 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.voice25run17",
+   "value": "previews/voice25-run-0-17.mp4 — 417.88 ث · 18 مجموعة بصوت 25 · 7/7 ✓ · −16.00 LUFS · قمة −1.60 dBTP · atempo ≤1.65× · متوسط خطوة النبرة 0.63",
+   "since": "2026-09-28",
+   "source": "BUILD 67 (g010–g017)",
+   "status": "active"
+  },
+  {
+   "key": "pending.g014",
+   "value": "يُعاد توليد g014 (خرجت 144.6 هرتز؛ البديل الخام 137.4 لا يكفي) مع الجولة القادمة g018–g025 — ترتيب الجولة: 3 مرشحات لg014 ثم 7 مجموعات جديدة",
+   "since": "2026-09-28",
+   "source": "قياس السلاسة بعد البناء",
+   "status": "active"
   }
  ]
 }

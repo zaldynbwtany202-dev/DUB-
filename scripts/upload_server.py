@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "66"
+BUILD = "67"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,18 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "voice25-run-0-17": ("★ فيلم الوحدة والسعادة — المجموعات 0→17 بصوتك المخصص (6:58)",
+                        "استمرار الدبلجة بصوت voice-25: ثماني مجموعات جديدة (g010–g017) متصلة "
+                        "بالعشر السابقة، من والدَي كريستوفر وزواجهما السيئ، إلى دخول هارفارد، "
+                        "ثم تولستوي وجاك لندن وثورو وفكرة الحياة البسيطة، إلى قطع البطاقة والتصدّق "
+                        "بالفلوس واختيار اسم «ألكسندر سوبرترامب». البناء على الوصفة المقفلة "
+                        "(خام · atempo ≤1.65× · بلا قصّ صمت · plain · −16 · الموسيقى تنسحب) "
+                        "والفحص 7/7 ✓: تأخير 0.00 ث · أطول صمت 0.06 ث · −16.00 LUFS · قمة −1.60 dBTP · "
+                        "−PSNR ∞. السلاسة المقيسة: متوسط خطوة النبرة بين 18 مجموعة 0.63 نصف نغمة، "
+                        "وبقي انزياح واحد: g014 خرج مرتفعًا (144.6) وأفضل بديل خام أعطى 137.4 "
+                        "(+1.35 نصف نغمة) — والقرار الصريح: يُعاد توليدها من جديد في الجولة "
+                        "القادمة مع g018–g025. اسمع الدقائق السبع: إن كانت السلاسة مقبولة أُكمل "
+                        "الفيلم (78 مجموعة) في جولات عشر أخذات."),
     "clip-happiness-presented": ("★ التقديم — بطاقة عنوان عربية + صوتك المخصص (17.9 ث)",
                                  "بطاقة العنوان التي طلبتها: «فنجان قهوة» كبيرة وتحتها «مهارة واختيار»، "
                                  "تظهر بتلاشٍ ناعم في أول 3.6 ثانية من مقطعك ويُقرأ السطر بصوت "
@@ -440,7 +452,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -461,7 +473,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
