@@ -1,0 +1,33 @@
+{
+ "takes": [
+  {
+   "file": "work/clip-happiness/takes-voice25/g000.mp3",
+   "name": "g000.mp3",
+   "seconds": 16.95,
+   "hz": 119.5,
+   "drift": 1.86
+  },
+  {
+   "file": "work/clip-happiness/takes-voice25/candidates/g000.alt1.mp3",
+   "name": "g000.alt1.mp3",
+   "seconds": 15.75,
+   "hz": 118.2,
+   "drift": 1.56
+  },
+  {
+   "file": "work/clip-happiness/takes-voice25/candidates/g000.alt2.mp3",
+   "name": "g000.alt2.mp3",
+   "seconds": 15.67,
+   "hz": 126.2,
+   "drift": 1.77
+  }
+ ],
+ "pick": {
+  "file": "work/clip-happiness/takes-voice25/g000.mp3",
+  "name": "g000.mp3",
+  "seconds": 16.95,
+  "hz": 119.5,
+  "drift": 1.86
+ },
+ "session_median_hz": 119.5
+}

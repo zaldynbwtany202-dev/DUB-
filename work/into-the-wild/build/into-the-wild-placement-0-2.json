@@ -10,8 +10,8 @@
       "target": 0.12,
       "start": 0.12,
       "late": 0.0,
-      "natural": 31.6,
-      "tempo": 1.548,
+      "natural": 28.39,
+      "tempo": 1.39,
       "end": 20.54,
       "clamped": false
     },
@@ -22,8 +22,8 @@
       "target": 20.6,
       "start": 20.6,
       "late": 0.0,
-      "natural": 35.16,
-      "tempo": 1.56,
+      "natural": 33.907,
+      "tempo": 1.504,
       "end": 43.14,
       "clamped": false
     },
@@ -34,8 +34,8 @@
       "target": 43.2,
       "start": 43.2,
       "late": 0.0,
-      "natural": 34.24,
-      "tempo": 1.451,
+      "natural": 32.951,
+      "tempo": 1.396,
       "end": 66.8,
       "clamped": false
     }

@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "63"
+BUILD = "64"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -93,6 +93,21 @@ LABELS = {
                    "التوصية بالقياس: 06 (صوت 04) نبرته 162.1 = نبرة الراوي وإيقاعه "
                    "الأقرب · و07 (صوت 11) رخيم 98 هرتز لكنه أبطأ بالضعف. "
                    "قل الرقم وأبني لك عيّنة كاملة به"),
+    "clip-happiness-dub-v25": ("★ مقطعك بصوتك المخصص (voice-25) — «فنجان القهوة» (14 ث)",
+                               "نفس المقطع الذي رفعته، مدبلج بصوت voice-25 الذي اخترته («الصوت الثالث»): "
+                               "خام من المحرك، atempo فقط (1.19×)، بلا قصّ صمت، بلا EQ ولا ضغط، "
+                               "ماستر −16 LUFS · قمة −1.50 dBTP، والصورة منسوخة. القياس: ثلاث أخذات "
+                               "للمقطع نفسه واختير الأثبت (119.5 هرتز · انزياح داخلي 1.86 مقابل "
+                               "118.2/1.56 و126.2/1.77). الفحص 7/7 ✓. الصوت أعمق من 21 بنحو "
+                               "نصف نغمة ونصف (120 مقابل 140 هرتز) وهو الأنقى نطقًا في اللوحة (98%)."),
+    "voice25-test": ("★ الصوت المخصص (voice-25) على فيلمك — أول ثلاث مجموعات (1:07)",
+                     "voice-25 في السياق الثاني: أول 66 ثانية من فيلم Into the Wild. ثلاث أخذات "
+                     "جديدة (لا إعادة تدوير لأخذات 21) وانتشار النبرة بينها 0.57 نصف نغمة فقط — "
+                     "الأثبت في كل الجولات؛ 131.8 · 127.5 · 127.8 هرتز. البناء على الوصفة المقفلة "
+                     "(atempo 1.50× الأقصى · بلا قصّ صمت · plain · −16 · الموسيقى تنسحب) والفحص "
+                     "7/7 ✓: تأخير 0.00 ث · أطول صمت 0.06 ث · −16.00 LUFS · قمة −1.50 dBTP · PSNR ∞. "
+                     "اسمع الصوت في المقطعين: مقطعك القصير ثم هذه الدقيقة — ثم قل «واصل» "
+                     "لأكمل الفيلم كله بصوت 25 من المجموعة 0."),
     "voice-personal": ("★ لوحة أصوات جديدة مخصّصة لك — ثلاثة أصوات على سطر مقطعك نفسه (82 ث)",
                        "ثلاثة أصوات جديدة وُلّدت بعد الاستماع (23 · 24 · 25) وكل واحد يقول سطر "
                        "المقطع الذي رفعته نفسه، ثم (04) voice-21 الصوت الحالي على السطر نفسه "
@@ -396,7 +411,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -417,7 +432,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

@@ -341,10 +341,11 @@
    "value": "voice-21 — «الصوت الثاني هوا الجيد» (المقطع 02 من voice-pro2)؛ voice-17 مرفوض بالسماع على الفيديو",
    "since": "2026-09-28",
    "source": "BUILD 61 + قرار المستخدم",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "voice-17 (مرفوض بالسماع على الفيديو) — البديل المرشّح: 20 أو 21 أو 22 من voice-pro2 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.voice21test",
@@ -406,7 +407,8 @@
    "value": "يريد صوتًا آخر مخصّصًا له: لوحة previews/voice-personal.mp3 (23 · 24 · 25 + 21 + الراوي) — القياس: 25 الأعمق 120 هرتز والأفضل نطقًا 98% · 24: 97% · 23: 95% · التسريع المطلوب 1.08–1.11× للجميع",
    "since": "2026-09-28",
    "source": "«اريد صوت اخر اقترح عينات افضل مخصصة لي فقط»",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "deliverable.voice-personal",
@@ -420,11 +422,64 @@
    "value": "63",
    "since": "2026-09-28",
    "source": "BUILD 63 — voice-personal",
-   "status": "active",
+   "status": "superseded",
    "check": "build:63",
    "supersedes": [
     "62 (منذ 2026-09-28)"
+   ],
+   "superseded_at": "2026-09-28"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-25 — «الصوت الثالث» من لوحة voice-personal (الأعمق 120 هرتز · أفضل نطق 98% · تسريع 1.08×)؛ صوت شخصي للمستخدم",
+   "since": "2026-09-28",
+   "source": "قرار المستخدم (المسحة السابعة خلال تنفيذه، أُعيد التنفيذ)",
+   "status": "active",
+   "supersedes": [
+    "voice-21 — «الصوت الثاني هوا الجيد» (المقطع 02 من voice-pro2)؛ voice-17 مرفوض بالسماع على الفيديو (منذ 2026-09-28)"
    ]
+  },
+  {
+   "key": "open.voice",
+   "value": "حُلَّت: voice-25 هو الصوت المختار (سلسلة 13 → 17 → 21 → 25)",
+   "since": "2026-09-28",
+   "source": "«الصوت الثالث»",
+   "status": "active",
+   "supersedes": [
+    "يريد صوتًا آخر مخصّصًا له: لوحة previews/voice-personal.mp3 (23 · 24 · 25 + 21 + الراوي) — القياس: 25 الأعمق 120 هرتز والأفضل نطقًا 98% · 24: 97% · 23: 95% · التسريع المطلوب 1.08–1.11× للجميع (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "page.build",
+   "value": "64",
+   "since": "2026-09-28",
+   "source": "BUILD 64 — voice-25",
+   "status": "active",
+   "check": "build:64",
+   "supersedes": [
+    "63 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.clip-v25",
+   "value": "previews/clip-happiness-dub-v25.mp4 — 14.33 ث بصوت 25 · 7/7 ✓ · −16.00 LUFS · قمة −1.50 dBTP · أخذة 119.5 هرتز (انزياح 1.86)",
+   "since": "2026-09-28",
+   "source": "BUILD 64",
+   "status": "active"
+  },
+  {
+   "key": "deliverable.voice25test",
+   "value": "previews/voice25-test.mp4 — أول 66.68 ث من الفيلم بصوت 25 · 7/7 ✓ · انتشار الأخذات 0.57 نصف نغمة (الأثبت) · atempo ≤1.50×",
+   "since": "2026-09-28",
+   "source": "BUILD 64",
+   "status": "active"
+  },
+  {
+   "key": "lesson.wipe7",
+   "value": "ملف المستخدم المرفوع خارج git يضيع مع المسحات — الصورة استُعيدت من الملف المسلَّم (-c:v copy) ودفعت في library/clip-happiness/source.mp4 بـ-f؛ أي مقطع صغير يُدفع فورًا بنفس الطريقة",
+   "since": "2026-09-28",
+   "source": "المسحة السابعة",
+   "status": "active"
   }
  ]
 }
