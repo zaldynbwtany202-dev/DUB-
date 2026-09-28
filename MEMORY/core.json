@@ -583,7 +583,8 @@
    "value": "النص المصري المعتمد من جلسة voice-12 مدموجًا بتفريغ الراوية الأصلية — جاهز للـ0→9 · mean tempo 1.00×",
    "since": "2026-09-28",
    "source": "دبلجة فيديو قديم",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "hajj.pipeline",
@@ -637,11 +638,12 @@
    "value": "69",
    "since": "2026-09-28",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"69\"' scripts/upload_server.py",
    "supersedes": [
     "68 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-28"
   },
   {
    "key": "feedback.eg-pronunciation",
@@ -653,6 +655,55 @@
   {
    "key": "deliverable.hajj-dialect-options",
    "value": "previews/hajj-dialect-options.mp3 · 42.53 ث · نفس المقطع بثلاثة أساليب بنبرة 139.6/132.4/135.7 هرتز · تذبذب 0.00",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "70",
+   "since": "2026-09-28",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"70\"' scripts/upload_server.py",
+   "supersedes": [
+    "69 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "hajj.style",
+   "value": "فصحى واضحة — اختاره المستخدم بعد سماع ثلاثة أساليب (msa/iraqi/white)",
+   "since": "2026-09-28",
+   "source": "تصريح مباشر",
+   "status": "active"
+  },
+  {
+   "key": "hajj.words",
+   "value": "كُتبت 32 مجموعة بالفصحى على محتوى نص voice-12 المعتمد + تفريغ الرواية · ميزانية الأحرف = النافذة×12.09 · متوسط سرعة 0.95×",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active",
+   "supersedes": [
+    "النص المصري المعتمد من جلسة voice-12 مدموجًا بتفريغ الراوية الأصلية — جاهز للـ0→9 · mean tempo 1.00× (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.hajj-msa-run-0-9",
+   "value": "previews/hajj-msa-run-0-9.mp4 · 220.60 ث · 7/7 · فصحى · صوت فقط · سقف 1.23×",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "pending.msa-pitch",
+   "value": "تذبذب نبرة الأخذات بين 123 و132 هرتز (متوسط خطوة 0.92) — يُعاد توليد g002/g004/g006 مع جولة g010–g016",
+   "since": "2026-09-28",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "hajj.superseded-eg",
+   "value": "عشر أخذات مصرية + البناء القديم محفوظة (takes-superseded-eg · build/preview-run-0-9-words-v1.mp4 · previews/hajj-run-0-9.mp4)",
    "since": "2026-09-28",
    "source": "دبلجة فيديو قديم",
    "status": "active"

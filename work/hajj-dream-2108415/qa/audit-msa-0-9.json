@@ -1,0 +1,117 @@
+{
+ "pron": [],
+ "run": {
+  "takes": [
+   {
+    "group": "g000",
+    "hz": 129.7,
+    "drift": 2.72,
+    "seconds": 25.51,
+    "file": "work/hajj-dream-2108415/takes/g000.mp3"
+   },
+   {
+    "group": "g001",
+    "hz": 132.4,
+    "drift": 1.9,
+    "seconds": 26.95,
+    "file": "work/hajj-dream-2108415/takes/g001.mp3"
+   },
+   {
+    "group": "g002",
+    "hz": 122.8,
+    "drift": 1.98,
+    "seconds": 23.36,
+    "file": "work/hajj-dream-2108415/takes/g002.mp3"
+   },
+   {
+    "group": "g003",
+    "hz": 132.4,
+    "drift": 2.72,
+    "seconds": 24.31,
+    "file": "work/hajj-dream-2108415/takes/g003.mp3"
+   },
+   {
+    "group": "g004",
+    "hz": 123.2,
+    "drift": 1.89,
+    "seconds": 20.73,
+    "file": "work/hajj-dream-2108415/takes/g004.mp3"
+   },
+   {
+    "group": "g005",
+    "hz": 131.6,
+    "drift": 2.74,
+    "seconds": 25.43,
+    "file": "work/hajj-dream-2108415/takes/g005.mp3"
+   },
+   {
+    "group": "g006",
+    "hz": 124.6,
+    "drift": 2.83,
+    "seconds": 25.19,
+    "file": "work/hajj-dream-2108415/takes/g006.mp3"
+   },
+   {
+    "group": "g007",
+    "hz": 134.0,
+    "drift": 3.86,
+    "seconds": 24.15,
+    "file": "work/hajj-dream-2108415/takes/g007.mp3"
+   },
+   {
+    "group": "g008",
+    "hz": 132.4,
+    "drift": 3.39,
+    "seconds": 24.87,
+    "file": "work/hajj-dream-2108415/takes/g008.mp3"
+   },
+   {
+    "group": "g009",
+    "hz": 136.5,
+    "drift": 2.36,
+    "seconds": 25.27,
+    "file": "work/hajj-dream-2108415/takes/g009.mp3"
+   }
+  ],
+  "steps": [
+   {
+    "between": "g000→g001",
+    "semitones": 0.36
+   },
+   {
+    "between": "g001→g002",
+    "semitones": -1.3
+   },
+   {
+    "between": "g002→g003",
+    "semitones": 1.3
+   },
+   {
+    "between": "g003→g004",
+    "semitones": -1.25
+   },
+   {
+    "between": "g004→g005",
+    "semitones": 1.14
+   },
+   {
+    "between": "g005→g006",
+    "semitones": -0.95
+   },
+   {
+    "between": "g006→g007",
+    "semitones": 1.26
+   },
+   {
+    "between": "g007→g008",
+    "semitones": -0.21
+   },
+   {
+    "between": "g008→g009",
+    "semitones": 0.53
+   }
+  ],
+  "mean_step": 0.92,
+  "max_step": 1.3
+ }
+}

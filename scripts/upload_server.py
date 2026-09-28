@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "69"
+BUILD = "70"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -96,6 +96,10 @@ LABELS = {
     "hajj-dialect-options": ("★ أيّ لهجة تُقرأ أفضل؟ نفس المقطع بصوتك 25 بثلاثة أساليب (43 ث)",
                             "بترتيب التشغيل: (1) فصحى واضحة · (2) لهجة الفيلم الأصلية (العراقية) · "
                             "(3) لهجة بيضاء محايدة — ثلاثتها بنبرة واحدة تقريبًا (132–140 هرتز) فالمقارنة عادلة"),
+    "hajj-msa-run-0-9": ("★ حلم الحج بالفصحى — أول عشر مجموعات (3:41)",
+                        "النطق الذي اخترته: فصحى واضحة · صوتك 25 بلا خلفية · "
+                        "الإلقاء 0.81–1.23× · النص كُتب كاملًا للفيلم (32 مجموعة) من جديد · "
+                        "تذبذب النبرة بين الأخذات (123 و132 هرتز) يُصلَح في الجولة القادمة"),
     "hajj-run-0-9": ("★ دبلجة «حلم الحج» — أول عشر مجموعات بصوتك 25 (3:41)",
                       "صوت فقط بلا خلفية كما طلبت · الإلقاء 0.93–1.09× · "
                       "بلا فراغات ولا تسريع مسموع · الكلمات مصرية من نصّك المعتمد · -16 LUFS وسقف -1.5 dBTP"),
@@ -458,7 +462,7 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "hajj-dialect-options", "hajj-run-0-9", "voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
+            "hajj-msa-run-0-9", "hajj-dialect-options", "voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
             "into-the-wild-narration", "into-the-wild-mastered",
             "ident-voices", "voice07-opening",
             "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
@@ -479,7 +483,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"hajj-dialect-options", "hajj-run-0-9", "voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"hajj-msa-run-0-9", "hajj-dialect-options", "voice25-run-0-17", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
