@@ -780,11 +780,12 @@
    "value": "73",
    "since": "2026-09-29",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"73\"' scripts/upload_server.py",
    "supersedes": [
     "72 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-29"
   },
   {
    "key": "deliverable.hajj-full-msa",
@@ -803,6 +804,45 @@
   {
    "key": "recovery.wipe11",
    "value": "مسح حادي عشر: عاد كل شيء من الريموت (d9a921f) · أُضيف scripts/restore_after_wipe.sh للاستعادة السريعة",
+   "since": "2026-09-29",
+   "source": "استعادة بعد مسح",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "74",
+   "since": "2026-09-29",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"74\"' scripts/upload_server.py",
+   "supersedes": [
+    "73 (منذ 2026-09-29)"
+   ]
+  },
+  {
+   "key": "deliverable.voice25run20",
+   "value": "previews/voice25-run-0-20.mp4 · 487.31 ث (8:07) · 7/7 · 21 مجموعة · فوق موسيقى الفيلم · إلقاء حتى 1.65× · قمة −1.60 — حلّ محل voice25-run-0-17 على الصفحة (الأخير باقٍ في المستودع)",
+   "since": "2026-09-29",
+   "source": "دبلجة فيلم الوحدة والسعادة",
+   "status": "active"
+  },
+  {
+   "key": "pending.g021",
+   "value": "نصّها قُصّر 504→301 حرف (كان يحتاج 1.81× فوق السقف) — تُولَّد بالجولة القادمة مع إصلاح نبرة g020 (133.2 بين 124.9 و121.2) وg024 (131.2)",
+   "since": "2026-09-29",
+   "source": "دبلجة فيلم الوحدة والسعادة",
+   "status": "active"
+  },
+  {
+   "key": "g014.resolved",
+   "value": "ثلاث مرشحات جديدة: fresh-a/b 140.4 · fresh-c 135.3 → استُبدلت بـfresh-c (الأقرب لجوار 127.5/127.1) · الأخذات السابقة محفوظة في candidates/",
+   "since": "2026-09-29",
+   "source": "دبلجة فيلم الوحدة والسعادة",
+   "status": "active"
+  },
+  {
+   "key": "recovery.wipe13",
+   "value": "مسح ثالث عشر: عاد كل شيء من الريموت (568bf32) · الأدوات أُعيد بناؤها · الفيلم ببصمة مطابقة",
    "since": "2026-09-29",
    "source": "استعادة بعد مسح",
    "status": "active"
