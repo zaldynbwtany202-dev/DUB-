@@ -747,11 +747,12 @@
    "value": "72",
    "since": "2026-09-28",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"72\"' scripts/upload_server.py",
    "supersedes": [
     "71 (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-09-29"
   },
   {
    "key": "deliverable.hajj-msa-run-0-24",
@@ -771,6 +772,38 @@
    "key": "recovery.wipe10",
    "value": "مسح عاشر: عاد كل شيء من الريموت (2f4fbc3) · .venv/.cache أُعيد بناؤهما · الفيلم ببصمة مطابقة",
    "since": "2026-09-28",
+   "source": "استعادة بعد مسح",
+   "status": "active"
+  },
+  {
+   "key": "page.build",
+   "value": "73",
+   "since": "2026-09-29",
+   "source": "تشغيل الصفحة",
+   "status": "active",
+   "check": "grep -q 'BUILD = \"73\"' scripts/upload_server.py",
+   "supersedes": [
+    "72 (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "deliverable.hajj-full-msa",
+   "value": "previews/hajj-dream-full-msa.mp4 · 676.27 ث (11:16) · 7/7 · 32 مجموعة · فصحى · صوت فقط بلا خلفية · إلقاء 0.98–1.20× · متوسط خطوة النبرة 0.48 · 44,813,419 بايت",
+   "since": "2026-09-29",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "hajj.words-done",
+   "value": "كل 32 مجموعة كُتبت بالفصحى ووُلّدت بصوت 25 · المشروع مكتمل بانتظار سمعه",
+   "since": "2026-09-29",
+   "source": "دبلجة فيديو قديم",
+   "status": "active"
+  },
+  {
+   "key": "recovery.wipe11",
+   "value": "مسح حادي عشر: عاد كل شيء من الريموت (d9a921f) · أُضيف scripts/restore_after_wipe.sh للاستعادة السريعة",
+   "since": "2026-09-29",
    "source": "استعادة بعد مسح",
    "status": "active"
   }
