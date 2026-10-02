@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5800
+			},
+			"text": " في اليوم التالي يذهب إلى شركة الصفر ويقول إنه يريد الحج مع زوجته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,800",
+				"to": "00:00:09,600"
+			},
+			"offsets": {
+				"from": 5800,
+				"to": 9600
+			},
+			"text": " يسأله أشرف صاحب الشركة عن جواز الصفر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,600",
+				"to": "00:00:15,000"
+			},
+			"offsets": {
+				"from": 9600,
+				"to": 15000
+			},
+			"text": " وعندما يعلم أنه لا يملك جواز يطمئنه أنهم سيساعدونه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,000",
+				"to": "00:00:19,400"
+			},
+			"offsets": {
+				"from": 15000,
+				"to": 19400
+			},
+			"text": " ويطلب من السكرتيرى أن تشرح له الإجراءات والأوراق المطلوبة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,400",
+				"to": "00:00:25,400"
+			},
+			"offsets": {
+				"from": 19400,
+				"to": 25400
+			},
+			"text": " يأخذ الورقة وينضي ثم يذهب إلى الشيخ مبروك المجغول بهموم الناس"
+		}
+	]
+}

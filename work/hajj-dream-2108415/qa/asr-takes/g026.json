@@ -1,0 +1,120 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,200"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4200
+			},
+			"text": " وفي الليل يفزع من نومه بعد أن رأى الشجرة في المنام"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,200",
+				"to": "00:00:06,560"
+			},
+			"offsets": {
+				"from": 4200,
+				"to": 6560
+			},
+			"text": " وتحاول عائشة تهدئته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,560",
+				"to": "00:00:09,600"
+			},
+			"offsets": {
+				"from": 6560,
+				"to": 9600
+			},
+			"text": " وفي اليوم التالي يزورهم المدرس"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,600",
+				"to": "00:00:12,360"
+			},
+			"offsets": {
+				"from": 9600,
+				"to": 12360
+			},
+			"text": " ويعرض عليه خمسين ألف ربية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,360",
+				"to": "00:00:14,880"
+			},
+			"offsets": {
+				"from": 12360,
+				"to": 14880
+			},
+			"text": " ويقول إنه لا يحتاجها الآن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,880",
+				"to": "00:00:18,040"
+			},
+			"offsets": {
+				"from": 14880,
+				"to": 18040
+			},
+			"text": " لكن الرجل يرفض أن يحج بمال دين"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,040",
+				"to": "00:00:20,040"
+			},
+			"offsets": {
+				"from": 18040,
+				"to": 20040
+			},
+			"text": " وبعد أن يمضي المدرس"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,040",
+				"to": "00:00:23,560"
+			},
+			"offsets": {
+				"from": 20040,
+				"to": 23560
+			},
+			"text": " تقترح عائشة أن يطلب مساعدة ابنهما"
+		}
+	]
+}

@@ -1,0 +1,98 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,560"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5560
+			},
+			"text": " فتصمت عائشة بعد ذلك يذهب إلى صاحبه لإصلح المظل المكسورة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,560",
+				"to": "00:00:09,360"
+			},
+			"offsets": {
+				"from": 5560,
+				"to": 9360
+			},
+			"text": " يجلسان يتحدثان عن ضيق الحال وقلة المال"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,360",
+				"to": "00:00:14,080"
+			},
+			"offsets": {
+				"from": 9360,
+				"to": 14080
+			},
+			"text": " وعن صاحبهم المتعلم الذي صار يملك مخابز وسيارة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,080",
+				"to": "00:00:16,720"
+			},
+			"offsets": {
+				"from": 14080,
+				"to": 16720
+			},
+			"text": " ويقارنان بين حالهما وحاله"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,720",
+				"to": "00:00:20,840"
+			},
+			"offsets": {
+				"from": 16720,
+				"to": 20840
+			},
+			"text": " ويحكي له صاحبه أنه استدان ليزوج ابنته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,840",
+				"to": "00:00:25,400"
+			},
+			"offsets": {
+				"from": 20840,
+				"to": 25400
+			},
+			"text": " وما زال يعاني في سداد الدين ويخشى أن لا يقدر عليه"
+		}
+	]
+}

@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "76"
+BUILD = "77"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -96,9 +96,23 @@ LABELS = {
     "hajj-dialect-options": ("★ أيّ لهجة تُقرأ أفضل؟ نفس المقطع بصوتك 25 بثلاثة أساليب (43 ث)",
                             "بترتيب التشغيل: (1) فصحى واضحة · (2) لهجة الفيلم الأصلية (العراقية) · "
                             "(3) لهجة بيضاء محايدة — ثلاثتها بنبرة واحدة تقريبًا (132–140 هرتز) فالمقارنة عادلة"),
-    "hajj-dream-full-msa": ("★★ حلم الحج كاملًا بالفصحى (11:16) — 32 مجموعة",
+    "hajj-dream-full-msa": ("★★ حلم الحج كاملًا بالفصحى (11:16) — بعد تصحيح النطق",
                           "النطق الذي اخترته: فصحى واضحة · صوتك 25 · صوت فقط بلا خلفية (إلغاء الأصل كاملًا) · "
-                          "إلقاء 0.98–1.20× · بلا فراغات · −16 LUFS وسقف −1.5 dBTP · الصورة منسوخة بلا إعادة ضغط"),
+                          "إلقاء 0.98–1.20× · بلا فراغات (0.00) · −16 LUFS وسقف −1.5 dBTP · الصورة منسوخة. "
+                          "أُعيد بناؤه بعد تصحيح الكلمتين التي رصدهما سمعك: «يجدون قوتهم» (كان المحرّك ينطقها "
+                          "بمعنى القوّة) و«سيجلب الرزق» — والأخذتان القديمتان محفوظتان في المستودع. 7/7 ✓"),
+    "hajj-pronunciation-fix": ("★★ تصحيح النطق — قبل/بعد للكلمتين (22 ث)",
+                               "اسمع الفرق بنفسك: (1) «سيجلب الرزق» كما كان · (2) «سيجلب الخير» بعد التصحيح · "
+                               "(3) «يجدون قوتهم» — كان المحرّك ينطقها بمعنى القوّة · (4) «يجدون طعامهم» بعد "
+                               "التصحيح. التفريغ الآلي أكّد شكواك: سمع القديمة «قواتهم» (قوّة) والجديدة "
+                               "«طعامهم». التشكيل لم يُجدِ (غيّر النطق إلى كلمة ثالثة)، فالتصحيح كان ببديل "
+                               "لا يحتمل وجهين — والملفان القديمان محفوظان في المستودع"),
+    "voice25-run-0-40": ("★★ فيلم الوحدة والسعادة — المجموعات 0→40 بصوتك المخصص (15:35)",
+                         "استمرار الدبلجة بتسع مجموعات جديدة (g033–g040) بعد حادثة رازول: نظريات المؤامرة "
+                         "والمنطاد، ثم كِيفن والصيد، واعتقال واين، وسرّ الأسرة، ودفن الكتب، ورخصة القارب "
+                         "والانتظار 12 سنة، ثم البحر رمزًا للحجز والحرية. مبنية بالمزامنة المصحّحة "
+                         "(إزاحة 0.25 ث) · إلقاء حتى 1.78× · −16 LUFS · سقف −1.50 dBTP · "
+                         "الصورة منسوخة بلا إعادة ضغط · 7/7 ✓"),
     "hajj-msa-run-0-24": ("★ حلم الحج بالفصحى — المجموعات 0→24 (8:55)",
                           "فصحى واضحة بصوتك 25 · صوت فقط بلا خلفية · إلقاء 0.90–1.20× · "
                           "بلا فراغات (0.00) · −16 LUFS وسقف −1.5 dBTP · 25 مجموعة من 32"),
@@ -487,8 +501,8 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "hajj-dream-full-msa", "voice25-run-0-31-timed",
-            "voice25-run-0-31", "clip-happiness-presented"])}
+            "hajj-pronunciation-fix", "hajj-dream-full-msa",
+            "voice25-run-0-40", "voice25-run-0-31-timed"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
@@ -498,7 +512,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"hajj-dream-full-msa", "voice25-run-0-31-timed", "voice25-run-0-31", "clip-happiness-presented"}
+        PAGE_ALLOW = {"hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-40", "voice25-run-0-31-timed"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

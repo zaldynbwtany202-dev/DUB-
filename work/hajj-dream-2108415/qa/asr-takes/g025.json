@@ -1,0 +1,120 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2160
+			},
+			"text": " يسلمه النجار باق المال"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,160",
+				"to": "00:00:06,120"
+			},
+			"offsets": {
+				"from": 2160,
+				"to": 6120
+			},
+			"text": " لكنه يخبره أن الشجرة كانت جوفاء من الداخل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,120",
+				"to": "00:00:08,840"
+			},
+			"offsets": {
+				"from": 6120,
+				"to": 8840
+			},
+			"text": " ولم تعطي الخشبة الذي كان ينتظره"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,840",
+				"to": "00:00:12,400"
+			},
+			"offsets": {
+				"from": 8840,
+				"to": 12400
+			},
+			"text": " ورغم ذلك يصر على دفع المبلغ كاملا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,400",
+				"to": "00:00:15,360"
+			},
+			"offsets": {
+				"from": 12400,
+				"to": 15360
+			},
+			"text": " لأنه هو من أخطأ في تقدير ثمنها"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,360",
+				"to": "00:00:17,800"
+			},
+			"offsets": {
+				"from": 15360,
+				"to": 17800
+			},
+			"text": " يحاول الرجل أن يرد المال"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,800",
+				"to": "00:00:20,040"
+			},
+			"offsets": {
+				"from": 17800,
+				"to": 20040
+			},
+			"text": " فالنجار لم يستفد من الشجرة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,040",
+				"to": "00:00:23,960"
+			},
+			"offsets": {
+				"from": 20040,
+				"to": 23960
+			},
+			"text": " لكنه في النهاية يتركه عنده ويعود إلى البيت"
+		}
+	]
+}

@@ -1,0 +1,65 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:08,660"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 8660
+			},
+			"text": " يذهبان إلى القرية التي انتقل إليها ويسألان عن بيته لأنه لا يريد أن يسافر وفي قلب أحد شيء عليه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,660",
+				"to": "00:00:13,640"
+			},
+			"offsets": {
+				"from": 8660,
+				"to": 13640
+			},
+			"text": " يجدان سليمان مريضًا أدخل المستشفى بعد أصابة قبل شهر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,640",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 13640,
+				"to": 17400
+			},
+			"text": " قال إنه ما جاءان ليطلب السماح قبل الحج"
+		}
+	]
+}

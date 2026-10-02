@@ -1,0 +1,120 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2800
+			},
+			"text": " ويُعيده أن يدعو له عند الكعبة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,800",
+				"to": "00:00:06,840"
+			},
+			"offsets": {
+				"from": 2800,
+				"to": 6840
+			},
+			"text": " يبدأ هو وعائشة بتوديع الجيران قبل الصفر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,840",
+				"to": "00:00:10,080"
+			},
+			"offsets": {
+				"from": 6840,
+				"to": 10080
+			},
+			"text": " تُعطي جارتها آخر مع عندها من لبن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,080",
+				"to": "00:00:12,000"
+			},
+			"offsets": {
+				"from": 10080,
+				"to": 12000
+			},
+			"text": " ويُهنّئهم الجيران"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,000",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 12000,
+				"to": 14680
+			},
+			"text": " ويتمنّون لهم العودة بالسلامة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 15840
+			},
+			"text": " وفي الطريق"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:20,160"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 20160
+			},
+			"text": " يتذكر الرجل جاره سليمان صاحب الخلاف القديم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,160",
+				"to": "00:00:23,800"
+			},
+			"offsets": {
+				"from": 20160,
+				"to": 23800
+			},
+			"text": " فيقرّر أن يزوره ويسلم عليه قبل الصفر"
+		}
+	]
+}

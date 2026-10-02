@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3600
+			},
+			"text": " في قرية فقيرة عاش رجل كبير في السن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,600",
+				"to": "00:00:06,840"
+			},
+			"offsets": {
+				"from": 3600,
+				"to": 6840
+			},
+			"text": " قليل الحال وبلكاد يجد ما يكفيه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,840",
+				"to": "00:00:11,760"
+			},
+			"offsets": {
+				"from": 6840,
+				"to": 11760
+			},
+			"text": " وعند أذان الفجر يُقِذ زوجته عائشة تُصلي هيا في البيت"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,760",
+				"to": "00:00:13,520"
+			},
+			"offsets": {
+				"from": 11760,
+				"to": 13520
+			},
+			"text": " ويمضِه إلى المسجد"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,520",
+				"to": "00:00:18,240"
+			},
+			"offsets": {
+				"from": 13520,
+				"to": 18240
+			},
+			"text": " وفي الوقت نفسه يتحدث أهل القرية عن شيخ وصل إليهم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,240",
+				"to": "00:00:22,800"
+			},
+			"offsets": {
+				"from": 18240,
+				"to": 22800
+			},
+			"text": " ويعتقدون أن وجوده سيجلب الرزق وينعش المحلات"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,800",
+				"to": "00:00:25,560"
+			},
+			"offsets": {
+				"from": 22800,
+				"to": 25560
+			},
+			"text": " خصوصا أن الفقرة أثر على الجميع"
+		}
+	]
+}

@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5640
+			},
+			"text": " لكن عندما يعود إلى القرية، يفاجئه حيدر بخبر وفات الشيخ مبروك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,640",
+				"to": "00:00:10,480"
+			},
+			"offsets": {
+				"from": 5640,
+				"to": 10480
+			},
+			"text": " يحزن أهل القرية جميعا ويشاركون في جنازته ودفنه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,480",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 10480,
+				"to": 15560
+			},
+			"text": " وبعد الجنازة يذهب إلى النجار الذي طالما أراد شراء شجرته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:20,440"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 20440
+			},
+			"text": " هذه المرة يوافق على بيعها لأنه يحتاج مصاريف الحج"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,440",
+				"to": "00:00:23,160"
+			},
+			"offsets": {
+				"from": 20440,
+				"to": 23160
+			},
+			"text": " فيتفقان على 60 ألف روبية"
+		}
+	]
+}

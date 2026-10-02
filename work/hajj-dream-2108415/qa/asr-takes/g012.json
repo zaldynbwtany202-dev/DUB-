@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,040"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2040
+			},
+			"text": " يدخل القلق البيت من جديد"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,040",
+				"to": "00:00:07,920"
+			},
+			"offsets": {
+				"from": 2040,
+				"to": 7920
+			},
+			"text": " يذهب الرجل إلى المدرس ويطلب منه أن يرافقه إلى قسم الشرطة ليشهد معه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,920",
+				"to": "00:00:12,400"
+			},
+			"offsets": {
+				"from": 7920,
+				"to": 12400
+			},
+			"text": " وهناك يسأله الضابط إن كان قد سافر إلى الخليج من قبل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,400",
+				"to": "00:00:16,240"
+			},
+			"offsets": {
+				"from": 12400,
+				"to": 16240
+			},
+			"text": " فينكر ويقول إنه لم يخرج من القرية في حياته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,240",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 16240,
+				"to": 20000
+			},
+			"text": " وأنه رجل بسيط لا يعرف إلا بيته وعملة"
+		}
+	]
+}

@@ -1,0 +1,142 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,680"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2680
+			},
+			"text": " لكن المال ما زال غير كافن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,680",
+				"to": "00:00:05,740"
+			},
+			"offsets": {
+				"from": 2680,
+				"to": 5740
+			},
+			"text": " فيترّان إلى بيع البقرة والعجل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,740",
+				"to": "00:00:07,840"
+			},
+			"offsets": {
+				"from": 5740,
+				"to": 7840
+			},
+			"text": " تحزن عائشة عليهما"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,840",
+				"to": "00:00:09,080"
+			},
+			"offsets": {
+				"from": 7840,
+				"to": 9080
+			},
+			"text": " فيواسيها"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,080",
+				"to": "00:00:12,840"
+			},
+			"offsets": {
+				"from": 9080,
+				"to": 12840
+			},
+			"text": " سنسافر شهرا ولا أحد سيرعاهما هنا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,840",
+				"to": "00:00:14,840"
+			},
+			"offsets": {
+				"from": 12840,
+				"to": 14840
+			},
+			"text": " سيهتم بهم المشتري"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,840",
+				"to": "00:00:17,040"
+			},
+			"offsets": {
+				"from": 14840,
+				"to": 17040
+			},
+			"text": " وحلم الحجبات قريبا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,040",
+				"to": "00:00:19,920"
+			},
+			"offsets": {
+				"from": 17040,
+				"to": 19920
+			},
+			"text": " بعد ذلك يزور قبر الشيخ مبروك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,920",
+				"to": "00:00:22,800"
+			},
+			"offsets": {
+				"from": 19920,
+				"to": 22800
+			},
+			"text": " ويخبره أنه باع أشياء كثيرة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,800",
+				"to": "00:00:24,800"
+			},
+			"offsets": {
+				"from": 22800,
+				"to": 24800
+			},
+			"text": " ليجمع تكاليف الرحلة"
+		}
+	]
+}

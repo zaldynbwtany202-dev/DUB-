@@ -1,0 +1,120 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3800
+			},
+			"text": " يعود إلى البيت فيجد عائشة قد جهزة الطعام"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,800",
+				"to": "00:00:06,400"
+			},
+			"offsets": {
+				"from": 3800,
+				"to": 6400
+			},
+			"text": " ويحكي لها كم تغيرت المدينة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,400",
+				"to": "00:00:09,840"
+			},
+			"offsets": {
+				"from": 6400,
+				"to": 9840
+			},
+			"text": " وأن شركة الصفر فيها موظفون كثيرون"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,840",
+				"to": "00:00:12,240"
+			},
+			"offsets": {
+				"from": 9840,
+				"to": 12240
+			},
+			"text": " ويحكي لها عن لقائه بالشيخ"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,240",
+				"to": "00:00:15,920"
+			},
+			"offsets": {
+				"from": 12240,
+				"to": 15920
+			},
+			"text": " وعن مساعدته في الأوراق التي يحتاجونها للصفر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,920",
+				"to": "00:00:19,800"
+			},
+			"offsets": {
+				"from": 15920,
+				"to": 19800
+			},
+			"text": " تسأله من أين سنأتي بمصاريف الحج كلها"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,800",
+				"to": "00:00:23,040"
+			},
+			"offsets": {
+				"from": 19800,
+				"to": 23040
+			},
+			"text": " فيطمئنها أنهم سيجمعون ما يستطيعون"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,040",
+				"to": "00:00:25,040"
+			},
+			"offsets": {
+				"from": 23040,
+				"to": 25040
+			},
+			"text": " والباقي يدبره الله"
+		}
+	]
+}

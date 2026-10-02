@@ -1,0 +1,98 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,320"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5320
+			},
+			"text": " يرفض لأنه لا يعرف مصدر مال ابنه أحلال هو أم حرام"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,320",
+				"to": "00:00:07,680"
+			},
+			"offsets": {
+				"from": 5320,
+				"to": 7680
+			},
+			"text": " فتقول له أن يحجّ وحده"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,680",
+				"to": "00:00:10,080"
+			},
+			"offsets": {
+				"from": 7680,
+				"to": 10080
+			},
+			"text": " فالمبلغ يكفي لوحد فقط"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,080",
+				"to": "00:00:11,440"
+			},
+			"offsets": {
+				"from": 10080,
+				"to": 11440
+			},
+			"text": " لكنه يرفض"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,440",
+				"to": "00:00:15,160"
+			},
+			"offsets": {
+				"from": 11440,
+				"to": 15160
+			},
+			"text": " حلمه منذ البداية أن يحجّ هو عائشة معاً"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,160",
+				"to": "00:00:19,440"
+			},
+			"offsets": {
+				"from": 15160,
+				"to": 19440
+			},
+			"text": " فتقتره عائشة أن يبيعان البيت والأرض لإكمال المبلغ"
+		}
+	]
+}

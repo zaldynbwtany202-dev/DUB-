@@ -74,8 +74,13 @@ def fit_run(rows: list[dict], groups: list[dict], ceiling: float, pack: bool,
             tempo = min(max(need, min_tempo), ceiling)
             clamped = need > ceiling + 1e-9
         else:
-            if tempo < 1.0:
-                tempo = 1.0
+            # المزج الحقيقي (assemble_dub.build_group) يبطئ إلى min_tempo حين تكون
+            # الأخذة أقصر من نافذتها، فيملأ النافذة ولا يترك صمتًا. المحاكاة كانت
+            # تمنع أي إبطاء (tempo ≥ 1.0) فتُنذر بفراغات لا وجود لها في الملف
+            # الناتج: الفيلم المسلَّم قِيس فيه أطول صمت 0.00 ث بينما تنبّأت
+            # المحاكاة بفجوات 0.41–0.44 ث. صُحّحت لتطابق المزج.
+            if tempo < min_tempo:
+                tempo = min_tempo
             clamped = tempo > ceiling + 1e-9
             if clamped:
                 tempo = ceiling

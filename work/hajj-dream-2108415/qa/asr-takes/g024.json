@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,640"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2640
+			},
+			"text": " يقولُ الحاج إنّه غير متأكّد"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,640",
+				"to": "00:00:07,240"
+			},
+			"offsets": {
+				"from": 2640,
+				"to": 7240
+			},
+			"text": " ويعطيه رقم ابنه قاسم ليتواصل معه عند الحاجة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,240",
+				"to": "00:00:09,600"
+			},
+			"offsets": {
+				"from": 7240,
+				"to": 9600
+			},
+			"text": " يحضر هو وعائش دروس الحج"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,600",
+				"to": "00:00:13,080"
+			},
+			"offsets": {
+				"from": 9600,
+				"to": 13080
+			},
+			"text": " ويشتريان ملابس الإحرام وبقية المستلزمات"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,080",
+				"to": "00:00:16,560"
+			},
+			"offsets": {
+				"from": 13080,
+				"to": 16560
+			},
+			"text": " وفي طريق العودة يلتقيان بصاحب المظلة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,560",
+				"to": "00:00:20,440"
+			},
+			"offsets": {
+				"from": 16560,
+				"to": 20440
+			},
+			"text": " فيهنأهما ويخبره أن النجار يسأل عنه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,440",
+				"to": "00:00:24,040"
+			},
+			"offsets": {
+				"from": 20440,
+				"to": 24040
+			},
+			"text": " فيترك عائش تعود إلى البيت ويذهب إلي"
+		}
+	]
+}

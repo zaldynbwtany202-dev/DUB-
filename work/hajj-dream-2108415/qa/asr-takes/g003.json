@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4160
+			},
+			"text": " يأتي جارهم ليشتري لبنًا ويسأله عن صفره"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,160",
+				"to": "00:00:08,000"
+			},
+			"offsets": {
+				"from": 4160,
+				"to": 8000
+			},
+			"text": " فيخبره أنه يتمنا أن يحجه وزوجته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,000",
+				"to": "00:00:11,160"
+			},
+			"offsets": {
+				"from": 8000,
+				"to": 11160
+			},
+			"text": " ثم يذهب ليوصل دواءً إلى صاحبه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,160",
+				"to": "00:00:14,560"
+			},
+			"offsets": {
+				"from": 11160,
+				"to": 14560
+			},
+			"text": " ويخبره أن نباب التقديم للحج قد فتح"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,560",
+				"to": "00:00:17,480"
+			},
+			"offsets": {
+				"from": 14560,
+				"to": 17480
+			},
+			"text": " يقترح عليه صاحبه قرعة الحج"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,480",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 17480,
+				"to": 20600
+			},
+			"text": " ثم يحذره من أن نسمه قد لا يظهر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:24,320"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 24320
+			},
+			"text": " ويدله على شركة صفر ليحجز من خلالها"
+		}
+	]
+}

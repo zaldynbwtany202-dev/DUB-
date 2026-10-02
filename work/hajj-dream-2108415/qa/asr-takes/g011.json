@@ -1,0 +1,98 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,880"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4880
+			},
+			"text": " ويقول الرجل إنه هو أيضا يحاول جمع مصاريف الحج"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,880",
+				"to": "00:00:09,880"
+			},
+			"offsets": {
+				"from": 4880,
+				"to": 9880
+			},
+			"text": " وعند أذان العصر يتوقفان عن الكلام ويذهبان للصلاة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,880",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 9880,
+				"to": 14680
+			},
+			"text": " يعود فيجد عائشة تبكي والجارات حولها يهدئنها"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:18,840"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 18840
+			},
+			"text": " ويقولن إن الجميع يعرف أن زوجها لم يسرق شيئا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,840",
+				"to": "00:00:23,760"
+			},
+			"offsets": {
+				"from": 18840,
+				"to": 23760
+			},
+			"text": " وبعد أن يمضين تحكي له عن رجل غريب سأل عنه عن عمله"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,760",
+				"to": "00:00:28,120"
+			},
+			"offsets": {
+				"from": 23760,
+				"to": 28120
+			},
+			"text": " والدعى أنه ضابط مع أنه لم يكن يرتدي زي الشرطة"
+		}
+	]
+}

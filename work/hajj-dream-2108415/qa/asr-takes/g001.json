@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4160
+			},
+			"text": " وحتى حيدر صاحب محل الشاي يقدم له الشاي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,160",
+				"to": "00:00:09,840"
+			},
+			"offsets": {
+				"from": 4160,
+				"to": 9840
+			},
+			"text": " وعندما يعود إلى البيت يحكي لعائشة أنهل تقى شخصا يعرفه في الحافلة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,840",
+				"to": "00:00:13,000"
+			},
+			"offsets": {
+				"from": 9840,
+				"to": 13000
+			},
+			"text": " فعلم أن باب التقديم للحج قد فتح"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,000",
+				"to": "00:00:15,840"
+			},
+			"offsets": {
+				"from": 13000,
+				"to": 15840
+			},
+			"text": " وأن اللجنة صارت تستقبل الطلبات"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,840",
+				"to": "00:00:19,000"
+			},
+			"offsets": {
+				"from": 15840,
+				"to": 19000
+			},
+			"text": " حلمه منزز زمن أن يحجه وزوجته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,000",
+				"to": "00:00:23,240"
+			},
+			"offsets": {
+				"from": 19000,
+				"to": 23240
+			},
+			"text": " لكن كل سنة تحول الظروف بينهم وبين ذلك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,240",
+				"to": "00:00:27,000"
+			},
+			"offsets": {
+				"from": 23240,
+				"to": 27000
+			},
+			"text": " هذه المرة عزم على جمع المصاريف مهما حدث"
+		}
+	]
+}

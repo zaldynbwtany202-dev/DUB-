@@ -1,0 +1,98 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4400
+			},
+			"text": " يدفع النجار جزءًا الآن والباقي بعد عشرة أيام"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,400",
+				"to": "00:00:07,120"
+			},
+			"offsets": {
+				"from": 4400,
+				"to": 7120
+			},
+			"text": " يعود الرجل ويعطي عائشة المال"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,120",
+				"to": "00:00:10,240"
+			},
+			"offsets": {
+				"from": 7120,
+				"to": 10240
+			},
+			"text": " ويقول لها إن الباقي سيصل قريبًا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,240",
+				"to": "00:00:15,720"
+			},
+			"offsets": {
+				"from": 10240,
+				"to": 15720
+			},
+			"text": " وتقرر هي أيضًا أن تبيع ذهبها لتوفر خمسة وثلاثين ألف روبية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,720",
+				"to": "00:00:20,680"
+			},
+			"offsets": {
+				"from": 15720,
+				"to": 20680
+			},
+			"text": " ويتذكر أنه باع ذهبها من قبل لمساعدته في المعيشة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,680",
+				"to": "00:00:23,320"
+			},
+			"offsets": {
+				"from": 20680,
+				"to": 23320
+			},
+			"text": " فيشكرها على وقوفها إلى جانبه"
+		}
+	]
+}

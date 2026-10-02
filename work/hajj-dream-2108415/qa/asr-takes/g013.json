@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,600"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6600
+			},
+			"text": " ويتفتح موضوع خلاف قديم من ثمان سنوات مع جاره سليمان على حدود الارض"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,600",
+				"to": "00:00:09,000"
+			},
+			"offsets": {
+				"from": 6600,
+				"to": 9000
+			},
+			"text": " وصل الأمر إلى الضرب والإصابة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,000",
+				"to": "00:00:14,640"
+			},
+			"offsets": {
+				"from": 9000,
+				"to": 14640
+			},
+			"text": " وبعد تدخل الإذارة أخذ سليمان الارض وترك القرية منذ خمس سنوات"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,640",
+				"to": "00:00:17,000"
+			},
+			"offsets": {
+				"from": 14640,
+				"to": 17000
+			},
+			"text": " يسأله الضابط عن جواز سفره"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,000",
+				"to": "00:00:20,000"
+			},
+			"offsets": {
+				"from": 17000,
+				"to": 20000
+			},
+			"text": " فيقول إنه قدم عليه من أجل الحج"
+		}
+	]
+}

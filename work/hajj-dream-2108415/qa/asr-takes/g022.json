@@ -1,0 +1,76 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,040"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6040
+			},
+			"text": " لكن سليمان يعترف بأنه هو الذي ظلمهم وحاول أن يأقذ ما ليس له"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,040",
+				"to": "00:00:10,120"
+			},
+			"offsets": {
+				"from": 6040,
+				"to": 10120
+			},
+			"text": " ويراء أن خصارة ماله كانت عقابا على ما فعل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,120",
+				"to": "00:00:14,120"
+			},
+			"offsets": {
+				"from": 10120,
+				"to": 14120
+			},
+			"text": " فيبكي ويطلب منهما أن يسامحاه قبل أن يموت"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,120",
+				"to": "00:00:18,560"
+			},
+			"offsets": {
+				"from": 14120,
+				"to": 18560
+			},
+			"text": " فيسامحه الرجل ويُعده أن يدعو له عند الكعبة"
+		}
+	]
+}

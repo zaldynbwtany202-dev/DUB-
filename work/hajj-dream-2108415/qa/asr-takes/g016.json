@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,960"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3960
+			},
+			"text": " وتدعوا عائشة في كل صلاة أن يتحقق حلمهما"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,960",
+				"to": "00:00:07,040"
+			},
+			"offsets": {
+				"from": 3960,
+				"to": 7040
+			},
+			"text": " وبعد فترة يذهبان الاستلام الجوازات"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,040",
+				"to": "00:00:10,320"
+			},
+			"offsets": {
+				"from": 7040,
+				"to": 10320
+			},
+			"text": " وينتظران موعد التسليم في الساعة العاشرة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,320",
+				"to": "00:00:13,600"
+			},
+			"offsets": {
+				"from": 10320,
+				"to": 13600
+			},
+			"text": " وعندما يستلمانها يعودان فرحين"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,600",
+				"to": "00:00:16,640"
+			},
+			"offsets": {
+				"from": 13600,
+				"to": 16640
+			},
+			"text": " ويخرجان مدخراتهما ويرتبانها"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,640",
+				"to": "00:00:20,480"
+			},
+			"offsets": {
+				"from": 16640,
+				"to": 20480
+			},
+			"text": " وفي اليوم التالي يسلم أشرف الجوازات والمال"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,480",
+				"to": "00:00:23,480"
+			},
+			"offsets": {
+				"from": 20480,
+				"to": 23480
+			},
+			"text": " ويأخذ الإصال وموعيد دروس الحج"
+		}
+	]
+}

@@ -1,0 +1,65 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,040"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5040
+			},
+			"text": " بالليل يعود إلى البيت، ويجلس ينظر إلى صورة ابنه بحزن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,040",
+				"to": "00:00:14,200"
+			},
+			"offsets": {
+				"from": 5040,
+				"to": 14200
+			},
+			"text": " تحكي له عائشة أن نجارهم عاد من دبي، وعلم أن حفيدهم قد كبر ودخل المدرسة، وأنهم لم يرواه ولا مرة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,200",
+				"to": "00:00:25,480"
+			},
+			"offsets": {
+				"from": 14200,
+				"to": 25480
+			},
+			"text": " غير أنه يطلب منها أن تغلق هذا الحديث وتنام، وأن لا تعود إلى سيرة ابنهم، فتظل تبكي وحدها محرومة حتى من رؤية أحفادها"
+		}
+	]
+}

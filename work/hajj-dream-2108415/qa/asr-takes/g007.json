@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,100"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5100
+			},
+			"text": " يجلس أمامه ويطلب منه أن يساعده ليحجه وعائشه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,100",
+				"to": "00:00:11,640"
+			},
+			"offsets": {
+				"from": 5100,
+				"to": 11640
+			},
+			"text": " يقول له الشيخ إن عليه أن يسعى وإن الله سيسهلها وإن يدعو ويصبر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,640",
+				"to": "00:00:15,160"
+			},
+			"offsets": {
+				"from": 11640,
+				"to": 15160
+			},
+			"text": " ثم يقدم له أعشاب جاء بها من سفره"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,160",
+				"to": "00:00:18,440"
+			},
+			"offsets": {
+				"from": 15160,
+				"to": 18440
+			},
+			"text": " فيقرأ عليها ويدعو له ويردها إليه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,440",
+				"to": "00:00:24,180"
+			},
+			"offsets": {
+				"from": 18440,
+				"to": 24180
+			},
+			"text": " بعد ذلك ينشغل بضيوف قادمين من الجنوب ويدعوه ليذهب معه"
+		}
+	]
+}

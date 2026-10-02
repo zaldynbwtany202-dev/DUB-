@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,100"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3100
+			},
+			"text": " ويتمئنه الضابت أنه سيوصله إلى البيت"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,100",
+				"to": "00:00:10,900"
+			},
+			"offsets": {
+				"from": 3100,
+				"to": 10900
+			},
+			"text": " وفي الليل يستيقظ ويحكي لعائش أنه رأى في المنام روضة النبي محمد صلى الله عليه وسلم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,900",
+				"to": "00:00:13,500"
+			},
+			"offsets": {
+				"from": 10900,
+				"to": 13500
+			},
+			"text": " تفرح وتعتبرها بشارة خير"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,500",
+				"to": "00:00:18,300"
+			},
+			"offsets": {
+				"from": 13500,
+				"to": 18300
+			},
+			"text": " ومن ذلك اليوم يضعان كل ما يستطيعان توفيره في السندوق"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,300",
+				"to": "00:00:21,300"
+			},
+			"offsets": {
+				"from": 18300,
+				"to": 21300
+			},
+			"text": " ويضيقان على نفسهما في المصاريف"
+		}
+	]
+}
