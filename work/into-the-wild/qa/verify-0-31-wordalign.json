@@ -1,0 +1,92 @@
+{
+  "slug": "into-the-wild",
+  "out": "/tmp/itw-wa.mp4",
+  "checks": [
+    {
+      "name": "lateness",
+      "ok": false,
+      "detail": "أقصى تأخير 5.99 ث"
+    },
+    {
+      "name": "silence_gap",
+      "ok": false,
+      "detail": "أطول صمت 9.39 ث"
+    },
+    {
+      "name": "tempo_ceiling",
+      "ok": false,
+      "detail": "أقصى سرعة 1.80× · مقصوصة: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]"
+    },
+    {
+      "name": "duration",
+      "ok": true,
+      "detail": "الملف 740.58 ث · المتوقّع 740.51 ث"
+    },
+    {
+      "name": "loudness",
+      "ok": true,
+      "detail": "-16.00 LUFS (المطلوب -16.0±0.3)"
+    },
+    {
+      "name": "true_peak",
+      "ok": true,
+      "detail": "-1.60 dBTP (السقف -1.4)"
+    },
+    {
+      "name": "picture_copy",
+      "ok": true,
+      "detail": "أول إطار PSNR ∞"
+    }
+  ],
+  "measured": {
+    "max_late": 5.989,
+    "max_gap": 9.387,
+    "tempo_max": 1.8,
+    "clamped": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "last_end": 740.631,
+    "groups": 32,
+    "out_seconds": 740.58,
+    "lufs": -16.0,
+    "true_peak": -1.6,
+    "first_frame_psnr": "inf"
+  },
+  "verdict": "fail",
+  "failed": [
+    "lateness",
+    "silence_gap",
+    "tempo_ceiling"
+  ]
+}

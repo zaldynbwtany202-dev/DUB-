@@ -60,6 +60,12 @@ def main() -> int:
     ap.add_argument("--check", action="store_true", help="print the recipe and stop")
     ap.add_argument("--no-gate", action="store_true",
                     help="تجاوز بوابة الجودة (للتشخيص فقط — لا يُسلَّم عمل خرج من هنا)")
+    ap.add_argument("--word-align", type=Path, default=None,
+                    help="ملف توقيتات الأصل: يُقسَّم كل مقطع من الأخذة عند صمتاته وتُحلّ "
+                         "سرعاته معًا ليلامس مواضع كلمات الأصل داخل نافذته بالضبط "
+                         "(انظر scripts/align_by_words.py)")
+    ap.add_argument("--word-align-alt", type=Path, default=None,
+                    help="ملف توقيت ثانٍ؛ لكل مجموعة يُختار ما يعطي خطأ ربط أقل (اختيار مقيس)")
     ap.add_argument("--qa", type=Path, default=Path("config/dubbing-qa.json"))
     a = ap.parse_args()
 
@@ -85,10 +91,13 @@ def main() -> int:
 
     if not a.no_gate:
         print("\n  البوابة: تدقيق الأخذات قبل البناء")
-        aud = subprocess.run([sys.executable, str(HERE / "audit_dub.py"), "--slug", a.slug,
-                              "--takes", str(a.takes), "--start", str(a.start),
-                              "--end", str(a.end), "--gate",
-                              "--json", str(work / "qa" / f"audit-{a.start}-{a.end - 1}.json")])
+        aud_cmd = [sys.executable, str(HERE / "audit_dub.py"), "--slug", a.slug,
+                   "--takes", str(a.takes), "--start", str(a.start),
+                   "--end", str(a.end), "--gate",
+                   "--json", str(work / "qa" / f"audit-{a.start}-{a.end - 1}.json")]
+        if a.word_align:
+            aud_cmd.append("--elastic")          # التدقيق يحاكي المُجمِّع المستعمل فعلًا
+        aud = subprocess.run(aud_cmd)
         if aud.returncode == 2:
             raise SystemExit("  ✗ البوابة أوقفت البناء: شرط صارم مرفوض (انظر التدقيق أعلاه). "
                              "ولّد مرشحين للمجموعات المرشّحة ثم أعد المحاولة.")
@@ -97,19 +106,30 @@ def main() -> int:
 
     voice = build / f"{a.slug}-voice.wav"
     asm = lock["assembly"]
-    cmd = [sys.executable, str(HERE / "assemble_dub.py"), str(work),
-           "--out", str(voice), "--start", str(a.start), "--end", str(a.end),
-           "--stretch", asm["stretcher"], "--takes", str(a.takes),
-           "--max-tempo", str(asm["max_tempo"])]
-    if not asm["tighten"]:
-        cmd.append("--no-tighten")          # cutting silence measurably changes the voice
-    if asm["pack"]:
-        cmd.append("--pack")
-    if float(asm.get("min_tempo", 1.0)) < 1.0:
-        cmd += ["--min-tempo", str(asm["min_tempo"])]
     placement = build / f"{a.slug}-placement-{a.start}-{a.end - 1}.json"
-    cmd += ["--placement", str(placement)]
-    print(f"\n  تجميع ({asm['stretcher']} · بلا قصّ صمت · بلا تحويل)")
+    if a.word_align:
+        cmd = [sys.executable, str(HERE / "align_by_words.py"), str(work),
+               "--takes", str(a.takes), "--timed", str(a.word_align),
+               "--out", str(voice), "--placement", str(placement),
+               "--start", str(a.start), "--end", str(a.end),
+               "--max-tempo", str(asm["max_tempo"]),
+               "--min-tempo", str(min(1.0, float(asm.get("min_tempo", 1.0))))]
+        if a.word_align_alt:
+            cmd += ["--timed-alt", str(a.word_align_alt)]
+        print(f"\n  تجميع بملاءمة مرنة لكلمات الأصل (بلا قصّ كلام · قطع عند الصمت فقط)")
+    else:
+        cmd = [sys.executable, str(HERE / "assemble_dub.py"), str(work),
+               "--out", str(voice), "--start", str(a.start), "--end", str(a.end),
+               "--stretch", asm["stretcher"], "--takes", str(a.takes),
+               "--max-tempo", str(asm["max_tempo"])]
+        if not asm["tighten"]:
+            cmd.append("--no-tighten")      # cutting silence measurably changes the voice
+        if asm["pack"]:
+            cmd.append("--pack")
+        if float(asm.get("min_tempo", 1.0)) < 1.0:
+            cmd += ["--min-tempo", str(asm["min_tempo"])]
+        cmd += ["--placement", str(placement)]
+        print(f"\n  تجميع ({asm['stretcher']} · بلا قصّ صمت · بلا تحويل)")
     run(cmd)
 
     mst = lock["mastering"]

@@ -48,13 +48,19 @@ def measure(path: Path, target: float) -> dict:
     return r
 
 
-def fit_run(rows: list[dict], groups: list[dict], ceiling: float, pack: bool) -> None:
-    """Replicate assemble_dub's placement maths, in place.
+def fit_run(rows: list[dict], groups: list[dict], ceiling: float, pack: bool,
+            elastic: bool = False, min_tempo: float = 0.9) -> None:
+    """Replicate the assembler's placement maths, in place.
 
-    The assembler stretches a take by natural/window, never below 1.0, and never
-    above the locked ceiling; in packed mode a clamped group starts late and the
-    next group inherits the delay. Simulating it here is what turns "this take is
-    long" into "the voice will be 4.8 s behind the picture at group 25".
+    Two assemblers exist. The plain one stretches a take by natural/window, never
+    below 1.0, and never above the locked ceiling; in packed mode a clamped group
+    starts late and the next group inherits the delay. The word-aligned one
+    (`align_by_words.py`, used when a run is built with --word-align) lays every
+    take inside its own window from the window's start to its end: it slows a take
+    down to min_tempo when the text is shorter than the window (the window plan is
+    what has to carry that, not the pace) and it never leaves a gap. Simulating the
+    right one here is what turns "this take is long" into "the voice will be 4.8 s
+    behind the picture at group 25".
     """
     cursor = None
     for r in rows:
@@ -64,11 +70,15 @@ def fit_run(rows: list[dict], groups: list[dict], ceiling: float, pack: bool) ->
         room = max(0.05, t0 + window - start) if pack else window
         need = r["seconds"] / room
         tempo = need
-        if tempo < 1.0:
-            tempo = 1.0
-        clamped = tempo > ceiling + 1e-9
-        if clamped:
-            tempo = ceiling
+        if elastic:
+            tempo = min(max(need, min_tempo), ceiling)
+            clamped = need > ceiling + 1e-9
+        else:
+            if tempo < 1.0:
+                tempo = 1.0
+            clamped = tempo > ceiling + 1e-9
+            if clamped:
+                tempo = ceiling
         end = start + r["seconds"] / tempo
         if cursor is None or end > cursor:
             cursor = end
@@ -91,6 +101,9 @@ def main() -> int:
     ap.add_argument("--target", type=float, default=None)
     ap.add_argument("--gate", action="store_true",
                     help="اطبع نتيجة كل شرط صارم في سطر واحد ثم اخرج بـ0/2")
+    ap.add_argument("--elastic", action="store_true",
+                    help="البناء بملاءمة الكلمات (align_by_words): كل أخذة داخل نافذتها "
+                         "من بدايتها إلى نهايتها، بتباطؤ لا يقل عن أدنى سرعة")
     ap.add_argument("--plan-limit", type=int, default=10,
                     help="أقصى عدد مرشحين يُعرض في جولة واحدة (سقف حصة التوليد)")
     ap.add_argument("--json", default=None)
@@ -125,7 +138,8 @@ def main() -> int:
     if not rows:
         print("  ✗ لا أخذات في المدى")
         return 2 if a.gate else 1
-    fit_run(rows, groups, float(tim["atempo_ceiling"]), pack=True)
+    fit_run(rows, groups, float(tim["atempo_ceiling"]), pack=True,
+            elastic=a.elastic, min_tempo=float(tim.get("min_tempo", 0.9)))
 
     semis = np.array([r["semis"] for r in rows])
     steps = np.abs(np.diff(semis)) if len(semis) > 1 else np.array([0.0])

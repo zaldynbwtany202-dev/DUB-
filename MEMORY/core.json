@@ -846,6 +846,48 @@
    "since": "2026-09-29",
    "source": "استعادة بعد مسح",
    "status": "active"
+  },
+  {
+   "key": "film.itw.build",
+   "value": "BUILD 75 — 0→31 (739.34 ث) 7/7 · مزامنة كلمات 0.168 ث متوسطًا",
+   "since": "2026-10-02",
+   "source": "BUILD 75",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.sync",
+   "value": "المزامنة قيست: متوسط 0.168 ث · وسيط 0.122 · 88% داخل 0.35 ث · أقصى 1.04 (كان المسلَّم 0.588/42% مقابل التوقيت المصحّح، و0.699 في السجل القديم)",
+   "since": "2026-10-02",
+   "source": "qa/word-sync-after-fulltext.json",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.windows",
+   "value": "نوافذ المجموعات أُعيد اشتقاقها من full-timed-v2 (rewindow_from_timing.py)؛ 11 مجموعة تحرّكت أكثر من 0.25 ث، g057 −11.18 ث أقصاها",
+   "since": "2026-10-02",
+   "source": "groups-v2.json",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.g021",
+   "value": "g021 كان نصّه مقصوصًا 53/88 كلمة (0.90× من النافذة) فيُمدَّد قسرًا ⇒ انزياح 3.17 ث؛ أُعيد النص الكامل (92 كلمة · 1.51×) ووُلّدت أخذة جديدة ⇒ الخطأ 0.19 ث",
+   "since": "2026-10-02",
+   "source": "takes-voice25/g021.mp3",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.timing",
+   "value": "full-timed.json معطوب (78 مقطعًا بمعدل مستحيل ≤20 كلمة/ث و12.32 ث لكلمة واحدة) وfull-timed-v2.json نظيف (0 مقاطع مستحيلة · أقصى كلمة 1.16 ث)",
+   "since": "2026-10-02",
+   "source": "full-timed-v2.json",
+   "status": "active"
+  },
+  {
+   "key": "pipeline.word_align",
+   "value": "البناء بملاءمة الكلمات يثبّت كل مجموعة داخل نافذتها (S0=t0 والنهاية=t1) ويحل سرعات المقاطع معًا بآلة SLSQP والبوابة تدقّق بنفس النمط (--elastic)",
+   "since": "2026-10-02",
+   "source": "scripts/align_by_words.py",
+   "status": "active"
   }
  ]
 }

@@ -1,0 +1,187 @@
+{
+  "slug": "into-the-wild",
+  "range": [
+    0,
+    3
+  ],
+  "target": 137.2,
+  "policy_version": 3,
+  "rows": [
+    {
+      "name": "g000",
+      "voiced": 0.505,
+      "median": 131.8,
+      "p10": 111.1,
+      "p90": 158.6,
+      "semis": -0.69,
+      "drift_hz": 20.8,
+      "drift_semis": 2.82,
+      "seconds": 28.39,
+      "rms_db": -18.8,
+      "group": 0,
+      "window": 20.42,
+      "room": 20.42,
+      "required_tempo": 1.39,
+      "tempo": 1.39,
+      "start": 0.12,
+      "end": 20.54,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.0
+    },
+    {
+      "name": "g001",
+      "voiced": 0.455,
+      "median": 127.5,
+      "p10": 110.0,
+      "p90": 156.6,
+      "semis": -1.28,
+      "drift_hz": 23.2,
+      "drift_semis": 3.07,
+      "seconds": 33.907,
+      "rms_db": -18.95,
+      "group": 1,
+      "window": 22.54,
+      "room": 22.54,
+      "required_tempo": 1.504,
+      "tempo": 1.504,
+      "start": 20.6,
+      "end": 43.14,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.06
+    },
+    {
+      "name": "g002",
+      "voiced": 0.525,
+      "median": 127.8,
+      "p10": 108.6,
+      "p90": 157.5,
+      "semis": -1.23,
+      "drift_hz": 16.8,
+      "drift_semis": 2.28,
+      "seconds": 32.95,
+      "rms_db": -18.75,
+      "group": 2,
+      "window": 23.6,
+      "room": 23.6,
+      "required_tempo": 1.396,
+      "tempo": 1.396,
+      "start": 43.2,
+      "end": 66.8,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.06
+    },
+    {
+      "name": "g003",
+      "voiced": 0.432,
+      "median": 127.8,
+      "p10": 106.8,
+      "p90": 155.8,
+      "semis": -1.23,
+      "drift_hz": 20.2,
+      "drift_semis": 2.67,
+      "seconds": 36.638,
+      "rms_db": -18.92,
+      "group": 3,
+      "window": 23.68,
+      "room": 23.68,
+      "required_tempo": 1.547,
+      "tempo": 1.547,
+      "start": 66.86,
+      "end": 90.54,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.06
+    }
+  ],
+  "missing": [],
+  "plan": [
+    {
+      "group": 1,
+      "candidates": 1,
+      "needs": "انزياح",
+      "semis": -1.28,
+      "step": 0.59,
+      "urgency": 2.3
+    },
+    {
+      "group": 2,
+      "candidates": 1,
+      "needs": "انزياح",
+      "semis": -1.23,
+      "step": 0.05,
+      "urgency": 1.69
+    },
+    {
+      "group": 3,
+      "candidates": 1,
+      "needs": "انزياح",
+      "semis": -1.23,
+      "step": 0.0,
+      "urgency": 1.64
+    }
+  ],
+  "verdict": "يحتاج مرشحين",
+  "failed": [],
+  "attention": [],
+  "checks": [
+    {
+      "name": "plan_consistent",
+      "ok": true,
+      "detail": "نافذة كل مجموعة = t1−t0 كما يقرأها المُجمِّع"
+    },
+    {
+      "name": "take_missing",
+      "ok": true,
+      "detail": "كل المجموعات لها أخذات"
+    },
+    {
+      "name": "tempo_clamped",
+      "ok": true,
+      "detail": "أقصى سرعة مطلوبة 1.55×"
+    },
+    {
+      "name": "lateness",
+      "ok": true,
+      "detail": "أقصى تأخير 0.00 ث (السقف 0.35)"
+    },
+    {
+      "name": "silence_gap",
+      "ok": true,
+      "detail": "أطول صمت بين مجموعتين 0.06 ث (السقف 0.4)"
+    },
+    {
+      "name": "pitch_hard_band",
+      "ok": true,
+      "detail": "أقصى بُعد 1.28 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "step_hard_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.59 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "pitch_attention_band",
+      "ok": true,
+      "detail": "أقصى بُعد 1.28 نصف نغمة (سقف ما أجازه المستمع 2.5)"
+    },
+    {
+      "name": "step_attention_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.59 نصف نغمة (سقف ما أجازه المستمع 2.6)"
+    },
+    {
+      "name": "level_spread",
+      "ok": true,
+      "detail": "تفاوت المستوى 0.20 د.ب (السقف 1.5)"
+    }
+  ],
+  "steps_mean": 0.213,
+  "steps_max": 0.59,
+  "level_spread": 0.2,
+  "tempo_max": 1.547,
+  "max_late": 0.0,
+  "max_gap": 0.06
+}

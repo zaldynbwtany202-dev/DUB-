@@ -1,0 +1,269 @@
+{
+ "label": "word-align v2 + النص الكامل",
+ "placement": "work/into-the-wild/build/into-the-wild-placement-0-31.json",
+ "timed": "work/into-the-wild/full-timed-v2.json",
+ "words": 2487,
+ "mean_s": 0.168,
+ "median_s": 0.122,
+ "p90_s": 0.378,
+ "max_s": 1.038,
+ "within_0.35_pct": 88.1,
+ "groups": [
+  {
+   "group": 0,
+   "words": 74,
+   "mean": 0.095,
+   "median": 0.079,
+   "p90": 0.184,
+   "max": 0.372
+  },
+  {
+   "group": 1,
+   "words": 78,
+   "mean": 0.146,
+   "median": 0.118,
+   "p90": 0.301,
+   "max": 0.523
+  },
+  {
+   "group": 2,
+   "words": 88,
+   "mean": 0.14,
+   "median": 0.119,
+   "p90": 0.287,
+   "max": 0.478
+  },
+  {
+   "group": 3,
+   "words": 77,
+   "mean": 0.14,
+   "median": 0.125,
+   "p90": 0.278,
+   "max": 0.45
+  },
+  {
+   "group": 4,
+   "words": 78,
+   "mean": 0.184,
+   "median": 0.153,
+   "p90": 0.392,
+   "max": 0.523
+  },
+  {
+   "group": 5,
+   "words": 79,
+   "mean": 0.248,
+   "median": 0.179,
+   "p90": 0.524,
+   "max": 1.038
+  },
+  {
+   "group": 6,
+   "words": 85,
+   "mean": 0.122,
+   "median": 0.101,
+   "p90": 0.26,
+   "max": 0.501
+  },
+  {
+   "group": 7,
+   "words": 81,
+   "mean": 0.127,
+   "median": 0.111,
+   "p90": 0.235,
+   "max": 0.506
+  },
+  {
+   "group": 8,
+   "words": 59,
+   "mean": 0.211,
+   "median": 0.136,
+   "p90": 0.525,
+   "max": 0.693
+  },
+  {
+   "group": 9,
+   "words": 75,
+   "mean": 0.277,
+   "median": 0.145,
+   "p90": 0.8,
+   "max": 1.012
+  },
+  {
+   "group": 10,
+   "words": 79,
+   "mean": 0.148,
+   "median": 0.119,
+   "p90": 0.303,
+   "max": 0.685
+  },
+  {
+   "group": 11,
+   "words": 85,
+   "mean": 0.232,
+   "median": 0.17,
+   "p90": 0.499,
+   "max": 0.816
+  },
+  {
+   "group": 12,
+   "words": 80,
+   "mean": 0.191,
+   "median": 0.17,
+   "p90": 0.374,
+   "max": 0.673
+  },
+  {
+   "group": 13,
+   "words": 84,
+   "mean": 0.155,
+   "median": 0.119,
+   "p90": 0.331,
+   "max": 0.516
+  },
+  {
+   "group": 14,
+   "words": 79,
+   "mean": 0.181,
+   "median": 0.124,
+   "p90": 0.365,
+   "max": 0.714
+  },
+  {
+   "group": 15,
+   "words": 71,
+   "mean": 0.155,
+   "median": 0.139,
+   "p90": 0.279,
+   "max": 0.491
+  },
+  {
+   "group": 16,
+   "words": 88,
+   "mean": 0.203,
+   "median": 0.146,
+   "p90": 0.439,
+   "max": 0.694
+  },
+  {
+   "group": 17,
+   "words": 81,
+   "mean": 0.287,
+   "median": 0.253,
+   "p90": 0.564,
+   "max": 0.866
+  },
+  {
+   "group": 18,
+   "words": 92,
+   "mean": 0.177,
+   "median": 0.133,
+   "p90": 0.425,
+   "max": 0.797
+  },
+  {
+   "group": 19,
+   "words": 78,
+   "mean": 0.161,
+   "median": 0.123,
+   "p90": 0.36,
+   "max": 0.607
+  },
+  {
+   "group": 20,
+   "words": 56,
+   "mean": 0.14,
+   "median": 0.119,
+   "p90": 0.262,
+   "max": 0.509
+  },
+  {
+   "group": 21,
+   "words": 92,
+   "mean": 0.194,
+   "median": 0.136,
+   "p90": 0.464,
+   "max": 0.748
+  },
+  {
+   "group": 22,
+   "words": 84,
+   "mean": 0.137,
+   "median": 0.112,
+   "p90": 0.291,
+   "max": 0.833
+  },
+  {
+   "group": 23,
+   "words": 71,
+   "mean": 0.103,
+   "median": 0.082,
+   "p90": 0.199,
+   "max": 0.37
+  },
+  {
+   "group": 24,
+   "words": 84,
+   "mean": 0.124,
+   "median": 0.074,
+   "p90": 0.355,
+   "max": 0.573
+  },
+  {
+   "group": 25,
+   "words": 76,
+   "mean": 0.139,
+   "median": 0.12,
+   "p90": 0.299,
+   "max": 0.466
+  },
+  {
+   "group": 26,
+   "words": 65,
+   "mean": 0.131,
+   "median": 0.116,
+   "p90": 0.265,
+   "max": 0.559
+  },
+  {
+   "group": 27,
+   "words": 72,
+   "mean": 0.132,
+   "median": 0.106,
+   "p90": 0.266,
+   "max": 0.649
+  },
+  {
+   "group": 28,
+   "words": 82,
+   "mean": 0.166,
+   "median": 0.119,
+   "p90": 0.395,
+   "max": 0.608
+  },
+  {
+   "group": 29,
+   "words": 78,
+   "mean": 0.108,
+   "median": 0.092,
+   "p90": 0.25,
+   "max": 0.351
+  },
+  {
+   "group": 30,
+   "words": 75,
+   "mean": 0.238,
+   "median": 0.219,
+   "p90": 0.453,
+   "max": 0.481
+  },
+  {
+   "group": 31,
+   "words": 61,
+   "mean": 0.152,
+   "median": 0.115,
+   "p90": 0.294,
+   "max": 0.68
+  }
+ ]
+}
