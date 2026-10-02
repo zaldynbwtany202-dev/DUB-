@@ -907,10 +907,11 @@
    "value": "76 — الصفحة: حلم الحج ★★ · الدبلجة بعد تصحيح المزامنة ★★ · النسخة السابقة للمقارنة · التقديم",
    "since": "2026-10-02",
    "source": "BUILD 76",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "74 (منذ 2026-09-29)"
-   ]
+   ],
+   "superseded_at": "2026-10-02"
   },
   {
    "key": "film.itw.sync",
@@ -927,14 +928,53 @@
    "value": "previews/voice25-run-0-31-timed.mp4 — 0→31 · 739.18 ث · 7/7 ✓ · −16 LUFS · −1.50 dBTP",
    "since": "2026-10-02",
    "source": "BUILD 76",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-10-02"
   },
   {
    "key": "film.itw.next",
    "value": "إعادة توليد g026 (145.1 هرتز) ثم دفعة g032–g041 (g032 تولّدت · حادثة رازول)",
    "since": "2026-10-02",
    "source": "NEXT.md",
+   "status": "superseded",
+   "superseded_at": "2026-10-02"
+  },
+  {
+   "key": "film.itw.progress",
+   "value": "0→50 مبنيّ و7/7 — 51 من 78 مجموعة · 1160.28 ث (19:20)",
+   "since": "2026-10-02",
+   "source": "BUILD 78 · previews/voice25-run-0-50.mp4",
    "status": "active"
+  },
+  {
+   "key": "film.itw.delivery",
+   "value": "previews/voice25-run-0-50.mp4 — 0→50 · 7/7 ✓ · −16 LUFS · −1.50 dBTP · مزامنة وسيط 0.124 ث · 87% داخل 0.35",
+   "since": "2026-10-02",
+   "source": "BUILD 78",
+   "status": "active",
+   "supersedes": [
+    "previews/voice25-run-0-31-timed.mp4 — 0→31 · 739.18 ث · 7/7 ✓ · −16 LUFS · −1.50 dBTP (منذ 2026-10-02)"
+   ]
+  },
+  {
+   "key": "film.itw.next",
+   "value": "توليد g051–g060 (تسع أخذات) + بديل g026 ثم بناء 0→60؛ ثم الدفعات حتى g077",
+   "since": "2026-10-02",
+   "source": "NEXT.md",
+   "status": "active",
+   "supersedes": [
+    "إعادة توليد g026 (145.1 هرتز) ثم دفعة g032–g041 (g032 تولّدت · حادثة رازول) (منذ 2026-10-02)"
+   ]
+  },
+  {
+   "key": "page.build",
+   "value": "78 — الصفحة: تصحيح النطق · حلم الحج بعد التصحيح · 0→50 · 0→31 بعد إزاحة المزامنة",
+   "since": "2026-10-02",
+   "source": "BUILD 78",
+   "status": "active",
+   "supersedes": [
+    "76 — الصفحة: حلم الحج ★★ · الدبلجة بعد تصحيح المزامنة ★★ · النسخة السابقة للمقارنة · التقديم (منذ 2026-10-02)"
+   ]
   }
  ]
 }

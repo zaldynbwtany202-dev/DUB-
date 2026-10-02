@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "77"
+BUILD = "78"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -107,6 +107,12 @@ LABELS = {
                                "التصحيح. التفريغ الآلي أكّد شكواك: سمع القديمة «قواتهم» (قوّة) والجديدة "
                                "«طعامهم». التشكيل لم يُجدِ (غيّر النطق إلى كلمة ثالثة)، فالتصحيح كان ببديل "
                                "لا يحتمل وجهين — والملفان القديمان محفوظان في المستودع"),
+    "voice25-run-0-50": ("★★ فيلم الوحدة والسعادة — المجموعات 0→50 بصوتك المخصص (19:20)",
+                         "الدبلجة بلغت 51 مجموعة من 78: بعد البحر ورخصة القارب، المكسيك وخفر السواحل، "
+                         "مكالمة أخته، خطاب لوين، القطار والضرب، الأسبوع السابع في ألاسكا، صيد الجاموسة "
+                         "وفساد اللحمة، ودرس الطبيعة. مبنية بالمزامنة المصحّحة (إزاحة 0.25 ث) — "
+                         "مزامنة الكلمات: وسيط 0.124 ث · 87% داخل 0.35 ث · 7/7 ✓ · 1160.3 ث · "
+                         "−16.00 LUFS · −1.50 dBTP · الصورة منسوخة بلا إعادة ضغط"),
     "voice25-run-0-40": ("★★ فيلم الوحدة والسعادة — المجموعات 0→40 بصوتك المخصص (15:35)",
                          "استمرار الدبلجة بتسع مجموعات جديدة (g033–g040) بعد حادثة رازول: نظريات المؤامرة "
                          "والمنطاد، ثم كِيفن والصيد، واعتقال واين، وسرّ الأسرة، ودفن الكتب، ورخصة القارب "
@@ -502,7 +508,7 @@ def render_previews():
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
             "hajj-pronunciation-fix", "hajj-dream-full-msa",
-            "voice25-run-0-40", "voice25-run-0-31-timed"])}
+            "voice25-run-0-50", "voice25-run-0-31-timed"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
@@ -512,7 +518,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-40", "voice25-run-0-31-timed"}
+        PAGE_ALLOW = {"hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
