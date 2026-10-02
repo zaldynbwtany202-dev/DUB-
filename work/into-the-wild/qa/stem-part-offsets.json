@@ -1,0 +1,44 @@
+[
+ {
+  "part": "vocal-00.mp3",
+  "assumed_offset": 0.0,
+  "lag": 0.0,
+  "r": 2.615
+ },
+ {
+  "part": "vocal-01.mp3",
+  "assumed_offset": 280.53,
+  "lag": -0.53,
+  "r": 2.607
+ },
+ {
+  "part": "vocal-02.mp3",
+  "assumed_offset": 561.06,
+  "lag": -0.942,
+  "r": 0.101
+ },
+ {
+  "part": "vocal-03.mp3",
+  "assumed_offset": 841.59,
+  "lag": 0.016,
+  "r": 0.091
+ },
+ {
+  "part": "vocal-04.mp3",
+  "assumed_offset": 1122.12,
+  "lag": -0.693,
+  "r": 0.076
+ },
+ {
+  "part": "vocal-05.mp3",
+  "assumed_offset": 1402.65,
+  "lag": -0.085,
+  "r": 0.096
+ },
+ {
+  "part": "vocal-06.mp3",
+  "assumed_offset": 1683.18,
+  "lag": -0.251,
+  "r": 0.071
+ }
+]

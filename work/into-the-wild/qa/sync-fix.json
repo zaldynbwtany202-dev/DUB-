@@ -1,0 +1,36 @@
+{
+ "issue": "«المزامنة سيئة» — الدبلجة متأخرة عن صوت الفيلم",
+ "cause": "كل توقيتات كلماتنا مشتقّة من تفريغ الجذع الصوتي (full-asr-vocal)، وقِيس أن الجذع نفسه متأخر عن صوت الفيلم في المزج الأصلي",
+ "evidence_before": {
+  "envelope_voice_only": {"lag_s": 0.31, "r": 0.076, "tool": "scripts/measure_envelope_lag.py"},
+  "word_pairs_stem_vs_film": {"pairs": 317, "median_offset_s": 0.230,
+                              "tool": "/tmp/stem_vs_mix.py → qa/stem-vs-mix-offsets.json"},
+  "onset_vs_references": {"film_transcript_s": -0.382, "stem_transcript_s": -0.584,
+                          "difference_s": 0.20, "tool": "qa/onset-vs-references.json"},
+  "local_envelope_on_delivery": {"aggregate_s": 0.19, "median_s": 0.21,
+                                 "tool": "scripts/measure_local_lag.py",
+                                 "file": "qa/local-lag-before.json"}
+ },
+ "action": {
+  "tool": "scripts/apply_timing_offset.py",
+  "delta_s": -0.25,
+  "outputs": ["full-timed-v2s.json", "groups-shifted.json"],
+  "rebuild": "scripts/dub_locked_voice.py --slug into-the-wild --start 0 --end 32 --takes takes-voice25 --source library/into-the-wild/source.local.mp4 --music stems/background-80k.mp3 --word-align full-timed-v2s.json",
+  "gates": "صفر تغيير في النسب والسرعات: النافذة وتوقيت الكلمات أُزيحا معًا"
+ },
+ "evidence_after": {
+  "envelope_voice_only": {"lag_s": 0.04, "r": 0.077},
+  "local_envelope_on_delivery": {"aggregate_s": -0.06, "median_s": -0.05,
+                                 "file": "qa/local-lag-after.json",
+                                 "iqr_s": [-0.57, 0.17]},
+  "sensitivity_test": {"synthetic_delay_s": 0.25, "measured_s": 0.30,
+                       "median_s": 0.32, "bias_s": 0.05,
+                       "file": "qa/local-lag-sensitivity.json"},
+  "word_fit_against_source": {"words": 2448, "mean_s": 0.167, "median_s": 0.153,
+                              "max_s": 1.04, "worst_groups": ["g017 0.29", "g009 0.28", "g005 0.25"]}
+ },
+ "verification": {"file": "previews/voice25-run-0-31-timed.mp4", "duration_s": 739.18,
+                  "checks": "7/7", "lufs": -16.0, "true_peak_dbtp": -1.5,
+                  "video": "-c:v copy (بلا إعادة ضغط)", "start_in_film_s": 0.12},
+ "note": "قياس المغلّف القديم كان يُطبَّع على طول الملف كله فيمال نحو الصفر؛ الأداة الجديدة (measure_local_lag.py) تُطبَّع كل مقطع على حِدة، ويُتحقّق منها بإزاحة مصنوعة"
+}

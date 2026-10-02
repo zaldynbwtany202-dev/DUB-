@@ -1,6 +1,6 @@
 {
   "slug": "into-the-wild",
-  "out": "previews/voice25-run-0-31.mp4",
+  "out": "previews/voice25-run-0-31-timed.mp4",
   "checks": [
     {
       "name": "lateness",
@@ -20,7 +20,7 @@
     {
       "name": "duration",
       "ok": true,
-      "detail": "الملف 739.34 ث · المتوقّع 739.30 ث"
+      "detail": "الملف 739.18 ث · المتوقّع 739.09 ث"
     },
     {
       "name": "loudness",
@@ -43,13 +43,13 @@
     "max_gap": 0.0,
     "tempo_max": 1.78,
     "clamped": [],
-    "last_end": 739.46,
+    "last_end": 739.21,
     "groups": 32,
-    "out_seconds": 739.34,
+    "out_seconds": 739.18,
     "lufs": -16.0,
     "true_peak": -1.5,
-    "report": "work/into-the-wild/build/master-report-v25run-0-31.json",
-    "report_mix_lufs": "-15.99",
+    "report": "work/into-the-wild/build/master-report-v25run-0-31-timed.json",
+    "report_mix_lufs": "-16.00",
     "report_true_peak": "-1.50",
     "first_frame_psnr": "inf"
   },

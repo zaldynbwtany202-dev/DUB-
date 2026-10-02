@@ -434,10 +434,11 @@
    "value": "voice-25 — «الصوت الثالث» من لوحة voice-personal (الأعمق 120 هرتز · أفضل نطق 98% · تسريع 1.08×)؛ صوت شخصي للمستخدم",
    "since": "2026-09-28",
    "source": "قرار المستخدم (المسحة السابعة خلال تنفيذه، أُعيد التنفيذ)",
-   "status": "active",
+   "status": "superseded",
    "supersedes": [
     "voice-21 — «الصوت الثاني هوا الجيد» (المقطع 02 من voice-pro2)؛ voice-17 مرفوض بالسماع على الفيديو (منذ 2026-09-28)"
-   ]
+   ],
+   "superseded_at": "2026-10-02"
   },
   {
    "key": "open.voice",
@@ -813,11 +814,12 @@
    "value": "74",
    "since": "2026-09-29",
    "source": "تشغيل الصفحة",
-   "status": "active",
+   "status": "superseded",
    "check": "grep -q 'BUILD = \"74\"' scripts/upload_server.py",
    "supersedes": [
     "73 (منذ 2026-09-29)"
-   ]
+   ],
+   "superseded_at": "2026-10-02"
   },
   {
    "key": "deliverable.voice25run20",
@@ -859,7 +861,8 @@
    "value": "المزامنة قيست: متوسط 0.168 ث · وسيط 0.122 · 88% داخل 0.35 ث · أقصى 1.04 (كان المسلَّم 0.588/42% مقابل التوقيت المصحّح، و0.699 في السجل القديم)",
    "since": "2026-10-02",
    "source": "qa/word-sync-after-fulltext.json",
-   "status": "active"
+   "status": "superseded",
+   "superseded_at": "2026-10-02"
   },
   {
    "key": "film.itw.windows",
@@ -887,6 +890,50 @@
    "value": "البناء بملاءمة الكلمات يثبّت كل مجموعة داخل نافذتها (S0=t0 والنهاية=t1) ويحل سرعات المقاطع معًا بآلة SLSQP والبوابة تدقّق بنفس النمط (--elastic)",
    "since": "2026-10-02",
    "source": "scripts/align_by_words.py",
+   "status": "active"
+  },
+  {
+   "key": "voice.current",
+   "value": "voice-25 — صوت الفيلم المقفل (لوح المستخدم #3)",
+   "since": "2026-10-02",
+   "source": "«الصوت الثالث»",
+   "status": "active",
+   "supersedes": [
+    "voice-25 — «الصوت الثالث» من لوحة voice-personal (الأعمق 120 هرتز · أفضل نطق 98% · تسريع 1.08×)؛ صوت شخصي للمستخدم (منذ 2026-09-28)"
+   ]
+  },
+  {
+   "key": "page.build",
+   "value": "76 — الصفحة: حلم الحج ★★ · الدبلجة بعد تصحيح المزامنة ★★ · النسخة السابقة للمقارنة · التقديم",
+   "since": "2026-10-02",
+   "source": "BUILD 76",
+   "status": "active",
+   "supersedes": [
+    "74 (منذ 2026-09-29)"
+   ]
+  },
+  {
+   "key": "film.itw.sync",
+   "value": "تصحيح المزامنة: تقديم 0.25 ث — قياس مستقل −0.06 ث بعد أن كان +0.19 (اختبار حساسية: إزاحة مصنوعة 0.25 ث قرأها 0.30)",
+   "since": "2026-10-02",
+   "source": "qa/local-lag-*.json · qa/sync-fix.json",
+   "status": "active",
+   "supersedes": [
+    "المزامنة قيست: متوسط 0.168 ث · وسيط 0.122 · 88% داخل 0.35 ث · أقصى 1.04 (كان المسلَّم 0.588/42% مقابل التوقيت المصحّح، و0.699 في السجل القديم) (منذ 2026-10-02)"
+   ]
+  },
+  {
+   "key": "film.itw.delivery",
+   "value": "previews/voice25-run-0-31-timed.mp4 — 0→31 · 739.18 ث · 7/7 ✓ · −16 LUFS · −1.50 dBTP",
+   "since": "2026-10-02",
+   "source": "BUILD 76",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.next",
+   "value": "إعادة توليد g026 (145.1 هرتز) ثم دفعة g032–g041 (g032 تولّدت · حادثة رازول)",
+   "since": "2026-10-02",
+   "source": "NEXT.md",
    "status": "active"
   }
  ]

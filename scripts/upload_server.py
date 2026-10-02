@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "75"
+BUILD = "76"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -112,11 +112,22 @@ LABELS = {
     "hajj-run-0-9": ("★ دبلجة «حلم الحج» — أول عشر مجموعات بصوتك 25 (3:41)",
                       "صوت فقط بلا خلفية كما طلبت · الإلقاء 0.93–1.09× · "
                       "بلا فراغات ولا تسريع مسموع · الكلمات مصرية من نصّك المعتمد · -16 LUFS وسقف -1.5 dBTP"),
-    "voice25-run-0-31": ("★ فيلم الوحدة والسعادة — المجموعات 0→31 بصوتك المخصص (12:19)",
-                        "المزامنة أُعيدت من الأساس: كل كلمة تُلصق بتوقيت كلمة الأصل، بلا تسريع "
-                        "موحّد للنافذة — 2487 كلمة، متوسط الخطأ 0.17 ث (كان 0.70)، وأسوأ مجموعة "
-                        "0.29 ث (كانت 3.12) · 32 مجموعة · إلقاء حتى 1.78× · −16 LUFS "
-                        "وسقف −1.50 dBTP · الصورة منسوخة بلا إعادة ضغط"),
+    "voice25-run-0-31-history": ("★ فيلم الوحدة والسعادة — المجموعات 0→31 بصوتك المخصص (12:19)",
+                                 "المزامنة أُعيدت من الأساس: كل كلمة تُلصق بتوقيت كلمة الأصل، بلا تسريع "
+                                 "موحّد للنافذة — 2487 كلمة، متوسط الخطأ 0.17 ث (كان 0.70)، وأسوأ مجموعة "
+                                 "0.29 ث (كانت 3.12) · 32 مجموعة · إلقاء حتى 1.78× · −16 LUFS "
+                                 "وسقف −1.50 dBTP · الصورة منسوخة بلا إعادة ضغط. "
+                                 "ثم قِيس أن الكل متأخر 0.25 ث فصُحّح في النسخة أعلاه"),
+    "voice25-run-0-31-timed": ("★★ فيلم الوحدة والسعادة — 32 مجموعة (0→31) بعد تصحيح المزامنة (12:19)",
+                              "سبب «المزامنة سيئة» صار مقيسًا: توقيتات كلماتنا كلها مشتقّة من تفريغ "
+                              "الجذع الصوتي، وقِيس أن الجذع متأخر عن صوت الفيلم نفسه — ارتباط المغلّف "
+                              "+0.31 ث، ومقارنة كلمة-كلمة 317 زوجًا +0.230 ث. أُزيحت الخطة كلها 0.25 ث "
+                              "إلى الأمام وأُعيد البناء من النص نفسه. قياس مستقل بعد التصحيح: −0.06 ث "
+                              "(كان +0.19)، واختبار حساسية بإزاحة مصنوعة +0.25 ث قرأها +0.30 ث. "
+                              "7/7 ✓ · −16 LUFS · سقف −1.50 dBTP · الصورة منسوخة بلا إعادة ضغط"),
+    "voice25-run-0-31": ("النسخة السابقة — قبل إزاحة المزامنة 0.25 ث (للمقارنة)",
+                         "نفس الصوت والنص والموسيقى، لكن كلامنا كان متأخرًا ~0.25 ث عن صوت الفيلم. "
+                         "محفوظة للمقارنة، وليست للتسليم"),
     "voice25-run-0-17": ("★ فيلم الوحدة والسعادة — المجموعات 0→17 بصوتك المخصص (6:58)",
                         "استمرار الدبلجة بصوت voice-25: ثماني مجموعات جديدة (g010–g017) متصلة "
                         "بالعشر السابقة، من والدَي كريستوفر وزواجهما السيئ، إلى دخول هارفارد، "
@@ -476,18 +487,8 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "hajj-dream-full-msa", "hajj-dialect-options", "voice25-run-0-31", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created",
-            "into-the-wild-narration", "into-the-wild-mastered",
-            "ident-voices", "voice07-opening",
-            "narrator-A", "narrator-B", "voice-final-two", "into-the-wild-fixed",
-            "voice-compare-2", "audition-voice-09", "audition-voice-10",
-            "voice-compare", "audition-voice-07", "audition-voice-08",
-            "audition-voice-05", "voice-B-professional", "voice-A-current",
-            "into-the-wild-part2", "into-the-wild-part1", "into-the-wild-pilot",
-            # Attempts that the ear rejected go last on purpose: the page leads
-            # with the narrator's own voice, not with an imitation of it.
-            "into-the-wild-cloned", "voice-clone-attempt",
-            "sindbad-6min"])}
+            "hajj-dream-full-msa", "voice25-run-0-31-timed",
+            "voice25-run-0-31", "clip-happiness-presented"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
@@ -497,7 +498,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"hajj-dream-full-msa", "hajj-dialect-options", "voice25-run-0-31", "clip-happiness-presented", "clip-pron", "voice25-run", "clip-happiness-dub-v25", "voice25-test", "voice-personal", "clip-happiness-dub", "voice21-test", "voice-pro2", "voice17-test", "pro-voices", "voice16-test", "pronunciation-ab3", "voice15-test", "voice13-created"}
+        PAGE_ALLOW = {"hajj-dream-full-msa", "voice25-run-0-31-timed", "voice25-run-0-31", "clip-happiness-presented"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
