@@ -1,0 +1,131 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:02,800"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 2800
+			},
+			"text": " رمالية وخليته يمشي الحد هنا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:02,800",
+				"to": "00:00:06,720"
+			},
+			"offsets": {
+				"from": 2800,
+				"to": 6720
+			},
+			"text": " وبيبان إن شكل مبهدل جدا ولكنه مبسوط"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,720",
+				"to": "00:00:11,560"
+			},
+			"offsets": {
+				"from": 6720,
+				"to": 11560
+			},
+			"text": " الشرط بيعرفه إن ما ينفعش يعد الحدود من غير بطاقة هوية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,560",
+				"to": "00:00:15,600"
+			},
+			"offsets": {
+				"from": 11560,
+				"to": 15600
+			},
+			"text": " فبيروح حروع لأمريكا ثاني وبيوصل على لوس انجلوس"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,600",
+				"to": "00:00:18,320"
+			},
+			"offsets": {
+				"from": 15600,
+				"to": 18320
+			},
+			"text": " وبيأجر سرير هناك في أوضى بسيطة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,320",
+				"to": "00:00:20,600"
+			},
+			"offsets": {
+				"from": 18320,
+				"to": 20600
+			},
+			"text": " بعد كده بينزل يتمشف الشيرع"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,600",
+				"to": "00:00:25,240"
+			},
+			"offsets": {
+				"from": 20600,
+				"to": 25240
+			},
+			"text": " وبيبتدي لاحظ المفرقة والتبائية اللي المجتمع بقى فيها مشردين"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,240",
+				"to": "00:00:29,960"
+			},
+			"offsets": {
+				"from": 25240,
+				"to": 29960
+			},
+			"text": " ماليين الشوارع وناس لبس بدل وأعد ابتاكل في أحسن الأماكن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,960",
+				"to": "00:00:32,520"
+			},
+			"offsets": {
+				"from": 29960,
+				"to": 32520
+			},
+			"text": " فهو هنا بحس إنه بقى متشردة"
+		}
+	]
+}
