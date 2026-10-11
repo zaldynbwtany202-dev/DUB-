@@ -96,6 +96,10 @@ class SafeCommitTests(unittest.TestCase):
             new_sha = json.loads((repo / 'previews/new.mp4.parts/manifest.json').read_text())['sha256']
             self.assertNotEqual(old_sha, new_sha, 'stale manifest must be rebuilt')
             self.assertFalse(tracked('previews/new.mp4'))
+            # A workspace wipe removes the untracked playable file. Parts must restore it.
+            preview.unlink()
+            self.assertEqual(split_preview.restore(preview), 0)
+            self.assertEqual(hashlib.sha256(preview.read_bytes()).hexdigest(), new_sha)
 
 
 class PronunciationCacheTests(unittest.TestCase):

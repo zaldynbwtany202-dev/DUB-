@@ -106,7 +106,27 @@ got=$(sha256sum "$SRC" | cut -d' ' -f1)
 if [ "$want" = "$got" ]; then
   say "[فيلم] البصمة مطابقة · $(stat -c%s "$SRC") بايت"
 else
-  say "[فيلم] تحذير: البصمة مختلفة — المصدر تالف"
+  say "[فيلم] ✗ البصمة مختلفة — المصدر تالف؛ لا يمكن البناء بأمان"
+  exit 1
 fi
 
+# ---------------------------------------------------------------------------
+# 4. Playable previews stored as byte-range parts (not tracked as full MP4).
+# A wipe removes the full MP4; without this step BUILD 80 shows an empty card.
+# ---------------------------------------------------------------------------
+say "[معاينات] استرجاع الملفات المجزأة والتحقق من بصماتها"
+python3 - <<'PY' || exit 1
+from pathlib import Path
+import sys
+sys.path.insert(0, 'scripts')
+from split_preview import check, restore
+for manifest in sorted(Path('previews').glob('*.mp4.parts/manifest.json')):
+    preview = manifest.parent.with_suffix('')
+    if preview.exists():
+        if check(preview):
+            raise SystemExit(f'معاينة محلية مختلفة عن أجزائها؛ لم أستبدلها: {preview}')
+    else:
+        if restore(preview):
+            raise SystemExit(f'فشل استرجاع المعاينة: {preview}')
+PY
 say "انتهت إعادة البناء"
