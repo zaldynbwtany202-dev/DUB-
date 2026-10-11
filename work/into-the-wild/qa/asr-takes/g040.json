@@ -1,0 +1,131 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4400
+			},
+			"text": " عشان يتحرر فعلا من كل حاجة كانت بتربوته بحياته الأديمة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,400",
+				"to": "00:00:07,120"
+			},
+			"offsets": {
+				"from": 4400,
+				"to": 7120
+			},
+			"text": " خصوصا انه كان بيخاف جدا من البحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,120",
+				"to": "00:00:10,880"
+			},
+			"offsets": {
+				"from": 7120,
+				"to": 10880
+			},
+			"text": " وده بارده بيوريك المفارقة بين الناس الطبيعيين وبينه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,880",
+				"to": "00:00:15,040"
+			},
+			"offsets": {
+				"from": 10880,
+				"to": 15040
+			},
+			"text": " الدولة حط القعدة دي انك ما ينفعش تاخد المركب بتاعتك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,040",
+				"to": "00:00:16,800"
+			},
+			"offsets": {
+				"from": 15040,
+				"to": 16800
+			},
+			"text": " وتنزل كده تجد في البحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,800",
+				"to": "00:00:19,920"
+			},
+			"offsets": {
+				"from": 16800,
+				"to": 19920
+			},
+			"text": " عشان انت كده بتخاطر بحياتك وممكن تموت"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,920",
+				"to": "00:00:22,400"
+			},
+			"offsets": {
+				"from": 19920,
+				"to": 22400
+			},
+			"text": " لان البحر مهما يبان شكله جميل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,400",
+				"to": "00:00:25,920"
+			},
+			"offsets": {
+				"from": 22400,
+				"to": 25920
+			},
+			"text": " ولكن ضحيها بالملايين كل سنة حوالين العالم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,920",
+				"to": "00:00:28,960"
+			},
+			"offsets": {
+				"from": 25920,
+				"to": 28960
+			},
+			"text": " بيموت تقريبا تلتومية وستين ألف شخص"
+		}
+	]
+}

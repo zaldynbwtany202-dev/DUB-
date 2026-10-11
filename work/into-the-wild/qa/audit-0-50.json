@@ -163,20 +163,20 @@
     },
     {
       "name": "g007",
-      "voiced": 0.479,
-      "median": 124.2,
-      "p10": 106.0,
-      "p90": 151.5,
-      "semis": -1.72,
-      "drift_hz": 16.5,
-      "drift_semis": 2.37,
-      "seconds": 39.11,
-      "rms_db": -19.03,
+      "voiced": 0.489,
+      "median": 134.0,
+      "p10": 111.6,
+      "p90": 161.5,
+      "semis": -0.4,
+      "drift_hz": 18.4,
+      "drift_semis": 2.41,
+      "seconds": 33.59,
+      "rms_db": -19.16,
       "group": 7,
       "window": 23.92,
       "room": 23.92,
-      "required_tempo": 1.635,
-      "tempo": 1.635,
+      "required_tempo": 1.404,
+      "tempo": 1.404,
       "start": 160.33,
       "end": 184.25,
       "late": 0.0,
@@ -383,20 +383,20 @@
     },
     {
       "name": "g017",
-      "voiced": 0.488,
-      "median": 126.7,
-      "p10": 108.1,
-      "p90": 156.9,
-      "semis": -1.38,
-      "drift_hz": 22.0,
-      "drift_semis": 2.95,
-      "seconds": 38.228,
-      "rms_db": -18.97,
+      "voiced": 0.47,
+      "median": 133.2,
+      "p10": 113.4,
+      "p90": 163.3,
+      "semis": -0.51,
+      "drift_hz": 27.3,
+      "drift_semis": 3.55,
+      "seconds": 33.59,
+      "rms_db": -19.17,
       "group": 17,
       "window": 23.25,
       "room": 23.25,
-      "required_tempo": 1.644,
-      "tempo": 1.644,
+      "required_tempo": 1.445,
+      "tempo": 1.445,
       "start": 394.54,
       "end": 417.79,
       "late": 0.0,
@@ -493,20 +493,20 @@
     },
     {
       "name": "g022",
-      "voiced": 0.508,
-      "median": 123.5,
-      "p10": 106.8,
-      "p90": 152.6,
-      "semis": -1.82,
-      "drift_hz": 23.9,
-      "drift_semis": 3.25,
-      "seconds": 37.111,
-      "rms_db": -19.02,
+      "voiced": 0.479,
+      "median": 134.0,
+      "p10": 111.9,
+      "p90": 160.4,
+      "semis": -0.4,
+      "drift_hz": 17.3,
+      "drift_semis": 2.22,
+      "seconds": 35.83,
+      "rms_db": -19.23,
       "group": 22,
       "window": 24.16,
       "room": 24.16,
-      "required_tempo": 1.536,
-      "tempo": 1.536,
+      "required_tempo": 1.483,
+      "tempo": 1.483,
       "start": 511.47,
       "end": 535.63,
       "late": 0.0,
@@ -515,20 +515,20 @@
     },
     {
       "name": "g023",
-      "voiced": 0.498,
-      "median": 123.2,
-      "p10": 106.5,
-      "p90": 152.1,
-      "semis": -1.87,
-      "drift_hz": 13.7,
-      "drift_semis": 1.94,
-      "seconds": 32.151,
-      "rms_db": -18.88,
+      "voiced": 0.44,
+      "median": 138.2,
+      "p10": 115.7,
+      "p90": 166.4,
+      "semis": 0.13,
+      "drift_hz": 14.0,
+      "drift_semis": 1.77,
+      "seconds": 32.95,
+      "rms_db": -19.28,
       "group": 23,
       "window": 23.46,
       "room": 23.46,
-      "required_tempo": 1.37,
-      "tempo": 1.37,
+      "required_tempo": 1.405,
+      "tempo": 1.405,
       "start": 535.63,
       "end": 559.09,
       "late": 0.0,
@@ -559,20 +559,20 @@
     },
     {
       "name": "g025",
-      "voiced": 0.45,
-      "median": 123.9,
-      "p10": 107.6,
-      "p90": 155.3,
-      "semis": -1.77,
-      "drift_hz": 26.5,
-      "drift_semis": 3.76,
-      "seconds": 37.27,
-      "rms_db": -19.1,
+      "voiced": 0.444,
+      "median": 142.3,
+      "p10": 117.6,
+      "p90": 167.7,
+      "semis": 0.63,
+      "drift_hz": 24.5,
+      "drift_semis": 2.94,
+      "seconds": 34.87,
+      "rms_db": -19.24,
       "group": 25,
       "window": 25.4,
       "room": 25.4,
-      "required_tempo": 1.467,
-      "tempo": 1.467,
+      "required_tempo": 1.373,
+      "tempo": 1.373,
       "start": 583.07,
       "end": 608.47,
       "late": 0.0,
@@ -1065,20 +1065,20 @@
     },
     {
       "name": "g048",
-      "voiced": 0.435,
-      "median": 119.8,
-      "p10": 105.8,
-      "p90": 153.1,
-      "semis": -2.34,
-      "drift_hz": 18.9,
-      "drift_semis": 2.71,
-      "seconds": 39.271,
-      "rms_db": -18.87,
+      "voiced": 0.488,
+      "median": 128.9,
+      "p10": 109.4,
+      "p90": 156.9,
+      "semis": -1.07,
+      "drift_hz": 14.2,
+      "drift_semis": 1.89,
+      "seconds": 35.19,
+      "rms_db": -19.15,
       "group": 48,
       "window": 23.84,
       "room": 23.84,
-      "required_tempo": 1.647,
-      "tempo": 1.647,
+      "required_tempo": 1.476,
+      "tempo": 1.476,
       "start": 1092.29,
       "end": 1116.13,
       "late": 0.0,
@@ -1133,28 +1133,12 @@
   "missing": [],
   "plan": [
     {
-      "group": 48,
+      "group": 24,
       "candidates": 2,
       "needs": "انزياح+قفزة",
-      "semis": -2.34,
-      "step": 2.31,
-      "urgency": 5.43
-    },
-    {
-      "group": 25,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": -1.77,
-      "step": 2.74,
-      "urgency": 5.1
-    },
-    {
-      "group": 26,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": 0.97,
-      "step": 2.74,
-      "urgency": 4.03
+      "semis": -1.42,
+      "step": 2.05,
+      "urgency": 3.94
     },
     {
       "group": 45,
@@ -1173,28 +1157,12 @@
       "urgency": 3.76
     },
     {
-      "group": 22,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": -1.82,
-      "step": 1.31,
-      "urgency": 3.74
-    },
-    {
       "group": 31,
       "candidates": 2,
       "needs": "انزياح+قفزة",
       "semis": -1.57,
       "step": 1.43,
       "urgency": 3.52
-    },
-    {
-      "group": 7,
-      "candidates": 2,
-      "needs": "انزياح+قفزة",
-      "semis": -1.72,
-      "step": 1.21,
-      "urgency": 3.5
     },
     {
       "group": 43,
@@ -1229,12 +1197,20 @@
       "urgency": 3.18
     },
     {
-      "group": 23,
-      "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.87,
-      "step": 0.45,
-      "urgency": 2.94
+      "group": 6,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": -1.47,
+      "step": 1.07,
+      "urgency": 3.03
+    },
+    {
+      "group": 26,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": 0.97,
+      "step": 1.74,
+      "urgency": 3.03
     },
     {
       "group": 10,
@@ -1242,6 +1218,14 @@
       "needs": "انزياح",
       "semis": -1.57,
       "step": 0.8,
+      "urgency": 2.89
+    },
+    {
+      "group": 25,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": 0.63,
+      "step": 2.05,
       "urgency": 2.89
     },
     {
@@ -1259,14 +1243,6 @@
       "semis": -1.38,
       "step": 0.98,
       "urgency": 2.82
-    },
-    {
-      "group": 49,
-      "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.38,
-      "step": 0.96,
-      "urgency": 2.8
     },
     {
       "group": 27,
@@ -1301,36 +1277,20 @@
       "urgency": 2.71
     },
     {
+      "group": 48,
+      "candidates": 2,
+      "needs": "انزياح+قفزة",
+      "semis": -1.07,
+      "step": 1.04,
+      "urgency": 2.47
+    },
+    {
       "group": 30,
       "candidates": 2,
       "needs": "انزياح+قفزة",
       "semis": -0.92,
       "step": 1.16,
       "urgency": 2.39
-    },
-    {
-      "group": 47,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": -0.03,
-      "step": 2.31,
-      "urgency": 2.35
-    },
-    {
-      "group": 24,
-      "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.42,
-      "step": 0.45,
-      "urgency": 2.34
-    },
-    {
-      "group": 6,
-      "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.47,
-      "step": 0.35,
-      "urgency": 2.31
     },
     {
       "group": 1,
@@ -1341,11 +1301,27 @@
       "urgency": 2.3
     },
     {
+      "group": 18,
+      "candidates": 1,
+      "needs": "انزياح",
+      "semis": -1.17,
+      "step": 0.66,
+      "urgency": 2.22
+    },
+    {
       "group": 3,
       "candidates": 1,
       "needs": "انزياح",
       "semis": -1.23,
       "step": 0.51,
+      "urgency": 2.15
+    },
+    {
+      "group": 49,
+      "candidates": 1,
+      "needs": "انزياح",
+      "semis": -1.38,
+      "step": 0.31,
       "urgency": 2.15
     },
     {
@@ -1357,28 +1333,12 @@
       "urgency": 2.11
     },
     {
-      "group": 17,
+      "group": 16,
       "candidates": 1,
       "needs": "انزياح",
-      "semis": -1.38,
-      "step": 0.26,
+      "semis": -1.12,
+      "step": 0.61,
       "urgency": 2.1
-    },
-    {
-      "group": 18,
-      "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.17,
-      "step": 0.45,
-      "urgency": 2.01
-    },
-    {
-      "group": 21,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": -0.51,
-      "step": 1.31,
-      "urgency": 1.99
     },
     {
       "group": 20,
@@ -1402,14 +1362,6 @@
       "needs": "انزياح",
       "semis": -1.12,
       "step": 0.4,
-      "urgency": 1.89
-    },
-    {
-      "group": 8,
-      "candidates": 1,
-      "needs": "قفزة",
-      "semis": -0.51,
-      "step": 1.21,
       "urgency": 1.89
     },
     {
@@ -1437,7 +1389,7 @@
       "urgency": 1.77
     },
     {
-      "group": 16,
+      "group": 50,
       "candidates": 1,
       "needs": "انزياح",
       "semis": -1.12,
@@ -1445,12 +1397,12 @@
       "urgency": 1.75
     },
     {
-      "group": 50,
+      "group": 23,
       "candidates": 1,
-      "needs": "انزياح",
-      "semis": -1.12,
-      "step": 0.26,
-      "urgency": 1.75
+      "needs": "قفزة",
+      "semis": 0.13,
+      "step": 1.55,
+      "urgency": 1.72
     },
     {
       "group": 32,
@@ -1477,6 +1429,14 @@
       "urgency": 1.63
     },
     {
+      "group": 7,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": -0.4,
+      "step": 1.07,
+      "urgency": 1.6
+    },
+    {
       "group": 29,
       "candidates": 1,
       "needs": "قفزة",
@@ -1499,13 +1459,19 @@
       "semis": -0.24,
       "step": 1.09,
       "urgency": 1.41
+    },
+    {
+      "group": 47,
+      "candidates": 1,
+      "needs": "قفزة",
+      "semis": -0.03,
+      "step": 1.04,
+      "urgency": 1.08
     }
   ],
-  "verdict": "يُبنى بتحفّظ: مدى غير نهائي",
+  "verdict": "يحتاج مرشحين",
   "failed": [],
-  "attention": [
-    "step_attention_band"
-  ],
+  "attention": [],
   "checks": [
     {
       "name": "plan_consistent",
@@ -1535,33 +1501,33 @@
     {
       "name": "pitch_hard_band",
       "ok": true,
-      "detail": "أقصى بُعد 2.34 نصف نغمة (الحدّ المطلق 6.0)"
+      "detail": "أقصى بُعد 1.72 نصف نغمة (الحدّ المطلق 6.0)"
     },
     {
       "name": "step_hard_band",
       "ok": true,
-      "detail": "أقصى قفزة 2.74 نصف نغمة (الحدّ المطلق 6.0)"
+      "detail": "أقصى قفزة 2.05 نصف نغمة (الحدّ المطلق 6.0)"
     },
     {
       "name": "pitch_attention_band",
       "ok": true,
-      "detail": "أقصى بُعد 2.34 نصف نغمة (سقف ما أجازه المستمع 2.5)"
+      "detail": "أقصى بُعد 1.72 نصف نغمة (سقف ما أجازه المستمع 2.5)"
     },
     {
       "name": "step_attention_band",
-      "ok": false,
-      "detail": "أقصى قفزة 2.74 نصف نغمة (سقف ما أجازه المستمع 2.6)"
+      "ok": true,
+      "detail": "أقصى قفزة 2.05 نصف نغمة (سقف ما أجازه المستمع 2.6)"
     },
     {
       "name": "level_spread",
       "ok": true,
-      "detail": "تفاوت المستوى 0.38 د.ب (السقف 1.5)"
+      "detail": "تفاوت المستوى 0.55 د.ب (السقف 1.5)"
     }
   ],
-  "steps_mean": 0.781,
-  "steps_max": 2.74,
-  "level_spread": 0.38,
-  "tempo_max": 1.647,
+  "steps_mean": 0.747,
+  "steps_max": 2.05,
+  "level_spread": 0.55,
+  "tempo_max": 1.645,
   "max_late": 0.0,
   "max_gap": 0.0
 }

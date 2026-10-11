@@ -1,0 +1,153 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,040"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6040
+			},
+			"text": " لأن البحر في الأفلامي أحياناً بيتم ترميزه على إن الحقز اللي بيمناعك عن حرييتك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,040",
+				"to": "00:00:08,760"
+			},
+			"offsets": {
+				"from": 6040,
+				"to": 8760
+			},
+			"text": " عندك مثلاً فيلم \"The Truman Show\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,760",
+				"to": "00:00:12,440"
+			},
+			"offsets": {
+				"from": 8760,
+				"to": 12440
+			},
+			"text": " عشان تروماً يسترد حرييته ويخرج للعالم الحقيقي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:12,440",
+				"to": "00:00:14,680"
+			},
+			"offsets": {
+				"from": 12440,
+				"to": 14680
+			},
+			"text": " كان لازم يعد عن طريق البحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:14,680",
+				"to": "00:00:16,120"
+			},
+			"offsets": {
+				"from": 14680,
+				"to": 16120
+			},
+			"text": " وفيلم \"Castawai\""
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,120",
+				"to": "00:00:19,680"
+			},
+			"offsets": {
+				"from": 16120,
+				"to": 19680
+			},
+			"text": " المحيط هو اللي كان عازل البطل طول الفلم عن العالم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,680",
+				"to": "00:00:23,160"
+			},
+			"offsets": {
+				"from": 19680,
+				"to": 23160
+			},
+			"text": " ولما قرر أخيراً يواجه ويعمل مركب ويبحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,160",
+				"to": "00:00:25,960"
+			},
+			"offsets": {
+				"from": 23160,
+				"to": 25960
+			},
+			"text": " قدر يخرج من الجزيرة ويسترد حرييته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,960",
+				"to": "00:00:27,880"
+			},
+			"offsets": {
+				"from": 25960,
+				"to": 27880
+			},
+			"text": " فكرس هنا بالنسبة له"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:27,880",
+				"to": "00:00:29,880"
+			},
+			"offsets": {
+				"from": 27880,
+				"to": 29880
+			},
+			"text": " البحر هو الحرية المطلقة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:31,760"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 31760
+			},
+			"text": " الحاجز اللي لازم يقصروا"
+		}
+	]
+}

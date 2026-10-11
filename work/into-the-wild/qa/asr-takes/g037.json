@@ -1,0 +1,109 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,300"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6300
+			},
+			"text": " لما عرف حياة أبوه المزدوجة عمله زي صدمة كده وخلاه شك في كل حاجة حواليه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,300",
+				"to": "00:00:09,760"
+			},
+			"offsets": {
+				"from": 6300,
+				"to": 9760
+			},
+			"text": " دغير أصلا معاملت أبوه السيئة الأم والكس"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,760",
+				"to": "00:00:15,780"
+			},
+			"offsets": {
+				"from": 9760,
+				"to": 15780
+			},
+			"text": " بكم الرحلته بيكون عايز بقى يستمتع بالطبيعة ويجدف بالقارب بتاعه في البحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,780",
+				"to": "00:00:21,300"
+			},
+			"offsets": {
+				"from": 15780,
+				"to": 21300
+			},
+			"text": " ولكن أبل ما هيعمل كده هتلاقي بيتفن الكتب اللي معيه وبيخبيها في مكان"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:21,300",
+				"to": "00:00:25,660"
+			},
+			"offsets": {
+				"from": 21300,
+				"to": 25660
+			},
+			"text": " وده عشان لما يرجع يلاقيها بيعملها معاملة الكنز بالضبط"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,660",
+				"to": "00:00:29,600"
+			},
+			"offsets": {
+				"from": 25660,
+				"to": 29600
+			},
+			"text": " المهم إنه بيروح مكان زي دليل خريطة المدينة كده"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:29,840",
+				"to": "00:00:34,160"
+			},
+			"offsets": {
+				"from": 29840,
+				"to": 34160
+			},
+			"text": " ودعا شان يسألهم إيه أحسن مكان يبدأ منه رحلته في البحر"
+		}
+	]
+}

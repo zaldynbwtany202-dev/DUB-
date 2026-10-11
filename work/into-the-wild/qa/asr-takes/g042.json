@@ -1,0 +1,153 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:04,280"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 4280
+			},
+			"text": " هو إحساس جميل جداً بعدها بيقاب البنت وولد أعدين على الشاطل"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:04,280",
+				"to": "00:00:08,600"
+			},
+			"offsets": {
+				"from": 4280,
+				"to": 8600
+			},
+			"text": " بس الخلاصة يعني بيدولوا الفكرة أنه ممكن يتم التريق في البحر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,600",
+				"to": "00:00:10,000"
+			},
+			"offsets": {
+				"from": 8600,
+				"to": 10000
+			},
+			"text": " ويوصل للمكسيك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,000",
+				"to": "00:00:13,280"
+			},
+			"offsets": {
+				"from": 10000,
+				"to": 13280
+			},
+			"text": " لأن زي ما انت فاهم المكسيك لزأ في أمريكا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,280",
+				"to": "00:00:16,120"
+			},
+			"offsets": {
+				"from": 13280,
+				"to": 16120
+			},
+			"text": " ومش هنحكي كتير عشان البنت قللة الأدب دي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:16,120",
+				"to": "00:00:17,240"
+			},
+			"offsets": {
+				"from": 16120,
+				"to": 17240
+			},
+			"text": " لبسها أظر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,240",
+				"to": "00:00:18,720"
+			},
+			"offsets": {
+				"from": 17240,
+				"to": 18720
+			},
+			"text": " ما هو العيب مش عليكي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,720",
+				"to": "00:00:20,520"
+			},
+			"offsets": {
+				"from": 18720,
+				"to": 20520
+			},
+			"text": " العيب على ابن اللي معاكي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,520",
+				"to": "00:00:24,440"
+			},
+			"offsets": {
+				"from": 20520,
+				"to": 24440
+			},
+			"text": " بيجي خفر السواحة اللي بيجري ورى الكسة عشان هو مخالف طمعاً"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:24,440",
+				"to": "00:00:26,840"
+			},
+			"offsets": {
+				"from": 24440,
+				"to": 26840
+			},
+			"text": " فبياخد الأرئي بالصغير بتاعه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,960",
+				"to": "00:00:29,520"
+			},
+			"offsets": {
+				"from": 26960,
+				"to": 29520
+			},
+			"text": " وبيركب عربية عشان يكمل الرحلته في الوقت"
+		}
+	]
+}

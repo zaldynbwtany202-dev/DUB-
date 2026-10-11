@@ -975,6 +975,34 @@
    "supersedes": [
     "76 — الصفحة: حلم الحج ★★ · الدبلجة بعد تصحيح المزامنة ★★ · النسخة السابقة للمقارنة · التقديم (منذ 2026-10-02)"
    ]
+  },
+  {
+   "key": "audit.report",
+   "value": "docs/COMPREHENSIVE_AUDIT_AR.md — فحص شامل مقيس (إيقاع · نبرة · مزامنة · بنية تحتية)",
+   "since": "2026-10-11",
+   "source": "2026-10-11",
+   "status": "active"
+  },
+  {
+   "key": "ops.rule",
+   "value": "أدلّة البناء (الموضع/تقرير الماستر) تُنسخ إلى qa/ — build/ مستثنى من git فتُفقد مع كل مسحة",
+   "since": "2026-10-11",
+   "source": "STANDING.md · scripts/archive_build_evidence.py",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.pace",
+   "value": "تسريع وسيط 1.48× · 28% من الكلام ≥1.7× · 47/51 مجموعة تلمس السقف — السبب: صوتنا 9.62 حرف/ث مقابل 14.34 للأصل",
+   "since": "2026-10-11",
+   "source": "qa/placement-0-50.json",
+   "status": "active"
+  },
+  {
+   "key": "film.itw.tone",
+   "value": "31/51 أخذة انزياحها >نصف نغمة (أسوأها g048 −2.34) · تذبذب داخلي وسيط 2.47",
+   "since": "2026-10-11",
+   "source": "qa/audit-0-50.json",
+   "status": "active"
   }
  ]
 }

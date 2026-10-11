@@ -1,0 +1,120 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,160"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5160
+			},
+			"text": " يعني بمعدل كل دقيقتين في شخص بيمود غرآن حوالين العالم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,160",
+				"to": "00:00:08,320"
+			},
+			"offsets": {
+				"from": 5160,
+				"to": 8320
+			},
+			"text": " ولكن الكس واخد الدنيا بعفوية شوية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:08,320",
+				"to": "00:00:11,760"
+			},
+			"offsets": {
+				"from": 8320,
+				"to": 11760
+			},
+			"text": " عايز يجرب كل حاجة من غير ما يحسب حكم الخطر"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,760",
+				"to": "00:00:15,040"
+			},
+			"offsets": {
+				"from": 11760,
+				"to": 15040
+			},
+			"text": " فبيأخد قارب صغير وبيروح عشان يجدف"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,040",
+				"to": "00:00:18,600"
+			},
+			"offsets": {
+				"from": 15040,
+				"to": 18600
+			},
+			"text": " الكاميرا بتوريك الدئل بحر هائق ومتقلب"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,600",
+				"to": "00:00:22,480"
+			},
+			"offsets": {
+				"from": 18600,
+				"to": 22480
+			},
+			"text": " ولكنه بواجه خوفه وبينزل بالمركب الصغير ردي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:22,480",
+				"to": "00:00:26,840"
+			},
+			"offsets": {
+				"from": 22480,
+				"to": 26840
+			},
+			"text": " ولما الشباب بيشوفه بيقولول استخدم خدا تحميك يا عم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,840",
+				"to": "00:00:33,520"
+			},
+			"offsets": {
+				"from": 26840,
+				"to": 33520
+			},
+			"text": " انت الكس بيبحر بالقارب بتاعه وبصرخ بعلوه صوته أنا السوبر ترامب وبيني وبينك"
+		}
+	]
+}

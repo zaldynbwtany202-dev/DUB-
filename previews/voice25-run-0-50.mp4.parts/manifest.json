@@ -1,0 +1,18 @@
+{
+ "source": "voice25-run-0-50.mp4",
+ "bytes": 99194704,
+ "sha256": "3e5b46f36898f11efd9c20ce0c1befd1acf8c3c5a4871fe67973bfa290f78c32",
+ "parts": [
+  {
+   "file": "voice25-run-0-50.mp4.part001",
+   "bytes": 83886080,
+   "sha256": "ef509a33c4d5462a67e8828fdde2769644ab5fc45f92ae7552055375653e0106"
+  },
+  {
+   "file": "voice25-run-0-50.mp4.part002",
+   "bytes": 15308624,
+   "sha256": "55a49b85e207248bf26f084bd98f6488b22781b894703051a22c11ce9ba2c006"
+  }
+ ],
+ "note": "GitHub يرفض ملفًا أكبر من 100 م.بايت؛ هذه الأجزاء هي الملف نفسه مقطّعة بايتات، وتُعاد بـ--restore بلا إعادة ترميز"
+}
