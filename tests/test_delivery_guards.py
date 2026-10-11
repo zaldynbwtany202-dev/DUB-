@@ -118,6 +118,22 @@ class PronunciationCacheTests(unittest.TestCase):
             self.assertFalse(source_matches(report, take))
 
 
+class HomonymTests(unittest.TestCase):
+    def test_guard_is_advisory_and_does_not_rewrite_approved_text(self):
+        with tempfile.TemporaryDirectory() as temp:
+            groups = Path(temp) / 'groups.json'
+            original = '{"groups": [{"i": 0, "text": "بلغ قوته"}]}'
+            groups.write_text(original, encoding='utf-8')
+            result = subprocess.run([sys.executable, str(ROOT / 'scripts/guard_homonyms.py'),
+                                     str(groups)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0)
+            self.assertIn('قوته', result.stdout)
+            self.assertEqual(groups.read_text(encoding='utf-8'), original)
+            strict = subprocess.run([sys.executable, str(ROOT / 'scripts/guard_homonyms.py'),
+                                     str(groups), '--strict'], capture_output=True)
+            self.assertEqual(strict.returncode, 1)
+
+
 class PreviewCardsTests(unittest.TestCase):
     def test_cards_render_without_runtime_unpacking_errors(self):
         spec = importlib.util.spec_from_file_location('upload_server', ROOT / 'scripts/upload_server.py')
