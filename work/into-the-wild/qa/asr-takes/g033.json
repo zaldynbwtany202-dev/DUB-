@@ -1,0 +1,98 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:06,400"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 6400
+			},
+			"text": " دا كان بالون أو منطاد للأرصاد الجوية بإيس درجات الحرارة والرياح والكلام دا كله"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:06,400",
+				"to": "00:00:09,400"
+			},
+			"offsets": {
+				"from": 6400,
+				"to": 9400
+			},
+			"text": " ولكن القصة عملت جدى الكبير بين الناس"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:09,400",
+				"to": "00:00:17,400"
+			},
+			"offsets": {
+				"from": 9400,
+				"to": 17400
+			},
+			"text": " وظهرت بعدها نظريات مؤمرة بتقول إن دا كان طبق طائر وفضائيين وقوة فيزيائية جبارة وبلا بلا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:17,400",
+				"to": "00:00:25,200"
+			},
+			"offsets": {
+				"from": 17400,
+				"to": 25200
+			},
+			"text": " ولكن بعد سنين طويلة ظهرت معلومات بتقول إن الجسم اللي ظهر دا كان مرتبط ببرنامج تجسس أمريكي"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:25,200",
+				"to": "00:00:32,800"
+			},
+			"offsets": {
+				"from": 25200,
+				"to": 32800
+			},
+			"text": " البرنامج دا كان هدفو إن يرسد الإختبارات النووية لبتعملها روسيا عشان وقتها كان في بنهم صباق على التصلية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:32,800",
+				"to": "00:00:35,800"
+			},
+			"offsets": {
+				"from": 32800,
+				"to": 35800
+			},
+			"text": " الحرب البرد بقى زي من تفاهم"
+		}
+	]
+}

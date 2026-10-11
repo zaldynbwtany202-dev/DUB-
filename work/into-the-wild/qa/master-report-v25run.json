@@ -1,0 +1,40 @@
+{
+ "voice": "work/into-the-wild/build/into-the-wild-voice.wav",
+ "music": "work/into-the-wild/stems/background-80k.mp3",
+ "out": "work/into-the-wild/build/into-the-wild-master.wav",
+ "target_lufs": -16.0,
+ "true_peak_dbtp": -1.5,
+ "loudness_range": 11.0,
+ "duck_db": 10.0,
+ "music_db": -4.0,
+ "voice_chain": "highpass=f=85,equalizer=f=250:width_type=q:w=1:g=-2.5,equalizer=f=3200:width_type=q:w=1.2:g=+2.5,deesser=i=0.4:m=0.5:f=0.5,acompressor=threshold=-18dB:ratio=3:attack=5:release=150:makeup=2",
+ "measured_voice": {
+  "input_i": "-19.69",
+  "input_tp": "-4.98",
+  "input_lra": "2.40",
+  "input_thresh": "-29.76",
+  "output_i": "-16.05",
+  "output_tp": "-1.50",
+  "output_lra": "2.30",
+  "output_thresh": "-26.12",
+  "normalization_type": "dynamic",
+  "target_offset": "0.05"
+ },
+ "measured_mix": {
+  "input_i": "-16.01",
+  "input_tp": "-1.50",
+  "input_lra": "2.30",
+  "input_thresh": "-26.08",
+  "output_i": "-16.04",
+  "output_tp": "-1.50",
+  "output_lra": "2.30",
+  "output_thresh": "-26.12",
+  "normalization_type": "dynamic",
+  "target_offset": "0.04"
+ },
+ "measured_output": {
+  "lufs": -16.0,
+  "true_peak": -1.5
+ },
+ "target_offset_note": "measured_output هو القياس على الملف المكتوب، لا هدف الطلب"
+}

@@ -1,0 +1,88 @@
+{
+ "excluded": [
+  "g002.alt2.mp3"
+ ],
+ "session_median_hz": 128.7,
+ "rows": [
+  {
+   "name": "g000.mp3",
+   "seconds": 35.16,
+   "hz": 118.5,
+   "drift": 2.32,
+   "excluded": false
+  },
+  {
+   "name": "g001.mp3",
+   "seconds": 35.16,
+   "hz": 138.7,
+   "drift": 2.11,
+   "excluded": false
+  },
+  {
+   "name": "g002.mp3",
+   "seconds": 32.68,
+   "hz": 127.7,
+   "drift": 3.76,
+   "excluded": false
+  },
+  {
+   "name": "g000.alt1.mp3",
+   "seconds": 32.4,
+   "hz": 118.8,
+   "drift": 3.11,
+   "excluded": false
+  },
+  {
+   "name": "g000.alt2.mp3",
+   "seconds": 31.6,
+   "hz": 128.3,
+   "drift": 2.21,
+   "excluded": false
+  },
+  {
+   "name": "g001.alt1.mp3",
+   "seconds": 32.84,
+   "hz": 145.9,
+   "drift": 2.86,
+   "excluded": false
+  },
+  {
+   "name": "g001.alt2.mp3",
+   "seconds": 32.92,
+   "hz": 143.3,
+   "drift": 3.09,
+   "excluded": false
+  },
+  {
+   "name": "g002.alt1.mp3",
+   "seconds": 34.24,
+   "hz": 129.0,
+   "drift": 3.29,
+   "excluded": false
+  },
+  {
+   "name": "g002.alt2.mp3",
+   "seconds": 32.68,
+   "hz": 129.0,
+   "drift": 3.05,
+   "excluded": true
+  }
+ ],
+ "picks": {
+  "g000": {
+   "name": "g000.alt2.mp3",
+   "hz": 128.3,
+   "seconds": 31.6
+  },
+  "g001": {
+   "name": "g001.mp3",
+   "hz": 138.7,
+   "seconds": 35.16
+  },
+  "g002": {
+   "name": "g002.alt1.mp3",
+   "hz": 129.0,
+   "seconds": 34.24
+  }
+ }
+}

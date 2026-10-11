@@ -1,0 +1,76 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:10,200"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 10200
+			},
+			"text": " انت لي الكسة عايز تعرف عن الموضوع ده، فلكسة بيقوله أصلا أنا رايح الأسكل واحد من غير ولا ساعة، ولا فاس، ولا خريطة، ولا أي حاجة"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:10,200",
+				"to": "00:00:19,040"
+			},
+			"offsets": {
+				"from": 10200,
+				"to": 19040
+			},
+			"text": " فبيسأل سؤال منطقي وبعدين يعني بعد ما توصل هتامل اي، فبيقوله اعيش ببساطة وسط الجبال والتلج والانهار"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:19,040",
+				"to": "00:00:29,880"
+			},
+			"offsets": {
+				"from": 19040,
+				"to": 29880
+			},
+			"text": " ويمكن لما ارجع اكتب كتاب عن رحلة دي وخلي بالكلام نصه حلو ونصه وحش المغامرات والرحلات وانك تكتب كتاب عن رحلاتك حاجة جميلة جدا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:30,000",
+				"to": "00:00:32,500"
+			},
+			"offsets": {
+				"from": 30000,
+				"to": 32500
+			},
+			"text": " وفي رحالة كتير عظماء عرفهم"
+		}
+	]
+}

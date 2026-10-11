@@ -1,6 +1,6 @@
 {
   "slug": "into-the-wild",
-  "out": "previews/voice25-run-0-50.mp4",
+  "out": "/tmp/rebuild-0-50.mp4",
   "checks": [
     {
       "name": "lateness",
@@ -48,7 +48,7 @@
     "out_seconds": 1160.28,
     "lufs": -16.0,
     "true_peak": -1.5,
-    "report": "work/into-the-wild/build/master-report-v25run-0-50.json",
+    "report": "work/into-the-wild/qa/master-report-v25run-0-50.json",
     "report_mix_lufs": "-15.99",
     "report_true_peak": "-1.50",
     "first_frame_psnr": "inf"

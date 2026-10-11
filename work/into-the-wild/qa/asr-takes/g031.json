@@ -1,0 +1,87 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:05,920"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 5920
+			},
+			"text": " التاريخ أقدر سيرتهم عندك مثلاً إبن بططوطة وماركو بولو وغيرهم كتير"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,920",
+				"to": "00:00:11,240"
+			},
+			"offsets": {
+				"from": 5920,
+				"to": 11240
+			},
+			"text": " بس الموضوع مع الكس مختلف شوية لأنه بيعمل حاجة سازجة حبتين"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,240",
+				"to": "00:00:18,800"
+			},
+			"offsets": {
+				"from": 11240,
+				"to": 18800
+			},
+			"text": " إنك تروح مكان قاس زي ده ومن غير ما يكون معك أي أدوات أو خريطة ديعة فوية زيادة على اللزوم"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,800",
+				"to": "00:00:23,400"
+			},
+			"offsets": {
+				"from": 18800,
+				"to": 23400
+			},
+			"text": " لأن الطبيعة مش بتمشي على مزجنة ولازم تعمل كل احتياطاتك"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,400",
+				"to": "00:00:27,640"
+			},
+			"offsets": {
+				"from": 23400,
+				"to": 27640
+			},
+			"text": " الكس بيكمل كلامه إن عايز يسيب المكتمع المريض"
+		}
+	]
+}

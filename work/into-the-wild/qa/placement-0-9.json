@@ -1,0 +1,127 @@
+{
+  "total": 228.66,
+  "pack": true,
+  "max_tempo": 1.8,
+  "groups": [
+    {
+      "group": 0,
+      "t0": 0.12,
+      "window": 20.42,
+      "target": 0.12,
+      "start": 0.12,
+      "late": 0.0,
+      "natural": 28.39,
+      "tempo": 1.39,
+      "end": 20.54,
+      "clamped": false
+    },
+    {
+      "group": 1,
+      "t0": 20.6,
+      "window": 22.54,
+      "target": 20.6,
+      "start": 20.6,
+      "late": 0.0,
+      "natural": 33.907,
+      "tempo": 1.504,
+      "end": 43.14,
+      "clamped": false
+    },
+    {
+      "group": 2,
+      "t0": 43.2,
+      "window": 23.6,
+      "target": 43.2,
+      "start": 43.2,
+      "late": 0.0,
+      "natural": 32.951,
+      "tempo": 1.396,
+      "end": 66.8,
+      "clamped": false
+    },
+    {
+      "group": 3,
+      "t0": 66.86,
+      "window": 23.68,
+      "target": 66.86,
+      "start": 66.86,
+      "late": 0.0,
+      "natural": 36.638,
+      "tempo": 1.547,
+      "end": 90.54,
+      "clamped": false
+    },
+    {
+      "group": 4,
+      "t0": 90.6,
+      "window": 23.86,
+      "target": 90.6,
+      "start": 90.6,
+      "late": 0.0,
+      "natural": 35.104,
+      "tempo": 1.471,
+      "end": 114.46,
+      "clamped": false
+    },
+    {
+      "group": 5,
+      "t0": 114.52,
+      "window": 22.02,
+      "target": 114.52,
+      "start": 114.52,
+      "late": 0.0,
+      "natural": 34.137,
+      "tempo": 1.55,
+      "end": 136.54,
+      "clamped": false
+    },
+    {
+      "group": 6,
+      "t0": 136.6,
+      "window": 23.88,
+      "target": 136.6,
+      "start": 136.6,
+      "late": 0.0,
+      "natural": 35.425,
+      "tempo": 1.483,
+      "end": 160.48,
+      "clamped": false
+    },
+    {
+      "group": 7,
+      "t0": 160.54,
+      "window": 23.86,
+      "target": 160.54,
+      "start": 160.54,
+      "late": 0.0,
+      "natural": 39.11,
+      "tempo": 1.639,
+      "end": 184.4,
+      "clamped": false
+    },
+    {
+      "group": 8,
+      "t0": 184.46,
+      "window": 20.4,
+      "target": 184.46,
+      "start": 184.46,
+      "late": 0.0,
+      "natural": 29.27,
+      "tempo": 1.435,
+      "end": 204.86,
+      "clamped": false
+    },
+    {
+      "group": 9,
+      "t0": 204.92,
+      "window": 23.74,
+      "target": 204.92,
+      "start": 204.92,
+      "late": 0.0,
+      "natural": 33.91,
+      "tempo": 1.428,
+      "end": 228.66,
+      "clamped": false
+    }
+  ]
+}
