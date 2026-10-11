@@ -1,0 +1,164 @@
+{
+	"systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+	"model": {
+		"type": "small",
+		"multilingual": true,
+		"vocab": 51865,
+		"audio": {
+			"ctx": 1500,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"text": {
+			"ctx": 448,
+			"state": 768,
+			"head": 12,
+			"layer": 12
+		},
+		"mels": 80,
+		"ftype": 1
+	},
+	"params": {
+		"model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+		"language": "ar",
+		"translate": false
+	},
+	"result": {
+		"language": "ar"
+	},
+	"transcription": [
+		{
+			"timestamps": {
+				"from": "00:00:00,000",
+				"to": "00:00:03,720"
+			},
+			"offsets": {
+				"from": 0,
+				"to": 3720
+			},
+			"text": " بس مش المتشرد العظيم اللي بيجيبه بسافر الأماكن"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:03,720",
+				"to": "00:00:05,560"
+			},
+			"offsets": {
+				"from": 3720,
+				"to": 5560
+			},
+			"text": " وأكيد مش هو دل عايزه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:05,560",
+				"to": "00:00:07,440"
+			},
+			"offsets": {
+				"from": 5560,
+				"to": 7440
+			},
+			"text": " فبيدرك إن دامش مكانه"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:07,440",
+				"to": "00:00:11,040"
+			},
+			"offsets": {
+				"from": 7440,
+				"to": 11040
+			},
+			"text": " فبيرجع الأوضع عشان ياخد حقته ويمشي ويكمر رحلته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:11,040",
+				"to": "00:00:13,840"
+			},
+			"offsets": {
+				"from": 11040,
+				"to": 13840
+			},
+			"text": " بيركب الأطر بس طبعا بيركب غلط"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:13,840",
+				"to": "00:00:15,560"
+			},
+			"offsets": {
+				"from": 13840,
+				"to": 15560
+			},
+			"text": " دا أطر بضايا أصلا"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:15,560",
+				"to": "00:00:18,240"
+			},
+			"offsets": {
+				"from": 15560,
+				"to": 18240
+			},
+			"text": " بس الشرطي بيمسكه وبينزل في ضرب"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:18,240",
+				"to": "00:00:20,440"
+			},
+			"offsets": {
+				"from": 18240,
+				"to": 20440
+			},
+			"text": " ولكن إيه رد فعل الالكس بقى"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:20,440",
+				"to": "00:00:23,360"
+			},
+			"offsets": {
+				"from": 20440,
+				"to": 23360
+			},
+			"text": " بيقوم فوق كل هدوء عشان يكمر رحلته"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:23,360",
+				"to": "00:00:26,640"
+			},
+			"offsets": {
+				"from": 23360,
+				"to": 26640
+			},
+			"text": " المشهد دا عايزي والصلاق إنها مش رحلة رمانسية"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:26,640",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 26640,
+				"to": 28640
+			},
+			"text": " وهو مكمل فيها عشان مرتاح"
+		},
+		{
+			"timestamps": {
+				"from": "00:00:28,640",
+				"to": "00:00:28,640"
+			},
+			"offsets": {
+				"from": 28640,
+				"to": 28640
+			},
+			"text": " لأ"
+		}
+	]
+}

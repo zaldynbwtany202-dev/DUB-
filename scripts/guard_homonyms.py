@@ -8,7 +8,8 @@
 
     python scripts/guard_homonyms.py work/into-the-wild/groups.json
     python scripts/guard_homonyms.py work/hajj-dream-2108415/groups.json --json qa/homonyms.json
-    python scripts/guard_homonyms.py work/*/groups.json --all      # كل الأفلام
+    python scripts/guard_homonyms.py work/*/groups.json            # كل الأفلام
+    python scripts/guard_homonyms.py work/*/groups.json --strict   # يفشل عند أي مرشح
 
 القائمة قابلة للتحرير في config/homonym-hazards.json: كل مدخل {كلمة، السبب، بديل
 مقترح}. لا يمنع الحارس البناء بنفسه — هو تقرير يُقرأ قبل التوليد (وقاعدة في
@@ -35,16 +36,19 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('groups', nargs='+', type=Path)
     ap.add_argument('--json', type=Path, default=None)
+    ap.add_argument('--strict', action='store_true', help='يفشل عند العثور على مرشحات (لـCI فقط)')
     a = ap.parse_args()
 
     listdoc = json.loads(HAZARDS.read_text(encoding='utf-8'))
     entries = listdoc['hazards']
     # كلمات مفردة (المفتاح) + الصيغ المسندة داخل النص تُلتقط بالمطابقة الجزئية
     total = 0
+    missing = 0
     out = []
     for path in a.groups:
         if not path.exists():
             print(f'  ✗ لا وجود لـ{path}')
+            missing += 1
             continue
         doc = json.loads(path.read_text(encoding='utf-8'))
         groups = doc['groups'] if isinstance(doc, dict) else doc
@@ -75,14 +79,15 @@ def main() -> int:
             print(f"        السياق: …{h['context']}…")
         out.append({'file': str(path), 'hits': hits, 'count': len(hits)})
 
-    print(f'\nالإجمالي: {total} موضعًا في {len(a.groups)} ملفًا.'
-          f'\nالقاعدة: عالج الموضع ببديل لا يحتمل وجهين، أو اعرضه على المستخدم، قبل التوليد.')
+    print(f'\nالإجمالي: {total} مرشّحًا للمراجعة في {len(a.groups)} ملفًا.'
+          f'\nتنبيه: قد تكون الكلمة صحيحة في سياقها (مثل «قوته» بمعنى القوة). '
+          'لا تغيّر نصًا معتمدًا اعتمادًا على هذه القائمة وحدها؛ استمع أولًا.')
     if a.json:
         a.json.parent.mkdir(parents=True, exist_ok=True)
         a.json.write_text(json.dumps({'files': out, 'total': total}, ensure_ascii=False, indent=1),
                           encoding='utf-8')
         print(f'  → {a.json}')
-    return 0 if total == 0 else 1
+    return 2 if missing else (1 if total and a.strict else 0)
 
 
 if __name__ == '__main__':

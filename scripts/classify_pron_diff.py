@@ -19,6 +19,7 @@ import json
 import re
 import unicodedata
 from pathlib import Path
+from transcribe_takes import source_matches
 
 AR = re.compile(r'[\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed\u0640]')
 
@@ -64,11 +65,18 @@ def main() -> int:
     groups = gdoc['groups'] if isinstance(gdoc, dict) else gdoc
     report, totals = [], {'single_letter': 0, 'lexical': 0, 'insert': 0, 'delete': 0}
     lex_all = []
+    stale = []
     for g in groups:
         i = int(g['i'])
         p = a.work / a.asr / f'g{i:03d}.json'
-        if not p.exists():
+        take_dirs = [a.work / name for name in ('takes-voice25', 'takes')]
+        take = next((d / f'g{i:03d}.mp3' for d in take_dirs
+                     if (d / f'g{i:03d}.mp3').is_file()), None)
+        if not p.exists() or take is None:
             continue
+        if not source_matches(p, take):
+            stale.append(i)
+            continue  # ASR produced from an older or unknown take must not claim a pronunciation error
         want, got = words(g['text']), asr_words(p)
         sm = difflib.SequenceMatcher(a=want, b=got, autojunk=False)
         row = {'group': i, 'ratio': round(sm.ratio(), 3), 'single_letter': [], 'lexical': [],
@@ -96,9 +104,11 @@ def main() -> int:
                                     'context': ' '.join(want[max(0, i1 - 3):i2 + 3])})
         report.append(row)
 
-    print(f"الأخذات المفروّغة: {len(report)}")
-    print(f"  ضجيج إملائي (تبديل حرف متقارب): {totals['single_letter']}")
-    print(f"  استبدال معجمي (يُراجع بالأذن):    {totals['lexical']}")
+    print(f"أخذات ذات بصمة مؤكدة: {len(report)} · تقارير قديمة/غير مثبتة: {len(stale)}")
+    if stale:
+        print('  غير مثبتة (أُقصيت): ' + ', '.join(f'g{i:03d}' for i in stale))
+    print(f"  تهجئة صوتية محتملة (ليست خطأ مثبتًا): {totals['single_letter']}")
+    print(f"  استبدال محتمل للمراجعة السمعية (ليس خطأ مثبتًا): {totals['lexical']}")
     print(f"  إدراج: {totals['insert']} · حذف: {totals['delete']}")
     print('\nالاستبدالات المعجمية — للأخذات الأسوأ:')
     for row in sorted(report, key=lambda r: -len(r['lexical']))[:8]:
@@ -106,7 +116,9 @@ def main() -> int:
             print(f"  g{row['group']:03d} (تشابه {row['ratio']}): " + ' · '.join(row['lexical'][:6]))
     if a.json:
         a.json.parent.mkdir(parents=True, exist_ok=True)
-        a.json.write_text(json.dumps({'totals': totals, 'rows': report, 'lexical': lex_all},
+        a.json.write_text(json.dumps({'totals': totals, 'rows': report, 'review_candidates': lex_all,
+                                     'stale_or_unverified': stale,
+                                     'warning': 'ASR suggestions only; verify by ear before edits'},
                                      ensure_ascii=False, indent=1), encoding='utf-8')
         print(f'\n  → {a.json}')
     print('\nالقاعدة: الضجيج الإملائي لا يُعالَج. الاستبدال المعجمي يُعرض على المستخدم '

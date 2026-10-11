@@ -1,65 +1,78 @@
 #!/usr/bin/env bash
-# أمر واحد بين الجولة والمستودع: أدلّة + تعقّب + تقسيم + كوميت.
-#
-# وُلد من عيبين متكرّرين: (1) أدلّة البناء في build/ تُفقد مع كل مسحة،
-# (2) نواتج (أخذات/معاينات) تبقى بلا تعقّب فتُفقد نهائيًا (حصل مع 0→25 وبديلَي g026).
-#
-#   scripts/safe_commit.sh "رسالة الكوميت"              # يجهّز ويلتزم (بلا دفع)
-#   PUSH=1 scripts/safe_commit.sh "رسالة"               # ويضيف الدفع أيضًا
-#   SPLIT_MB=80 scripts/safe_commit.sh "رسالة"          # حدّ التقسيم (افتراضيًا 80)
+# أرشفة أدلة البناء وتجزئة المعاينات الكبيرة وتعقّب الأصول قبل الحفظ.
+# لا يُغيَّر الفرع؛ PUSH=1 يدفع إلى فرع الجلسة فقط.
+# الاستعمال: scripts/safe_commit.sh "رسالة"؛ DRY_RUN=1 للتحقق والتجهيز بلا commit.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-
-MSG="${1:?الاستعمال: scripts/safe_commit.sh \"رسالة الكوميت\"}"
+shopt -s nullglob
+MSG="${1:?أدخل رسالة الكوميت}"
 SPLIT_MB="${SPLIT_MB:-80}"
+[[ "$SPLIT_MB" =~ ^[1-9][0-9]*$ ]] || { echo "✗ SPLIT_MB يجب أن يكون عددًا موجبًا" >&2; exit 2; }
+[[ "$(git branch --show-current)" == 'arena/01a09fa1-dub' ]] || {
+  echo '✗ ليس فرع الجلسة؛ لن أعدّل المستودع' >&2; exit 2;
+}
 
-echo "== 1) نسخ أدلّة البناء إلى qa/ (build/ مستثنى من git) =="
 for d in work/*/; do
-  [ -d "$d/build" ] || continue
-  python3 scripts/archive_build_evidence.py "$d" || true
+  [[ ! -d "$d/build" ]] || python3 scripts/archive_build_evidence.py "$d"
 done
 
-echo "== 2) تقسيم كل معاينة أكبر من ${SPLIT_MB} م.ب (بصمة SHA-256) =="
+# git add -A يُعيد إدخال الملف المتعقَّب ولو كان له أجزاء؛ نزيله من الفهرس بعده.
+git add -A
 for f in previews/*.mp4; do
-  [ -e "$f" ] || continue
-  mb=$(( $(stat -c %s "$f") / 1048576 ))
-  if [ "$mb" -gt "$SPLIT_MB" ] && [ ! -d "$f.parts" ]; then
-    echo "  تقسيم $f ($mb م.ب)"
-    python3 scripts/split_preview.py "$f" || true
+  size=$(stat -c %s -- "$f")
+  if (( size > SPLIT_MB * 1048576 )); then
+    # --check يفحص بصمة الملف المصدر وبصمة الأجزاء؛ لا يكفي وجود المجلد.
+    if ! python3 scripts/split_preview.py "$f" --check >/dev/null 2>&1; then
+      python3 scripts/split_preview.py "$f" --part-mb 48
+    fi
+    python3 scripts/split_preview.py "$f" --check
+    git add -f -- "$f.parts/manifest.json" "$f.parts/"*.part*
+    git rm --cached -q --ignore-unmatch -- "$f"  # لا يحذف الملف الذي يشغّله الخادم
+    echo "✓ الأجزاء محفوظة والملف الكامل خارج الفهرس: $f"
+  else
+    git add -f -- "$f"
   fi
 done
 
-echo "== 3) تعقّب النواتج المهمة (تأخذات · معاينات · أدلّة · نصوص) =="
-git add -A
-git add -f \
-  work/*/takes/*/*.mp3 work/*/takes-*/*/*.mp3 work/*/takes/*/*.json \
-  work/*/qa/*.json work/*/qa/asr-takes/*.json work/*/qa/*/*.json \
-  work/*/*.json work/*/NEXT.md 2>/dev/null || true
-git add -f previews/*.mp3 2>/dev/null || true
-# المعاينات الصغيرة تُعقَّب كاملة؛ الكبيرة تُعقَّب أجزاؤها (وهي مُضافة بـgit add -A)
-for f in previews/*.mp4; do
-  [ -e "$f" ] || continue
-  mb=$(( $(stat -c %s "$f") / 1048576 ))
-  if [ "$mb" -le "$SPLIT_MB" ]; then git add -f "$f" 2>/dev/null || true; fi
-done
+# مهم: الأَخْذَة الجديدة موضوعة في takes-voice25/g*.mp3 وهي مُتجاهلة بـ*.mp3.
+# الاستدعاء السابق لمسار takes/*/*.mp3 لم يُضفها وكان يتجاهل فشل git add.
+takes=(work/*/takes/g*.mp3 work/*/takes-*/g*.mp3
+       work/*/takes-*/candidates/*.mp3 work/*/takes-superseded-*/*.mp3)
+(( ${#takes[@]} == 0 )) || git add -f -- "${takes[@]}"
+qa=(work/*/qa/*.json work/*/qa/asr-takes/*.json work/*/qa/*/*.json)
+(( ${#qa[@]} == 0 )) || git add -f -- "${qa[@]}"
+notes=(work/*/groups.json work/*/NEXT.md work/*/full-timed*.json)
+(( ${#notes[@]} == 0 )) || git add -f -- "${notes[@]}"
+mp3=(previews/*.mp3)
+(( ${#mp3[@]} == 0 )) || git add -f -- "${mp3[@]}"
 
-echo "== 3ب) تحقّق: لا ملف مهم بلا تعقّب =="
+# تحقق من الفهرس، لا من شجرة العمل: الملف غير المحفوظ ممنوع قبل commit.
 missing=0
-for f in work/*/takes/*/*.mp3 work/*/groups.json work/*/qa/verify-*.json; do
-  [ -e "$f" ] || continue
-  git ls-files --error-unmatch "$f" >/dev/null 2>&1 || { echo "  ✗ غير متعقَّب: $f"; missing=1; }
+for f in "${takes[@]}" "${qa[@]}" "${notes[@]}"; do
+  if ! git ls-files --error-unmatch -- "$f" >/dev/null 2>&1; then
+    echo "✗ ناتج ليس في الفهرس: $f" >&2; missing=1
+  fi
 done
-[ "$missing" -eq 0 ] && echo "  ✓ كل الأخذات والنصوص والأدلة متعقَّبة"
-
-echo "== 4) كوميت =="
-if git diff --cached --quiet; then
-  echo "  لا تغييرات مجهّزة"
-else
-  git commit -q -m "$MSG"
-  git log --oneline -1
+(( missing == 0 )) || exit 3
+for f in previews/*.mp4; do
+  size=$(stat -c %s -- "$f")
+  if (( size > SPLIT_MB * 1048576 )); then
+    if git ls-files --error-unmatch -- "$f" >/dev/null 2>&1; then
+      echo "✗ الملف الكامل الكبير ما زال في الفهرس: $f" >&2; exit 3
+    fi
+    git ls-files --error-unmatch -- "$f.parts/manifest.json" >/dev/null || exit 3
+  else
+    git ls-files --error-unmatch -- "$f" >/dev/null || exit 3
+  fi
+done
+if [[ "${DRY_RUN:-0}" == 1 ]]; then
+  echo '✓ تحقق وتجهيز فقط (بلا commit)'; exit 0
 fi
-
-if [ "${PUSH:-0}" = "1" ]; then
-  echo "== 5) دفع =="
-  git push -q origin arena/01a09fa1-dub && echo "  ✓ تمّ الدفع"
+if ! git diff --cached --quiet; then
+  git commit -m "$MSG"
+else
+  echo 'لا تغييرات جاهزة'
+fi
+if [[ "${PUSH:-0}" == 1 ]]; then
+  git push origin arena/01a09fa1-dub
 fi

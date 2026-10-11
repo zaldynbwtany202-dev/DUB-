@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "79"
+BUILD = "80"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -108,7 +108,7 @@ LABELS = {
                                "«طعامهم». التشكيل لم يُجدِ (غيّر النطق إلى كلمة ثالثة)، فالتصحيح كان ببديل "
                                "لا يحتمل وجهين — والملفان القديمان محفوظان في المستودع"),
     "voice25-run-0-50": ("★★ فيلم الوحدة والسعادة — 0→50 بعد إصلاح النبرة (19:20)",
-                         "إصلاح مقيس: سبع أخذات كانت الأبعد عن نبرة الجلسة استُبدلت بسحبات "
+                         "إصلاح مقيس: ست أخذات بعيدة النبرة/بطيئة الإلقاء استُبدلت بسحبات "
                          "جديدة اختيرت بالقياس — أقصى انزياح صار 1.72 نصف نغمة بعد أن كان "
                          "2.34، والمعدل صار أسرع (10.5 مقابل 9.4 حرف/ث في المستبدلات). "
                          "الدبلجة بلغت 51 مجموعة من 78: بعد البحر ورخصة القارب، المكسيك وخفر "

@@ -27,7 +27,7 @@ import shutil
 import sys
 from pathlib import Path
 
-PART_MB = 80          # comfortably under the 100 MB cap, with room for the manifest
+PART_MB = 48          # under GitHub's recommended 50 MiB; hard limit is 100 MiB
 CHUNK = 8 << 20
 
 
@@ -44,6 +44,8 @@ def parts_dir(path: Path) -> Path:
 
 
 def split(path: Path, part_mb: int = PART_MB) -> dict:
+    if not 1 <= part_mb <= 48:
+        raise ValueError('part_mb must be between 1 and 48 MiB')
     out = parts_dir(path)
     out.mkdir(parents=True, exist_ok=True)
     limit = part_mb << 20
@@ -67,25 +69,46 @@ def split(path: Path, part_mb: int = PART_MB) -> dict:
     return manifest
 
 
-def check(path: Path) -> int:
+def check(path: Path, *, verify_source: bool = True) -> int:
+    """Verify each part, their concatenation, AND the current playable file if present."""
     out = parts_dir(path)
-    manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
-    bad = []
-    for r in manifest["parts"]:
-        p = out / r["file"]
-        if not p.exists() or p.stat().st_size != r["bytes"] or sha256(p) != r["sha256"]:
-            bad.append(r["file"])
-    total = sum(r["bytes"] for r in manifest["parts"])
-    ok = not bad and total == manifest["bytes"]
-    print(f"  {'✓' if ok else '✗'} الأجزاء {len(manifest['parts'])} · مجموعها {total} بايت "
-          f"(الأصل {manifest['bytes']})" + (f" · تالف: {bad}" if bad else ""))
-    return 0 if ok else 2
+    try:
+        manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
+        records = manifest["parts"]
+        if not records or manifest["source"] != path.name:
+            raise ValueError('invalid manifest')
+        total = 0
+        joined = hashlib.sha256()
+        for r in records:
+            name = r["file"]
+            if Path(name).name != name:  # never follow ../ from an untrusted manifest
+                raise ValueError('unsafe part name')
+            part = out / name
+            if not part.is_file() or part.stat().st_size != r["bytes"]:
+                raise ValueError(f'missing or truncated part: {name}')
+            part_hash = hashlib.sha256()
+            with part.open('rb') as fh:
+                while block := fh.read(CHUNK):
+                    part_hash.update(block)
+                    joined.update(block)
+                    total += len(block)
+            if part_hash.hexdigest() != r["sha256"]:
+                raise ValueError(f'corrupt part: {name}')
+        if total != manifest["bytes"] or joined.hexdigest() != manifest["sha256"]:
+            raise ValueError('part sequence does not match full SHA-256')
+        if verify_source and path.exists() and (path.stat().st_size != total or sha256(path) != manifest["sha256"]):
+            raise ValueError('playable file changed since these parts were made')
+    except (KeyError, OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        print(f'  ✗ فشل فحص الأجزاء لـ{path}: {exc}')
+        return 2
+    print(f'  ✓ الأجزاء تطابق SHA-256 وتطابق الملف الحي إن وُجد ({total} بايت)')
+    return 0
 
 
 def restore(path: Path) -> int:
     out = parts_dir(path)
     manifest = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
-    if check(path) != 0:
+    if check(path, verify_source=False) != 0:
         return 2
     tmp = path.with_suffix(path.suffix + ".rebuild")
     with tmp.open("wb") as dst:
