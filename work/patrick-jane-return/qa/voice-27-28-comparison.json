@@ -1,0 +1,42 @@
+{
+  "status": "listener_comparison_only_no_film_voice_approval",
+  "description": "Three synthetic voices reading the same group 004 text, no background, no atempo; neither new candidate is a human recording.",
+  "auditions": {
+    "voice-27": "masculine, ar-EG, narration, user selected from battle 27",
+    "voice-28": "masculine, ar-EG, conversational, user selected from battle 28",
+    "voice-26": "earlier synthetic audition selected for 41-second video sample"
+  },
+  "group": 4,
+  "source_window_seconds": [
+    70.04,
+    86.04
+  ],
+  "text": "خلينا نرجع للبداية. مسلسل ذا منتاليست بدأ سنة ألفين وتمانية، وبيحكي عن باتريك جين، الراجل اللي بيظهر للناس إنه وسيط روحي. بيستخدم مهارته في قراءة الناس عشان يقنعهم إنه بيقدر يتواصل مع الموتى.",
+  "files": [
+    {
+      "voice_id": "voice-27",
+      "path": "previews/patrick-jane-voice27-g004.mp3",
+      "sha256": "8caf82db62d44d0333780a3de302042d6b908cd0abefaa0650d0d88c748bdb8d",
+      "bytes": 65421,
+      "raw_tts_no_background": true,
+      "source": "new audition take"
+    },
+    {
+      "voice_id": "voice-28",
+      "path": "previews/patrick-jane-voice28-g004.mp3",
+      "sha256": "43ac08471c32e6bf3245502a995426ccffcd1dfd3ab66af53dc49d1bc137ea3c",
+      "bytes": 65709,
+      "raw_tts_no_background": true,
+      "source": "new audition take"
+    },
+    {
+      "voice_id": "voice-26",
+      "path": "previews/patrick-jane-voice26-g004.mp3",
+      "sha256": "a0fb729932e8931af659d05cd7ab42e848c6ef9317d90dd7bf950a48a267ebd8",
+      "bytes": 59181,
+      "raw_tts_no_background": true,
+      "source": "previous take copied for raw comparison"
+    }
+  ],
+  "note": "Only 26 has a video-context cut; these are voice-only demonstrations and provide no evidence of lip/word alignment or true human performance."
+}

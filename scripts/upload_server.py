@@ -31,11 +31,22 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "82"
+BUILD = "84"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "patrick-jane-voice27-g004": (
+        "01 — باتريك جين: صوت 27 للسرد · تجربة صوت فقط",
+        "نفس كلمات المجموعة 004 باللهجة المصرية، بلا موسيقى أو تعديل سرعة. "
+        "صوت اصطناعي جديد اخترته من أول اختبار إضافي؛ لم يُعتمد للفيلم."),
+    "patrick-jane-voice28-g004": (
+        "02 — باتريك جين: صوت 28 للمحادثة · تجربة صوت فقط",
+        "نفس كلمات المجموعة 004 باللهجة المصرية، بلا موسيقى أو تعديل سرعة. "
+        "صوت اصطناعي جديد اخترته من ثاني اختبار إضافي؛ لم يُعتمد للفيلم."),
+    "patrick-jane-voice26-g004": (
+        "03 — صوت 26 السابق · المرجع الصوتي الخام",
+        "الكلمات نفسها، صوت اصطناعي خام بلا موسيقى أو تعديل سرعة للمقارنة العادلة مع 27 و28."),
     "patrick-jane-voice26-sample-3-5": (
         "★ باتريك جين — صوت 26 البديل للتجربة (1:01–1:42 · 41 ث)",
         "صوت اصطناعي اختَرته في اختبار صوتين بعد رفض الصوت 25، وليس تسجيل إنسان. "
@@ -522,19 +533,16 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "patrick-jane-voice26-sample-3-5", "patrick-jane-sample-3-5",
-            "hajj-pronunciation-fix", "hajj-dream-full-msa",
+            "patrick-jane-voice27-g004", "patrick-jane-voice28-g004",
+            "patrick-jane-voice26-g004", "patrick-jane-voice26-sample-3-5",
+            "patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa",
             "voice25-run-0-50", "voice25-run-0-31-timed"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
-        # The only thing on the page: the accepted voice, kept for whatever
-        # film comes next. The audition the ear rejected is off the page but
-        # stays on disk (previews/new-voices.mp3) and in the repository.
-        # What the work is about right now: the created voice of the film, and
-        # the run he already accepted. The human samples stay on disk and come
-        # back with one word in this set.
-        PAGE_ALLOW = {"patrick-jane-voice26-sample-3-5", "patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
+        # Show current auditions first, then saved video comparisons. Rejected
+        # takes remain on disk; labels must not imply synthetic audio is human.
+        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-voice28-g004", "patrick-jane-voice26-g004", "patrick-jane-voice26-sample-3-5", "patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
