@@ -1,0 +1,15 @@
+{
+  "slug": "patrick-jane-return",
+  "title": "ازاي المسلسل ده رجع للساحه بسبب باتريك جين",
+  "original_name": "ازاي المسلسل ده رجع للساحه بسبب باتريك جين.mp4",
+  "size": 72531637,
+  "sha256": "cec26bd736fcb42c99d0d026ce2df4e14ffbb310748505fd092006ac32a759f2",
+  "duration": 876.46,
+  "width": 854,
+  "height": 480,
+  "source": "library/patrick-jane-return/source.mp4",
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "intake": "scripts/intake_new_video.py",
+  "status": "intake"
+}

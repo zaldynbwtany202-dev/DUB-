@@ -1,0 +1,14 @@
+{
+  "slug": "patrick-jane-return",
+  "source": "library/patrick-jane-return/source.mp4",
+  "sha256": "cec26bd736fcb42c99d0d026ce2df4e14ffbb310748505fd092006ac32a759f2",
+  "duration_s": 876.46,
+  "width": 854,
+  "height": 480,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "audio_hz": 44100,
+  "audio_channels": "stereo",
+  "decodes": true,
+  "audio_wav": ".cache/patrick-jane-return/audio-16k.wav"
+}
