@@ -1,0 +1,43 @@
+{
+  "total": 102.04,
+  "pack": true,
+  "max_tempo": 1.8,
+  "groups": [
+    {
+      "group": 3,
+      "t0": 61.04,
+      "window": 9.0,
+      "target": 61.04,
+      "start": 61.04,
+      "late": 0.0,
+      "natural": 12.04,
+      "tempo": 1.338,
+      "end": 70.04,
+      "clamped": false
+    },
+    {
+      "group": 4,
+      "t0": 70.04,
+      "window": 16.0,
+      "target": 70.04,
+      "start": 70.04,
+      "late": 0.0,
+      "natural": 16.24,
+      "tempo": 1.015,
+      "end": 86.04,
+      "clamped": false
+    },
+    {
+      "group": 5,
+      "t0": 86.04,
+      "window": 16.0,
+      "target": 86.04,
+      "start": 86.04,
+      "late": 0.0,
+      "natural": 18.96,
+      "tempo": 1.185,
+      "end": 102.04,
+      "clamped": false
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "slug": "patrick-jane-return",
+  "voice_id": "voice-27",
+  "language": "ar-EG",
+  "voice_type": "synthetic TTS",
+  "selection": "user explicitly chose voice 27 after auditions",
+  "scope": "Patrick Jane film ONLY; do not change global config/voice-lock.json (voice-25 other films)",
+  "script_status": "editorial draft 000-009; raw ASR 010-051; listener review still pending",
+  "approved_audio_reference": "previews/patrick-jane-voice27-sample-3-5.mp4",
+  "audio_reference_status": "voice selected; preview QA 7/7; subjective video sample and words pending listener review"
+}
