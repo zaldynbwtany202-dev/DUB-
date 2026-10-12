@@ -1,0 +1,49 @@
+{
+  "voice_id": "voice-26",
+  "language": "ar-EG",
+  "identity": "synthetic TTS, not a human recording",
+  "selection": "User selected one of two new auditions after rejecting voice-25; video sample awaits user judgement",
+  "status": "candidate_pending_listener_and_transcript_review",
+  "previous_version": "previews/patrick-jane-sample-3-5.mp4 (voice-25; user rejected voice as artificial)",
+  "previews": [
+    {
+      "file": "previews/patrick-jane-voice26-sample-3-5.mp4",
+      "sha256": "634c66e8c5cd62e14616cd496dffac1abed5fa541b9233be780f4c15261bb5ec",
+      "source_offset_seconds": 61.04,
+      "duration_seconds": 41.03
+    }
+  ],
+  "takes": [
+    {
+      "group": 3,
+      "text": "حابب أقول نقطة مهمة: شوفت يوتيوبر أجنبي بيعمل الفكرة دي، ويوتيوبر مصري اتكلم عن المسلسل. هسيب لكم الفيديوهين في الوصف لو حابين تتفرجوا عليهم بعد الفيديو ده.",
+      "t0": 61.04,
+      "t1": 70.04,
+      "raw_take": "work/patrick-jane-return/takes-candidates/voice26-g003.mp3",
+      "sha256": "387a00548a19432ba8126c51f776888b994c236f21fc8612519328f0b972efb7"
+    },
+    {
+      "group": 4,
+      "text": "خلينا نرجع للبداية. مسلسل ذا منتاليست بدأ سنة ألفين وتمانية، وبيحكي عن باتريك جين، الراجل اللي بيظهر للناس إنه وسيط روحي. بيستخدم مهارته في قراءة الناس عشان يقنعهم إنه بيقدر يتواصل مع الموتى.",
+      "t0": 70.04,
+      "t1": 86.04,
+      "raw_take": "work/patrick-jane-return/takes-candidates/voice26-g004.mp3",
+      "sha256": "a0fb729932e8931af659d05cd7ab42e848c6ef9317d90dd7bf950a48a267ebd8"
+    },
+    {
+      "group": 5,
+      "text": "بس في حلقة مهمة جدًا قرّبتنا من ماضي باتريك جين: الحلقة العاشرة من الموسم الثاني. القضية نفسها مش موضوعنا هنا، ولا تفاصيل الحلقة كلها؛ اللي يهمنا مشهد واحد بس. المشهد ده ورّانا جانب ما كناش نعرفه من شخصية باتريك.",
+      "t0": 86.04,
+      "t1": 102.04,
+      "raw_take": "work/patrick-jane-return/takes-candidates/voice26-g005.mp3",
+      "sha256": "f6f0a5e01ab6f89ce08b8429c609aebc71535ac8c3da63149823204465f45fb1"
+    }
+  ],
+  "qa": [
+    "qa/placement-voice26-3-5.json",
+    "qa/mix-voice26-3-5.json",
+    "qa/verify-voice26-3-5.json"
+  ],
+  "bed": "stems/background-0-191.wv; estimated by UVR, 0 dB mixing, no ducking",
+  "processing": "Raw TTS takes + atempo for timing; plain-voice loudnorm for voice level, no pitch/formant/EQ/compressor; no silence removal. Music bed mixed at 0 dB."
+}
