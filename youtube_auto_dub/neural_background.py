@@ -214,11 +214,15 @@ def separate_background(source: Path, output: Path, work_dir: Path, *, power: fl
     background = apply_masks(wave, masks, config, power)
     if background.shape != wave.shape or not np.isfinite(background).all():
         raise ValueError("Bad stem output shape or samples")
-    if float(np.max(np.abs(background))) >= 1:
-        raise ValueError("Extracted background would clip; refusing an unreported level change")
+    # The mask can create a transient above full scale even though its gain is
+    # bounded. Refuse to silently clip OR lower the user's bed: floating-point
+    # WAV preserves the exact peak; final mixing must check/limit its own peak.
+    peak = float(np.max(np.abs(background)))
+    subtype = 'FLOAT' if peak >= 1.0 else 'PCM_24'
     output.parent.mkdir(parents=True, exist_ok=True)
-    sf.write(output, background.T, config["sample_rate"], subtype="PCM_24")
-    sf.write(work_dir / "estimated-dialogue.wav", (wave - background).T, config["sample_rate"], subtype="PCM_24")
+    sf.write(output, background.T, config["sample_rate"], subtype=subtype)
+    sf.write(work_dir / "estimated-dialogue.wav", (wave - background).T,
+             config["sample_rate"], subtype='FLOAT')
     def rms_db(x):
         return float(20 * np.log10(max(float(np.sqrt(np.mean(x * x))), 1e-12)))
     report = {"method": "neural UVR four-band ONNX instrumental mask projected onto source phase",
@@ -227,7 +231,8 @@ def separate_background(source: Path, output: Path, work_dir: Path, *, power: fl
               "output": str(output), "output_sha256": digest(output), "sample_rate": config["sample_rate"],
               "samples": wave.shape[-1], "duration": wave.shape[-1] / config["sample_rate"],
               "mask_power": power, "source_rms_dbfs": rms_db(wave), "background_rms_dbfs": rms_db(background),
-              "background_peak_dbfs": float(20 * np.log10(max(float(np.max(np.abs(background))), 1e-12))),
+              "background_peak_dbfs": float(20 * np.log10(max(peak, 1e-12))),
+              "storage_subtype": subtype, "peak_above_pcm_full_scale": peak >= 1.0,
               "elapsed_seconds": round(time.monotonic() - started, 3)}
     output.with_suffix(".json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
     return report

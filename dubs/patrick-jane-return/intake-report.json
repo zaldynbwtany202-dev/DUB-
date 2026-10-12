@@ -10,5 +10,21 @@
   "audio_hz": 44100,
   "audio_channels": "stereo",
   "decodes": true,
-  "audio_wav": ".cache/patrick-jane-return/audio-16k.wav"
+  "audio_wav": ".cache/patrick-jane-return/audio-16k.wav",
+  "srt": "/home/user/DUB-/.cache/patrick-jane-return/asr.srt",
+  "srt_cues": 113,
+  "srt_last_cue_ends_at": 876.04,
+  "srt_beyond_audio": 0.0,
+  "groups": 52,
+  "speech_planned_s": 871.04,
+  "coverage_ratio": 0.9938,
+  "tempo_min": 0.961,
+  "tempo_max": 1.577,
+  "groups_over_ceiling": [],
+  "groups_underfill_window": [
+    17
+  ],
+  "feasible": true,
+  "clips_needed": 52,
+  "recording_rounds_at_8_per_turn": 7
 }

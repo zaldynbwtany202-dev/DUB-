@@ -1,0 +1,11 @@
+{
+  "source": ".cache/patrick-jane-return/first191.wav",
+  "output": "work/patrick-jane-return/stems/background-0-191.wav",
+  "source_duration_s": 191.0,
+  "output_duration_s": 191.0,
+  "segments": 2,
+  "segment_s": 110.0,
+  "crossfade_s": 0.5,
+  "elapsed_s": 0.2,
+  "per_segment": []
+}

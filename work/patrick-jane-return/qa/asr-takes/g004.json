@@ -1,0 +1,104 @@
+{
+ "systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+ "model": {
+  "type": "small",
+  "multilingual": true,
+  "vocab": 51865,
+  "audio": {
+   "ctx": 1500,
+   "state": 768,
+   "head": 12,
+   "layer": 12
+  },
+  "text": {
+   "ctx": 448,
+   "state": 768,
+   "head": 12,
+   "layer": 12
+  },
+  "mels": 80,
+  "ftype": 1
+ },
+ "params": {
+  "model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+  "language": "ar",
+  "translate": false
+ },
+ "result": {
+  "language": "ar"
+ },
+ "transcription": [
+  {
+   "timestamps": {
+    "from": "00:00:00,000",
+    "to": "00:00:01,640"
+   },
+   "offsets": {
+    "from": 0,
+    "to": 1640
+   },
+   "text": " خلين نرجع للبداية"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:01,640",
+    "to": "00:00:04,880"
+   },
+   "offsets": {
+    "from": 1640,
+    "to": 4880
+   },
+   "text": " مسلسل The Mentalist بدأ سنة 2008"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:04,880",
+    "to": "00:00:06,720"
+   },
+   "offsets": {
+    "from": 4880,
+    "to": 6720
+   },
+   "text": " وبيحكي عن Patrick Jane"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:06,720",
+    "to": "00:00:09,760"
+   },
+   "offsets": {
+    "from": 6720,
+    "to": 9760
+   },
+   "text": " الراجل اللي بيظهر للناس إنه وصيط روحي"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:09,760",
+    "to": "00:00:12,040"
+   },
+   "offsets": {
+    "from": 9760,
+    "to": 12040
+   },
+   "text": " بيستخدم ماهرته في قراءة الناس"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:12,040",
+    "to": "00:00:15,040"
+   },
+   "offsets": {
+    "from": 12040,
+    "to": 15040
+   },
+   "text": " عشان يقنعهم إنه بيقدر يتواصل مع الموتى"
+  }
+ ],
+ "_provenance": {
+  "take_sha256": "8a26615cefa370c9a57be7f4bf426d486256ed6c1aea280217fa6bb9517adf56",
+  "take_file": "g004.mp3",
+  "model_file": "ggml-small.bin",
+  "language": "ar"
+ }
+}

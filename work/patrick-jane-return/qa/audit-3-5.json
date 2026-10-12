@@ -1,0 +1,140 @@
+{
+  "slug": "patrick-jane-return",
+  "range": [
+    3,
+    5
+  ],
+  "target": 137.2,
+  "policy_version": 3,
+  "rows": [
+    {
+      "name": "g003",
+      "voiced": 0.476,
+      "median": 134.0,
+      "p10": 111.9,
+      "p90": 159.2,
+      "semis": -0.4,
+      "drift_hz": 16.5,
+      "drift_semis": 2.11,
+      "seconds": 11.51,
+      "rms_db": -19.22,
+      "group": 3,
+      "window": 9.0,
+      "room": 9.0,
+      "required_tempo": 1.279,
+      "tempo": 1.279,
+      "start": 61.04,
+      "end": 70.04,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.0
+    },
+    {
+      "name": "g004",
+      "voiced": 0.451,
+      "median": 132.4,
+      "p10": 111.9,
+      "p90": 162.1,
+      "semis": -0.61,
+      "drift_hz": 5.3,
+      "drift_semis": 0.7,
+      "seconds": 15.03,
+      "rms_db": -19.32,
+      "group": 4,
+      "window": 16.0,
+      "room": 16.0,
+      "required_tempo": 0.939,
+      "tempo": 0.939,
+      "start": 70.04,
+      "end": 86.04,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.0
+    },
+    {
+      "name": "g005",
+      "voiced": 0.488,
+      "median": 134.9,
+      "p10": 114.0,
+      "p90": 163.3,
+      "semis": -0.3,
+      "drift_hz": 15.5,
+      "drift_semis": 1.93,
+      "seconds": 16.63,
+      "rms_db": -19.23,
+      "group": 5,
+      "window": 16.0,
+      "room": 16.0,
+      "required_tempo": 1.039,
+      "tempo": 1.039,
+      "start": 86.04,
+      "end": 102.04,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.0
+    }
+  ],
+  "missing": [],
+  "plan": [],
+  "verdict": "جاهز للبناء",
+  "failed": [],
+  "attention": [],
+  "checks": [
+    {
+      "name": "plan_consistent",
+      "ok": true,
+      "detail": "نافذة كل مجموعة = t1−t0 كما يقرأها المُجمِّع"
+    },
+    {
+      "name": "take_missing",
+      "ok": true,
+      "detail": "كل المجموعات لها أخذات"
+    },
+    {
+      "name": "tempo_clamped",
+      "ok": true,
+      "detail": "أقصى سرعة مطلوبة 1.28×"
+    },
+    {
+      "name": "lateness",
+      "ok": true,
+      "detail": "أقصى تأخير 0.00 ث (السقف 0.35)"
+    },
+    {
+      "name": "silence_gap",
+      "ok": true,
+      "detail": "أطول صمت بين مجموعتين 0.00 ث (السقف 0.4)"
+    },
+    {
+      "name": "pitch_hard_band",
+      "ok": true,
+      "detail": "أقصى بُعد 0.61 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "step_hard_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.31 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "pitch_attention_band",
+      "ok": true,
+      "detail": "أقصى بُعد 0.61 نصف نغمة (سقف ما أجازه المستمع 2.5)"
+    },
+    {
+      "name": "step_attention_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.31 نصف نغمة (سقف ما أجازه المستمع 2.6)"
+    },
+    {
+      "name": "level_spread",
+      "ok": true,
+      "detail": "تفاوت المستوى 0.10 د.ب (السقف 1.5)"
+    }
+  ],
+  "steps_mean": 0.26,
+  "steps_max": 0.31,
+  "level_spread": 0.1,
+  "tempo_max": 1.279,
+  "max_late": 0.0,
+  "max_gap": 0.0
+}

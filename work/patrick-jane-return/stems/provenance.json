@@ -1,0 +1,17 @@
+{
+  "source": "library/patrick-jane-return/source.mp4",
+  "source_sha256": "cec26bd736fcb42c99d0d026ce2df4e14ffbb310748505fd092006ac32a759f2",
+  "source_segment_seconds": [
+    0,
+    191
+  ],
+  "method": "UVR 4-band estimated instrumental, not studio original",
+  "stored": "work/patrick-jane-return/stems/background-0-191.wv",
+  "storage": "WavPack lossless 32-bit FLOAT; preserved >0 dBFS float peaks",
+  "wavpack_sha256": "405d8335a823b9d0146adc43c7a392f6da7b00a20421956fcea482abe1f6dbad",
+  "joined_duration_s": 191.0,
+  "separation_segments": 2,
+  "music_gain_db": 0,
+  "rejected_test": "stems/rejected-clipped-0-191.flac clips >1.0 float peaks; never use",
+  "note": "Remux/mix is not bit-perfect music: soundtrack has been estimated by UVR, then combined with voice. No ducking or intentional attenuation in the preview."
+}

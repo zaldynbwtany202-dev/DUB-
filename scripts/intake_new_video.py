@@ -271,10 +271,14 @@ def main() -> int:
                              chars_per_s=args.chars_per_s, ceiling=args.tempo_ceiling)
         for g in groups:
             (dubs / f"text-{g['i']:04d}.txt").write_text(g["text"] + "\n", encoding="utf-8")
+        from_local_asr = Path(args.srt).name == 'asr.srt' and '.cache' in Path(args.srt).parts
         plan = {"slug": slug, "source": f"library/{slug}/source.mp4",
-                "words_from": f"SRT supplied by the user ({Path(args.srt).name})",
+                "words_from": ("Whisper draft — NOT user reviewed" if from_local_asr
+                               else f"SRT supplied by the user ({Path(args.srt).name})"),
+                "transcript_status": "draft_unreviewed" if from_local_asr else "user_supplied",
                 "times_from": "SRT cue offsets, checked against the measured audio duration",
-                "voice_id": "voice-00", "pacing": "matched (per-take atempo onto original onsets)",
+                "voice_id": json.loads((ROOT / 'config/voice-lock.json').read_text(encoding='utf-8'))['voice_id'],
+                "pacing": "matched (per-take atempo onto original onsets)",
                 "chars_per_s": args.chars_per_s, "tempo_ceiling": args.tempo_ceiling,
                 "min_tempo": 1.0, "cues": len(cues), "groups": groups}
         (dubs / "groups.json").write_text(json.dumps(plan, ensure_ascii=False, indent=2) + "\n",

@@ -1,0 +1,104 @@
+{
+ "systeminfo": "WHISPER : COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | AVX512 = 1 | AVX512_VBMI = 1 | AVX512_VNNI = 1 | OPENMP = 1 | REPACK = 1 | ",
+ "model": {
+  "type": "small",
+  "multilingual": true,
+  "vocab": 51865,
+  "audio": {
+   "ctx": 1500,
+   "state": 768,
+   "head": 12,
+   "layer": 12
+  },
+  "text": {
+   "ctx": 448,
+   "state": 768,
+   "head": 12,
+   "layer": 12
+  },
+  "mels": 80,
+  "ftype": 1
+ },
+ "params": {
+  "model": "/home/user/DUB-/.cache/models/whisper-ggml/ggml-small.bin",
+  "language": "ar",
+  "translate": false
+ },
+ "result": {
+  "language": "ar"
+ },
+ "transcription": [
+  {
+   "timestamps": {
+    "from": "00:00:00,000",
+    "to": "00:00:03,820"
+   },
+   "offsets": {
+    "from": 0,
+    "to": 3820
+   },
+   "text": " بس في حلقة مهمة جدا قربتنا من ماضي باتريك جين"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:03,820",
+    "to": "00:00:06,220"
+   },
+   "offsets": {
+    "from": 3820,
+    "to": 6220
+   },
+   "text": " الحلقة العاشرة من الموسم الثاني"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:06,220",
+    "to": "00:00:08,320"
+   },
+   "offsets": {
+    "from": 6220,
+    "to": 8320
+   },
+   "text": " القضية نفسها مش موضوعنا هنا"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:08,320",
+    "to": "00:00:10,320"
+   },
+   "offsets": {
+    "from": 8320,
+    "to": 10320
+   },
+   "text": " ولا تفاصيل الحلقة كلها"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:10,320",
+    "to": "00:00:12,820"
+   },
+   "offsets": {
+    "from": 10320,
+    "to": 12820
+   },
+   "text": " اللي يهمنا مشهد واحد بس"
+  },
+  {
+   "timestamps": {
+    "from": "00:00:12,820",
+    "to": "00:00:16,660"
+   },
+   "offsets": {
+    "from": 12820,
+    "to": 16660
+   },
+   "text": " المشهد دا والرانة جانب ما كناش نعرفه من شخصية باتريك"
+  }
+ ],
+ "_provenance": {
+  "take_sha256": "f8c1ee1b0d9cf199ae438d527544511a88b155e0e5a542c026a4b2418ec7d49c",
+  "take_file": "g005.mp3",
+  "model_file": "ggml-small.bin",
+  "language": "ar"
+ }
+}

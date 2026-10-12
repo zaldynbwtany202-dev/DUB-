@@ -48,6 +48,36 @@ def probe_duration(path: Path) -> float:
     raise ValueError(f"لا يمكن قراءة مدة {path}")
 
 
+def join_float_stems(stems: list[Path], output: Path, crossfade: float,
+                     sample_rate: int = 44100) -> None:
+    """Join estimated beds without clipping peaks above PCM full scale."""
+    import numpy as np
+    import soundfile as sf
+
+    if not stems or crossfade < 0:
+        raise ValueError('Expected stems and a nonnegative crossfade')
+    output.parent.mkdir(parents=True, exist_ok=True)
+    overlap = round(crossfade * sample_rate)
+    with sf.SoundFile(output, 'w', samplerate=sample_rate, channels=2, subtype='FLOAT') as joined:
+        previous_tail = None
+        for index, stem in enumerate(stems):
+            x, stem_sr = sf.read(stem, dtype='float32', always_2d=True)
+            if stem_sr != sample_rate or x.shape[1] != 2:
+                raise ValueError(f'Wrong sample format for {stem}: {stem_sr} Hz, {x.shape[1]}ch')
+            if previous_tail is not None:
+                crossfade_frames = min(len(previous_tail), len(x))
+                ramp = np.linspace(0, 1, crossfade_frames, dtype=np.float32)[:, None]
+                joined.write(previous_tail[:crossfade_frames] * (1-ramp)
+                             + x[:crossfade_frames] * ramp)
+                x = x[crossfade_frames:]
+            if index + 1 < len(stems) and overlap:
+                joined.write(x[:-overlap])
+                previous_tail = x[-overlap:]
+            else:
+                joined.write(x)
+                previous_tail = None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--source", type=Path, required=True)
@@ -92,27 +122,10 @@ def main() -> int:
         print(f"✓ مقطع {i+1}/{n} ({begin:.0f}ث) · {done/60:.1f}د منقضية"
               + (f" · متبقٍ ~{(n-i-1)/rate/60:.1f}د" if rate else ""), flush=True)
 
-    # join with a short crossfade so segment seams do not click
-    a.out.parent.mkdir(parents=True, exist_ok=True)
-    if len(stems) == 1:
-        subprocess.run([ff, "-y", "-v", "error", "-i", str(stems[0]),
-                        "-c:a", "pcm_s16le", str(a.out)], check=True)
-    else:
-        inputs: list[str] = []
-        for s in stems:
-            inputs += ["-i", str(s)]
-        chain = "".join(f"[{k}:a]" for k in range(len(stems)))
-        filt = (f"{chain}acrossfade=d={a.crossfade}:c1=nofade:c2=nofade[out]"
-                if len(stems) == 2 else
-                _chain_crossfade(len(stems), a.crossfade))
-        # The map is not optional. Every output of the filtergraph is labelled,
-        # so ffmpeg finds nothing unlabelled to select automatically and fails
-        # with 'Filter acrossfade has an unconnected output' -- after the whole
-        # separation has run, which is the worst possible time to lose it.
-        subprocess.run([ff, "-y", "-v", "error", *inputs,
-                        "-filter_complex", filt, "-map", "[out]",
-                        "-ar", "44100", "-ac", "2",
-                        "-c:a", "pcm_s16le", str(a.out)], check=True)
+    # FFmpeg's acrossfade clips input samples >1.0 EVEN when output is FLOAT.
+    # Keep original peak for the user's no-attenuation constraint: crossfade in
+    # float, write FLOAT without any limiter; final mix checks its own headroom.
+    join_float_stems(stems, a.out, a.crossfade)
 
     dur = probe_duration(a.out)
     report = {"source": str(a.source), "output": str(a.out), "source_duration_s": round(total, 2),

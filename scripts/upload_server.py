@@ -31,11 +31,17 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "80"
+BUILD = "81"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "patrick-jane-sample-3-5": (
+        "★ باتريك جين — أول معاينة مراجعة (من 1:01 إلى 1:42 · 41 ث)",
+        "المجموعات 003–005 بالصوت 25. النص مسودة مصحّحة من تفريغ آلي رديء، "
+        "ينتظر حكمك بالنطق والمعنى. الخلفية تقدير مفصول من الأصل عند 0 د.ب بلا خفض "
+        "ولا مراوغة ducking؛ الصوت فقط يضبط. 7/7 ✓ · −15.90 LUFS · −1.50 dBTP "
+        "· الصورة منسوخة دون إعادة ترميز. تزامن الكلمات داخل المجموعات والنص يحتاجان سماعك؛ بقية الفيلم لم تُسلّم بعد"),
     "voice-B-professional": ("الصوت الاحترافي — نفس القارئ، أنقى وأثبت",
                              "مُمدَّد بـrubberband يحفظ الفورمانت · تنقية وتوازن · "
                              "الموسيقى تنسحب تحت الكلام · -16 LUFS"),
@@ -510,8 +516,8 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "hajj-pronunciation-fix", "hajj-dream-full-msa",
-            "voice25-run-0-50", "voice25-run-0-31-timed"])}
+            "patrick-jane-sample-3-5", "hajj-pronunciation-fix",
+            "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
@@ -521,7 +527,7 @@ def render_previews():
         # What the work is about right now: the created voice of the film, and
         # the run he already accepted. The human samples stay on disk and come
         # back with one word in this set.
-        PAGE_ALLOW = {"hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
+        PAGE_ALLOW = {"patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))

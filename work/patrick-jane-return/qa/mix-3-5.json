@@ -1,0 +1,23 @@
+{
+  "source_voice": "work/patrick-jane-return/build/patrick-jane-voice-3-5.wav",
+  "source_bed": "work/patrick-jane-return/stems/background-0-191.wv",
+  "bed_gain_db": 0,
+  "ducking": false,
+  "post_mix_gain_db": 0,
+  "start": 61.04,
+  "end": 102.04,
+  "tests": [
+    {
+      "voice_gain_db": -0.0,
+      "lufs": -15.9,
+      "true_peak": -1.5
+    }
+  ],
+  "status": "accepted",
+  "selected_voice_gain_db": -0.0,
+  "note": "Estimated instrumental is not an exact original stem; no intentional bed gain change.",
+  "measured_output": {
+    "lufs": -15.9,
+    "true_peak": -1.5
+  }
+}

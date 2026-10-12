@@ -38,7 +38,7 @@ from youtube_auto_dub.ffmpeg_bin import ffmpeg_exe  # noqa: E402
 
 WCLI = ROOT / ".cache/tools/whisper.cpp/build/bin/whisper-cli"
 MODEL = ROOT / ".cache/models/whisper-ggml/ggml-small.bin"
-VOICE_RATE = 11.62          # measured speaking rate of voice-21 (chars/s)
+VOICE_RATE = 9.6            # voice-25 session median (see scripts/report_take_rates.py)
 
 
 def slugify(name: str) -> str:
@@ -64,7 +64,7 @@ def main() -> int:
     ap.add_argument("--slug", default=None)
     ap.add_argument("--lang", default="ar")
     ap.add_argument("--chars-per-s", type=float, default=VOICE_RATE)
-    ap.add_argument("--tempo-ceiling", type=float, default=1.60)
+    ap.add_argument("--tempo-ceiling", type=float, default=1.80)
     ap.add_argument("--max-span", type=float, default=24.0)
     ap.add_argument("--max-chars", type=int, default=380)
     ap.add_argument("--batch", type=int, default=1, help="رقم الدفعة (10 أخذات كل دفعة)")
