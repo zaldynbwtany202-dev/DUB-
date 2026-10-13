@@ -1,0 +1,37 @@
+{
+  "source_voice": "work/patrick-jane-return/build/patrick-jane-voice27-before-3-5.wav",
+  "channel": "voice only, rebuilt from archived old take at same atempo settings",
+  "sample_rate": 44100,
+  "rows": [
+    {
+      "name": "g003-assembled",
+      "voiced": 0.299,
+      "median": 172.9,
+      "p10": 143.2,
+      "p90": 201.7,
+      "semis": 3.21,
+      "drift_hz": 21.2,
+      "drift_semis": 2.11
+    },
+    {
+      "name": "g004-assembled",
+      "voiced": 0.266,
+      "median": 141.3,
+      "p10": 122.8,
+      "p90": 180.7,
+      "semis": -0.29,
+      "drift_hz": 11.7,
+      "drift_semis": 1.42
+    },
+    {
+      "name": "g005-assembled",
+      "voiced": 0.317,
+      "median": 138.7,
+      "p10": 121.7,
+      "p90": 177.8,
+      "semis": -0.62,
+      "drift_hz": 21.3,
+      "drift_semis": 2.61
+    }
+  ]
+}

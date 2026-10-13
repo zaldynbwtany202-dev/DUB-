@@ -1,0 +1,37 @@
+{
+  "source_voice": "work/patrick-jane-return/build/patrick-jane-voice27-pitch-fix-3-5.wav",
+  "channel": "voice only, before estimated bed or AAC",
+  "sample_rate": 44100,
+  "rows": [
+    {
+      "name": "g003-assembled",
+      "voiced": 0.24,
+      "median": 156.9,
+      "p10": 134.9,
+      "p90": 199.1,
+      "semis": 1.53,
+      "drift_hz": 18.3,
+      "drift_semis": 2.0
+    },
+    {
+      "name": "g004-assembled",
+      "voiced": 0.266,
+      "median": 141.3,
+      "p10": 122.8,
+      "p90": 180.7,
+      "semis": -0.29,
+      "drift_hz": 11.7,
+      "drift_semis": 1.42
+    },
+    {
+      "name": "g005-assembled",
+      "voiced": 0.317,
+      "median": 138.7,
+      "p10": 121.7,
+      "p90": 177.8,
+      "semis": -0.62,
+      "drift_hz": 21.3,
+      "drift_semis": 2.61
+    }
+  ]
+}

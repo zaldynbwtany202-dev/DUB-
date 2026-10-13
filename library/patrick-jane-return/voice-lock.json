@@ -6,6 +6,10 @@
   "selection": "user explicitly chose voice 27 after auditions",
   "scope": "Patrick Jane film ONLY; do not change global config/voice-lock.json (voice-25 other films)",
   "script_status": "editorial draft 000-009; raw ASR 010-051; listener review still pending",
-  "approved_audio_reference": "previews/patrick-jane-voice27-sample-3-5.mp4",
-  "audio_reference_status": "voice selected; preview QA 7/7; subjective video sample and words pending listener review"
+  "voice_reference_for_review": "previews/patrick-jane-voice27-pitch-fix-3-5.mp4",
+  "previous_audio_reference": "previews/patrick-jane-voice27-sample-3-5.mp4 (listener reported shifting tone; retained for comparison)",
+  "audio_reference_status": "voice 27 selected; retake of g003 reduces measured adjacent tone jump, but new video preview and words await listener review",
+  "voice27_g004_raw_pitch_reference_hz": 143.7,
+  "diagnostic_report": "work/patrick-jane-return/qa/voice27-pitch-diagnosis.json",
+  "note": "Do not reuse voice-25 pitch target 137.2 Hz for this film; compare voice-27 takes to its own g004 reference and the listener's ear. No pitch-shifting DSP."
 }

@@ -1,0 +1,35 @@
+{
+  "target": 143.7,
+  "rows": [
+    {
+      "name": "g003",
+      "voiced": 0.265,
+      "median": 150.0,
+      "p10": 130.4,
+      "p90": 192.0,
+      "semis": 0.74,
+      "drift_hz": 17.1,
+      "drift_semis": 1.93
+    },
+    {
+      "name": "g004",
+      "voiced": 0.273,
+      "median": 143.7,
+      "p10": 122.8,
+      "p90": 184.6,
+      "semis": 0.0,
+      "drift_hz": 10.5,
+      "drift_semis": 1.28
+    },
+    {
+      "name": "g005",
+      "voiced": 0.305,
+      "median": 139.5,
+      "p10": 122.4,
+      "p90": 179.2,
+      "semis": -0.51,
+      "drift_hz": 23.1,
+      "drift_semis": 2.73
+    }
+  ]
+}

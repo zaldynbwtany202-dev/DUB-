@@ -1,0 +1,149 @@
+{
+  "problem": "Listener reports the approved voice 27 changes across preview groups; objective comparison reveals g003 jump before g004.",
+  "method": "Autocorrelation median F0 on voice-only signal; G004 raw reference 143.7 Hz; assembled stats measured after atempo, before bed/AAC; pitch is not timbre or a listening verdict.",
+  "before_assembled_pitch_hz": [
+    172.9,
+    141.3,
+    138.7
+  ],
+  "after_assembled_pitch_hz": [
+    156.9,
+    141.3,
+    138.7
+  ],
+  "before_adjacent_jump_semitones": 3.5,
+  "after_adjacent_jump_semitones": 1.82,
+  "before_raw_pitch_hz": [
+    169.0,
+    143.7,
+    139.5
+  ],
+  "after_raw_pitch_hz": [
+    150.0,
+    143.7,
+    139.5
+  ],
+  "before_g003_required_atempo": 1.338,
+  "after_g003_required_atempo": 1.244,
+  "changes": "Replace only g003 with re-recorded voice-27 candidate alt02; g004 original user-selected raw take and g005 remain bit-identical; no pitch/EQ/formant/rubberband edits; backgrounds at unity.",
+  "candidates": [
+    {
+      "candidate": "original",
+      "file": "work/patrick-jane-return/takes-superseded/g003-voice27-before-pitch.mp3",
+      "sha256": "92077873bfbb4bbecae23fc8d9f10e8468305d03748165bebf65cdbede8610c0",
+      "duration_s": 12.04,
+      "raw_pitch_hz": 169.0,
+      "raw_offset_from_g004_semitones": 2.81,
+      "drift_within_take_semitones": 2.28,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt01",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt01.mp3",
+      "sha256": "790c55c2bd85af3fc429b1e3c026675f668f25f7222fd957d9b139b4ea46e2d5",
+      "duration_s": 11.6,
+      "raw_pitch_hz": 198.3,
+      "raw_offset_from_g004_semitones": 5.58,
+      "drift_within_take_semitones": 1.42,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt02",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt02.mp3",
+      "sha256": "3a3170efa786749710d2db09c7d11ddcafdc6b6e865bedda3f5e5b68eee43c90",
+      "duration_s": 11.2,
+      "raw_pitch_hz": 150.0,
+      "raw_offset_from_g004_semitones": 0.74,
+      "drift_within_take_semitones": 1.93,
+      "selected": true
+    },
+    {
+      "candidate": "g003-alt03",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt03.mp3",
+      "sha256": "5b5d73346062b4e87a80d5d403007de4a4b6771ca070f9bd38041b5538bb33f9",
+      "duration_s": 11.68,
+      "raw_pitch_hz": 177.8,
+      "raw_offset_from_g004_semitones": 3.68,
+      "drift_within_take_semitones": 2.07,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt04",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt04.mp3",
+      "sha256": "7094dcf477a9563b9848fca0a6cb6082c4619ac7e747309f651965146e8edbd0",
+      "duration_s": 11.52,
+      "raw_pitch_hz": 148.1,
+      "raw_offset_from_g004_semitones": 0.53,
+      "drift_within_take_semitones": 2.45,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt05",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt05.mp3",
+      "sha256": "0e46fca4f70b3715f536f0d393ed64ad30b5864a603c794b68ab28994121ace5",
+      "duration_s": 12.4,
+      "raw_pitch_hz": 184.6,
+      "raw_offset_from_g004_semitones": 4.34,
+      "drift_within_take_semitones": 1.13,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt06",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt06.mp3",
+      "sha256": "d5bce0036824fa6b905e5b421e84bfbc8b86a1f1c66d76ee7b5794cc0d9bd6a7",
+      "duration_s": 11.84,
+      "raw_pitch_hz": 187.5,
+      "raw_offset_from_g004_semitones": 4.61,
+      "drift_within_take_semitones": 1.33,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt07",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt07.mp3",
+      "sha256": "8528d7420cd2ed25be7b377fddc771a145ea4cc766a658081d3247e19cd5aeac",
+      "duration_s": 11.56,
+      "raw_pitch_hz": 181.8,
+      "raw_offset_from_g004_semitones": 4.07,
+      "drift_within_take_semitones": 0.64,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt08",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt08.mp3",
+      "sha256": "3b2417aa219bc6c7c4f45999841b0259243b833d3926282f8beae6ad2b209c0f",
+      "duration_s": 11.76,
+      "raw_pitch_hz": 155.8,
+      "raw_offset_from_g004_semitones": 1.4,
+      "drift_within_take_semitones": 2.86,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt09",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt09.mp3",
+      "sha256": "e63fe8f83ec737baffe3a7502be15b3f200554eb6a02b0a8cb7a538bb88b8578",
+      "duration_s": 12.6,
+      "raw_pitch_hz": 166.7,
+      "raw_offset_from_g004_semitones": 2.57,
+      "drift_within_take_semitones": 1.58,
+      "selected": false
+    },
+    {
+      "candidate": "g003-alt10",
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g003-alt10.mp3",
+      "sha256": "9ed3fc3a0d3284bc3b53dc34361989895847d5653fed8fd38b8b4db3db101479",
+      "duration_s": 11.56,
+      "raw_pitch_hz": 170.2,
+      "raw_offset_from_g004_semitones": 2.93,
+      "drift_within_take_semitones": 0.67,
+      "selected": false
+    }
+  ],
+  "other_checked_assembled": "alt04 raw F0 148.1 Hz, but assembled g003 158.1 Hz vs 156.9 Hz for alt02; alt02 selected.",
+  "old_preview": "previews/patrick-jane-voice27-sample-3-5.mp4",
+  "new_preview": "previews/patrick-jane-voice27-pitch-fix-3-5.mp4",
+  "status": "candidate_pending_listener_review; not full-film approval",
+  "old_preview_sha256": "3936cf639ba48c55fdaf3ac2eeebbeedf44daeb2a532f7a54c40b0ef1867bdb5",
+  "new_preview_sha256": "f285e22fa9cdd3d9e5af7fdc897277d9227ada07caed7418c747d1a7cf9cb7b5",
+  "verification": "work/patrick-jane-return/qa/verify-voice27-pitch-fix-3-5.json",
+  "background_mix": "work/patrick-jane-return/qa/mix-voice27-pitch-fix-3-5.json"
+}
