@@ -31,13 +31,29 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "86"
+BUILD = "87"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "patrick-jane-voice27-after-tempo-g004": (
+        "ب — نفس صوتك المختار بعد التوقيت فقط (16 ث)",
+        "نفس ملف (أ) بالحروف والأخذة نفسيهما من g004؛ atempo 1.015× فقط "
+        "ليدخل نافذة الفيلم. بلا موسيقى أو EQ/pitch/formant. لا تخلطه مع الجمل الأخرى."),
+    "patrick-jane-voice27-after-level-g004": (
+        "ج — نفس الأخذة بعد ضبط مستوى الصوت فقط (16 ث)",
+        "المادة نفسها من (أ) و(ب)، بعد atempo 1.015× وضبط الجهارة plain-voice "
+        "دون EQ أو ضغط أو خلفية؛ هذا الصوت قبل المزج مع موسيقى الفيديو."),
+    "patrick-jane-voice27-current-g003-raw": (
+        "د — الأخذة الأولى مستقلة عن المرجع (11 ث)",
+        "الصوت 27 بنفس الهوية لكن هذه جملة أخرى g003 أُنتجت مستقلة؛ بلا تسريع أو خلفية. "
+        "قل إن كانت نبرتها مختلفة عن (أ)."),
+    "patrick-jane-voice27-current-g005-raw": (
+        "هـ — الأخذة الثالثة مستقلة عن المرجع (19 ث)",
+        "الصوت 27 بنفس الهوية لكن جملة أخرى g005 أُنتجت مستقلة؛ بلا تسريع أو خلفية. "
+        "قل إن كانت نبرتها مختلفة عن (أ)."),
     "patrick-jane-voice27-pitch-fix-3-5": (
-        "★ باتريك جين — إعادة تسجيل لتقليل تغيّر نبرة الصوت 27 (41 ث)",
+        "فيديو قيد التشخيص — نبرة الصوت 27 لم يُؤكَّد تطابقها (41 ث)",
         "مقارنة 01:01–01:42 بعد شكواك من تغيّر الصوت: أُعيد تسجيل المجموعة 003 بالصوت 27 "
         "من دون تعديل النبرة آليًا؛ المجموعتان 004 و005 لم تتغيرا. قفزة النبرة المقيسة "
         "عند الحدود 3.50 ← 1.82 نصف نغمة؛ ما زال حكم أذنك ضروريًا. "
@@ -50,9 +66,9 @@ LABELS = {
         "تقديريًا عند 0 د.ب بلا خفض أو ducking؛ 7/7 آليًا · −15.90 LUFS · −2.40 dBTP؛ "
         "الصورة منسوخة. قياس حدود المجموعات لا يثبت تزامن كل كلمة أو اكتمال الفيلم."),
     "patrick-jane-voice27-g004": (
-        "01 — باتريك جين: صوت 27 للسرد · تجربة صوت فقط",
-        "نفس كلمات المجموعة 004 باللهجة المصرية، بلا موسيقى أو تعديل سرعة. "
-        "صوت اصطناعي جديد اخترته من أول اختبار إضافي؛ لم يُعتمد للفيلم."),
+        "أ — العينة الخام الأصلية التي اخترتها: صوت 27 (16 ث)",
+        "هذا التسجيل نفسه g004 هو مرجعك، لا نسخة جديدة ولا خلط: 24 kHz خام "
+        "بلا atempo أو مزج. استمع إليه أولًا ثم قارنه بـ(ب) و(ج) و(د) و(هـ)."),
     "patrick-jane-voice28-g004": (
         "02 — باتريك جين: صوت 28 للمحادثة · تجربة صوت فقط",
         "نفس كلمات المجموعة 004 باللهجة المصرية، بلا موسيقى أو تعديل سرعة. "
@@ -546,17 +562,19 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "patrick-jane-voice27-pitch-fix-3-5", "patrick-jane-voice27-sample-3-5",
-            "patrick-jane-voice27-g004", "patrick-jane-voice28-g004",
-            "patrick-jane-voice26-g004", "patrick-jane-voice26-sample-3-5",
-            "patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa",
-            "voice25-run-0-50", "voice25-run-0-31-timed"])}
+            "patrick-jane-voice27-g004", "patrick-jane-voice27-after-tempo-g004",
+            "patrick-jane-voice27-after-level-g004",
+            "patrick-jane-voice27-current-g003-raw", "patrick-jane-voice27-current-g005-raw",
+            "patrick-jane-voice27-pitch-fix-3-5", "patrick-jane-voice27-sample-3-5"])}
         # The page was emptied on the user's instruction: it carries what the
         # work is about right now and nothing else. Everything else stays on disk
         # and in the repository history -- and comes back by adding one name here.
         # Show current auditions first, then saved video comparisons. Rejected
         # takes remain on disk; labels must not imply synthetic audio is human.
-        PAGE_ALLOW = {"patrick-jane-voice27-pitch-fix-3-5", "patrick-jane-voice27-sample-3-5", "patrick-jane-voice27-g004", "patrick-jane-voice28-g004", "patrick-jane-voice26-g004", "patrick-jane-voice26-sample-3-5", "patrick-jane-sample-3-5", "hajj-pronunciation-fix", "hajj-dream-full-msa", "voice25-run-0-50", "voice25-run-0-31-timed"}
+        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-voice27-after-tempo-g004",
+                      "patrick-jane-voice27-after-level-g004", "patrick-jane-voice27-current-g003-raw",
+                      "patrick-jane-voice27-current-g005-raw", "patrick-jane-voice27-pitch-fix-3-5",
+                      "patrick-jane-voice27-sample-3-5"}
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
