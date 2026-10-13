@@ -1,0 +1,28 @@
+{
+  "purpose": "Isolate where selected raw voice-27 tone stops matching video; diagnostic ONLY, not an approved 16 LUFS master.",
+  "voice_source": "previews/patrick-jane-voice27-g004.mp3",
+  "voice_source_sha256": "8caf82db62d44d0333780a3de302042d6b908cd0abefaa0650d0d88c748bdb8d",
+  "source_picture": "library/patrick-jane-return/source.mp4",
+  "source_offset_s": 70.04,
+  "video_copy": true,
+  "controls": [
+    {
+      "file": "previews/patrick-jane-raw27-on-picture.mp4",
+      "sha256": "c2c055778993690a58a4fba8c3016730c5b9c071908a249e501f5b5f8b6567fd",
+      "processing": "exact user-selected raw voice MP3 decoded, AAC encode over copied picture; no atempo/no loudnorm/no bed; no pitch/formant/EQ/compressor",
+      "measured_lufs": -19.6,
+      "measured_true_peak_dbtp": -4.0,
+      "qa_picture": "qa/reference-raw-video-picture.json"
+    },
+    {
+      "file": "previews/patrick-jane-raw27-with-bed0.mp4",
+      "sha256": "64569238ed89a2f1a3a963947dc4c496d1c972957cb7060061d73f23f0ecabee",
+      "processing": "exact user-selected raw voice MP3 decoded plus estimated UVR bed at 0 dB, no ducking or post-gain; AAC encode over copied picture; no atempo/loudnorm/pitch/formant/EQ/compressor",
+      "measured_lufs": -19.2,
+      "measured_true_peak_dbtp": -3.6,
+      "qa_picture": "qa/reference-raw-bed0-picture.json"
+    }
+  ],
+  "limits": "A 2/2 duration/picture check does NOT verify loudness, word alignment, perceived timbre, original soundtrack identity or completion. Neither video satisfies -16 LUFS; not full delivery.",
+  "next": "Listener compares raw reference to picture-only and picture-plus-bed. If mismatch starts only with bed, investigate estimated stem vocal bleed; if raw picture already differs, inspect AAC/level; if both match but full dub differs, independently generated other takes or atempo are suspect. Do not conclude without their answer."
+}

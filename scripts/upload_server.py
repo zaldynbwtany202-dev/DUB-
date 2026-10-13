@@ -31,11 +31,21 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "87"
+BUILD = "88"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "patrick-jane-raw27-on-picture": (
+        "1 — نفس عيّنتك المختارة فوق الصورة بلا خلفية (16 ث)",
+        "اختبار تشخيصي: ملف الصوت 27 الخام الذي اخترته نفسه على صورة المصدر 1:10.04–1:26.28. "
+        "بلا atempo أو loudnorm أو تحرير صوت؛ تحويل AAC فقط. الخلفية غائبة عمدًا للعزل، "
+        "وليس هذا تسليمًا للفيلم: −19.6 LUFS بدل −16."),
+    "patrick-jane-raw27-with-bed0": (
+        "2 — العيّنة الخام نفسها + خلفية مفصولة عند 0 د.ب (16 ث)",
+        "نفس التسجيل المختار بلا تسريع/تعديل طابع/ضبط جهارة؛ أُضيفت الخلفية التقديرية "
+        "فقط بمستوى 0 د.ب بلا ducking. إن كان (1) مطابقًا للمرجع و(2) مختلفًا "
+        "فالخلفية/الفصل موضع التحقيق. اختبار لا ماستر: −19.2 LUFS."),
     "patrick-jane-voice27-after-tempo-g004": (
         "ب — نفس صوتك المختار بعد التوقيت فقط (16 ث)",
         "نفس ملف (أ) بالحروف والأخذة نفسيهما من g004؛ atempo 1.015× فقط "
@@ -562,7 +572,8 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "patrick-jane-voice27-g004", "patrick-jane-voice27-after-tempo-g004",
+            "patrick-jane-voice27-g004", "patrick-jane-raw27-on-picture",
+            "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
             "patrick-jane-voice27-after-level-g004",
             "patrick-jane-voice27-current-g003-raw", "patrick-jane-voice27-current-g005-raw",
             "patrick-jane-voice27-pitch-fix-3-5", "patrick-jane-voice27-sample-3-5"])}
@@ -571,7 +582,8 @@ def render_previews():
         # and in the repository history -- and comes back by adding one name here.
         # Show current auditions first, then saved video comparisons. Rejected
         # takes remain on disk; labels must not imply synthetic audio is human.
-        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-voice27-after-tempo-g004",
+        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-raw27-on-picture",
+                      "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
                       "patrick-jane-voice27-after-level-g004", "patrick-jane-voice27-current-g003-raw",
                       "patrick-jane-voice27-current-g005-raw", "patrick-jane-voice27-pitch-fix-3-5",
                       "patrick-jane-voice27-sample-3-5"}

@@ -1,0 +1,22 @@
+{
+  "slug": "patrick-jane-return",
+  "out": "previews/patrick-jane-raw27-with-bed0.mp4",
+  "checks": [
+    {
+      "name": "duration",
+      "ok": true,
+      "detail": "الملف 16.29 ث"
+    },
+    {
+      "name": "picture_copy",
+      "ok": true,
+      "detail": "أول إطار PSNR ∞"
+    }
+  ],
+  "measured": {
+    "out_seconds": 16.29,
+    "first_frame_psnr": "inf"
+  },
+  "verdict": "pass",
+  "failed": []
+}
