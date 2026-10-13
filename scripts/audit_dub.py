@@ -97,6 +97,11 @@ def fit_run(rows: list[dict], groups: list[dict], ceiling: float, pack: bool,
         rows[0].setdefault("gap_before", 0.0)
 
 
+def adjacent_step_labels(rows: list[dict]) -> list[str]:
+    """Only real adjacent pairs have a step; a singleton has no pair."""
+    return [f"{a['group']}→{b['group']}" for a, b in zip(rows, rows[1:])]
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slug", required=True)
@@ -148,7 +153,7 @@ def main() -> int:
 
     semis = np.array([r["semis"] for r in rows])
     steps = np.abs(np.diff(semis)) if len(semis) > 1 else np.array([0.0])
-    step_between = [f"{rows[i]['group']}→{rows[i+1]['group']}" for i in range(len(steps))]
+    step_between = adjacent_step_labels(rows)
     lvlv = np.array([r["rms_db"] for r in rows])
     level_spread = float(lvlv.max() - lvlv.min())
     max_late = max([r["late"] for r in rows], default=0.0)

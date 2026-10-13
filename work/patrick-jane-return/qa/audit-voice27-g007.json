@@ -1,0 +1,96 @@
+{
+  "slug": "patrick-jane-return",
+  "range": [
+    7,
+    7
+  ],
+  "target": 143.7,
+  "policy_version": 3,
+  "rows": [
+    {
+      "name": "g007",
+      "voiced": 0.341,
+      "median": 144.6,
+      "p10": 124.4,
+      "p90": 177.8,
+      "semis": 0.11,
+      "drift_hz": 21.8,
+      "drift_semis": 2.55,
+      "seconds": 28.08,
+      "rms_db": -19.5,
+      "group": 7,
+      "window": 28.0,
+      "room": 28.0,
+      "required_tempo": 1.003,
+      "tempo": 1.003,
+      "start": 131.04,
+      "end": 159.04,
+      "late": 0.0,
+      "clamped": false,
+      "gap_before": 0.0
+    }
+  ],
+  "missing": [],
+  "plan": [],
+  "verdict": "جاهز للبناء",
+  "failed": [],
+  "attention": [],
+  "checks": [
+    {
+      "name": "plan_consistent",
+      "ok": true,
+      "detail": "نافذة كل مجموعة = t1−t0 كما يقرأها المُجمِّع"
+    },
+    {
+      "name": "take_missing",
+      "ok": true,
+      "detail": "كل المجموعات لها أخذات"
+    },
+    {
+      "name": "tempo_clamped",
+      "ok": true,
+      "detail": "أقصى سرعة مطلوبة 1.00×"
+    },
+    {
+      "name": "lateness",
+      "ok": true,
+      "detail": "أقصى تأخير 0.00 ث (السقف 0.35)"
+    },
+    {
+      "name": "silence_gap",
+      "ok": true,
+      "detail": "أطول صمت بين مجموعتين 0.00 ث (السقف 0.4)"
+    },
+    {
+      "name": "pitch_hard_band",
+      "ok": true,
+      "detail": "أقصى بُعد 0.11 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "step_hard_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.00 نصف نغمة (الحدّ المطلق 6.0)"
+    },
+    {
+      "name": "pitch_attention_band",
+      "ok": true,
+      "detail": "أقصى بُعد 0.11 نصف نغمة (سقف ما أجازه المستمع 2.5)"
+    },
+    {
+      "name": "step_attention_band",
+      "ok": true,
+      "detail": "أقصى قفزة 0.00 نصف نغمة (سقف ما أجازه المستمع 2.6)"
+    },
+    {
+      "name": "level_spread",
+      "ok": true,
+      "detail": "تفاوت المستوى 0.00 د.ب (السقف 1.5)"
+    }
+  ],
+  "steps_mean": 0.0,
+  "steps_max": 0.0,
+  "level_spread": 0.0,
+  "tempo_max": 1.003,
+  "max_late": 0.0,
+  "max_gap": 0.0
+}

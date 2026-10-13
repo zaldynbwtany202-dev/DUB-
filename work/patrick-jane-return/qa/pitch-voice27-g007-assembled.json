@@ -1,0 +1,16 @@
+{
+  "source": "work/patrick-jane-return/build/voice27-g007.wav",
+  "raw_ref_g004_hz": 143.7,
+  "assembled_g007": {
+    "name": "g007-assembled",
+    "voiced": 0.331,
+    "median": 146.5,
+    "p10": 125.9,
+    "p90": 180.7,
+    "semis": 0.34,
+    "drift_hz": 18.4,
+    "drift_semis": 2.14
+  },
+  "listener_approval": "pending",
+  "note": "F0 similarity does not prove speaker timbre or word alignment"
+}

@@ -1,0 +1,191 @@
+{
+  "slug": "patrick-jane-return",
+  "voice_id": "voice-27",
+  "status": "production_started_not_approved_as_contiguous_dub",
+  "total_groups": 52,
+  "recorded_groups": "g000-g009",
+  "newly_recorded_this_round": [
+    0,
+    1,
+    2,
+    6,
+    7,
+    8,
+    9
+  ],
+  "takes_provisional": true,
+  "text_status": "editorial_draft_pending_listener_review_for_0_to_9; raw Whisper unreliable for 10_to_51",
+  "gate": "work/patrick-jane-return/qa/audit-voice27-0-9-after-g007.json",
+  "gate_failed": [
+    "silence_gap"
+  ],
+  "max_gap_s": 4.07,
+  "pitch_baseline_hz": 143.7,
+  "max_pitch_step_semitones": 1.71,
+  "unfilled_windows": "g000, g006, g008: short takes leave 2.36, 4.07, 3.13-second gaps; do not invent missing speech or slow below user pacing limits",
+  "g007_preview": "previews/patrick-jane-voice27-g007-production-sample.mp4",
+  "g007_preview_sha256": "4ea3df59995e807b800998e8b1a6c49f6ad4048e8b65438ac5a970642c14c8e0",
+  "g007_note": "provisional 28-sample near exact chosen raw pitch; listener not yet reviewed, not a full film",
+  "raw_takes": [
+    {
+      "i": 0,
+      "text": "أكيد وإنت فاتح السوشيال ميديا وبتقلب في إنستجرام، طلعلك فيديو للشخصية دي. وبعد شوية فتحت تيك توك ولقيت برضه فيديو بيقول إن باتريك جين يقدر يمسك ديكستر مورغان في أقل من عشر دقايق. وأنا هشرح لك ده في الفيديو ده.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g000.mp3",
+      "sha256": "b829bfbd07fb12c174df85b97e9d0362699288597d2e587a22333481beec2812",
+      "seconds": 16.0,
+      "window_seconds": 20.14,
+      "required_tempo": 0.794,
+      "pitch_hz": 145.5,
+      "pitch_offset_semitones": 0.21,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 1,
+      "text": "أنا عملت فيديو على حسابي في تيك توك جاب خمسين ألف مشاهدة. وبعدين وإنت بتقلب في يوتيوب هتلاقي فيديوهات كتير عن الشخصية دي، وحتى لو فتحت البحث هتلاقيها. مين باتريك جين؟ وليه مسلسل ذا منتاليست رجع تاني؟ وكم موسم ليه؟ وإيه اللي خلّى الناس تتكلم عنه من جديد؟",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g001.mp3",
+      "sha256": "c772eba83e7a03ec471c25d1e2cb1207ac66f903d0bede4d565b61cd7578895a",
+      "seconds": 19.4,
+      "window_seconds": 20.9,
+      "required_tempo": 0.928,
+      "pitch_hz": 160.5,
+      "pitch_offset_semitones": 1.92,
+      "gap_before_seconds": 2.36,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 2,
+      "text": "المسلسل ده أنا عملت عنه فيديو قبل كده، وفي الفيديو ده هنتكلم عن ذا منتاليست بتفاصيل أكتر، بس من غير حرق. لأن فيديو الحرق هيبقى له وقت تاني. هتفهموا التفاصيل لما تكملوا الفيديو. اشتركوا في القناة واعملوا لايك، ويلا نتكلم عن ذا منتاليست.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g002.mp3",
+      "sha256": "2f2f45bea01746dac6ffa13fd5779ac2e8548a5ad775a63c148cd64cb7dbfdd7",
+      "seconds": 18.76,
+      "window_seconds": 20.0,
+      "required_tempo": 0.938,
+      "pitch_hz": 160.0,
+      "pitch_offset_semitones": 1.86,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 3,
+      "text": "حابب أقول نقطة مهمة: شوفت يوتيوبر أجنبي بيعمل الفكرة دي، ويوتيوبر مصري اتكلم عن المسلسل. هسيب لكم الفيديوهين في الوصف لو حابين تتفرجوا عليهم بعد الفيديو ده.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g003.mp3",
+      "sha256": "3a3170efa786749710d2db09c7d11ddcafdc6b6e865bedda3f5e5b68eee43c90",
+      "seconds": 11.2,
+      "window_seconds": 9.0,
+      "required_tempo": 1.244,
+      "pitch_hz": 150.0,
+      "pitch_offset_semitones": 0.74,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 selected from re-recorded candidate"
+    },
+    {
+      "i": 4,
+      "text": "خلينا نرجع للبداية. مسلسل ذا منتاليست بدأ سنة ألفين وتمانية، وبيحكي عن باتريك جين، الراجل اللي بيظهر للناس إنه وسيط روحي. بيستخدم مهارته في قراءة الناس عشان يقنعهم إنه بيقدر يتواصل مع الموتى.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g004.mp3",
+      "sha256": "8caf82db62d44d0333780a3de302042d6b908cd0abefaa0650d0d88c748bdb8d",
+      "seconds": 16.24,
+      "window_seconds": 16.0,
+      "required_tempo": 1.015,
+      "pitch_hz": 143.7,
+      "pitch_offset_semitones": 0.0,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 raw audition source take"
+    },
+    {
+      "i": 5,
+      "text": "بس في حلقة مهمة جدًا قرّبتنا من ماضي باتريك جين: الحلقة العاشرة من الموسم الثاني. القضية نفسها مش موضوعنا هنا، ولا تفاصيل الحلقة كلها؛ اللي يهمنا مشهد واحد بس. المشهد ده ورّانا جانب ما كناش نعرفه من شخصية باتريك.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g005.mp3",
+      "sha256": "144b0e0ff36cdcb926adb08d99a0c807cbbeb719a76d5720b6375142672f3ae0",
+      "seconds": 18.96,
+      "window_seconds": 16.0,
+      "required_tempo": 1.185,
+      "pitch_hz": 139.5,
+      "pitch_offset_semitones": -0.51,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 6,
+      "text": "باتريك جين اتضرب بالكورة، ولما وقع افتكر طفولته مع أبوه. أبوه كان بيحاول يقنعه بالنصب في السيرك، ودي أهم نقطة هنا: طلب من باتريك وهو صغير إنه ينصب على بنت مريضة، أهلها قالوا إنها خلاص هتموت، وياخد منهم عشرة آلاف دولار بحجة إنه يقدر يساعدها. كان همّه الفلوس وبس.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g006.mp3",
+      "sha256": "118b40aa60644ab78d2681d7093eca67c908166c0edaf0b803c2589271bd76a6",
+      "seconds": 22.44,
+      "window_seconds": 29.0,
+      "required_tempo": 0.774,
+      "pitch_hz": 137.1,
+      "pitch_offset_semitones": -0.81,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 7,
+      "text": "وضحك عليهم بكلام غريب. باتريك في الأول رفض، لكن في الآخر سمع كلام أبوه ووافق يساعده. وأول ما أبوه أخد الفلوس راح صرفها كلها في الكازينو. والنقطة دي مهمة جدًا في تكوين باتريك جين. وإحنا كمان ما نعرفش تقريبًا أي حاجة عن أمه، فدي أول معلومة واضحة عن ماضيه وعن سبب إنه كان بيمثّل دور الوسيط الروحي.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g007.mp3",
+      "sha256": "25e1fe670618f10a2dd1c9da5a019272b9c3f277f29dffe0ea6d66d2d14cf2da",
+      "seconds": 28.08,
+      "window_seconds": 28.0,
+      "required_tempo": 1.003,
+      "pitch_hz": 144.6,
+      "pitch_offset_semitones": 0.11,
+      "gap_before_seconds": 4.07,
+      "provenance": "voice-27 selected from re-recorded candidate"
+    },
+    {
+      "i": 8,
+      "text": "وبالمناسبة، وسيط روحي هنا معناها إنه كان بيمثل إنه يقدر يكلم الموتى. لكن بعد ما حصلت له مأساة شخصية قلبت حياته مية وتمانين درجة، باتريك اتغير وبقى واقعي بدل ما كان بيضحك على الناس.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g008.mp3",
+      "sha256": "fd0aa9c72499378ecb83928f9a8002c03821560b229c003c027bdf771bae32d1",
+      "seconds": 14.28,
+      "window_seconds": 19.0,
+      "required_tempo": 0.752,
+      "pitch_hz": 142.9,
+      "pitch_offset_semitones": -0.1,
+      "gap_before_seconds": 0.0,
+      "provenance": "voice-27 generated from editorial draft"
+    },
+    {
+      "i": 9,
+      "text": "وساعتها قرر يستخدم ذكاءه ومهارته عشان يساعد مكتب التحقيقات سي بي آي في حل الجرائم. ومن هنا يبدأ تعاون باتريك جين مع سي بي آي.",
+      "text_status": "editorial_draft_pending_listener_review",
+      "raw_take": "work/patrick-jane-return/takes-voice27/g009.mp3",
+      "sha256": "a9634c0042f93028c75502788b59383b941d2c2d6d97374a24fd2974dda15785",
+      "seconds": 12.8,
+      "window_seconds": 12.0,
+      "required_tempo": 1.067,
+      "pitch_hz": 150.9,
+      "pitch_offset_semitones": 0.85,
+      "gap_before_seconds": 3.13,
+      "provenance": "voice-27 generated from editorial draft"
+    }
+  ],
+  "candidates_rejected_or_unapproved": [
+    {
+      "i": 1,
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g001-alt01.mp3",
+      "sha256": "8f0cab5cd0ee4cd2c7a7dfec9506f29c979e3b756ab3cc4dcf4843b83d9d711f",
+      "status": "not selected (pitch farther from chosen raw reference and/or timing)"
+    },
+    {
+      "i": 2,
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g002-alt01.mp3",
+      "sha256": "e54ff84700f37068f382e2c01f5ad10d0532ee71f7e498d12357f139843cabed",
+      "status": "not selected (pitch farther from chosen raw reference and/or timing)"
+    },
+    {
+      "i": 7,
+      "file": "work/patrick-jane-return/takes-voice27/candidates/g007-alt01.mp3",
+      "sha256": "25e1fe670618f10a2dd1c9da5a019272b9c3f277f29dffe0ea6d66d2d14cf2da",
+      "status": "selected for g007"
+    }
+  ]
+}
