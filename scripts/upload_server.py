@@ -31,11 +31,19 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "89"
+BUILD = "90"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
 LABELS = {
+    "patrick-jane-voice29-g004": (
+        "02 — مرشّح صوت 29: نفس الجملة الخام (16 ث)",
+        "نص g004 نفسه للمقارنة العادلة بلا خلفية أو atempo أو تشكيل نبرة. "
+        "صوت اصطناعي للتجربة فقط، ولم يتقرر تغيير صوت الفيلم."),
+    "patrick-jane-voice31-g004": (
+        "03 — مرشّح صوت 31: نفس الجملة الخام (16 ث)",
+        "نص g004 نفسه للمقارنة العادلة بلا خلفية أو atempo أو تشكيل نبرة. "
+        "صوت اصطناعي اخترته من زوج جديد بعد رفض الزوج السابق؛ ليس قفلًا للفيلم."),
     "patrick-jane-voice27-g007-production-sample": (
         "★ باتريك جين — أول عينة إنتاج من الدفعة الجديدة بالصوت 27 (28 ث)",
         "المجموعة 007 من 2:11 إلى 2:39، بصوت 27 الذي اخترته. أُعيد توليدها بمرجع نبرته "
@@ -83,7 +91,7 @@ LABELS = {
         "تقديريًا عند 0 د.ب بلا خفض أو ducking؛ 7/7 آليًا · −15.90 LUFS · −2.40 dBTP؛ "
         "الصورة منسوخة. قياس حدود المجموعات لا يثبت تزامن كل كلمة أو اكتمال الفيلم."),
     "patrick-jane-voice27-g004": (
-        "أ — العينة الخام الأصلية التي اخترتها: صوت 27 (16 ث)",
+        "01 — صوت 27 السابق: مرجعك الخام (16 ث)",
         "هذا التسجيل نفسه g004 هو مرجعك، لا نسخة جديدة ولا خلط: 24 kHz خام "
         "بلا atempo أو مزج. استمع إليه أولًا ثم قارنه بـ(ب) و(ج) و(د) و(هـ)."),
     "patrick-jane-voice28-g004": (
@@ -579,8 +587,8 @@ def render_previews():
         # same instant, so the order came out arbitrary. A cut that matters gets
         # a place in this list; anything else follows, newest first among itself.
         rank = {stem: i for i, stem in enumerate([
-            "patrick-jane-voice27-g007-production-sample",
-            "patrick-jane-voice27-g004", "patrick-jane-raw27-on-picture",
+            "patrick-jane-voice27-g004", "patrick-jane-voice29-g004", "patrick-jane-voice31-g004",
+            "patrick-jane-voice27-g007-production-sample", "patrick-jane-raw27-on-picture",
             "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
             "patrick-jane-voice27-after-level-g004",
             "patrick-jane-voice27-current-g003-raw", "patrick-jane-voice27-current-g005-raw",
@@ -590,8 +598,9 @@ def render_previews():
         # and in the repository history -- and comes back by adding one name here.
         # Show current auditions first, then saved video comparisons. Rejected
         # takes remain on disk; labels must not imply synthetic audio is human.
-        PAGE_ALLOW = {"patrick-jane-voice27-g007-production-sample",
-                      "patrick-jane-voice27-g004", "patrick-jane-raw27-on-picture",
+        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-voice29-g004",
+                      "patrick-jane-voice31-g004", "patrick-jane-voice27-g007-production-sample",
+                      "patrick-jane-raw27-on-picture",
                       "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
                       "patrick-jane-voice27-after-level-g004", "patrick-jane-voice27-current-g003-raw",
                       "patrick-jane-voice27-current-g005-raw", "patrick-jane-voice27-pitch-fix-3-5",

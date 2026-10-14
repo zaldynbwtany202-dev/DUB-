@@ -1,0 +1,36 @@
+{
+  "slug": "patrick-jane-return",
+  "status": "listener_choice_pending; no film voice lock changed",
+  "group": 4,
+  "text": "خلينا نرجع للبداية. مسلسل ذا منتاليست بدأ سنة ألفين وتمانية، وبيحكي عن باتريك جين، الراجل اللي بيظهر للناس إنه وسيط روحي. بيستخدم مهارته في قراءة الناس عشان يقنعهم إنه بيقدر يتواصل مع الموتى.",
+  "transcript_status": "editorial_draft_pending_listener_review",
+  "comparison": "Same exact text in all three clips, no processing; voice 27 previous chosen raw reference, 29 and 31 new audition candidates.",
+  "user_feedback": "The user explicitly rejected both voices in battle 30. Battle 31 yielded selected audition voice-31, but the user still asked to compare samples before changing the film. Voice-30 not used.",
+  "candidates": [
+    {
+      "number": "01",
+      "voice_id": "voice-27",
+      "file": "previews/patrick-jane-voice27-g004.mp3",
+      "bytes": 65421,
+      "sha256": "8caf82db62d44d0333780a3de302042d6b908cd0abefaa0650d0d88c748bdb8d",
+      "processing": "raw TTS, no atempo or background"
+    },
+    {
+      "number": "02",
+      "voice_id": "voice-29",
+      "file": "previews/patrick-jane-voice29-g004.mp3",
+      "bytes": 70893,
+      "sha256": "55b5ce4f77ad91436c37a2f104eb4b5dcdaab3e2624f57d5ecd50f658cac4510",
+      "processing": "raw TTS, no atempo or background"
+    },
+    {
+      "number": "03",
+      "voice_id": "voice-31",
+      "file": "previews/patrick-jane-voice31-g004.mp3",
+      "bytes": 63693,
+      "sha256": "6033d29b7e87407201090c6ad22bb4b9122cf5d64e1964125e92e966f5309866",
+      "processing": "raw TTS, no atempo or background"
+    }
+  ],
+  "limits": "These are synthetic voices, not human recordings. One take per voice does not establish stability across separately generated takes or suitability in the video."
+}
