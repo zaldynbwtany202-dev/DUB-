@@ -109,9 +109,10 @@ async def speak_edge(
     if timeout is None:
         timeout = EDGE_TTS_TIMEOUT
 
-    # Undiacritised Arabic makes a synthesiser guess at vowels; mark it up first.
+    # Formal Arabic may benefit from vowel marks; ar-EG must not be silently
+    # rewritten by a formal-Arabic diacritizer. Respect the actual voice locale.
     if (lang or "").startswith("ar"):
-        text = prepare_arabic(text)
+        text = prepare_arabic(text, locale=voice if voice.lower().startswith("ar-") else lang)
 
     # An approved studio take always beats a synthesised one.
     try:

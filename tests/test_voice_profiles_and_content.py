@@ -83,3 +83,15 @@ def test_non_speech_labels_are_not_synthesized():
     assert is_non_speech_text("[MUSIC]") is True
     assert is_non_speech_text("موسيقى") is True
     assert is_non_speech_text("music begins now") is False
+
+
+def test_arabic_vowels_no_longer_split_asr_words_or_hide_missing_words():
+    assert normalize_tokens("طَعَامِهِم سَيَجْلِبُ الْخَيْر") == ["طعامهم", "سيجلب", "الخير"]
+    same = validate_spoken_content("طعامهم سيجلب الخير", "طَعَامِهِم سَيَجْلِبُ الْخَيْر")
+    assert same["ok"] is True and same["matched_words"] == 3
+    assert same["listener_review_required"] is True
+    assert same["pronunciation_verified"] is False
+    wrong = validate_spoken_content("طعامهم سيجلب الخير", "قواتهم سيجلب الخير")
+    assert wrong["ok"] is False
+    assert "طعامهم" in wrong["missing_words"]
+    assert normalize_tokens("إيه ايه آية") == ["ايه", "ايه", "اية"]

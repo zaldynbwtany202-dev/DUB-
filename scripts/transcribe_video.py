@@ -48,22 +48,60 @@ def serialize_segment(segment: Any) -> dict[str, Any]:
     start, end = float(segment.start), float(segment.end)
     if not all(math.isfinite(t) for t in (start, end)) or start < 0 or end <= start:
         raise ValueError(f"Invalid ASR interval: {start}..{end}")
-    words = [
-        {
-            "word": word.word,
-            "start": round(float(word.start), 3),
-            "end": round(float(word.end), 3),
-            "probability": float(word.probability),
-        }
-        for word in (segment.words or [])
-    ]
+    words = []
+    warnings = []
+    for word in (segment.words or []):
+        raw_start, raw_end = getattr(word, "start", None), getattr(word, "end", None)
+        try:
+            t0, t1 = float(raw_start), float(raw_end)
+            if (not all(math.isfinite(t) for t in (t0, t1)) or t0 < 0
+                    or t1 <= t0 or t0 < start - 0.25 or t1 > end + 0.25):
+                raise ValueError("word timing outside spoken interval")
+            word_start, word_end = round(t0, 3), round(t1, 3)
+        except (TypeError, ValueError):
+            # Never distribute untimed words uniformly across a cue. Keep
+            # their text and flag the timestamp for independent review.
+            word_start = word_end = None
+            warnings.append("missing_or_invalid_word_timing")
+        try:
+            probability = float(getattr(word, "probability", None))
+            if not math.isfinite(probability) or not 0 <= probability <= 1:
+                raise ValueError("invalid word confidence")
+        except (TypeError, ValueError):
+            probability = None
+            warnings.append("missing_or_invalid_word_confidence")
+        if probability is not None and probability < 0.45:
+            warnings.append("low_confidence_word")
+        words.append({"word": word.word, "start": word_start,
+                      "end": word_end, "probability": probability})
+    if end - start > 8:
+        warnings.append("long_segment_check_timing")
+    try:
+        no_speech = float(segment.no_speech_prob)
+        if not math.isfinite(no_speech) or not 0 <= no_speech <= 1:
+            raise ValueError("bad no-speech probability")
+    except (TypeError, ValueError):
+        no_speech = None
+        warnings.append("missing_or_invalid_no_speech_probability")
+    try:
+        logprob = float(segment.avg_logprob)
+        if not math.isfinite(logprob):
+            raise ValueError("bad segment confidence")
+    except (TypeError, ValueError):
+        logprob = None
+        warnings.append("missing_or_invalid_segment_confidence")
+    if no_speech is not None and no_speech >= 0.6:
+        warnings.append("possible_hallucination_no_speech")
+    if logprob is not None and logprob <= -1.0:
+        warnings.append("low_segment_confidence")
     return {
         "start": round(start, 3),
         "end": round(end, 3),
         "text": segment.text.strip(),
-        "avg_logprob": float(segment.avg_logprob),
-        "no_speech_prob": float(segment.no_speech_prob),
+        "avg_logprob": logprob,
+        "no_speech_prob": no_speech,
         "words": words,
+        "review_warnings": sorted(set(warnings)),
     }
 
 
@@ -80,10 +118,19 @@ def write_results(result: dict[str, Any], output_dir: Path) -> dict[str, Path]:
         "source.srt": srt,
         "source.txt": "\n".join(s["text"] for s in segments) + "\n",
     }
+    # A repeated ASR pass must not replace a listener-corrected transcript.
+    # Check *all* outputs first so one conflict cannot leave a partial update.
+    for name, text in contents.items():
+        existing = output_dir / name
+        if existing.exists() and existing.read_text(encoding="utf-8") != text:
+            raise FileExistsError(f"Existing transcript differs: {existing}; use a new output directory")
     output_dir.mkdir(parents=True, exist_ok=True)
     paths = {}
     for name, text in contents.items():
         path = output_dir / name
+        if path.exists():
+            paths[name] = path
+            continue
         temp = path.with_name(f".{path.name}.{os.getpid()}.tmp")
         try:
             temp.write_text(text, encoding="utf-8")
@@ -102,6 +149,7 @@ def transcribe_file(
     download_root: Path = Path(".cache/models/whisper"),
     cpu_threads: int = 2,
     use_vad: bool = True,
+    dialect_hint: str | None = None,
     model_factory=None,
 ) -> dict[str, Any]:
     source = Path(source)
@@ -145,6 +193,8 @@ def transcribe_file(
             "device": "cpu", "compute_type": "int8", "beam_size": 5,
             "word_timestamps": True, "vad_filter": use_vad,
             "requested_language": language, "detected_language": info.language,
+            "dialect_hint_for_human_review": dialect_hint,
+            "dialect_detected": None,
             "language_probability": float(info.language_probability),
             "runner": "github-actions" if os.environ.get("GITHUB_ACTIONS") == "true" else "local",
             "github_run_id": os.environ.get("GITHUB_RUN_ID"),
@@ -153,6 +203,7 @@ def transcribe_file(
         "duration": float(info.duration),
         "elapsed_seconds": round(time.monotonic() - started, 3),
         "segments": segments,
+        "review_flags": sorted({flag for segment in segments for flag in segment["review_warnings"]}),
     }
 
 
@@ -177,13 +228,34 @@ def cpp_words(tokens: list[dict], *, multilingual: bool = True) -> list[dict]:
         text = data.decode("utf-8").strip()
         if not text:
             continue
-        timed = [t["offsets"] for t in group if "offsets" in t and t["offsets"]["from"] >= 0]
+        timed = []
+        confidences = []
+        dtw_points = []
+        for token in group:
+            offsets = token.get("offsets") or {}
+            try:
+                a, b = float(offsets["from"]), float(offsets["to"])
+                if all(math.isfinite(x) for x in (a, b)) and 0 <= a < b:
+                    timed.append((a, b))
+            except (KeyError, TypeError, ValueError):
+                pass
+            try:
+                confidences.append(float(token.get("p")))
+            except (TypeError, ValueError):
+                confidences.append(float("nan"))
+            try:
+                point = float(token.get("t_dtw", -1))
+                if math.isfinite(point) and point >= 0:
+                    dtw_points.append(point / 100)
+            except (TypeError, ValueError):
+                pass
+        confidence = min(confidences) if all(math.isfinite(p) and 0 <= p <= 1 for p in confidences) else None
         words.append({
             "word": text,
-            "start": min(t["from"] for t in timed) / 1000 if timed else None,
-            "end": max(t["to"] for t in timed) / 1000 if timed else None,
-            "probability": min(float(t["p"]) for t in group),
-            "dtw_points": [float(t["t_dtw"]) / 100 for t in group if float(t.get("t_dtw", -1)) >= 0],
+            "start": min(a for a, _ in timed) / 1000 if timed else None,
+            "end": max(b for _, b in timed) / 1000 if timed else None,
+            "probability": confidence,
+            "dtw_points": dtw_points,
         })
     return words
 
@@ -212,9 +284,12 @@ def cpp_result(native: dict, source: Path, *, duration: float, elapsed: float,
         warnings = []
         if end - start > 8:
             warnings.append("long_segment_check_timing")
-        if any(w["probability"] < 0.45 for w in words):
+        if any(w["probability"] is None for w in words):
+            warnings.append("missing_or_invalid_word_confidence")
+        if any(w["probability"] is not None and w["probability"] < 0.45 for w in words):
             warnings.append("low_confidence_words")
-        if any(w["start"] is None or w["end"] < w["start"] for w in words):
+        if any(w["start"] is None or w["end"] is None or w["end"] <= w["start"]
+               or w["start"] < start - 0.25 or w["end"] > end + 0.25 for w in words):
             warnings.append("missing_or_invalid_word_timing")
         segments.append({"start": start, "end": end, "text": row["text"].strip(),
                          "words": words, "review_warnings": warnings})
@@ -233,6 +308,7 @@ def cpp_result(native: dict, source: Path, *, duration: float, elapsed: float,
             "word_timing_method": "grouped native token boundaries; DTW points retained when present",
         },
         "duration": duration, "elapsed_seconds": round(elapsed, 3), "segments": segments,
+        "review_flags": sorted({flag for segment in segments for flag in segment["review_warnings"]}),
     }
 
 
@@ -276,6 +352,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--whisper-cli", type=Path, default=ROOT / ".cache/tools/whisper.cpp/build/bin/whisper-cli")
     parser.add_argument("--dtw-model", default="small", help="whisper-cpp DTW preset; must match the GGML model; empty disables DTW")
     parser.add_argument("--language", default="", help="Leave empty to detect the source language (not the dub language)")
+    parser.add_argument("--dialect", default="", help="Requested dialect for human review only (e.g. ar-EG); ASR does not verify dialect")
     parser.add_argument("--download-root", type=Path, default=Path(".cache/models/whisper"))
     parser.add_argument("--cpu-threads", type=int, default=2)
     parser.add_argument("--no-vad", action="store_true")
@@ -293,7 +370,11 @@ def main(argv: list[str] | None = None) -> int:
             result = transcribe_file(
                 args.source, model_name=args.model or "medium", language=args.language.strip() or None,
                 download_root=args.download_root, cpu_threads=args.cpu_threads, use_vad=not args.no_vad,
+                dialect_hint=args.dialect.strip() or None,
             )
+        if args.dialect.strip() and args.backend == "whisper-cpp":
+            result["asr"]["dialect_hint_for_human_review"] = args.dialect.strip()
+            result["asr"]["dialect_detected"] = None
         paths = write_results(result, args.output_dir)
     except Exception as exc:
         print(f"ASR FAILED ({type(exc).__name__}): {exc}", file=sys.stderr, flush=True)

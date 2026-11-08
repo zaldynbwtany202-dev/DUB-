@@ -80,3 +80,10 @@ def test_studio_takes_still_match_after_diacritisation():
 
     text = "مرحباً بكم في برو ستوديو."
     assert normalize(text) == normalize(prepare(text))
+
+
+def test_egyptian_script_is_not_reinterpreted_by_formal_diacritizer(monkeypatch):
+    monkeypatch.setattr(arabic_text, "_diacritiser", lambda: pytest.fail("MSA model must not process Egyptian speech"))
+    line = "بقول لك مش هينفع، خليها كده."
+    assert prepare(line, locale="ar-EG") == line
+    assert prepare("  بِقول كده  ", locale="ar-EG") == "بِقول كده"

@@ -99,3 +99,55 @@ def test_empty_transcription_is_failure_not_demo(tmp_path):
 def test_cli_returns_failure_for_missing_media(tmp_path, capsys):
     assert main(["--source", str(tmp_path / "missing.mp4")]) == 1
     assert "ASR FAILED (FileNotFoundError)" in capsys.readouterr().err
+
+
+def test_untimed_and_uncertain_asr_words_are_kept_for_review(tmp_path):
+    words = [SimpleNamespace(word=" قوتهم", start=float("nan"), end=1.2, probability=0.2),
+             SimpleNamespace(word=" طعامهم", start=1.4, end=1.7, probability=1.2)]
+    row = serialize_segment(segment(start=0.0, end=2.0, words=words))
+    assert row["words"][0]["word"] == " قوتهم"
+    assert row["words"][0]["start"] is None and row["words"][0]["end"] is None
+    assert row["words"][1]["probability"] is None
+    assert {"missing_or_invalid_word_timing", "missing_or_invalid_word_confidence", "low_confidence_word"} <= set(row["review_warnings"])
+    write_results({"segments": [row], "review_required": True}, tmp_path)
+    saved = json.loads((tmp_path / "source.segments.json").read_text())
+    assert saved["segments"][0]["words"][0]["start"] is None
+
+
+def test_asr_will_not_overwrite_listener_corrected_transcript(tmp_path):
+    source = {"segments": [{"start": 0.0, "end": 1.0, "text": "الخير"}], "review_required": True}
+    paths = write_results(source, tmp_path)
+    paths["source.txt"].write_text("تصحيح المستمع\n", encoding="utf-8")
+    with pytest.raises(FileExistsError, match="Existing transcript differs"):
+        write_results(source, tmp_path)
+    assert paths["source.txt"].read_text() == "تصحيح المستمع\n"
+    assert paths["source.segments.json"].read_text() == json.dumps(source, ensure_ascii=False, indent=2) + "\n"
+
+
+def test_dialect_is_a_review_hint_not_an_asr_detection(tmp_path):
+    source = tmp_path / "take.wav"
+    source.write_bytes(b"fixture")
+    class Model:
+        def __init__(self, *args, **kwargs): pass
+        def transcribe(self, path, **kwargs):
+            return iter([segment()]), SimpleNamespace(language="ar", language_probability=0.9, duration=3.0)
+    result = transcribe_file(source, language="ar", dialect_hint="ar-EG", model_factory=Model)
+    assert result["asr"]["requested_language"] == "ar"
+    assert result["asr"]["dialect_hint_for_human_review"] == "ar-EG"
+    assert result["asr"]["dialect_detected"] is None
+
+
+def test_suspected_asr_hallucination_is_flagged_not_discarded():
+    row = serialize_segment(segment(no_speech_prob=0.91, avg_logprob=-1.3))
+    assert row["text"] == "أهلاً بيك"
+    assert "possible_hallucination_no_speech" in row["review_warnings"]
+    assert "low_segment_confidence" in row["review_warnings"]
+
+
+def test_nonfinite_segment_confidences_remain_serializable_for_review(tmp_path):
+    row = serialize_segment(segment(avg_logprob=float("nan"), no_speech_prob=float("inf")))
+    assert row["avg_logprob"] is None and row["no_speech_prob"] is None
+    assert "missing_or_invalid_segment_confidence" in row["review_warnings"]
+    assert "missing_or_invalid_no_speech_probability" in row["review_warnings"]
+    paths = write_results({"segments": [row], "review_required": True}, tmp_path)
+    assert json.loads(paths["source.segments.json"].read_text())["segments"][0]["no_speech_prob"] is None

@@ -81,6 +81,16 @@ def add_diacritics(text: str, min_ratio: float = 0.15) -> str:
     return out or text
 
 
-def prepare(text: str) -> str:
-    """Everything a line needs before it is handed to a synthesiser."""
-    return add_diacritics((text or "").strip())
+def prepare(text: str, *, locale: str | None = None) -> str:
+    """Prepare speech without imposing MSA vowels on Egyptian dialect.
+
+    The bundled diacritizer is trained for formal Arabic. For ar-EG it can
+    change the *reading* while leaving every letter untouched, so Egyptian
+    lines remain exactly as the script writer supplied them (including any
+    hand-reviewed vowels). Ambiguous words go to listener review, not an
+    automatic synonym replacement.
+    """
+    text = (text or "").strip()
+    if (locale or "").lower().startswith("ar-eg"):
+        return text
+    return add_diacritics(text)

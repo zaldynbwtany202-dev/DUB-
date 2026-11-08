@@ -2,10 +2,14 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from difflib import SequenceMatcher
 from typing import Any
 
 _TOKEN = re.compile(r"[^\W_]+(?:['’-][^\W_]+)?", re.UNICODE)
+_ARABIC_MARKS = re.compile(r"[\u0610-\u061a\u064b-\u065f\u0670\u06d6-\u06ed\u0640]")
+_ARABIC_TEXT = re.compile(r"[\u0621-\u064a]")
+_ALEF_VARIANTS = str.maketrans("أإآٱ", "اااا")
 _NON_SPEECH = {
     "music", "silence", "noise", "applause", "laughter", "intro", "outro",
     "موسيقى", "صمت", "ضوضاء", "تصفيق", "ضحك",
@@ -13,7 +17,14 @@ _NON_SPEECH = {
 
 
 def normalize_tokens(text: str) -> list[str]:
-    return [token.lower().replace("’", "'") for token in _TOKEN.findall(text or "")]
+    """Compare words, not vowel marks: Arabic harakat must not split tokens.
+
+    This lexical normalization cannot distinguish homographs with different
+    spoken vowels. Those remain pronunciation hazards for a listener to hear.
+    """
+    cleaned = unicodedata.normalize("NFKC", text or "")
+    cleaned = _ARABIC_MARKS.sub("", cleaned).translate(_ALEF_VARIANTS)
+    return [token.lower().replace("’", "'") for token in _TOKEN.findall(cleaned)]
 
 
 
@@ -51,6 +62,9 @@ def validate_spoken_content(
         "missing_words": missing,
         "expected_text": expected,
         "observed_text": observed,
+        "evidence": "ASR lexical comparison only; identical text does not prove pronunciation or dialect",
+        "listener_review_required": bool(_ARABIC_TEXT.search(expected or "")),
+        "pronunciation_verified": False,
     }
 
 

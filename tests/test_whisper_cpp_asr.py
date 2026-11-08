@@ -121,3 +121,24 @@ def test_source_archive_strips_prefix_and_ignores_links(tmp_path):
     source_archive(path, "package/link", symlink=True)
     extract_source(path, tmp_path / "tool")
     assert not (tmp_path / "tool/link").is_symlink()
+
+
+def test_cpp_invalid_word_probability_is_retained_as_review_flag(tmp_path):
+    source = tmp_path / "source.mp4"
+    source.write_bytes(b"fixture")
+    data = native([{"text": "قوتهم", "offsets": {"from": 0, "to": 1000},
+                    "tokens": [token(" قوتهم", 0, 900, p=float("nan"))]}])
+    result = cpp_result(data, source, duration=1, elapsed=1)
+    assert result["segments"][0]["words"][0]["probability"] is None
+    assert "missing_or_invalid_word_confidence" in result["review_flags"]
+    json.dumps(result, allow_nan=False)
+
+
+def test_cpp_word_time_outside_segment_is_flagged_without_fabricated_time(tmp_path):
+    source = tmp_path / "source.mp4"
+    source.write_bytes(b"fixture")
+    data = native([{"text": "القصة", "offsets": {"from": 0, "to": 1000},
+                    "tokens": [token(" القصة", 0, 1600)]}])
+    result = cpp_result(data, source, duration=2, elapsed=1)
+    assert result["segments"][0]["words"][0]["end"] == 1.6
+    assert "missing_or_invalid_word_timing" in result["review_flags"]
