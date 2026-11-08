@@ -4,8 +4,9 @@
 The sandbox has no file picker, so the only way to get a new video in is over
 the wire. Plain http.server cannot do it -- it has no POST handler at all.
 
-Uploads are streamed straight to disk in one-megabyte chunks, never buffered in
-memory, because the files in question are full-length films. Each upload lands
+Uploads are sent in one-megabyte chunks; the server buffers at most 4 MiB per
+request to verify its checksum before appending. It never loads a whole film
+into memory. Each upload lands
 in incoming/ as NAME.part and is renamed to NAME only once the byte count
 matches, so a half-finished transfer is never mistaken for a whole one. If the
 connection drops the client asks /status how many bytes survived and resumes
@@ -17,9 +18,11 @@ dies at 80 percent does not have to start again.
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import os
 import sys
+import threading
 import urllib.parse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -28,10 +31,18 @@ ROOT = Path("/home/user/DUB-").resolve()
 INCOMING = ROOT / "incoming"
 PREVIEWS = ROOT / "previews"
 CHUNK = 1 << 20
+MAX_UPLOAD_CHUNK = 4 * CHUNK
+_UPLOAD_LOCKS = tuple(threading.Lock() for _ in range(64))
+
+
+def upload_lock(name):
+    """Bounded lock stripes: serialize same-name writes without unbounded state."""
+    return _UPLOAD_LOCKS[hash(name) % len(_UPLOAD_LOCKS)]
+
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "91"
+BUILD = "92"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -723,6 +734,16 @@ file.onchange=()=>{if(file.files[0])send(file.files[0])};
 function human(b){const u=['B','KB','MB','GB'];let i=0;while(b>=1024&&i<3){b/=1024;i++}return b.toFixed(1)+' '+u[i]}
 
 function status(name){return fetch('/status?name='+encodeURIComponent(name)).then(r=>r.json())}
+const hex=bytes=>Array.from(new Uint8Array(bytes),x=>x.toString(16).padStart(2,'0')).join('');
+async function shaBlob(blob){
+  if(!globalThis.crypto?.subtle)throw Error('Web Crypto unavailable');
+  return hex(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()));
+}
+async function fileFingerprint(f){
+  // 128 KiB at most, never load the whole film into browser memory.
+  return shaBlob(new Blob([String(f.size)+':',f.slice(0,65536),
+                          f.slice(Math.max(0,f.size-65536))]));
+}
 
 // One request per chunk, not one request for the film.
 //
@@ -741,9 +762,11 @@ const CHUNK_MAX=1048576, CHUNK_MIN=262144;
 let chunk=CHUNK_MAX;
 
 function send(f){
-  if(busy)return; busy=true;
+  if(busy)return;
+  if(!f.size){err.textContent='✗ الملف فارغ؛ اختر ملفًا يحتوي على بيانات.';return}
+  busy=true;
   ok.style.display='none'; err.textContent=''; row.style.display='block'; nm.textContent=f.name;
-  let off=0, fails=0, tries=0, t0=Date.now();
+  let off=0, fails=0, tries=0, t0=Date.now(), fingerprint;
   const setBar=n=>{
     const p=Math.min(100,n/f.size*100);
     fill.style.width=p+'%'; pct.textContent=p.toFixed(1)+'%';
@@ -752,49 +775,67 @@ function send(f){
       spd.textContent=human(r)+'/ث · بقي '+Math.max(0,Math.round((f.size-n)/r))+'ث'}
   };
   setBar(0);
-  status(f.name).then(s=>{
-    if(s.done) return fail('الملف موجود مسبقًا؛ احتفظنا به دون استبدال. غيّر اسم الملف إذا أردت نسخة أخرى.');
-    off=s.bytes;
-    if(off>0){const r=confirm('يوجد '+human(off)+' مرفوع مسبقًا. استئناف من حيث توقف؟'); if(!r)off=0}
-    setBar(off); pump();
-  }).catch(()=>pump());
+  fileFingerprint(f).then(id=>{
+    fingerprint=id;
+    return status(f.name).then(s=>{
+      if(s.done) return fail('الملف موجود مسبقًا؛ احتفظنا به دون استبدال. غيّر اسم الملف إذا أردت نسخة أخرى.');
+      if(s.bytes>0&&s.fingerprint!==id)
+        return fail('يوجد جزء سابق من ملف مختلف أو بلا بصمة. احتفظنا به؛ اختر اسمًا جديدًا.');
+      off=s.bytes;
+      if(off>0&&!confirm('يوجد '+human(off)+' مرفوع مسبقًا. استئناف من حيث توقف؟'))
+        return fail('أُلغي الاستئناف؛ الجزء السابق محفوظ. اختر اسمًا آخر لبدء رفع جديد.');
+      setBar(off); pump();
+    }).catch(()=>pump());
+  }).catch(()=>fail('يلزم متصفح يدعم SHA-256 عبر اتصال آمن للتحقق من الرفع.'));
 
   function pump(){
     if(off>=f.size) return verify();
     const from=off, to=Math.min(off+chunk,f.size);
-    const xhr=new XMLHttpRequest();
-    xhr.open('POST','/upload?name='+encodeURIComponent(f.name)+
-                    '&offset='+from+'&total='+f.size);
-    xhr.setRequestHeader('Content-Type','application/octet-stream');
-    xhr.timeout=180000;
-    xhr.upload.onprogress=e=>setBar(from+e.loaded);
-    xhr.onload=()=>{
-      if(xhr.status===200){off=to; fails=0; setBar(off); pump()}
-      else if(xhr.status===413){
-        // The proxy refused the body size outright. No point retrying the
-        // same size -- go straight to the smallest chunk that can work.
-        if(chunk<=CHUNK_MIN) return fail('الوسيط يرفض حتى أصغر حجم. أرفق الفيديو في المحادثة.');
-        chunk=CHUNK_MIN; retry(from);
-      }
-      else {tries++; if(tries>40)return fail('رفض الخادم الجزء ('+xhr.status+').');
-            retry(from)}
-    };
-    xhr.onerror=()=>{tries++; if(tries>40)return fail('انقطع الاتصال بعد محاولات كثيرة.'); retry(from)};
-    xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. أعد تحميل الصفحة أو أرفق الفيديو في المحادثة.');
-                       retry(from)};
-    xhr.send(f.slice(from,to));
+    const payload=f.slice(from,to);
+    shaBlob(payload).then(hash=>{
+      const xhr=new XMLHttpRequest();
+      xhr.open('POST','/upload?name='+encodeURIComponent(f.name)+
+                      '&offset='+from+'&total='+f.size);
+      xhr.setRequestHeader('Content-Type','application/octet-stream');
+      xhr.setRequestHeader('X-Upload-Fingerprint',fingerprint);
+      xhr.setRequestHeader('X-Chunk-SHA256',hash);
+      xhr.timeout=180000;
+      xhr.upload.onprogress=e=>setBar(from+e.loaded);
+      xhr.onload=()=>{
+        if(xhr.status===200){off=to; fails=0; setBar(off); pump()}
+        else if(xhr.status===409||xhr.status===422)
+          fail('الجزء لا يطابق الملف المحفوظ؛ لم نغير البيانات. اختر اسمًا آخر أو تحقق من الملف.');
+        else if(xhr.status===413){
+          if(chunk<=CHUNK_MIN) return fail('الوسيط يرفض حتى أصغر حجم. أرفق الفيديو في المحادثة.');
+          chunk=CHUNK_MIN; retry(from);
+        }
+        else {tries++; if(tries>40)return fail('رفض الخادم الجزء ('+xhr.status+').');
+              retry(from)}
+      };
+      xhr.onerror=()=>{tries++; if(tries>40)return fail('انقطع الاتصال بعد محاولات كثيرة.'); retry(from)};
+      xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. أعد تحميل الصفحة أو أرفق الفيديو في المحادثة.');
+                         retry(from)};
+      xhr.send(payload);
+    }).catch(()=>fail('تعذّر حساب بصمة جزء الرفع.'));
   }
 
   function retry(from){
     fails++;
     if(fails%3===0&&chunk>CHUNK_MIN) chunk=Math.max(CHUNK_MIN,Math.floor(chunk/2));
-    status(f.name).then(s=>{off=Math.max(0,s.bytes); setBar(off); setTimeout(pump,500)})
+    status(f.name).then(s=>{
+      if(s.done) return verify();
+      if(s.bytes>0&&s.fingerprint!==fingerprint)
+        return fail('تغير الملف أثناء الاستئناف؛ الجزء السابق محفوظ.');
+      off=Math.max(0,s.bytes); setBar(off); setTimeout(pump,500);
+    })
       .catch(()=>{off=from; setTimeout(pump,900)});
   }
 
   function verify(){
     status(f.name).then(s=>{
       if(s.done){
+        if(s.size!==f.size||s.fingerprint!==fingerprint)
+          return fail('يوجد ملف مكتمل بهذا الاسم لكنه مختلف؛ لم نستبدله.');
         fill.style.width='100%'; pct.textContent='100%'; ok.style.display='block';
         ok.innerHTML='✓ اكتمل الرفع: <b>'+escapeHtml(f.name)+'</b> ('+human(s.size)+')<br>'+
           'قل لي «ابدأ الدبلجة» وسأعالجه.';
@@ -877,6 +918,14 @@ class Handler(BaseHTTPRequestHandler):
     def _safe(self, name):
         return safe_name(name)
 
+    @staticmethod
+    def _upload_fingerprint(final):
+        meta = Path(str(final) + (".upload.json" if final.exists() else ".part.json"))
+        try:
+            return json.loads(meta.read_text(encoding="utf-8")).get("fingerprint")
+        except (OSError, ValueError, AttributeError):
+            return None
+
     def do_GET(self):
         u = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(u.query)
@@ -900,12 +949,13 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, json.dumps(
                 {"bytes": part.stat().st_size if part.exists() else 0,
                  "size": p.stat().st_size if p.exists() else 0,
-                 "done": p.exists()}), "application/json")
+                 "done": p.exists(),
+                 "fingerprint": self._upload_fingerprint(p)}), "application/json")
         if u.path == "/files":
             INCOMING.mkdir(parents=True, exist_ok=True)
             fs = sorted([{"name": f.name, "size": f.stat().st_size}
                          for f in INCOMING.iterdir()
-                         if f.is_file() and not f.name.endswith(".part")],
+                         if f.is_file() and not f.name.endswith((".part", ".part.json", ".upload.json"))],
                         key=lambda x: -x["size"])
             return self._send(200, json.dumps({"files": fs}), "application/json")
         # Never serve arbitrary repository files (including .git and source
@@ -984,74 +1034,99 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(400, "لا اسم")
         try:
             length = int(self.headers.get("Content-Length") or 0)
-        except ValueError:
-            return self._send(400, "طول غير صالح")
-        if length <= 0:
-            return self._send(400, "جزء فارغ أو طول غير صالح")
-        try:
             offset = int(q.get("offset", ["0"])[0])
-        except ValueError:
-            return self._send(400, "إزاحة غير صالحة")
-        if offset < 0:
-            return self._send(400, "إزاحة غير صالحة")
-        # Optional total. Without it a request is assumed to carry the whole
-        # remainder of the file, so a client that sends fixed-size chunks would
-        # have each chunk renamed as if it were the finished upload. With it,
-        # completion is a byte count rather than a guess.
-        try:
             total = int(q["total"][0]) if "total" in q else None
         except ValueError:
-            return self._send(400, "حجم الملف غير صالح")
-        if total is not None and (total <= 0 or offset + length > total):
-            return self._send(400, "الجزء يتجاوز حجم الملف")
+            return self._send(400, "أرقام رفع غير صالحة")
+        if (length <= 0 or length > MAX_UPLOAD_CHUNK or offset < 0
+                or total is not None and (total <= 0 or offset + length > total)):
+            return self._send(413 if length > MAX_UPLOAD_CHUNK else 400,
+                              "حجم الجزء أو إزاحته غير صالح")
         final = self._safe(name)
-        part = final.with_suffix(final.suffix + ".part") if final.suffix else Path(str(final) + ".part")
-        INCOMING.mkdir(parents=True, exist_ok=True)
-        if final.exists():
-            return self._send(409, "الملف موجود مسبقًا؛ لن يُستبدل")
-        # Honouring an offset is only possible when the bytes are actually
-        # there. Opening wb and seeking would silently fill the gap with
-        # zeroes -- the file would reach the right size and be renamed as
-        # complete while its head was garbage. Refuse instead: 409 carries the
-        # real byte count so the client can restart from it.
-        have = part.stat().st_size if part.exists() else 0
-        if offset and have < offset:
-            return self._send(409, json.dumps(
-                {"error": "لا بيانات جزئية عند هذه الإزاحة",
-                 "bytes": have}), "application/json")
-        mode = "r+b" if offset else "wb"
-        if mode == "r+b":
-            with open(part, "r+b") as fh:
-                fh.truncate(offset)
-        written = 0
+        if final.name.endswith((".part", ".part.json", ".upload.json")):
+            return self._send(400, "اسم ملف محجوز")
+        part = Path(str(final) + ".part")
+        meta = Path(str(part) + ".json")
+        saved_meta = Path(str(final) + ".upload.json")
+        if any(p.is_symlink() for p in (final, part, meta, saved_meta)):
+            return self._send(400, "رابط ملف غير مسموح")
+        fingerprint = self.headers.get("X-Upload-Fingerprint")
+        expected_chunk = self.headers.get("X-Chunk-SHA256")
+        for token in (fingerprint, expected_chunk):
+            if token is not None and (len(token) != 64 or any(c not in "0123456789abcdef" for c in token)):
+                return self._send(400, "بصمة غير صالحة")
+
+        # A request is at most 4 MiB. Read the WHOLE chunk before touching a
+        # partial film, so a dropped connection cannot leave half a new chunk.
+        data = bytearray()
+        self.connection.settimeout(195)
         try:
-            with open(part, mode) as fh:
-                # Reopening starts at zero. Without this the resumed bytes
-                # overwrite the head of the partial file instead of following
-                # it, and the upload finishes at the length of the last chunk
-                # rather than of the whole file.
-                if offset:
-                    fh.seek(offset)
-                while written < length:
-                    buf = self.rfile.read(min(CHUNK, length - written))
-                    if not buf:
-                        break
-                    fh.write(buf)
-                    written += len(buf)
-        except (BrokenPipeError, ConnectionResetError):
-            sys.stderr.write(f"[upload] انقطع {name} عند {offset + written}\n")
+            while len(data) < length:
+                chunk = self.rfile.read(min(CHUNK, length - len(data)))
+                if not chunk:
+                    break
+                data.extend(chunk)
+        except (BrokenPipeError, ConnectionResetError, TimeoutError):
+            self.close_connection = True
             return
-        if written < length:
-            sys.stderr.write(f"[upload] ناقص {name}: {written}/{length}\n")
-            return self._send(500, "رفع ناقص")
-        done_at = offset + written
-        if total is not None and done_at < total:
-            sys.stderr.write(f"[upload] تقدّم {name}: {done_at}/{total}\n")
-            return self._send(200, json.dumps({"bytes": done_at, "complete": False}),
-                              "application/json")
-        os.replace(part, final)
-        sys.stderr.write(f"[upload] ✓ {final.name} ({final.stat().st_size} بايت)\n")
-        self._send(200, "ok")
+        if len(data) != length:
+            self.close_connection = True
+            return self._send(400, "جزء ناقص؛ لم تتغير بيانات الفيلم")
+        if expected_chunk and hashlib.sha256(data).hexdigest() != expected_chunk:
+            return self._send(422, "بصمة الجزء لا تطابق محتواه")
+
+        INCOMING.mkdir(parents=True, exist_ok=True)
+        with upload_lock(str(final)):
+            if any(p.is_symlink() for p in (final, part, meta, saved_meta)):
+                return self._send(400, "رابط ملف غير مسموح")
+            if final.exists() or saved_meta.exists():
+                return self._send(409, "ملف مكتمل موجود؛ لن يُستبدل")
+            have = part.stat().st_size if part.exists() else 0
+            if (total is not None and have > total) or (total is None and have):
+                return self._send(409, "جزء موجود بحجم غير متوقع؛ لم يُستبدل")
+            if meta.exists():
+                try:
+                    previous = json.loads(meta.read_text(encoding="utf-8"))
+                    if (previous.get("total") != total or
+                            previous.get("fingerprint") != fingerprint):
+                        return self._send(409, "ملف مختلف أو حجم مختلف؛ احتفظنا بالجزء السابق")
+                except (OSError, ValueError, AttributeError):
+                    return self._send(409, "بيانات استئناف تالفة؛ الجزء السابق محفوظ")
+            elif have and fingerprint:
+                # Old partial files had no identity metadata: never attach an
+                # unrelated file just because its name and offset happen to fit.
+                return self._send(409, "جزء قديم بلا بصمة؛ اختر اسمًا مختلفًا")
+            if offset > have:
+                return self._send(409, json.dumps({"bytes": have,
+                    "error": "إزاحة تتجاوز البيانات المحفوظة"}), "application/json")
+            overlap = min(length, have - offset)
+            if overlap:
+                with open(part, "rb") as fh:
+                    fh.seek(offset)
+                    if fh.read(overlap) != data[:overlap]:
+                        return self._send(409, "الجزء لا يطابق البيانات السابقة؛ لم تُحذف")
+            if not meta.exists():
+                # Sidecar persists after completion for provenance; its copy
+                # alongside .part prevents a different same-named file resume.
+                meta.write_text(json.dumps({"schema_version": 1, "total": total,
+                                            "fingerprint": fingerprint}), encoding="utf-8")
+            new_data = data[overlap:]
+            if new_data:
+                with open(part, "ab") as fh:
+                    fh.write(new_data)
+                    fh.flush()
+                    os.fsync(fh.fileno())
+            done_at = max(have, offset + length)
+            if total is not None and done_at < total:
+                sys.stderr.write(f"[upload] تقدّم {final.name}: {done_at}/{total}\n")
+                return self._send(200, json.dumps({"bytes": done_at, "complete": False}),
+                                  "application/json")
+            # The complete file appears atomically only after all bytes have
+            # arrived and passed the optional chunk checksum.
+            os.replace(part, final)
+            os.replace(meta, saved_meta)
+            sys.stderr.write(f"[upload] ✓ {final.name} ({done_at} بايت)\n")
+            return self._send(200, "ok")
 
 
 def main():

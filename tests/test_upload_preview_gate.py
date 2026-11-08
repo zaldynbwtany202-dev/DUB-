@@ -114,7 +114,7 @@ def test_health_is_read_only_and_delete_is_disabled(tmp_path, monkeypatch):
     with server(tmp_path, monkeypatch) as (base, root):
         status, _, body = get(base, "/health")
         assert status == 200
-        assert json.loads(body) == {"ready": True, "build": "91",
+        assert json.loads(body) == {"ready": True, "build": "92",
                                     "voice_status": "paused", "production_approved": False}
         assert not (root / "incoming").exists()
         (root / "incoming").mkdir()
@@ -211,3 +211,79 @@ def test_resumable_upload_still_assembles_exact_bytes(tmp_path, monkeypatch):
             assert r.status == 200
         assert (root / "incoming" / "film.mp4").read_bytes() == payload
         assert json.loads(get(base, "/status?name=film.mp4")[2])["done"] is True
+
+
+def post_chunk(base, name, offset, total, data, fingerprint=None, checksum=None):
+    import hashlib
+    from urllib.parse import quote
+
+    headers = {}
+    if fingerprint:
+        headers["X-Upload-Fingerprint"] = fingerprint
+    if checksum is not None:
+        headers["X-Chunk-SHA256"] = (hashlib.sha256(data).hexdigest()
+                                     if checksum is True else checksum)
+    req = urllib.request.Request(
+        base + f"/upload?name={quote(name)}&offset={offset}&total={total}",
+        headers=headers, data=data, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=4) as r:
+            return r.status, r.read()
+    except urllib.error.HTTPError as r:
+        return r.status, r.read()
+
+
+def test_same_file_retry_is_idempotent_and_never_truncates(tmp_path, monkeypatch):
+    with server(tmp_path, monkeypatch) as (base, root):
+        fp = "a" * 64
+        assert post_chunk(base, "film.mp4", 0, 12, b"abcdef", fp, True)[0] == 200
+        assert post_chunk(base, "film.mp4", 0, 12, b"abcdef", fp, True)[0] == 200
+        assert post_chunk(base, "film.mp4", 2, 12, b"cdefgh", fp, True)[0] == 200
+        assert (root / "incoming" / "film.mp4.part").read_bytes() == b"abcdefgh"
+        assert post_chunk(base, "film.mp4", 0, 12, b"BAD", fp, True)[0] == 409
+        assert post_chunk(base, "film.mp4", 8, 12, b"ijkl", fp, True)[0] == 200
+        assert (root / "incoming" / "film.mp4").read_bytes() == b"abcdefghijkl"
+        metadata = json.loads((root / "incoming" / "film.mp4.upload.json").read_text())
+        assert metadata["fingerprint"] == fp
+        assert metadata["total"] == 12
+        assert [x["name"] for x in json.loads(get(base, "/files")[2])["files"]] == ["film.mp4"]
+
+
+def test_wrong_fingerprint_or_chunk_hash_cannot_change_partial(tmp_path, monkeypatch):
+    with server(tmp_path, monkeypatch) as (base, root):
+        fp = "b" * 64
+        assert post_chunk(base, "film.mp4", 0, 10, b"hello", fp, True)[0] == 200
+        part = root / "incoming" / "film.mp4.part"
+        assert post_chunk(base, "film.mp4", 5, 10, b"world", "c" * 64, True)[0] == 409
+        assert post_chunk(base, "film.mp4", 5, 10, b"world", fp, "0" * 64)[0] == 422
+        assert post_chunk(base, "film.mp4", 6, 10, b"orld", fp, True)[0] == 409
+        assert part.read_bytes() == b"hello"
+        assert post_chunk(base, "film.mp4", 5, 10, b"world", fp, True)[0] == 200
+        assert (root / "incoming" / "film.mp4").read_bytes() == b"helloworld"
+        assert json.loads(get(base, "/status?name=film.mp4")[2])["fingerprint"] == fp
+
+
+def test_legacy_partial_is_not_reused_with_new_fingerprint(tmp_path, monkeypatch):
+    with server(tmp_path, monkeypatch) as (base, root):
+        (root / "incoming").mkdir()
+        (root / "incoming" / "film.mp4.part").write_bytes(b"keep me")
+        assert post_chunk(base, "film.mp4", 7, 12, b"extra", "d" * 64, True)[0] == 409
+        assert (root / "incoming" / "film.mp4.part").read_bytes() == b"keep me"
+
+
+def test_concurrent_writers_to_same_name_do_not_mix_files(tmp_path, monkeypatch):
+    from concurrent.futures import ThreadPoolExecutor
+    from threading import Barrier
+
+    with server(tmp_path, monkeypatch) as (base, root):
+        barrier = Barrier(2)
+
+        def send(data, fp):
+            barrier.wait(timeout=3)
+            return post_chunk(base, "film.mp4", 0, 6, data, fp, True)[0]
+
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            a = pool.submit(send, b"AAA", "a" * 64)
+            b = pool.submit(send, b"BBB", "b" * 64)
+            assert sorted([a.result(), b.result()]) == [200, 409]
+        assert (root / "incoming" / "film.mp4.part").read_bytes() in (b"AAA", b"BBB")
