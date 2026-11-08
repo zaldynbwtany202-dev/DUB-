@@ -16,7 +16,7 @@ class VoiceDecisionError(RuntimeError):
     pass
 
 
-def require_production_ready(slug: str, root: Path = ROOT) -> None:
+def require_production_ready(slug: str, root: Path = ROOT) -> str | None:
     """Other film projects are unaffected; this one needs two explicit approvals."""
     if slug != PROJECT:
         return
@@ -34,6 +34,7 @@ def require_production_ready(slug: str, root: Path = ROOT) -> None:
         raise VoiceDecisionError(
             "Patrick Jane: voice and transcript need explicit approval; production paused"
         )
+    return state["approved_voice_id"].strip()
 
 
 if __name__ == "__main__":

@@ -121,8 +121,47 @@ def trim_silence(samples: np.ndarray, sr: int) -> tuple[np.ndarray, dict]:
                                        "trailing_silence_removed": (len(samples) - end) / sr}
 
 
+def voice_activity(samples: np.ndarray, sr: int) -> dict[str, Any]:
+    """Observed take energy, not ASR or a claim that every word is synchronized.
+
+    Keep timing relative to the fitted take, including leading and internal
+    silence. This allows the coverage gate to see a silent tail even when a
+    pre-aligned file occupies the whole cue window on disk.
+    """
+    if sr <= 0 or samples.ndim != 1 or not len(samples) or not np.isfinite(samples).all():
+        raise ValueError("Empty or non-finite voice take")
+    peak = float(np.max(np.abs(samples)))
+    if peak < 1e-5:
+        raise ValueError("Voice take is silent")
+    frame = max(1, int(sr * 0.01))
+    padded = np.pad(samples, (0, (-len(samples)) % frame))
+    rms = np.sqrt(np.mean(padded.reshape(-1, frame) ** 2, axis=1))
+    active = rms > max(1e-5, peak * 10 ** (-48 / 20))
+    indexes = np.flatnonzero(active)
+    if not len(indexes):
+        raise ValueError("No audible speech in voice take")
+    first, last = int(indexes[0]), int(indexes[-1])
+    internal = []
+    i = first
+    while i < last:
+        if active[i]:
+            i += 1
+            continue
+        j = i + 1
+        while j <= last and not active[j]:
+            j += 1
+        if (j - i) * frame / sr >= 0.15:
+            internal.append({"start": round(i * frame / sr, 3),
+                             "end": round(min(j * frame, len(samples)) / sr, 3)})
+        i = j
+    return {"active_start_seconds": round(first * frame / sr, 3),
+            "active_end_seconds": round(min((last + 1) * frame, len(samples)) / sr, 3),
+            "internal_silences": internal}
+
+
 def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 1.0,
-             max_tempo: float = 1.08, sample_rate: int = SR_TTS) -> tuple[np.ndarray, dict]:
+             max_tempo: float = 1.08, sample_rate: int = SR_TTS,
+             trim_edges: bool = True) -> tuple[np.ndarray, dict]:
     sr = sample_rate
     decoded = subprocess.run([ffmpeg_exe(), "-v", "error", "-i", str(seg["audio"]),
                               "-vn", "-ar", str(sr), "-ac", "1", "-f", "f32le", "-"],
@@ -138,14 +177,19 @@ def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 1.0,
         window = float(seg["end"]) - float(seg["start"])
         if len(samples) > round(window * sr) + 1:
             raise ValueError(f"Pre-aligned cue {seg.get('index', order)} overruns its window; refusing to truncate speech")
+        activity = voice_activity(samples, sr)
         return samples.astype(np.float32, copy=False), {
             "index": seg.get("index", order), "start": float(seg["start"]), "end": float(seg["end"]),
             "audio": str(seg["audio"]), "audio_start": audio_start, "audio_end": audio_end,
             "natural_seconds": len(samples) / sr, "tempo": 1.0, "fitted_seconds": len(samples) / sr,
             "text": seg["text"], "speech_truncated": False, "leading_silence_removed": 0.0,
-            "trailing_silence_removed": 0.0, "pre_aligned": True,
+            "trailing_silence_removed": 0.0, "pre_aligned": True, **activity,
         }
-    samples, silence = trim_silence(samples, sr)
+    if trim_edges:
+        samples, silence = trim_silence(samples, sr)
+    else:
+        voice_activity(samples, sr)  # validate, but leave every original sample intact
+        silence = {"leading_silence_removed": 0.0, "trailing_silence_removed": 0.0}
     natural_duration = len(samples) / sr
     window = float(seg["end"]) - float(seg["start"])
     budget = window - min(0.08, window * 0.05)  # small safety tail prevents clipping at the next cue
@@ -161,15 +205,17 @@ def fit_take(seg: dict, work_dir: Path, order: int, *, min_tempo: float = 1.0,
         samples, _ = sf.read(fitted, dtype="float32")
     if len(samples) > round(window * sr):
         raise ValueError(f"Fitted cue {seg.get('index', order)} still overruns its window; refusing to truncate speech")
-    # Tiny fades only suppress discontinuities; no syllables are discarded.
-    fade = min(int(sr * 0.004), len(samples) // 2)
+    # Raw-take mode permits atempo only; do not fade or touch its samples.
+    # The default trimmed mode retains its old 4 ms boundary fades.
+    fade = min(int(sr * 0.004), len(samples) // 2) if trim_edges else 0
     if fade:
         samples[:fade] *= np.linspace(0, 1, fade)
         samples[-fade:] *= np.linspace(1, 0, fade)
+    activity = voice_activity(samples, sr)
     return samples, {"index": seg.get("index", order), "start": float(seg["start"]), "end": float(seg["end"]),
                      "audio": str(seg["audio"]), "audio_start": audio_start, "audio_end": audio_end,
                      "natural_seconds": natural_duration, "tempo": rate, "fitted_seconds": len(samples) / sr,
-                     "text": seg["text"], "speech_truncated": False, **silence}
+                     "text": seg["text"], "speech_truncated": False, **silence, **activity}
 
 
 def _srt_stamp(seconds: float) -> str:
@@ -179,6 +225,18 @@ def _srt_stamp(seconds: float) -> str:
     return f"{hours:02d}:{minute:02d}:{sec:02d},{ms:03d}"
 
 
+def validate_voice_metadata(cues: dict[str, Any], segments: list[dict]) -> dict[str, Any]:
+    """Reject contradictory declared voices; metadata is not acoustic proof."""
+    declared = cues.get("voice_id")
+    per_take = [s.get("voice_id") for s in segments]
+    if len({v for v in per_take if v}) > 1 or any(v and declared and v != declared for v in per_take):
+        raise ValueError("Mixed declared voice IDs in one dub; use one narrator")
+    return {"declared_voice_id": declared,
+            "status": "per_take_declared" if per_take and all(per_take)
+                      else "partial_or_sheet_only_unverified",
+            "note": "voice IDs are metadata only; the actual speaker needs listening"}
+
+
 def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_background: bool = True,
              video: Path | None = None, end_time: float | None = None) -> Path:
     """Render complete takes, or an explicitly labelled prefix preview."""
@@ -186,6 +244,18 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         raise ValueError("This renderer accepts agent-generated voice takes only")
     video = Path(video or cues["video"])
     output = Path(output)
+    # The Patrick Jane listener explicitly paused production. A caller that
+    # bypasses the project-specific assembler must not publish it here.
+    patrick = (cues.get("project_slug") == "patrick-jane-return"
+               or "patrick-jane-return" in video.parts
+               or "patrick-jane-return" in output.parts)
+    if patrick:
+        from scripts.voice_decision_gate import require_production_ready
+        approved_voice = require_production_ready("patrick-jane-return")
+        if cues.get("voice_id") != approved_voice:
+            raise ValueError("Patrick Jane: cue voice differs from the explicitly approved voice")
+        if mix_background:
+            raise ValueError("Patrick Jane: use the preserved-bed mixer; generic mixing may duck the background")
     if video.resolve() == output.resolve():
         raise ValueError("Never overwrite the source video")
     source_duration = probe_duration(video)
@@ -198,6 +268,7 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         raise ValueError("Preview end must be at a cue boundary, never in the middle of spoken text")
     if not segments:
         raise ValueError("No agent takes in requested interval")
+    voice_metadata = validate_voice_metadata(cues, segments)
     missing = [str(s["audio"]) for s in segments if not Path(s["audio"]).is_file() or Path(s["audio"]).stat().st_size == 0]
     if missing:
         raise FileNotFoundError("agent takes missing: " + ", ".join(missing))
@@ -215,12 +286,31 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
     timeline = np.zeros(round(duration * sr), dtype=np.float32)
     placed = []
     for i, seg in enumerate(segments):
-        samples, report = fit_take(seg, work_dir, i, min_tempo=min_tempo, max_tempo=max_tempo, sample_rate=sr)
+        samples, report = fit_take(seg, work_dir, i, min_tempo=min_tempo, max_tempo=max_tempo,
+                                   sample_rate=sr, trim_edges=not (patrick or cues.get("preserve_take_silence", False)))
         start = round(float(seg["start"]) * sr)
         if start + len(samples) > len(timeline):
             raise ValueError("Speech would extend past the video; refusing to trim it")
         timeline[start:start + len(samples)] += samples
         placed.append(report)
+    source_coverage = None
+    coverage_gate = None
+    if cues.get("timing_mode") == "source_audio":
+        from youtube_auto_dub.source_sync import assert_coverage, coverage_from_placements, load_policy
+        windows = [(float(s["start"]), float(s["end"])) for s in segments]
+        source_coverage = coverage_from_placements(windows, placed)
+        policy = load_policy()
+        threshold = float(policy["uncovered_source_speech_fail_seconds"])
+        coverage_gate = {"status": "passed", "max_gap_seconds": threshold,
+                         "coverage": source_coverage,
+                         "note": "Cue-window energy is an estimate, not independent word-level synchronization; listen to the source."}
+        try:
+            assert_coverage(source_coverage, policy)
+        except ValueError:
+            coverage_gate["status"] = "rejected"
+            write_cues(work_dir / "coverage-gate.json", coverage_gate)
+            raise
+        write_cues(work_dir / "coverage-gate.json", coverage_gate)
     aligned = work_dir / "aligned.wav"
     sf.write(aligned, timeline, sr, subtype="PCM_24")
     mix_input = aligned
@@ -261,10 +351,11 @@ def assemble(cues: dict[str, Any], *, work_dir: Path, output: Path, mix_backgrou
         "loudness_normalization": json.loads(meter[0]) if meter else None, "placements": placed,
         "timing_mode": cues.get("timing_mode") or "cues",
         "slowed": any(float(p["tempo"]) < 0.999 for p in placed),
+        "voice_provenance": voice_metadata,
     }
-    if cues.get("timing_mode") == "source_audio":
-        from youtube_auto_dub.source_sync import coverage_from_placements
-        windows = [(float(s["start"]), float(s["end"])) for s in segments]
-        report["source_audio_coverage"] = coverage_from_placements(windows, placed)
+    if source_coverage is not None:
+        report["source_audio_coverage"] = source_coverage
+        report["coverage_gate"] = {"status": coverage_gate["status"],
+                                   "max_gap_seconds": coverage_gate["max_gap_seconds"]}
     write_cues(output.with_suffix(".agent.json"), report)
     return output

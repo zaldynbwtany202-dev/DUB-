@@ -224,26 +224,56 @@ def coverage_from_placements(
     source_windows: list[tuple[float, float]],
     placements: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """How much original speech time has no dubbed speech, without slowing."""
+    """Find silent spans inside source-speech *candidate* windows.
+
+    Energy in a fitted voice take is not proof of spoken words or word-level
+    sync. These windows are timing estimates, and flagged gaps need comparison
+    with the actual source soundtrack before anyone adds or changes words.
+    Older reports without activity measurements retain tail-only semantics.
+    """
     uncovered = 0.0
     longest = 0.0
     holes = []
     by_start = {round(float(p["start"]), 3): p for p in placements}
     for start, end in source_windows:
-        window = end - start
         placed = by_start.get(round(start, 3))
-        spoken = float(placed["fitted_seconds"]) if placed else 0.0
-        gap = max(0.0, window - spoken)
-        uncovered += gap
-        longest = max(longest, gap)
-        if gap >= 0.15:
-            holes.append({"start": start, "end": end, "uncovered": round(gap, 3)})
+        if placed:
+            active_start = min(end, start + max(0.0, float(placed.get("active_start_seconds", 0))))
+            active_end = min(end, start + max(0.0, float(
+                placed.get("active_end_seconds", placed["fitted_seconds"]))))
+            if active_end < active_start:
+                raise ValueError("Invalid voice activity interval in placement")
+            gaps = [(start, active_start, "leading"), (active_end, end, "tail")]
+            for silence in placed.get("internal_silences", []):
+                lo = max(active_start, start + float(silence["start"]))
+                hi = min(active_end, start + float(silence["end"]))
+                gaps.append((lo, hi, "internal"))
+        else:
+            gaps = [(start, end, "missing_take")]
+        # Coalesce overlapping gaps so corrupt/rounded activity cannot count a
+        # millisecond twice; keep their exact positions for listener review.
+        merged: list[tuple[float, float, str]] = []
+        for lo, hi, kind in sorted((lo, hi, kind) for lo, hi, kind in gaps if hi > lo):
+            if merged and lo <= merged[-1][1]:
+                old_lo, old_hi, old_kind = merged[-1]
+                merged[-1] = (old_lo, max(old_hi, hi), old_kind if old_kind == kind else "combined")
+            else:
+                merged.append((lo, hi, kind))
+        for lo, hi, kind in merged:
+            gap = hi - lo
+            uncovered += gap
+            longest = max(longest, gap)
+            if gap >= 0.15:
+                holes.append({"start": round(lo, 3), "end": round(hi, 3),
+                              "uncovered": round(gap, 3), "kind": kind,
+                              "window_start": start, "window_end": end})
     return {
         "source_windows": len(source_windows),
         "uncovered_seconds": round(uncovered, 3),
         "longest_uncovered_seconds": round(longest, 3),
         "holes": holes,
         "slowed": False,
+        "evidence": "voice energy inside estimated cue windows; not word-level alignment",
     }
 
 

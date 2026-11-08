@@ -165,8 +165,8 @@ def test_production_gate_requires_voice_and_text_approval(tmp_path):
         require_production_ready("patrick-jane-return", tmp_path)
     state["transcript_approved"] = True
     state_path.write_text(json.dumps(state))
-    require_production_ready("patrick-jane-return", tmp_path)
-    require_production_ready("into-the-wild", tmp_path)
+    assert require_production_ready("patrick-jane-return", tmp_path) == "voice-27"
+    assert require_production_ready("into-the-wild", tmp_path) is None
 
 
 def test_assembler_refuses_paused_project_before_creating_output(tmp_path):

@@ -131,3 +131,42 @@ def test_coverage_finds_tails_without_claiming_lip_sync():
     assert report["longest_uncovered_seconds"] == pytest.approx(2.32, abs=0.05)
     with pytest.raises(ValueError, match="uncovered"):
         assert_coverage(report)
+
+
+def test_coverage_counts_observed_leading_internal_and_tail_silence():
+    # A 5 s file with 2 s of silence inside it must not be called 5 s of speech.
+    report = coverage_from_placements(
+        [(0.0, 5.0)],
+        [{"start": 0.0, "fitted_seconds": 5.0,
+          "active_start_seconds": 0.4, "active_end_seconds": 4.5,
+          "internal_silences": [{"start": 1.2, "end": 3.2}]}],
+    )
+    assert report["uncovered_seconds"] == pytest.approx(2.9, abs=0.01)
+    assert report["longest_uncovered_seconds"] == pytest.approx(2.0, abs=0.01)
+    assert [h["kind"] for h in report["holes"]] == ["leading", "internal", "tail"]
+    assert report["holes"][1]["start"] == pytest.approx(1.2)
+    with pytest.raises(ValueError, match="uncovered"):
+        assert_coverage(report)
+
+
+def test_coverage_coalesces_rounded_or_overlapping_silences():
+    report = coverage_from_placements(
+        [(2.0, 5.0)],
+        [{"start": 2.0, "fitted_seconds": 1.5,
+          "active_start_seconds": 0.5, "active_end_seconds": 1.0,
+          "internal_silences": [{"start": 0.25, "end": 0.75}]}],
+    )
+    # 0.25 s of activity (2.75..3.0); overlap merges into one leading gap.
+    assert report["uncovered_seconds"] == pytest.approx(2.75)
+    assert report["longest_uncovered_seconds"] == pytest.approx(2.0)
+    assert len(report["holes"]) == 2
+
+
+def test_fully_active_take_has_no_estimated_gap():
+    report = coverage_from_placements([(0.0, 1.5)], [{"start": 0.0, "fitted_seconds": 1.5,
+                                                       "active_start_seconds": 0.0,
+                                                       "active_end_seconds": 1.5,
+                                                       "internal_silences": []}])
+    assert report["uncovered_seconds"] == 0
+    assert report["holes"] == []
+    assert_coverage(report)

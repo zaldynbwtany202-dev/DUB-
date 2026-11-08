@@ -108,3 +108,117 @@ def test_source_must_not_be_overwritten(tmp_path):
     source = tmp_path / "source.mp4"
     with pytest.raises(ValueError, match="Never overwrite"):
         agent.assemble({"video": str(source), "voice_backend": "agent"}, work_dir=tmp_path, output=source)
+
+
+def test_voice_activity_finds_silent_gap_without_cutting_audio():
+    sr = 24000
+    tone = (0.3 * np.sin(2 * np.pi * 440 * np.arange(sr // 2) / sr)).astype(np.float32)
+    samples = np.concatenate([np.zeros(sr // 2), tone, np.zeros(2 * sr), tone, np.zeros(sr // 2)]).astype(np.float32)
+    report = agent.voice_activity(samples, sr)
+    assert report["active_start_seconds"] == pytest.approx(0.5, abs=0.02)
+    assert report["active_end_seconds"] == pytest.approx(3.5, abs=0.02)
+    assert report["internal_silences"][0]["end"] - report["internal_silences"][0]["start"] == pytest.approx(2.0, abs=0.02)
+    assert len(samples) == 4 * sr  # analysis never edits the recording
+
+
+def test_pre_aligned_silent_audio_is_not_accepted(tmp_path):
+    source = tmp_path / "empty.wav"
+    sf.write(source, np.zeros(24000, dtype=np.float32), 24000)
+    with pytest.raises(ValueError, match="silent"):
+        agent.fit_take(cue(source, 0, 2, pre_aligned=True), tmp_path, 0)
+
+
+def test_preserve_take_silence_does_not_trim_any_samples(tmp_path):
+    sr = 24000
+    tone = (0.3 * np.sin(2 * np.pi * 440 * np.arange(sr) / sr)).astype(np.float32)
+    samples = np.concatenate([np.zeros(sr // 2), tone, np.zeros(sr // 2)]).astype(np.float32)
+    source = tmp_path / "raw.wav"
+    sf.write(source, samples, sr)
+    fitted, report = agent.fit_take(cue(source, 0, 3), tmp_path, 0, trim_edges=False)
+    assert report["leading_silence_removed"] == 0
+    assert report["trailing_silence_removed"] == 0
+    assert report["active_start_seconds"] == pytest.approx(0.5, abs=0.02)
+    assert report["active_end_seconds"] == pytest.approx(1.5, abs=0.02)
+    assert np.allclose(fitted, samples, atol=0.0001)
+
+
+def test_coverage_gate_rejects_long_gap_before_mux_and_keeps_report(tmp_path, monkeypatch):
+    source = tmp_path / "source.mp4"
+    source.write_bytes(b"fixture")
+    take = tmp_path / "take.mp3"
+    take.write_bytes(b"fixture")
+    monkeypatch.setattr(agent, "probe_duration", lambda p: 5.0)
+    monkeypatch.setattr(agent, "fit_take", lambda *args, **kwargs: (
+        np.ones(24000, dtype=np.float32) * 0.1,
+        {"start": 0.0, "fitted_seconds": 5.0,
+         "active_start_seconds": 0.0, "active_end_seconds": 5.0,
+         "internal_silences": [{"start": 1.5, "end": 3.5}], "tempo": 1.0}))
+    output = tmp_path / "final.mp4"
+    work = tmp_path / "work"
+    with pytest.raises(ValueError, match="source speech uncovered"):
+        agent.assemble({"video": str(source), "voice_backend": "agent", "voice_id": "voice-01",
+                        "timing_mode": "source_audio", "segments": [cue(take, 0, 5)]},
+                       work_dir=work, output=output, mix_background=False)
+    assert not output.exists() and not (work / "aligned.wav").exists()
+    report = json.loads((work / "coverage-gate.json").read_text(encoding="utf-8"))
+    assert report["status"] == "rejected"
+    assert report["coverage"]["longest_uncovered_seconds"] == 2.0
+    assert report["coverage"]["holes"][0]["kind"] == "internal"
+    assert "not independent word-level" in report["note"]
+
+
+def test_mixed_declared_voices_are_rejected_without_claiming_acoustic_proof():
+    with pytest.raises(ValueError, match="Mixed declared voice"):
+        agent.validate_voice_metadata({"voice_id": "voice-01"},
+                                      [{"voice_id": "voice-01"}, {"voice_id": "voice-02"}])
+    metadata = agent.validate_voice_metadata({"voice_id": "voice-01"}, [{}, {}])
+    assert metadata["status"] == "partial_or_sheet_only_unverified"
+
+
+def test_paused_project_cannot_bypass_gate_via_generic_agent_assembler(tmp_path, monkeypatch):
+    from scripts import voice_decision_gate as gate
+
+    def deny(slug):
+        assert slug == "patrick-jane-return"
+        raise gate.VoiceDecisionError("production paused")
+    monkeypatch.setattr(gate, "require_production_ready", deny)
+    monkeypatch.setattr(agent, "probe_duration", lambda p: pytest.fail("should fail before reading film"))
+    with pytest.raises(gate.VoiceDecisionError, match="production paused"):
+        agent.assemble({"project_slug": "patrick-jane-return", "voice_backend": "agent",
+                        "video": str(tmp_path / "source.mp4")},
+                       work_dir=tmp_path / "work", output=tmp_path / "dub.mp4")
+    assert not (tmp_path / "work").exists()
+
+
+def test_coverage_gate_rejects_short_take_tail_before_video_output(tmp_path, monkeypatch):
+    source = tmp_path / "source.mp4"
+    source.write_bytes(b"fixture")
+    take = tmp_path / "take.mp3"
+    take.write_bytes(b"fixture")
+    monkeypatch.setattr(agent, "probe_duration", lambda p: 5.0)
+    monkeypatch.setattr(agent, "fit_take", lambda *args, **kwargs: (
+        np.ones(24000, dtype=np.float32) * 0.1,
+        {"start": 0.0, "fitted_seconds": 1.0, "tempo": 1.0,
+         "active_start_seconds": 0.0, "active_end_seconds": 1.0,
+         "internal_silences": []}))
+    with pytest.raises(ValueError, match="source speech uncovered"):
+        agent.assemble({"video": str(source), "voice_backend": "agent",
+                        "timing_mode": "source_audio", "segments": [cue(take, 0, 5)]},
+                       work_dir=tmp_path / "work", output=tmp_path / "final.mp4",
+                       mix_background=False)
+    report = json.loads((tmp_path / "work/coverage-gate.json").read_text())
+    assert report["coverage"]["holes"][0]["kind"] == "tail"
+    assert report["coverage"]["longest_uncovered_seconds"] == 4.0
+    assert not (tmp_path / "final.mp4").exists()
+
+
+def test_patrick_requires_cue_voice_to_match_approved_id(tmp_path, monkeypatch):
+    from scripts import voice_decision_gate as gate
+
+    monkeypatch.setattr(gate, "require_production_ready", lambda slug: "voice-27")
+    with pytest.raises(ValueError, match="cue voice differs"):
+        agent.assemble({"project_slug": "patrick-jane-return", "voice_backend": "agent",
+                        "voice_id": "voice-29", "video": str(tmp_path / "source.mp4")},
+                       work_dir=tmp_path / "work", output=tmp_path / "dub.mp4",
+                       mix_background=False)
+    assert not (tmp_path / "work").exists()
