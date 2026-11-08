@@ -269,6 +269,16 @@ def main():
     a = ap.parse_args()
 
     work = Path(a.work_dir)
+    if work.name == "patrick-jane-return":
+        # Prevent an old recipe (rubberband/silence trimming) from silently
+        # turning a rejected take into a Patrick Jane production build.
+        from voice_decision_gate import VoiceDecisionError, require_production_ready
+        try:
+            require_production_ready(work.name)
+        except VoiceDecisionError as exc:
+            raise SystemExit(str(exc)) from exc
+        if a.stretch != "atempo" or not a.no_tighten or a.max_tempo > 1.8 or a.min_tempo < 1.0:
+            raise SystemExit("Patrick Jane: use --stretch atempo --no-tighten, 1.0 <= tempo <= 1.8")
     take_dir = Path(a.takes) if a.takes else (work / "takes")
     groups = json.loads((work / "groups.json").read_text(encoding="utf-8"))["groups"]
     pieces_map = json.loads(a.pieces) if a.pieces else {}

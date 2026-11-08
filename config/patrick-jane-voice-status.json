@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "project": "patrick-jane-return",
+  "status": "paused",
+  "approved_for_production": false,
+  "reference_voice_id": "voice-27",
+  "rejected_audition_battles": [
+    "30",
+    "32",
+    "33"
+  ],
+  "preview_stems": [],
+  "note": "User rejected the latest synthetic auditions and chose to pause voice selection. The earlier voice-27 reference and all recordings are preserved, but neither the script nor the film is approved. Do not resume generation or publishing without an explicit new decision.",
+  "approved_voice_id": null,
+  "transcript_approved": false
+}

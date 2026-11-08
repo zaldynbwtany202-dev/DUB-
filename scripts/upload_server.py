@@ -31,7 +31,7 @@ CHUNK = 1 << 20
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "90"
+BUILD = "91"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -572,39 +572,45 @@ def _human(n):
         n /= 1024.0
 
 
-def render_previews():
-    """Players for the finished cuts, so the preview frame shows the work and
-    not only the door. Reads the directory on every request: a new cut appears
-    on refresh instead of needing a restart.
-
-    Newest first, because the newest cut is the one being discussed, and the
-    filename of a take is not what it is. LABELS says what each cut actually
-    covers so the frame needs no explanation beside it.
-    """
+def voice_status():
+    """Read the listener decision on each request; absent/malformed state fails closed."""
+    path = ROOT / "config/patrick-jane-voice-status.json"
     try:
-        # Explicit order, newest cut first. Sorting by modification time looked
-        # right and was not: restoring the repository rewrites every file at the
-        # same instant, so the order came out arbitrary. A cut that matters gets
-        # a place in this list; anything else follows, newest first among itself.
-        rank = {stem: i for i, stem in enumerate([
-            "patrick-jane-voice27-g004", "patrick-jane-voice29-g004", "patrick-jane-voice31-g004",
-            "patrick-jane-voice27-g007-production-sample", "patrick-jane-raw27-on-picture",
-            "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
-            "patrick-jane-voice27-after-level-g004",
-            "patrick-jane-voice27-current-g003-raw", "patrick-jane-voice27-current-g005-raw",
-            "patrick-jane-voice27-pitch-fix-3-5", "patrick-jane-voice27-sample-3-5"])}
-        # The page was emptied on the user's instruction: it carries what the
-        # work is about right now and nothing else. Everything else stays on disk
-        # and in the repository history -- and comes back by adding one name here.
-        # Show current auditions first, then saved video comparisons. Rejected
-        # takes remain on disk; labels must not imply synthetic audio is human.
-        PAGE_ALLOW = {"patrick-jane-voice27-g004", "patrick-jane-voice29-g004",
-                      "patrick-jane-voice31-g004", "patrick-jane-voice27-g007-production-sample",
-                      "patrick-jane-raw27-on-picture",
-                      "patrick-jane-raw27-with-bed0", "patrick-jane-voice27-after-tempo-g004",
-                      "patrick-jane-voice27-after-level-g004", "patrick-jane-voice27-current-g003-raw",
-                      "patrick-jane-voice27-current-g005-raw", "patrick-jane-voice27-pitch-fix-3-5",
-                      "patrick-jane-voice27-sample-3-5"}
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if data.get("project") == "patrick-jane-return" and data.get("status") in (
+                "paused", "auditioning", "approved"):
+            return data
+    except (OSError, ValueError, AttributeError):
+        pass
+    return {"status": "needs_review", "approved_for_production": False,
+            "preview_stems": []}
+
+
+def render_voice_status():
+    state = voice_status()
+    if state["status"] == "paused":
+        message = "اختيار صوت باتريك جين متوقف بطلبك. لا تُنتَج أخذات جديدة ولا تُنشر الدبلجة. التسجيلات السابقة محفوظة وليست معتمدة للفيلم."
+    elif state["status"] == "auditioning":
+        message = "عينات للاختيار فقط؛ لا يعني الاستماع إليها الموافقة على صوت الفيلم أو نصه."
+    elif state["status"] == "approved" and state.get("approved_for_production"):
+        message = "الصوت محدد؛ راجع النص وتزامن الكلمات والتدقيق السمعي قبل النشر."
+    else:
+        message = "قرار الصوت غير مؤكد. الإنتاج والنشر موقوفان حتى مراجعة الحالة."
+    return '<aside class="voice-state" role="status">' + html.escape(message) + '</aside>'
+
+
+def render_previews():
+    """Show only current, explicitly listed auditions; preserve old files."""
+    try:
+        state = voice_status()
+        # Only an explicit, current audition list may appear. Historic cuts and
+        # rejected candidates stay on disk, never silently re-enter the page.
+        stems = state.get("preview_stems", []) if state["status"] == "auditioning" else []
+        if not isinstance(stems, list):
+            stems = []
+        allowed = [stem for stem in stems if isinstance(stem, str) and stem in LABELS]
+        rank = {stem: i for i, stem in enumerate(allowed)}
+        PAGE_ALLOW = set(allowed)
         cuts = sorted([c for c in list(PREVIEWS.glob("*.mp4")) + list(PREVIEWS.glob("*.mp3"))
                        if c.stem in PAGE_ALLOW],
                       key=lambda p: (rank.get(p.stem, len(rank)), -p.stat().st_mtime))
@@ -612,8 +618,8 @@ def render_previews():
         cuts = []
     if not cuts:
         return ('<div class="prev"><h2>العيّنات الجاهزة</h2>'
-                '<p class="m">الصفحة فارغة بطلبك. العيّنات القديمة كلها محفوظة في المستودع، '
-                'ولا تظهر هنا إلا ما نعمل عليه الآن.</p></div>')
+                '<p class="m">لا توجد عينات معروضة حاليًا. العينات القديمة محفوظة، '
+                'ولا تظهر من جديد إلا بقرار واضح منك.</p></div>')
     cards = []
     for number, c in enumerate(cuts, 1):
         url = "/previews/" + urllib.parse.quote(c.name)
@@ -638,7 +644,8 @@ def render_previews():
 
 def page():
     return (PAGE.replace("<!--PREVIEWS-->", render_previews())
-                .replace("<!--BUILD-->", BUILD))
+                .replace("<!--BUILD-->", BUILD)
+                .replace("<!--VOICE-STATUS-->", render_voice_status()))
 
 
 PAGE = """<!doctype html><html dir="rtl" lang="ar">
@@ -670,6 +677,8 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  .probe{margin-top:20px;font-size:12px;color:#9aa0a6}
  .probe.good{color:#4ade80}
  .probe.bad{color:#f87171}
+ .voice-state{margin:22px 0;padding:16px;border:1px solid #c59443;
+      border-radius:10px;background:#332a1b;color:#ffe0aa;font-size:14px}
  .prev{margin-top:30px;border-top:1px solid #2a2e36;padding-top:20px}
  .prev h2{font-size:16px;margin:0 0 14px;color:#e8eaed}
  .card{background:#1b1e24;border:1px solid #2a2e36;border-radius:12px;padding:12px;margin-bottom:16px}
@@ -694,6 +703,7 @@ PAGE = """<!doctype html><html dir="rtl" lang="ar">
  <div class="ok" id="ok"></div>
  <div class="err" id="err"></div>
  <div class="done" id="done"></div>
+ <!--VOICE-STATUS-->
  <p class="build">إصدار الصفحة <!--BUILD--></p>
  <!--PREVIEWS-->
 </div>
@@ -743,7 +753,8 @@ function send(f){
   };
   setBar(0);
   status(f.name).then(s=>{
-    off=s.done?0:s.bytes;
+    if(s.done) return fail('الملف موجود مسبقًا؛ احتفظنا به دون استبدال. غيّر اسم الملف إذا أردت نسخة أخرى.');
+    off=s.bytes;
     if(off>0){const r=confirm('يوجد '+human(off)+' مرفوع مسبقًا. استئناف من حيث توقف؟'); if(!r)off=0}
     setBar(off); pump();
   }).catch(()=>pump());
@@ -785,7 +796,7 @@ function send(f){
     status(f.name).then(s=>{
       if(s.done){
         fill.style.width='100%'; pct.textContent='100%'; ok.style.display='block';
-        ok.innerHTML='✓ اكتمل الرفع: <b>'+f.name+'</b> ('+human(s.size)+')<br>'+
+        ok.innerHTML='✓ اكتمل الرفع: <b>'+escapeHtml(f.name)+'</b> ('+human(s.size)+')<br>'+
           'قل لي «ابدأ الدبلجة» وسأعالجه.';
         busy=false; list();
       } else { off=Math.max(0,s.bytes); setBar(off);
@@ -796,39 +807,25 @@ function send(f){
 }
 
 
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function list(){
   fetch('/files').then(r=>r.json()).then(d=>{
     if(!d.files.length){done.innerHTML='';return}
     done.innerHTML='<b>الملفات في الاستقبال:</b><ul>'+
-      d.files.map(x=>'<li>'+x.name+' — '+human(x.size)+'</li>').join('')+'</ul>';
+      d.files.map(x=>'<li>'+escapeHtml(x.name)+' — '+human(x.size)+'</li>').join('')+'</ul>';
   }).catch(()=>{})
 }
 list();
 
-// Can this page reach the server with a body at all?
-//
-// The point is to answer that in the page instead of in a conversation. The
-// first attempt at uploading a film stalled at one percent with nothing in the
-// server log, which took a round trip to establish; a 32 KB body that succeeds
-// or fails on load says the same thing in a second.
+// Read-only liveness check. Earlier page loads silently uploaded and then
+// deleted a _probe.bin file; refreshing must not mutate anyone's uploads.
 const BUILD='<!--BUILD-->';
 const probe=document.getElementById('probe');
-(function preflight(){
-  const body=new Uint8Array(32768), name='_probe.bin';
-  const xhr=new XMLHttpRequest();
-  xhr.open('POST','/upload?name='+name+'&offset=0&total='+body.length);
-  xhr.setRequestHeader('Content-Type','application/octet-stream');
-  xhr.timeout=20000;
-  const done=(ok,txt)=>{probe.textContent=txt; probe.className='probe '+(ok?'good':'bad')};
-  xhr.onload=()=>{
-    fetch('/delete?name='+name,{method:'POST'}).catch(()=>{});
-    if(xhr.status===200) done(true,'الاتصال جاهز: الرفع يعمل ✓ · إصدار '+BUILD);
-    else done(false,'الرفع لا يعمل عبر هذه الصفحة (رمز '+xhr.status+') — أرفق الفيديو في المحادثة.');
-  };
-  xhr.onerror=()=>done(false,'الرفع لا يعمل عبر هذه الصفحة — أرفق الفيديو في المحادثة.');
-  xhr.ontimeout=()=>done(false,'الرفع يتجمّد — أرفق الفيديو في المحادثة.');
-  xhr.send(body);
-})();
+fetch('/health').then(r=>{if(!r.ok)throw Error('unavailable');return r.json()})
+  .then(d=>{probe.textContent='الخادم متصل ✓ · إصدار '+BUILD+' · حالة الصوت: '+d.voice_status;
+            probe.className='probe good'})
+  .catch(()=>{probe.textContent='تعذّر الاتصال بالخادم؛ أعد تحميل الصفحة.';
+              probe.className='probe bad'});
 
 </script>
 </html>
@@ -886,6 +883,17 @@ class Handler(BaseHTTPRequestHandler):
         if u.path in ("/upload", "/", "/index.html"):
             # The preview frame opens at '/', so the door has to be there too.
             return self._send(200, page(), "text/html; charset=utf-8")
+        if u.path == "/health":
+            state = voice_status()
+            return self._send(200, json.dumps({"ready": True, "build": BUILD,
+                "voice_status": state["status"],
+                "production_approved": (
+                    state["status"] == "approved"
+                    and state.get("approved_for_production") is True
+                    and state.get("transcript_approved") is True
+                    and isinstance(state.get("approved_voice_id"), str)
+                    and bool(state["approved_voice_id"].strip()))},
+                ensure_ascii=False), "application/json; charset=utf-8")
         if u.path == "/status":
             p = self._safe(q.get("name", [""])[0])
             part = p.with_suffix(p.suffix + ".part") if p.suffix else Path(str(p) + ".part")
@@ -900,22 +908,48 @@ class Handler(BaseHTTPRequestHandler):
                          if f.is_file() and not f.name.endswith(".part")],
                         key=lambda x: -x["size"])
             return self._send(200, json.dumps({"files": fs}), "application/json")
-        # static
-        rel = urllib.parse.unquote(u.path).lstrip("/")
-        tgt = (ROOT / rel).resolve() if rel else ROOT / "index.html"
-        if not str(tgt).startswith(str(ROOT)) or not tgt.is_file():
+        # Never serve arbitrary repository files (including .git and source
+        # footage). Only media in the previews directory is public.
+        prefix = "/previews/"
+        if not u.path.startswith(prefix):
             return self._send(404, "غير موجود")
-        ctype = "video/mp4" if tgt.suffix in (".mp4", ".m4v") else (
-            "audio/mpeg" if tgt.suffix == ".mp3" else (
-                "audio/wav" if tgt.suffix == ".wav" else "application/octet-stream"))
+        name = urllib.parse.unquote(u.path[len(prefix):])
+        if (not name or name in (".", "..") or "/" in name or "\\" in name
+                or name.startswith(".") or Path(name).suffix.lower() not in (".mp3", ".mp4", ".m4v")):
+            return self._send(404, "غير موجود")
+        tgt = (PREVIEWS / name).resolve()
+        if tgt.parent != PREVIEWS.resolve() or not tgt.is_file():
+            return self._send(404, "غير موجود")
+        ctype = "audio/mpeg" if tgt.suffix.lower() == ".mp3" else "video/mp4"
         size = tgt.stat().st_size
-        rng = self.headers.get("Range")
         code, start, end = 200, 0, size - 1
-        if rng and rng.startswith("bytes="):
-            a, _, b = rng[6:].partition("-")
-            start = int(a) if a else 0
-            end = int(b) if b else size - 1
-            code = 206
+        rng = self.headers.get("Range")
+        if rng:
+            # RFC 9110 single byte range, including open-ended and suffix
+            # ranges. A malformed/out-of-bounds request gets 416, never a
+            # negative Content-Length or an uncaught ValueError.
+            try:
+                if not rng.startswith("bytes=") or "," in rng:
+                    raise ValueError("only one byte range is supported")
+                a, sep, b = rng[6:].partition("-")
+                if not sep or not (a or b) or (a and not a.isdigit()) or (b and not b.isdigit()):
+                    raise ValueError("bad range")
+                if a:
+                    start = int(a)
+                    end = min(int(b), size - 1) if b else size - 1
+                else:
+                    start = max(0, size - int(b))
+                    end = size - 1
+                if size == 0 or start >= size or end < start or (not a and int(b) == 0):
+                    raise ValueError("unsatisfiable range")
+                code = 206
+            except ValueError:
+                self.send_response(416)
+                self.send_header("Content-Range", f"bytes */{size}")
+                self.send_header("Content-Length", "0")
+                self.send_header("Accept-Ranges", "bytes")
+                self.end_headers()
+                return
         self.send_response(code)
         self.send_header("Content-Type", ctype)
         self.send_header("Content-Length", str(end - start + 1))
@@ -939,12 +973,10 @@ class Handler(BaseHTTPRequestHandler):
     def do_POST(self):
         u = urllib.parse.urlparse(self.path)
         q = urllib.parse.parse_qs(u.query)
+        # Legacy delete endpoint is deliberately disabled: a public preview
+        # must not remove uploaded user files, even if given their filename.
         if u.path == "/delete":
-            tgt = self._safe(q.get("name", [""])[0])
-            for f in (tgt, Path(str(tgt) + ".part")):
-                if f.is_file() and INCOMING in f.resolve().parents:
-                    f.unlink()
-            return self._send(200, "ok")
+            return self._send(405, "الحذف معطل لحماية ملفاتك")
         if u.path != "/upload":
             return self._send(404, "غير موجود")
         name = q.get("name", [""])[0]
@@ -954,21 +986,29 @@ class Handler(BaseHTTPRequestHandler):
             length = int(self.headers.get("Content-Length") or 0)
         except ValueError:
             return self._send(400, "طول غير صالح")
+        if length <= 0:
+            return self._send(400, "جزء فارغ أو طول غير صالح")
         try:
-            offset = max(0, int(q.get("offset", ["0"])[0]))
+            offset = int(q.get("offset", ["0"])[0])
         except ValueError:
-            offset = 0
+            return self._send(400, "إزاحة غير صالحة")
+        if offset < 0:
+            return self._send(400, "إزاحة غير صالحة")
         # Optional total. Without it a request is assumed to carry the whole
         # remainder of the file, so a client that sends fixed-size chunks would
         # have each chunk renamed as if it were the finished upload. With it,
         # completion is a byte count rather than a guess.
         try:
-            total = max(0, int(q["total"][0])) if "total" in q else None
+            total = int(q["total"][0]) if "total" in q else None
         except ValueError:
-            total = None
+            return self._send(400, "حجم الملف غير صالح")
+        if total is not None and (total <= 0 or offset + length > total):
+            return self._send(400, "الجزء يتجاوز حجم الملف")
         final = self._safe(name)
         part = final.with_suffix(final.suffix + ".part") if final.suffix else Path(str(final) + ".part")
         INCOMING.mkdir(parents=True, exist_ok=True)
+        if final.exists():
+            return self._send(409, "الملف موجود مسبقًا؛ لن يُستبدل")
         # Honouring an offset is only possible when the bytes are actually
         # there. Opening wb and seeking would silently fill the gap with
         # zeroes -- the file would reach the right size and be renamed as
@@ -1009,9 +1049,6 @@ class Handler(BaseHTTPRequestHandler):
             sys.stderr.write(f"[upload] تقدّم {name}: {done_at}/{total}\n")
             return self._send(200, json.dumps({"bytes": done_at, "complete": False}),
                               "application/json")
-        if total is not None and done_at > total:
-            with open(part, "r+b") as fh:
-                fh.truncate(total)
         os.replace(part, final)
         sys.stderr.write(f"[upload] ✓ {final.name} ({final.stat().st_size} بايت)\n")
         self._send(200, "ok")
