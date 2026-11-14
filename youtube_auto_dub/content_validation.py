@@ -1,6 +1,7 @@
 """Phrase completeness and word-timing quality checks for generated speech."""
 from __future__ import annotations
 
+import math
 import re
 import unicodedata
 from difflib import SequenceMatcher
@@ -68,37 +69,124 @@ def validate_spoken_content(
     }
 
 
-def word_timing_report(observed_words: list[dict], speech_start: float, speech_end: float) -> dict[str, Any]:
-    valid = [word for word in observed_words if word.get("start") is not None and word.get("end") is not None]
-    if not valid or speech_end <= speech_start:
-        return {"ok": False, "word_count": 0, "reason": "missing_word_timestamps"}
-    local_start = float(valid[0]["start"])
-    local_end = float(valid[-1]["end"])
-    actual_span = max(local_end - local_start, 1e-6)
-    target_span = speech_end - speech_start
-    rows = []
-    drifts = []
-    for word in valid:
-        rel_start = (float(word["start"]) - local_start) / actual_span
-        rel_end = (float(word["end"]) - local_start) / actual_span
-        ideal_start = speech_start + rel_start * target_span
-        ideal_end = speech_start + rel_end * target_span
-        actual_global_start = speech_start + float(word["start"])
-        actual_global_end = speech_start + float(word["end"])
-        drift = actual_global_end - ideal_end
-        drifts.append(abs(drift))
+def word_timing_report(
+    observed_words: list[dict], speech_start: float, speech_end: float, *,
+    reference: dict[str, Any] | None = None, tolerance_seconds: float = 0.15,
+) -> dict[str, Any]:
+    """Report measured ASR word times without inventing linearly-scaled targets.
+
+    ``ok`` means only that ASR timing data is structurally usable. Actual
+    word-by-word sync is verified only when a human-reviewed reference with
+    the same spoken words and local word boundaries is supplied.
+    """
+    try:
+        speech_start, speech_end = float(speech_start), float(speech_end)
+    except (TypeError, ValueError):
+        raise ValueError("speech window must be numeric")
+    if not all(math.isfinite(t) for t in (speech_start, speech_end)) or speech_end <= speech_start:
+        raise ValueError("speech window must be finite and have positive duration")
+    if tolerance_seconds < 0 or not math.isfinite(tolerance_seconds):
+        raise ValueError("tolerance_seconds must be finite and non-negative")
+
+    rows: list[dict[str, Any]] = []
+    flags: set[str] = set()
+    prior_start = -1.0
+    for index, word in enumerate(observed_words):
+        if not isinstance(word, dict):
+            flags.add("invalid_word_record")
+            rows.append({"index": index, "word": "", "start": None, "end": None,
+                         "timing_status": "invalid_record"})
+            continue
+        text = str(word.get("word", "")).strip()
+        try:
+            start, end = float(word.get("start")), float(word.get("end"))
+            valid = math.isfinite(start) and math.isfinite(end) and 0 <= start < end
+        except (TypeError, ValueError):
+            start = end = None
+            valid = False
+        if not valid:
+            flags.add("missing_or_invalid_word_timing")
+            rows.append({"index": index, "word": text, "start": None, "end": None,
+                         "timing_status": "missing_or_invalid"})
+            continue
+        if start + 1e-6 < prior_start:
+            flags.add("out_of_order_word_timing")
+        prior_start = start
+        if start > speech_end - speech_start + tolerance_seconds or end > speech_end - speech_start + tolerance_seconds:
+            flags.add("word_timing_exceeds_target_window")
         rows.append({
-            "word": str(word.get("word", "")).strip(),
-            "actual_start": round(actual_global_start, 3),
-            "actual_end": round(actual_global_end, 3),
-            "ideal_start": round(ideal_start, 3),
-            "ideal_end": round(ideal_end, 3),
-            "end_drift": round(drift, 3),
+            "index": index, "word": text,
+            "start": round(start, 3), "end": round(end, 3),
+            "actual_start": round(speech_start + start, 3),
+            "actual_end": round(speech_start + end, 3),
+            "start_offset_from_target": round(start, 3),
+            "end_offset_from_target": round(end - (speech_end - speech_start), 3),
+            "timing_status": "asr_estimate",
         })
-    return {
-        "ok": True,
+
+    timed = [row for row in rows if row.get("start") is not None]
+    report: dict[str, Any] = {
+        "ok": bool(timed) and not flags.intersection({"missing_or_invalid_word_timing", "out_of_order_word_timing"}),
+        "ok_scope": "structural_timing_only_not_sync_approval",
+        "status": "timings_available_unverified" if timed else "missing_word_timestamps",
         "word_count": len(rows),
-        "mean_abs_drift": round(sum(drifts) / len(drifts), 4),
-        "max_abs_drift": round(max(drifts), 4),
+        "timed_word_count": len(timed),
+        "speech_window": {"start": speech_start, "end": speech_end,
+                          "duration": round(speech_end - speech_start, 3)},
+        "review_flags": sorted(flags),
+        "sync_verified": False,
+        "reference_available": False,
+        "evidence": "ASR-estimated word times only; no source/reference word alignment was supplied",
         "words": rows,
     }
+
+    if reference is None:
+        return report
+    report["reference_available"] = True
+    if (not isinstance(reference, dict) or reference.get("reference_verified") is not True
+            or not str(reference.get("reviewer", "")).strip()
+            or not isinstance(reference.get("words"), list)):
+        report["status"] = "reference_not_human_verified"
+        report["evidence"] = "Reference timings were supplied but lack an explicit human reviewer attestation"
+        return report
+
+    expected = reference["words"]
+    if len(expected) != len(rows) or len(rows) != len(timed):
+        report["status"] = "reference_word_count_mismatch"
+        return report
+    errors: list[float] = []
+    per_word = []
+    for row, ref in zip(rows, expected):
+        if not isinstance(ref, dict):
+            report["status"] = "invalid_reference_word"
+            return report
+        obs_tokens = normalize_tokens(row["word"])
+        ref_tokens = normalize_tokens(str(ref.get("word", "")))
+        try:
+            ref_start, ref_end = float(ref["start"]), float(ref["end"])
+        except (KeyError, TypeError, ValueError):
+            report["status"] = "invalid_reference_timing"
+            return report
+        if (len(obs_tokens) != 1 or obs_tokens != ref_tokens or not math.isfinite(ref_start)
+                or not math.isfinite(ref_end) or ref_start < 0 or ref_end <= ref_start):
+            report["status"] = "reference_text_or_timing_mismatch"
+            return report
+        start_error, end_error = abs(row["start"] - ref_start), abs(row["end"] - ref_end)
+        errors.extend((start_error, end_error))
+        per_word.append({**row,
+                         "reference_start": ref_start, "reference_end": ref_end,
+                         "start_error_seconds": round(start_error, 4),
+                         "end_error_seconds": round(end_error, 4)})
+    max_error = max(errors, default=0.0)
+    report.update({
+        "status": "human_reference_alignment_pass" if max_error <= tolerance_seconds else "human_reference_alignment_fail",
+        "reference_reviewer": str(reference["reviewer"]).strip(),
+        "reference_verified": True,
+        "tolerance_seconds": tolerance_seconds,
+        "mean_abs_boundary_error_seconds": round(sum(errors) / len(errors), 4) if errors else 0.0,
+        "max_abs_boundary_error_seconds": round(max_error, 4),
+        "sync_verified": max_error <= tolerance_seconds,
+        "evidence": "Word-by-word boundary error against a human-reviewed reference in the same target-language audio",
+        "words": per_word,
+    })
+    return report

@@ -1828,7 +1828,7 @@ async def main_async(args) -> None:
             content_result = None
             timing_result = None
             if args.validate_content and chunk.get("source_text") and not non_speech and final_voice:
-                current_stage = "content_validation"
+                current_stage = "content_asr_check"
                 for content_attempt in range(3):
                     checked_raw, _checked_language = transcribe(
                         final_voice, model_name=args.model, device=device,
@@ -1966,14 +1966,25 @@ async def main_async(args) -> None:
                 atomic_write_json(directory / "content-validation.json", content_result)
                 atomic_write_json(directory / "word-alignment.json", timing_result)
                 store.update_chunk(
-                    index, status="content_validated", content_validation=content_result,
+                    index, status="content_asr_checked", content_validation=content_result,
                     word_alignment=timing_result,
                     content_retry_attempt=content_attempt,
+                    content_validation_scope="asr_lexical_only",
+                    listener_review_required=bool(content_result.get("listener_review_required", True)),
+                    pronunciation_verified=False,
+                    sync_verified=bool(timing_result.get("sync_verified", False)),
                 )
                 store.mark_stage(
-                    index, "content_validation", "success",
+                    index, "content_asr_check", "success",
                     output=directory / "content-validation.json",
-                    details={"recall": content_result.get("recall"), "sequence_ratio": content_result.get("sequence_ratio")},
+                    details={
+                        "recall": content_result.get("recall"),
+                        "sequence_ratio": content_result.get("sequence_ratio"),
+                        "scope": "ASR lexical comparison only",
+                        "listener_review_required": bool(content_result.get("listener_review_required", True)),
+                        "pronunciation_verified": False,
+                        "sync_verified": bool(timing_result.get("sync_verified", False)),
+                    },
                 )
 
             current_stage = "audio_mix"

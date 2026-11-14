@@ -4,6 +4,7 @@ import json
 
 import pytest
 
+from youtube_auto_dub import pronunciation_review as pronunciation_module
 from youtube_auto_dub.pronunciation_review import review_pronunciation
 from scripts.review_arabic_take import build_review, main
 
@@ -28,6 +29,35 @@ def test_same_asr_letters_cannot_prove_the_intended_homograph_sound():
     assert report["homonym_hazards"]
     assert report["status"] == "listener_review_required"
     assert report["lexical_asr_check"]["pronunciation_verified"] is False
+
+
+def test_unknown_dialect_is_never_silently_given_egyptian_rules():
+    report = review_pronunciation("بقول بزاف", dialect="ar-DZ")
+    assert report["dialect_profile_available"] is False
+    assert report["dialect_profile_status"] == "unsupported_no_vetted_profile"
+    assert report["dialect_suggestions"] == []
+    assert report["dialect_detected"] is None
+    assert report["dialect_verified"] is False
+
+
+def test_other_dialect_profile_requires_matching_locale_and_provenance(tmp_path, monkeypatch):
+    monkeypatch.setattr(pronunciation_module, "DIALECT_PROFILES", tmp_path)
+    path = tmp_path / "ar-dz.json"
+    path.write_text(json.dumps({
+        "locale": "ar-DZ", "version": 1,
+        "provenance": {"reviewer": "reviewer-1", "sources": ["human-reviewed sample"]},
+        "lexicon": {"بزاف": ["بزّاف"]},
+        "regional_variants": {},
+    }), encoding="utf-8")
+    report = review_pronunciation("بزاف", dialect="ar-DZ")
+    assert report["dialect_profile_available"] is True
+    assert report["dialect_profile_status"] == "suggestions_only"
+    assert report["dialect_suggestions"][0]["possible_readings"] == ["بزّاف"]
+    assert report["dialect_verified"] is False
+
+    path.write_text(json.dumps({"locale": "ar-DZ", "lexicon": {"بزاف": "بزّاف"}}), encoding="utf-8")
+    report = review_pronunciation("بزاف", dialect="ar-DZ")
+    assert report["dialect_profile_available"] is False
 
 
 def test_wrong_take_hash_is_rejected_and_previous_checklist_is_preserved(tmp_path):

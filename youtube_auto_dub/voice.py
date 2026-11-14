@@ -1,6 +1,7 @@
 """Multi-engine speech synthesis: edge-tts default, Qwen3-TTS optional."""
 
 import asyncio
+import hashlib
 import json
 import logging
 import subprocess
@@ -31,10 +32,40 @@ from youtube_auto_dub.models import (
     VOICE_PERSONAS,
 )
 from youtube_auto_dub.runtime import empty_cuda_cache
-from youtube_auto_dub.studio_tts import speak_studio
+from youtube_auto_dub.studio_tts import lookup_entry as lookup_studio_entry, speak_studio
 from youtube_auto_dub.ui import console
 
 log = logging.getLogger(__name__)
+
+
+def _write_synthesis_manifest(
+    dest: Path, *, text: str, voice: str, lang: str, engine: str,
+    actual_voice: str, fallback_used: bool,
+) -> None:
+    """Persist which engine really rendered the take and bind it to its bytes."""
+    def sha256_file(path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as source:
+            for block in iter(lambda: source.read(1024 * 1024), b""):
+                digest.update(block)
+        return digest.hexdigest()
+
+    manifest = {
+        "schema_version": 1,
+        "engine": engine,
+        "requested_voice_id": voice,
+        "actual_voice_id": actual_voice,
+        "locale": lang,
+        "local_fallback_used": fallback_used,
+        "text_sha256": hashlib.sha256(text.encode("utf-8")).hexdigest(),
+        "audio_sha256": sha256_file(dest),
+        "audio_bytes": dest.stat().st_size,
+    }
+    path = dest.with_name(dest.name + ".voice.json")
+    temp = path.with_name(path.name + ".tmp")
+    temp.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    temp.replace(path)
+
 
 # Prefer the well-known studio voices mentioned in the pipeline docs.
 PREFERRED_VOICES = {
@@ -103,23 +134,41 @@ async def speak_edge(
     timeout: int = None,
     lang: str = "ar",
     gender: str = "male",
-):
+    allow_local_fallback: bool = False,
+) -> str:
+    """Synthesize with the pinned voice; fail closed unless fallback is explicit.
+
+    Returns the actual engine name and writes ``<audio>.voice.json`` with the
+    voice, text and output hashes so a fallback or changed take cannot be
+    mistaken for the requested voice.
+    """
     if retries is None:
         retries = EDGE_TTS_RETRIES
     if timeout is None:
         timeout = EDGE_TTS_TIMEOUT
+    if retries < 0:
+        raise ValueError("retries must be non-negative")
+    dest = Path(dest)
+    original_text = text
+    requested_voice = voice
 
     # Formal Arabic may benefit from vowel marks; ar-EG must not be silently
     # rewritten by a formal-Arabic diacritizer. Respect the actual voice locale.
     if (lang or "").startswith("ar"):
         text = prepare_arabic(text, locale=voice if voice.lower().startswith("ar-") else lang)
 
-    # An approved studio take always beats a synthesised one.
+    # A studio take is reusable only when both its exact script and voice match.
     try:
-        if speak_studio(text, dest):
+        bank_entry = lookup_studio_entry(text, voice=voice)
+        if bank_entry and speak_studio(text, dest, voice=voice):
             console.step("Studio voice take")
-            return
-    except Exception as exc:  # a bad take must never abort the dub
+            _write_synthesis_manifest(
+                dest, text=original_text, voice=requested_voice, lang=lang,
+                engine="studio-bank", actual_voice=str(bank_entry.get("voice", voice)),
+                fallback_used=False,
+            )
+            return "studio-bank"
+    except Exception as exc:  # invalid bank entries are not trusted
         log.warning("Studio take failed for %r: %s", text[:40], exc)
 
     last = None
@@ -129,23 +178,38 @@ async def speak_edge(
             c = edge_tts.Communicate(text, voice, rate=rate)
             await asyncio.wait_for(c.save(str(dest)), timeout=timeout)
             if dest.exists() and dest.stat().st_size >= VOICE_MIN_FILE_SIZE:
-                return
+                _write_synthesis_manifest(
+                    dest, text=original_text, voice=requested_voice, lang=lang,
+                    engine="edge-tts", actual_voice=voice, fallback_used=False,
+                )
+                return "edge-tts"
             raise RuntimeError("Empty output")
         except asyncio.TimeoutError:
             last = TimeoutError(f"Timeout after {timeout}s (attempt {attempt + 1})")
             console.warning(f"Edge TTS timeout, retry {attempt + 1}")
-        except Exception as e:
-            last = e
-            console.warning(f"Edge TTS error (attempt {attempt + 1}): {e}")
-            name = type(e).__name__
+        except Exception as exc:
+            last = exc
+            console.warning(f"Edge TTS error (attempt {attempt + 1}): {exc}")
+            name = type(exc).__name__
             if "SSL" in name or "Connector" in name or "Client" in name:
                 break
         dest.unlink(missing_ok=True)
         if attempt < retries:
             await asyncio.sleep(EDGE_TTS_RETRY_DELAY)
-    console.warning("Edge TTS unavailable, using local eSpeak NG")
+
+    if not allow_local_fallback:
+        raise RuntimeError(
+            f"Pinned Edge voice {voice!r} unavailable; local eSpeak fallback is disabled"
+        ) from last
+
     from youtube_auto_dub.local_tts import speak_local
     speak_local(text, dest, lang=lang, gender=gender)
+    _write_synthesis_manifest(
+        dest, text=original_text, voice=requested_voice, lang=lang,
+        engine="espeak-local", actual_voice=f"espeak:{lang}:{gender}",
+        fallback_used=True,
+    )
+    return "espeak-local"
 
 
 # ── Qwen3-TTS ───────────────────────────────────────────────────────────

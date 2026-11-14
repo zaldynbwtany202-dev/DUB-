@@ -66,7 +66,7 @@ def test_content_validator_detects_missing_phrase():
     assert "brown" in result["missing_words"]
 
 
-def test_word_timing_report_records_each_observed_word():
+def test_word_timing_report_does_not_invent_linear_word_targets():
     words = [
         {"word": "hello", "start": 0.0, "end": 0.4},
         {"word": "world", "start": 0.5, "end": 1.0},
@@ -75,7 +75,60 @@ def test_word_timing_report_records_each_observed_word():
     assert result["ok"] is True
     assert result["word_count"] == 2
     assert result["words"][0]["actual_start"] == 4.0
-    assert result["words"][-1]["ideal_end"] == 5.0
+    assert result["words"][-1]["actual_end"] == 5.0
+    assert result["sync_verified"] is False
+    assert result["ok_scope"] == "structural_timing_only_not_sync_approval"
+    assert result["reference_available"] is False
+    assert "ideal_end" not in result["words"][-1]
+    assert "reference" in result["evidence"]
+
+
+def test_word_timing_report_measures_boundaries_against_human_reference():
+    words = [
+        {"word": "طعامهم", "start": 0.02, "end": 0.42},
+        {"word": "خير", "start": 0.51, "end": 0.98},
+    ]
+    reference = {
+        "reference_verified": True, "reviewer": "listener-1",
+        "words": [
+            {"word": "طعامهم", "start": 0.0, "end": 0.4},
+            {"word": "خير", "start": 0.5, "end": 1.0},
+        ],
+    }
+    result = word_timing_report(words, 10.0, 11.0, reference=reference, tolerance_seconds=0.1)
+    assert result["sync_verified"] is True
+    assert result["status"] == "human_reference_alignment_pass"
+    assert result["mean_abs_boundary_error_seconds"] == 0.0175
+    assert result["max_abs_boundary_error_seconds"] == 0.02
+    assert result["words"][0]["start_error_seconds"] == 0.02
+
+
+def test_word_timing_report_rejects_unverified_or_mismatching_reference():
+    words = [{"word": "عَلَم", "start": 0.0, "end": 0.4}]
+    unverified = {"reference_verified": False, "reviewer": "", "words": words}
+    result = word_timing_report(words, 0.0, 1.0, reference=unverified)
+    assert result["sync_verified"] is False
+    assert result["status"] == "reference_not_human_verified"
+    mismatch = {"reference_verified": True, "reviewer": "human", "words": [
+        {"word": "قَلَم", "start": 0.0, "end": 0.4},
+    ]}
+    result = word_timing_report(words, 0.0, 1.0, reference=mismatch)
+    assert result["sync_verified"] is False
+    assert result["status"] == "reference_text_or_timing_mismatch"
+
+
+def test_alignment_cli_requires_human_reference(tmp_path):
+    from scripts.evaluate_word_alignment import main
+
+    source = tmp_path / "alignment.json"
+    source.write_text(json.dumps({
+        "speech_start": 0.0, "speech_end": 1.0,
+        "observed_words": [{"word": "كلمة", "start": 0.0, "end": 1.0}],
+    }), encoding="utf-8")
+    out = tmp_path / "alignment-report.json"
+    assert main(["--input", str(source), "--out", str(out)]) == 2
+    report = json.loads(out.read_text(encoding="utf-8"))
+    assert report["sync_verified"] is False
 
 
 def test_non_speech_labels_are_not_synthesized():
