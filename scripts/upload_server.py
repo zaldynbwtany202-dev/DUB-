@@ -42,7 +42,7 @@ def upload_lock(name):
 
 # Bumped whenever the page changes. The stamp is printed in the page so a stale
 # copy is visible at a glance instead of costing a round trip to rule out.
-BUILD = "92"
+BUILD = "93"
 
 # What each preview actually covers. The newest cut is the one being discussed,
 # so the frame sorts by time and this tells the viewer what they are watching.
@@ -756,9 +756,10 @@ async function fileFingerprint(f){
 // upload resumes instead of restarting. If a chunk keeps failing the size is
 // halved, down to a quarter of a megabyte, so the client finds a size the
 // connection accepts instead of dying at a fixed guess.
-const CHUNK_MAX=1048576, CHUNK_MIN=262144;
-// 1 MiB instead of 2: a 254 MB film at 2 MiB chunks stalled after the first
-// chunk on this proxy and never resumed by itself; smaller bodies survive.
+const CHUNK_MAX=1048576, CHUNK_MIN=262144, MAX_CONSECUTIVE_FAILURES=40;
+// 1 MiB is the normal body size; repeated gateway errors halve it to 256 KiB.
+// The retry budget counts consecutive failures, not the thousands of successful
+// chunks in a large film, and is reset after every confirmed chunk.
 let chunk=CHUNK_MAX;
 
 function send(f){
@@ -802,19 +803,39 @@ function send(f){
       xhr.timeout=180000;
       xhr.upload.onprogress=e=>setBar(from+e.loaded);
       xhr.onload=()=>{
-        if(xhr.status===200){off=to; fails=0; setBar(off); pump()}
+        if(xhr.status===200){
+          off=to; fails=0; tries=0; err.textContent=''; setBar(off); pump()
+        }
         else if(xhr.status===409||xhr.status===422)
           fail('الجزء لا يطابق الملف المحفوظ؛ لم نغير البيانات. اختر اسمًا آخر أو تحقق من الملف.');
         else if(xhr.status===413){
           if(chunk<=CHUNK_MIN) return fail('الوسيط يرفض حتى أصغر حجم. أرفق الفيديو في المحادثة.');
-          chunk=CHUNK_MIN; retry(from);
+          chunk=CHUNK_MIN; fails=0; tries=0; retry(from);
         }
-        else {tries++; if(tries>40)return fail('رفض الخادم الجزء ('+xhr.status+').');
-              retry(from)}
+        else {
+          tries++;
+          if(tries>MAX_CONSECUTIVE_FAILURES)
+            return fail('تكرر رفض الجزء ('+xhr.status+')؛ احتفظنا بالجزء المرفوع. أعد تحميل الصفحة واختر الملف نفسه بالاسم نفسه للاستئناف.');
+          if(xhr.status===502||xhr.status===503||xhr.status===504){
+            err.textContent='⚠ بوابة الاتصال أعادت '+xhr.status+'؛ نتحقق من الإزاحة المحفوظة ونعيد المحاولة بحجم أصغر عند الحاجة.';
+          }
+          retry(from)
+        }
       };
-      xhr.onerror=()=>{tries++; if(tries>40)return fail('انقطع الاتصال بعد محاولات كثيرة.'); retry(from)};
-      xhr.ontimeout=()=>{tries++; if(tries>40)return fail('تجمّد الرفع. أعد تحميل الصفحة أو أرفق الفيديو في المحادثة.');
-                         retry(from)};
+      xhr.onerror=()=>{
+        tries++;
+        if(tries>MAX_CONSECUTIVE_FAILURES)
+          return fail('انقطع الاتصال بعد محاولات متتالية؛ الجزء السابق محفوظ. أعد تحميل الصفحة واختر الملف نفسه للاستئناف.');
+        err.textContent='⚠ انقطع اتصال مؤقت؛ نتحقق من البيانات المحفوظة ثم نعيد المحاولة.';
+        retry(from)
+      };
+      xhr.ontimeout=()=>{
+        tries++;
+        if(tries>MAX_CONSECUTIVE_FAILURES)
+          return fail('تكرر تجمّد الاتصال؛ الجزء السابق محفوظ. أعد تحميل الصفحة واختر الملف نفسه للاستئناف.');
+        err.textContent='⚠ انتهت مهلة هذا الجزء؛ نتحقق من الإزاحة المحفوظة ثم نعيد المحاولة.';
+        retry(from)
+      };
       xhr.send(payload);
     }).catch(()=>fail('تعذّر حساب بصمة جزء الرفع.'));
   }
@@ -822,13 +843,16 @@ function send(f){
   function retry(from){
     fails++;
     if(fails%3===0&&chunk>CHUNK_MIN) chunk=Math.max(CHUNK_MIN,Math.floor(chunk/2));
+    // Back off on repeated proxy 5xx/timeouts, but check the server's committed
+    // offset first: a 502 can happen after the body was already saved.
+    const delay=Math.min(500*Math.pow(2,Math.min(tries,5)),15000);
     status(f.name).then(s=>{
       if(s.done) return verify();
       if(s.bytes>0&&s.fingerprint!==fingerprint)
         return fail('تغير الملف أثناء الاستئناف؛ الجزء السابق محفوظ.');
-      off=Math.max(0,s.bytes); setBar(off); setTimeout(pump,500);
+      off=Math.max(0,s.bytes); setBar(off); setTimeout(pump,delay);
     })
-      .catch(()=>{off=from; setTimeout(pump,900)});
+      .catch(()=>{off=from; setTimeout(pump,Math.max(delay,1000))});
   }
 
   function verify(){

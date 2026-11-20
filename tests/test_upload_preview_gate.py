@@ -114,7 +114,7 @@ def test_health_is_read_only_and_delete_is_disabled(tmp_path, monkeypatch):
     with server(tmp_path, monkeypatch) as (base, root):
         status, _, body = get(base, "/health")
         assert status == 200
-        assert json.loads(body) == {"ready": True, "build": "92",
+        assert json.loads(body) == {"ready": True, "build": "93",
                                     "voice_status": "paused", "production_approved": False}
         assert not (root / "incoming").exists()
         (root / "incoming").mkdir()
