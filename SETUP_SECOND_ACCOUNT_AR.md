@@ -1,12 +1,8 @@
-# إعداد سريع للحساب الثاني
+# إعداد حساب ثانٍ للوصول إلى DUB-
 
-هذه أحدث نسخة من ProStudio عند الالتزام `b2d2f7f350f13d6da85d9b056ad9a8f764801d3f`.
+الدليل الكامل والمحدّث لنقل سياق المشروع إلى حساب/وكيل آخر موجود هنا:
 
-1. فك الضغط.
-2. ارفع كل المحتويات إلى جذر مستودع عام باسم `prostudio` على فرع `main`.
-3. فعّل Actions بصلاحية Read and write.
-4. اختر GitHub Actions في Pages.
-5. أضف Secrets المذكورة في `PROSTUDIO_FULL_GUIDE_AR.md`.
-6. أضف Variables الخاصة بالترجمة، و`VOXCPM_SPACE` إذا لديك Space خاص.
+- [`docs/SETUP_SECOND_ACCOUNT_AR.md`](docs/SETUP_SECOND_ACCOUNT_AR.md)
+- ابدأ كذلك من [`AGENTS.md`](AGENTS.md) و[`docs/CURRENT_STATE_AR.md`](docs/CURRENT_STATE_AR.md).
 
-لا ترفع ZIP نفسه وحده، ولا تضع أي PAT داخل المستودع.
+هذا الملف يبقى نقطة دخول متوافقة مع الروابط القديمة. لا تستخدم خطوات ProStudio القديمة التي كانت تطلب رفع ZIP إلى `main` أو ضبط GitHub Pages؛ المستودع الحالي هو `zaldynbwtany202-dev/DUB-`، وأسماء الفروع وصلاحيات الجلسات يجب التحقق منها قبل العمل.

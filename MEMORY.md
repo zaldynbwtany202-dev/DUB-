@@ -1,3 +1,5 @@
+> **تنبيه سياق — 2026-09-14:** هذا الملف يحتوي أرشيف جلسات وفروع ProStudio/DUB- أقدم، وفيه قرارات صوت وحالة تشغيل قديمة. المرجع الحالي هو [`AGENTS.md`](AGENTS.md)، [`docs/CURRENT_STATE_AR.md`](docs/CURRENT_STATE_AR.md)، و[`docs/PORTABLE_AGENT_MEMORY_AR.md`](docs/PORTABLE_AGENT_MEMORY_AR.md). احتفظ بالأرشيف ولا تتبع تعليماته القديمة قبل التحقق من قرار المستخدم الأحدث.
+
 ## جلسة arena/01a0922c-dub — عقد ثابت
 
 - **ممنوع دمج هذا الفرع أبداً.** لا `git merge` ولا دمج PR إلى `main` أو أي فرع آخر. الفحص: `python scripts/never_merge.py main`.
